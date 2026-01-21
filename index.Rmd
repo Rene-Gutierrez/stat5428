@@ -15,7 +15,7 @@ the course and lecture notes and code seen in class.
 
 Find the syllabus here: [Syllabus](https://github.com/Rene-Gutierrez/stat5428/blob/main/Syllabus-Stat-5428-6428.pdf)
 
-Find the github page for the course (with the data sets) here: [Github](https://rene-gutierrez.github.io/stat5428/)
+Find the github page for the course (with the data sets) here: [Github](https://github.com/Rene-Gutierrez/stat5428)
 
 Find the 
 
