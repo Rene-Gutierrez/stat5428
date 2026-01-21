@@ -1,17 +1,10 @@
+# Stat 5385/6385 Fall 2025
+
+This is the website for STAT5385/6385. It will contain the relevant information for
+the course and lecture notes and code seen in class.
+
+Find the syllabus here: [Syllabus](https://github.com/Rene-Gutierrez/stat5428/blob/main/Syllabus-Stat-5428-6428.pdf)
+
+Find the github page for the course (with the data sets) here: [Github](https://rene-gutierrez.github.io/stat5428/)
+
 ---
-title: "A Book"
-author: "Frida Gomam"
-site: bookdown::bookdown_site
-documentclass: book
-output:
-  bookdown::gitbook: default
-  #bookdown::pdf_book: default
----
-
-# Hello World
-
-Hi.
-
-Bye.
-
-<!-- If you need PDF output, uncomment bookdown::pdf_book above in YAML. You will need a LaTeX installation, e.g., https://yihui.name/tinytex/ -->
