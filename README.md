@@ -1,7 +1,11 @@
-This is a minimal bookdown example. Although you see a few files here, only `index.Rmd` is required. All other files are optional, but `bookdown-minimal.Rproj` can make it much easier to build the book.
+# STAT 5428/6428
 
-The key is the `site` setting in `index.Rmd`. If you want to build the book in RStudio, just click the `Build Book` button in the `Build` pane, otherwise call the function in R:
+## Intro to Statistical Analysis
 
-```r
-bookdown::render_book('index.Rmd', 'all')
-```
+Welcome to the page of STAT 5428/6428. 
+
+Here is the [Syllabus](https://github.com/Rene-Gutierrez/stat5385/blob/main/Syllabus%20Stat%205385-6385.pdf)
+
+Here are the [Lecture Notes](https://rene-gutierrez.github.io/stat5385/)
+
+Note that the code for the lecture notes is here, so you should be able to reproduce all the examples.
