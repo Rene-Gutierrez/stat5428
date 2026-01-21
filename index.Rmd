@@ -7,4 +7,75 @@ Find the syllabus here: [Syllabus](https://github.com/Rene-Gutierrez/stat5428/bl
 
 Find the github page for the course (with the data sets) here: [Github](https://rene-gutierrez.github.io/stat5428/)
 
+Find the 
+
+---
+
+## Weekly Course Outline
+
+1. **Introduction to Statistical Thinking and Data Analysis**  
+   Role of statistics in research; types of data; study design; observational versus experimental studies; introduction to statistical software (`R`).
+
+2. **Descriptive Statistics and Exploratory Data Analysis (EDA)**  
+   Numerical summaries; measures of center and variability; graphical methods; data visualization; exploratory data analysis workflow.
+
+3. **Probability Concepts and Random Variables**  
+   Basic probability rules; discrete and continuous random variables; common distributions; expectation and variance.
+
+4. **Sampling Distributions and Simulation**  
+   Concept of sampling distributions; Central Limit Theorem; simulation‑based illustration; intuition for confidence levels and statistical power.
+
+5. **Statistical Inference I: Estimation and Confidence Intervals**  
+   Point estimation; confidence intervals for means and proportions; interpretation and limitations; assumptions and robustness.
+
+6. **Statistical Inference II: Hypothesis Testing**  
+   Null and alternative hypotheses; test statistics; p‑values; Type I/II errors; power considerations and sample size intuition.
+
+7. **Inference for Two Populations**  
+   Two‑sample CIs and tests; paired designs; comparing means and variances; parametric vs. nonparametric choices.
+
+8. **Analysis of Variance (ANOVA)**  
+   One‑way ANOVA; model formulation; assumptions; multiple comparisons; practical interpretation and reporting.
+
+9. **Analysis of Covariance (ANCOVA)**  
+   Incorporating quantitative covariates; adjusted means; interpretation; assumption checks and diagnostics.
+
+10. **Simple and Multiple Linear Regression**  
+    Least squares estimation; interpretation of coefficients; model fit; inference for regression parameters.
+
+11. **Regression Diagnostics and Model Assessment**  
+    Residual analysis; outliers and influence; multicollinearity; remedial measures (transformations, variable selection).
+
+12. **Logistic Regression and Categorical Data Analysis**  
+    Binary response models; odds, odds ratios, and log‑odds; goodness‑of‑fit; interpreting software output.
+
+13. **Nonparametric Methods and Alternatives**  
+    Rank‑based tests and other nonparametric procedures; when and why to choose nonparametric approaches.
+
+14. **Experimental Design and Model Selection**  
+    Principles of randomization, blocking, replication; power and sample size concepts; model selection strategies; reproducibility.
+
+15. **Integration, Applications, and Communication of Results**  
+    Case studies with real datasets; end‑to‑end analysis; ethical considerations; transparent reporting; course review.
+
+---
+
+## Topical Learning Outcomes (Aligned with Bloom’s Taxonomy)
+
+| Topic                              | Bloom’s Level        | Learning Outcome                                                                                 |
+|:-----------------------------------|:---------------------|:--------------------------------------------------------------------------------------------------|
+| Descriptive Statistics             | Understand / Apply   | Summarize and visualize datasets using appropriate numerical and graphical descriptive measures. |
+| Probability Concepts               | Understand           | Explain fundamental probability concepts and their role in statistical modeling and inference.    |
+| Sampling Distributions             | Analyze              | Analyze sampling variability and illustrate key ideas via simulation.                             |
+| Confidence Intervals               | Apply / Analyze      | Construct and interpret confidence intervals; assess assumptions and practical implications.      |
+| Hypothesis Testing                 | Analyze / Evaluate   | Evaluate hypotheses using appropriate tests and interpret results in context.                     |
+| Two‑Sample Inference               | Apply / Analyze      | Compare two populations using parametric and nonparametric procedures.                            |
+| ANOVA / ANCOVA                     | Analyze              | Analyze group differences with ANOVA/ANCOVA, incorporating covariates where appropriate.         |
+| Linear Regression                  | Apply / Analyze      | Develop and interpret simple and multiple linear regression models.                               |
+| Model Diagnostics                  | Evaluate             | Assess model assumptions; identify influence and multicollinearity; implement remedial actions.  |
+| Logistic Regression                | Analyze              | Model binary outcomes; interpret odds ratios and fitted model diagnostics.                        |
+| Nonparametric Methods              | Evaluate             | Justify and apply nonparametric alternatives when assumptions are violated.                       |
+| Experimental Design                | Create / Evaluate    | Design and critique basic experiments (randomization, blocking, replication).                     |
+| Statistical Software (R)           | Apply / Create       | Use R to perform analyses, run simulations, interpret output, and communicate results clearly.    |
+
 ---
