@@ -1,6 +1,6 @@
-# Stat 5385/6385 Fall 2025
+# Stat 5428/6428 Spring 2026
 
-This is the website for STAT5385/6385. It will contain the relevant information for
+This is the website for STAT 5428/6428. It will contain the relevant information for
 the course and lecture notes and code seen in class.
 
 Find the syllabus here: [Syllabus](https://github.com/Rene-Gutierrez/stat5428/blob/main/Syllabus-Stat-5428-6428.pdf)
