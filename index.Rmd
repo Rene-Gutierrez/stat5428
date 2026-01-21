@@ -79,3 +79,102 @@ Find the
 | Statistical Software (R)           | Apply / Create       | Use R to perform analyses, run simulations, interpret output, and communicate results clearly.    |
 
 ---
+
+## Course Overview
+
+*Introduction to Statistical Analysis* is a graduate‑level course that develops statistical thinking as an integrated process of description, modeling, inference, and revision. The course is structured around the view that statistical analysis is not a linear application of techniques, but an iterative framework in which data are explored, probabilistic assumptions are imposed, conclusions are drawn under those assumptions, and models are reassessed in light of empirical evidence. Emphasis is placed on conceptual understanding, methodological coherence, and interpretation, rather than on formal mathematical derivations.
+
+The central organizing principle of the course is the relationship between **data** and **probability models**. Data are treated as realizations from an underlying stochastic process, and statistical methods are developed as tools for learning about that process. Throughout the course, students use statistical software (`R`) to connect theory with practice and to evaluate the adequacy of models when applied to real data.
+
+The course is organized into four major sections, each corresponding to a distinct stage of statistical reasoning.
+
+---
+
+### Section I: Data — Description and Intrinsic Properties
+
+**Purpose:** Characterizing data without imposing a probabilistic model  
+
+The first section focuses on understanding data in its raw form. Prior to modeling or inference, data must be described, explored, and contextualized. This section emphasizes the intrinsic properties of data that can be observed directly, without reference to stochastic assumptions.
+
+Key objectives include identifying structure, detecting anomalies, and understanding variability as an empirical phenomenon.
+
+**Topics in this section include:**
+- Nature and structure of data (measurement scales, data types)
+- Observational versus experimental data
+- Study design and sources of variation
+- Descriptive statistics (location, dispersion, shape)
+- Graphical summaries and data visualization
+- Exploratory Data Analysis (EDA)
+
+This section establishes descriptive analysis as a critical and non‑optional stage of any sound statistical investigation.
+
+---
+
+### Section II: Data Modeling — Probability as a Generative Mechanism
+
+**Purpose:** Modeling data as realizations of a stochastic process  
+
+In the second section, probability is introduced as a *modeling language* for data generation. Rather than focusing on probability as an abstract mathematical subject, it is framed as a tool for encoding assumptions about how data arise.
+
+Students study theoretical distributions and sampling behavior implied by different probabilistic models, and they examine the consequences of these assumptions.
+
+**Topics in this section include:**
+- Basic probability concepts and axioms
+- Random variables and probability distributions
+- Discrete and continuous models
+- Expectation and variance
+- Sampling distributions
+- The Central Limit Theorem
+- Simulation‑based exploration of theoretical results
+
+This section provides the probabilistic foundation upon which all subsequent inferential procedures are built.
+
+---
+
+### Section III: Statistical Inference — Learning from Data Under a Model
+
+**Purpose:** Drawing conclusions using probabilistic models  
+
+The third section develops formal statistical inference as a logical extension of probability modeling. Conditional on an assumed data‑generating mechanism, students derive and apply methods for estimation, hypothesis testing, and uncertainty quantification.
+
+Inference is presented as fundamentally model‑dependent, and interpretation is emphasized over mechanical computation.
+
+**Topics in this section include:**
+- Point estimation and estimators
+- Confidence intervals and coverage interpretation
+- Hypothesis testing frameworks
+- Test statistics and p‑values
+- Type I and Type II errors
+- Power and sample size considerations
+- Inference for one and two populations
+- Introduction to ANOVA as a comparative inferential framework
+
+Students learn to answer substantive research questions while explicitly acknowledging the assumptions that justify their conclusions.
+
+---
+
+### Section IV: Data Remodeling — Model Assessment, Revision, and Alternatives
+
+**Purpose:** Validating conclusions and revisiting assumptions  
+
+The final section returns to the modeling stage with a critical perspective. After conducting inference, students evaluate whether the probabilistic assumptions underlying their analyses are empirically reasonable.
+
+Model adequacy is assessed using diagnostics, and alternative approaches are considered when assumptions fail. This section emphasizes that statistical modeling is iterative and subject to revision rather than a one‑time choice.
+
+**Topics in this section include:**
+- Linear and multiple regression models
+- Logistic regression and categorical responses
+- Residual analysis and goodness‑of‑fit diagnostics
+- Influential observations and multicollinearity
+- Remedial measures and transformations
+- Nonparametric alternatives
+- Model selection strategies
+- Interpretation under updated or revised assumptions
+
+This section reinforces the idea that statistical conclusions are conditional statements whose validity rests on the suitability of the modeling framework.
+
+---
+
+## Course Perspective
+
+Across all four sections, the course emphasizes coherence between data, models, inference, and validation. By the end of the course, students will be able to approach data analysis as a structured yet flexible process—one that integrates empirical evidence, probabilistic reasoning, and critical evaluation in order to draw defensible conclusions from data.

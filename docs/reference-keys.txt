@@ -1,3 +1,9 @@
 stat-53856385-fall-2025
 weekly-course-outline
 topical-learning-outcomes-aligned-with-blooms-taxonomy
+course-overview
+section-i-data-description-and-intrinsic-properties
+section-ii-data-modeling-probability-as-a-generative-mechanism
+section-iii-statistical-inference-learning-from-data-under-a-model
+section-iv-data-remodeling-model-assessment-revision-and-alternatives
+course-perspective
