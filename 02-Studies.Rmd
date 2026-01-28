@@ -1,0 +1,154 @@
+# Observational and Experimental Studies
+
+## Introduction
+
+Reliable statistical inference depends critically on the quality and structure of
+the data collected. This chapter introduces two major frameworks for gathering
+data: **surveys** and **experimental studies**. These methods differ in their level
+of control, susceptibility to bias, and the strength of the conclusions permitted.
+
+This chapter corresponds to the *Data* stage of the course workflow:
+**collecting, describing data, understanding structure, and identifying intrinsic properties before modeling.**
+
+---
+
+## Surveys
+
+Surveys are systematic procedures for obtaining information from a sample that
+represents a broader population. Effective survey design minimizes bias and
+ensures appropriate representation.
+
+### Populations and Sampling Frames
+
+- **Population:** the complete set of units of interest.  
+- **Sampling frame:** the operational list from which the sample is drawn.
+
+A mismatch between population and frame leads to **coverage error**. 
+
+### Sampling Methods
+
+#### Simple Random Sampling (SRS)
+Every subset of a given size has an equal chance of being selected.  
+Advantages:
+- Unbiased representation. We will see what do we mean by this later. 
+- Straightforward design and analysis.
+
+
+#### Stratified Sampling
+The population is divided into homogeneous groups (*strata*), and SRS is applied within each.
+- Reduces sampling variability  
+- Ensures representation of important subpopulations
+
+
+#### Cluster Sampling
+Naturally occurring groups (clusters) are sampled instead of individuals.
+- Efficient for large geographic populations  
+- Requires careful design to ensure representativeness  
+
+#### Systematic Sampling
+Select every *kth* element after a random start.
+- Easy to implement  
+- Sensitive to hidden periodic patterns  
+
+### Sources of Survey Bias
+
+#### Selection Bias
+The sample differs systematically from the population.
+
+#### Nonresponse Bias
+Failure to obtain measurements from selected units creates distortion.
+
+#### Response Bias
+Arises from poor question wording, respondent discomfort, or interviewer influence.
+
+### Questionnaire Design Principles
+
+- Use clear, neutral language  
+- Avoid leading or double‑barreled questions  
+- Choose appropriate measurement scales:
+  - Nominal  
+  - Ordinal  
+  - Interval  
+  - Ratio  
+
+---
+
+## Experimental Studies
+
+Experiments involve deliberate manipulation of conditions to identify causal effects.
+They provide control over sources of variability through specific design features.
+
+### Key Components of Experimental Design
+
+#### Experimental Units
+Entities to which treatments are applied.
+
+#### Treatments and Control
+Interventions or conditions imposed on units; control group provides a baseline.
+
+#### Random Assignment
+Distributes potential confounders across treatment groups.
+
+#### Replication
+Multiple units exposed to each treatment enable the estimation of experimental variability.
+
+#### Blocking
+Grouping similar units to reduce the influence of nuisance factors.
+
+### Confounding
+
+A confounding variable affects both treatment assignment and response, obscuring
+causal relationships.  
+Good experimental design aims to reduce confounding through:
+- Randomization  
+- Control  
+- Proper blocking  
+
+---
+
+## Observational vs Experimental Studies
+
+### Comparative Characteristics
+
+| Feature | Observational Study | Experimental Study |
+|--------|---------------------|--------------------|
+| Researcher control | None | High |
+| Confounding | Often present | Reduced |
+| Causal claims | Weak | Strong |
+| Difficulty | Usually easier to conduct | May be expensive or unethical |
+
+### Interpretational Considerations
+
+Observational studies support **associational** conclusions.  
+Experiments support **causal** conclusions, conditional on valid design.
+
+---
+
+## Data Quality and Measurement
+
+### Validity and Reliability
+
+#### Validity
+Whether measurement reflects the concept intended.
+
+#### Reliability
+Consistency of repeated measurements under identical conditions.
+
+### Sources of Variability
+
+- Natural biological or environmental variation  
+- Measurement error  
+- Experimental or observational conditions  
+- Sampling variability  
+
+Reducing uncontrolled variation increases the precision and reliability of statistical findings.
+
+---
+
+## Summary
+
+This chapter establishes essential principles for gathering high‑quality data.
+Surveys and experiments differ in control structure, design complexity, and inferential capability, but both aim to produce data suitable for statistical reasoning.
+
+In the next chapter, we transition to **Data Modeling**, where probability is introduced as a generative mechanism to describe theoretical data behavior.
+
