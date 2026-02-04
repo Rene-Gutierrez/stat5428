@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Introduction to Probability | STAT 5428/6428 Spring 2026</title>
+  <meta name="description" content="5 Introduction to Probability | STAT 5428/6428 Spring 2026" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Introduction to Probability | STAT 5428/6428 Spring 2026" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Introduction to Probability | STAT 5428/6428 Spring 2026" />
+  
+  
+  
+
+<meta name="author" content="Rene Gutierrez University of Texas at El Paso" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-description.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Stat 5428/6428 Spring 2026</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#weekly-course-outline"><i class="fa fa-check"></i><b>1.1</b> Weekly Course Outline</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#topical-learning-outcomes-aligned-with-blooms-taxonomy"><i class="fa fa-check"></i><b>1.2</b> Topical Learning Outcomes (Aligned with Bloom’s Taxonomy)</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#course-overview"><i class="fa fa-check"></i><b>1.3</b> Course Overview</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#section-i-data-description-and-intrinsic-properties"><i class="fa fa-check"></i><b>1.3.1</b> Section I: Data — Description and Intrinsic Properties</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#section-ii-data-modeling-probability-as-a-generative-mechanism"><i class="fa fa-check"></i><b>1.3.2</b> Section II: Data Modeling — Probability as a Generative Mechanism</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#section-iii-statistical-inference-learning-from-data-under-a-model"><i class="fa fa-check"></i><b>1.3.3</b> Section III: Statistical Inference — Learning from Data Under a Model</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#section-iv-data-remodeling-model-assessment-revision-and-alternatives"><i class="fa fa-check"></i><b>1.3.4</b> Section IV: Data Remodeling — Model Assessment, Revision, and Alternatives</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-perspective"><i class="fa fa-check"></i><b>1.4</b> Course Perspective</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro-to-r.html"><a href="intro-to-r.html"><i class="fa fa-check"></i><b>2</b> Intro to R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro-to-r.html"><a href="intro-to-r.html#basic-r-operations-and-concepts"><i class="fa fa-check"></i><b>2.1</b> Basic R Operations and Concepts</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="intro-to-r.html"><a href="intro-to-r.html#the-console-and-scripts"><i class="fa fa-check"></i><b>2.1.1</b> The Console and Scripts</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro-to-r.html"><a href="intro-to-r.html#comments"><i class="fa fa-check"></i><b>2.1.2</b> Comments</a></li>
+<li class="chapter" data-level="2.1.3" data-path="intro-to-r.html"><a href="intro-to-r.html#printing-and-output"><i class="fa fa-check"></i><b>2.1.3</b> Printing and Output</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="intro-to-r.html"><a href="intro-to-r.html#arithmetic"><i class="fa fa-check"></i><b>2.2</b> Arithmetic</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="intro-to-r.html"><a href="intro-to-r.html#order-of-operations"><i class="fa fa-check"></i><b>2.2.1</b> Order of Operations</a></li>
+<li class="chapter" data-level="2.2.2" data-path="intro-to-r.html"><a href="intro-to-r.html#logical-comparisons"><i class="fa fa-check"></i><b>2.2.2</b> Logical Comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intro-to-r.html"><a href="intro-to-r.html#assignment-object-names-and-data-types"><i class="fa fa-check"></i><b>2.3</b> Assignment, Object Names, and Data Types</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="intro-to-r.html"><a href="intro-to-r.html#assignment"><i class="fa fa-check"></i><b>2.3.1</b> Assignment</a></li>
+<li class="chapter" data-level="2.3.2" data-path="intro-to-r.html"><a href="intro-to-r.html#object-names"><i class="fa fa-check"></i><b>2.3.2</b> Object Names</a></li>
+<li class="chapter" data-level="2.3.3" data-path="intro-to-r.html"><a href="intro-to-r.html#common-data-types"><i class="fa fa-check"></i><b>2.3.3</b> Common Data Types</a></li>
+<li class="chapter" data-level="2.3.4" data-path="intro-to-r.html"><a href="intro-to-r.html#missing-values"><i class="fa fa-check"></i><b>2.3.4</b> 3.4 Missing Values</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="intro-to-r.html"><a href="intro-to-r.html#vectors"><i class="fa fa-check"></i><b>2.4</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="intro-to-r.html"><a href="intro-to-r.html#creating-vectors-with-c"><i class="fa fa-check"></i><b>2.4.1</b> Creating Vectors with <code>c()</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="intro-to-r.html"><a href="intro-to-r.html#vector-length"><i class="fa fa-check"></i><b>2.4.2</b> Vector Length</a></li>
+<li class="chapter" data-level="2.4.3" data-path="intro-to-r.html"><a href="intro-to-r.html#vector-arithmetic-vectorized-operations"><i class="fa fa-check"></i><b>2.4.3</b> Vector Arithmetic (Vectorized Operations)</a></li>
+<li class="chapter" data-level="2.4.4" data-path="intro-to-r.html"><a href="intro-to-r.html#sequences-with-and-seq"><i class="fa fa-check"></i><b>2.4.4</b> Sequences with <code>:</code> and <code>seq()</code></a></li>
+<li class="chapter" data-level="2.4.5" data-path="intro-to-r.html"><a href="intro-to-r.html#repetition-with-rep"><i class="fa fa-check"></i><b>2.4.5</b> Repetition with <code>rep()</code></a></li>
+<li class="chapter" data-level="2.4.6" data-path="intro-to-r.html"><a href="intro-to-r.html#indexing-vectors"><i class="fa fa-check"></i><b>2.4.6</b> Indexing Vectors</a></li>
+<li class="chapter" data-level="2.4.7" data-path="intro-to-r.html"><a href="intro-to-r.html#named-vectors"><i class="fa fa-check"></i><b>2.4.7</b> Named Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="intro-to-r.html"><a href="intro-to-r.html#functions-and-expressions"><i class="fa fa-check"></i><b>2.5</b> Functions and Expressions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="intro-to-r.html"><a href="intro-to-r.html#functions"><i class="fa fa-check"></i><b>2.5.1</b> Functions</a></li>
+<li class="chapter" data-level="2.5.2" data-path="intro-to-r.html"><a href="intro-to-r.html#expressions-and-nesting"><i class="fa fa-check"></i><b>2.5.2</b> Expressions and Nesting</a></li>
+<li class="chapter" data-level="2.5.3" data-path="intro-to-r.html"><a href="intro-to-r.html#creating-your-own-function"><i class="fa fa-check"></i><b>2.5.3</b> Creating Your Own Function</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="intro-to-r.html"><a href="intro-to-r.html#getting-help"><i class="fa fa-check"></i><b>2.6</b> Getting Help</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="intro-to-r.html"><a href="intro-to-r.html#help-pages"><i class="fa fa-check"></i><b>2.6.1</b> Help Pages</a></li>
+<li class="chapter" data-level="2.6.2" data-path="intro-to-r.html"><a href="intro-to-r.html#examples-in-help-files"><i class="fa fa-check"></i><b>2.6.2</b> Examples in Help Files</a></li>
+<li class="chapter" data-level="2.6.3" data-path="intro-to-r.html"><a href="intro-to-r.html#searching-for-a-function"><i class="fa fa-check"></i><b>2.6.3</b> Searching for a Function</a></li>
+<li class="chapter" data-level="2.6.4" data-path="intro-to-r.html"><a href="intro-to-r.html#inspecting-objects"><i class="fa fa-check"></i><b>2.6.4</b> Inspecting Objects</a></li>
+<li class="chapter" data-level="2.6.5" data-path="intro-to-r.html"><a href="intro-to-r.html#getting-package-help"><i class="fa fa-check"></i><b>2.6.5</b> Getting Package Help</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html"><i class="fa fa-check"></i><b>3</b> Observational and Experimental Studies</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#surveys"><i class="fa fa-check"></i><b>3.2</b> Surveys</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#populations-and-sampling-frames"><i class="fa fa-check"></i><b>3.2.1</b> Populations and Sampling Frames</a></li>
+<li class="chapter" data-level="3.2.2" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#sampling-methods"><i class="fa fa-check"></i><b>3.2.2</b> Sampling Methods</a></li>
+<li class="chapter" data-level="3.2.3" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#sources-of-survey-bias"><i class="fa fa-check"></i><b>3.2.3</b> Sources of Survey Bias</a></li>
+<li class="chapter" data-level="3.2.4" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#questionnaire-design-principles"><i class="fa fa-check"></i><b>3.2.4</b> Questionnaire Design Principles</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#experimental-studies"><i class="fa fa-check"></i><b>3.3</b> Experimental Studies</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#key-components-of-experimental-design"><i class="fa fa-check"></i><b>3.3.1</b> Key Components of Experimental Design</a></li>
+<li class="chapter" data-level="3.3.2" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#confounding"><i class="fa fa-check"></i><b>3.3.2</b> Confounding</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#observational-vs-experimental-studies"><i class="fa fa-check"></i><b>3.4</b> Observational vs Experimental Studies</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#comparative-characteristics"><i class="fa fa-check"></i><b>3.4.1</b> Comparative Characteristics</a></li>
+<li class="chapter" data-level="3.4.2" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#interpretational-considerations"><i class="fa fa-check"></i><b>3.4.2</b> Interpretational Considerations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#data-quality-and-measurement"><i class="fa fa-check"></i><b>3.5</b> Data Quality and Measurement</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#validity-and-reliability"><i class="fa fa-check"></i><b>3.5.1</b> Validity and Reliability</a></li>
+<li class="chapter" data-level="3.5.2" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#sources-of-variability"><i class="fa fa-check"></i><b>3.5.2</b> Sources of Variability</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#summary"><i class="fa fa-check"></i><b>3.6</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-description.html"><a href="data-description.html"><i class="fa fa-check"></i><b>4</b> Data Description</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-description.html"><a href="data-description.html#data-simulation"><i class="fa fa-check"></i><b>4.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="4.2" data-path="data-description.html"><a href="data-description.html#types-of-data"><i class="fa fa-check"></i><b>4.2</b> Types of Data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-description.html"><a href="data-description.html#quantitative-vs.-qualitative-data"><i class="fa fa-check"></i><b>4.2.1</b> Quantitative vs. Qualitative Data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-description.html"><a href="data-description.html#quantitative-data"><i class="fa fa-check"></i><b>4.2.2</b> Quantitative Data</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-description.html"><a href="data-description.html#qualitative-data"><i class="fa fa-check"></i><b>4.2.3</b> Qualitative Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-description.html"><a href="data-description.html#why-do-we-have-to-describe-data"><i class="fa fa-check"></i><b>4.3</b> Why Do We Have to Describe Data?</a></li>
+<li class="chapter" data-level="4.4" data-path="data-description.html"><a href="data-description.html#types-of-data-description"><i class="fa fa-check"></i><b>4.4</b> Types of Data Description</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data-description.html"><a href="data-description.html#numerical-description"><i class="fa fa-check"></i><b>4.4.1</b> Numerical Description</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-description.html"><a href="data-description.html#graphical-description"><i class="fa fa-check"></i><b>4.4.2</b> Graphical Description</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-description.html"><a href="data-description.html#techniques-to-describe-categorical-data"><i class="fa fa-check"></i><b>4.5</b> Techniques to Describe Categorical Data</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="data-description.html"><a href="data-description.html#graphical-techniques"><i class="fa fa-check"></i><b>4.5.1</b> Graphical Techniques</a></li>
+<li class="chapter" data-level="4.5.2" data-path="data-description.html"><a href="data-description.html#pie-charts"><i class="fa fa-check"></i><b>4.5.2</b> Pie Charts</a></li>
+<li class="chapter" data-level="4.5.3" data-path="data-description.html"><a href="data-description.html#numerical-techniques"><i class="fa fa-check"></i><b>4.5.3</b> Numerical Techniques</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="data-description.html"><a href="data-description.html#techniques-to-describe-quantitative-data"><i class="fa fa-check"></i><b>4.6</b> Techniques to Describe Quantitative Data</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="data-description.html"><a href="data-description.html#displaying-all-the-data"><i class="fa fa-check"></i><b>4.6.1</b> Displaying All the Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="data-description.html"><a href="data-description.html#frequency-table"><i class="fa fa-check"></i><b>4.7</b> Frequency Table</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="data-description.html"><a href="data-description.html#class-frequency"><i class="fa fa-check"></i><b>4.7.1</b> Class Frequency</a></li>
+<li class="chapter" data-level="4.7.2" data-path="data-description.html"><a href="data-description.html#relative-frequency"><i class="fa fa-check"></i><b>4.7.2</b> Relative Frequency</a></li>
+<li class="chapter" data-level="4.7.3" data-path="data-description.html"><a href="data-description.html#histograms"><i class="fa fa-check"></i><b>4.7.3</b> Histograms</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="data-description.html"><a href="data-description.html#general-guidelines-for-successful-graphics"><i class="fa fa-check"></i><b>4.8</b> General Guidelines for Successful Graphics</a></li>
+<li class="chapter" data-level="4.9" data-path="data-description.html"><a href="data-description.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>4.9</b> Measures of Central Tendency</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="data-description.html"><a href="data-description.html#mode"><i class="fa fa-check"></i><b>4.9.1</b> Mode</a></li>
+<li class="chapter" data-level="4.9.2" data-path="data-description.html"><a href="data-description.html#median"><i class="fa fa-check"></i><b>4.9.2</b> Median</a></li>
+<li class="chapter" data-level="4.9.3" data-path="data-description.html"><a href="data-description.html#mean"><i class="fa fa-check"></i><b>4.9.3</b> Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="data-description.html"><a href="data-description.html#measures-of-variability"><i class="fa fa-check"></i><b>4.10</b> Measures of Variability</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="data-description.html"><a href="data-description.html#range"><i class="fa fa-check"></i><b>4.10.1</b> Range</a></li>
+<li class="chapter" data-level="4.10.2" data-path="data-description.html"><a href="data-description.html#quantiles"><i class="fa fa-check"></i><b>4.10.2</b> Quantiles</a></li>
+<li class="chapter" data-level="4.10.3" data-path="data-description.html"><a href="data-description.html#quantile-plot"><i class="fa fa-check"></i><b>4.10.3</b> Quantile Plot</a></li>
+<li class="chapter" data-level="4.10.4" data-path="data-description.html"><a href="data-description.html#percentiles"><i class="fa fa-check"></i><b>4.10.4</b> Percentiles</a></li>
+<li class="chapter" data-level="4.10.5" data-path="data-description.html"><a href="data-description.html#quartiles"><i class="fa fa-check"></i><b>4.10.5</b> Quartiles</a></li>
+<li class="chapter" data-level="4.10.6" data-path="data-description.html"><a href="data-description.html#deviation"><i class="fa fa-check"></i><b>4.10.6</b> Deviation</a></li>
+<li class="chapter" data-level="4.10.7" data-path="data-description.html"><a href="data-description.html#variance"><i class="fa fa-check"></i><b>4.10.7</b> Variance</a></li>
+<li class="chapter" data-level="4.10.8" data-path="data-description.html"><a href="data-description.html#standard-deviation"><i class="fa fa-check"></i><b>4.10.8</b> Standard Deviation</a></li>
+<li class="chapter" data-level="4.10.9" data-path="data-description.html"><a href="data-description.html#absolute-deviation"><i class="fa fa-check"></i><b>4.10.9</b> Absolute Deviation</a></li>
+<li class="chapter" data-level="4.10.10" data-path="data-description.html"><a href="data-description.html#median-absolute-deviation-mad"><i class="fa fa-check"></i><b>4.10.10</b> Median Absolute Deviation (MAD)</a></li>
+<li class="chapter" data-level="4.10.11" data-path="data-description.html"><a href="data-description.html#and-99.7-empirical-rule"><i class="fa fa-check"></i><b>4.10.11</b> 68%, 95%, and 99.7% Empirical Rule</a></li>
+<li class="chapter" data-level="4.10.12" data-path="data-description.html"><a href="data-description.html#coefficient-of-variation"><i class="fa fa-check"></i><b>4.10.12</b> Coefficient of Variation</a></li>
+<li class="chapter" data-level="4.10.13" data-path="data-description.html"><a href="data-description.html#the-boxplot"><i class="fa fa-check"></i><b>4.10.13</b> The Boxplot</a></li>
+<li class="chapter" data-level="4.10.14" data-path="data-description.html"><a href="data-description.html#outliers"><i class="fa fa-check"></i><b>4.10.14</b> Outliers</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="data-description.html"><a href="data-description.html#techniques-for-two-variables"><i class="fa fa-check"></i><b>4.11</b> Techniques for Two Variables</a>
+<ul>
+<li class="chapter" data-level="4.11.1" data-path="data-description.html"><a href="data-description.html#contingency-tables"><i class="fa fa-check"></i><b>4.11.1</b> Contingency Tables</a></li>
+<li class="chapter" data-level="4.11.2" data-path="data-description.html"><a href="data-description.html#stacked-bar-graph"><i class="fa fa-check"></i><b>4.11.2</b> Stacked Bar Graph</a></li>
+<li class="chapter" data-level="4.11.3" data-path="data-description.html"><a href="data-description.html#cluster-bar-graph"><i class="fa fa-check"></i><b>4.11.3</b> Cluster Bar Graph</a></li>
+<li class="chapter" data-level="4.11.4" data-path="data-description.html"><a href="data-description.html#scatter-plot"><i class="fa fa-check"></i><b>4.11.4</b> Scatter Plot</a></li>
+<li class="chapter" data-level="4.11.5" data-path="data-description.html"><a href="data-description.html#correlation-coefficient"><i class="fa fa-check"></i><b>4.11.5</b> Correlation Coefficient</a></li>
+<li class="chapter" data-level="4.11.6" data-path="data-description.html"><a href="data-description.html#block-boxplots"><i class="fa fa-check"></i><b>4.11.6</b> Block Boxplots</a></li>
+<li class="chapter" data-level="4.11.7" data-path="data-description.html"><a href="data-description.html#block-scatter-plots"><i class="fa fa-check"></i><b>4.11.7</b> Block Scatter Plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html"><i class="fa fa-check"></i><b>5</b> Introduction to Probability</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#probability-as-a-model-for-uncertain-and-complex-phenomena"><i class="fa fa-check"></i><b>5.1</b> Probability as a Model for Uncertain and Complex Phenomena</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#probability-as-a-dataproducing-machine"><i class="fa fa-check"></i><b>5.1.1</b> Probability as a Data‑Producing Machine</a></li>
+<li class="chapter" data-level="5.1.2" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#example-of-an-uncertain-phenomenon"><i class="fa fa-check"></i><b>5.1.2</b> Example of an Uncertain Phenomenon</a></li>
+<li class="chapter" data-level="5.1.3" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#example-of-a-complex-phenomenon"><i class="fa fa-check"></i><b>5.1.3</b> Example of a Complex Phenomenon</a></li>
+<li class="chapter" data-level="5.1.4" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#using-models-to-explain-phenomena"><i class="fa fa-check"></i><b>5.1.4</b> Using Models to Explain Phenomena</a></li>
+<li class="chapter" data-level="5.1.5" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#final-idea-inference-without-a-model"><i class="fa fa-check"></i><b>5.1.5</b> Final Idea: Inference Without a Model</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#interpretations-of-probability"><i class="fa fa-check"></i><b>5.2</b> Interpretations of Probability</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#classical-interpretation"><i class="fa fa-check"></i><b>5.2.1</b> Classical Interpretation</a></li>
+<li class="chapter" data-level="5.2.2" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#relative-frequency-interpretation"><i class="fa fa-check"></i><b>5.2.2</b> Relative Frequency Interpretation</a></li>
+<li class="chapter" data-level="5.2.3" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#subjective-interpretation"><i class="fa fa-check"></i><b>5.2.3</b> Subjective Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#how-to-build-probability-models"><i class="fa fa-check"></i><b>5.3</b> How to Build Probability Models</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#finding-the-probability-of-an-event"><i class="fa fa-check"></i><b>5.3.1</b> Finding the Probability of an Event</a></li>
+<li class="chapter" data-level="5.3.2" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#basic-event-relations-and-probability-laws"><i class="fa fa-check"></i><b>5.3.2</b> Basic Event Relations and Probability Laws</a></li>
+<li class="chapter" data-level="5.3.3" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#properties-of-probability"><i class="fa fa-check"></i><b>5.3.3</b> Properties of Probability</a></li>
+<li class="chapter" data-level="5.3.4" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#conditional-probability"><i class="fa fa-check"></i><b>5.3.4</b> Conditional Probability</a></li>
+<li class="chapter" data-level="5.3.5" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#law-of-total-probability"><i class="fa fa-check"></i><b>5.3.5</b> Law of Total Probability</a></li>
+<li class="chapter" data-level="5.3.6" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#bayes-formula"><i class="fa fa-check"></i><b>5.3.6</b> Bayes’ Formula</a></li>
+<li class="chapter" data-level="5.3.7" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#modeling-perspective-summary"><i class="fa fa-check"></i><b>5.3.7</b> Modeling Perspective Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#summary-1"><i class="fa fa-check"></i><b>5.4</b> Summary</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 5428/6428 Spring 2026</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-to-probability" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Introduction to Probability<a href="introduction-to-probability.html#introduction-to-probability" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Probability provides a <strong>mathematical framework</strong> for reasoning about uncertainty and complexity.<br />
+In this lecture, we develop probability ideas using <strong>simulation and computation</strong>, treating probability models as <em>data‑producing mechanisms</em>. This approach emphasizes understanding over memorization and mirrors how probability is used in modern data analysis.</p>
+<hr />
+<div id="probability-as-a-model-for-uncertain-and-complex-phenomena" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Probability as a Model for Uncertain and Complex Phenomena<a href="introduction-to-probability.html#probability-as-a-model-for-uncertain-and-complex-phenomena" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="probability-as-a-dataproducing-machine" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Probability as a Data‑Producing Machine<a href="introduction-to-probability.html#probability-as-a-dataproducing-machine" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:prob-model" class="definition"><strong>Definition 5.1  (Probability Model) </strong></span>A probability model is a mathematical description of a process that produces data under uncertainty, assigning probabilities to possible outcomes.</p>
+</div>
+<p>Rather than viewing probability as an abstract formula, we interpret it as a <strong>machine that generates data</strong>.<br />
+Once a model is specified, we can simulate outcomes and study their long‑run behavior.</p>
+<div id="example-a-simple-dataproducing-machine" class="section level4 hasAnchor" number="5.1.1.1">
+<h4><span class="header-section-number">5.1.1.1</span> Example: A Simple Data‑Producing Machine<a href="introduction-to-probability.html#example-a-simple-dataproducing-machine" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="introduction-to-probability.html#cb176-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb176-2"><a href="introduction-to-probability.html#cb176-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Heads&quot;</span>, <span class="st">&quot;Tails&quot;</span>), <span class="at">size =</span> <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<pre><code>##  [1] &quot;Heads&quot; &quot;Heads&quot; &quot;Tails&quot; &quot;Tails&quot; &quot;Heads&quot; &quot;Tails&quot; &quot;Tails&quot; &quot;Heads&quot; &quot;Tails&quot; &quot;Heads&quot;</code></pre>
+<p>Each run produces different data, yet the underlying mechanism remains fixed.</p>
+<hr />
+</div>
+</div>
+<div id="example-of-an-uncertain-phenomenon" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Example of an Uncertain Phenomenon<a href="introduction-to-probability.html#example-of-an-uncertain-phenomenon" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Uncertain phenomena are characterized by <strong>random variation</strong>, even when conditions appear identical.</p>
+<p>Example:</p>
+<ul>
+<li>Tossing a fair coin</li>
+<li>Rolling a die</li>
+<li>Drawing a card from a shuffled deck</li>
+</ul>
+<hr />
+</div>
+<div id="example-of-a-complex-phenomenon" class="section level3 hasAnchor" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Example of a Complex Phenomenon<a href="introduction-to-probability.html#example-of-a-complex-phenomenon" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Complex phenomena involve many interacting components:</p>
+<ul>
+<li>Student performance</li>
+<li>Financial markets</li>
+<li>Weather systems</li>
+</ul>
+<p>Even if deterministic rules exist, the combined system behaves unpredictably.</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="introduction-to-probability.html#cb178-1" tabindex="-1"></a><span class="co"># Function Describing Population Growth</span></span>
+<span id="cb178-2"><a href="introduction-to-probability.html#cb178-2" tabindex="-1"></a>populationGrowth <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">r =</span> <span class="dv">1</span>, <span class="at">t =</span> <span class="dv">1</span>){</span>
+<span id="cb178-3"><a href="introduction-to-probability.html#cb178-3" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>t){</span>
+<span id="cb178-4"><a href="introduction-to-probability.html#cb178-4" tabindex="-1"></a>    x <span class="ot">&lt;-</span> r <span class="sc">*</span> x <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> x)</span>
+<span id="cb178-5"><a href="introduction-to-probability.html#cb178-5" tabindex="-1"></a>  }</span>
+<span id="cb178-6"><a href="introduction-to-probability.html#cb178-6" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
+<span id="cb178-7"><a href="introduction-to-probability.html#cb178-7" tabindex="-1"></a>}</span>
+<span id="cb178-8"><a href="introduction-to-probability.html#cb178-8" tabindex="-1"></a><span class="co"># Samples obtained at different initial states for 10 periods</span></span>
+<span id="cb178-9"><a href="introduction-to-probability.html#cb178-9" tabindex="-1"></a>griSta <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.1</span>,<span class="fl">0.9</span>, <span class="at">by =</span> <span class="fl">0.001</span>)</span>
+<span id="cb178-10"><a href="introduction-to-probability.html#cb178-10" tabindex="-1"></a>samPop <span class="ot">&lt;-</span> <span class="fu">populationGrowth</span>(<span class="at">x =</span> griSta, <span class="at">r =</span> <span class="dv">4</span>, <span class="at">t =</span> <span class="dv">100</span>)</span>
+<span id="cb178-11"><a href="introduction-to-probability.html#cb178-11" tabindex="-1"></a><span class="co"># Print Table</span></span>
+<span id="cb178-12"><a href="introduction-to-probability.html#cb178-12" tabindex="-1"></a><span class="fu">names</span>(samPop) <span class="ot">&lt;-</span> griSta</span>
+<span id="cb178-13"><a href="introduction-to-probability.html#cb178-13" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(samPop, <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>##   0.1 0.101 0.102 0.103 0.104 0.105 0.106 0.107 0.108 0.109  0.11 0.111 0.112 0.113 0.114 0.115 0.116 
+##  0.37  0.44  1.00  0.15  0.68  0.01  0.17  0.43  0.52  0.09  0.88  0.39  0.09  0.65  0.56  0.00  0.86 
+## 0.117 0.118 0.119  0.12 0.121 0.122 0.123 0.124 0.125 0.126 0.127 0.128 0.129  0.13 0.131 0.132 0.133 
+##  0.55  0.45  0.29  0.27  0.07  0.99  0.84  0.43  0.78  0.82  1.00  0.66  0.93  0.96  0.96  0.26  1.00 
+## 0.134 0.135 0.136 0.137 0.138 0.139  0.14 0.141 0.142 0.143 0.144 0.145 0.146 0.147 0.148 0.149  0.15 
+##  0.19  0.48  0.54  1.00  0.06  0.08  0.77  0.52  0.16  0.89  0.12  0.14  0.96  0.71  0.94  0.75  0.64 
+## 0.151 0.152 0.153 0.154 0.155 0.156 0.157 0.158 0.159  0.16 0.161 0.162 0.163 0.164 0.165 0.166 0.167 
+##  0.87  0.00  0.35  0.38  0.80  0.93  0.10  0.27  0.83  0.74  0.22  0.03  0.16  0.41  0.79  0.00  0.70 
+## 0.168 0.169  0.17 0.171 0.172 0.173 0.174 0.175 0.176 0.177 0.178 0.179  0.18 0.181 0.182 0.183 0.184 
+##  0.37  0.14  0.50  0.94  0.14  0.32  0.31  0.59  0.58  0.99  0.33  0.71  0.92  0.96  0.60  0.86  0.09 
+## 0.185 0.186 0.187 0.188 0.189  0.19 0.191 0.192 0.193 0.194 0.195 0.196 0.197 0.198 0.199   0.2 0.201 
+##  0.59  0.90  0.97  0.02  0.17  0.14  0.28  0.01  0.46  0.82  1.00  0.51  0.96  0.97  1.00  0.88  0.20 
+## 0.202 0.203 0.204 0.205 0.206 0.207 0.208 0.209  0.21 0.211 0.212 0.213 0.214 0.215 0.216 0.217 0.218 
+##  0.72  0.60  0.02  0.02  0.13  0.01  0.56  0.94  0.12  0.96  0.32  0.86  0.34  0.27  0.79  0.34  0.22 
+## 0.219  0.22 0.221 0.222 0.223 0.224 0.225 0.226 0.227 0.228 0.229  0.23 0.231 0.232 0.233 0.234 0.235 
+##  0.26  0.71  0.94  0.27  0.00  0.78  0.59  0.24  0.78  0.03  0.04  0.07  0.22  0.79  1.00  0.32  0.43 
+## 0.236 0.237 0.238 0.239  0.24 0.241 0.242 0.243 0.244 0.245 0.246 0.247 0.248 0.249  0.25 0.251 0.252 
+##  0.08  0.23  0.99  0.18  0.76  0.78  0.32  0.92  0.00  0.45  0.65  0.73  1.00  0.97  0.75  0.84  0.86 
+## 0.253 0.254 0.255 0.256 0.257 0.258 0.259  0.26 0.261 0.262 0.263 0.264 0.265 0.266 0.267 0.268 0.269 
+##  0.16  0.85  0.00  0.44  0.46  1.00  0.34  0.69  1.00  0.04  0.00  0.76  0.37  0.00  0.94  0.76  0.01 
+##  0.27 0.271 0.272 0.273 0.274 0.275 0.276 0.277 0.278 0.279  0.28 0.281 0.282 0.283 0.284 0.285 0.286 
+##  0.99  0.43  0.02  0.78  0.42  0.97  0.83  0.96  0.97  0.02  0.54  0.37  0.34  0.48  0.90  0.17  0.37 
+## 0.287 0.288 0.289  0.29 0.291 0.292 0.293 0.294 0.295 0.296 0.297 0.298 0.299   0.3 0.301 0.302 0.303 
+##  0.80  0.88  0.01  0.29  0.92  0.81  1.00  0.44  0.24  0.07  0.42  0.93  0.80  0.75  0.16  0.08  0.16 
+## 0.304 0.305 0.306 0.307 0.308 0.309  0.31 0.311 0.312 0.313 0.314 0.315 0.316 0.317 0.318 0.319  0.32 
+##  0.04  0.18  0.30  0.85  1.00  1.00  0.02  0.83  0.03  0.03  0.95  0.51  0.03  0.97  0.81  0.33  0.34 
+## 0.321 0.322 0.323 0.324 0.325 0.326 0.327 0.328 0.329  0.33 0.331 0.332 0.333 0.334 0.335 0.336 0.337 
+##  0.84  0.11  0.16  0.40  0.46  0.03  0.53  0.02  0.05  0.00  0.63  0.18  0.70  0.45  0.99  0.41  0.49 
+## 0.338 0.339  0.34 0.341 0.342 0.343 0.344 0.345 0.346 0.347 0.348 0.349  0.35 0.351 0.352 0.353 0.354 
+##  0.39  0.24  0.10  0.38  0.84  1.00  0.90  0.00  0.13  0.05  0.76  0.73  1.00  0.58  0.31  0.00  0.56 
+## 0.355 0.356 0.357 0.358 0.359  0.36 0.361 0.362 0.363 0.364 0.365 0.366 0.367 0.368 0.369  0.37 0.371 
+##  0.41  0.56  0.81  1.00  0.61  0.93  0.88  0.23  1.00  0.36  0.00  0.98  0.01  0.36  0.67  0.97  0.26 
+## 0.372 0.373 0.374 0.375 0.376 0.377 0.378 0.379  0.38 0.381 0.382 0.383 0.384 0.385 0.386 0.387 0.388 
+##  0.00  0.79  0.98  0.29  0.48  0.87  0.15  0.08  0.86  0.61  0.30  0.12  0.07  0.17  0.14  0.69  0.79 
+## 0.389  0.39 0.391 0.392 0.393 0.394 0.395 0.396 0.397 0.398 0.399   0.4 0.401 0.402 0.403 0.404 0.405 
+##  0.47  0.76  0.44  0.58  1.00  0.69  0.08  0.73  1.00  0.23  0.92  0.24  0.86  0.07  0.52  0.91  0.91 
+## 0.406 0.407 0.408 0.409  0.41 0.411 0.412 0.413 0.414 0.415 0.416 0.417 0.418 0.419  0.42 0.421 0.422 
+##  0.20  0.56  0.47  0.40  0.21  0.60  0.41  0.11  0.44  0.97  0.30  0.87  0.67  0.93  0.11  0.70  0.43 
+## 0.423 0.424 0.425 0.426 0.427 0.428 0.429  0.43 0.431 0.432 0.433 0.434 0.435 0.436 0.437 0.438 0.439 
+##  0.74  0.23  0.66  0.52  0.85  0.83  0.64  0.68  0.10  0.15  0.91  0.74  0.03  0.90  0.97  1.00  0.11 
+##  0.44 0.441 0.442 0.443 0.444 0.445 0.446 0.447 0.448 0.449  0.45 0.451 0.452 0.453 0.454 0.455 0.456 
+##  0.86  0.01  0.58  0.61  0.59  0.17  0.68  0.28  0.27  0.13  0.06  0.66  0.94  0.92  0.07  0.01  0.17 
+## 0.457 0.458 0.459  0.46 0.461 0.462 0.463 0.464 0.465 0.466 0.467 0.468 0.469  0.47 0.471 0.472 0.473 
+##  0.35  0.26  0.07  0.45  0.04  0.00  0.00  0.99  0.86  0.98  0.95  0.61  0.69  0.17  0.59  0.53  0.03 
+## 0.474 0.475 0.476 0.477 0.478 0.479  0.48 0.481 0.482 0.483 0.484 0.485 0.486 0.487 0.488 0.489  0.49 
+##  0.46  0.02  0.05  0.25  0.97  0.95  0.79  0.55  0.04  0.59  0.02  0.00  0.39  0.00  0.29  0.89  0.92 
+## 0.491 0.492 0.493 0.494 0.495 0.496 0.497 0.498 0.499   0.5 0.501 0.502 0.503 0.504 0.505 0.506 0.507 
+##  0.11  0.60  0.27  1.00  0.16  0.93  0.40  0.94  0.01  0.00  0.01  0.94  0.40  0.93  0.16  1.00  0.27 
+## 0.508 0.509  0.51 0.511 0.512 0.513 0.514 0.515 0.516 0.517 0.518 0.519  0.52 0.521 0.522 0.523 0.524 
+##  0.60  0.11  0.92  0.89  0.29  0.00  0.39  0.00  0.02  0.59  0.04  0.55  0.79  0.95  0.97  0.25  0.05 
+## 0.525 0.526 0.527 0.528 0.529  0.53 0.531 0.532 0.533 0.534 0.535 0.536 0.537 0.538 0.539  0.54 0.541 
+##  0.02  0.46  0.03  0.53  0.59  0.17  0.69  0.61  0.95  0.98  0.86  0.99  0.00  0.00  0.04  0.45  0.07 
+## 0.542 0.543 0.544 0.545 0.546 0.547 0.548 0.549  0.55 0.551 0.552 0.553 0.554 0.555 0.556 0.557 0.558 
+##  0.26  0.35  0.17  0.01  0.07  0.92  0.94  0.75  0.06  0.13  0.61  0.28  0.68  0.17  0.59  0.61  0.58 
+## 0.559  0.56 0.561 0.562 0.563 0.564 0.565 0.566 0.567 0.568 0.569  0.57 0.571 0.572 0.573 0.574 0.575 
+##  0.96  0.04  0.11  0.54  0.97  0.58  0.03  0.74  0.32  0.34  0.06  0.94  0.44  0.89  0.85  0.50  0.18 
+## 0.576 0.577 0.578 0.579  0.58 0.581 0.582 0.583 0.584 0.585 0.586 0.587 0.588 0.589  0.59 0.591 0.592 
+##  0.23  0.63  0.43  0.68  0.11  0.93  0.67  0.87  0.30  0.97  0.44  0.11  0.41  0.60  0.21  0.40  0.47 
+## 0.593 0.594 0.595 0.596 0.597 0.598 0.599   0.6 0.601 0.602 0.603 0.604 0.605 0.606 0.607 0.608 0.609 
+##  0.56  0.20  0.91  0.91  0.52  0.07  0.86  0.24  0.92  0.23  1.00  0.73  0.08  0.69  1.00  0.58  0.44 
+##  0.61 0.611 0.612 0.613 0.614 0.615 0.616 0.617 0.618 0.619  0.62 0.621 0.622 0.623 0.624 0.625 0.626 
+##  0.76  0.47  0.79  0.69  0.14  0.17  0.07  0.12  0.30  0.61  0.86  0.08  0.15  0.87  0.48  0.29  0.98 
+## 0.627 0.628 0.629  0.63 0.631 0.632 0.633 0.634 0.635 0.636 0.637 0.638 0.639  0.64 0.641 0.642 0.643 
+##  0.79  0.00  0.26  0.97  0.67  0.36  0.01  0.98  0.00  0.36  1.00  0.23  0.88  0.93  0.61  1.00  0.81 
+## 0.644 0.645 0.646 0.647 0.648 0.649  0.65 0.651 0.652 0.653 0.654 0.655 0.656 0.657 0.658 0.659  0.66 
+##  0.56  0.41  0.56  0.00  0.31  0.58  1.00  0.73  0.76  0.05  0.13  0.00  0.90  1.00  0.84  0.38  0.10 
+## 0.661 0.662 0.663 0.664 0.665 0.666 0.667 0.668 0.669  0.67 0.671 0.672 0.673 0.674 0.675 0.676 0.677 
+##  0.41  0.39  0.71  0.41  0.82  0.45  0.38  0.18  0.00  0.00  0.97  0.02  0.98  0.03  0.46  0.40  0.16 
+## 0.678 0.679  0.68 0.681 0.682 0.683 0.684 0.685 0.686 0.687 0.688 0.689  0.69 0.691 0.692 0.693 0.694 
+##  0.02  0.84  0.34  0.33  0.02  0.97  0.09  0.51  0.25  0.03  0.21  0.83  1.00  1.00  1.00  0.85  0.30 
+## 0.695 0.696 0.697 0.698 0.699   0.7 0.701 0.702 0.703 0.704 0.705 0.706 0.707 0.708 0.709  0.71 0.711 
+##  0.18  0.04  0.16  0.08  0.16  0.75  0.80  0.93  0.42  0.07  0.24  0.44  1.00  0.81  0.92  0.29  0.01 
+## 0.712 0.713 0.714 0.715 0.716 0.717 0.718 0.719  0.72 0.721 0.722 0.723 0.724 0.725 0.726 0.727 0.728 
+##  0.88  0.80  0.37  0.17  0.90  0.48  0.34  0.37  0.54  0.02  0.97  0.96  0.83  0.97  0.42  0.78  0.02 
+## 0.729  0.73 0.731 0.732 0.733 0.734 0.735 0.736 0.737 0.738 0.739  0.74 0.741 0.742 0.743 0.744 0.745 
+##  0.43  0.99  0.01  0.76  0.94  0.00  0.37  0.76  0.00  0.04  1.00  0.69  0.34  1.00  0.46  0.44  0.00 
+## 0.746 0.747 0.748 0.749  0.75 0.751 0.752 0.753 0.754 0.755 0.756 0.757 0.758 0.759  0.76 0.761 0.762 
+##  0.85  0.16  0.86  0.84  0.75  0.97  1.00  0.73  0.65  0.45  0.00  0.69  0.68  0.56  0.76  0.92  0.74 
+## 0.763 0.764 0.765 0.766 0.767 0.768 0.769  0.77 0.771 0.772 0.773 0.774 0.775 0.776 0.777 0.778 0.779 
+##  0.20  0.24  1.00  0.78  0.78  0.79  0.88  0.17  0.03  1.00  0.84  0.24  0.71  0.73  0.00  0.77  0.69 
+##  0.78 0.781 0.782 0.783 0.784 0.785 0.786 0.787 0.788 0.789  0.79 0.791 0.792 0.793 0.794 0.795 0.796 
+##  0.01  0.26  0.22  1.00  0.00  0.14  0.73  0.00  0.87  0.96  0.75  0.02  0.10  0.01  0.43  0.70  0.54 
+## 0.797 0.798 0.799   0.8 0.801 0.802 0.803 0.804 0.805 0.806 0.807 0.808 0.809  0.81 0.811 0.812 0.813 
+##  0.84  0.11  0.20  0.55  1.00  0.56  1.00  0.06  0.79  0.93  0.43  0.01  0.54  0.92  0.14  0.89  0.97 
+## 0.814 0.815 0.816 0.817 0.818 0.819  0.82 0.821 0.822 0.823 0.824 0.825 0.826 0.827 0.828 0.829  0.83 
+##  0.81  0.28  0.26  0.86  0.60  0.30  1.00  0.81  0.96  0.53  0.99  0.88  0.31  0.89  0.14  0.94  0.00 
+## 0.831 0.832 0.833 0.834 0.835 0.836 0.837 0.838 0.839  0.84 0.841 0.842 0.843 0.844 0.845 0.846 0.847 
+##  0.17  0.21  0.70  0.00  0.79  0.80  0.16  0.69  0.22  0.88  0.09  0.27  1.00  0.93  0.80  0.38  0.35 
+## 0.848 0.849  0.85 0.851 0.852 0.853 0.854 0.855 0.856 0.857 0.858 0.859  0.86 0.861 0.862 0.863 0.864 
+##  0.00  0.87  0.64  0.75  0.94  0.71  0.96  0.14  0.12  0.89  0.16  0.52  0.77  0.08  0.06  1.00  0.54 
+## 0.865 0.866 0.867 0.868 0.869  0.87 0.871 0.872 0.873 0.874 0.875 0.876 0.877 0.878 0.879  0.88 0.881 
+##  0.48  0.19  1.00  0.26  0.96  0.96  0.93  0.66  1.00  0.82  0.78  0.43  0.84  0.99  0.00  0.60  0.29 
+## 0.882 0.883 0.884 0.885 0.886 0.887 0.888 0.889  0.89 0.891 0.892 0.893 0.894 0.895 0.896 0.897 0.898 
+##  0.45  0.55  0.86  0.60  0.56  0.15  1.00  0.20  0.94  0.87  0.52  0.04  0.00  0.00  0.42  0.02  0.99 
+## 0.899   0.9 
+##  0.44  0.37</code></pre>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="introduction-to-probability.html#cb180-1" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb180-2"><a href="introduction-to-probability.html#cb180-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> griSta, <span class="at">y =</span> samPop, <span class="at">type =</span> <span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/complex-system-data-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="using-models-to-explain-phenomena" class="section level3 hasAnchor" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Using Models to Explain Phenomena<a href="introduction-to-probability.html#using-models-to-explain-phenomena" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Models simplify reality while retaining essential structure.<br />
+A <strong>good probability model</strong>:</p>
+<ul>
+<li>Explains observed variability</li>
+<li>Produces realistic simulated data</li>
+<li>Can be refined as new information becomes available</li>
+</ul>
+<hr />
+</div>
+<div id="final-idea-inference-without-a-model" class="section level3 hasAnchor" number="5.1.5">
+<h3><span class="header-section-number">5.1.5</span> Final Idea: Inference Without a Model<a href="introduction-to-probability.html#final-idea-inference-without-a-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When you don’t have a model it is really hard to do inference.<br />
+All of probability and statistics rely, either explicitly or implicitly, on the existence of a <strong>model</strong> that describes how data are generated.</p>
+<p>A <strong>model</strong> provides a structured description of uncertainty. It specifies:
+- what outcomes are possible,
+- how these outcomes are related,
+- and how frequently they are expected to occur.</p>
+<p>Without such a structure, observed data are simply a collection of numbers or categories with no principled way to generalize beyond what has already been seen.</p>
+<p>In probability theory, models play the role of an <em>idealized data‑generating mechanism</em>. They allow us to ask meaningful questions such as:
+- <em>How surprising is this outcome?</em>
+- <em>What should we expect to see if the process repeats?</em>
+- <em>How does changing assumptions affect long‑run behavior?</em></p>
+<p>When a model is clearly defined, inference becomes possible because we can compare observed data to what the model predicts. Differences between data and model expectations can then be interpreted as evidence about the underlying process.</p>
+<p>By contrast, <strong>without a model</strong>:
+- There is no clear notion of what outcomes are “likely” or “unlikely.”
+- Uncertainty cannot be quantified in a principled way.
+- There is no reliable mechanism for extrapolation beyond the observed data.
+- Conclusions become informal, subjective, or anecdotal.</p>
+<div class="definition">
+<p><span id="def:inference" class="definition"><strong>Definition 5.2  (Statistical Inference) </strong></span>Statistical inference is the process of drawing conclusions about an underlying process, population, or mechanism by comparing observed data to a probabilistic model.</p>
+</div>
+<hr />
+</div>
+</div>
+<div id="interpretations-of-probability" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Interpretations of Probability<a href="introduction-to-probability.html#interpretations-of-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="classical-interpretation" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Classical Interpretation<a href="introduction-to-probability.html#classical-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:classical-prob" class="definition"><strong>Definition 5.3  (Classical Probability) </strong></span>Classical probability defines the probability of an event as the ratio of the number of favorable outcomes to the total number of equally likely outcomes.</p>
+</div>
+<p>The classical interpretation is the earliest formal approach to probability. It views probability as a <strong>logical consequence of symmetry</strong> in a well‑defined experiment. When all outcomes are equally plausible <em>before</em> the experiment is performed, probability can be computed by simple counting.</p>
+<p>This approach treats probability as an <em>a priori</em> quantity: probabilities are determined entirely by the structure of the experiment, not by observed data.</p>
+<hr />
+<div id="history" class="section level4 hasAnchor" number="5.2.1.1">
+<h4><span class="header-section-number">5.2.1.1</span> History<a href="introduction-to-probability.html#history" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The classical interpretation emerged in the <strong>17th and 18th centuries</strong>, primarily through the study of games of chance.</p>
+<p>Key contributors include:</p>
+<ul>
+<li><strong>Blaise Pascal</strong> and <strong>Pierre de Fermat</strong>, who studied fair division of gambling stakes.</li>
+<li><strong>Pierre‑Simon Laplace</strong>, who formalized probability as a mathematical discipline.</li>
+</ul>
+<p>During this period, probability problems typically involved:</p>
+<ul>
+<li>dice,</li>
+<li>cards,</li>
+<li>coins,</li>
+<li>lottery‑type mechanisms.</li>
+</ul>
+<p>These systems were appealing because they naturally possessed <strong>symmetry</strong>, making the assumption of equally likely outcomes reasonable.</p>
+<hr />
+</div>
+<div id="key-assumption-equally-likely-outcomes" class="section level4 hasAnchor" number="5.2.1.2">
+<h4><span class="header-section-number">5.2.1.2</span> Key Assumption: Equally Likely Outcomes<a href="introduction-to-probability.html#key-assumption-equally-likely-outcomes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The classical definition <strong>requires</strong> that all outcomes in the sample space are equally likely.</p>
+<p>This assumption is critical and restrictive.</p>
+<p>Consequences:</p>
+<ul>
+<li>Classical probability works well for idealized systems with symmetry.</li>
+<li>It becomes difficult or impossible to apply when outcomes are not equally likely or when the sample space is not finite and well defined.</li>
+</ul>
+<p>Thus, the classical interpretation is best viewed as a <strong>modeling choice</strong>, not a universal definition.</p>
+<hr />
+</div>
+<div id="example-rolling-a-fair-die" class="section level4 hasAnchor" number="5.2.1.3">
+<h4><span class="header-section-number">5.2.1.3</span> Example: Rolling a Fair Die<a href="introduction-to-probability.html#example-rolling-a-fair-die" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Consider rolling a well‑balanced six‑sided die.</p>
+<ul>
+<li>The sample space contains 6 outcomes:<br />
+{1, 2, 3, 4, 5, 6}</li>
+<li>Each outcome is assumed equally likely.</li>
+</ul>
+<p>The probability of rolling a 4 is therefore:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="introduction-to-probability.html#cb181-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">/</span> <span class="dv">6</span></span></code></pre></div>
+<pre><code>## [1] 0.1666667</code></pre>
+<p>This probability is computed <em>before</em> any data are collected and does not depend on repeated trials.</p>
+<hr />
+</div>
+<div id="outcomes-and-events" class="section level4 hasAnchor" number="5.2.1.4">
+<h4><span class="header-section-number">5.2.1.4</span> Outcomes and Events<a href="introduction-to-probability.html#outcomes-and-events" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="definition">
+<p><span id="def:outcome" class="definition"><strong>Definition 5.4  (Outcome) </strong></span>An outcome is a single possible result of a random experiment.</p>
+</div>
+<p>Examples:</p>
+<ul>
+<li>Rolling a 4 on a die</li>
+<li>Drawing the Ace of Spades from a deck</li>
+<li>Getting Heads in a coin toss</li>
+</ul>
+<p>Outcomes represent the <strong>most granular level</strong> of description of a random experiment.</p>
+<div class="definition">
+<p><span id="def:event" class="definition"><strong>Definition 5.5  (Event) </strong></span>An event is a collection of one or more outcomes.</p>
+</div>
+<p>Examples:</p>
+<ul>
+<li>Rolling an even number: {2, 4, 6}</li>
+<li>Drawing a face card from a deck</li>
+<li>Getting at least one Head in two coin tosses</li>
+</ul>
+<p>An event can be interpreted as a <strong>question</strong> about the experiment whose answer is either <em>yes</em> (the event occurs) or <em>no</em> (the event does not occur).</p>
+<hr />
+</div>
+<div id="strengths-and-limitations-of-the-classical-interpretation" class="section level4 hasAnchor" number="5.2.1.5">
+<h4><span class="header-section-number">5.2.1.5</span> Strengths and Limitations of the Classical Interpretation<a href="introduction-to-probability.html#strengths-and-limitations-of-the-classical-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Strengths</strong></p>
+<ul>
+<li>Simple and intuitive</li>
+<li>Requires no data</li>
+<li>Provides exact probabilities in symmetric settings</li>
+</ul>
+<p><strong>Limitations</strong></p>
+<ul>
+<li>Depends critically on the equally likely assumption</li>
+<li>Not suitable for complex, real‑world phenomena</li>
+<li>Does not explain how probabilities change or emerge with repeated observations</li>
+</ul>
+<p>These limitations motivate alternative interpretations of probability, especially those based on <strong>long‑run behavior</strong> and <strong>data‑driven modeling</strong>.</p>
+<hr />
+<p>In summary, the classical interpretation introduces probability as a <em>counting rule based on symmetry</em>. While historically foundational and mathematically elegant, it is best understood as a <strong>special case of probability modeling</strong>, applicable only when symmetry and equally likely outcomes are plausible assumptions.</p>
+<hr />
+</div>
+</div>
+<div id="relative-frequency-interpretation" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Relative Frequency Interpretation<a href="introduction-to-probability.html#relative-frequency-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:relfreq" class="definition"><strong>Definition 5.6  (Relative Frequency Probability) </strong></span>Probability is defined as the long‑run proportion of times an event occurs when a random experiment is repeated under identical conditions.</p>
+</div>
+<p>The relative frequency interpretation views probability not as a purely theoretical quantity, but as a <strong>property that emerges through repetition</strong>. Under this interpretation, probability is tied directly to observable data and is meaningful only in contexts where an experiment can, at least in principle, be repeated many times.</p>
+<p>Rather than assuming equally likely outcomes, this approach defines probability through <strong>empirical behavior</strong>. Probabilities are not assigned in advance; they are <em>revealed</em> through repeated trials.</p>
+<hr />
+<div id="history-1" class="section level4 hasAnchor" number="5.2.2.1">
+<h4><span class="header-section-number">5.2.2.1</span> History<a href="introduction-to-probability.html#history-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The relative frequency interpretation developed primarily in the <strong>19th and early 20th centuries</strong>, alongside advances in experimental science and statistics.</p>
+<p>Key features of its historical development:</p>
+<ul>
+<li>Closely associated with scientists such as <strong>John Venn</strong> and <strong>Richard von Mises</strong></li>
+<li>Motivated by the need to describe probabilities in <strong>physical and social phenomena</strong></li>
+<li>Emphasized objectivity through repeatable experiments</li>
+</ul>
+<p>This interpretation arose as a response to the limitations of classical probability, especially in situations lacking symmetry or equally likely outcomes.</p>
+<hr />
+</div>
+<div id="core-idea-longrun-behavior" class="section level4 hasAnchor" number="5.2.2.2">
+<h4><span class="header-section-number">5.2.2.2</span> Core Idea: Long‑Run Behavior<a href="introduction-to-probability.html#core-idea-longrun-behavior" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Under the relative frequency interpretation:</p>
+<ul>
+<li>Probability is not about a single trial</li>
+<li>Probability is about what happens <strong>in the long run</strong></li>
+</ul>
+<p>A single coin toss provides no meaningful probability information. Thousands of tosses, however, reveal stable patterns.</p>
+<p>This interpretation implicitly assumes:</p>
+<ul>
+<li>The experiment can be repeated indefinitely</li>
+<li>The underlying mechanism remains stable over time</li>
+</ul>
+<hr />
+</div>
+<div id="probability-as-an-approximation" class="section level4 hasAnchor" number="5.2.2.3">
+<h4><span class="header-section-number">5.2.2.3</span> Probability as an Approximation<a href="introduction-to-probability.html#probability-as-an-approximation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In practice, probabilities are <strong>approximated</strong>, not known exactly. The relative frequency of an event after <span class="math inline">\(n\)</span> trials is:</p>
+<p><span class="math display">\[
+\text{Relative Frequency} = \frac{\text{Number of times the event occurs}}{n}
+\]</span></p>
+<p>Simulation provides a natural way to observe this idea.</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="introduction-to-probability.html#cb183-1" tabindex="-1"></a>p         <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb183-2"><a href="introduction-to-probability.html#cb183-2" tabindex="-1"></a>n         <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb183-3"><a href="introduction-to-probability.html#cb183-3" tabindex="-1"></a>samCoi    <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Heads&quot;</span>, <span class="st">&quot;Tails&quot;</span>), <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(p, <span class="dv">1</span> <span class="sc">-</span> p))</span>
+<span id="cb183-4"><a href="introduction-to-probability.html#cb183-4" tabindex="-1"></a>relFreHea <span class="ot">&lt;-</span> <span class="fu">sum</span>(samCoi <span class="sc">==</span> <span class="st">&quot;Heads&quot;</span>) <span class="sc">/</span> n</span>
+<span id="cb183-5"><a href="introduction-to-probability.html#cb183-5" tabindex="-1"></a><span class="fu">print</span>(relFreHea)</span></code></pre></div>
+<pre><code>## [1] 0.412</code></pre>
+<p>Each execution of this code generates a different result, but as the number of trials increases, the relative frequency tends to stabilize near a constant value.</p>
+<p>This stabilization is an empirical manifestation of the <strong>Law of Large Numbers</strong> that we will talk about later.</p>
+<hr />
+</div>
+<div id="interpretation-and-modeling-perspective" class="section level4 hasAnchor" number="5.2.2.4">
+<h4><span class="header-section-number">5.2.2.4</span> Interpretation and Modeling Perspective<a href="introduction-to-probability.html#interpretation-and-modeling-perspective" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>From a modeling standpoint, the relative frequency interpretation treats probability as a <strong>feature of the data‑generating process</strong>. The model is validated not by symmetry or logic alone, but by consistency between:</p>
+<ul>
+<li>simulated behavior,</li>
+<li>observed data,</li>
+<li>and long‑run frequencies.</li>
+</ul>
+<p>Probability models under this interpretation are often assessed by asking:</p>
+<ul>
+<li>Do simulated frequencies resemble observed frequencies?</li>
+<li>Does the model reproduce stable long‑run patterns?</li>
+</ul>
+<hr />
+</div>
+<div id="strengths-and-limitations" class="section level4 hasAnchor" number="5.2.2.5">
+<h4><span class="header-section-number">5.2.2.5</span> Strengths and Limitations<a href="introduction-to-probability.html#strengths-and-limitations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Strengths</strong></p>
+<ul>
+<li>Grounded in observable data</li>
+<li>Does not require equally likely outcomes</li>
+<li>Naturally compatible with simulation and computation</li>
+</ul>
+<p><strong>Limitations</strong></p>
+<ul>
+<li>Requires repeatable experiments</li>
+<li>Not applicable to one‑time events (e.g., a specific election outcome)</li>
+<li>Does not directly address uncertainty in small samples</li>
+</ul>
+<hr />
+<p>In summary, the relative frequency interpretation reframes probability as a <strong>long‑run empirical regularity</strong>. It forms the conceptual foundation for simulation‑based probability and provides a bridge between abstract models and observed data.</p>
+<hr />
+<p>Here is an <strong>expanded, textbook‑style version</strong> of the <strong>Subjective Interpretation</strong>, written fully in <strong>R Markdown</strong>, consistent with your formatting rules and the level of depth used for the Classical and Relative Frequency sections. It emphasizes <strong>modeling, information, and belief</strong>, with a clear conceptual narrative.</p>
+</div>
+</div>
+<div id="subjective-interpretation" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Subjective Interpretation<a href="introduction-to-probability.html#subjective-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:subjective" class="definition"><strong>Definition 5.7  (Subjective Probability) </strong></span>Subjective probability represents an individual’s degree of belief about the occurrence of an event, given the information available to them.</p>
+</div>
+<p>The subjective interpretation treats probability as a <strong>measure of uncertainty based on information, judgment, and belief</strong>, rather than symmetry or long‑run frequency. Under this view, probability quantifies how strongly an individual believes an event will occur, conditional on what they currently know.</p>
+<p>Unlike classical or relative frequency interpretations, subjective probability does <strong>not require repeatable experiments</strong> or equally likely outcomes. Instead, it is fundamentally <strong>conditional on information</strong> and is allowed to change as new information becomes available.</p>
+<hr />
+<div id="history-2" class="section level4 hasAnchor" number="5.2.3.1">
+<h4><span class="header-section-number">5.2.3.1</span> History<a href="introduction-to-probability.html#history-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The subjective interpretation developed primarily in the <strong>20th century</strong> and is closely associated with the rise of <strong>Bayesian statistics</strong>.</p>
+<p>Key contributors include:</p>
+<ul>
+<li><strong>Frank Ramsey</strong>, who linked probability to rational decision‑making</li>
+<li><strong>Bruno de Finetti</strong>, who argued that “probability does not exist” outside personal belief</li>
+<li>Later formalization within Bayesian inference and decision theory</li>
+</ul>
+<p>This interpretation arose from the need to reason probabilistically about:</p>
+<ul>
+<li>unique or one‑time events,</li>
+<li>decision‑making under uncertainty,</li>
+<li>situations where long‑run frequencies are unavailable or meaningless.</li>
+</ul>
+<hr />
+</div>
+<div id="core-idea-probability-as-informationdependent-belief" class="section level4 hasAnchor" number="5.2.3.2">
+<h4><span class="header-section-number">5.2.3.2</span> Core Idea: Probability as Information‑Dependent Belief<a href="introduction-to-probability.html#core-idea-probability-as-informationdependent-belief" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Under the subjective interpretation:</p>
+<ul>
+<li>Probability is always <strong>conditional</strong> on available information.</li>
+<li>Different individuals may assign different probabilities to the same event.</li>
+<li>Updating beliefs in light of new data is a central feature.</li>
+</ul>
+<p>From a modeling perspective, a subjective probability model represents the analyst’s <strong>state of knowledge</strong> rather than an objective property of the physical world.</p>
+<p>As information changes, probabilities are updated accordingly, typically using <strong>Bayes’ theorem</strong>.</p>
+<hr />
+</div>
+<div id="example-betting-interpretation" class="section level4 hasAnchor" number="5.2.3.3">
+<h4><span class="header-section-number">5.2.3.3</span> Example: Betting Interpretation<a href="introduction-to-probability.html#example-betting-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>One way to operationalize subjective probability is through <strong>betting behavior</strong>.</p>
+<p>If you are willing to bet $70 to win $100 on an event occurring, your implied probability is:</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="introduction-to-probability.html#cb185-1" tabindex="-1"></a><span class="dv">70</span> <span class="sc">/</span> <span class="dv">100</span></span></code></pre></div>
+<pre><code>## [1] 0.7</code></pre>
+<p>This value represents the minimum probability at which you consider the bet fair, given your beliefs and risk tolerance.</p>
+<p>In this framework:</p>
+<ul>
+<li>Probabilities reflect willingness to accept risk</li>
+<li>Inconsistent probabilities can lead to guaranteed losses (Dutch books)</li>
+<li>Rational probability assignments are those that avoid sure loss</li>
+</ul>
+<hr />
+</div>
+<div id="subjective-probability-as-a-model" class="section level4 hasAnchor" number="5.2.3.4">
+<h4><span class="header-section-number">5.2.3.4</span> Subjective Probability as a Model<a href="introduction-to-probability.html#subjective-probability-as-a-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In subjective probability, a <strong>probability model</strong> represents beliefs about how the world operates, not just observed frequencies. These models are often used when:</p>
+<ul>
+<li>events are unique (e.g., an election outcome),</li>
+<li>data are scarce or incomplete,</li>
+<li>decisions must be made before data are observed.</li>
+</ul>
+<p>Such models are evaluated not by long‑run frequencies, but by:</p>
+<ul>
+<li>internal coherence,</li>
+<li>consistency with observed evidence,</li>
+<li>usefulness for decision‑making.</li>
+</ul>
+<hr />
+</div>
+<div id="strengths-and-limitations-1" class="section level4 hasAnchor" number="5.2.3.5">
+<h4><span class="header-section-number">5.2.3.5</span> Strengths and Limitations<a href="introduction-to-probability.html#strengths-and-limitations-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Strengths</strong></p>
+<ul>
+<li>Applicable to one‑time or non‑repeatable events</li>
+<li>Naturally incorporates prior knowledge and expert judgment</li>
+<li>Provides a coherent framework for updating beliefs</li>
+</ul>
+<p><strong>Limitations</strong></p>
+<ul>
+<li>Depends on subjective judgment</li>
+<li>Different individuals may disagree</li>
+<li>Requires careful justification of assumptions</li>
+</ul>
+<hr />
+<p>In summary, the subjective interpretation views probability as a <strong>quantitative expression of uncertainty given information</strong>. It plays a central role in Bayesian modeling, where probability models evolve as data are observed, and inference is understood as a process of <strong>belief updating</strong> rather than long‑run stabilization.</p>
+<hr />
+</div>
+</div>
+</div>
+<div id="how-to-build-probability-models" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> How to Build Probability Models<a href="introduction-to-probability.html#how-to-build-probability-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<hr />
+<div id="finding-the-probability-of-an-event" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Finding the Probability of an Event<a href="introduction-to-probability.html#finding-the-probability-of-an-event" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:prob-event" class="definition"><strong>Definition 5.8  (Probability of an Event) </strong></span>The probability of an event is the sum of the probabilities of the outcomes that compose the event.</p>
+</div>
+<p>In probability theory, events are not primitive objects. Instead, they are built from <strong>outcomes</strong>, which represent the most basic possible results of a random experiment. A probability model assigns probabilities to these outcomes, and the probability of any event is obtained by aggregating the probabilities of the outcomes that form the event.</p>
+<p>From a modeling perspective, this definition emphasizes that probability is <strong>additive over disjoint outcomes</strong>. Once the model specifies probabilities at the outcome level, probabilities for more complex events follow automatically.</p>
+<p>In classical settings, this is achieved through counting. In simulation‑based approaches, this aggregation is approximated empirically.</p>
+<hr />
+<div id="simulation-approach-to-event-probability" class="section level4 hasAnchor" number="5.3.1.1">
+<h4><span class="header-section-number">5.3.1.1</span> Simulation Approach to Event Probability<a href="introduction-to-probability.html#simulation-approach-to-event-probability" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Rather than computing probabilities analytically, we can <strong>estimate probabilities through repeated simulation</strong>.</p>
+<p>For example, consider estimating the probability of rolling a 6 on a fair die.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="introduction-to-probability.html#cb187-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">size =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">==</span> <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## [1] 0.1629</code></pre>
+<p>Each simulation run produces a slightly different value, but as the number of trials increases, the estimate stabilizes. This illustrates how probability emerges as a <strong>long‑run average behavior of a model</strong>, rather than a single deterministic calculation.</p>
+<p>This computational viewpoint aligns naturally with the relative frequency interpretation of probability.</p>
+<hr />
+</div>
+</div>
+<div id="basic-event-relations-and-probability-laws" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Basic Event Relations and Probability Laws<a href="introduction-to-probability.html#basic-event-relations-and-probability-laws" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<hr />
+<p>The power of probability models lies not only in assigning probabilities to single events, but in understanding how events <strong>combine and relate</strong> to one another. These relationships are governed by fundamental probability laws that hold regardless of the specific model used.</p>
+<hr />
+<div id="mutually-exclusive-events" class="section level4 hasAnchor" number="5.3.2.1">
+<h4><span class="header-section-number">5.3.2.1</span> Mutually Exclusive Events<a href="introduction-to-probability.html#mutually-exclusive-events" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<hr />
+<div class="definition">
+<p><span id="def:mutually-exclusive" class="definition"><strong>Definition 5.9  (Mutually Exclusive Events) </strong></span>Two events are mutually exclusive if they cannot occur at the same time.</p>
+</div>
+<p>Mutually exclusive events share <strong>no common outcomes</strong>. If one event occurs, the other cannot.</p>
+<p>Examples:</p>
+<ul>
+<li>Rolling a die and obtaining a 1 versus obtaining a 2</li>
+<li>Drawing a card that is a heart versus drawing a card that is a spade</li>
+</ul>
+<p>Because these events do not overlap, their probabilities combine in a particularly simple way.</p>
+<div class="definition">
+<p><span id="def:prob-mut-ex" class="definition"><strong>Definition 5.10  (Probability of Mutually Exclusive Events) </strong></span>If A and B are mutually exclusive, then<br />
+P(A ∪ B) = P(A) + P(B).</p>
+</div>
+<p>This property follows directly from the definition of probability as additive over disjoint outcomes.</p>
+</div>
+<div id="simulation-example" class="section level4 hasAnchor" number="5.3.2.2">
+<h4><span class="header-section-number">5.3.2.2</span> Simulation Example<a href="introduction-to-probability.html#simulation-example" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Estimate the probability that a fair die roll results in either a 1 or a 2.</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="introduction-to-probability.html#cb189-1" tabindex="-1"></a>dieRol <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">10000</span>, <span class="cn">TRUE</span>) </span>
+<span id="cb189-2"><a href="introduction-to-probability.html#cb189-2" tabindex="-1"></a>pro12  <span class="ot">&lt;-</span> <span class="fu">mean</span>(dieRol <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb189-3"><a href="introduction-to-probability.html#cb189-3" tabindex="-1"></a>pro1   <span class="ot">&lt;-</span> <span class="fu">mean</span>(dieRol <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb189-4"><a href="introduction-to-probability.html#cb189-4" tabindex="-1"></a>pro2   <span class="ot">&lt;-</span> <span class="fu">mean</span>(dieRol <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb189-5"><a href="introduction-to-probability.html#cb189-5" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;Probability of 1: &quot;</span>, pro1))</span></code></pre></div>
+<pre><code>## [1] &quot;Probability of 1: 0.1712&quot;</code></pre>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="introduction-to-probability.html#cb191-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;Probability of 2: &quot;</span>, pro2))</span></code></pre></div>
+<pre><code>## [1] &quot;Probability of 2: 0.1663&quot;</code></pre>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="introduction-to-probability.html#cb193-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;Probability of 1 and 2: &quot;</span>, pro12))</span></code></pre></div>
+<pre><code>## [1] &quot;Probability of 1 and 2: 0.3375&quot;</code></pre>
+<p>This probability is approximately twice the probability of a single outcome because the events are mutually exclusive.</p>
+<hr />
+</div>
+<div id="complement-events" class="section level4 hasAnchor" number="5.3.2.3">
+<h4><span class="header-section-number">5.3.2.3</span> Complement Events<a href="introduction-to-probability.html#complement-events" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<hr />
+<div class="definition">
+<p><span id="def:complement" class="definition"><strong>Definition 5.11  (Complement of an Event) </strong></span>The complement of an event A consists of all outcomes that are not in A.</p>
+</div>
+<p>Every event has a complement, representing the event “not A.” Together, an event and its complement exhaust the entire sample space.</p>
+<div class="definition">
+<p><span id="def:complement-prob" class="definition"><strong>Definition 5.12  (Probability of the Complement) </strong></span>P(Aᶜ) = 1 − P(A)</p>
+</div>
+<p>This identity is fundamental and does not depend on assumptions such as equal likelihood or independence. It follows from the fact that the total probability of the sample space is 1.</p>
+</div>
+<div id="simulation-example-1" class="section level4 hasAnchor" number="5.3.2.4">
+<h4><span class="header-section-number">5.3.2.4</span> Simulation Example<a href="introduction-to-probability.html#simulation-example-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Estimate the probability of <em>not</em> rolling a 1 on a fair die.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="introduction-to-probability.html#cb195-1" tabindex="-1"></a>pA <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">10000</span>, <span class="cn">TRUE</span>) <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb195-2"><a href="introduction-to-probability.html#cb195-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;Probability of rolling a 1 : &quot;</span>, pA))</span></code></pre></div>
+<pre><code>## [1] &quot;Probability of rolling a 1 : 0.1655&quot;</code></pre>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="introduction-to-probability.html#cb197-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;Probability of not rolling a 1 : &quot;</span>, <span class="dv">1</span> <span class="sc">-</span> pA))</span></code></pre></div>
+<pre><code>## [1] &quot;Probability of not rolling a 1 : 0.8345&quot;</code></pre>
+<p>Using the complement is often computationally simpler, especially when the event of interest is complicated but its complement is not.</p>
+<hr />
+</div>
+</div>
+<div id="properties-of-probability" class="section level3 hasAnchor" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Properties of Probability<a href="introduction-to-probability.html#properties-of-probability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<hr />
+<p>Probability models are governed by a small set of foundational properties that ensure internal consistency.</p>
+<div class="definition">
+<p><span id="def:prob-properties" class="definition"><strong>Definition 5.13  (Probability Model Properties) </strong></span>A probability model must satisfy:</p>
+<ol style="list-style-type: decimal">
+<li>0 ≤ P(A) ≤ 1<br />
+</li>
+<li>P(S) = 1<br />
+</li>
+<li>If A and B are mutually exclusive, P(A ∪ B) = P(A) + P(B)</li>
+</ol>
+</div>
+<p>These axioms define what it means for a function to be a valid probability measure. All other probability rules can be derived from them.</p>
+<hr />
+<div id="unions-and-intersections-of-events" class="section level4 hasAnchor" number="5.3.3.1">
+<h4><span class="header-section-number">5.3.3.1</span> Unions and Intersections of Events<a href="introduction-to-probability.html#unions-and-intersections-of-events" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="definition">
+<p><span id="def:union" class="definition"><strong>Definition 5.14  (Union of Events) </strong></span>The union of events A and B consists of all outcomes that are in A or B (or both).</p>
+</div>
+<div class="definition">
+<p><span id="def:intersection" class="definition"><strong>Definition 5.15  (Intersection of Events) </strong></span>The intersection of events A and B consists of all outcomes that are in both A and B.</p>
+</div>
+<p>Unlike mutually exclusive events, most events <strong>overlap</strong>, meaning their intersection is not empty. In such cases, naïvely adding probabilities would double‑count shared outcomes.</p>
+<div class="definition">
+<p><span id="def:union-prob" class="definition"><strong>Definition 5.16  (Probability of the Union) </strong></span>P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</p>
+</div>
+<p>This formula corrects for double counting and is essential for building probability models in realistic settings.</p>
+<hr />
+</div>
+<div id="modeling-perspective" class="section level4 hasAnchor" number="5.3.3.2">
+<h4><span class="header-section-number">5.3.3.2</span> Modeling Perspective<a href="introduction-to-probability.html#modeling-perspective" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>From a modeling standpoint, these properties:</p>
+<ul>
+<li>ensure internal consistency of probability assignments,</li>
+<li>allow complex event probabilities to be constructed from simpler ones,</li>
+<li>connect analytical probability laws with simulation‑based estimation.</li>
+</ul>
+<p>In computational probability, unions, intersections, and complements are implemented using <strong>logical operations on simulated data</strong>, reinforcing the interpretation of probability models as data‑generating mechanisms.</p>
+<hr />
+</div>
+</div>
+<div id="conditional-probability" class="section level3 hasAnchor" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Conditional Probability<a href="introduction-to-probability.html#conditional-probability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<hr />
+<div class="definition">
+<p><span id="def:conditional" class="definition"><strong>Definition 5.17  (Conditional Probability) </strong></span>The conditional probability of an event A given that event B has occurred is<br />
+<span class="math display">\[
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \quad \text{provided } P(B) &gt; 0.
+\]</span></p>
+</div>
+<p>Conditional probability formalizes the idea of <strong>updating probabilities when additional information is available</strong>. Rather than asking whether event A occurs in general, we now ask whether A occurs <em>given that</em> B has already occurred.</p>
+<p>From a modeling perspective, conditioning restricts attention to a <strong>reduced sample space</strong>: only those outcomes consistent with event B are considered possible. Probabilities are then rescaled so that this restricted space has total probability 1.</p>
+<p>In this way, conditional probability connects probability models to the flow of information.</p>
+<hr />
+<div id="interpretation-via-simulation" class="section level4 hasAnchor" number="5.3.4.1">
+<h4><span class="header-section-number">5.3.4.1</span> Interpretation via Simulation<a href="introduction-to-probability.html#interpretation-via-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Consider a fair die. Let:</p>
+<ul>
+<li>A = {the outcome is 4}</li>
+<li>B = {the outcome is greater than 3}</li>
+</ul>
+<p>Rather than reasoning abstractly, we estimate this conditional probability by simulation.</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="introduction-to-probability.html#cb199-1" tabindex="-1"></a>dieRol <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">10000</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb199-2"><a href="introduction-to-probability.html#cb199-2" tabindex="-1"></a>proCon <span class="ot">&lt;-</span> <span class="fu">mean</span>(dieRol <span class="sc">==</span> <span class="dv">4</span> <span class="sc">&amp;</span> dieRol <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">/</span> <span class="fu">mean</span>(dieRol <span class="sc">&gt;</span> <span class="dv">3</span>)</span>
+<span id="cb199-3"><a href="introduction-to-probability.html#cb199-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;Conditional probability of rolling a 4 given that a number greater than 3 is rolled: &quot;</span>, proCon))</span></code></pre></div>
+<pre><code>## [1] &quot;Conditional probability of rolling a 4 given that a number greater than 3 is rolled: 0.322678535302448&quot;</code></pre>
+<p>Here:</p>
+<ul>
+<li><code>dieRol &gt; 3</code> identifies the outcomes consistent with the condition B,</li>
+<li><code>dieRol == 4 &amp; dieRol &gt; 3</code> identifies outcomes where both A and B occur.</li>
+</ul>
+<p>The ratio estimates the probability of rolling a 4 <em>given</em> that the roll exceeds 3.</p>
+<p>This computational approach makes the conditioning mechanism explicit: we focus only on simulated outcomes where B occurs and examine how often A appears within that subset.</p>
+<hr />
+</div>
+<div id="conditional-probability-as-a-modeling-tool" class="section level4 hasAnchor" number="5.3.4.2">
+<h4><span class="header-section-number">5.3.4.2</span> Conditional Probability as a Modeling Tool<a href="introduction-to-probability.html#conditional-probability-as-a-modeling-tool" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Conditional probabilities are central to probabilistic modeling because they allow us to express <strong>structured dependence</strong> between events. In complex systems, probabilities rarely exist in isolation; they reflect assumptions about what is known and unknown.</p>
+<p>Practically, conditional probabilities help answer questions of the form:</p>
+<ul>
+<li><em>What is the chance of A when we know B has happened?</em></li>
+<li><em>How does information change our expectations?</em></li>
+</ul>
+<hr />
+<div class="definition">
+<p><span id="def:marginal" class="definition"><strong>Definition 5.18  (Marginal Probability) </strong></span>A marginal (or unconditional) probability is the probability of an event considered without conditioning on any other event.</p>
+</div>
+<p>The marginal probability describes the baseline likelihood of an event across the entire sample space, before incorporating additional information.</p>
+<p>For the same die example, the marginal probability of rolling a 4 is:</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="introduction-to-probability.html#cb201-1" tabindex="-1"></a>proMar <span class="ot">&lt;-</span> <span class="fu">mean</span>(die <span class="sc">==</span> <span class="dv">4</span>)</span>
+<span id="cb201-2"><a href="introduction-to-probability.html#cb201-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;Conditional probability of rolling a 4 given that a number greater than 3 is rolled: &quot;</span>, proCon))</span></code></pre></div>
+<pre><code>## [1] &quot;Conditional probability of rolling a 4 given that a number greater than 3 is rolled: 0.322678535302448&quot;</code></pre>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="introduction-to-probability.html#cb203-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;Marginal probability of rolling a 4: &quot;</span>, proMar))</span></code></pre></div>
+<pre><code>## [1] &quot;Marginal probability of rolling a 4: 0.1595&quot;</code></pre>
+<p>Comparing marginal and conditional probabilities highlights how information can <strong>increase, decrease, or leave unchanged</strong> the likelihood of an event.</p>
+<hr />
+</div>
+</div>
+<div id="law-of-total-probability" class="section level3 hasAnchor" number="5.3.5">
+<h3><span class="header-section-number">5.3.5</span> Law of Total Probability<a href="introduction-to-probability.html#law-of-total-probability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<hr />
+<div class="definition">
+<p><span id="def:total-prob" class="definition"><strong>Definition 5.19  (Law of Total Probability) </strong></span>If events <span class="math inline">\(B_1, B_2, \dots, B_n\)</span> form a partition of the sample space, then
+<span class="math display">\[
+P(A) = \sum_{i=1}^{n} P(A \mid B_i)\,P(B_i).
+\]</span></p>
+</div>
+<p>The Law of Total Probability provides a way to compute the probability of an event by <strong>decomposing it into simpler scenarios</strong>. Each event <span class="math display">\[B_i\]</span> represents a mutually exclusive and exhaustive case under which A might occur.</p>
+<p>From a modeling perspective, this law expresses how <strong>overall probability emerges from conditional structure</strong>. It is especially useful when direct computation of <span class="math display">\[P(A)\]</span> is difficult, but conditional probabilities are easier to specify or estimate.</p>
+<hr />
+</div>
+<div id="bayes-formula" class="section level3 hasAnchor" number="5.3.6">
+<h3><span class="header-section-number">5.3.6</span> Bayes’ Formula<a href="introduction-to-probability.html#bayes-formula" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<hr />
+<div class="definition">
+<p><span id="def:bayes" class="definition"><strong>Definition 5.20  (Bayes' Formula) </strong></span>For events A and B with P(A) &gt; 0,
+<span class="math display">\[
+P(B \mid A) = \frac{P(A \mid B)\,P(B)}{P(A)}.
+\]</span></p>
+</div>
+<p>Bayes’ formula reverses the direction of conditioning. Instead of computing the probability of observing A given B, it computes the probability of B given that A has been observed.</p>
+<p>This inversion is fundamental to <strong>Bayesian modeling</strong>, where probabilities are updated as data arrive. Prior beliefs <span class="math display">\[P(B)\]</span> are combined with evidence <span class="math display">\[P(A \mid B)\]</span> to produce updated beliefs <span class="math display">\[P(B \mid A)\]</span>.</p>
+<hr />
+<div id="simulation-example-medical-testing" class="section level4 hasAnchor" number="5.3.6.1">
+<h4><span class="header-section-number">5.3.6.1</span> Simulation Example: Medical Testing<a href="introduction-to-probability.html#simulation-example-medical-testing" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We illustrate Bayes’ formula using a diagnostic testing scenario.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="introduction-to-probability.html#cb205-1" tabindex="-1"></a><span class="co"># Bayes example via simulation</span></span>
+<span id="cb205-2"><a href="introduction-to-probability.html#cb205-2" tabindex="-1"></a>proInf <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb205-3"><a href="introduction-to-probability.html#cb205-3" tabindex="-1"></a><span class="do">## Sample disease status</span></span>
+<span id="cb205-4"><a href="introduction-to-probability.html#cb205-4" tabindex="-1"></a>disease <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="dv">100000</span>, <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(proInf, <span class="dv">1</span> <span class="sc">-</span> proInf))</span>
+<span id="cb205-5"><a href="introduction-to-probability.html#cb205-5" tabindex="-1"></a><span class="do">## Sample test results given disease status</span></span>
+<span id="cb205-6"><a href="introduction-to-probability.html#cb205-6" tabindex="-1"></a>sen <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
+<span id="cb205-7"><a href="introduction-to-probability.html#cb205-7" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb205-8"><a href="introduction-to-probability.html#cb205-8" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(disease,</span>
+<span id="cb205-9"><a href="introduction-to-probability.html#cb205-9" tabindex="-1"></a>               <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>,<span class="cn">FALSE</span>), <span class="dv">100000</span>, <span class="cn">TRUE</span>,<span class="at">prob=</span><span class="fu">c</span>(sen,    <span class="dv">1</span> <span class="sc">-</span> sen)),</span>
+<span id="cb205-10"><a href="introduction-to-probability.html#cb205-10" tabindex="-1"></a>               <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>,<span class="cn">FALSE</span>), <span class="dv">100000</span>, <span class="cn">TRUE</span>,<span class="at">prob=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">-</span> spe, spe)))</span>
+<span id="cb205-11"><a href="introduction-to-probability.html#cb205-11" tabindex="-1"></a></span>
+<span id="cb205-12"><a href="introduction-to-probability.html#cb205-12" tabindex="-1"></a><span class="fu">mean</span>(disease[test])</span></code></pre></div>
+<pre><code>## [1] 0.01005025</code></pre>
+<p>In this simulation:</p>
+<ul>
+<li>Only 1% of individuals have the disease,</li>
+<li>The test is accurate but imperfect,</li>
+<li>We compute the probability of disease <strong>given a positive test result</strong>.</li>
+</ul>
+<p>Despite high test accuracy, the conditional probability may be much lower than expected due to the rarity of the disease. This illustrates how conditioning can dramatically change intuitive conclusions.</p>
+<hr />
+<div class="definition">
+<p><span id="def:states" class="definition"><strong>Definition 5.21  (States of Nature and Observable Events) </strong></span>States of nature represent the true but unobserved condition of a system, while observable events are the data or measurements produced by that system.</p>
+</div>
+<p>Bayesian reasoning explicitly distinguishes between:</p>
+<ul>
+<li><strong>states of nature</strong>, which are unknown but real,</li>
+<li><strong>observable events</strong>, which provide indirect information about those states.</li>
+</ul>
+<p>Conditional probability provides the mathematical bridge between what we observe and what we wish to infer.</p>
+<hr />
+</div>
+</div>
+<div id="modeling-perspective-summary" class="section level3 hasAnchor" number="5.3.7">
+<h3><span class="header-section-number">5.3.7</span> Modeling Perspective Summary<a href="introduction-to-probability.html#modeling-perspective-summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Conditional probability is not merely a computational rule—it is a <strong>modeling principle</strong>. It encodes how information alters uncertainty, enables the construction of hierarchical and Bayesian models, and connects probability theory directly to inference.</p>
+<p>In simulation‑based approaches, conditioning is implemented by <strong>subsetting data and renormalizing</strong>, reinforcing the idea that probability models are best understood as data‑generating mechanisms shaped by information.</p>
+<hr />
+</div>
+</div>
+<div id="summary-1" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Summary<a href="introduction-to-probability.html#summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Probability models are <strong>data‑generating mechanisms</strong></li>
+<li>Simulation connects theory to observable behavior</li>
+<li>Different interpretations serve different purposes</li>
+<li>Conditional probability and Bayes’ formula link belief, data, and inference</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-description.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

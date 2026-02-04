@@ -1,0 +1,762 @@
+# Introduction to Probability
+
+Probability provides a **mathematical framework** for reasoning about uncertainty and complexity.  
+In this lecture, we develop probability ideas using **simulation and computation**, treating probability models as *data‑producing mechanisms*. This approach emphasizes understanding over memorization and mirrors how probability is used in modern data analysis.
+
+---
+
+## Probability as a Model for Uncertain and Complex Phenomena
+
+### Probability as a Data‑Producing Machine
+
+```{definition, prob-model, name="Probability Model"}
+A probability model is a mathematical description of a process that produces data under uncertainty, assigning probabilities to possible outcomes.
+```
+
+Rather than viewing probability as an abstract formula, we interpret it as a **machine that generates data**.  
+Once a model is specified, we can simulate outcomes and study their long‑run behavior.
+
+#### Example: A Simple Data‑Producing Machine
+
+```{r head-tails-example}
+set.seed(2026)
+sample(c("Heads", "Tails"), size = 10, replace = TRUE, prob = c(0.5, 0.5))
+```
+
+Each run produces different data, yet the underlying mechanism remains fixed.
+
+***
+
+### Example of an Uncertain Phenomenon
+
+Uncertain phenomena are characterized by **random variation**, even when conditions appear identical.
+
+Example:
+
+*   Tossing a fair coin
+*   Rolling a die
+*   Drawing a card from a shuffled deck
+
+***
+
+### Example of a Complex Phenomenon
+
+Complex phenomena involve many interacting components:
+
+*   Student performance
+*   Financial markets
+*   Weather systems
+
+Even if deterministic rules exist, the combined system behaves unpredictably.
+
+```{r complex-system-data}
+# Function Describing Population Growth
+populationGrowth <- function(x = 1, r = 1, t = 1){
+  for(i in 1:t){
+    x <- r * x * (1 - x)
+  }
+  return(x)
+}
+# Samples obtained at different initial states for 10 periods
+griSta <- seq(0.1,0.9, by = 0.001)
+samPop <- populationGrowth(x = griSta, r = 4, t = 100)
+# Print Table
+names(samPop) <- griSta
+print(round(samPop, 2))
+#
+plot(x = griSta, y = samPop, type = 'l')
+```
+
+***
+
+### Using Models to Explain Phenomena
+
+Models simplify reality while retaining essential structure.  
+A **good probability model**:
+
+*   Explains observed variability
+*   Produces realistic simulated data
+*   Can be refined as new information becomes available
+
+***
+
+### Final Idea: Inference Without a Model
+
+When you don't have a model it is really hard to do inference.  
+All of probability and statistics rely, either explicitly or implicitly, on the existence of a **model** that describes how data are generated.
+
+A **model** provides a structured description of uncertainty. It specifies:
+- what outcomes are possible,
+- how these outcomes are related,
+- and how frequently they are expected to occur.
+
+Without such a structure, observed data are simply a collection of numbers or categories with no principled way to generalize beyond what has already been seen.
+
+In probability theory, models play the role of an *idealized data‑generating mechanism*. They allow us to ask meaningful questions such as:
+- *How surprising is this outcome?*
+- *What should we expect to see if the process repeats?*
+- *How does changing assumptions affect long‑run behavior?*
+
+When a model is clearly defined, inference becomes possible because we can compare observed data to what the model predicts. Differences between data and model expectations can then be interpreted as evidence about the underlying process.
+
+By contrast, **without a model**:
+- There is no clear notion of what outcomes are “likely” or “unlikely.”
+- Uncertainty cannot be quantified in a principled way.
+- There is no reliable mechanism for extrapolation beyond the observed data.
+- Conclusions become informal, subjective, or anecdotal.
+
+```{definition, inference, name="Statistical Inference"}
+Statistical inference is the process of drawing conclusions about an underlying process, population, or mechanism by comparing observed data to a probabilistic model.
+```
+
+***
+
+## Interpretations of Probability
+
+### Classical Interpretation
+
+```{definition, classical-prob, name="Classical Probability"}
+Classical probability defines the probability of an event as the ratio of the number of favorable outcomes to the total number of equally likely outcomes.
+```
+
+The classical interpretation is the earliest formal approach to probability. It views probability as a **logical consequence of symmetry** in a well‑defined experiment. When all outcomes are equally plausible *before* the experiment is performed, probability can be computed by simple counting.
+
+This approach treats probability as an *a priori* quantity: probabilities are determined entirely by the structure of the experiment, not by observed data.
+
+***
+
+#### History
+
+The classical interpretation emerged in the **17th and 18th centuries**, primarily through the study of games of chance.
+
+Key contributors include:
+
+*   **Blaise Pascal** and **Pierre de Fermat**, who studied fair division of gambling stakes.
+*   **Pierre‑Simon Laplace**, who formalized probability as a mathematical discipline.
+
+During this period, probability problems typically involved:
+
+*   dice,
+*   cards,
+*   coins,
+*   lottery‑type mechanisms.
+
+These systems were appealing because they naturally possessed **symmetry**, making the assumption of equally likely outcomes reasonable.
+
+***
+
+#### Key Assumption: Equally Likely Outcomes
+
+The classical definition **requires** that all outcomes in the sample space are equally likely.
+
+This assumption is critical and restrictive.
+
+Consequences:
+
+*   Classical probability works well for idealized systems with symmetry.
+*   It becomes difficult or impossible to apply when outcomes are not equally likely or when the sample space is not finite and well defined.
+
+Thus, the classical interpretation is best viewed as a **modeling choice**, not a universal definition.
+
+***
+
+#### Example: Rolling a Fair Die
+
+Consider rolling a well‑balanced six‑sided die.
+
+*   The sample space contains 6 outcomes:  
+    {1, 2, 3, 4, 5, 6}
+*   Each outcome is assumed equally likely.
+
+The probability of rolling a 4 is therefore:
+
+```{r}
+1 / 6
+```
+
+This probability is computed *before* any data are collected and does not depend on repeated trials.
+
+***
+
+#### Outcomes and Events
+
+```{definition, outcome, name="Outcome"}
+An outcome is a single possible result of a random experiment.
+```
+
+Examples:
+
+*   Rolling a 4 on a die
+*   Drawing the Ace of Spades from a deck
+*   Getting Heads in a coin toss
+
+Outcomes represent the **most granular level** of description of a random experiment.
+
+```{definition, event, name="Event"}
+An event is a collection of one or more outcomes.
+```
+
+Examples:
+
+*   Rolling an even number: {2, 4, 6}
+*   Drawing a face card from a deck
+*   Getting at least one Head in two coin tosses
+
+An event can be interpreted as a **question** about the experiment whose answer is either *yes* (the event occurs) or *no* (the event does not occur).
+
+***
+
+#### Strengths and Limitations of the Classical Interpretation
+
+**Strengths**
+
+*   Simple and intuitive
+*   Requires no data
+*   Provides exact probabilities in symmetric settings
+
+**Limitations**
+
+*   Depends critically on the equally likely assumption
+*   Not suitable for complex, real‑world phenomena
+*   Does not explain how probabilities change or emerge with repeated observations
+
+These limitations motivate alternative interpretations of probability, especially those based on **long‑run behavior** and **data‑driven modeling**.
+
+***
+
+In summary, the classical interpretation introduces probability as a *counting rule based on symmetry*. While historically foundational and mathematically elegant, it is best understood as a **special case of probability modeling**, applicable only when symmetry and equally likely outcomes are plausible assumptions.
+
+
+***
+
+### Relative Frequency Interpretation
+
+```{definition, relfreq, name="Relative Frequency Probability"}
+Probability is defined as the long‑run proportion of times an event occurs when a random experiment is repeated under identical conditions.
+```
+
+The relative frequency interpretation views probability not as a purely theoretical quantity, but as a **property that emerges through repetition**. Under this interpretation, probability is tied directly to observable data and is meaningful only in contexts where an experiment can, at least in principle, be repeated many times.
+
+Rather than assuming equally likely outcomes, this approach defines probability through **empirical behavior**. Probabilities are not assigned in advance; they are *revealed* through repeated trials.
+
+***
+
+#### History
+
+The relative frequency interpretation developed primarily in the **19th and early 20th centuries**, alongside advances in experimental science and statistics.
+
+Key features of its historical development:
+
+*   Closely associated with scientists such as **John Venn** and **Richard von Mises**
+*   Motivated by the need to describe probabilities in **physical and social phenomena**
+*   Emphasized objectivity through repeatable experiments
+
+This interpretation arose as a response to the limitations of classical probability, especially in situations lacking symmetry or equally likely outcomes.
+
+***
+
+#### Core Idea: Long‑Run Behavior
+
+Under the relative frequency interpretation:
+
+*   Probability is not about a single trial
+*   Probability is about what happens **in the long run**
+
+A single coin toss provides no meaningful probability information. Thousands of tosses, however, reveal stable patterns.
+
+This interpretation implicitly assumes:
+
+*   The experiment can be repeated indefinitely
+*   The underlying mechanism remains stable over time
+
+***
+
+#### Probability as an Approximation
+
+In practice, probabilities are **approximated**, not known exactly. The relative frequency of an event after $n$ trials is:
+
+$$
+\text{Relative Frequency} = \frac{\text{Number of times the event occurs}}{n}
+$$
+
+Simulation provides a natural way to observe this idea.
+
+```{r relative-frequency}
+p         <- 0.4
+n         <- 1000
+samCoi    <- sample(c("Heads", "Tails"), size = n, replace = TRUE, prob = c(p, 1 - p))
+relFreHea <- sum(samCoi == "Heads") / n
+print(relFreHea)
+```
+
+Each execution of this code generates a different result, but as the number of trials increases, the relative frequency tends to stabilize near a constant value.
+
+This stabilization is an empirical manifestation of the **Law of Large Numbers** that we will talk about later.
+
+***
+
+#### Interpretation and Modeling Perspective
+
+From a modeling standpoint, the relative frequency interpretation treats probability as a **feature of the data‑generating process**. The model is validated not by symmetry or logic alone, but by consistency between:
+
+*   simulated behavior,
+*   observed data,
+*   and long‑run frequencies.
+
+Probability models under this interpretation are often assessed by asking:
+
+*   Do simulated frequencies resemble observed frequencies?
+*   Does the model reproduce stable long‑run patterns?
+
+***
+
+#### Strengths and Limitations
+
+**Strengths**
+
+*   Grounded in observable data
+*   Does not require equally likely outcomes
+*   Naturally compatible with simulation and computation
+
+**Limitations**
+
+*   Requires repeatable experiments
+*   Not applicable to one‑time events (e.g., a specific election outcome)
+*   Does not directly address uncertainty in small samples
+
+***
+
+In summary, the relative frequency interpretation reframes probability as a **long‑run empirical regularity**. It forms the conceptual foundation for simulation‑based probability and provides a bridge between abstract models and observed data.
+
+***
+
+Here is an **expanded, textbook‑style version** of the **Subjective Interpretation**, written fully in **R Markdown**, consistent with your formatting rules and the level of depth used for the Classical and Relative Frequency sections. It emphasizes **modeling, information, and belief**, with a clear conceptual narrative.
+
+### Subjective Interpretation
+
+```{definition, subjective, name="Subjective Probability"}
+Subjective probability represents an individual's degree of belief about the occurrence of an event, given the information available to them.
+```
+
+The subjective interpretation treats probability as a **measure of uncertainty based on information, judgment, and belief**, rather than symmetry or long‑run frequency. Under this view, probability quantifies how strongly an individual believes an event will occur, conditional on what they currently know.
+
+Unlike classical or relative frequency interpretations, subjective probability does **not require repeatable experiments** or equally likely outcomes. Instead, it is fundamentally **conditional on information** and is allowed to change as new information becomes available.
+
+***
+
+#### History
+
+The subjective interpretation developed primarily in the **20th century** and is closely associated with the rise of **Bayesian statistics**.
+
+Key contributors include:
+
+*   **Frank Ramsey**, who linked probability to rational decision‑making
+*   **Bruno de Finetti**, who argued that “probability does not exist” outside personal belief
+*   Later formalization within Bayesian inference and decision theory
+
+This interpretation arose from the need to reason probabilistically about:
+
+*   unique or one‑time events,
+*   decision‑making under uncertainty,
+*   situations where long‑run frequencies are unavailable or meaningless.
+
+***
+
+#### Core Idea: Probability as Information‑Dependent Belief
+
+Under the subjective interpretation:
+
+*   Probability is always **conditional** on available information.
+*   Different individuals may assign different probabilities to the same event.
+*   Updating beliefs in light of new data is a central feature.
+
+From a modeling perspective, a subjective probability model represents the analyst’s **state of knowledge** rather than an objective property of the physical world.
+
+As information changes, probabilities are updated accordingly, typically using **Bayes’ theorem**.
+
+***
+
+#### Example: Betting Interpretation
+
+One way to operationalize subjective probability is through **betting behavior**.
+
+If you are willing to bet $70 to win $100 on an event occurring, your implied probability is:
+
+```{r}
+70 / 100
+```
+
+This value represents the minimum probability at which you consider the bet fair, given your beliefs and risk tolerance.
+
+In this framework:
+
+*   Probabilities reflect willingness to accept risk
+*   Inconsistent probabilities can lead to guaranteed losses (Dutch books)
+*   Rational probability assignments are those that avoid sure loss
+
+***
+
+#### Subjective Probability as a Model
+
+In subjective probability, a **probability model** represents beliefs about how the world operates, not just observed frequencies. These models are often used when:
+
+*   events are unique (e.g., an election outcome),
+*   data are scarce or incomplete,
+*   decisions must be made before data are observed.
+
+Such models are evaluated not by long‑run frequencies, but by:
+
+*   internal coherence,
+*   consistency with observed evidence,
+*   usefulness for decision‑making.
+
+***
+
+#### Strengths and Limitations
+
+**Strengths**
+
+*   Applicable to one‑time or non‑repeatable events
+*   Naturally incorporates prior knowledge and expert judgment
+*   Provides a coherent framework for updating beliefs
+
+**Limitations**
+
+*   Depends on subjective judgment
+*   Different individuals may disagree
+*   Requires careful justification of assumptions
+
+***
+
+In summary, the subjective interpretation views probability as a **quantitative expression of uncertainty given information**. It plays a central role in Bayesian modeling, where probability models evolve as data are observed, and inference is understood as a process of **belief updating** rather than long‑run stabilization.
+
+***
+
+## How to Build Probability Models
+
+***
+
+### Finding the Probability of an Event
+
+```{definition, prob-event, name="Probability of an Event"}
+The probability of an event is the sum of the probabilities of the outcomes that compose the event.
+```
+
+In probability theory, events are not primitive objects. Instead, they are built from **outcomes**, which represent the most basic possible results of a random experiment. A probability model assigns probabilities to these outcomes, and the probability of any event is obtained by aggregating the probabilities of the outcomes that form the event.
+
+From a modeling perspective, this definition emphasizes that probability is **additive over disjoint outcomes**. Once the model specifies probabilities at the outcome level, probabilities for more complex events follow automatically.
+
+In classical settings, this is achieved through counting. In simulation‑based approaches, this aggregation is approximated empirically.
+
+***
+
+#### Simulation Approach to Event Probability
+
+Rather than computing probabilities analytically, we can **estimate probabilities through repeated simulation**.
+
+For example, consider estimating the probability of rolling a 6 on a fair die.
+
+```{r probability-of-a-six}
+mean(sample(1:6, size = 10000, replace = TRUE) == 6)
+```
+
+Each simulation run produces a slightly different value, but as the number of trials increases, the estimate stabilizes. This illustrates how probability emerges as a **long‑run average behavior of a model**, rather than a single deterministic calculation.
+
+This computational viewpoint aligns naturally with the relative frequency interpretation of probability.
+
+***
+
+### Basic Event Relations and Probability Laws
+
+***
+
+The power of probability models lies not only in assigning probabilities to single events, but in understanding how events **combine and relate** to one another. These relationships are governed by fundamental probability laws that hold regardless of the specific model used.
+
+***
+
+#### Mutually Exclusive Events
+
+***
+
+```{definition, mutually-exclusive, name="Mutually Exclusive Events"}
+Two events are mutually exclusive if they cannot occur at the same time.
+```
+
+Mutually exclusive events share **no common outcomes**. If one event occurs, the other cannot.
+
+Examples:
+
+*   Rolling a die and obtaining a 1 versus obtaining a 2
+*   Drawing a card that is a heart versus drawing a card that is a spade
+
+Because these events do not overlap, their probabilities combine in a particularly simple way.
+
+```{definition, prob-mut-ex, name="Probability of Mutually Exclusive Events"}
+If A and B are mutually exclusive, then  
+P(A ∪ B) = P(A) + P(B).
+```
+
+This property follows directly from the definition of probability as additive over disjoint outcomes.
+
+#### Simulation Example
+
+Estimate the probability that a fair die roll results in either a 1 or a 2.
+
+```{r}
+dieRol <- sample(1:6, 10000, TRUE) 
+pro12  <- mean(dieRol %in% c(1, 2))
+pro1   <- mean(dieRol == 1)
+pro2   <- mean(dieRol == 2)
+print(paste0("Probability of 1: ", pro1))
+print(paste0("Probability of 2: ", pro2))
+print(paste0("Probability of 1 and 2: ", pro12))
+```
+
+This probability is approximately twice the probability of a single outcome because the events are mutually exclusive.
+
+***
+
+#### Complement Events
+
+***
+
+```{definition, complement, name="Complement of an Event"}
+The complement of an event A consists of all outcomes that are not in A.
+```
+
+Every event has a complement, representing the event “not A.” Together, an event and its complement exhaust the entire sample space.
+
+```{definition, complement-prob, name="Probability of the Complement"}
+P(Aᶜ) = 1 − P(A)
+```
+
+This identity is fundamental and does not depend on assumptions such as equal likelihood or independence. It follows from the fact that the total probability of the sample space is 1.
+
+#### Simulation Example
+
+Estimate the probability of *not* rolling a 1 on a fair die.
+
+```{r}
+pA <- mean(sample(1:6, 10000, TRUE) == 1)
+print(paste0("Probability of rolling a 1 : ", pA))
+print(paste0("Probability of not rolling a 1 : ", 1 - pA))
+```
+
+Using the complement is often computationally simpler, especially when the event of interest is complicated but its complement is not.
+
+***
+
+### Properties of Probability
+
+***
+
+Probability models are governed by a small set of foundational properties that ensure internal consistency.
+
+```{definition, prob-properties, name="Probability Model Properties"}
+A probability model must satisfy:
+  
+1. 0 ≤ P(A) ≤ 1  
+2. P(S) = 1  
+3. If A and B are mutually exclusive, P(A ∪ B) = P(A) + P(B)
+```
+
+These axioms define what it means for a function to be a valid probability measure. All other probability rules can be derived from them.
+
+***
+
+#### Unions and Intersections of Events
+
+```{definition, union, name="Union of Events"}
+The union of events A and B consists of all outcomes that are in A or B (or both).
+```
+
+```{definition, intersection, name="Intersection of Events"}
+The intersection of events A and B consists of all outcomes that are in both A and B.
+```
+
+Unlike mutually exclusive events, most events **overlap**, meaning their intersection is not empty. In such cases, naïvely adding probabilities would double‑count shared outcomes.
+
+```{definition, union-prob, name="Probability of the Union"}
+P(A ∪ B) = P(A) + P(B) − P(A ∩ B)
+```
+
+This formula corrects for double counting and is essential for building probability models in realistic settings.
+
+***
+
+#### Modeling Perspective
+
+From a modeling standpoint, these properties:
+
+*   ensure internal consistency of probability assignments,
+*   allow complex event probabilities to be constructed from simpler ones,
+*   connect analytical probability laws with simulation‑based estimation.
+
+In computational probability, unions, intersections, and complements are implemented using **logical operations on simulated data**, reinforcing the interpretation of probability models as data‑generating mechanisms.
+
+***
+
+### Conditional Probability
+
+***
+
+```{definition, conditional, name="Conditional Probability"}
+The conditional probability of an event A given that event B has occurred is  
+\[
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \quad \text{provided } P(B) > 0.
+\]
+```
+
+Conditional probability formalizes the idea of **updating probabilities when additional information is available**. Rather than asking whether event A occurs in general, we now ask whether A occurs *given that* B has already occurred.
+
+From a modeling perspective, conditioning restricts attention to a **reduced sample space**: only those outcomes consistent with event B are considered possible. Probabilities are then rescaled so that this restricted space has total probability 1.
+
+In this way, conditional probability connects probability models to the flow of information.
+
+***
+
+#### Interpretation via Simulation
+
+Consider a fair die. Let:
+
+*   A = {the outcome is 4}
+*   B = {the outcome is greater than 3}
+
+Rather than reasoning abstractly, we estimate this conditional probability by simulation.
+
+```{r conditional-probability-die-Roll}
+dieRol <- sample(1:6, 10000, TRUE)
+proCon <- mean(dieRol == 4 & dieRol > 3) / mean(dieRol > 3)
+print(paste0("Conditional probability of rolling a 4 given that a number greater than 3 is rolled: ", proCon))
+```
+
+Here:
+
+*   `dieRol > 3` identifies the outcomes consistent with the condition B,
+*   `dieRol == 4 & dieRol > 3` identifies outcomes where both A and B occur.
+
+The ratio estimates the probability of rolling a 4 *given* that the roll exceeds 3.
+
+This computational approach makes the conditioning mechanism explicit: we focus only on simulated outcomes where B occurs and examine how often A appears within that subset.
+
+***
+
+#### Conditional Probability as a Modeling Tool
+
+Conditional probabilities are central to probabilistic modeling because they allow us to express **structured dependence** between events. In complex systems, probabilities rarely exist in isolation; they reflect assumptions about what is known and unknown.
+
+Practically, conditional probabilities help answer questions of the form:
+
+*   *What is the chance of A when we know B has happened?*
+*   *How does information change our expectations?*
+
+***
+
+```{definition, marginal, name="Marginal Probability"}
+A marginal (or unconditional) probability is the probability of an event considered without conditioning on any other event.
+```
+
+The marginal probability describes the baseline likelihood of an event across the entire sample space, before incorporating additional information.
+
+For the same die example, the marginal probability of rolling a 4 is:
+
+```{r}
+proMar <- mean(die == 4)
+print(paste0("Conditional probability of rolling a 4 given that a number greater than 3 is rolled: ", proCon))
+print(paste0("Marginal probability of rolling a 4: ", proMar))
+```
+
+Comparing marginal and conditional probabilities highlights how information can **increase, decrease, or leave unchanged** the likelihood of an event.
+
+***
+
+### Law of Total Probability
+
+***
+
+```{definition, total-prob, name="Law of Total Probability"}
+If events \( B_1, B_2, \dots, B_n \) form a partition of the sample space, then
+\[
+P(A) = \sum_{i=1}^{n} P(A \mid B_i)\,P(B_i).
+\]
+```
+
+The Law of Total Probability provides a way to compute the probability of an event by **decomposing it into simpler scenarios**. Each event $$B_i$$ represents a mutually exclusive and exhaustive case under which A might occur.
+
+From a modeling perspective, this law expresses how **overall probability emerges from conditional structure**. It is especially useful when direct computation of $$P(A)$$ is difficult, but conditional probabilities are easier to specify or estimate.
+
+***
+
+### Bayes’ Formula
+
+***
+
+```{definition, bayes, name="Bayes' Formula"}
+For events A and B with P(A) > 0,
+\[
+P(B \mid A) = \frac{P(A \mid B)\,P(B)}{P(A)}.
+\]
+```
+
+Bayes’ formula reverses the direction of conditioning. Instead of computing the probability of observing A given B, it computes the probability of B given that A has been observed.
+
+This inversion is fundamental to **Bayesian modeling**, where probabilities are updated as data arrive. Prior beliefs $$P(B)$$ are combined with evidence $$P(A \mid B)$$ to produce updated beliefs $$P(B \mid A)$$.
+
+***
+
+#### Simulation Example: Medical Testing
+
+We illustrate Bayes’ formula using a diagnostic testing scenario.
+
+```{r}
+# Bayes example via simulation
+proInf <- 0.01
+## Sample disease status
+disease <- sample(c(TRUE, FALSE), 100000, TRUE, prob = c(proInf, 1 - proInf))
+## Sample test results given disease status
+sen <- 0.95
+spe <- 0.05
+test <- ifelse(disease,
+               sample(c(TRUE,FALSE), 100000, TRUE,prob=c(sen,    1 - sen)),
+               sample(c(TRUE,FALSE), 100000, TRUE,prob=c(1- spe, spe)))
+
+mean(disease[test])
+```
+
+In this simulation:
+
+*   Only 1% of individuals have the disease,
+*   The test is accurate but imperfect,
+*   We compute the probability of disease **given a positive test result**.
+
+Despite high test accuracy, the conditional probability may be much lower than expected due to the rarity of the disease. This illustrates how conditioning can dramatically change intuitive conclusions.
+
+***
+
+```{definition, states, name="States of Nature and Observable Events"}
+States of nature represent the true but unobserved condition of a system, while observable events are the data or measurements produced by that system.
+```
+
+Bayesian reasoning explicitly distinguishes between:
+
+*   **states of nature**, which are unknown but real,
+*   **observable events**, which provide indirect information about those states.
+
+Conditional probability provides the mathematical bridge between what we observe and what we wish to infer.
+
+***
+
+### Modeling Perspective Summary
+
+Conditional probability is not merely a computational rule—it is a **modeling principle**. It encodes how information alters uncertainty, enables the construction of hierarchical and Bayesian models, and connects probability theory directly to inference.
+
+In simulation‑based approaches, conditioning is implemented by **subsetting data and renormalizing**, reinforcing the idea that probability models are best understood as data‑generating mechanisms shaped by information.
+
+***
+
+## Summary
+
+*   Probability models are **data‑generating mechanisms**
+*   Simulation connects theory to observable behavior
+*   Different interpretations serve different purposes
+*   Conditional probability and Bayes’ formula link belief, data, and inference

@@ -1,0 +1,527 @@
+# Data Description
+
+In this section, we explore how data can be **classified**, **summarized**, and **interpreted**.  
+We introduce key concepts for both **categorical** and **quantitative** data, and we examine graphical and numerical tools used in statistics.
+
+---
+
+## Data Simulation
+
+For this section we will simulate a data set for student performance in math and verbal tests accross 10 schools. For each student we will include the following variables:
+
+Variables:
+
+- Student ID
+- Student School
+- Student Grade
+- Student Age
+- Income Level
+- Education Level Parents
+- Math Score
+- Verbal Score
+
+```{r school-data-simulation, echo=FALSE}
+# Data Simulation
+set.seed(2026)
+
+# Simulation Parameters
+numSch    <- 10
+namSch    <- paste0("School ", 1:numSch)
+numGra    <- 9
+numStuGra <- 100
+numStu    <- numSch * numGra * numStuGra
+minScoMat <- 0
+maxScoMat <- 800
+minScoVer <- 0
+maxScoVer <- 800
+namIncLev <- c("Low", "Middle", "High")
+namEduPar <- c("No Highschool", "Highschool", "College", "Graduate School")
+
+# Student School
+sch    <- sample(namSch, size = numStu, replace = TRUE)
+gra    <- sample(1:numGra, size = numStu, replace = TRUE)
+age    <- round(gra + 5 + runif(n =numStu, min = -0.6, max = 0.6))
+incLev <- sample(namIncLev, size = numStu, replace = TRUE, prob = c(0.3, 0.6, 0.1))
+eduPar <- sample(namEduPar, size = numStu, replace = TRUE)
+
+# Simulate Scores
+matSco <- numeric(length = numStu)
+verSco <- numeric(length = numStu)
+numSel <- c()
+for(i in 1:numSch){
+  # School Performance Level
+  schPer <- runif(n = 1, min = 0, max = 1)
+  # Selects School
+  selSch <- namSch[i] == sch
+  for(j in 1:length(namIncLev)){
+    # Income Performance
+    incPer <- j / length(namIncLev)
+    # Selects Income
+    selInc <- namIncLev[j] == incLev
+    for(k in 1:length(namEduPar)){
+      # Parent Education Performance
+      eduPer <- k / length(namEduPar)
+      # Selects Parent Education Level
+      selPar <- namEduPar[k] == eduPar
+      for(l in 1:numGra){
+        # Grade Level Performance
+        graPer <- l / length(numGra)
+        # Selects Grade Level
+        selGra <- l == gra
+        # Selected Students
+        sel         <- selSch & selInc & selPar & selGra
+        numSel      <- c(numSel, sum(sel))
+        numStuClu   <- sum(sel)
+        matSco[sel] <- 0.2 * schPer + 0.1 * incPer + 0.1 * eduPer + 0.6 * graPer
+        matSco[sel] <- matSco[sel] + rnorm(n = numStuClu, mean = 0, sd = 0.2)
+        verSco[sel] <- 0.1 * schPer + 0.1 * incPer + 0.1 * eduPer + 0.7 * graPer
+        verSco[sel] <- matSco[sel] + rnorm(n = numStuClu, mean = 0, sd = 0.1) 
+      }
+    }
+  }
+}
+
+# Transforms Scores to 0-800 Scale
+matSco <- (matSco - min(matSco)) / (max(matSco) - min(matSco)) * 850
+verSco <- (verSco - min(verSco)) / (max(verSco) - min(verSco)) * 850
+matSco[matSco > 800] <- 800
+verSco[verSco > 800] <- 800
+matSco <- round(matSco)
+verSco <- round(verSco)
+
+# Creates a data frame
+schDat <- as.data.frame(1:numStu)
+schDat <- cbind(schDat, sch, gra, age, incLev, eduPar, matSco, verSco)
+colnames(schDat) <- c("Student_ID", "School", "Grade", "Age", "Income_Level", "Parent_Education", "Math_Score", "Verbal_Score")
+```
+
+## Types of Data
+
+### Quantitative vs. Qualitative Data
+
+```{definition, data-types, name="Types of Data"}
+Data can be classified into **quantitative** (numerical) and **qualitative** (categorical) types.  
+Quantitative data consist of numerical measurements; qualitative data describe categories or attributes.
+```
+
+### Quantitative Data
+
+Quantitative data represent **numerical values** that can be measured.
+
+Examples:
+
+*   Heights of students
+*   Weights of packages
+*   Exam scores
+
+They can be:
+
+*   **Discrete**: countable (e.g., number of children)
+*   **Continuous**: measured on a continuum (e.g., height, time)
+
+### Qualitative Data
+
+Qualitative (categorical) data represent **non‑numeric labels or groups**.
+
+Examples:
+
+*   Sex
+*   Favorite color
+*   Yes/No responses
+*   Satisfaction Level
+
+These categories may or may not have a natural order.
+
+---
+
+## Why Do We Have to Describe Data?
+
+Describing data allows us to:
+
+*   Explain data.
+*   Identify **patterns** or **trends**
+*   Summarize large datasets compactly
+*   Compare groups or populations
+*   Detect **outliers** or unusual observations
+*   Prepare for inferential analysis
+
+Raw data alone rarely reveal useful insight without proper summarization.
+
+---
+
+## Types of Data Description
+
+### Numerical Description
+
+Focuses on numerical summaries such as:
+
+*   Mean
+*   Median
+*   Standard deviation
+*   Quantiles
+
+### Graphical Description
+
+Focuses on visualizations such as:
+
+*   Histograms
+*   Bar charts
+*   Pie charts
+*   Boxplots
+
+Both approaches are essential for understanding data behavior.
+
+---
+
+## Techniques to Describe Categorical Data
+
+### Graphical Techniques
+
+#### Bar Charts
+
+Bar charts display the frequency of each category using rectangular bars.
+
+Example in R:
+
+```{r barplot-schools, }
+barplot(table(schDat$School), col="steelblue")
+```
+
+### Pie Charts
+
+Pie charts show proportions as slices of a circle.
+
+```{r pichart-income}
+pie(table(schDat$Income_Level))
+```
+
+### Numerical Techniques
+
+The main numerical summaries for categorical data include:
+
+*   **Counts** (frequencies)
+*   **Proportions**
+*   **Relative frequencies**
+
+Example:
+
+```{r table-income}
+# Frequency Table
+table(schDat$Income_Level)
+# Proportional Table
+prop.table(table(schDat$Income_Level))
+```
+
+---
+
+## Techniques to Describe Quantitative Data
+
+### Displaying All the Data
+
+Tools:
+
+*   Raw data lists
+*   Dotplots
+*   Stem‑and‑leaf plots
+
+Example:
+
+```{r}
+stem(c(23,25,25,30,31,33,35,40))
+```
+
+---
+
+## Frequency Table
+
+A frequency table groups quantitative data into **intervals** (classes).
+
+### Class Frequency
+
+```{definition, class-frequency, name="Class Frequency"}
+The **class frequency** is the number of observations that fall within a specific interval.
+```
+
+### Relative Frequency
+
+```{definition, rel-frequency, name="Relative Frequency"}
+The **relative frequency** is the class frequency divided by the total number of observations.
+```
+
+Example:
+
+```{r frequency-table}
+# Frequency Classes
+breaks    <- seq(0, 800, by = 100)
+matScoBin <- cut(matSco, breaks = breaks, right = TRUE) 
+table(matScoBin)
+prop.table(table(matScoBin))
+```
+
+---
+
+### Histograms
+
+Histograms partition quantitative data into **bins** and display frequencies as bars.
+
+#### How to Build Them
+
+Steps:
+
+1.  Choose number of intervals (bins).
+2.  Determine bin width.
+3.  Count frequencies per bin.
+4.  Draw adjacent bars.
+
+#### Number of Intervals
+
+Common guidelines:
+
+*   Square-root rule: $$k = \sqrt{n}$$
+*   Sturges' rule: $$k = 1 + \log_2(n)$$
+
+Example:
+
+```{r histogram-schools}
+hist(schDat$Math_Score[schDat$Grade == 1], col="skyblue", main = "Histogram of Math Scores for First Grade", xlab = "Math Scores")
+```
+
+#### Characteristics of Histograms
+
+##### Unimodal
+
+One peak.
+
+##### Bimodal
+
+Two distinct peaks.
+
+```{r histogram-schools-bimodal}
+hist(schDat$Math_Score[schDat$Grade == 3 | schDat$Grade == 5], col="skyblue", main = "Histogram of Math Scores for Third and Fifth Grade", xlab = "Math Scores", breaks = 20)
+```
+
+##### Symmetry
+
+*   **Symmetric**: left and right sides mirror
+*   **Skewed Right**: long right tail
+*   **Skewed Left**: long left tail
+
+---
+
+## General Guidelines for Successful Graphics
+
+*   Label axes clearly
+*   Use consistent scales
+*   Avoid unnecessary decoration
+*   Ensure readability
+*   Highlight key trends
+
+---
+
+## Measures of Central Tendency
+
+### Mode
+
+```{definition, mode-def, name="Mode"}
+The **mode** is the value that occurs most frequently in a dataset.
+```
+
+### Median
+
+```{definition, median-def, name="Median"}
+The **median** is the middle value when data are ordered.
+```
+
+### Mean
+
+```{definition, mean-def, name="Mean"}
+The **mean** is the arithmetic average of all observations $x_1, x_2, \ldots x_n$. Denoted by:
+  $$ \bar{x} = \frac{\sum_{i=1}^n x_i}{n} $$
+```
+
+Example:
+
+```{r}
+mean(schDat$Math_Score[schDat$Grade == 1]); median(schDat$Math_Score[schDat$Grade == 1])
+```
+
+---
+
+## Measures of Variability
+
+### Range
+
+```{definition, range-def, name="Range"}
+The **range** is the difference between the maximum and minimum values in a dataset.
+```
+
+```{r}
+c(max(schDat$Math_Score[schDat$Grade == 3]),
+min(schDat$Math_Score[schDat$Grade == 3]))
+max(schDat$Math_Score[schDat$Grade == 3]) - min(schDat$Math_Score[schDat$Grade == 3])
+# Average score 3rd Grade
+mean(schDat$Math_Score[schDat$Grade == 3])
+# Average score 4th Grade
+mean(schDat$Math_Score[schDat$Grade == 4])
+```
+
+### Quantiles
+
+Quantiles divide data into equal-sized groups.
+
+### Quantile Plot
+
+```{r quantile-plot_math_scores}
+plot(sort(schDat$Math_Score[schDat$Age == 11]),
+     ppoints(length(schDat$Math_Score[schDat$Age == 11])),
+     xlab = "Math Score",
+     ylab = "Quantile")
+```
+
+### Percentiles
+
+The p-th percentile is the value below which p% of the data fall.
+
+### Quartiles
+
+Quartiles divide data into four equal parts:
+
+*   Q1
+*   Q2 (median)
+*   Q3
+
+### Deviation
+
+A deviation is the difference between an observation and the mean. That is
+$$ x_i - \bar{x} $$
+
+### Variance
+
+```{definition, variance-def, name="Variance"}
+The **variance** measures the average squared deviation from the mean.
+$$ s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1} $$
+```
+
+### Standard Deviation
+
+```{definition, sd-def, name="Standard Deviation"}
+The **standard deviation** is the square root of the variance.
+```
+
+Example:
+
+```{r sd-and-variance-math-scores}
+sd(schDat$Math_Score)
+var(schDat$Math_Score)
+```
+
+### Absolute Deviation
+
+Average of absolute deviations from the mean.
+
+### Median Absolute Deviation (MAD)
+
+Robust measure of variability.
+
+```{r median-absolute-deviation-math-scores}
+mad(matSco)
+```
+
+---
+
+### 68%, 95%, and 99.7% Empirical Rule
+
+For bell‑shaped distributions:
+
+*   68% of values fall within 1 SD of mean
+*   95% within 2 SD
+*   99.7% within 3 SD
+
+---
+
+### Coefficient of Variation
+
+The CV measures spread relative to the mean:
+
+$$
+CV = \frac{SD}{\text{mean}}
+$$
+
+---
+
+### The Boxplot
+
+Displays:
+
+*   Median
+*   Quartiles
+*   Whiskers
+*   Outliers
+
+Example:
+
+```{r boxplot-math-scores}
+boxplot(schDat$Math_Score[schDat$Grade == 3], schDat$Math_Score[schDat$Grade == 4], schDat$Math_Score[schDat$Grade == 5])
+```
+
+---
+
+### Outliers
+
+Observations unusually far from the rest:
+
+*   Often defined as:
+    *   Below Q1 – 1.5(IQR)
+    *   Above Q3 + 1.5(IQR)
+
+---
+
+## Techniques for Two Variables
+
+### Contingency Tables
+
+Summarize two categorical variables.
+
+```{r table-income-education}
+table(schDat$Income_Level, schDat$Parent_Education)
+```
+
+### Stacked Bar Graph
+
+```{r}
+barplot(table(schDat$Income_Level, schDat$Parent_Education), beside=FALSE)
+```
+
+### Cluster Bar Graph
+
+```{r}
+barplot(table(schDat$Income_Level, schDat$Parent_Education), beside=TRUE)
+```
+
+### Scatter Plot
+
+Used for two quantitative variables.
+
+```{r scatterplot-math-verbal-scores}
+plot(schDat$Math_Score[schDat$Grade == 8], schDat$Verbal_Score[schDat$Grade == 8], xlab = "Math Score", ylab = "Verbal Score")
+```
+
+### Correlation Coefficient
+
+Measures linear association.
+
+```{r}
+cor(schDat$Math_Score, schDat$Verbal_Score)
+```
+
+### Block Boxplots
+
+Grouped boxplots.
+
+```{r}
+boxplot(Math_Score ~ Income_Level, data = schDat)
+```
+
+### Block Scatter Plots
+
+Scatter plots grouped by category.

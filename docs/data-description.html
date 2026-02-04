@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Data Description | STAT 5428/6428 Spring 2026</title>
+  <meta name="description" content="4 Data Description | STAT 5428/6428 Spring 2026" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Data Description | STAT 5428/6428 Spring 2026" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Data Description | STAT 5428/6428 Spring 2026" />
+  
+  
+  
+
+<meta name="author" content="Rene Gutierrez University of Texas at El Paso" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="observational-and-experimental-studies.html"/>
+<link rel="next" href="introduction-to-probability.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Stat 5428/6428 Spring 2026</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#weekly-course-outline"><i class="fa fa-check"></i><b>1.1</b> Weekly Course Outline</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#topical-learning-outcomes-aligned-with-blooms-taxonomy"><i class="fa fa-check"></i><b>1.2</b> Topical Learning Outcomes (Aligned with Bloom’s Taxonomy)</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#course-overview"><i class="fa fa-check"></i><b>1.3</b> Course Overview</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#section-i-data-description-and-intrinsic-properties"><i class="fa fa-check"></i><b>1.3.1</b> Section I: Data — Description and Intrinsic Properties</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#section-ii-data-modeling-probability-as-a-generative-mechanism"><i class="fa fa-check"></i><b>1.3.2</b> Section II: Data Modeling — Probability as a Generative Mechanism</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#section-iii-statistical-inference-learning-from-data-under-a-model"><i class="fa fa-check"></i><b>1.3.3</b> Section III: Statistical Inference — Learning from Data Under a Model</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#section-iv-data-remodeling-model-assessment-revision-and-alternatives"><i class="fa fa-check"></i><b>1.3.4</b> Section IV: Data Remodeling — Model Assessment, Revision, and Alternatives</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-perspective"><i class="fa fa-check"></i><b>1.4</b> Course Perspective</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro-to-r.html"><a href="intro-to-r.html"><i class="fa fa-check"></i><b>2</b> Intro to R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro-to-r.html"><a href="intro-to-r.html#basic-r-operations-and-concepts"><i class="fa fa-check"></i><b>2.1</b> Basic R Operations and Concepts</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="intro-to-r.html"><a href="intro-to-r.html#the-console-and-scripts"><i class="fa fa-check"></i><b>2.1.1</b> The Console and Scripts</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro-to-r.html"><a href="intro-to-r.html#comments"><i class="fa fa-check"></i><b>2.1.2</b> Comments</a></li>
+<li class="chapter" data-level="2.1.3" data-path="intro-to-r.html"><a href="intro-to-r.html#printing-and-output"><i class="fa fa-check"></i><b>2.1.3</b> Printing and Output</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="intro-to-r.html"><a href="intro-to-r.html#arithmetic"><i class="fa fa-check"></i><b>2.2</b> Arithmetic</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="intro-to-r.html"><a href="intro-to-r.html#order-of-operations"><i class="fa fa-check"></i><b>2.2.1</b> Order of Operations</a></li>
+<li class="chapter" data-level="2.2.2" data-path="intro-to-r.html"><a href="intro-to-r.html#logical-comparisons"><i class="fa fa-check"></i><b>2.2.2</b> Logical Comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intro-to-r.html"><a href="intro-to-r.html#assignment-object-names-and-data-types"><i class="fa fa-check"></i><b>2.3</b> Assignment, Object Names, and Data Types</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="intro-to-r.html"><a href="intro-to-r.html#assignment"><i class="fa fa-check"></i><b>2.3.1</b> Assignment</a></li>
+<li class="chapter" data-level="2.3.2" data-path="intro-to-r.html"><a href="intro-to-r.html#object-names"><i class="fa fa-check"></i><b>2.3.2</b> Object Names</a></li>
+<li class="chapter" data-level="2.3.3" data-path="intro-to-r.html"><a href="intro-to-r.html#common-data-types"><i class="fa fa-check"></i><b>2.3.3</b> Common Data Types</a></li>
+<li class="chapter" data-level="2.3.4" data-path="intro-to-r.html"><a href="intro-to-r.html#missing-values"><i class="fa fa-check"></i><b>2.3.4</b> 3.4 Missing Values</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="intro-to-r.html"><a href="intro-to-r.html#vectors"><i class="fa fa-check"></i><b>2.4</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="intro-to-r.html"><a href="intro-to-r.html#creating-vectors-with-c"><i class="fa fa-check"></i><b>2.4.1</b> Creating Vectors with <code>c()</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="intro-to-r.html"><a href="intro-to-r.html#vector-length"><i class="fa fa-check"></i><b>2.4.2</b> Vector Length</a></li>
+<li class="chapter" data-level="2.4.3" data-path="intro-to-r.html"><a href="intro-to-r.html#vector-arithmetic-vectorized-operations"><i class="fa fa-check"></i><b>2.4.3</b> Vector Arithmetic (Vectorized Operations)</a></li>
+<li class="chapter" data-level="2.4.4" data-path="intro-to-r.html"><a href="intro-to-r.html#sequences-with-and-seq"><i class="fa fa-check"></i><b>2.4.4</b> Sequences with <code>:</code> and <code>seq()</code></a></li>
+<li class="chapter" data-level="2.4.5" data-path="intro-to-r.html"><a href="intro-to-r.html#repetition-with-rep"><i class="fa fa-check"></i><b>2.4.5</b> Repetition with <code>rep()</code></a></li>
+<li class="chapter" data-level="2.4.6" data-path="intro-to-r.html"><a href="intro-to-r.html#indexing-vectors"><i class="fa fa-check"></i><b>2.4.6</b> Indexing Vectors</a></li>
+<li class="chapter" data-level="2.4.7" data-path="intro-to-r.html"><a href="intro-to-r.html#named-vectors"><i class="fa fa-check"></i><b>2.4.7</b> Named Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="intro-to-r.html"><a href="intro-to-r.html#functions-and-expressions"><i class="fa fa-check"></i><b>2.5</b> Functions and Expressions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="intro-to-r.html"><a href="intro-to-r.html#functions"><i class="fa fa-check"></i><b>2.5.1</b> Functions</a></li>
+<li class="chapter" data-level="2.5.2" data-path="intro-to-r.html"><a href="intro-to-r.html#expressions-and-nesting"><i class="fa fa-check"></i><b>2.5.2</b> Expressions and Nesting</a></li>
+<li class="chapter" data-level="2.5.3" data-path="intro-to-r.html"><a href="intro-to-r.html#creating-your-own-function"><i class="fa fa-check"></i><b>2.5.3</b> Creating Your Own Function</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="intro-to-r.html"><a href="intro-to-r.html#getting-help"><i class="fa fa-check"></i><b>2.6</b> Getting Help</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="intro-to-r.html"><a href="intro-to-r.html#help-pages"><i class="fa fa-check"></i><b>2.6.1</b> Help Pages</a></li>
+<li class="chapter" data-level="2.6.2" data-path="intro-to-r.html"><a href="intro-to-r.html#examples-in-help-files"><i class="fa fa-check"></i><b>2.6.2</b> Examples in Help Files</a></li>
+<li class="chapter" data-level="2.6.3" data-path="intro-to-r.html"><a href="intro-to-r.html#searching-for-a-function"><i class="fa fa-check"></i><b>2.6.3</b> Searching for a Function</a></li>
+<li class="chapter" data-level="2.6.4" data-path="intro-to-r.html"><a href="intro-to-r.html#inspecting-objects"><i class="fa fa-check"></i><b>2.6.4</b> Inspecting Objects</a></li>
+<li class="chapter" data-level="2.6.5" data-path="intro-to-r.html"><a href="intro-to-r.html#getting-package-help"><i class="fa fa-check"></i><b>2.6.5</b> Getting Package Help</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html"><i class="fa fa-check"></i><b>3</b> Observational and Experimental Studies</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#surveys"><i class="fa fa-check"></i><b>3.2</b> Surveys</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#populations-and-sampling-frames"><i class="fa fa-check"></i><b>3.2.1</b> Populations and Sampling Frames</a></li>
+<li class="chapter" data-level="3.2.2" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#sampling-methods"><i class="fa fa-check"></i><b>3.2.2</b> Sampling Methods</a></li>
+<li class="chapter" data-level="3.2.3" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#sources-of-survey-bias"><i class="fa fa-check"></i><b>3.2.3</b> Sources of Survey Bias</a></li>
+<li class="chapter" data-level="3.2.4" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#questionnaire-design-principles"><i class="fa fa-check"></i><b>3.2.4</b> Questionnaire Design Principles</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#experimental-studies"><i class="fa fa-check"></i><b>3.3</b> Experimental Studies</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#key-components-of-experimental-design"><i class="fa fa-check"></i><b>3.3.1</b> Key Components of Experimental Design</a></li>
+<li class="chapter" data-level="3.3.2" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#confounding"><i class="fa fa-check"></i><b>3.3.2</b> Confounding</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#observational-vs-experimental-studies"><i class="fa fa-check"></i><b>3.4</b> Observational vs Experimental Studies</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#comparative-characteristics"><i class="fa fa-check"></i><b>3.4.1</b> Comparative Characteristics</a></li>
+<li class="chapter" data-level="3.4.2" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#interpretational-considerations"><i class="fa fa-check"></i><b>3.4.2</b> Interpretational Considerations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#data-quality-and-measurement"><i class="fa fa-check"></i><b>3.5</b> Data Quality and Measurement</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#validity-and-reliability"><i class="fa fa-check"></i><b>3.5.1</b> Validity and Reliability</a></li>
+<li class="chapter" data-level="3.5.2" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#sources-of-variability"><i class="fa fa-check"></i><b>3.5.2</b> Sources of Variability</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html#summary"><i class="fa fa-check"></i><b>3.6</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-description.html"><a href="data-description.html"><i class="fa fa-check"></i><b>4</b> Data Description</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-description.html"><a href="data-description.html#data-simulation"><i class="fa fa-check"></i><b>4.1</b> Data Simulation</a></li>
+<li class="chapter" data-level="4.2" data-path="data-description.html"><a href="data-description.html#types-of-data"><i class="fa fa-check"></i><b>4.2</b> Types of Data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-description.html"><a href="data-description.html#quantitative-vs.-qualitative-data"><i class="fa fa-check"></i><b>4.2.1</b> Quantitative vs. Qualitative Data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-description.html"><a href="data-description.html#quantitative-data"><i class="fa fa-check"></i><b>4.2.2</b> Quantitative Data</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-description.html"><a href="data-description.html#qualitative-data"><i class="fa fa-check"></i><b>4.2.3</b> Qualitative Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-description.html"><a href="data-description.html#why-do-we-have-to-describe-data"><i class="fa fa-check"></i><b>4.3</b> Why Do We Have to Describe Data?</a></li>
+<li class="chapter" data-level="4.4" data-path="data-description.html"><a href="data-description.html#types-of-data-description"><i class="fa fa-check"></i><b>4.4</b> Types of Data Description</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data-description.html"><a href="data-description.html#numerical-description"><i class="fa fa-check"></i><b>4.4.1</b> Numerical Description</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-description.html"><a href="data-description.html#graphical-description"><i class="fa fa-check"></i><b>4.4.2</b> Graphical Description</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-description.html"><a href="data-description.html#techniques-to-describe-categorical-data"><i class="fa fa-check"></i><b>4.5</b> Techniques to Describe Categorical Data</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="data-description.html"><a href="data-description.html#graphical-techniques"><i class="fa fa-check"></i><b>4.5.1</b> Graphical Techniques</a></li>
+<li class="chapter" data-level="4.5.2" data-path="data-description.html"><a href="data-description.html#pie-charts"><i class="fa fa-check"></i><b>4.5.2</b> Pie Charts</a></li>
+<li class="chapter" data-level="4.5.3" data-path="data-description.html"><a href="data-description.html#numerical-techniques"><i class="fa fa-check"></i><b>4.5.3</b> Numerical Techniques</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="data-description.html"><a href="data-description.html#techniques-to-describe-quantitative-data"><i class="fa fa-check"></i><b>4.6</b> Techniques to Describe Quantitative Data</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="data-description.html"><a href="data-description.html#displaying-all-the-data"><i class="fa fa-check"></i><b>4.6.1</b> Displaying All the Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="data-description.html"><a href="data-description.html#frequency-table"><i class="fa fa-check"></i><b>4.7</b> Frequency Table</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="data-description.html"><a href="data-description.html#class-frequency"><i class="fa fa-check"></i><b>4.7.1</b> Class Frequency</a></li>
+<li class="chapter" data-level="4.7.2" data-path="data-description.html"><a href="data-description.html#relative-frequency"><i class="fa fa-check"></i><b>4.7.2</b> Relative Frequency</a></li>
+<li class="chapter" data-level="4.7.3" data-path="data-description.html"><a href="data-description.html#histograms"><i class="fa fa-check"></i><b>4.7.3</b> Histograms</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="data-description.html"><a href="data-description.html#general-guidelines-for-successful-graphics"><i class="fa fa-check"></i><b>4.8</b> General Guidelines for Successful Graphics</a></li>
+<li class="chapter" data-level="4.9" data-path="data-description.html"><a href="data-description.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>4.9</b> Measures of Central Tendency</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="data-description.html"><a href="data-description.html#mode"><i class="fa fa-check"></i><b>4.9.1</b> Mode</a></li>
+<li class="chapter" data-level="4.9.2" data-path="data-description.html"><a href="data-description.html#median"><i class="fa fa-check"></i><b>4.9.2</b> Median</a></li>
+<li class="chapter" data-level="4.9.3" data-path="data-description.html"><a href="data-description.html#mean"><i class="fa fa-check"></i><b>4.9.3</b> Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="data-description.html"><a href="data-description.html#measures-of-variability"><i class="fa fa-check"></i><b>4.10</b> Measures of Variability</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="data-description.html"><a href="data-description.html#range"><i class="fa fa-check"></i><b>4.10.1</b> Range</a></li>
+<li class="chapter" data-level="4.10.2" data-path="data-description.html"><a href="data-description.html#quantiles"><i class="fa fa-check"></i><b>4.10.2</b> Quantiles</a></li>
+<li class="chapter" data-level="4.10.3" data-path="data-description.html"><a href="data-description.html#quantile-plot"><i class="fa fa-check"></i><b>4.10.3</b> Quantile Plot</a></li>
+<li class="chapter" data-level="4.10.4" data-path="data-description.html"><a href="data-description.html#percentiles"><i class="fa fa-check"></i><b>4.10.4</b> Percentiles</a></li>
+<li class="chapter" data-level="4.10.5" data-path="data-description.html"><a href="data-description.html#quartiles"><i class="fa fa-check"></i><b>4.10.5</b> Quartiles</a></li>
+<li class="chapter" data-level="4.10.6" data-path="data-description.html"><a href="data-description.html#deviation"><i class="fa fa-check"></i><b>4.10.6</b> Deviation</a></li>
+<li class="chapter" data-level="4.10.7" data-path="data-description.html"><a href="data-description.html#variance"><i class="fa fa-check"></i><b>4.10.7</b> Variance</a></li>
+<li class="chapter" data-level="4.10.8" data-path="data-description.html"><a href="data-description.html#standard-deviation"><i class="fa fa-check"></i><b>4.10.8</b> Standard Deviation</a></li>
+<li class="chapter" data-level="4.10.9" data-path="data-description.html"><a href="data-description.html#absolute-deviation"><i class="fa fa-check"></i><b>4.10.9</b> Absolute Deviation</a></li>
+<li class="chapter" data-level="4.10.10" data-path="data-description.html"><a href="data-description.html#median-absolute-deviation-mad"><i class="fa fa-check"></i><b>4.10.10</b> Median Absolute Deviation (MAD)</a></li>
+<li class="chapter" data-level="4.10.11" data-path="data-description.html"><a href="data-description.html#and-99.7-empirical-rule"><i class="fa fa-check"></i><b>4.10.11</b> 68%, 95%, and 99.7% Empirical Rule</a></li>
+<li class="chapter" data-level="4.10.12" data-path="data-description.html"><a href="data-description.html#coefficient-of-variation"><i class="fa fa-check"></i><b>4.10.12</b> Coefficient of Variation</a></li>
+<li class="chapter" data-level="4.10.13" data-path="data-description.html"><a href="data-description.html#the-boxplot"><i class="fa fa-check"></i><b>4.10.13</b> The Boxplot</a></li>
+<li class="chapter" data-level="4.10.14" data-path="data-description.html"><a href="data-description.html#outliers"><i class="fa fa-check"></i><b>4.10.14</b> Outliers</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="data-description.html"><a href="data-description.html#techniques-for-two-variables"><i class="fa fa-check"></i><b>4.11</b> Techniques for Two Variables</a>
+<ul>
+<li class="chapter" data-level="4.11.1" data-path="data-description.html"><a href="data-description.html#contingency-tables"><i class="fa fa-check"></i><b>4.11.1</b> Contingency Tables</a></li>
+<li class="chapter" data-level="4.11.2" data-path="data-description.html"><a href="data-description.html#stacked-bar-graph"><i class="fa fa-check"></i><b>4.11.2</b> Stacked Bar Graph</a></li>
+<li class="chapter" data-level="4.11.3" data-path="data-description.html"><a href="data-description.html#cluster-bar-graph"><i class="fa fa-check"></i><b>4.11.3</b> Cluster Bar Graph</a></li>
+<li class="chapter" data-level="4.11.4" data-path="data-description.html"><a href="data-description.html#scatter-plot"><i class="fa fa-check"></i><b>4.11.4</b> Scatter Plot</a></li>
+<li class="chapter" data-level="4.11.5" data-path="data-description.html"><a href="data-description.html#correlation-coefficient"><i class="fa fa-check"></i><b>4.11.5</b> Correlation Coefficient</a></li>
+<li class="chapter" data-level="4.11.6" data-path="data-description.html"><a href="data-description.html#block-boxplots"><i class="fa fa-check"></i><b>4.11.6</b> Block Boxplots</a></li>
+<li class="chapter" data-level="4.11.7" data-path="data-description.html"><a href="data-description.html#block-scatter-plots"><i class="fa fa-check"></i><b>4.11.7</b> Block Scatter Plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html"><i class="fa fa-check"></i><b>5</b> Introduction to Probability</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#probability-as-a-model-for-uncertain-and-complex-phenomena"><i class="fa fa-check"></i><b>5.1</b> Probability as a Model for Uncertain and Complex Phenomena</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#probability-as-a-dataproducing-machine"><i class="fa fa-check"></i><b>5.1.1</b> Probability as a Data‑Producing Machine</a></li>
+<li class="chapter" data-level="5.1.2" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#example-of-an-uncertain-phenomenon"><i class="fa fa-check"></i><b>5.1.2</b> Example of an Uncertain Phenomenon</a></li>
+<li class="chapter" data-level="5.1.3" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#example-of-a-complex-phenomenon"><i class="fa fa-check"></i><b>5.1.3</b> Example of a Complex Phenomenon</a></li>
+<li class="chapter" data-level="5.1.4" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#using-models-to-explain-phenomena"><i class="fa fa-check"></i><b>5.1.4</b> Using Models to Explain Phenomena</a></li>
+<li class="chapter" data-level="5.1.5" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#final-idea-inference-without-a-model"><i class="fa fa-check"></i><b>5.1.5</b> Final Idea: Inference Without a Model</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#interpretations-of-probability"><i class="fa fa-check"></i><b>5.2</b> Interpretations of Probability</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#classical-interpretation"><i class="fa fa-check"></i><b>5.2.1</b> Classical Interpretation</a></li>
+<li class="chapter" data-level="5.2.2" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#relative-frequency-interpretation"><i class="fa fa-check"></i><b>5.2.2</b> Relative Frequency Interpretation</a></li>
+<li class="chapter" data-level="5.2.3" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#subjective-interpretation"><i class="fa fa-check"></i><b>5.2.3</b> Subjective Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#how-to-build-probability-models"><i class="fa fa-check"></i><b>5.3</b> How to Build Probability Models</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#finding-the-probability-of-an-event"><i class="fa fa-check"></i><b>5.3.1</b> Finding the Probability of an Event</a></li>
+<li class="chapter" data-level="5.3.2" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#basic-event-relations-and-probability-laws"><i class="fa fa-check"></i><b>5.3.2</b> Basic Event Relations and Probability Laws</a></li>
+<li class="chapter" data-level="5.3.3" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#properties-of-probability"><i class="fa fa-check"></i><b>5.3.3</b> Properties of Probability</a></li>
+<li class="chapter" data-level="5.3.4" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#conditional-probability"><i class="fa fa-check"></i><b>5.3.4</b> Conditional Probability</a></li>
+<li class="chapter" data-level="5.3.5" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#law-of-total-probability"><i class="fa fa-check"></i><b>5.3.5</b> Law of Total Probability</a></li>
+<li class="chapter" data-level="5.3.6" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#bayes-formula"><i class="fa fa-check"></i><b>5.3.6</b> Bayes’ Formula</a></li>
+<li class="chapter" data-level="5.3.7" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#modeling-perspective-summary"><i class="fa fa-check"></i><b>5.3.7</b> Modeling Perspective Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html#summary-1"><i class="fa fa-check"></i><b>5.4</b> Summary</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 5428/6428 Spring 2026</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-description" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Data Description<a href="data-description.html#data-description" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this section, we explore how data can be <strong>classified</strong>, <strong>summarized</strong>, and <strong>interpreted</strong>.<br />
+We introduce key concepts for both <strong>categorical</strong> and <strong>quantitative</strong> data, and we examine graphical and numerical tools used in statistics.</p>
+<hr />
+<div id="data-simulation" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Data Simulation<a href="data-description.html#data-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For this section we will simulate a data set for student performance in math and verbal tests accross 10 schools. For each student we will include the following variables:</p>
+<p>Variables:</p>
+<ul>
+<li>Student ID</li>
+<li>Student School</li>
+<li>Student Grade</li>
+<li>Student Age</li>
+<li>Income Level</li>
+<li>Education Level Parents</li>
+<li>Math Score</li>
+<li>Verbal Score</li>
+</ul>
+</div>
+<div id="types-of-data" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Types of Data<a href="data-description.html#types-of-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="quantitative-vs.-qualitative-data" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Quantitative vs. Qualitative Data<a href="data-description.html#quantitative-vs.-qualitative-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:data-types" class="definition"><strong>Definition 4.1  (Types of Data) </strong></span>Data can be classified into <strong>quantitative</strong> (numerical) and <strong>qualitative</strong> (categorical) types.<br />
+Quantitative data consist of numerical measurements; qualitative data describe categories or attributes.</p>
+</div>
+</div>
+<div id="quantitative-data" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Quantitative Data<a href="data-description.html#quantitative-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Quantitative data represent <strong>numerical values</strong> that can be measured.</p>
+<p>Examples:</p>
+<ul>
+<li>Heights of students</li>
+<li>Weights of packages</li>
+<li>Exam scores</li>
+</ul>
+<p>They can be:</p>
+<ul>
+<li><strong>Discrete</strong>: countable (e.g., number of children)</li>
+<li><strong>Continuous</strong>: measured on a continuum (e.g., height, time)</li>
+</ul>
+</div>
+<div id="qualitative-data" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Qualitative Data<a href="data-description.html#qualitative-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Qualitative (categorical) data represent <strong>non‑numeric labels or groups</strong>.</p>
+<p>Examples:</p>
+<ul>
+<li>Sex</li>
+<li>Favorite color</li>
+<li>Yes/No responses</li>
+<li>Satisfaction Level</li>
+</ul>
+<p>These categories may or may not have a natural order.</p>
+<hr />
+</div>
+</div>
+<div id="why-do-we-have-to-describe-data" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Why Do We Have to Describe Data?<a href="data-description.html#why-do-we-have-to-describe-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Describing data allows us to:</p>
+<ul>
+<li>Explain data.</li>
+<li>Identify <strong>patterns</strong> or <strong>trends</strong></li>
+<li>Summarize large datasets compactly</li>
+<li>Compare groups or populations</li>
+<li>Detect <strong>outliers</strong> or unusual observations</li>
+<li>Prepare for inferential analysis</li>
+</ul>
+<p>Raw data alone rarely reveal useful insight without proper summarization.</p>
+<hr />
+</div>
+<div id="types-of-data-description" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Types of Data Description<a href="data-description.html#types-of-data-description" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="numerical-description" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Numerical Description<a href="data-description.html#numerical-description" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Focuses on numerical summaries such as:</p>
+<ul>
+<li>Mean</li>
+<li>Median</li>
+<li>Standard deviation</li>
+<li>Quantiles</li>
+</ul>
+</div>
+<div id="graphical-description" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Graphical Description<a href="data-description.html#graphical-description" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Focuses on visualizations such as:</p>
+<ul>
+<li>Histograms</li>
+<li>Bar charts</li>
+<li>Pie charts</li>
+<li>Boxplots</li>
+</ul>
+<p>Both approaches are essential for understanding data behavior.</p>
+<hr />
+</div>
+</div>
+<div id="techniques-to-describe-categorical-data" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Techniques to Describe Categorical Data<a href="data-description.html#techniques-to-describe-categorical-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="graphical-techniques" class="section level3 hasAnchor" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Graphical Techniques<a href="data-description.html#graphical-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="bar-charts" class="section level4 hasAnchor" number="4.5.1.1">
+<h4><span class="header-section-number">4.5.1.1</span> Bar Charts<a href="data-description.html#bar-charts" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Bar charts display the frequency of each category using rectangular bars.</p>
+<p>Example in R:</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="data-description.html#cb135-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(schDat<span class="sc">$</span>School), <span class="at">col=</span><span class="st">&quot;steelblue&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/barplot-schools-1.png" width="672" /></p>
+</div>
+</div>
+<div id="pie-charts" class="section level3 hasAnchor" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Pie Charts<a href="data-description.html#pie-charts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Pie charts show proportions as slices of a circle.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="data-description.html#cb136-1" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(schDat<span class="sc">$</span>Income_Level))</span></code></pre></div>
+<p><img src="_main_files/figure-html/pichart-income-1.png" width="672" /></p>
+</div>
+<div id="numerical-techniques" class="section level3 hasAnchor" number="4.5.3">
+<h3><span class="header-section-number">4.5.3</span> Numerical Techniques<a href="data-description.html#numerical-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The main numerical summaries for categorical data include:</p>
+<ul>
+<li><strong>Counts</strong> (frequencies)</li>
+<li><strong>Proportions</strong></li>
+<li><strong>Relative frequencies</strong></li>
+</ul>
+<p>Example:</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="data-description.html#cb137-1" tabindex="-1"></a><span class="co"># Frequency Table</span></span>
+<span id="cb137-2"><a href="data-description.html#cb137-2" tabindex="-1"></a><span class="fu">table</span>(schDat<span class="sc">$</span>Income_Level)</span></code></pre></div>
+<pre><code>## 
+##   High    Low Middle 
+##    937   2747   5316</code></pre>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="data-description.html#cb139-1" tabindex="-1"></a><span class="co"># Proportional Table</span></span>
+<span id="cb139-2"><a href="data-description.html#cb139-2" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(schDat<span class="sc">$</span>Income_Level))</span></code></pre></div>
+<pre><code>## 
+##      High       Low    Middle 
+## 0.1041111 0.3052222 0.5906667</code></pre>
+<hr />
+</div>
+</div>
+<div id="techniques-to-describe-quantitative-data" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Techniques to Describe Quantitative Data<a href="data-description.html#techniques-to-describe-quantitative-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="displaying-all-the-data" class="section level3 hasAnchor" number="4.6.1">
+<h3><span class="header-section-number">4.6.1</span> Displaying All the Data<a href="data-description.html#displaying-all-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Tools:</p>
+<ul>
+<li>Raw data lists</li>
+<li>Dotplots</li>
+<li>Stem‑and‑leaf plots</li>
+</ul>
+<p>Example:</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="data-description.html#cb141-1" tabindex="-1"></a><span class="fu">stem</span>(<span class="fu">c</span>(<span class="dv">23</span>,<span class="dv">25</span>,<span class="dv">25</span>,<span class="dv">30</span>,<span class="dv">31</span>,<span class="dv">33</span>,<span class="dv">35</span>,<span class="dv">40</span>))</span></code></pre></div>
+<pre><code>## 
+##   The decimal point is 1 digit(s) to the right of the |
+## 
+##   2 | 3
+##   2 | 55
+##   3 | 013
+##   3 | 5
+##   4 | 0</code></pre>
+<hr />
+</div>
+</div>
+<div id="frequency-table" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Frequency Table<a href="data-description.html#frequency-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A frequency table groups quantitative data into <strong>intervals</strong> (classes).</p>
+<div id="class-frequency" class="section level3 hasAnchor" number="4.7.1">
+<h3><span class="header-section-number">4.7.1</span> Class Frequency<a href="data-description.html#class-frequency" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:class-frequency" class="definition"><strong>Definition 4.2  (Class Frequency) </strong></span>The <strong>class frequency</strong> is the number of observations that fall within a specific interval.</p>
+</div>
+</div>
+<div id="relative-frequency" class="section level3 hasAnchor" number="4.7.2">
+<h3><span class="header-section-number">4.7.2</span> Relative Frequency<a href="data-description.html#relative-frequency" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:rel-frequency" class="definition"><strong>Definition 4.3  (Relative Frequency) </strong></span>The <strong>relative frequency</strong> is the class frequency divided by the total number of observations.</p>
+</div>
+<p>Example:</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="data-description.html#cb143-1" tabindex="-1"></a><span class="co"># Frequency Classes</span></span>
+<span id="cb143-2"><a href="data-description.html#cb143-2" tabindex="-1"></a>breaks    <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">800</span>, <span class="at">by =</span> <span class="dv">100</span>)</span>
+<span id="cb143-3"><a href="data-description.html#cb143-3" tabindex="-1"></a>matScoBin <span class="ot">&lt;-</span> <span class="fu">cut</span>(matSco, <span class="at">breaks =</span> breaks, <span class="at">right =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb143-4"><a href="data-description.html#cb143-4" tabindex="-1"></a><span class="fu">table</span>(matScoBin)</span></code></pre></div>
+<pre><code>## matScoBin
+##   (0,100] (100,200] (200,300] (300,400] (400,500] (500,600] (600,700] (700,800] 
+##       756      1163      1132      1156      1166      1203      1225      1198</code></pre>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="data-description.html#cb145-1" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(matScoBin))</span></code></pre></div>
+<pre><code>## matScoBin
+##    (0,100]  (100,200]  (200,300]  (300,400]  (400,500]  (500,600]  (600,700]  (700,800] 
+## 0.08400933 0.12923658 0.12579175 0.12845872 0.12956995 0.13368152 0.13612624 0.13312590</code></pre>
+<hr />
+</div>
+<div id="histograms" class="section level3 hasAnchor" number="4.7.3">
+<h3><span class="header-section-number">4.7.3</span> Histograms<a href="data-description.html#histograms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Histograms partition quantitative data into <strong>bins</strong> and display frequencies as bars.</p>
+<div id="how-to-build-them" class="section level4 hasAnchor" number="4.7.3.1">
+<h4><span class="header-section-number">4.7.3.1</span> How to Build Them<a href="data-description.html#how-to-build-them" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Steps:</p>
+<ol style="list-style-type: decimal">
+<li>Choose number of intervals (bins).</li>
+<li>Determine bin width.</li>
+<li>Count frequencies per bin.</li>
+<li>Draw adjacent bars.</li>
+</ol>
+</div>
+<div id="number-of-intervals" class="section level4 hasAnchor" number="4.7.3.2">
+<h4><span class="header-section-number">4.7.3.2</span> Number of Intervals<a href="data-description.html#number-of-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Common guidelines:</p>
+<ul>
+<li>Square-root rule: <span class="math display">\[k = \sqrt{n}\]</span></li>
+<li>Sturges’ rule: <span class="math display">\[k = 1 + \log_2(n)\]</span></li>
+</ul>
+<p>Example:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="data-description.html#cb147-1" tabindex="-1"></a><span class="fu">hist</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">1</span>], <span class="at">col=</span><span class="st">&quot;skyblue&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Histogram of Math Scores for First Grade&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Math Scores&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/histogram-schools-1.png" width="672" /></p>
+</div>
+<div id="characteristics-of-histograms" class="section level4 hasAnchor" number="4.7.3.3">
+<h4><span class="header-section-number">4.7.3.3</span> Characteristics of Histograms<a href="data-description.html#characteristics-of-histograms" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="unimodal" class="section level5 hasAnchor" number="4.7.3.3.1">
+<h5><span class="header-section-number">4.7.3.3.1</span> Unimodal<a href="data-description.html#unimodal" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>One peak.</p>
+</div>
+<div id="bimodal" class="section level5 hasAnchor" number="4.7.3.3.2">
+<h5><span class="header-section-number">4.7.3.3.2</span> Bimodal<a href="data-description.html#bimodal" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Two distinct peaks.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="data-description.html#cb148-1" tabindex="-1"></a><span class="fu">hist</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">3</span> <span class="sc">|</span> schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">5</span>], <span class="at">col=</span><span class="st">&quot;skyblue&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Histogram of Math Scores for Third and Fifth Grade&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Math Scores&quot;</span>, <span class="at">breaks =</span> <span class="dv">20</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/histogram-schools-bimodal-1.png" width="672" /></p>
+</div>
+<div id="symmetry" class="section level5 hasAnchor" number="4.7.3.3.3">
+<h5><span class="header-section-number">4.7.3.3.3</span> Symmetry<a href="data-description.html#symmetry" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<ul>
+<li><strong>Symmetric</strong>: left and right sides mirror</li>
+<li><strong>Skewed Right</strong>: long right tail</li>
+<li><strong>Skewed Left</strong>: long left tail</li>
+</ul>
+<hr />
+</div>
+</div>
+</div>
+</div>
+<div id="general-guidelines-for-successful-graphics" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> General Guidelines for Successful Graphics<a href="data-description.html#general-guidelines-for-successful-graphics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Label axes clearly</li>
+<li>Use consistent scales</li>
+<li>Avoid unnecessary decoration</li>
+<li>Ensure readability</li>
+<li>Highlight key trends</li>
+</ul>
+<hr />
+</div>
+<div id="measures-of-central-tendency" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> Measures of Central Tendency<a href="data-description.html#measures-of-central-tendency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mode" class="section level3 hasAnchor" number="4.9.1">
+<h3><span class="header-section-number">4.9.1</span> Mode<a href="data-description.html#mode" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:mode-def" class="definition"><strong>Definition 4.4  (Mode) </strong></span>The <strong>mode</strong> is the value that occurs most frequently in a dataset.</p>
+</div>
+</div>
+<div id="median" class="section level3 hasAnchor" number="4.9.2">
+<h3><span class="header-section-number">4.9.2</span> Median<a href="data-description.html#median" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:median-def" class="definition"><strong>Definition 4.5  (Median) </strong></span>The <strong>median</strong> is the middle value when data are ordered.</p>
+</div>
+</div>
+<div id="mean" class="section level3 hasAnchor" number="4.9.3">
+<h3><span class="header-section-number">4.9.3</span> Mean<a href="data-description.html#mean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:mean-def" class="definition"><strong>Definition 4.6  (Mean) </strong></span>The <strong>mean</strong> is the arithmetic average of all observations <span class="math inline">\(x_1, x_2, \ldots x_n\)</span>. Denoted by:
+<span class="math display">\[ \bar{x} = \frac{\sum_{i=1}^n x_i}{n} \]</span></p>
+</div>
+<p>Example:</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="data-description.html#cb149-1" tabindex="-1"></a><span class="fu">mean</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">1</span>]); <span class="fu">median</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">1</span>])</span></code></pre></div>
+<pre><code>## [1] 81.79429</code></pre>
+<pre><code>## [1] 82</code></pre>
+<hr />
+</div>
+</div>
+<div id="measures-of-variability" class="section level2 hasAnchor" number="4.10">
+<h2><span class="header-section-number">4.10</span> Measures of Variability<a href="data-description.html#measures-of-variability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="range" class="section level3 hasAnchor" number="4.10.1">
+<h3><span class="header-section-number">4.10.1</span> Range<a href="data-description.html#range" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:range-def" class="definition"><strong>Definition 4.7  (Range) </strong></span>The <strong>range</strong> is the difference between the maximum and minimum values in a dataset.</p>
+</div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-description.html#cb152-1" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">max</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">3</span>]),</span>
+<span id="cb152-2"><a href="data-description.html#cb152-2" tabindex="-1"></a><span class="fu">min</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">3</span>]))</span></code></pre></div>
+<pre><code>## [1] 354 156</code></pre>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-description.html#cb154-1" tabindex="-1"></a><span class="fu">max</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">3</span>]) <span class="sc">-</span> <span class="fu">min</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">3</span>])</span></code></pre></div>
+<pre><code>## [1] 198</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data-description.html#cb156-1" tabindex="-1"></a><span class="co"># Average score 3rd Grade</span></span>
+<span id="cb156-2"><a href="data-description.html#cb156-2" tabindex="-1"></a><span class="fu">mean</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">3</span>])</span></code></pre></div>
+<pre><code>## [1] 251.898</code></pre>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="data-description.html#cb158-1" tabindex="-1"></a><span class="co"># Average score 4th Grade</span></span>
+<span id="cb158-2"><a href="data-description.html#cb158-2" tabindex="-1"></a><span class="fu">mean</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">4</span>])</span></code></pre></div>
+<pre><code>## [1] 335.5399</code></pre>
+</div>
+<div id="quantiles" class="section level3 hasAnchor" number="4.10.2">
+<h3><span class="header-section-number">4.10.2</span> Quantiles<a href="data-description.html#quantiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Quantiles divide data into equal-sized groups.</p>
+</div>
+<div id="quantile-plot" class="section level3 hasAnchor" number="4.10.3">
+<h3><span class="header-section-number">4.10.3</span> Quantile Plot<a href="data-description.html#quantile-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-description.html#cb160-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">sort</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Age <span class="sc">==</span> <span class="dv">11</span>]),</span>
+<span id="cb160-2"><a href="data-description.html#cb160-2" tabindex="-1"></a>     <span class="fu">ppoints</span>(<span class="fu">length</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Age <span class="sc">==</span> <span class="dv">11</span>])),</span>
+<span id="cb160-3"><a href="data-description.html#cb160-3" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Math Score&quot;</span>,</span>
+<span id="cb160-4"><a href="data-description.html#cb160-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Quantile&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/quantile-plot_math_scores-1.png" width="672" /></p>
+</div>
+<div id="percentiles" class="section level3 hasAnchor" number="4.10.4">
+<h3><span class="header-section-number">4.10.4</span> Percentiles<a href="data-description.html#percentiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The p-th percentile is the value below which p% of the data fall.</p>
+</div>
+<div id="quartiles" class="section level3 hasAnchor" number="4.10.5">
+<h3><span class="header-section-number">4.10.5</span> Quartiles<a href="data-description.html#quartiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Quartiles divide data into four equal parts:</p>
+<ul>
+<li>Q1</li>
+<li>Q2 (median)</li>
+<li>Q3</li>
+</ul>
+</div>
+<div id="deviation" class="section level3 hasAnchor" number="4.10.6">
+<h3><span class="header-section-number">4.10.6</span> Deviation<a href="data-description.html#deviation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A deviation is the difference between an observation and the mean. That is
+<span class="math display">\[ x_i - \bar{x} \]</span></p>
+</div>
+<div id="variance" class="section level3 hasAnchor" number="4.10.7">
+<h3><span class="header-section-number">4.10.7</span> Variance<a href="data-description.html#variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:variance-def" class="definition"><strong>Definition 4.8  (Variance) </strong></span>The <strong>variance</strong> measures the average squared deviation from the mean.
+<span class="math display">\[ s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1} \]</span></p>
+</div>
+</div>
+<div id="standard-deviation" class="section level3 hasAnchor" number="4.10.8">
+<h3><span class="header-section-number">4.10.8</span> Standard Deviation<a href="data-description.html#standard-deviation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:sd-def" class="definition"><strong>Definition 4.9  (Standard Deviation) </strong></span>The <strong>standard deviation</strong> is the square root of the variance.</p>
+</div>
+<p>Example:</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="data-description.html#cb161-1" tabindex="-1"></a><span class="fu">sd</span>(schDat<span class="sc">$</span>Math_Score)</span></code></pre></div>
+<pre><code>## [1] 221.3948</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="data-description.html#cb163-1" tabindex="-1"></a><span class="fu">var</span>(schDat<span class="sc">$</span>Math_Score)</span></code></pre></div>
+<pre><code>## [1] 49015.67</code></pre>
+</div>
+<div id="absolute-deviation" class="section level3 hasAnchor" number="4.10.9">
+<h3><span class="header-section-number">4.10.9</span> Absolute Deviation<a href="data-description.html#absolute-deviation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Average of absolute deviations from the mean.</p>
+</div>
+<div id="median-absolute-deviation-mad" class="section level3 hasAnchor" number="4.10.10">
+<h3><span class="header-section-number">4.10.10</span> Median Absolute Deviation (MAD)<a href="data-description.html#median-absolute-deviation-mad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Robust measure of variability.</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="data-description.html#cb165-1" tabindex="-1"></a><span class="fu">mad</span>(matSco)</span></code></pre></div>
+<pre><code>## [1] 281.694</code></pre>
+<hr />
+</div>
+<div id="and-99.7-empirical-rule" class="section level3 hasAnchor" number="4.10.11">
+<h3><span class="header-section-number">4.10.11</span> 68%, 95%, and 99.7% Empirical Rule<a href="data-description.html#and-99.7-empirical-rule" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For bell‑shaped distributions:</p>
+<ul>
+<li>68% of values fall within 1 SD of mean</li>
+<li>95% within 2 SD</li>
+<li>99.7% within 3 SD</li>
+</ul>
+<hr />
+</div>
+<div id="coefficient-of-variation" class="section level3 hasAnchor" number="4.10.12">
+<h3><span class="header-section-number">4.10.12</span> Coefficient of Variation<a href="data-description.html#coefficient-of-variation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The CV measures spread relative to the mean:</p>
+<p><span class="math display">\[
+CV = \frac{SD}{\text{mean}}
+\]</span></p>
+<hr />
+</div>
+<div id="the-boxplot" class="section level3 hasAnchor" number="4.10.13">
+<h3><span class="header-section-number">4.10.13</span> The Boxplot<a href="data-description.html#the-boxplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Displays:</p>
+<ul>
+<li>Median</li>
+<li>Quartiles</li>
+<li>Whiskers</li>
+<li>Outliers</li>
+</ul>
+<p>Example:</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="data-description.html#cb167-1" tabindex="-1"></a><span class="fu">boxplot</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">3</span>], schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">4</span>], schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">5</span>])</span></code></pre></div>
+<p><img src="_main_files/figure-html/boxplot-math-scores-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="outliers" class="section level3 hasAnchor" number="4.10.14">
+<h3><span class="header-section-number">4.10.14</span> Outliers<a href="data-description.html#outliers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Observations unusually far from the rest:</p>
+<ul>
+<li>Often defined as:
+<ul>
+<li>Below Q1 – 1.5(IQR)</li>
+<li>Above Q3 + 1.5(IQR)</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="techniques-for-two-variables" class="section level2 hasAnchor" number="4.11">
+<h2><span class="header-section-number">4.11</span> Techniques for Two Variables<a href="data-description.html#techniques-for-two-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="contingency-tables" class="section level3 hasAnchor" number="4.11.1">
+<h3><span class="header-section-number">4.11.1</span> Contingency Tables<a href="data-description.html#contingency-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Summarize two categorical variables.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="data-description.html#cb168-1" tabindex="-1"></a><span class="fu">table</span>(schDat<span class="sc">$</span>Income_Level, schDat<span class="sc">$</span>Parent_Education)</span></code></pre></div>
+<pre><code>##         
+##          College Graduate School Highschool No Highschool
+##   High       225             219        256           237
+##   Low        692             648        671           736
+##   Middle    1330            1294       1339          1353</code></pre>
+</div>
+<div id="stacked-bar-graph" class="section level3 hasAnchor" number="4.11.2">
+<h3><span class="header-section-number">4.11.2</span> Stacked Bar Graph<a href="data-description.html#stacked-bar-graph" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="data-description.html#cb170-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(schDat<span class="sc">$</span>Income_Level, schDat<span class="sc">$</span>Parent_Education), <span class="at">beside=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+</div>
+<div id="cluster-bar-graph" class="section level3 hasAnchor" number="4.11.3">
+<h3><span class="header-section-number">4.11.3</span> Cluster Bar Graph<a href="data-description.html#cluster-bar-graph" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="data-description.html#cb171-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(schDat<span class="sc">$</span>Income_Level, schDat<span class="sc">$</span>Parent_Education), <span class="at">beside=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+</div>
+<div id="scatter-plot" class="section level3 hasAnchor" number="4.11.4">
+<h3><span class="header-section-number">4.11.4</span> Scatter Plot<a href="data-description.html#scatter-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Used for two quantitative variables.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="data-description.html#cb172-1" tabindex="-1"></a><span class="fu">plot</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">8</span>], schDat<span class="sc">$</span>Verbal_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">8</span>], <span class="at">xlab =</span> <span class="st">&quot;Math Score&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Verbal Score&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/scatterplot-math-verbal-scores-1.png" width="672" /></p>
+</div>
+<div id="correlation-coefficient" class="section level3 hasAnchor" number="4.11.5">
+<h3><span class="header-section-number">4.11.5</span> Correlation Coefficient<a href="data-description.html#correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Measures linear association.</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="data-description.html#cb173-1" tabindex="-1"></a><span class="fu">cor</span>(schDat<span class="sc">$</span>Math_Score, schDat<span class="sc">$</span>Verbal_Score)</span></code></pre></div>
+<pre><code>## [1] 0.9979339</code></pre>
+</div>
+<div id="block-boxplots" class="section level3 hasAnchor" number="4.11.6">
+<h3><span class="header-section-number">4.11.6</span> Block Boxplots<a href="data-description.html#block-boxplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Grouped boxplots.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="data-description.html#cb175-1" tabindex="-1"></a><span class="fu">boxplot</span>(Math_Score <span class="sc">~</span> Income_Level, <span class="at">data =</span> schDat)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+</div>
+<div id="block-scatter-plots" class="section level3 hasAnchor" number="4.11.7">
+<h3><span class="header-section-number">4.11.7</span> Block Scatter Plots<a href="data-description.html#block-scatter-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Scatter plots grouped by category.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="observational-and-experimental-studies.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-to-probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
