@@ -754,9 +754,1741 @@ In simulation‑based approaches, conditioning is implemented by **subsetting da
 
 ***
 
-## Summary
+## Summary First Part: Intro to Probability
 
 *   Probability models are **data‑generating mechanisms**
 *   Simulation connects theory to observable behavior
 *   Different interpretations serve different purposes
 *   Conditional probability and Bayes’ formula link belief, data, and inference
+
+Understood. Here is the expanded text with inline math using `$ $` instead of `\(...\)` or `\[...\]`, while keeping your structure and code chunks unchanged.
+
+---
+
+## Independence of events
+
+### Definition
+
+```{definition, indep-events, name="Independence of Events"}
+Two events A and B are independent if the occurrence of one does not change the probability of the other:
+\[
+P(A \mid B) = P(A) \quad\text{and}\quad P(B \mid A) = P(B).
+\]
+Equivalently,
+\[
+P(A \cap B) = P(A) P(B).
+\]
+```
+
+Independence is a **structural assumption** about the probability model. It is not something that can be verified with certainty from finite data; rather, it is justified by the way the experiment is constructed or by scientific knowledge about the mechanism generating the data.
+
+Informally, two events are independent if learning that one has occurred provides **no information** about whether the other occurs. In that case, knowing that event $B$ happened leaves the probability of $A$ unchanged:
+$P(A \mid B) = P(A).$
+
+Using the definition of conditional probability,
+$P(A \mid B) = \frac{P(A \cap B)}{P(B)},$
+we see that (provided $P(B) > 0$) independence is equivalent to
+$P(A \cap B) = P(A)P(B).$
+
+This multiplicative rule is often the most convenient working definition: when events are independent, the probability that both occur equals the product of their marginal probabilities.
+
+It is important to distinguish between:
+
+* **Mathematical independence:** a property defined within a probability model.
+* **Empirical evidence:** data may suggest approximate independence, but cannot prove it exactly.
+
+In practice, we often assume independence because the design of the experiment makes interaction between outcomes implausible (for example, separate coin flips or independent sampling with replacement).
+
+---
+
+### Example 1: Independent Events
+
+- Event A = "first die shows 6"
+- Event B = "second die shows 1"
+
+When two dice are rolled independently, the outcome of one die does not affect the outcome of the other. Thus,
+$$P(A)=\frac{1}{6}, \qquad P(B)=\frac{1}{6}, \qquad P(A\cap B)=\frac{1}{36}.$$
+We should therefore observe
+$$P(A\cap B)=P(A)P(B).$$
+
+The following simulation approximates these probabilities.
+
+```{r two-dice-roll}
+set.seed(1)
+d1 <- sample(1:6, 100000, TRUE)
+d2 <- sample(1:6, 100000, TRUE)
+
+mean(d1 == 6 & d2 == 1)
+mean(d1 == 6) * mean(d2 == 1)
+```
+
+With a large number of repetitions, the two quantities should be very close, illustrating the multiplicative rule for independent events.
+
+---
+
+### Example 2: Independent Events (Card Draws)
+
+- Event A = “draw a heart”
+- Event B = “draw a king”
+
+If we draw **with replacement** (or equivalently draw from two independent decks), the events are independent. The probability of drawing a heart on one draw does not affect the probability of drawing a king on another.
+
+$$
+P(A)=\frac{13}{52}=\frac{1}{4}, \qquad
+P(B)=\frac{4}{52}=\frac{1}{13}.
+$$
+
+Hence,
+$$
+P(A\cap B)=\frac{1}{4}\cdot\frac{1}{13}=\frac{1}{52}.
+$$
+
+The simulation below draws two cards and verifies the multiplicative relationship.
+
+```{r card-deck-draws}
+suits  <- rep(c("H","S","D","C"), each = 13)
+ranks  <- rep(1:13, 4)
+deck   <- data.frame(suits, ranks)
+
+sampA  <- deck[sample(1:52, 100000, TRUE), ]
+sampB  <- deck[sample(1:52, 100000, TRUE), ]
+
+mean(sampA$suits == "H" & sampB$ranks == 13)
+mean(sampA$suits == "H") * mean(sampB$ranks == 13)
+```
+
+Again, the simulated joint probability should be close to the product of the marginal probabilities.
+
+---
+
+### Example of Dependent Events
+
+Cards **without** replacement:
+
+- Event A = “first card is Ace”
+- Event B = “second card is Ace”
+
+Here the events are not independent. If the first card is an Ace, there are only three Aces left in the deck, so the probability that the second card is an Ace decreases. Specifically,
+$$
+P(B \mid A) = \frac{3}{51} \neq \frac{4}{52} = P(B).
+$$
+
+Thus,
+$$
+P(A\cap B) = P(A)P(B \mid A) = \frac{4}{52}\cdot\frac{3}{51},
+$$
+which is not equal to $P(A)P(B)$.
+
+The simulation below illustrates this dependence.
+
+```{r drawing-cards-without-replacement}
+set.seed(2)
+count <- 0
+rep   <- 20000
+for(i in 1:rep){
+  sel1  <- sample(x = 1:52, size = 1)
+  sel2  <- sample(x = (1:52)[-sel1], size = 1)
+  A     <- deck$ranks[sel1] == 1
+  B     <- deck$ranks[sel2] == 1
+  count <- count + (A & B)
+}
+count/rep
+(4/52) * (4/52)   # independence NOT satisfied
+```
+
+The simulated joint probability is smaller than the product $(4/52)^2$, reflecting the negative dependence introduced by sampling without replacement.
+
+---
+
+### Independence vs. Mutually Exclusive
+
+Two events are **mutually exclusive** if they cannot occur at the same time:
+$$
+A \cap B = \varnothing.
+$$
+In that case,
+$$
+P(A\cap B)=0.
+$$
+
+If both $P(A)$ and $P(B)$ are positive, then
+$$
+P(A)P(B) > 0,
+$$
+so
+$$
+P(A\cap B)=0 \neq P(A)P(B).
+$$
+
+Therefore, mutually exclusive events with positive probability cannot be independent.
+
+The distinction is conceptual:
+
+* Mutual exclusivity concerns **impossibility**: the events cannot happen together.
+* Independence concerns **information**: knowing one event occurs does not change the probability of the other.
+
+These ideas are fundamentally different. In fact, independence typically requires that events be able to occur together, whereas mutual exclusivity forbids it.
+
+---
+
+## Random Variables
+
+Random variables allow us to translate outcomes of an experiment into **numerical quantities** that can be analyzed algebraically. Formally, a random variable is not itself random; rather, it is a **function** defined on the sample space.
+
+Let $\Omega$ denote the sample space of an experiment. A random variable $X$ is a function
+$$
+X:\Omega \rightarrow \mathbb{R},
+$$
+meaning that for each outcome $\omega \in \Omega$, the random variable assigns a real number $X(\omega)$.
+
+This perspective is fundamental: probability is defined on events in the sample space, but statistical analysis is typically conducted using numerical values. Random variables provide the bridge between these two viewpoints.
+
+Random variables are useful because they:
+
+* Simplify notation,
+* Allow probability models to be expressed algebraically,
+* Make it possible to compute expectations, variances, and other summaries,
+* Are convenient for simulation and computation.
+
+Example (sum of two dice):
+
+```{r random-variable-die-sum}
+d1 <- sample(1:6, 20, TRUE)
+d2 <- sample(1:6, 20, TRUE)
+X  <- d1 + d2
+X
+```
+
+Here the experiment consists of rolling two dice. The sample space contains ordered pairs such as $(1,4)$ or $(6,6)$. The random variable $X$ assigns to each outcome the sum of the two dice. For instance, if the outcome is $(2,5)$, then $X=7$.
+
+Thus, instead of working directly with pairs of dice outcomes, we work with the numerical values of their sum.
+
+---
+
+## Discrete Random Variables
+
+### Introducing RVs as Convenient Labels for Outcomes
+
+A random variable is a **rule assigning numbers to outcomes**. In many experiments, the outcomes themselves are complicated objects, but we only care about certain numerical summaries. A random variable extracts that information.
+
+Examples:
+
+1. Number of heads in 3 flips
+2. Number of defective items in a batch
+3. Sum of two dice
+4. Number of emails received per hour
+
+In each case, the underlying experiment may be complex, but the random variable records only the quantity of interest.
+
+For example, in three coin flips the sample space has $2^3=8$ outcomes, but the random variable “number of heads” takes only the values $0,1,2,3$. Many different outcomes correspond to the same value of the random variable.
+
+This many-to-one mapping is typical and useful: it reduces the complexity of the sample space while preserving the information relevant to the problem.
+
+---
+
+### Qualitative Random Variable
+
+```{definition, qualrv, name="Random Variable (General) "}
+A random variable is a function that assigns a numerical value to each outcome of a random experiment.
+```
+
+In practice, not all variables of interest are naturally numerical. Some experiments produce **categories** rather than numbers. These are often called qualitative or categorical variables. Strictly speaking, probability theory still requires numerical values, but we can encode categories using labels.
+
+Examples of qualitative outcomes:
+
+1. Weather: {sunny, cloudy, rainy}
+2. Political affiliation: {A, B, C}
+3. Survey response: {agree, neutral, disagree}
+
+To treat these within the framework of random variables, we typically assign numerical codes (for example, 1 = sunny, 2 = cloudy, 3 = rainy). The numerical values themselves have no arithmetic meaning; they simply serve as labels.
+
+Thus, qualitative variables can be represented numerically, but their interpretation remains categorical rather than quantitative.
+
+---
+
+### Quantitative Random Variables
+
+```{definition, discrv, name="Discrete Random Variable"}
+A discrete random variable is one that takes on a countable set of possible values.
+```
+
+A discrete random variable has a finite or countably infinite set of possible values. These values often arise from counting processes.
+
+Examples:
+
+1. Number of children in a family
+2. Number of goals in a soccer match
+3. Number of customers arriving in a minute
+4. Number of defective items in a shipment
+
+In each case, the random variable can take values such as $0,1,2,\dots$. Because the set of possible values is countable, we can assign a probability to each individual value.
+
+This leads to the concept of a probability distribution for a discrete random variable.
+
+---
+
+### Probability Distribution for a Discrete Random Variable
+
+```{definition, pmf-def, name="Probability Distribution for a Discrete RV"}
+A probability distribution assigns a probability to each possible value of a discrete random variable, satisfying:
+  
+1. $0 \le P(X=x) \le 1$
+2. $\sum_x P(X=x) = 1$
+```
+
+The function $p(x)=P(X=x)$ is called the **probability mass function (pmf)** of the discrete random variable. It describes how probability is distributed across the possible values of $X$.
+
+Two basic requirements must hold:
+
+* Each probability must lie between 0 and 1.
+* The probabilities over all possible values must sum to 1.
+
+If either condition fails, the proposed function cannot be a valid probability distribution.
+
+#### Example 1: Number of Heads in 3 Flips
+
+Let $X$ be the number of heads in three independent coin flips. The possible values are $0,1,2,3$. The simulation below approximates the distribution.
+
+```{r number-of-heads}
+sims <- replicate(30000, sum(sample(c(0,1),3,TRUE)))
+table(sims)/length(sims)
+```
+
+The empirical probabilities should be close to:
+$$
+P(X=0)=\tfrac{1}{8},;
+P(X=1)=\tfrac{3}{8},;
+P(X=2)=\tfrac{3}{8},;
+P(X=3)=\tfrac{1}{8}.
+$$
+
+#### Example 2: Sum of Two Dice
+
+Let $X$ be the sum of two dice. The possible values are $2,3,\dots,12$. The distribution is not uniform: middle values such as 6, 7, and 8 occur more frequently because more combinations produce them.
+
+```{r sum-of-two-dice}
+X <- rowSums(cbind(sample(1:6,20000,TRUE), sample(1:6,20000,TRUE)))
+prop.table(table(X))
+```
+
+The simulation shows that $P(X=7)$ is the largest probability, reflecting the six combinations that produce a sum of 7.
+
+#### Example 3: Customers Arriving (Poisson-like simulation)
+
+Counts of arrivals over time are often modeled using the Poisson distribution. The command below generates simulated counts with mean 3.
+
+```{r custumer-arriving}
+mean(rpois(10000, lambda = 3))
+```
+
+Here the random variable represents the number of arrivals in a fixed time interval. Its possible values are $0,1,2,\dots$.
+
+---
+
+**Important:** A proposed discrete distribution must satisfy the basic probability laws. In particular, the probabilities assigned to all possible values must sum to 1. Any proposed model that violates this condition cannot represent a valid random variable.
+
+Random variables and their distributions form the foundation of statistical analysis. Once outcomes are expressed numerically, we can compute expectations, variances, and other summaries, and we can build probability models for real-world phenomena.
+
+---
+
+## Important Discrete Distributions
+
+Probability distributions provide **standardized probabilistic models** for commonly occurring types of random variables. Instead of building a model from scratch each time, we match a real-world situation to a known distribution whose mathematical properties are already understood.
+
+A useful conceptual distinction:
+
+* A **random variable** is the numerical quantity of interest.
+* A **distribution** is the mathematical model describing how that quantity behaves probabilistically.
+
+Once a random variable is associated with a known distribution, we can compute probabilities, expectations, variances, and make predictions using established formulas.
+
+---
+
+### The Binomial Distribution
+
+The binomial distribution models the number of successes in a fixed number of independent trials, where each trial has only two possible outcomes and a constant probability of success.
+
+#### Customers Purchases
+
+Suppose each customer independently makes a purchase with probability $0.3$.
+Let $X =$ number of purchasers among $20$ customers.
+
+Then $X$ counts how many of the 20 independent customers make a purchase. This is a typical binomial setting.
+
+```{r customers-buying}
+mean(rbinom(1e5,20,0.3))
+```
+
+The simulated mean should be close to $20 \times 0.3 = 6$, which is the theoretical expected value of a binomial random variable with parameters $n=20$ and $p=0.3$.
+
+---
+
+#### Definition: Binomial Experiment
+
+A binomial model is appropriate when the following conditions hold:
+
+1. There is a fixed number of trials $n$.
+2. Each trial has only two possible outcomes: success or failure.
+3. The probability of success $p$ is the same for every trial.
+4. The trials are independent.
+
+If all four conditions are satisfied, then the total number of successes follows a binomial distribution.
+
+---
+
+#### Independent Random Variables
+
+```{definition, indep-rv, name="Independence of Random Variables"}
+Random variables $X$ and $Y$ are independent if
+$$
+P(X=x, Y=y) = P(X=x)P(Y=y)
+$$
+for all values $x$ and $y$.
+```
+
+Independence of random variables means that knowing the value of one random variable provides no information about the other. In this case, the joint probability distribution factors into the product of the marginal distributions.
+
+It is important to distinguish:
+
+* **Independence of events:**
+  $$
+  P(A \mid B) = P(A).
+  $$
+
+* **Independence of random variables:**
+  The joint distribution factorizes into marginal distributions.
+
+Event independence is a statement about particular subsets of the sample space. Random-variable independence is a stronger statement about the entire joint distribution.
+
+---
+
+#### Binomial Examples
+
+##### Coin Flips Example
+
+Twenty independent coin flips with probability of heads $p=0.5$. Let $X$ be the number of heads.
+
+```{r}
+rbinom(10,20,0.5)
+```
+
+All binomial conditions hold: fixed $n$, two outcomes, constant probability, independence.
+
+##### 2. Not Binomial — Fails identical trials
+
+Suppose the probability of success changes from trial to trial (for example, a machine that becomes less reliable over time). Then the trials are not identical, and the binomial model does not apply.
+
+##### 3. Not Binomial — Fails only two outcomes
+
+Rolling a die produces six outcomes, not two. If we are counting something more complex than success/failure, the binomial model is inappropriate unless we recode outcomes into two categories.
+
+##### 4. Not Binomial — Fails same $p$
+
+If the probability of success changes across trials (for example, a coin that becomes increasingly biased), the binomial assumptions are violated.
+
+##### 5. Not Binomial — Fails independence
+
+Drawing cards without replacement introduces dependence between trials. Once a card is drawn, the probabilities for subsequent draws change.
+
+The binomial model is appropriate only when **all** four conditions are satisfied.
+
+---
+
+#### PMF of the Binomial
+
+```{definition, binompmf, name="Binomial PMF"}
+$$
+P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}
+$$
+```
+
+Here:
+
+* $n$ is the number of trials,
+* $p$ is the probability of success on each trial,
+* $k$ is the number of observed successes.
+
+The binomial coefficient
+$$
+\binom{n}{k}
+$$
+counts the number of ways to arrange $k$ successes among $n$ trials. The term $p^k(1-p)^{n-k}$ gives the probability of any specific sequence with $k$ successes and $n-k$ failures.
+
+Multiplying these gives the probability of observing exactly $k$ successes.
+
+#### Binomila Visualization
+
+```{r binomial-visualization}
+k <- 0:20
+plot(k, dbinom(k,20,0.3), type="h", lwd=4)
+```
+
+The shape of the binomial distribution depends on $p$:
+
+* $p = 0.5$ → symmetric distribution
+* $p < 0.5$ → right-skewed
+* $p > 0.5$ → left-skewed
+
+As $n$ becomes large, the binomial distribution becomes more bell-shaped, especially when $p$ is near $0.5$.
+
+---
+
+#### Deriving the Poisson from the Binomial
+
+The Poisson distribution can be obtained as a limiting case of the binomial distribution.
+
+Suppose:
+
+* $n$ is large,
+* $p$ is small,
+* $\lambda = np$ remains fixed.
+
+Then for fixed $k$,
+$$
+\binom{n}{k} p^k (1-p)^{n-k}
+\rightarrow
+\frac{e^{-\lambda}\lambda^k}{k!}.
+$$
+
+This result explains why the Poisson distribution is often used to model counts of rare events occurring in a large number of opportunities.
+
+---
+
+#### Properties of the Binomial
+
+For a binomial random variable $X \sim \text{Binomial}(n,p)$:
+
+$$
+E[X] = np,
+$$
+
+$$
+\text{Var}(X) = np(1-p),
+$$
+
+$$
+\text{SD}(X) = \sqrt{np(1-p)}.
+$$
+
+The mean represents the expected number of successes, while the variance measures variability around that mean.
+
+---
+
+### The Poisson Distribution
+
+The Poisson distribution models counts of events occurring over time, space, or some other continuous dimension, when events occur randomly and independently at a constant average rate.
+
+#### Examples
+
+1. Number of website hits per minute
+2. Number of accidents per month
+3. Number of emails per hour
+4. Number of defects per unit length of material
+
+In each case, we count how many events occur within a fixed interval.
+
+---
+
+#### Definition: Poisson Conditions
+
+A Poisson model is appropriate when:
+
+* Events occur independently.
+* The average rate $\lambda$ is constant over any interval of the same size.
+* Events occur one at a time.
+* The probability of more than one event in a very small interval is approximately zero.
+
+These assumptions describe a process in which events occur randomly but with a stable average rate.
+
+---
+
+#### PMF
+
+For a Poisson random variable $X$ with rate parameter $\lambda > 0$,
+
+$$
+P(X=k) = \frac{e^{-\lambda}\lambda^k}{k!}, \quad k=0,1,2,\dots
+$$
+
+The parameter $\lambda$ represents the expected number of events in the interval.
+
+Example simulation:
+
+```{r}
+table(rpois(10000,3))/10000
+```
+
+The simulated relative frequencies should approximate the theoretical Poisson probabilities with $\lambda = 3$.
+
+---
+
+#### Properties of Poisson
+
+For $X \sim \text{Poisson}(\lambda)$:
+
+$$
+E[X] = \lambda,
+$$
+
+$$
+\text{Var}(X) = \lambda.
+$$
+
+Thus, the mean and variance of a Poisson distribution are equal. This property is often used as a diagnostic when assessing whether a Poisson model is reasonable for observed data.
+
+---
+
+## Continuous Random Variables
+
+### From Discrete to Continuous
+
+Up to this point we have assigned probability directly to individual values of a random variable. This works naturally for **discrete** random variables, such as the number of heads in coin flips or the number of customers arriving in a store. In those settings, it makes sense to ask for probabilities like $P(X=3)$ or $P(X=10)$.
+
+Many quantities in science and data analysis, however, are not naturally discrete. Measurements such as time, temperature, weight, voltage, and distance vary on a continuum. When we measure them, we record a finite number of decimal places, but conceptually they can take any value within an interval. These are modeled using **continuous random variables**.
+
+A continuous random variable takes values on an interval (or a union of intervals) of the real line. Unlike discrete random variables, which take a countable set of values, a continuous random variable can take **uncountably many** possible values.
+
+A key conceptual difference is that for a continuous random variable,
+$$
+P(X = x) = 0
+$$
+for any specific value $x$. Individual points have zero probability because probability is spread continuously across an interval rather than concentrated at individual values.
+
+This can initially feel counterintuitive. If $X$ represents a measurement such as height, surely someone could have height exactly $170$ cm. But in a continuous model, the probability of observing that exact number is zero because there are infinitely many possible values near 170, and probability is distributed across all of them.
+
+The appropriate question is not “What is the probability that $X$ equals exactly 170?” but rather:
+
+$$
+P(169.5 \le X \le 170.5).
+$$
+
+We assign probability to **intervals**, not individual points.
+
+Simulation example:
+
+```{r zero-point-probability}
+set.seed(2026)
+x <- runif(n = 100000, min = 0, max = 100)
+# Zero Probability for a Point
+pro50 <- mean(x == 50)  # always 0
+# Non-zero probability for an Interval
+proInt <- mean(49 < x & x < 51)
+print(paste0("Probability getting exactly 50: ", round(pro50 * 100, 2), "%"))
+print(paste0("Probability getting around  50: ", round(proInt * 100, 2), "%"))
+```
+
+The simulation shows two important facts:
+
+1. The probability of observing **exactly** 50 is essentially zero.
+2. The probability of observing a value **near** 50 is positive.
+
+Even though values close to 50 occur frequently, the probability of observing exactly 50 is zero in a continuous model.
+
+Because single points have zero probability, probability must be assigned to **intervals** rather than individual values. For example,
+
+$$
+P(a \le X \le b)
+$$
+
+represents the probability that $X$ falls within an interval. Graphically, this probability corresponds to the **area under a curve** between $a$ and $b$.
+
+This shift—from point probabilities to interval probabilities—is the defining feature of continuous distributions and marks the transition from discrete probability to continuous probability.
+
+---
+
+### PDF and CDF
+
+A continuous distribution is described using two related functions:
+
+* the **probability density function (PDF)** $f(x)$
+* the **cumulative distribution function (CDF)** $F(x)$
+
+These functions play complementary roles.
+
+#### Probability Density Function (PDF)
+
+The PDF, denoted $f(x)$, describes how probability is distributed across values of $x$. It is a nonnegative function satisfying
+
+$$
+f(x) \ge 0
+$$
+
+and
+
+$$
+\int_{-\infty}^{\infty} f(x),dx = 1.
+$$
+
+The PDF itself does not give probabilities directly. Instead, probabilities are obtained by integrating the density over an interval:
+
+$$
+P(a \le X \le b) = \int_a^b f(x),dx.
+$$
+
+Thus, probability corresponds to **area under the density curve**. Regions where the density is high correspond to values of $X$ that are more likely to occur.
+
+#### Cumulative Distribution Function (CDF)
+
+The CDF is defined as
+
+$$
+F(x) = P(X \le x).
+$$
+
+It gives the total probability accumulated up to the point $x$. For a continuous random variable, the CDF can be written in terms of the PDF:
+
+$$
+F(x) = \int_{-\infty}^{x} f(t),dt.
+$$
+
+The CDF has several important properties:
+
+* It is nondecreasing.
+* It approaches 0 as $x \to -\infty$.
+* It approaches 1 as $x \to \infty$.
+
+Probabilities for intervals can be computed using the CDF:
+
+$$
+P(a \le X \le b) = F(b) - F(a).
+$$
+
+Thus, the CDF accumulates probability up to a given point, while the PDF describes how probability density is distributed across values.
+
+#### Example: Normal Distribution
+
+The following code visualizes both the PDF and CDF for a normal distribution.
+
+```{r}
+curve(dnorm(x), -4,4)
+curve(pnorm(x), -4,4)
+```
+
+The first curve is the PDF of a normal distribution. It shows the familiar bell-shaped density.
+
+The second curve is the CDF. It starts near 0, increases steadily, and approaches 1 as $x$ increases. Each value of the CDF represents the probability that the random variable is less than or equal to that value.
+
+Together, the PDF and CDF provide two complementary ways of describing a continuous random variable:
+
+* The PDF describes how probability is distributed.
+* The CDF describes how probability accumulates.
+
+### Interpreting Areas as Probabilities
+
+A useful way to think about a continuous distribution is to imagine probability as **area under a curve**. The total area under the PDF is 1, representing total probability. Any subinterval corresponds to a portion of that area.
+
+For example, consider a normal distribution again. The shaded region between two values represents the probability that the random variable falls in that interval.
+
+```{r}
+curve(dnorm(x), -4, 4, lwd=2,
+      main="Probability as Area Under the Curve",
+      ylab="Density")
+a <- -1
+b <- 1
+x <- seq(a, b, length=200)
+y <- dnorm(x)
+polygon(c(a, x, b), c(0, y, 0), col="lightblue")
+abline(v=c(a,b), col="red", lty=2)
+```
+
+This shaded area corresponds to
+$$
+P(-1 \le X \le 1).
+$$
+
+We compute it numerically using the CDF:
+
+```{r}
+pnorm(1) - pnorm(-1)
+```
+
+Even though the PDF at a point gives the height of the curve, probability is always determined by **area**, not height. This distinction is essential:
+
+* $f(x)$ is not a probability.
+* Probabilities come from integrals (areas).
+
+---
+
+### Why the PDF Can Be Greater Than 1
+
+Students often expect probabilities to be at most 1, and they are. However, the **density** $f(x)$ itself can be greater than 1 in some distributions.
+
+For example, consider a uniform distribution on a very small interval:
+
+```{r}
+curve(dunif(x, 0, 0.2), from=-0.1, to=0.3, lwd=2,
+      main="Uniform Density on a Small Interval")
+```
+
+The height of this density is $1/0.2 = 5$, which is greater than 1. This is not a problem because probability is area:
+
+$$
+\text{area} = \text{height} \times \text{width} = 5 \times 0.2 = 1.
+$$
+
+Thus:
+
+* The PDF describes density.
+* Probability corresponds to area under the curve.
+
+---
+
+### From Simulation to Density
+
+A computational approach helps build intuition. We can simulate many observations and compare a histogram with a theoretical density.
+
+```{r}
+set.seed(1)
+x <- rnorm(5000)
+
+hist(x, probability=TRUE, breaks=40,
+     main="Histogram and Density",
+     col="lightgray", border="white")
+
+curve(dnorm(x), add=TRUE, lwd=2, col="blue")
+```
+
+The histogram approximates the distribution of simulated data. As the sample size increases:
+
+* The histogram becomes smoother.
+* It approaches the theoretical density curve.
+
+This demonstrates an important principle:
+
+> A probability density function can be viewed as the limiting shape of a histogram as the number of observations grows and bin widths shrink.
+
+---
+
+### Computing Interval Probabilities in R
+
+In practice, we compute probabilities using built-in functions for distributions.
+
+General pattern:
+
+* `d*` gives the density (PDF)
+* `p*` gives cumulative probabilities (CDF)
+* `q*` gives quantiles
+* `r*` generates random values
+
+For the normal distribution:
+
+```{r}
+# Density at a point
+dnorm(0)
+
+# Probability up to a point
+pnorm(1.5)
+
+# Probability between two values
+pnorm(2) - pnorm(-1)
+
+# Random sample
+rnorm(5)
+```
+
+These functions exist for many distributions and allow us to move seamlessly between:
+
+* Simulation
+* Visualization
+* Analytical probability
+
+---
+
+### Key Conceptual Shift
+
+For discrete random variables:
+
+* Probability is assigned to individual values.
+* We sum probabilities.
+
+For continuous random variables:
+
+* Probability is assigned to intervals.
+* We integrate densities.
+
+In summary:
+
+$$
+P(X = x) = 0
+$$
+
+$$
+P(a \le X \le b) = \int_a^b f(x),dx = F(b) - F(a).
+$$
+
+This framework—probability as accumulated area—will guide everything that follows when we study specific continuous distributions.
+
+---
+
+## Important Continuous Distributions
+
+### The Uniform Distribution
+
+The uniform distribution is the most intuitive continuous distribution. Every value in an interval is equally likely.
+
+#### Discrete Uniform
+
+Rolling a fair die is a discrete uniform distribution: each value has equal probability.
+
+```{r}
+table(sample(1:10,10000,TRUE))/10000
+```
+
+#### Continuous Uniform
+
+A continuous uniform distribution on $[a,b]$ has density
+
+$$
+f(x) = \frac{1}{b-a}, \quad a \le x \le b.
+$$
+
+Simulation:
+
+```{r}
+x <- runif(10000,0,10)
+hist(x, probability=TRUE, breaks=30)
+curve(dunif(x,0,10), add=TRUE, col="red", lwd=2)
+```
+
+#### From Discrete to Continuous Uniform
+
+If we refine a discrete uniform grid enough, it begins to resemble a continuous uniform distribution.
+
+```{r}
+samSiz <- 10000
+x      <- sample(seq(0,10,length=samSiz), samSiz, TRUE)
+hist(x, probability=TRUE, breaks=30)
+```
+
+On a fine grid, discrete and continuous uniform models can look nearly identical.
+
+---
+
+### The Normal Distribution
+
+The normal distribution is the most important distribution in statistics. It serves both as a theoretical model and as a practical approximation for many real-world phenomena.
+
+It appears in:
+
+* measurement error
+* biological traits
+* averages and sample means
+* noise in physical and engineering systems
+
+Because of its mathematical properties and frequent appearance in data, the normal distribution is a central reference point for statistical modeling.
+
+---
+
+#### Where Does It Come From?
+
+The normal distribution often arises as the sum of many small, independent effects. Each individual effect may not be normal, but their sum tends to be approximately normal. This phenomenon is formalized by the **Central Limit Theorem** (which we will study later).
+
+A computational illustration helps build intuition.
+
+```{r}
+set.seed(2026)
+s <- replicate(10000, sum(runif(10, -1, 1)))
+
+hist(s, probability=TRUE, breaks=40,
+     main="Sum of Uniform Variables",
+     col="lightgray", border="white")
+
+curve(dnorm(x, mean(s), sd(s)),
+      add=TRUE, col="red", lwd=2)
+```
+
+Each observation in `s` is the sum of 10 uniform random variables. Even though the underlying variables are not normal, the distribution of their sum is approximately normal.
+
+This idea explains why normal distributions appear so often:
+
+> Many processes are influenced by numerous small, independent factors. Their combined effect tends to be approximately normal.
+
+---
+
+#### The Normal Curve
+
+If $X \sim N(\mu,\sigma^2)$, its probability density function is
+
+$$
+f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-(x-\mu)^2/(2\sigma^2)}.
+$$
+
+The parameters have clear interpretations:
+
+* $\mu$ controls the **center** (location)
+* $\sigma$ controls the **spread** (scale)
+
+Visualization:
+
+```{r}
+curve(dnorm(x,0,1), -4,4, lwd=2,
+      main="Standard Normal Density",
+      ylab="Density")
+```
+
+This is the **standard normal distribution**, which has $\mu=0$ and $\sigma=1$.
+
+Changing parameters shifts or stretches the curve:
+
+```{r}
+curve(dnorm(x,0,1), -6,6, lwd=2, col="black",
+      main="Effect of Mean and SD")
+curve(dnorm(x,2,1), add=TRUE, col="blue", lwd=2)
+curve(dnorm(x,0,2), add=TRUE, col="red", lwd=2)
+legend("topright",
+       legend=c("N(0,1)", "N(2,1)", "N(0,2)"),
+       col=c("black","blue","red"),
+       lwd=2)
+```
+
+* Changing $\mu$ shifts the curve horizontally.
+* Changing $\sigma$ stretches or compresses the curve.
+
+---
+
+#### Description of the Normal Distribution
+
+Key properties:
+
+* symmetric around $\mu$
+* bell-shaped
+* unimodal (one peak)
+* mean = median = mode
+* tails extend indefinitely in both directions
+
+Although the curve extends to infinity, most probability mass is concentrated near the center.
+
+---
+
+#### Standardization
+
+A crucial idea is **standardizing** a normal random variable.
+
+If $X \sim N(\mu,\sigma^2)$, define
+
+$$
+Z = \frac{X-\mu}{\sigma}.
+$$
+
+Then $Z \sim N(0,1)$.
+
+This allows any normal probability to be computed using the standard normal distribution:
+
+$$
+P(a \le X \le b)
+================
+
+P!\left(\frac{a-\mu}{\sigma} \le Z \le \frac{b-\mu}{\sigma}\right).
+$$
+
+In R:
+
+```{r}
+# Example: X ~ N(10, 4^2)
+pnorm(12, mean=10, sd=4) - pnorm(8, mean=10, sd=4)
+
+# Using standardization
+pnorm((12-10)/4) - pnorm((8-10)/4)
+```
+
+Both calculations give the same result.
+
+---
+
+#### 68–95–99.7 Rule
+
+For a normal distribution:
+
+$$
+P(\mu \pm \sigma) \approx 0.68
+$$
+
+$$
+P(\mu \pm 2\sigma) \approx 0.95
+$$
+
+$$
+P(\mu \pm 3\sigma) \approx 0.997
+$$
+
+We can verify computationally for the standard normal:
+
+```{r}
+pnorm(1) - pnorm(-1)
+pnorm(2) - pnorm(-2)
+pnorm(3) - pnorm(-3)
+```
+
+Visualization:
+
+```{r}
+curve(dnorm(x), -4,4, lwd=2,
+      main="68-95-99.7 Rule")
+
+x <- seq(-1,1,length=200)
+polygon(c(-1,x,1), c(0,dnorm(x),0), col="lightblue")
+
+x2 <- seq(-2,2,length=200)
+polygon(c(-2,x2,2), c(0,dnorm(x2),0), col=rgb(1,0,0,0.2))
+```
+
+These percentages provide quick approximations for probabilities without computation.
+
+---
+
+#### Computing Probabilities in R
+
+For a normal distribution:
+
+* `dnorm(x, mean, sd)` → density
+* `pnorm(x, mean, sd)` → cumulative probability
+* `qnorm(p, mean, sd)` → quantile
+* `rnorm(n, mean, sd)` → simulation
+
+Example:
+
+```{r}
+# Probability between 0.5 and 1.5
+pnorm(1.5) - pnorm(0.5)
+
+# Upper tail probability
+1 - pnorm(2)
+
+# Lower tail probability
+pnorm(-1)
+```
+
+---
+
+#### Three Example Calculations
+
+```{r}
+# Example 1
+pnorm(1)
+
+# Example 2
+1 - pnorm(2)
+
+# Example 3
+pnorm(0.5) - pnorm(-1)
+```
+
+These represent:
+
+* probability below a value
+* probability above a value
+* probability between two values
+
+---
+
+#### From Histogram to Density
+
+A histogram of simulated normal data approximates the theoretical density.
+
+```{r}
+set.seed(2026)
+x <- rnorm(1000)
+
+hist(x, probability=TRUE, breaks=30,
+     main="Histogram Approximating a Density",
+     col="lightgray", border="white")
+
+curve(dnorm(x, mean(x), sd(x)),
+      add=TRUE, col="red", lwd=2)
+```
+
+As sample size increases:
+
+* the histogram becomes smoother
+* it approaches the theoretical density
+
+This illustrates how densities describe the limiting behavior of large samples.
+
+---
+
+#### Are Observations From the Same Variable?
+
+A histogram may represent:
+
+* repeated measurements of one variable
+* measurements from different individuals
+
+For example:
+
+* heights of many people
+* repeated measurements of one instrument
+* test scores from many students
+
+In all cases, the normal distribution can serve as a useful model. The interpretation depends on context:
+
+* One variable measured repeatedly
+* Many individuals with similar variability
+
+The key is whether the distribution of values is approximately normal.
+
+---
+
+#### Why the Normal Distribution Matters
+
+The normal distribution is fundamental because:
+
+1. It models many natural phenomena.
+2. It arises from sums of small effects.
+3. It provides approximations for many other distributions.
+4. It underlies much of statistical inference.
+
+Most statistical methods—confidence intervals, hypothesis tests, regression—rely on normal-based reasoning. Understanding the normal distribution is therefore essential before moving forward to other continuous distributions.
+
+---
+
+### Chi-Squared Distribution
+
+One advantage of working with random variables is that we can form **transformations** of existing variables and study the resulting distributions. Many important distributions arise as functions of simpler ones.
+
+A central example comes from the normal distribution.
+
+If $Z \sim N(0,1)$, then
+
+$$
+Z^2
+$$
+
+follows a chi-squared distribution with 1 degree of freedom. We write
+
+$$
+Z^2 \sim \chi^2_1.
+$$
+
+More generally, if $Z_1,\dots,Z_k$ are independent standard normal random variables, then the sum of their squares
+
+$$
+\sum_{i=1}^k Z_i^2
+$$
+
+follows a chi-squared distribution with $k$ degrees of freedom:
+
+$$
+\sum_{i=1}^k Z_i^2 \sim \chi^2_k.
+$$
+
+The parameter $k$ is called the **degrees of freedom**. It determines the shape and spread of the distribution.
+
+This construction is fundamental in statistics because many important quantities—such as sample variances and sums of squared residuals—can be expressed as sums of squared normal variables.
+
+---
+
+#### Simulation of a Chi-Squared Distribution
+
+We can build a chi-squared distribution directly from simulated normal variables.
+
+```{r}
+set.seed(2026)
+
+z <- rnorm(10000)
+x <- z^2
+
+hist(x, probability=TRUE, breaks=40,
+     main="Chi-Squared Distribution (df = 1)",
+     col="lightgray", border="white")
+
+curve(dchisq(x, df=1),
+      add=TRUE, col="red", lwd=2)
+```
+
+Each value in `x` is the square of a standard normal observation. The resulting histogram closely matches the theoretical chi-squared density.
+
+This illustrates the transformation:
+
+$$
+Z \rightarrow Z^2.
+$$
+
+---
+
+#### Simulation with Multiple Degrees of Freedom
+
+To generate a chi-squared distribution with $k$ degrees of freedom, we sum the squares of $k$ independent standard normal variables.
+
+```{r}
+set.seed(2026)
+
+k <- 5
+z <- matrix(rnorm(10000 * k), ncol=k)
+x <- rowSums(z^2)
+
+hist(x, probability=TRUE, breaks=40,
+     main=paste("Chi-Squared Distribution (df =", k, ")"),
+     col="lightgray", border="white")
+
+curve(dchisq(x, df=k),
+      add=TRUE, col="red", lwd=2)
+```
+
+As the number of degrees of freedom increases, the distribution becomes less skewed and more symmetric.
+
+---
+
+#### Shape of the Chi-Squared Distribution
+
+The shape of the chi-squared distribution depends strongly on the degrees of freedom.
+
+Key properties:
+
+* defined only for $x \ge 0$
+* right-skewed for small $k$
+* becomes more symmetric as $k$ increases
+* mean = $k$
+* variance = $2k$
+
+Visualization:
+
+```{r}
+curve(dchisq(x,1), 0, 12, lwd=2,
+      main="Effect of Degrees of Freedom",
+      ylab="Density")
+
+curve(dchisq(x,5), 0, 12, col="red", lwd=2, add=TRUE)
+curve(dchisq(x,10), 0, 12, col="blue", lwd=2, add=TRUE)
+
+legend("topright",
+       legend=c("df = 1", "df = 5", "df = 10"),
+       col=c("black","red","blue"),
+       lwd=2)
+```
+
+For small degrees of freedom:
+
+* the distribution is highly skewed
+* most mass is near zero
+
+For larger degrees of freedom:
+
+* the distribution becomes more bell-shaped
+* it begins to resemble a normal distribution
+
+In fact, for large $k$,
+
+$$
+\chi^2_k \approx N(k, 2k).
+$$
+
+---
+
+#### Why the Chi-Squared Distribution Matters
+
+The chi-squared distribution plays a central role in statistics because it appears naturally when we work with squared deviations.
+
+Examples:
+
+* sample variance of normal data
+* sums of squared residuals in regression
+* goodness-of-fit tests
+* contingency table analysis
+
+Many statistical procedures rely on the fact that certain sums of squared normal variables follow a chi-squared distribution.
+
+---
+
+#### Generating Chi-Squared Values in R
+
+R provides built-in functions for working with the chi-squared distribution:
+
+* `dchisq(x, df)` → density
+* `pchisq(x, df)` → cumulative probability
+* `qchisq(p, df)` → quantile
+* `rchisq(n, df)` → simulation
+
+Examples:
+
+```{r}
+# Simulate chi-squared values
+rchisq(10, df=3)
+
+# Probability X ≤ 4
+pchisq(4, df=3)
+
+# Upper tail probability
+1 - pchisq(6, df=3)
+```
+
+---
+
+#### Conceptual Summary
+
+The chi-squared distribution illustrates an important principle:
+
+> Transformations of random variables produce new random variables with new distributions.
+
+Starting with standard normal variables and squaring them leads to the chi-squared distribution. Summing multiple squared normals introduces the degrees of freedom parameter.
+
+This connection between normal variables and squared sums is foundational for later topics such as:
+
+* sampling distributions
+* variance estimation
+* hypothesis testing
+* regression analysis
+
+Understanding the chi-squared distribution prepares us for many of the statistical tools developed later in the course.
+
+---
+
+### t Distribution
+
+The $t$ distribution is one of the most important continuous distributions in statistics. It arises naturally when estimating means using small samples and unknown variance. Much of classical statistical inference—confidence intervals, hypothesis tests, regression coefficients—relies on this distribution.
+
+---
+
+#### History
+
+The $t$ distribution was developed by William Gosset, a statistician working at the Guinness brewery in the early 1900s. Because company policy prohibited publishing under his real name, he wrote under the pseudonym **“Student.”** For this reason, the distribution is sometimes called the *Student’s $t$ distribution*.
+
+Gosset needed methods for making reliable inferences from **small samples**, where the normal approximation alone was insufficient. His work showed that when variance must be estimated from the data, additional uncertainty must be incorporated into the distribution used for inference. The result was the $t$ distribution.
+
+---
+
+#### Difference from the Normal Distribution
+
+The $t$ distribution resembles the normal distribution but has important differences.
+
+Key characteristics:
+
+* symmetric and centered at 0
+* bell-shaped
+* heavier tails than the normal distribution
+* depends on degrees of freedom $k$
+
+“Heavier tails” means that extreme values are more likely than under a normal model. This reflects the additional uncertainty introduced when estimating variance from data.
+
+As the degrees of freedom increase,
+
+$$
+t_k \longrightarrow N(0,1).
+$$
+
+Thus, for large samples, the $t$ distribution becomes nearly indistinguishable from the standard normal distribution.
+
+---
+
+#### Visualization: Effect of Degrees of Freedom
+
+```{r}
+curve(dnorm(x), -4,4, lwd=2,
+      main="Normal vs t Distributions",
+      ylab="Density")
+
+curve(dt(x,1),  -4,4, col="red",   lwd=2, add=TRUE)
+curve(dt(x,5),  -4,4, col="blue",  lwd=2, add=TRUE)
+curve(dt(x,20), -4,4, col="green", lwd=2, add=TRUE)
+
+legend("topright",
+       legend=c("Normal","t df=1","t df=5","t df=20"),
+       col=c("black","red","blue","green"),
+       lwd=2)
+```
+
+For small degrees of freedom:
+
+* tails are very heavy
+* extreme values are more common
+
+For large degrees of freedom:
+
+* the curve approaches the normal density
+
+---
+
+#### Derivation from Normal and Chi-Squared Variables
+
+The $t$ distribution arises from combining a normal random variable and a chi-squared random variable.
+
+If
+
+$$
+Z \sim N(0,1), \quad U \sim \chi^2_k,
+$$
+
+and $Z$ and $U$ are independent, then
+
+$$
+T = \frac{Z}{\sqrt{U/k}}
+$$
+
+follows a $t$ distribution with $k$ degrees of freedom. We write
+
+$$
+T \sim t_k.
+$$
+
+This construction shows that the $t$ distribution accounts for the variability introduced by estimating variance. The denominator $\sqrt{U/k}$ behaves like a random estimate of the standard deviation, which introduces extra spread compared with the normal distribution.
+
+---
+
+#### Simulation from Definition
+
+We can simulate the $t$ distribution directly from its defining relationship.
+
+```{r}
+set.seed(2026)
+
+z <- rnorm(10000)
+u <- rchisq(10000, df=5)
+t <- z / sqrt(u/5)
+
+hist(t, probability=TRUE, breaks=40,
+     main="t Distribution (df = 5)",
+     col="lightgray", border="white")
+
+curve(dt(x, df=5),
+      add=TRUE, col="red", lwd=2)
+```
+
+The simulated histogram aligns closely with the theoretical $t$ density.
+
+---
+
+#### Generating t Values in R
+
+R provides built-in functions for the $t$ distribution:
+
+* `dt(x, df)` → density
+* `pt(x, df)` → cumulative probability
+* `qt(p, df)` → quantile
+* `rt(n, df)` → simulation
+
+Examples:
+
+```{r}
+# simulate
+rt(10, df=5)
+
+# probability T ≤ 1.5
+pt(1.5, df=5)
+
+# upper tail probability
+1 - pt(2, df=5)
+```
+
+---
+
+#### Why the t Distribution Matters
+
+The $t$ distribution is central to statistical inference because it appears whenever we standardize a sample mean using an estimated standard deviation.
+
+If $X_1,\dots,X_n$ are independent normal observations with unknown variance, then
+
+$$
+\frac{\bar{X} - \mu}{S/\sqrt{n}}
+$$
+
+follows a $t$ distribution with $n-1$ degrees of freedom.
+
+This result underlies:
+
+* confidence intervals for means
+* hypothesis tests for means
+* regression coefficient inference
+* many classical statistical procedures
+
+---
+
+#### Conceptual Summary
+
+The $t$ distribution arises from combining:
+
+* a normal random variable (numerator)
+* a chi-squared random variable (denominator)
+
+It reflects the extra uncertainty introduced when variance must be estimated from data.
+
+Compared with the normal distribution:
+
+* same center
+* similar shape
+* heavier tails
+* depends on degrees of freedom
+
+As sample size increases, the $t$ distribution converges to the normal distribution, linking small-sample inference to large-sample approximations used throughout statistics.
+
+---
+
+### F Distribution
+
+The $F$ distribution is another fundamental continuous distribution that arises from transformations of normal random variables. It plays a central role in comparing variances and in many procedures in regression and analysis of variance.
+
+---
+
+#### History
+
+The $F$ distribution was introduced by **Ronald Fisher** in the development of analysis of variance (ANOVA). Fisher needed a distribution for comparing two independent estimates of variance. The ratio of these variance estimates led naturally to the $F$ distribution.
+
+Today, the $F$ distribution is used in:
+
+* comparing population variances
+* regression model comparisons
+* ANOVA
+* many hypothesis testing procedures
+
+---
+
+#### Difference from the Normal Distribution
+
+The $F$ distribution differs substantially from the normal distribution.
+
+Key characteristics:
+
+* takes only positive values
+* right-skewed
+* depends on two degrees of freedom parameters
+* becomes more symmetric as degrees of freedom increase
+
+If $F \sim F_{d_1,d_2}$, then:
+
+* $d_1$ = numerator degrees of freedom
+* $d_2$ = denominator degrees of freedom
+
+The shape depends on both parameters.
+
+For small degrees of freedom:
+
+* highly skewed
+* long right tail
+
+For large degrees of freedom:
+
+* more concentrated
+* less skewed
+
+---
+
+#### Derivation from Chi-Squared Variables
+
+The $F$ distribution arises from ratios of scaled chi-squared random variables.
+
+If
+
+$$
+U_1 \sim \chi^2_{d_1}, \quad
+U_2 \sim \chi^2_{d_2}
+$$
+
+are independent, then
+
+$$
+F = \frac{U_1/d_1}{U_2/d_2}
+$$
+
+follows an $F$ distribution with $(d_1,d_2)$ degrees of freedom:
+
+$$
+F \sim F_{d_1,d_2}.
+$$
+
+This construction shows that the $F$ distribution measures the relative size of two variance-like quantities. Each chi-squared variable represents a sum of squared normal variables, so their ratio compares two independent estimates of variability.
+
+---
+
+#### Simulation from Definition
+
+We can simulate an $F$ distribution directly from its definition.
+
+```{r}
+set.seed(2026)
+
+u1 <- rchisq(10000, df=5)
+u2 <- rchisq(10000, df=10)
+
+f  <- (u1/5)/(u2/10)
+
+hist(f, probability=TRUE, breaks=40,
+     main="F Distribution (df1 = 5, df2 = 10)",
+     col="lightgray", border="white")
+
+curve(df(x,5,10),
+      add=TRUE, col="red", lwd=2)
+```
+
+The histogram of simulated values closely matches the theoretical $F$ density.
+
+---
+
+#### Shape and Behavior
+
+The $F$ distribution has several notable properties:
+
+* defined only for $x>0$
+* right-skewed
+* mean exists when $d_2>2$
+* variance exists when $d_2>4$
+
+As the denominator degrees of freedom $d_2$ increase, the distribution becomes less variable. As both degrees of freedom grow large, the distribution becomes more concentrated around 1.
+
+Visualization for different parameters:
+
+```{r}
+curve(df(x,1,5), 0,5, lwd=2,
+      main="Effect of Degrees of Freedom",
+      ylab="Density")
+
+curve(df(x,5,5), 0,5, col="red", lwd=2, add=TRUE)
+curve(df(x,10,10), 0,5, col="blue", lwd=2, add=TRUE)
+
+legend("topright",
+       legend=c("F(1,5)","F(5,5)","F(10,10)"),
+       col=c("black","red","blue"),
+       lwd=2)
+```
+
+---
+
+#### Generating F Values in R
+
+R includes built-in functions for the $F$ distribution:
+
+* `df(x, d1, d2)` → density
+* `pf(x, d1, d2)` → cumulative probability
+* `qf(p, d1, d2)` → quantile
+* `rf(n, d1, d2)` → simulation
+
+Examples:
+
+```{r}
+# simulate values
+rf(10, 5, 10)
+
+# probability F ≤ 2
+pf(2, 5, 10)
+
+# upper tail probability
+1 - pf(3, 5, 10)
+```
+
+---
+
+### Summary
+
+Continuous random variables differ from discrete random variables in a fundamental way: they assign probability to **intervals** rather than individual points.
+
+They are described using two functions:
+
+* the probability density function (PDF)
+* the cumulative distribution function (CDF)
+
+Several key continuous distributions appear repeatedly in statistics:
+
+* Uniform
+* Normal
+* Chi-squared
+* $t$
+* $F$
+
+Each arises from transformations of simpler random variables, particularly the normal distribution. These connections are crucial because they allow complex statistical quantities to be studied using known probability models.
+
+Simulation provides a powerful computational approach for understanding continuous distributions:
+
+* visualizing densities
+* approximating probabilities
+* verifying theoretical results
+* building intuition
+
+These distributions form the mathematical foundation for statistical inference developed in later chapters, including confidence intervals, hypothesis testing, regression, and analysis of variance.
+
