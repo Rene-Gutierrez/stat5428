@@ -170,9 +170,9 @@ Consider rolling a well‑balanced six‑sided die.
 
 The probability of rolling a 4 is therefore:
 
-```{r}
+$$
 1 / 6
-```
+$$
 
 This probability is computed *before* any data are collected and does not depend on repeated trials.
 
@@ -382,9 +382,9 @@ One way to operationalize subjective probability is through **betting behavior**
 
 If you are willing to bet $70 to win $100 on an event occurring, your implied probability is:
 
-```{r}
+$$
 70 / 100
-```
+$$
 
 This value represents the minimum probability at which you consider the bet fair, given your beliefs and risk tolerance.
 
@@ -502,7 +502,7 @@ This property follows directly from the definition of probability as additive ov
 
 Estimate the probability that a fair die roll results in either a 1 or a 2.
 
-```{r}
+```{r pro-probabilityof-a-1-or-2}
 dieRol <- sample(1:6, 10000, TRUE) 
 pro12  <- mean(dieRol %in% c(1, 2))
 pro1   <- mean(dieRol == 1)
@@ -536,7 +536,7 @@ This identity is fundamental and does not depend on assumptions such as equal li
 
 Estimate the probability of *not* rolling a 1 on a fair die.
 
-```{r}
+```{r pro-probability-not-rolling-a-1}
 pA <- mean(sample(1:6, 10000, TRUE) == 1)
 print(paste0("Probability of rolling a 1 : ", pA))
 print(paste0("Probability of not rolling a 1 : ", 1 - pA))
@@ -660,7 +660,7 @@ The marginal probability describes the baseline likelihood of an event across th
 
 For the same die example, the marginal probability of rolling a 4 is:
 
-```{r}
+```{r pro-marginal-probability-of-rolling-a-4}
 proMar <- mean(die == 4)
 print(paste0("Conditional probability of rolling a 4 given that a number greater than 3 is rolled: ", proCon))
 print(paste0("Marginal probability of rolling a 4: ", proMar))
@@ -708,7 +708,7 @@ This inversion is fundamental to **Bayesian modeling**, where probabilities are 
 
 We illustrate Bayes’ formula using a diagnostic testing scenario.
 
-```{r}
+```{r pro-bayes-formula-diagnostic-test}
 # Bayes example via simulation
 proInf <- 0.01
 ## Sample disease status
@@ -1168,7 +1168,7 @@ Event independence is a statement about particular subsets of the sample space. 
 
 Twenty independent coin flips with probability of heads $p=0.5$. Let $X$ be the number of heads.
 
-```{r}
+```{r pro-binomial-example-coin-flips}
 rbinom(10,20,0.5)
 ```
 
@@ -1314,7 +1314,7 @@ The parameter $\lambda$ represents the expected number of events in the interval
 
 Example simulation:
 
-```{r}
+```{r pro-empiriacal-distribution-poisson}
 table(rpois(10000,3))/10000
 ```
 
@@ -1459,7 +1459,7 @@ Thus, the CDF accumulates probability up to a given point, while the PDF describ
 
 The following code visualizes both the PDF and CDF for a normal distribution.
 
-```{r}
+```{r pro-pdf-cdf-normal-distribution-example}
 curve(dnorm(x), -4,4)
 curve(pnorm(x), -4,4)
 ```
@@ -1479,7 +1479,7 @@ A useful way to think about a continuous distribution is to imagine probability 
 
 For example, consider a normal distribution again. The shaded region between two values represents the probability that the random variable falls in that interval.
 
-```{r}
+```{r pro-probability-of-an-interval-normal}
 curve(dnorm(x), -4, 4, lwd=2,
       main="Probability as Area Under the Curve",
       ylab="Density")
@@ -1498,7 +1498,7 @@ $$
 
 We compute it numerically using the CDF:
 
-```{r}
+```{r pro-exact-probability-of-an-interval}
 pnorm(1) - pnorm(-1)
 ```
 
@@ -1515,7 +1515,7 @@ Students often expect probabilities to be at most 1, and they are. However, the 
 
 For example, consider a uniform distribution on a very small interval:
 
-```{r}
+```{r pro-density-curve-uniform}
 curve(dunif(x, 0, 0.2), from=-0.1, to=0.3, lwd=2,
       main="Uniform Density on a Small Interval")
 ```
@@ -1537,7 +1537,7 @@ Thus:
 
 A computational approach helps build intuition. We can simulate many observations and compare a histogram with a theoretical density.
 
-```{r}
+```{r pro-histogram-density-comparisson}
 set.seed(1)
 x <- rnorm(5000)
 
@@ -1572,7 +1572,7 @@ General pattern:
 
 For the normal distribution:
 
-```{r}
+```{r pro-normal-function-r}
 # Density at a point
 dnorm(0)
 
@@ -1630,7 +1630,7 @@ The uniform distribution is the most intuitive continuous distribution. Every va
 
 Rolling a fair die is a discrete uniform distribution: each value has equal probability.
 
-```{r}
+```{r pro-frequency-table-roll-of-a-die}
 table(sample(1:10,10000,TRUE))/10000
 ```
 
@@ -1644,7 +1644,7 @@ $$
 
 Simulation:
 
-```{r}
+```{r pro-continuos-uniform-distribution}
 x <- runif(10000,0,10)
 hist(x, probability=TRUE, breaks=30)
 curve(dunif(x,0,10), add=TRUE, col="red", lwd=2)
@@ -1654,7 +1654,7 @@ curve(dunif(x,0,10), add=TRUE, col="red", lwd=2)
 
 If we refine a discrete uniform grid enough, it begins to resemble a continuous uniform distribution.
 
-```{r}
+```{r pro-discrete-uniform-distribution}
 samSiz <- 10000
 x      <- sample(seq(0,10,length=samSiz), samSiz, TRUE)
 hist(x, probability=TRUE, breaks=30)
@@ -1685,7 +1685,7 @@ The normal distribution often arises as the sum of many small, independent effec
 
 A computational illustration helps build intuition.
 
-```{r}
+```{r pro-sum-of-uniforms-distribution}
 set.seed(2026)
 s <- replicate(10000, sum(runif(10, -1, 1)))
 
@@ -1720,7 +1720,7 @@ The parameters have clear interpretations:
 
 Visualization:
 
-```{r}
+```{r pro-normal-distribution-shape}
 curve(dnorm(x,0,1), -4,4, lwd=2,
       main="Standard Normal Density",
       ylab="Density")
@@ -1730,7 +1730,7 @@ This is the **standard normal distribution**, which has $\mu=0$ and $\sigma=1$.
 
 Changing parameters shifts or stretches the curve:
 
-```{r}
+```{r pro-normal-distribution-shift-and-stretch}
 curve(dnorm(x,0,1), -6,6, lwd=2, col="black",
       main="Effect of Mean and SD")
 curve(dnorm(x,2,1), add=TRUE, col="blue", lwd=2)
@@ -1776,14 +1776,13 @@ This allows any normal probability to be computed using the standard normal dist
 
 $$
 P(a \le X \le b)
-================
-
-P!\left(\frac{a-\mu}{\sigma} \le Z \le \frac{b-\mu}{\sigma}\right).
+=
+P\left(\frac{a-\mu}{\sigma} \le Z \le \frac{b-\mu}{\sigma}\right).
 $$
 
 In R:
 
-```{r}
+```{r pro-computation-using-standarization}
 # Example: X ~ N(10, 4^2)
 pnorm(12, mean=10, sd=4) - pnorm(8, mean=10, sd=4)
 
@@ -1813,7 +1812,7 @@ $$
 
 We can verify computationally for the standard normal:
 
-```{r}
+```{r pro-68-95-99-rule}
 pnorm(1) - pnorm(-1)
 pnorm(2) - pnorm(-2)
 pnorm(3) - pnorm(-3)
@@ -1821,7 +1820,7 @@ pnorm(3) - pnorm(-3)
 
 Visualization:
 
-```{r}
+```{r pro-68-95-99-rule-plot}
 curve(dnorm(x), -4,4, lwd=2,
       main="68-95-99.7 Rule")
 
@@ -1847,7 +1846,7 @@ For a normal distribution:
 
 Example:
 
-```{r}
+```{r pro-normal-distribution-probability-computation}
 # Probability between 0.5 and 1.5
 pnorm(1.5) - pnorm(0.5)
 
@@ -1862,7 +1861,7 @@ pnorm(-1)
 
 #### Three Example Calculations
 
-```{r}
+```{r pro-normal-distribution-probability-computation-2}
 # Example 1
 pnorm(1)
 
@@ -1885,7 +1884,7 @@ These represent:
 
 A histogram of simulated normal data approximates the theoretical density.
 
-```{r}
+```{r pro-histogram-density-approximation}
 set.seed(2026)
 x <- rnorm(1000)
 
@@ -1981,7 +1980,7 @@ This construction is fundamental in statistics because many important quantities
 
 We can build a chi-squared distribution directly from simulated normal variables.
 
-```{r}
+```{r pro-chi-squared-simulation}
 set.seed(2026)
 
 z <- rnorm(10000)
@@ -2009,7 +2008,7 @@ $$
 
 To generate a chi-squared distribution with $k$ degrees of freedom, we sum the squares of $k$ independent standard normal variables.
 
-```{r}
+```{r pro-chi-squared-k-degrees-simulation}
 set.seed(2026)
 
 k <- 5
@@ -2042,7 +2041,7 @@ Key properties:
 
 Visualization:
 
-```{r}
+```{r pro-chi-squared-distribution}
 curve(dchisq(x,1), 0, 12, lwd=2,
       main="Effect of Degrees of Freedom",
       ylab="Density")
@@ -2100,7 +2099,7 @@ R provides built-in functions for working with the chi-squared distribution:
 
 Examples:
 
-```{r}
+```{r pro-chi-squared-function-r}
 # Simulate chi-squared values
 rchisq(10, df=3)
 
@@ -2171,7 +2170,7 @@ Thus, for large samples, the $t$ distribution becomes nearly indistinguishable f
 
 #### Visualization: Effect of Degrees of Freedom
 
-```{r}
+```{r pro-t-distribution}
 curve(dnorm(x), -4,4, lwd=2,
       main="Normal vs t Distributions",
       ylab="Density")
@@ -2227,7 +2226,7 @@ This construction shows that the $t$ distribution accounts for the variability i
 
 We can simulate the $t$ distribution directly from its defining relationship.
 
-```{r}
+```{r pro-t-distribution-generation}
 set.seed(2026)
 
 z <- rnorm(10000)
@@ -2257,7 +2256,7 @@ R provides built-in functions for the $t$ distribution:
 
 Examples:
 
-```{r}
+```{r pro-t-distribution-function-r}
 # simulate
 rt(10, df=5)
 
@@ -2391,7 +2390,7 @@ This construction shows that the $F$ distribution measures the relative size of 
 
 We can simulate an $F$ distribution directly from its definition.
 
-```{r}
+```{r f-distribution-generation}
 set.seed(2026)
 
 u1 <- rchisq(10000, df=5)
@@ -2424,7 +2423,7 @@ As the denominator degrees of freedom $d_2$ increase, the distribution becomes l
 
 Visualization for different parameters:
 
-```{r}
+```{r f-distribution}
 curve(df(x,1,5), 0,5, lwd=2,
       main="Effect of Degrees of Freedom",
       ylab="Density")
@@ -2451,7 +2450,7 @@ R includes built-in functions for the $F$ distribution:
 
 Examples:
 
-```{r}
+```{r f-distribution-function-r}
 # simulate values
 rf(10, 5, 10)
 
@@ -2491,4 +2490,741 @@ Simulation provides a powerful computational approach for understanding continuo
 * building intuition
 
 These distributions form the mathematical foundation for statistical inference developed in later chapters, including confidence intervals, hypothesis testing, regression, and analysis of variance.
+
+---
+
+## The Mean of a Random Variable
+
+The **mean** (or expected value) of a random variable describes its long-run average value.
+It is not the average of a particular dataset, but rather a property of the **probability model** itself.
+
+If we imagine repeating the same random experiment over and over under identical conditions, the sample average of the outcomes will tend to stabilize near the mean. For this reason, the mean is often interpreted as the **center of the distribution** or the value around which observations fluctuate.
+
+From a modeling perspective, the mean is determined entirely by the probability distribution of the random variable.
+
+For a discrete random variable $X$ with probabilities $P(X=x)$,
+
+$$
+E[X] = \sum_x x P(X=x).
+$$
+
+For a continuous random variable with density $f(x)$,
+
+$$
+E[X] = \int_{-\infty}^{\infty} x f(x),dx.
+$$
+
+Both formulas express the same idea: the mean is a **probability-weighted average** of all possible values the random variable can take.
+
+---
+
+### Interpreting the Mean
+
+There are several useful interpretations of the mean:
+
+* **Long-run average:** If we simulate the experiment many times, the sample average approaches the mean.
+* **Balance point:** In physics, the mean is the balance point of a distribution.
+* **Center of mass:** Values farther from the mean contribute more strongly if they occur with high probability.
+* **Prediction under squared loss:** The mean is the best constant predictor when using squared error.
+
+These interpretations make the mean one of the most important summaries of a random variable.
+
+---
+
+### Mean as a Distribution Parameter vs Not
+
+In many probability models, the mean is one of the defining parameters of the distribution.
+In others, it is a derived quantity computed from the parameters.
+
+Examples where the mean **is** a parameter:
+
+* Normal distribution: mean $=\mu$
+* Poisson distribution: mean $=\lambda$
+* Exponential distribution: mean $=1/\lambda$
+
+Examples where the mean is **not directly** a parameter:
+
+* Uniform distribution on $[a,b]$: mean is $(a+b)/2$
+* Derived variables such as $X^2$ when $X\sim N(0,1)$
+* The binomial distribution with parameters $n$ and $p$, whose mean is $np$
+
+Even when the mean is not explicitly listed as a parameter, it is still determined by the distribution.
+
+---
+
+### Simulation Example: Mean of a Binomial Distribution
+
+Consider a binomial random variable $X\sim \text{Binomial}(n,p)$.
+The theoretical mean is
+
+$$
+E[X]=np.
+$$
+
+We can verify this using simulation and direct calculation.
+
+```{r mean-of-a-binomial-distribution}
+set.seed(1)
+n <- 5
+p <- 0.3
+x <- rbinom(n = 10000, size = n, prob = p)
+
+# Mean Computed Directly
+print(paste0("The exact mean is: ", n * p))
+print(paste0("The approximate mean is: ", mean(x)))
+
+# Computing the Mean using the formula
+pmf <- dbinom(x = 0:n, size = n, prob = p)
+exaMeaBin <- sum(pmf * (0:n))
+print(paste0("The exact mean is: ", exaMeaBin))
+
+# Approximate Mean using empirical probabilities
+proTab <- prop.table(table(x))
+appMea <- sum(proTab * (0:n))
+print(paste0("The approximate mean is: ", appMea))
+```
+
+This example illustrates several key points:
+
+1. The mean can be computed **analytically** from the formula.
+2. It can be approximated using **simulation**.
+3. It can be approximated using **empirical frequencies**.
+4. All approaches converge as the number of simulations increases.
+
+Simulation provides an intuitive interpretation: the mean is the value the random variable averages to over many repetitions.
+
+---
+
+### The Mean as a Weighted Average
+
+The expected value is a weighted average in which each possible outcome is weighted by its probability. Values that occur with high probability contribute more strongly to the mean.
+
+For example, if a random variable takes values $0,1,2,3$ with different probabilities, the mean reflects both the magnitude of each value and how often it occurs.
+
+This explains why the mean does not always coincide with the most likely value or the median. In skewed distributions, the mean can be pulled toward extreme values.
+
+---
+
+### Properties of the Mean Operator
+
+The mean operator has several important mathematical properties.
+The most important is **linearity**.
+
+#### Linearity
+
+For random variables $X$ and $Y$ and constants $a$ and $b$,
+
+$$
+E[aX + bY] = aE[X] + bE[Y].
+$$
+
+This property holds regardless of whether $X$ and $Y$ are independent.
+
+Linearity allows us to compute means of complicated expressions by breaking them into simpler parts. It is one of the most frequently used tools in probability and statistics.
+
+---
+
+#### Consequences of Linearity
+
+Some useful special cases:
+
+$$
+E[X + Y] = E[X] + E[Y]
+$$
+
+$$
+E[cX] = cE[X]
+$$
+
+$$
+E[X + c] = E[X] + c
+$$
+
+These rules allow us to compute expected values without needing the full distribution of the transformed variable.
+
+---
+
+#### Example of Linearity via Simulation
+
+```{r pro-expectation-linearity}
+set.seed(1)
+mea1 <- 2
+mea2 <- 5
+x <- rnorm(10000, mean = mea1, sd = 1)
+y <- rnorm(10000, mean = mea2, sd = 2)
+z <- 3 * x + 2 * y
+
+# Using the simulation
+appMea    <- mean(z)
+appMeaLin <- 3*mean(x) + 2*mean(y)
+exaMeaLin <- 3 * mea1 + 2 * mea2
+
+print(paste0("The approximate mean is: ", appMea))
+print(paste0("The approximate mean using linearity is: ", appMeaLin))
+print(paste0("The exact mean using linearity is: ", exaMeaLin))
+```
+
+The three quantities are approximately equal:
+
+* the simulated mean of $z$
+* the simulated linear combination of means
+* the exact theoretical value
+
+This demonstrates that linearity holds both theoretically and empirically.
+
+---
+
+### Why the Mean Matters
+
+The mean plays a central role throughout statistics:
+
+* It is the foundation of estimation and inference.
+* Many statistical procedures are built around averages.
+* Sampling distributions of means are central to statistical theory.
+* The Central Limit Theorem explains why averages tend to be normally distributed.
+
+Because of these properties, understanding the mean of a random variable is essential for understanding statistical modeling and inference.
+
+In later sections, we will study how means behave when computed from samples, leading to the concept of **sampling distributions** and the foundations of statistical inference.
+
+---
+
+## The Variance of a Random Variable
+
+The variance of a random variable quantifies how much its values fluctuate around its mean. While the mean captures the center of a distribution, the variance measures its dispersion. Together, these two quantities provide a fundamental summary of a distribution’s behavior.
+
+For a random variable $X$ with mean $E[X]$, the variance is defined as
+
+$$
+\mathbb{V}(X) = E\big[(X - E[X])^2\big].
+$$
+
+This definition expresses variance as the expected squared deviation from the mean. Squaring ensures that deviations above and below the mean do not cancel each other out and that larger deviations contribute more heavily to the measure of spread.
+
+Using algebra and the linearity of the mean operator, we can derive an equivalent and often more convenient expression:
+
+$$
+\mathbb{V}(X) = E[X^2] - (E[X])^2.
+$$
+
+This alternative representation is widely used in both theoretical work and computation because it separates the variance into two simpler expectations: the mean of the square and the square of the mean.
+
+---
+
+### Interpreting Variance
+
+Variance is always nonnegative. A variance of zero implies that the random variable takes a constant value with probability one. Larger variances indicate greater dispersion around the mean.
+
+In practical terms, if we repeatedly observe outcomes from the distribution of $X$, the variance describes how widely those outcomes tend to vary. For instance:
+
+* A distribution tightly clustered around its mean has small variance.
+* A distribution with frequent extreme values has large variance.
+
+Because variance is expressed in squared units, it is often useful to also consider the standard deviation, defined as $\sqrt{\mathbb{V}(X)}$, which returns the measure of spread to the original units of the variable.
+
+---
+
+### Variance as a Distribution Parameter vs Derived Quantity
+
+In some probability models, the variance appears explicitly as a parameter of the distribution. In others, it is determined indirectly from the model’s parameters.
+
+Examples where the variance is a parameter:
+
+* Normal distribution: variance = $\sigma^2$
+* Poisson distribution: variance = $\lambda$
+
+Examples where the variance is derived from parameters:
+
+* Uniform distribution on $[a,b]$: variance is $(b-a)^2/12$
+* Binomial distribution with parameters $n$ and $p$: variance is $np(1-p)$
+* Transformed variables such as $Y = X^2$ where $X\sim N(0,1)$
+
+This distinction is important conceptually. Sometimes the variance is directly specified in the model; other times it must be computed from the structure of the random variable.
+
+---
+
+### Simulation-Based Understanding of Variance
+
+Simulation allows us to approximate variance numerically and verify theoretical identities. The following code generates data from a normal distribution and compares different ways of computing variance.
+
+```{r variance-computation}
+set.seed(1)
+var <- 4
+x   <- rnorm(10000, mean = 0, sd = sqrt(var))
+# Compute the Mean
+meaX <- mean(x)
+# Compute the Mean of the Square
+meaX2 <- mean(x^2)
+# Variance directly
+dirVar <- var(x)
+# Variance alternative representation
+altVar <- meaX2 - meaX^2
+# Prints results
+print(paste0("Direct approximate variance: ", dirVar))
+print(paste0("Alternative approximate variance: ", altVar))
+```
+
+The direct computation using `var(x)` should closely match the alternative computation $E[X^2] - (E[X])^2$. Small discrepancies arise only from simulation noise.
+
+This illustrates that variance is fundamentally an expectation-based quantity that can be approximated through repeated sampling.
+
+---
+
+### Properties of Variance
+
+Variance has several algebraic properties that make it useful for analyzing transformed variables and combinations of random variables.
+
+---
+
+#### Adding a Constant
+
+If we define a new random variable $Y = X + c$, where $c$ is a constant, then
+
+$$
+\mathbb{V}(Y) = \mathbb{V}(X).
+$$
+
+Adding a constant shifts the distribution without changing its spread. The distance between observations remains the same, so the variance is unchanged.
+
+```{r varaince-adding-a-constant}
+c <- 5
+x <- rnorm(10000)
+y <- x + c
+print(paste0("Approximate varaince X: ", var(x)))
+print(paste0("Approximate varaince Y: ", var(y)))
+# Visualization
+curve(dnorm(x, mean = 0, sd = 1),
+      from = -5,
+      to   = 5 + c,
+      lwd  = 2,
+      col  = rgb(1,0,0),
+      ylab = "pdf")
+par(new=TRUE)
+curve(dnorm(x, mean = 0 + c, sd = 1),
+      from = -5,
+      to   = 5 + c,
+      lwd  = 2,
+      col  = rgb(0,0,1),
+      ylab = "")
+```
+
+The two curves have identical shapes but different centers, illustrating that variance measures spread rather than location.
+
+---
+
+#### Multiplying by a Scalar
+
+If $Y = aX$ for some constant $a$, then
+
+$$
+\mathbb{V}(Y) = a^2 \mathbb{V}(X).
+$$
+
+Multiplying by a constant rescales the spread of the distribution. If $|a|>1$, the distribution becomes more spread out; if $|a|<1$, it becomes more concentrated.
+
+```{r varaince-multiplying-by-a-constant}
+a    <- 2
+varX <- 1
+x    <- rnorm(10000, mean = 0, sd = sqrt(varX))
+y    <- a * x
+varY <- a^2 * varX
+print(paste0("Exact varaince X: ", varX))
+print(paste0("Approximate varaince X: ", var(x)))
+print(paste0("Exact varaince Y: ", varY))
+print(paste0("Approximate varaince Y: ", var(y)))
+# Visualization
+xmin <- -3 * max(a, 1) ^ 2
+xmax <- 3 * max(a, 1) ^ 2 
+yval <- dnorm(x = seq(xmin, xmax, length = 101), mean = 0, sd = sqrt(varX))
+ymin <- min(yval)
+ymax <- max(yval)
+curve(dnorm(x, mean = 0, sd = sqrt(varX)),
+      from = xmin,
+      to   = xmax,
+      ylim = c(ymin, ymax),
+      lwd  = 2,
+      col  = rgb(1,0,0),
+      ylab = "pdf")
+par(new=TRUE)
+curve(dnorm(x, mean = 0, sd = a * sqrt(varX)),
+      from = xmin,
+      to   = xmax,
+      ylim = c(ymin, ymax),
+      lwd  = 2,
+      col  = rgb(0,0,1),
+      ylab = "")
+```
+
+The blue curve is wider, reflecting the increased variance after scaling by $a=2$.
+
+---
+
+#### Adding Two Random Variables
+
+When combining two random variables, variance depends not only on their individual variances but also on how they move together.
+
+For random variables $X$ and $Y$,
+
+$$
+\mathbb{V}(X+Y) = \mathbb{V}(X) + \mathbb{V}(Y) + 2,\text{Cov}(X,Y).
+$$
+
+If $X$ and $Y$ are independent, then $\text{Cov}(X,Y)=0$, and the formula simplifies to
+
+$$
+\mathbb{V}(X+Y) = \mathbb{V}(X) + \mathbb{V}(Y).
+$$
+
+This result is central in probability and statistics. It explains why sums of independent random variables tend to have larger variance and underlies many results involving sampling distributions and the Central Limit Theorem.
+
+```{r variance-sum-independent}
+set.seed(1)
+x <- rnorm(10000, mean = 0, sd = 1)
+y <- rnorm(10000, mean = 0, sd = 2)
+z <- x + y
+print(paste0("Approx var(X): ", var(x)))
+print(paste0("Approx var(Y): ", var(y)))
+print(paste0("Approx var(X)+var(Y): ", var(x)+var(y)))
+print(paste0("Approx var(X+Y): ", var(z)))
+```
+
+Because the variables are generated independently, the variance of the sum is approximately the sum of the variances.
+
+If the variables were positively correlated, the variance of the sum would be larger. If negatively correlated, it would be smaller.
+
+```{r variance-sum-dependent}
+set.seed(1)
+x <- rnorm(10000, mean = 0, sd = 1)
+y <- x + rnorm(10000, mean = 0, sd = 1)
+z <- x + y
+print(paste0("Approx var(X): ", var(x)))
+print(paste0("Approx var(Y): ", var(y)))
+print(paste0("Approx var(X)+var(Y): ", var(x)+var(y)+2*cov(x,y)))
+print(paste0("Approx var(X+Y): ", var(z)))
+```
+
+---
+
+### Summary
+
+Variance measures how much a random variable fluctuates around its mean. It can be computed as $E[(X-E[X])^2]$ or as $E[X^2] - (E[X])^2$. Some distributions include variance as a parameter, while in others it must be derived.
+
+Key properties include:
+
+* Adding a constant does not change variance.
+* Multiplying by a constant scales variance by the square of that constant.
+* The variance of a sum depends on both individual variances and covariance.
+
+Understanding these properties is essential for analyzing transformations of random variables and for studying sampling distributions, which rely heavily on how means and variances behave under repeated sampling.
+
+---
+
+## Conditional Expectation
+
+Conditional expectation formalizes the idea of the “average value of $X$ once we know $Y$.”
+
+It is one of the central objects in probability and statistics because it connects information, prediction, and uncertainty.
+
+---
+
+### Discrete Case
+
+If $X$ and $Y$ are discrete random variables, the conditional expectation of $X$ given $Y=y$ is
+
+$$
+E[X \mid Y=y] = \sum_x x  P(X=x \mid Y=y).
+$$
+
+It is simply the mean of the conditional distribution of $X$ given that $Y=y$.
+
+For a random variable $Y$, the conditional expectation $E[X \mid Y]$ is itself a random variable, because it depends on the random value of $Y$.
+
+---
+
+### Continuous Case
+
+If $X$ and $Y$ are continuous with conditional density $f_{X \mid Y}(x \mid y)$, then
+
+$$
+E[X \mid Y=y] = \int x  f_{X \mid Y}(x \mid y), dx.
+$$
+
+Again, this is just the mean of the conditional distribution.
+
+---
+
+### Interpretation
+
+There are two complementary ways to understand $E[X \mid Y]$:
+
+1. **As a conditional mean**
+   It is the expected value of $X$ after restricting attention to the subpopulation where $Y=y$.
+
+2. **As the best predictor of $X$ given $Y$ (in mean squared error)**
+   Among all functions $g(Y)$, the function that minimizes
+
+   $$
+   E\big[(X - g(Y))^2\big]
+   $$
+
+   is
+
+   $$
+   g(Y) = E[X \mid Y].
+   $$
+
+This makes conditional expectation fundamental in regression, prediction theory, and statistical learning.
+
+---
+
+### Simple Example
+
+Suppose
+
+* $P(Y=0)=0.6$,
+* $P(Y=1)=0.4$,
+
+and
+
+* $X \mid Y=0 \sim N(5,1)$,
+* $X \mid Y=1 \sim N(10,1)$.
+
+Then
+
+$$
+E[X \mid Y=0] = 5, \quad E[X \mid Y=1] = 10.
+$$
+
+So
+
+$$
+E[X \mid Y] =
+\begin{cases}
+5 & \text{if } Y=0, \
+10 & \text{if } Y=1.
+\end{cases}
+$$
+
+Notice that this is a random variable that takes two possible values depending on $Y$.
+
+---
+
+### Simulation Illustration
+
+```{r conditional-expectation}
+set.seed(123)
+
+n <- 100000
+
+Y <- rbinom(n, 1, 0.4)
+
+X <- ifelse(Y == 0,
+            rnorm(n, mean = 5, sd = 1),
+            rnorm(n, mean = 10, sd = 1))
+
+# Empirical conditional expectations
+mean(X[Y == 0])
+mean(X[Y == 1])
+```
+
+You will observe that:
+
+* The empirical mean when $Y=0$ is close to 5.
+* The empirical mean when $Y=1$ is close to 10.
+
+These are empirical estimates of
+
+$$
+E[X \mid Y=0] \quad \text{and} \quad E[X \mid Y=1].
+$$
+
+---
+
+### Key Properties
+
+1. **Linearity**
+
+   $$
+   E[aX + bZ \mid Y] = aE[X \mid Y] + bE[Z \mid Y].
+   $$
+
+2. **Taking out what is known**
+
+   If $g(Y)$ is a function of $Y$, then
+
+   $$
+   E[g(Y)X \mid Y] = g(Y)E[X \mid Y].
+   $$
+
+3. **Law of Total Expectation**
+
+   $$
+   E[X] = E[E[X \mid Y]].
+   $$
+
+---
+
+### Conceptual Importance
+
+Conditional expectation is the mathematical foundation of:
+
+* Regression functions
+* Bayesian updating
+* Hierarchical models
+* Martingales
+* Optimal prediction
+
+It formalizes the idea that once we incorporate available information ($Y$), our best description of $X$ is its conditional mean.
+
+
+### Law of Total Expectation
+
+The **Law of Total Expectation** (also called the **Tower Property**) provides a systematic way to compute an expected value by conditioning on another random variable.
+
+---
+
+#### Statement (Discrete Case)
+
+Let $X$ and $Y$ be random variables. Then
+
+$$
+E[X] = E\big[E[X \mid Y]\big].
+$$
+
+If $Y$ is discrete, this can be written explicitly as
+
+$$
+E[X] = \sum_y E[X \mid Y=y]  P(Y=y).
+$$
+
+This formula says:
+
+1. Compute the conditional expectation of $X$ given each value of $Y$.
+2. Average those conditional expectations using the probabilities of $Y$.
+
+---
+
+#### Continuous Version
+
+If $Y$ has density $f_Y(y)$, then
+
+$$
+E[X] = \int E[X \mid Y=y]  f_Y(y), dy.
+$$
+
+Same structure: compute conditional expectations first, then average over the distribution of $Y$.
+
+---
+
+#### Intuition
+
+Think of $Y$ as defining subpopulations.
+
+* Within each subgroup ($Y=y$), $X$ has its own mean.
+* The overall mean of $X$ is a weighted average of those subgroup means.
+* The weights are determined by the distribution of $Y$.
+
+In words:
+
+> The expectation of $X$ equals the expectation of its conditional expectation.
+
+---
+
+#### Analytical Example
+
+Suppose
+
+* $P(Y=0) = 0.6$
+* $P(Y=1) = 0.4$
+
+And
+
+* $X \mid Y=0 \sim N(5,1)$
+* $X \mid Y=1 \sim N(10,1)$
+
+Then
+
+$$
+E[X \mid Y=0] = 5, \quad E[X \mid Y=1] = 10.
+$$
+
+By the Law of Total Expectation,
+
+$$
+E[X] = 5(0.6) + 10(0.4) = 7.
+$$
+
+---
+
+### Simulation Example
+
+We now verify this result with simulation.
+
+```{r law-of-total-expectation}
+set.seed(123)
+
+n <- 100000
+
+# Generate Y
+Y <- rbinom(n, 1, 0.4)
+
+# Generate X conditional on Y
+X <- ifelse(Y == 0,
+            rnorm(n, mean = 5, sd = 1),
+            rnorm(n, mean = 10, sd = 1))
+
+# Empirical mean of X
+mean(X)
+
+# Conditional means
+mean(X[Y == 0])
+mean(X[Y == 1])
+
+# Weighted average of conditional means
+mean(X[Y == 0]) * mean(Y == 0) +
+  mean(X[Y == 1]) * mean(Y == 1)
+```
+
+---
+
+#### What This Shows
+
+1. `mean(X)` will be very close to 7.
+2. The weighted average of the empirical conditional means will also be very close to 7.
+3. The two quantities will be nearly identical (up to simulation error).
+
+This simulation illustrates the identity:
+
+$$
+E[X] = E[E[X \mid Y]].
+$$
+
+Even though $X$ comes from two different normal distributions depending on $Y$, the overall mean is simply the probability-weighted average of the subgroup means.
+
+---
+
+### Key Insight
+
+The Law of Total Expectation allows us to:
+
+* Decompose complex expectations
+* Analyze mixture distributions
+* Understand hierarchical and Bayesian models
+* Connect conditional and marginal behavior
+
+It is one of the structural identities that underlies nearly all modern probability and statistical modeling.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
