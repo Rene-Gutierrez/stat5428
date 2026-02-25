@@ -78,7 +78,7 @@ $$
 
 The parameter $\mu = 10$ is fixed but unknown in practice. A sample mean $\bar{X}$ will vary across samples.
 
-```{r}
+```{r pro-to-sta-sampling-distribution-normal-mean}
 set.seed(123)
 
 means <- replicate(1000, mean(rnorm(20, mean = 10, sd = 2)))
@@ -100,7 +100,7 @@ $$
 X \sim \text{Bernoulli}(p = 0.3).
 $$
 
-```{r}
+```{r pro-to-sta-sampling-distribution-bernoulli-mean}
 means <- replicate(2000, mean(rbinom(30, 1, 0.3)))
 hist(means, probability = TRUE, breaks = 30)
 ```
@@ -127,7 +127,7 @@ $$
 
 Example: The sample mean.
 
-```{r}
+```{r pro-to-sta-unbiased-simulation}
 true_mean <- 5
 means <- replicate(5000, mean(rnorm(20, mean = true_mean)))
 mean(means)
@@ -152,7 +152,7 @@ If $X_1, \dots, X_n$ are independent:
 
 ### Independent Sampling (With Replacement)
 
-```{r}
+```{r pro-to-sta-sampling-replacement}
 sample1 <- sample(1:100, 50, replace = TRUE)
 ```
 
@@ -160,15 +160,15 @@ Each draw does not affect future draws.
 
 ### Deterministic Sequence (No Randomness)
 
-```{r}
-sample2 <- 1:50
+```{r pro-to-sta-sampling-deterministic}
+sample2 <- 1:15
 ```
 
 There is no randomness here. No sampling distribution exists.
 
 ### Dependent Example: Random Walk
 
-```{r}
+```{r pro-to-sta-sampling-dependent}
 x <- cumsum(rnorm(1000))
 plot(x, type = "l")
 mean(x)
@@ -247,7 +247,7 @@ Statistics are random variables.
 
 ### Simulation Illustration
 
-```{r}
+```{r pro-parameters-and-populations}
 set.seed(1)
 
 true_mean <- 5
@@ -262,6 +262,10 @@ sd(means)
 * The collection forms the sampling distribution.
 
 ---
+
+## Example: Random Sample as Simple Random Sampling
+
+
 
 ## Sampling Distribution of a Mean
 
@@ -422,7 +426,7 @@ par(mfrow=c(1,1))
 
 As $n$ increases, statistics stabilize.
 
-```{r}
+```{r }
 means <- replicate(1000, mean(rnorm(30, 0, 1)))
 hist(means, probability = TRUE, breaks = 30)
 ```

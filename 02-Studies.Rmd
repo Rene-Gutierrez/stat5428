@@ -10,6 +10,7 @@ of control, susceptibility to bias, and the strength of the conclusions permitte
 This chapter corresponds to the *Data* stage of the course workflow:
 **collecting, describing data, understanding structure, and identifying intrinsic properties before modeling.**
 
+
 ---
 
 ## Surveys

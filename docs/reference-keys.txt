@@ -352,6 +352,7 @@ i.i.d.-assumption
 sampling-without-replacement
 parameters-and-statistics
 simulation-illustration-1
+example-random-sample-as-simple-random-sampling
 sampling-distribution-of-a-mean
 fundamental-properties
 small-vs-large-sample-size

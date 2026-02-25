@@ -191,6 +191,7 @@ barplot(table(schDat$School), col="steelblue")
 
 Pie charts show proportions as slices of a circle.
 
+
 ```{r pichart-income}
 pie(table(schDat$Income_Level))
 ```
@@ -226,7 +227,7 @@ Tools:
 
 Example:
 
-```{r}
+```{r dat-des-stem-and-leaf-plot}
 stem(c(23,25,25,30,31,33,35,40))
 ```
 
@@ -341,7 +342,7 @@ The **mean** is the arithmetic average of all observations $x_1, x_2, \ldots x_n
 
 Example:
 
-```{r}
+```{r dat-des-mean-median-comparisson}
 mean(schDat$Math_Score[schDat$Grade == 1]); median(schDat$Math_Score[schDat$Grade == 1])
 ```
 
@@ -355,7 +356,7 @@ mean(schDat$Math_Score[schDat$Grade == 1]); median(schDat$Math_Score[schDat$Grad
 The **range** is the difference between the maximum and minimum values in a dataset.
 ```
 
-```{r}
+```{r dat-des-min-max-range}
 c(max(schDat$Math_Score[schDat$Grade == 3]),
 min(schDat$Math_Score[schDat$Grade == 3]))
 max(schDat$Math_Score[schDat$Grade == 3]) - min(schDat$Math_Score[schDat$Grade == 3])
@@ -488,13 +489,13 @@ table(schDat$Income_Level, schDat$Parent_Education)
 
 ### Stacked Bar Graph
 
-```{r}
+```{r dat-des-stacked-graph}
 barplot(table(schDat$Income_Level, schDat$Parent_Education), beside=FALSE)
 ```
 
 ### Cluster Bar Graph
 
-```{r}
+```{r dat-des-cluster-graph}
 barplot(table(schDat$Income_Level, schDat$Parent_Education), beside=TRUE)
 ```
 
@@ -510,7 +511,7 @@ plot(schDat$Math_Score[schDat$Grade == 8], schDat$Verbal_Score[schDat$Grade == 8
 
 Measures linear association.
 
-```{r}
+```{r dat-des-linear-correlation}
 cor(schDat$Math_Score, schDat$Verbal_Score)
 ```
 
@@ -518,7 +519,7 @@ cor(schDat$Math_Score, schDat$Verbal_Score)
 
 Grouped boxplots.
 
-```{r}
+```{r dat-des-grouped-boxplots}
 boxplot(Math_Score ~ Income_Level, data = schDat)
 ```
 
