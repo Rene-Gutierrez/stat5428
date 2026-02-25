@@ -1407,9 +1407,9 @@ meaning that for each outcome <span class="math inline">\(\omega \in \Omega\)</s
 ## 0.1260667 0.3727000 0.3748333 0.1264000</code></pre>
 <p>The empirical probabilities should be close to:
 <span class="math display">\[
-P(X=0)=\tfrac{1}{8},;
-P(X=1)=\tfrac{3}{8},;
-P(X=2)=\tfrac{3}{8},;
+P(X=0)=\tfrac{1}{8}; \quad
+P(X=1)=\tfrac{3}{8}; \quad
+P(X=2)=\tfrac{3}{8}; \quad
 P(X=3)=\tfrac{1}{8}.
 \]</span></p>
 </div>
@@ -1703,11 +1703,11 @@ f(x) \ge 0
 \]</span></p>
 <p>and</p>
 <p><span class="math display">\[
-\int_{-\infty}^{\infty} f(x),dx = 1.
+\int_{-\infty}^{\infty} f(x)dx = 1.
 \]</span></p>
 <p>The PDF itself does not give probabilities directly. Instead, probabilities are obtained by integrating the density over an interval:</p>
 <p><span class="math display">\[
-P(a \le X \le b) = \int_a^b f(x),dx.
+P(a \le X \le b) = \int_a^b f(x)dx.
 \]</span></p>
 <p>Thus, probability corresponds to <strong>area under the density curve</strong>. Regions where the density is high correspond to values of <span class="math inline">\(X\)</span> that are more likely to occur.</p>
 </div>
@@ -1719,7 +1719,7 @@ F(x) = P(X \le x).
 \]</span></p>
 <p>It gives the total probability accumulated up to the point <span class="math inline">\(x\)</span>. For a continuous random variable, the CDF can be written in terms of the PDF:</p>
 <p><span class="math display">\[
-F(x) = \int_{-\infty}^{x} f(t),dt.
+F(x) = \int_{-\infty}^{x} f(t)dt.
 \]</span></p>
 <p>The CDF has several important properties:</p>
 <ul>
@@ -1866,7 +1866,7 @@ P(-1 \le X \le 1).
 P(X = x) = 0
 \]</span></p>
 <p><span class="math display">\[
-P(a \le X \le b) = \int_a^b f(x),dx = F(b) - F(a).
+P(a \le X \le b) = \int_a^b f(x)dx = F(b) - F(a).
 \]</span></p>
 <p>This framework—probability as accumulated area—will guide everything that follows when we study specific continuous distributions.</p>
 <hr />
@@ -2612,7 +2612,7 @@ E[X] = \sum_x x P(X=x).
 \]</span></p>
 <p>For a continuous random variable with density <span class="math inline">\(f(x)\)</span>,</p>
 <p><span class="math display">\[
-E[X] = \int_{-\infty}^{\infty} x f(x),dx.
+E[X] = \int_{-\infty}^{\infty} x f(x)dx.
 \]</span></p>
 <p>Both formulas express the same idea: the mean is a <strong>probability-weighted average</strong> of all possible values the random variable can take.</p>
 <hr />
@@ -2984,7 +2984,7 @@ E[X \mid Y=y] = \sum_x x  P(X=x \mid Y=y).
 <h3><span class="header-section-number">5.13.2</span> Continuous Case<a href="introduction-to-probability.html#continuous-case" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are continuous with conditional density <span class="math inline">\(f_{X \mid Y}(x \mid y)\)</span>, then</p>
 <p><span class="math display">\[
-E[X \mid Y=y] = \int x  f_{X \mid Y}(x \mid y), dx.
+E[X \mid Y=y] = \int x  f_{X \mid Y}(x \mid y) dx.
 \]</span></p>
 <p>Again, this is just the mean of the conditional distribution.</p>
 <hr />
@@ -3028,7 +3028,7 @@ E[X \mid Y=0] = 5, \quad E[X \mid Y=1] = 10.
 <p><span class="math display">\[
 E[X \mid Y] =
 \begin{cases}
-5 &amp; \text{if } Y=0, \
+5  &amp; \text{if } Y=0, \\
 10 &amp; \text{if } Y=1.
 \end{cases}
 \]</span></p>
@@ -3119,7 +3119,7 @@ E[X] = \sum_y E[X \mid Y=y]  P(Y=y).
 <h4><span class="header-section-number">5.13.8.2</span> Continuous Version<a href="introduction-to-probability.html#continuous-version" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>If <span class="math inline">\(Y\)</span> has density <span class="math inline">\(f_Y(y)\)</span>, then</p>
 <p><span class="math display">\[
-E[X] = \int E[X \mid Y=y]  f_Y(y), dy.
+E[X] = \int E[X \mid Y=y]  f_Y(y) dy.
 \]</span></p>
 <p>Same structure: compute conditional expectations first, then average over the distribution of <span class="math inline">\(Y\)</span>.</p>
 <hr />

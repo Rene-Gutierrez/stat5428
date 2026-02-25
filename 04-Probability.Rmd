@@ -1056,9 +1056,9 @@ table(sims)/length(sims)
 
 The empirical probabilities should be close to:
 $$
-P(X=0)=\tfrac{1}{8},;
-P(X=1)=\tfrac{3}{8},;
-P(X=2)=\tfrac{3}{8},;
+P(X=0)=\tfrac{1}{8}; \quad
+P(X=1)=\tfrac{3}{8}; \quad
+P(X=2)=\tfrac{3}{8}; \quad
 P(X=3)=\tfrac{1}{8}.
 $$
 
@@ -1416,13 +1416,13 @@ $$
 and
 
 $$
-\int_{-\infty}^{\infty} f(x),dx = 1.
+\int_{-\infty}^{\infty} f(x)dx = 1.
 $$
 
 The PDF itself does not give probabilities directly. Instead, probabilities are obtained by integrating the density over an interval:
 
 $$
-P(a \le X \le b) = \int_a^b f(x),dx.
+P(a \le X \le b) = \int_a^b f(x)dx.
 $$
 
 Thus, probability corresponds to **area under the density curve**. Regions where the density is high correspond to values of $X$ that are more likely to occur.
@@ -1438,7 +1438,7 @@ $$
 It gives the total probability accumulated up to the point $x$. For a continuous random variable, the CDF can be written in terms of the PDF:
 
 $$
-F(x) = \int_{-\infty}^{x} f(t),dt.
+F(x) = \int_{-\infty}^{x} f(t)dt.
 $$
 
 The CDF has several important properties:
@@ -1613,7 +1613,7 @@ P(X = x) = 0
 $$
 
 $$
-P(a \le X \le b) = \int_a^b f(x),dx = F(b) - F(a).
+P(a \le X \le b) = \int_a^b f(x)dx = F(b) - F(a).
 $$
 
 This framework—probability as accumulated area—will guide everything that follows when we study specific continuous distributions.
@@ -2511,7 +2511,7 @@ $$
 For a continuous random variable with density $f(x)$,
 
 $$
-E[X] = \int_{-\infty}^{\infty} x f(x),dx.
+E[X] = \int_{-\infty}^{\infty} x f(x)dx.
 $$
 
 Both formulas express the same idea: the mean is a **probability-weighted average** of all possible values the random variable can take.
@@ -2946,7 +2946,7 @@ For a random variable $Y$, the conditional expectation $E[X \mid Y]$ is itself a
 If $X$ and $Y$ are continuous with conditional density $f_{X \mid Y}(x \mid y)$, then
 
 $$
-E[X \mid Y=y] = \int x  f_{X \mid Y}(x \mid y), dx.
+E[X \mid Y=y] = \int x  f_{X \mid Y}(x \mid y) dx.
 $$
 
 Again, this is just the mean of the conditional distribution.
@@ -3000,7 +3000,7 @@ So
 $$
 E[X \mid Y] =
 \begin{cases}
-5 & \text{if } Y=0, \
+5  & \text{if } Y=0, \\
 10 & \text{if } Y=1.
 \end{cases}
 $$
@@ -3109,7 +3109,7 @@ This formula says:
 If $Y$ has density $f_Y(y)$, then
 
 $$
-E[X] = \int E[X \mid Y=y]  f_Y(y), dy.
+E[X] = \int E[X \mid Y=y]  f_Y(y) dy.
 $$
 
 Same structure: compute conditional expectations first, then average over the distribution of $Y$.
