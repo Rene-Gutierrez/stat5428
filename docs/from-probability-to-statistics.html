@@ -669,6 +669,194 @@ Statistics are random variables.</p>
 </div>
 <div id="example-random-sample-as-simple-random-sampling" class="section level2 hasAnchor" number="6.7">
 <h2><span class="header-section-number">6.7</span> Example: Random Sample as Simple Random Sampling<a href="from-probability-to-statistics.html#example-random-sample-as-simple-random-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s illustrate the comparison between Simple Random Sampling and a Random Sample with an example about adult males heights. We have a data set of an imaginary country with race information.</p>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="from-probability-to-statistics.html#cb378-1" tabindex="-1"></a><span class="co"># Set seed</span></span>
+<span id="cb378-2"><a href="from-probability-to-statistics.html#cb378-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb378-3"><a href="from-probability-to-statistics.html#cb378-3" tabindex="-1"></a><span class="co"># Generation the Population</span></span>
+<span id="cb378-4"><a href="from-probability-to-statistics.html#cb378-4" tabindex="-1"></a><span class="co"># Population</span></span>
+<span id="cb378-5"><a href="from-probability-to-statistics.html#cb378-5" tabindex="-1"></a>pop    <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
+<span id="cb378-6"><a href="from-probability-to-statistics.html#cb378-6" tabindex="-1"></a><span class="co"># Races</span></span>
+<span id="cb378-7"><a href="from-probability-to-statistics.html#cb378-7" tabindex="-1"></a>racNam <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;white&quot;</span>,</span>
+<span id="cb378-8"><a href="from-probability-to-statistics.html#cb378-8" tabindex="-1"></a>            <span class="st">&quot;hispanic&quot;</span>,</span>
+<span id="cb378-9"><a href="from-probability-to-statistics.html#cb378-9" tabindex="-1"></a>            <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb378-10"><a href="from-probability-to-statistics.html#cb378-10" tabindex="-1"></a>            <span class="st">&quot;asian&quot;</span>)</span>
+<span id="cb378-11"><a href="from-probability-to-statistics.html#cb378-11" tabindex="-1"></a><span class="co"># Height Data by Race</span></span>
+<span id="cb378-12"><a href="from-probability-to-statistics.html#cb378-12" tabindex="-1"></a>heiRacMea <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">71</span>, <span class="dv">67</span>, <span class="dv">70</span>, <span class="dv">66</span>)</span>
+<span id="cb378-13"><a href="from-probability-to-statistics.html#cb378-13" tabindex="-1"></a>heiRacSd  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.5</span>, <span class="fl">3.2</span>, <span class="fl">3.4</span>, <span class="fl">3.1</span>)</span>
+<span id="cb378-14"><a href="from-probability-to-statistics.html#cb378-14" tabindex="-1"></a><span class="co"># Race Sampling</span></span>
+<span id="cb378-15"><a href="from-probability-to-statistics.html#cb378-15" tabindex="-1"></a>rac <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> racNam,</span>
+<span id="cb378-16"><a href="from-probability-to-statistics.html#cb378-16" tabindex="-1"></a>              <span class="at">size    =</span> pop, </span>
+<span id="cb378-17"><a href="from-probability-to-statistics.html#cb378-17" tabindex="-1"></a>              <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb378-18"><a href="from-probability-to-statistics.html#cb378-18" tabindex="-1"></a>              <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.50</span>, <span class="fl">0.30</span>, <span class="fl">0.15</span>, <span class="fl">0.05</span>))</span>
+<span id="cb378-19"><a href="from-probability-to-statistics.html#cb378-19" tabindex="-1"></a><span class="co"># Number of Peoble by Race</span></span>
+<span id="cb378-20"><a href="from-probability-to-statistics.html#cb378-20" tabindex="-1"></a>numPeoRac <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">sum</span>(rac <span class="sc">==</span> <span class="st">&quot;white&quot;</span>),</span>
+<span id="cb378-21"><a href="from-probability-to-statistics.html#cb378-21" tabindex="-1"></a>               <span class="fu">sum</span>(rac <span class="sc">==</span> <span class="st">&quot;hispanic&quot;</span>),</span>
+<span id="cb378-22"><a href="from-probability-to-statistics.html#cb378-22" tabindex="-1"></a>               <span class="fu">sum</span>(rac <span class="sc">==</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb378-23"><a href="from-probability-to-statistics.html#cb378-23" tabindex="-1"></a>               <span class="fu">sum</span>(rac <span class="sc">==</span> <span class="st">&quot;asian&quot;</span>))</span>
+<span id="cb378-24"><a href="from-probability-to-statistics.html#cb378-24" tabindex="-1"></a></span>
+<span id="cb378-25"><a href="from-probability-to-statistics.html#cb378-25" tabindex="-1"></a><span class="co"># Height Sampling</span></span>
+<span id="cb378-26"><a href="from-probability-to-statistics.html#cb378-26" tabindex="-1"></a>hei <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="at">length =</span> pop)</span>
+<span id="cb378-27"><a href="from-probability-to-statistics.html#cb378-27" tabindex="-1"></a>hei[rac <span class="sc">==</span> <span class="st">&quot;white&quot;</span>]    <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> numPeoRac[<span class="dv">1</span>], <span class="at">mean =</span> heiRacMea[<span class="dv">1</span>], <span class="at">sd =</span> heiRacSd[<span class="dv">1</span>]))</span>
+<span id="cb378-28"><a href="from-probability-to-statistics.html#cb378-28" tabindex="-1"></a>hei[rac <span class="sc">==</span> <span class="st">&quot;hispanic&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> numPeoRac[<span class="dv">2</span>], <span class="at">mean =</span> heiRacMea[<span class="dv">2</span>], <span class="at">sd =</span> heiRacSd[<span class="dv">2</span>]))</span>
+<span id="cb378-29"><a href="from-probability-to-statistics.html#cb378-29" tabindex="-1"></a>hei[rac <span class="sc">==</span> <span class="st">&quot;black&quot;</span>]    <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> numPeoRac[<span class="dv">3</span>], <span class="at">mean =</span> heiRacMea[<span class="dv">3</span>], <span class="at">sd =</span> heiRacSd[<span class="dv">3</span>]))</span>
+<span id="cb378-30"><a href="from-probability-to-statistics.html#cb378-30" tabindex="-1"></a>hei[rac <span class="sc">==</span> <span class="st">&quot;asian&quot;</span>]    <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> numPeoRac[<span class="dv">4</span>], <span class="at">mean =</span> heiRacMea[<span class="dv">4</span>], <span class="at">sd =</span> heiRacSd[<span class="dv">4</span>]))</span>
+<span id="cb378-31"><a href="from-probability-to-statistics.html#cb378-31" tabindex="-1"></a></span>
+<span id="cb378-32"><a href="from-probability-to-statistics.html#cb378-32" tabindex="-1"></a><span class="co"># Plot Race</span></span>
+<span id="cb378-33"><a href="from-probability-to-statistics.html#cb378-33" tabindex="-1"></a><span class="fu">barplot</span>(numPeoRac,</span>
+<span id="cb378-34"><a href="from-probability-to-statistics.html#cb378-34" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Actual Race Distribution&quot;</span>)</span>
+<span id="cb378-35"><a href="from-probability-to-statistics.html#cb378-35" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">labels =</span> racNam)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-random-samplin-and-simple-random-sample-1.png" width="672" /></p>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="from-probability-to-statistics.html#cb379-1" tabindex="-1"></a><span class="co"># Height Population Distribution</span></span>
+<span id="cb379-2"><a href="from-probability-to-statistics.html#cb379-2" tabindex="-1"></a>heiDisPop <span class="ot">&lt;-</span> <span class="fu">hist</span>(hei,</span>
+<span id="cb379-3"><a href="from-probability-to-statistics.html#cb379-3" tabindex="-1"></a>                  <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb379-4"><a href="from-probability-to-statistics.html#cb379-4" tabindex="-1"></a>                  <span class="at">main =</span> <span class="st">&quot;Actual Height Population Distribution&quot;</span>,</span>
+<span id="cb379-5"><a href="from-probability-to-statistics.html#cb379-5" tabindex="-1"></a>                  <span class="at">xlab =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb379-6"><a href="from-probability-to-statistics.html#cb379-6" tabindex="-1"></a>                  <span class="at">freq =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-random-samplin-and-simple-random-sample-2.png" width="672" /></p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="from-probability-to-statistics.html#cb380-1" tabindex="-1"></a><span class="co"># Simple Random Sampling</span></span>
+<span id="cb380-2"><a href="from-probability-to-statistics.html#cb380-2" tabindex="-1"></a>samSiz    <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb380-3"><a href="from-probability-to-statistics.html#cb380-3" tabindex="-1"></a>simRanSam <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> hei, <span class="at">size =</span> samSiz, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb380-4"><a href="from-probability-to-statistics.html#cb380-4" tabindex="-1"></a></span>
+<span id="cb380-5"><a href="from-probability-to-statistics.html#cb380-5" tabindex="-1"></a><span class="co"># Histogram Sample</span></span>
+<span id="cb380-6"><a href="from-probability-to-statistics.html#cb380-6" tabindex="-1"></a>heiDisSimRanSam <span class="ot">&lt;-</span> <span class="fu">hist</span>(simRanSam,</span>
+<span id="cb380-7"><a href="from-probability-to-statistics.html#cb380-7" tabindex="-1"></a>                        <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb380-8"><a href="from-probability-to-statistics.html#cb380-8" tabindex="-1"></a>                        <span class="at">main =</span> <span class="st">&quot;Simple Random Sampling Distribution&quot;</span>,</span>
+<span id="cb380-9"><a href="from-probability-to-statistics.html#cb380-9" tabindex="-1"></a>                        <span class="at">xlab =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb380-10"><a href="from-probability-to-statistics.html#cb380-10" tabindex="-1"></a>                        <span class="at">freq =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-random-samplin-and-simple-random-sample-3.png" width="672" /></p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="from-probability-to-statistics.html#cb381-1" tabindex="-1"></a><span class="co"># Comparison</span></span>
+<span id="cb381-2"><a href="from-probability-to-statistics.html#cb381-2" tabindex="-1"></a>xmin <span class="ot">&lt;-</span> <span class="fu">min</span>(heiDisPop<span class="sc">$</span>breaks, heiDisSimRanSam<span class="sc">$</span>breaks)</span>
+<span id="cb381-3"><a href="from-probability-to-statistics.html#cb381-3" tabindex="-1"></a>xmax <span class="ot">&lt;-</span> <span class="fu">max</span>(heiDisPop<span class="sc">$</span>breaks, heiDisSimRanSam<span class="sc">$</span>breaks)</span>
+<span id="cb381-4"><a href="from-probability-to-statistics.html#cb381-4" tabindex="-1"></a>ymin <span class="ot">&lt;-</span> <span class="fu">min</span>(heiDisPop<span class="sc">$</span>density, heiDisSimRanSam<span class="sc">$</span>density)</span>
+<span id="cb381-5"><a href="from-probability-to-statistics.html#cb381-5" tabindex="-1"></a>ymax <span class="ot">&lt;-</span> <span class="fu">max</span>(heiDisPop<span class="sc">$</span>density, heiDisSimRanSam<span class="sc">$</span>density)</span>
+<span id="cb381-6"><a href="from-probability-to-statistics.html#cb381-6" tabindex="-1"></a></span>
+<span id="cb381-7"><a href="from-probability-to-statistics.html#cb381-7" tabindex="-1"></a><span class="fu">plot</span>(heiDisPop,</span>
+<span id="cb381-8"><a href="from-probability-to-statistics.html#cb381-8" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb381-9"><a href="from-probability-to-statistics.html#cb381-9" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distributions&quot;</span>,</span>
+<span id="cb381-10"><a href="from-probability-to-statistics.html#cb381-10" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb381-11"><a href="from-probability-to-statistics.html#cb381-11" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb381-12"><a href="from-probability-to-statistics.html#cb381-12" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb381-13"><a href="from-probability-to-statistics.html#cb381-13" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb381-14"><a href="from-probability-to-statistics.html#cb381-14" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span>
+<span id="cb381-15"><a href="from-probability-to-statistics.html#cb381-15" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
+<span id="cb381-16"><a href="from-probability-to-statistics.html#cb381-16" tabindex="-1"></a><span class="fu">plot</span>(heiDisSimRanSam,</span>
+<span id="cb381-17"><a href="from-probability-to-statistics.html#cb381-17" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb381-18"><a href="from-probability-to-statistics.html#cb381-18" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distributions&quot;</span>,</span>
+<span id="cb381-19"><a href="from-probability-to-statistics.html#cb381-19" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb381-20"><a href="from-probability-to-statistics.html#cb381-20" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb381-21"><a href="from-probability-to-statistics.html#cb381-21" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>),</span>
+<span id="cb381-22"><a href="from-probability-to-statistics.html#cb381-22" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb381-23"><a href="from-probability-to-statistics.html#cb381-23" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-random-samplin-and-simple-random-sample-4.png" width="672" /></p>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="from-probability-to-statistics.html#cb382-1" tabindex="-1"></a><span class="co"># Random Sample (from a Theoretical Probability Distribution)</span></span>
+<span id="cb382-2"><a href="from-probability-to-statistics.html#cb382-2" tabindex="-1"></a>meaPop <span class="ot">&lt;-</span> <span class="fu">mean</span>(hei)</span>
+<span id="cb382-3"><a href="from-probability-to-statistics.html#cb382-3" tabindex="-1"></a>stdPop <span class="ot">&lt;-</span> <span class="fu">sd</span>(hei)</span>
+<span id="cb382-4"><a href="from-probability-to-statistics.html#cb382-4" tabindex="-1"></a>ranSam <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> samSiz, <span class="at">mean =</span> meaPop, <span class="at">sd =</span> stdPop)</span>
+<span id="cb382-5"><a href="from-probability-to-statistics.html#cb382-5" tabindex="-1"></a></span>
+<span id="cb382-6"><a href="from-probability-to-statistics.html#cb382-6" tabindex="-1"></a><span class="co"># Histogram Random Sample</span></span>
+<span id="cb382-7"><a href="from-probability-to-statistics.html#cb382-7" tabindex="-1"></a>heiDisRanSam <span class="ot">&lt;-</span> <span class="fu">hist</span>(ranSam,</span>
+<span id="cb382-8"><a href="from-probability-to-statistics.html#cb382-8" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb382-9"><a href="from-probability-to-statistics.html#cb382-9" tabindex="-1"></a>                     <span class="at">main =</span> <span class="st">&quot;Random Sample Distribution&quot;</span>,</span>
+<span id="cb382-10"><a href="from-probability-to-statistics.html#cb382-10" tabindex="-1"></a>                     <span class="at">xlab =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb382-11"><a href="from-probability-to-statistics.html#cb382-11" tabindex="-1"></a>                     <span class="at">freq =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-random-samplin-and-simple-random-sample-5.png" width="672" /></p>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="from-probability-to-statistics.html#cb383-1" tabindex="-1"></a><span class="co"># Comparison</span></span>
+<span id="cb383-2"><a href="from-probability-to-statistics.html#cb383-2" tabindex="-1"></a>xmin <span class="ot">&lt;-</span> <span class="fu">min</span>(heiDisPop<span class="sc">$</span>breaks, heiDisSimRanSam<span class="sc">$</span>breaks, heiDisRanSam<span class="sc">$</span>breaks)</span>
+<span id="cb383-3"><a href="from-probability-to-statistics.html#cb383-3" tabindex="-1"></a>xmax <span class="ot">&lt;-</span> <span class="fu">max</span>(heiDisPop<span class="sc">$</span>breaks, heiDisSimRanSam<span class="sc">$</span>breaks, heiDisRanSam<span class="sc">$</span>breaks)</span>
+<span id="cb383-4"><a href="from-probability-to-statistics.html#cb383-4" tabindex="-1"></a>ymin <span class="ot">&lt;-</span> <span class="fu">min</span>(heiDisPop<span class="sc">$</span>density, heiDisSimRanSam<span class="sc">$</span>density, heiDisRanSam<span class="sc">$</span>density)</span>
+<span id="cb383-5"><a href="from-probability-to-statistics.html#cb383-5" tabindex="-1"></a>ymax <span class="ot">&lt;-</span> <span class="fu">max</span>(heiDisPop<span class="sc">$</span>density, heiDisSimRanSam<span class="sc">$</span>density, heiDisRanSam<span class="sc">$</span>density)</span>
+<span id="cb383-6"><a href="from-probability-to-statistics.html#cb383-6" tabindex="-1"></a></span>
+<span id="cb383-7"><a href="from-probability-to-statistics.html#cb383-7" tabindex="-1"></a><span class="fu">plot</span>(heiDisPop,</span>
+<span id="cb383-8"><a href="from-probability-to-statistics.html#cb383-8" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb383-9"><a href="from-probability-to-statistics.html#cb383-9" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distributions&quot;</span>,</span>
+<span id="cb383-10"><a href="from-probability-to-statistics.html#cb383-10" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb383-11"><a href="from-probability-to-statistics.html#cb383-11" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb383-12"><a href="from-probability-to-statistics.html#cb383-12" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb383-13"><a href="from-probability-to-statistics.html#cb383-13" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb383-14"><a href="from-probability-to-statistics.html#cb383-14" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span>
+<span id="cb383-15"><a href="from-probability-to-statistics.html#cb383-15" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
+<span id="cb383-16"><a href="from-probability-to-statistics.html#cb383-16" tabindex="-1"></a><span class="fu">plot</span>(heiDisRanSam,</span>
+<span id="cb383-17"><a href="from-probability-to-statistics.html#cb383-17" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb383-18"><a href="from-probability-to-statistics.html#cb383-18" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distributions&quot;</span>,</span>
+<span id="cb383-19"><a href="from-probability-to-statistics.html#cb383-19" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb383-20"><a href="from-probability-to-statistics.html#cb383-20" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb383-21"><a href="from-probability-to-statistics.html#cb383-21" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb383-22"><a href="from-probability-to-statistics.html#cb383-22" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb383-23"><a href="from-probability-to-statistics.html#cb383-23" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-random-samplin-and-simple-random-sample-6.png" width="672" /></p>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="from-probability-to-statistics.html#cb384-1" tabindex="-1"></a><span class="co"># Biased Sample</span></span>
+<span id="cb384-2"><a href="from-probability-to-statistics.html#cb384-2" tabindex="-1"></a>biaSam <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> hei[rac <span class="sc">==</span> <span class="st">&quot;asian&quot;</span>], <span class="at">size =</span> samSiz, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb384-3"><a href="from-probability-to-statistics.html#cb384-3" tabindex="-1"></a></span>
+<span id="cb384-4"><a href="from-probability-to-statistics.html#cb384-4" tabindex="-1"></a><span class="co"># Histogram Biased Sample</span></span>
+<span id="cb384-5"><a href="from-probability-to-statistics.html#cb384-5" tabindex="-1"></a>heiDisBiaSam <span class="ot">&lt;-</span> <span class="fu">hist</span>(biaSam,</span>
+<span id="cb384-6"><a href="from-probability-to-statistics.html#cb384-6" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb384-7"><a href="from-probability-to-statistics.html#cb384-7" tabindex="-1"></a>                     <span class="at">main =</span> <span class="st">&quot;Biased Sample Distribution&quot;</span>,</span>
+<span id="cb384-8"><a href="from-probability-to-statistics.html#cb384-8" tabindex="-1"></a>                     <span class="at">xlab =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb384-9"><a href="from-probability-to-statistics.html#cb384-9" tabindex="-1"></a>                     <span class="at">freq =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-random-samplin-and-simple-random-sample-7.png" width="672" /></p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="from-probability-to-statistics.html#cb385-1" tabindex="-1"></a><span class="co"># Comparison</span></span>
+<span id="cb385-2"><a href="from-probability-to-statistics.html#cb385-2" tabindex="-1"></a>xmin <span class="ot">&lt;-</span> <span class="fu">min</span>(heiDisPop<span class="sc">$</span>breaks, heiDisSimRanSam<span class="sc">$</span>breaks, heiDisRanSam<span class="sc">$</span>breaks, heiDisBiaSam<span class="sc">$</span>breaks)</span>
+<span id="cb385-3"><a href="from-probability-to-statistics.html#cb385-3" tabindex="-1"></a>xmax <span class="ot">&lt;-</span> <span class="fu">max</span>(heiDisPop<span class="sc">$</span>breaks, heiDisSimRanSam<span class="sc">$</span>breaks, heiDisRanSam<span class="sc">$</span>breaks, heiDisBiaSam<span class="sc">$</span>breaks)</span>
+<span id="cb385-4"><a href="from-probability-to-statistics.html#cb385-4" tabindex="-1"></a>ymin <span class="ot">&lt;-</span> <span class="fu">min</span>(heiDisPop<span class="sc">$</span>density, heiDisSimRanSam<span class="sc">$</span>density, heiDisRanSam<span class="sc">$</span>density, heiDisBiaSam<span class="sc">$</span>density)</span>
+<span id="cb385-5"><a href="from-probability-to-statistics.html#cb385-5" tabindex="-1"></a>ymax <span class="ot">&lt;-</span> <span class="fu">max</span>(heiDisPop<span class="sc">$</span>density, heiDisSimRanSam<span class="sc">$</span>density, heiDisRanSam<span class="sc">$</span>density, heiDisBiaSam<span class="sc">$</span>density)</span>
+<span id="cb385-6"><a href="from-probability-to-statistics.html#cb385-6" tabindex="-1"></a></span>
+<span id="cb385-7"><a href="from-probability-to-statistics.html#cb385-7" tabindex="-1"></a><span class="co"># Biased Sample and Population</span></span>
+<span id="cb385-8"><a href="from-probability-to-statistics.html#cb385-8" tabindex="-1"></a><span class="fu">plot</span>(heiDisPop,</span>
+<span id="cb385-9"><a href="from-probability-to-statistics.html#cb385-9" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb385-10"><a href="from-probability-to-statistics.html#cb385-10" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distributions (Population and Biased Sample)&quot;</span>,</span>
+<span id="cb385-11"><a href="from-probability-to-statistics.html#cb385-11" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb385-12"><a href="from-probability-to-statistics.html#cb385-12" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb385-13"><a href="from-probability-to-statistics.html#cb385-13" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb385-14"><a href="from-probability-to-statistics.html#cb385-14" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb385-15"><a href="from-probability-to-statistics.html#cb385-15" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span>
+<span id="cb385-16"><a href="from-probability-to-statistics.html#cb385-16" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
+<span id="cb385-17"><a href="from-probability-to-statistics.html#cb385-17" tabindex="-1"></a><span class="fu">plot</span>(heiDisBiaSam,</span>
+<span id="cb385-18"><a href="from-probability-to-statistics.html#cb385-18" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb385-19"><a href="from-probability-to-statistics.html#cb385-19" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb385-20"><a href="from-probability-to-statistics.html#cb385-20" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb385-21"><a href="from-probability-to-statistics.html#cb385-21" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb385-22"><a href="from-probability-to-statistics.html#cb385-22" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>),</span>
+<span id="cb385-23"><a href="from-probability-to-statistics.html#cb385-23" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb385-24"><a href="from-probability-to-statistics.html#cb385-24" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-random-samplin-and-simple-random-sample-8.png" width="672" /></p>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="from-probability-to-statistics.html#cb386-1" tabindex="-1"></a><span class="co"># Biased Sample and Simple Random Sample</span></span>
+<span id="cb386-2"><a href="from-probability-to-statistics.html#cb386-2" tabindex="-1"></a><span class="fu">plot</span>(heiDisSimRanSam,</span>
+<span id="cb386-3"><a href="from-probability-to-statistics.html#cb386-3" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb386-4"><a href="from-probability-to-statistics.html#cb386-4" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distributions (SRS and Biased Sample)&quot;</span>,</span>
+<span id="cb386-5"><a href="from-probability-to-statistics.html#cb386-5" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb386-6"><a href="from-probability-to-statistics.html#cb386-6" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb386-7"><a href="from-probability-to-statistics.html#cb386-7" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>),</span>
+<span id="cb386-8"><a href="from-probability-to-statistics.html#cb386-8" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb386-9"><a href="from-probability-to-statistics.html#cb386-9" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span>
+<span id="cb386-10"><a href="from-probability-to-statistics.html#cb386-10" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
+<span id="cb386-11"><a href="from-probability-to-statistics.html#cb386-11" tabindex="-1"></a><span class="fu">plot</span>(heiDisBiaSam,</span>
+<span id="cb386-12"><a href="from-probability-to-statistics.html#cb386-12" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb386-13"><a href="from-probability-to-statistics.html#cb386-13" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb386-14"><a href="from-probability-to-statistics.html#cb386-14" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb386-15"><a href="from-probability-to-statistics.html#cb386-15" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb386-16"><a href="from-probability-to-statistics.html#cb386-16" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>),</span>
+<span id="cb386-17"><a href="from-probability-to-statistics.html#cb386-17" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb386-18"><a href="from-probability-to-statistics.html#cb386-18" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-random-samplin-and-simple-random-sample-9.png" width="672" /></p>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="from-probability-to-statistics.html#cb387-1" tabindex="-1"></a><span class="co"># Biased Sample and Simple Random Sample</span></span>
+<span id="cb387-2"><a href="from-probability-to-statistics.html#cb387-2" tabindex="-1"></a><span class="fu">plot</span>(heiDisRanSam,</span>
+<span id="cb387-3"><a href="from-probability-to-statistics.html#cb387-3" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb387-4"><a href="from-probability-to-statistics.html#cb387-4" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distributions (Random Sample and Biased Sample)&quot;</span>,</span>
+<span id="cb387-5"><a href="from-probability-to-statistics.html#cb387-5" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb387-6"><a href="from-probability-to-statistics.html#cb387-6" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb387-7"><a href="from-probability-to-statistics.html#cb387-7" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb387-8"><a href="from-probability-to-statistics.html#cb387-8" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb387-9"><a href="from-probability-to-statistics.html#cb387-9" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span>
+<span id="cb387-10"><a href="from-probability-to-statistics.html#cb387-10" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
+<span id="cb387-11"><a href="from-probability-to-statistics.html#cb387-11" tabindex="-1"></a><span class="fu">plot</span>(heiDisBiaSam,</span>
+<span id="cb387-12"><a href="from-probability-to-statistics.html#cb387-12" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb387-13"><a href="from-probability-to-statistics.html#cb387-13" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb387-14"><a href="from-probability-to-statistics.html#cb387-14" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;&quot;</span>, </span>
+<span id="cb387-15"><a href="from-probability-to-statistics.html#cb387-15" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb387-16"><a href="from-probability-to-statistics.html#cb387-16" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>),</span>
+<span id="cb387-17"><a href="from-probability-to-statistics.html#cb387-17" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb387-18"><a href="from-probability-to-statistics.html#cb387-18" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-random-samplin-and-simple-random-sample-10.png" width="672" /></p>
 </div>
 <div id="sampling-distribution-of-a-mean" class="section level2 hasAnchor" number="6.8">
 <h2><span class="header-section-number">6.8</span> Sampling Distribution of a Mean<a href="from-probability-to-statistics.html#sampling-distribution-of-a-mean" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -684,7 +872,7 @@ E[X_i] = \mu, \quad \mathbb{V}(X_i) = \sigma^2.
 <div id="fundamental-properties" class="section level3 hasAnchor" number="6.8.1">
 <h3><span class="header-section-number">6.8.1</span> Fundamental Properties<a href="from-probability-to-statistics.html#fundamental-properties" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[
-E[\bar{X}] = \mu
+\mathbb{E}[\bar{X}] = \mu
 \]</span></p>
 <p><span class="math display">\[
 \mathbb{V}(\bar{X}) = \frac{\sigma^2}{n}
@@ -698,25 +886,25 @@ E[\bar{X}] = \mu
 </div>
 <div id="small-vs-large-sample-size" class="section level3 hasAnchor" number="6.8.2">
 <h3><span class="header-section-number">6.8.2</span> Small vs Large Sample Size<a href="from-probability-to-statistics.html#small-vs-large-sample-size" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="from-probability-to-statistics.html#cb378-1" tabindex="-1"></a>means_small <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">5</span>)))</span>
-<span id="cb378-2"><a href="from-probability-to-statistics.html#cb378-2" tabindex="-1"></a>means_large <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">50</span>)))</span>
-<span id="cb378-3"><a href="from-probability-to-statistics.html#cb378-3" tabindex="-1"></a></span>
-<span id="cb378-4"><a href="from-probability-to-statistics.html#cb378-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb378-5"><a href="from-probability-to-statistics.html#cb378-5" tabindex="-1"></a><span class="fu">hist</span>(means_small, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;n=5&quot;</span>)</span>
-<span id="cb378-6"><a href="from-probability-to-statistics.html#cb378-6" tabindex="-1"></a><span class="fu">hist</span>(means_large, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;n=50&quot;</span>)</span>
-<span id="cb378-7"><a href="from-probability-to-statistics.html#cb378-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="from-probability-to-statistics.html#cb388-1" tabindex="-1"></a>means_small <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">5</span>)))</span>
+<span id="cb388-2"><a href="from-probability-to-statistics.html#cb388-2" tabindex="-1"></a>means_large <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">50</span>)))</span>
+<span id="cb388-3"><a href="from-probability-to-statistics.html#cb388-3" tabindex="-1"></a></span>
+<span id="cb388-4"><a href="from-probability-to-statistics.html#cb388-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb388-5"><a href="from-probability-to-statistics.html#cb388-5" tabindex="-1"></a><span class="fu">hist</span>(means_small, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;n=5&quot;</span>)</span>
+<span id="cb388-6"><a href="from-probability-to-statistics.html#cb388-6" tabindex="-1"></a><span class="fu">hist</span>(means_large, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;n=50&quot;</span>)</span>
+<span id="cb388-7"><a href="from-probability-to-statistics.html#cb388-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
 <p>Larger samples → smaller variance.</p>
 <hr />
 </div>
 <div id="big-vs-small-variance" class="section level3 hasAnchor" number="6.8.3">
 <h3><span class="header-section-number">6.8.3</span> Big vs Small Variance<a href="from-probability-to-statistics.html#big-vs-small-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="from-probability-to-statistics.html#cb379-1" tabindex="-1"></a>means1 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd=</span><span class="dv">1</span>)))</span>
-<span id="cb379-2"><a href="from-probability-to-statistics.html#cb379-2" tabindex="-1"></a>means2 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd=</span><span class="dv">5</span>)))</span>
-<span id="cb379-3"><a href="from-probability-to-statistics.html#cb379-3" tabindex="-1"></a></span>
-<span id="cb379-4"><a href="from-probability-to-statistics.html#cb379-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb379-5"><a href="from-probability-to-statistics.html#cb379-5" tabindex="-1"></a><span class="fu">hist</span>(means1, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;sd=1&quot;</span>)</span>
-<span id="cb379-6"><a href="from-probability-to-statistics.html#cb379-6" tabindex="-1"></a><span class="fu">hist</span>(means2, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;sd=5&quot;</span>)</span>
-<span id="cb379-7"><a href="from-probability-to-statistics.html#cb379-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="from-probability-to-statistics.html#cb389-1" tabindex="-1"></a>means1 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd=</span><span class="dv">1</span>)))</span>
+<span id="cb389-2"><a href="from-probability-to-statistics.html#cb389-2" tabindex="-1"></a>means2 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd=</span><span class="dv">5</span>)))</span>
+<span id="cb389-3"><a href="from-probability-to-statistics.html#cb389-3" tabindex="-1"></a></span>
+<span id="cb389-4"><a href="from-probability-to-statistics.html#cb389-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb389-5"><a href="from-probability-to-statistics.html#cb389-5" tabindex="-1"></a><span class="fu">hist</span>(means1, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;sd=1&quot;</span>)</span>
+<span id="cb389-6"><a href="from-probability-to-statistics.html#cb389-6" tabindex="-1"></a><span class="fu">hist</span>(means2, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;sd=5&quot;</span>)</span>
+<span id="cb389-7"><a href="from-probability-to-statistics.html#cb389-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
 <p>Larger population variance → wider sampling distribution.</p>
 <hr />
 </div>
@@ -734,20 +922,20 @@ E[\bar{X}] = \mu
 <hr />
 <div id="binomial-example" class="section level3 hasAnchor" number="6.9.1">
 <h3><span class="header-section-number">6.9.1</span> Binomial Example<a href="from-probability-to-statistics.html#binomial-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="from-probability-to-statistics.html#cb380-1" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">rbinom</span>(<span class="dv">20</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)))</span>
-<span id="cb380-2"><a href="from-probability-to-statistics.html#cb380-2" tabindex="-1"></a><span class="fu">hist</span>(means, <span class="at">probability=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="from-probability-to-statistics.html#cb390-1" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">rbinom</span>(<span class="dv">20</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)))</span>
+<span id="cb390-2"><a href="from-probability-to-statistics.html#cb390-2" tabindex="-1"></a><span class="fu">hist</span>(means, <span class="at">probability=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <hr />
 </div>
 <div id="poisson-example" class="section level3 hasAnchor" number="6.9.2">
 <h3><span class="header-section-number">6.9.2</span> Poisson Example<a href="from-probability-to-statistics.html#poisson-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="from-probability-to-statistics.html#cb381-1" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">rpois</span>(<span class="dv">20</span>,<span class="dv">3</span>)))</span>
-<span id="cb381-2"><a href="from-probability-to-statistics.html#cb381-2" tabindex="-1"></a><span class="fu">hist</span>(means, <span class="at">probability=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="from-probability-to-statistics.html#cb391-1" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">rpois</span>(<span class="dv">20</span>,<span class="dv">3</span>)))</span>
+<span id="cb391-2"><a href="from-probability-to-statistics.html#cb391-2" tabindex="-1"></a><span class="fu">hist</span>(means, <span class="at">probability=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <hr />
 </div>
 <div id="normal-example" class="section level3 hasAnchor" number="6.9.3">
 <h3><span class="header-section-number">6.9.3</span> Normal Example<a href="from-probability-to-statistics.html#normal-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="from-probability-to-statistics.html#cb382-1" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">1</span>)))</span>
-<span id="cb382-2"><a href="from-probability-to-statistics.html#cb382-2" tabindex="-1"></a><span class="fu">hist</span>(means, <span class="at">probability=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="from-probability-to-statistics.html#cb392-1" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">1</span>)))</span>
+<span id="cb392-2"><a href="from-probability-to-statistics.html#cb392-2" tabindex="-1"></a><span class="fu">hist</span>(means, <span class="at">probability=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <hr />
 </div>
 </div>
@@ -766,32 +954,32 @@ S^2 = \frac{1}{n-1}\sum (X_i-\bar{X})^2.
 <hr />
 <div id="small-vs-large-sample-size-1" class="section level3 hasAnchor" number="6.10.1">
 <h3><span class="header-section-number">6.10.1</span> Small vs Large Sample Size<a href="from-probability-to-statistics.html#small-vs-large-sample-size-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="from-probability-to-statistics.html#cb383-1" tabindex="-1"></a>vars_small <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">2000</span>, <span class="fu">var</span>(<span class="fu">rnorm</span>(<span class="dv">5</span>)))</span>
-<span id="cb383-2"><a href="from-probability-to-statistics.html#cb383-2" tabindex="-1"></a>vars_large <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">2000</span>, <span class="fu">var</span>(<span class="fu">rnorm</span>(<span class="dv">50</span>)))</span>
-<span id="cb383-3"><a href="from-probability-to-statistics.html#cb383-3" tabindex="-1"></a></span>
-<span id="cb383-4"><a href="from-probability-to-statistics.html#cb383-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb383-5"><a href="from-probability-to-statistics.html#cb383-5" tabindex="-1"></a><span class="fu">hist</span>(vars_small, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;n=5&quot;</span>)</span>
-<span id="cb383-6"><a href="from-probability-to-statistics.html#cb383-6" tabindex="-1"></a><span class="fu">hist</span>(vars_large, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;n=50&quot;</span>)</span>
-<span id="cb383-7"><a href="from-probability-to-statistics.html#cb383-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="from-probability-to-statistics.html#cb393-1" tabindex="-1"></a>vars_small <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">2000</span>, <span class="fu">var</span>(<span class="fu">rnorm</span>(<span class="dv">5</span>)))</span>
+<span id="cb393-2"><a href="from-probability-to-statistics.html#cb393-2" tabindex="-1"></a>vars_large <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">2000</span>, <span class="fu">var</span>(<span class="fu">rnorm</span>(<span class="dv">50</span>)))</span>
+<span id="cb393-3"><a href="from-probability-to-statistics.html#cb393-3" tabindex="-1"></a></span>
+<span id="cb393-4"><a href="from-probability-to-statistics.html#cb393-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb393-5"><a href="from-probability-to-statistics.html#cb393-5" tabindex="-1"></a><span class="fu">hist</span>(vars_small, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;n=5&quot;</span>)</span>
+<span id="cb393-6"><a href="from-probability-to-statistics.html#cb393-6" tabindex="-1"></a><span class="fu">hist</span>(vars_large, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;n=50&quot;</span>)</span>
+<span id="cb393-7"><a href="from-probability-to-statistics.html#cb393-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
 <hr />
 </div>
 <div id="big-vs-small-variance-1" class="section level3 hasAnchor" number="6.10.2">
 <h3><span class="header-section-number">6.10.2</span> Big vs Small Variance<a href="from-probability-to-statistics.html#big-vs-small-variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="from-probability-to-statistics.html#cb384-1" tabindex="-1"></a>vars1 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">2000</span>, <span class="fu">var</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd=</span><span class="dv">1</span>)))</span>
-<span id="cb384-2"><a href="from-probability-to-statistics.html#cb384-2" tabindex="-1"></a>vars2 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">2000</span>, <span class="fu">var</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd=</span><span class="dv">5</span>)))</span>
-<span id="cb384-3"><a href="from-probability-to-statistics.html#cb384-3" tabindex="-1"></a></span>
-<span id="cb384-4"><a href="from-probability-to-statistics.html#cb384-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb384-5"><a href="from-probability-to-statistics.html#cb384-5" tabindex="-1"></a><span class="fu">hist</span>(vars1, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;sd=1&quot;</span>)</span>
-<span id="cb384-6"><a href="from-probability-to-statistics.html#cb384-6" tabindex="-1"></a><span class="fu">hist</span>(vars2, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;sd=5&quot;</span>)</span>
-<span id="cb384-7"><a href="from-probability-to-statistics.html#cb384-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="from-probability-to-statistics.html#cb394-1" tabindex="-1"></a>vars1 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">2000</span>, <span class="fu">var</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd=</span><span class="dv">1</span>)))</span>
+<span id="cb394-2"><a href="from-probability-to-statistics.html#cb394-2" tabindex="-1"></a>vars2 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">2000</span>, <span class="fu">var</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd=</span><span class="dv">5</span>)))</span>
+<span id="cb394-3"><a href="from-probability-to-statistics.html#cb394-3" tabindex="-1"></a></span>
+<span id="cb394-4"><a href="from-probability-to-statistics.html#cb394-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb394-5"><a href="from-probability-to-statistics.html#cb394-5" tabindex="-1"></a><span class="fu">hist</span>(vars1, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;sd=1&quot;</span>)</span>
+<span id="cb394-6"><a href="from-probability-to-statistics.html#cb394-6" tabindex="-1"></a><span class="fu">hist</span>(vars2, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;sd=5&quot;</span>)</span>
+<span id="cb394-7"><a href="from-probability-to-statistics.html#cb394-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
 <hr />
 </div>
 </div>
 <div id="concentration-with-larger-samples" class="section level2 hasAnchor" number="6.11">
 <h2><span class="header-section-number">6.11</span> Concentration with Larger Samples<a href="from-probability-to-statistics.html#concentration-with-larger-samples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As <span class="math inline">\(n\)</span> increases, statistics stabilize.</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="from-probability-to-statistics.html#cb385-1" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">0</span>, <span class="dv">1</span>)))</span>
-<span id="cb385-2"><a href="from-probability-to-statistics.html#cb385-2" tabindex="-1"></a><span class="fu">hist</span>(means, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">30</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="from-probability-to-statistics.html#cb395-1" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">0</span>, <span class="dv">1</span>)))</span>
+<span id="cb395-2"><a href="from-probability-to-statistics.html#cb395-2" tabindex="-1"></a><span class="fu">hist</span>(means, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">30</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 <p>The distribution tightens around the true mean.</p>
 <hr />

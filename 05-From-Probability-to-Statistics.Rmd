@@ -265,7 +265,197 @@ sd(means)
 
 ## Example: Random Sample as Simple Random Sampling
 
+Let's illustrate the comparison between Simple Random Sampling and a Random Sample with an example about adult males heights. We have a data set of an imaginary country with race information.
 
+```{r pro-to-sta-random-samplin-and-simple-random-sample}
+# Set seed
+set.seed(2026)
+# Generation the Population
+# Population
+pop    <- 100000
+# Races
+racNam <- c("white",
+            "hispanic",
+            "black",
+            "asian")
+# Height Data by Race
+heiRacMea <- c(71, 67, 70, 66)
+heiRacSd  <- c(3.5, 3.2, 3.4, 3.1)
+# Race Sampling
+rac <- sample(x = racNam,
+              size    = pop, 
+              replace = TRUE,
+              prob = c(0.50, 0.30, 0.15, 0.05))
+# Number of Peoble by Race
+numPeoRac <- c(sum(rac == "white"),
+               sum(rac == "hispanic"),
+               sum(rac == "black"),
+               sum(rac == "asian"))
+
+# Height Sampling
+hei <- numeric(length = pop)
+hei[rac == "white"]    <- round(rnorm(n = numPeoRac[1], mean = heiRacMea[1], sd = heiRacSd[1]))
+hei[rac == "hispanic"] <- round(rnorm(n = numPeoRac[2], mean = heiRacMea[2], sd = heiRacSd[2]))
+hei[rac == "black"]    <- round(rnorm(n = numPeoRac[3], mean = heiRacMea[3], sd = heiRacSd[3]))
+hei[rac == "asian"]    <- round(rnorm(n = numPeoRac[4], mean = heiRacMea[4], sd = heiRacSd[4]))
+
+# Plot Race
+barplot(numPeoRac,
+        main = "Actual Race Distribution")
+axis(side = 1, at = 1:4, labels = racNam)
+
+# Height Population Distribution
+heiDisPop <- hist(hei,
+                  breaks = 25,
+                  main = "Actual Height Population Distribution",
+                  xlab = "Height in inches",
+                  freq = FALSE)
+
+# Simple Random Sampling
+samSiz    <- 1000
+simRanSam <- sample(x = hei, size = samSiz, replace = FALSE)
+
+# Histogram Sample
+heiDisSimRanSam <- hist(simRanSam,
+                        breaks = 25,
+                        main = "Simple Random Sampling Distribution",
+                        xlab = "Height in inches",
+                        freq = FALSE)
+
+# Comparison
+xmin <- min(heiDisPop$breaks, heiDisSimRanSam$breaks)
+xmax <- max(heiDisPop$breaks, heiDisSimRanSam$breaks)
+ymin <- min(heiDisPop$density, heiDisSimRanSam$density)
+ymax <- max(heiDisPop$density, heiDisSimRanSam$density)
+
+plot(heiDisPop,
+     xlab   = "Height in inches",
+     main   = "Distributions",
+     freq   = FALSE,
+     border = NA,
+     col    = rgb(1, 0, 0, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+par(new=TRUE)
+plot(heiDisSimRanSam,
+     xlab   = "Height in inches",
+     main   = "Distributions",
+     freq   = FALSE,
+     border = NA,
+     col    = rgb(0, 0, 1, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+
+# Random Sample (from a Theoretical Probability Distribution)
+meaPop <- mean(hei)
+stdPop <- sd(hei)
+ranSam <- rnorm(n = samSiz, mean = meaPop, sd = stdPop)
+
+# Histogram Random Sample
+heiDisRanSam <- hist(ranSam,
+                     breaks = 25,
+                     main = "Random Sample Distribution",
+                     xlab = "Height in inches",
+                     freq = FALSE)
+
+# Comparison
+xmin <- min(heiDisPop$breaks, heiDisSimRanSam$breaks, heiDisRanSam$breaks)
+xmax <- max(heiDisPop$breaks, heiDisSimRanSam$breaks, heiDisRanSam$breaks)
+ymin <- min(heiDisPop$density, heiDisSimRanSam$density, heiDisRanSam$density)
+ymax <- max(heiDisPop$density, heiDisSimRanSam$density, heiDisRanSam$density)
+
+plot(heiDisPop,
+     xlab   = "Height in inches",
+     main   = "Distributions",
+     freq   = FALSE,
+     border = NA,
+     col    = rgb(1, 0, 0, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+par(new=TRUE)
+plot(heiDisRanSam,
+     xlab   = "Height in inches",
+     main   = "Distributions",
+     freq   = FALSE,
+     border = NA,
+     col    = rgb(0, 1, 0, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+
+# Biased Sample
+biaSam <- sample(x = hei[rac == "asian"], size = samSiz, replace = FALSE)
+
+# Histogram Biased Sample
+heiDisBiaSam <- hist(biaSam,
+                     breaks = 25,
+                     main = "Biased Sample Distribution",
+                     xlab = "Height in inches",
+                     freq = FALSE)
+
+# Comparison
+xmin <- min(heiDisPop$breaks, heiDisSimRanSam$breaks, heiDisRanSam$breaks, heiDisBiaSam$breaks)
+xmax <- max(heiDisPop$breaks, heiDisSimRanSam$breaks, heiDisRanSam$breaks, heiDisBiaSam$breaks)
+ymin <- min(heiDisPop$density, heiDisSimRanSam$density, heiDisRanSam$density, heiDisBiaSam$density)
+ymax <- max(heiDisPop$density, heiDisSimRanSam$density, heiDisRanSam$density, heiDisBiaSam$density)
+
+# Biased Sample and Population
+plot(heiDisPop,
+     xlab   = "Height in inches",
+     main   = "Distributions (Population and Biased Sample)",
+     freq   = FALSE,
+     border = NA,
+     col    = rgb(1, 0, 0, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+par(new=TRUE)
+plot(heiDisBiaSam,
+     freq   = FALSE,
+     main   = "",
+     xlab   = "",
+     border = NA,
+     col    = rgb(1, 0, 1, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+
+# Biased Sample and Simple Random Sample
+plot(heiDisSimRanSam,
+     xlab   = "Height in inches",
+     main   = "Distributions (SRS and Biased Sample)",
+     freq   = FALSE,
+     border = NA,
+     col    = rgb(0, 0, 1, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+par(new=TRUE)
+plot(heiDisBiaSam,
+     freq   = FALSE,
+     main   = "",
+     xlab   = "",
+     border = NA,
+     col    = rgb(1, 0, 1, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+
+# Biased Sample and Simple Random Sample
+plot(heiDisRanSam,
+     xlab   = "Height in inches",
+     main   = "Distributions (Random Sample and Biased Sample)",
+     freq   = FALSE,
+     border = NA,
+     col    = rgb(0, 1, 0, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+par(new=TRUE)
+plot(heiDisBiaSam,
+     freq   = FALSE,
+     main   = "",
+     xlab   = "", 
+     border = NA,
+     col    = rgb(1, 0, 1, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+
+```
 
 ## Sampling Distribution of a Mean
 
@@ -286,7 +476,7 @@ $$
 ### Fundamental Properties
 
 $$
-E[\bar{X}] = \mu
+\mathbb{E}[\bar{X}] = \mu
 $$
 
 $$
