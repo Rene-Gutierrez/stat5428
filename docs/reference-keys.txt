@@ -409,6 +409,11 @@ point-estimation
 interval-estimation
 hypothesis-testing
 relationship-between-variables
+prediction-of-future-observations
+the-basic-idea
+a-very-simple-simulation
+repeating-the-experiment
+a-conceptual-perspective
 example-of-statistical-inference
 concluding-perspective
 estimation-1

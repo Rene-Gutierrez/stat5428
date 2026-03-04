@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>STAT 5428/6428 Spring 2026</title>
-  <meta name="description" content="STAT 5428/6428 Spring 2026" />
+  <title>7 Intro to Statistical Inference | STAT 5428/6428 Spring 2026</title>
+  <meta name="description" content="7 Intro to Statistical Inference | STAT 5428/6428 Spring 2026" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="STAT 5428/6428 Spring 2026" />
+  <meta property="og:title" content="7 Intro to Statistical Inference | STAT 5428/6428 Spring 2026" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="STAT 5428/6428 Spring 2026" />
+  <meta name="twitter:title" content="7 Intro to Statistical Inference | STAT 5428/6428 Spring 2026" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="intro-to-r.html"/>
+<link rel="prev" href="from-probability-to-statistics.html"/>
+<link rel="next" href="estimation-1.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -490,214 +490,422 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">STAT 5428/6428 Spring 2026</h1>
-<p class="author"><em>Rene Gutierrez University of Texas at El Paso</em></p>
-</div>
-<div id="stat-54286428-spring-2026" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Stat 5428/6428 Spring 2026<a href="index.html#stat-54286428-spring-2026" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This is the website for STAT 5428/6428. It will contain the relevant information for
-the course and lecture notes and code seen in class.</p>
-<p>Find the syllabus here: <a href="https://github.com/Rene-Gutierrez/stat5428/blob/main/Syllabus-Stat-5428-6428.pdf">Syllabus</a></p>
-<p>Find the github page for the course (with the data sets) here: <a href="https://github.com/Rene-Gutierrez/stat5428">Github</a></p>
-<p>Find the</p>
+<div id="intro-to-statistical-inference" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> Intro to Statistical Inference<a href="intro-to-statistical-inference.html#intro-to-statistical-inference" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The objective of statistics is to make inferences about a population based on information contained in a sample. The most common type of inference is inference about population parameters. Under our framework, the population is a probability distribution. Observations are realizations of random variables generated from that distribution.</p>
+<p>Sometimes we are interested in the entire distribution. More often, however, we focus on specific features of that distribution — numerical summaries that characterize important aspects of the population. These features are called <strong>parameters</strong>. In many applications, the primary parameter of interest is the population mean.</p>
+<p>The transition from probability to statistics can be summarized as follows:</p>
+<ul>
+<li>Probability: The distribution is known; outcomes are random.</li>
+<li>Statistics: Outcomes are observed; the distribution (or its parameters) is unknown.</li>
+</ul>
+<p>In this course, we will approach statistical inference using a computational and simulation-based framework. Rather than beginning with formulas, we will begin with data-generating mechanisms and repeated sampling experiments in R. This approach emphasizes intuition, variability, and the behavior of statistics across repeated samples.</p>
 <hr />
-<div id="weekly-course-outline" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Weekly Course Outline<a href="index.html#weekly-course-outline" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="from-probability-to-statistics-a-simulation-perspective" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> From Probability to Statistics: A Simulation Perspective<a href="intro-to-statistical-inference.html#from-probability-to-statistics-a-simulation-perspective" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In probability, we assume a distribution and compute properties such as expectations and variances.</p>
+<p>In statistics, we reverse the direction:</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Introduction to Statistical Thinking and Data Analysis</strong><br />
-Role of statistics in research; types of data; study design; observational versus experimental studies; introduction to statistical software (<code>R</code>).</p></li>
-<li><p><strong>Descriptive Statistics and Exploratory Data Analysis (EDA)</strong><br />
-Numerical summaries; measures of center and variability; graphical methods; data visualization; exploratory data analysis workflow.</p></li>
-<li><p><strong>Probability Concepts and Random Variables</strong><br />
-Basic probability rules; discrete and continuous random variables; common distributions; expectation and variance.</p></li>
-<li><p><strong>Sampling Distributions and Simulation</strong><br />
-Concept of sampling distributions; Central Limit Theorem; simulation‑based illustration; intuition for confidence levels and statistical power.</p></li>
-<li><p><strong>Statistical Inference I: Estimation and Confidence Intervals</strong><br />
-Point estimation; confidence intervals for means and proportions; interpretation and limitations; assumptions and robustness.</p></li>
-<li><p><strong>Statistical Inference II: Hypothesis Testing</strong><br />
-Null and alternative hypotheses; test statistics; p‑values; Type I/II errors; power considerations and sample size intuition.</p></li>
-<li><p><strong>Inference for Two Populations</strong><br />
-Two‑sample CIs and tests; paired designs; comparing means and variances; parametric vs. nonparametric choices.</p></li>
-<li><p><strong>Analysis of Variance (ANOVA)</strong><br />
-One‑way ANOVA; model formulation; assumptions; multiple comparisons; practical interpretation and reporting.</p></li>
-<li><p><strong>Analysis of Covariance (ANCOVA)</strong><br />
-Incorporating quantitative covariates; adjusted means; interpretation; assumption checks and diagnostics.</p></li>
-<li><p><strong>Simple and Multiple Linear Regression</strong><br />
-Least squares estimation; interpretation of coefficients; model fit; inference for regression parameters.</p></li>
-<li><p><strong>Regression Diagnostics and Model Assessment</strong><br />
-Residual analysis; outliers and influence; multicollinearity; remedial measures (transformations, variable selection).</p></li>
-<li><p><strong>Logistic Regression and Categorical Data Analysis</strong><br />
-Binary response models; odds, odds ratios, and log‑odds; goodness‑of‑fit; interpreting software output.</p></li>
-<li><p><strong>Nonparametric Methods and Alternatives</strong><br />
-Rank‑based tests and other nonparametric procedures; when and why to choose nonparametric approaches.</p></li>
-<li><p><strong>Experimental Design and Model Selection</strong><br />
-Principles of randomization, blocking, replication; power and sample size concepts; model selection strategies; reproducibility.</p></li>
-<li><p><strong>Integration, Applications, and Communication of Results</strong><br />
-Case studies with real datasets; end‑to‑end analysis; ethical considerations; transparent reporting; course review.</p></li>
+<li>Assume data arise from an unknown distribution.</li>
+<li>Observe one sample.</li>
+<li>Use that sample to learn about the underlying distribution.</li>
 </ol>
+<p>We can understand this transition by simulating a known population and pretending we do not know its parameters.</p>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="intro-to-statistical-inference.html#cb404-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb404-2"><a href="intro-to-statistical-inference.html#cb404-2" tabindex="-1"></a></span>
+<span id="cb404-3"><a href="intro-to-statistical-inference.html#cb404-3" tabindex="-1"></a><span class="co"># Define a population distribution</span></span>
+<span id="cb404-4"><a href="intro-to-statistical-inference.html#cb404-4" tabindex="-1"></a>mu_pop  <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb404-5"><a href="intro-to-statistical-inference.html#cb404-5" tabindex="-1"></a>sd_pop  <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb404-6"><a href="intro-to-statistical-inference.html#cb404-6" tabindex="-1"></a></span>
+<span id="cb404-7"><a href="intro-to-statistical-inference.html#cb404-7" tabindex="-1"></a><span class="co"># Generate a large population</span></span>
+<span id="cb404-8"><a href="intro-to-statistical-inference.html#cb404-8" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100000</span>, <span class="at">mean =</span> mu_pop, <span class="at">sd =</span> sd_pop)</span>
+<span id="cb404-9"><a href="intro-to-statistical-inference.html#cb404-9" tabindex="-1"></a></span>
+<span id="cb404-10"><a href="intro-to-statistical-inference.html#cb404-10" tabindex="-1"></a><span class="fu">mean</span>(population)</span></code></pre></div>
+<pre><code>## [1] 50.00977</code></pre>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="intro-to-statistical-inference.html#cb406-1" tabindex="-1"></a><span class="fu">sd</span>(population)</span></code></pre></div>
+<pre><code>## [1] 9.997334</code></pre>
+<p>In practice, we do not have access to the full population. We only observe a sample.</p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="intro-to-statistical-inference.html#cb408-1" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">sample</span>(population, <span class="at">size =</span> <span class="dv">50</span>)</span>
+<span id="cb408-2"><a href="intro-to-statistical-inference.html#cb408-2" tabindex="-1"></a></span>
+<span id="cb408-3"><a href="intro-to-statistical-inference.html#cb408-3" tabindex="-1"></a><span class="fu">mean</span>(sample_data)</span></code></pre></div>
+<pre><code>## [1] 50.80728</code></pre>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="intro-to-statistical-inference.html#cb410-1" tabindex="-1"></a><span class="fu">sd</span>(sample_data)</span></code></pre></div>
+<pre><code>## [1] 9.218034</code></pre>
+<p>The population mean is fixed. The sample mean varies from sample to sample. That variability is the foundation of statistical inference.</p>
 <hr />
 </div>
-<div id="topical-learning-outcomes-aligned-with-blooms-taxonomy" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Topical Learning Outcomes (Aligned with Bloom’s Taxonomy)<a href="index.html#topical-learning-outcomes-aligned-with-blooms-taxonomy" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<colgroup>
-<col width="22%" />
-<col width="14%" />
-<col width="63%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Topic</th>
-<th align="left">Bloom’s Level</th>
-<th align="left">Learning Outcome</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Descriptive Statistics</td>
-<td align="left">Understand / Apply</td>
-<td align="left">Summarize and visualize datasets using appropriate numerical and graphical descriptive measures.</td>
-</tr>
-<tr class="even">
-<td align="left">Probability Concepts</td>
-<td align="left">Understand</td>
-<td align="left">Explain fundamental probability concepts and their role in statistical modeling and inference.</td>
-</tr>
-<tr class="odd">
-<td align="left">Sampling Distributions</td>
-<td align="left">Analyze</td>
-<td align="left">Analyze sampling variability and illustrate key ideas via simulation.</td>
-</tr>
-<tr class="even">
-<td align="left">Confidence Intervals</td>
-<td align="left">Apply / Analyze</td>
-<td align="left">Construct and interpret confidence intervals; assess assumptions and practical implications.</td>
-</tr>
-<tr class="odd">
-<td align="left">Hypothesis Testing</td>
-<td align="left">Analyze / Evaluate</td>
-<td align="left">Evaluate hypotheses using appropriate tests and interpret results in context.</td>
-</tr>
-<tr class="even">
-<td align="left">Two‑Sample Inference</td>
-<td align="left">Apply / Analyze</td>
-<td align="left">Compare two populations using parametric and nonparametric procedures.</td>
-</tr>
-<tr class="odd">
-<td align="left">ANOVA / ANCOVA</td>
-<td align="left">Analyze</td>
-<td align="left">Analyze group differences with ANOVA/ANCOVA, incorporating covariates where appropriate.</td>
-</tr>
-<tr class="even">
-<td align="left">Linear Regression</td>
-<td align="left">Apply / Analyze</td>
-<td align="left">Develop and interpret simple and multiple linear regression models.</td>
-</tr>
-<tr class="odd">
-<td align="left">Model Diagnostics</td>
-<td align="left">Evaluate</td>
-<td align="left">Assess model assumptions; identify influence and multicollinearity; implement remedial actions.</td>
-</tr>
-<tr class="even">
-<td align="left">Logistic Regression</td>
-<td align="left">Analyze</td>
-<td align="left">Model binary outcomes; interpret odds ratios and fitted model diagnostics.</td>
-</tr>
-<tr class="odd">
-<td align="left">Nonparametric Methods</td>
-<td align="left">Evaluate</td>
-<td align="left">Justify and apply nonparametric alternatives when assumptions are violated.</td>
-</tr>
-<tr class="even">
-<td align="left">Experimental Design</td>
-<td align="left">Create / Evaluate</td>
-<td align="left">Design and critique basic experiments (randomization, blocking, replication).</td>
-</tr>
-<tr class="odd">
-<td align="left">Statistical Software (R)</td>
-<td align="left">Apply / Create</td>
-<td align="left">Use R to perform analyses, run simulations, interpret output, and communicate results clearly.</td>
-</tr>
-</tbody>
-</table>
+<div id="objectives-of-statistical-inference" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Objectives of Statistical Inference<a href="intro-to-statistical-inference.html#objectives-of-statistical-inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Statistical inference seeks to answer questions about unknown population parameters using observed data.</p>
+<p>Broadly speaking, the objectives are:</p>
+<ul>
+<li>To estimate unknown parameters.</li>
+<li>To quantify the uncertainty of those estimates.</li>
+<li>To evaluate competing claims about parameters.</li>
+<li>Studying relationships between variables.</li>
+<li>Make predictions about future observations.</li>
+</ul>
+<p>We begin with estimation.</p>
+<hr />
+<div id="estimation" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Estimation<a href="intro-to-statistical-inference.html#estimation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Estimation refers to using sample data to approximate unknown population parameters.</p>
+<p>Let the population mean be denoted by μ. We observe a sample and compute the sample mean x̄. The sample mean is a statistic — a random variable that depends on the observed data.</p>
+<p>Estimation asks:</p>
+<ul>
+<li>How close is x̄ to μ?</li>
+<li>How variable is x̄ across repeated samples?</li>
+</ul>
+<p>We explore these questions computationally.</p>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="intro-to-statistical-inference.html#cb412-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb412-2"><a href="intro-to-statistical-inference.html#cb412-2" tabindex="-1"></a></span>
+<span id="cb412-3"><a href="intro-to-statistical-inference.html#cb412-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb412-4"><a href="intro-to-statistical-inference.html#cb412-4" tabindex="-1"></a>num_rep <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb412-5"><a href="intro-to-statistical-inference.html#cb412-5" tabindex="-1"></a></span>
+<span id="cb412-6"><a href="intro-to-statistical-inference.html#cb412-6" tabindex="-1"></a>sample_means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(num_rep, {</span>
+<span id="cb412-7"><a href="intro-to-statistical-inference.html#cb412-7" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">sample</span>(population, <span class="at">size =</span> n))</span>
+<span id="cb412-8"><a href="intro-to-statistical-inference.html#cb412-8" tabindex="-1"></a>})</span>
+<span id="cb412-9"><a href="intro-to-statistical-inference.html#cb412-9" tabindex="-1"></a></span>
+<span id="cb412-10"><a href="intro-to-statistical-inference.html#cb412-10" tabindex="-1"></a><span class="fu">hist</span>(sample_means, <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb412-11"><a href="intro-to-statistical-inference.html#cb412-11" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Sampling Distribution of the Sample Mean&quot;</span>,</span>
+<span id="cb412-12"><a href="intro-to-statistical-inference.html#cb412-12" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Sample Mean&quot;</span>)</span>
+<span id="cb412-13"><a href="intro-to-statistical-inference.html#cb412-13" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mu_pop, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/int-sta-estimation-example-histogram-1.png" width="672" /></p>
+<p>The histogram shows the sampling distribution of the sample mean. The red line indicates the true population mean.</p>
+<p>This visualization captures a central idea:</p>
+<p>Statistics are random variables. Their variability determines the reliability of our conclusions.</p>
+<hr />
+<div id="point-estimation" class="section level4 hasAnchor" number="7.2.1.1">
+<h4><span class="header-section-number">7.2.1.1</span> Point Estimation<a href="intro-to-statistical-inference.html#point-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A point estimate is a single numerical value used to estimate a population parameter.</p>
+<p>For example:</p>
+<ul>
+<li>The sample mean estimates the population mean.</li>
+<li>The sample variance estimates the population variance.</li>
+<li>The sample proportion estimates the population proportion.</li>
+</ul>
+<p>In our simulation:</p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="intro-to-statistical-inference.html#cb413-1" tabindex="-1"></a><span class="fu">mean</span>(sample_data)</span></code></pre></div>
+<pre><code>## [1] 50.80728</code></pre>
+<p>This number is our point estimate of μ.</p>
+<p>A point estimate is simple and intuitive. However, it does not communicate uncertainty. Two different samples produce two different point estimates.</p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="intro-to-statistical-inference.html#cb415-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sample</span>(population, <span class="dv">50</span>))</span></code></pre></div>
+<pre><code>## [1] 51.25051</code></pre>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="intro-to-statistical-inference.html#cb417-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sample</span>(population, <span class="dv">50</span>))</span></code></pre></div>
+<pre><code>## [1] 49.7197</code></pre>
+<p>Both estimates target the same μ, but they differ because of sampling variability.</p>
 <hr />
 </div>
-<div id="course-overview" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Course Overview<a href="index.html#course-overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><em>Introduction to Statistical Analysis</em> is a graduate‑level course that develops statistical thinking as an integrated process of description, modeling, inference, and revision. The course is structured around the view that statistical analysis is not a linear application of techniques, but an iterative framework in which data are explored, probabilistic assumptions are imposed, conclusions are drawn under those assumptions, and models are reassessed in light of empirical evidence. Emphasis is placed on conceptual understanding, methodological coherence, and interpretation, rather than on formal mathematical derivations.</p>
-<p>The central organizing principle of the course is the relationship between <strong>data</strong> and <strong>probability models</strong>. Data are treated as realizations from an underlying stochastic process, and statistical methods are developed as tools for learning about that process. Throughout the course, students use statistical software (<code>R</code>) to connect theory with practice and to evaluate the adequacy of models when applied to real data.</p>
-<p>The course is organized into four major sections, each corresponding to a distinct stage of statistical reasoning.</p>
-<hr />
-<div id="section-i-data-description-and-intrinsic-properties" class="section level3 hasAnchor" number="1.3.1">
-<h3><span class="header-section-number">1.3.1</span> Section I: Data — Description and Intrinsic Properties<a href="index.html#section-i-data-description-and-intrinsic-properties" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Purpose:</strong> Characterizing data without imposing a probabilistic model</p>
-<p>The first section focuses on understanding data in its raw form. Prior to modeling or inference, data must be described, explored, and contextualized. This section emphasizes the intrinsic properties of data that can be observed directly, without reference to stochastic assumptions.</p>
-<p>Key objectives include identifying structure, detecting anomalies, and understanding variability as an empirical phenomenon.</p>
-<p><strong>Topics in this section include:</strong>
-- Nature and structure of data (measurement scales, data types)
-- Observational versus experimental data
-- Study design and sources of variation
-- Descriptive statistics (location, dispersion, shape)
-- Graphical summaries and data visualization
-- Exploratory Data Analysis (EDA)</p>
-<p>This section establishes descriptive analysis as a critical and non‑optional stage of any sound statistical investigation.</p>
-<hr />
-</div>
-<div id="section-ii-data-modeling-probability-as-a-generative-mechanism" class="section level3 hasAnchor" number="1.3.2">
-<h3><span class="header-section-number">1.3.2</span> Section II: Data Modeling — Probability as a Generative Mechanism<a href="index.html#section-ii-data-modeling-probability-as-a-generative-mechanism" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Purpose:</strong> Modeling data as realizations of a stochastic process</p>
-<p>In the second section, probability is introduced as a <em>modeling language</em> for data generation. Rather than focusing on probability as an abstract mathematical subject, it is framed as a tool for encoding assumptions about how data arise.</p>
-<p>Students study theoretical distributions and sampling behavior implied by different probabilistic models, and they examine the consequences of these assumptions.</p>
-<p><strong>Topics in this section include:</strong>
-- Basic probability concepts and axioms
-- Random variables and probability distributions
-- Discrete and continuous models
-- Expectation and variance
-- Sampling distributions
-- The Central Limit Theorem
-- Simulation‑based exploration of theoretical results</p>
-<p>This section provides the probabilistic foundation upon which all subsequent inferential procedures are built.</p>
-<hr />
-</div>
-<div id="section-iii-statistical-inference-learning-from-data-under-a-model" class="section level3 hasAnchor" number="1.3.3">
-<h3><span class="header-section-number">1.3.3</span> Section III: Statistical Inference — Learning from Data Under a Model<a href="index.html#section-iii-statistical-inference-learning-from-data-under-a-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Purpose:</strong> Drawing conclusions using probabilistic models</p>
-<p>The third section develops formal statistical inference as a logical extension of probability modeling. Conditional on an assumed data‑generating mechanism, students derive and apply methods for estimation, hypothesis testing, and uncertainty quantification.</p>
-<p>Inference is presented as fundamentally model‑dependent, and interpretation is emphasized over mechanical computation.</p>
-<p><strong>Topics in this section include:</strong>
-- Point estimation and estimators
-- Confidence intervals and coverage interpretation
-- Hypothesis testing frameworks
-- Test statistics and p‑values
-- Type I and Type II errors
-- Power and sample size considerations
-- Inference for one and two populations
-- Introduction to ANOVA as a comparative inferential framework</p>
-<p>Students learn to answer substantive research questions while explicitly acknowledging the assumptions that justify their conclusions.</p>
-<hr />
-</div>
-<div id="section-iv-data-remodeling-model-assessment-revision-and-alternatives" class="section level3 hasAnchor" number="1.3.4">
-<h3><span class="header-section-number">1.3.4</span> Section IV: Data Remodeling — Model Assessment, Revision, and Alternatives<a href="index.html#section-iv-data-remodeling-model-assessment-revision-and-alternatives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Purpose:</strong> Validating conclusions and revisiting assumptions</p>
-<p>The final section returns to the modeling stage with a critical perspective. After conducting inference, students evaluate whether the probabilistic assumptions underlying their analyses are empirically reasonable.</p>
-<p>Model adequacy is assessed using diagnostics, and alternative approaches are considered when assumptions fail. This section emphasizes that statistical modeling is iterative and subject to revision rather than a one‑time choice.</p>
-<p><strong>Topics in this section include:</strong>
-- Linear and multiple regression models
-- Logistic regression and categorical responses
-- Residual analysis and goodness‑of‑fit diagnostics
-- Influential observations and multicollinearity
-- Remedial measures and transformations
-- Nonparametric alternatives
-- Model selection strategies
-- Interpretation under updated or revised assumptions</p>
-<p>This section reinforces the idea that statistical conclusions are conditional statements whose validity rests on the suitability of the modeling framework.</p>
+<div id="interval-estimation" class="section level4 hasAnchor" number="7.2.1.2">
+<h4><span class="header-section-number">7.2.1.2</span> Interval Estimation<a href="intro-to-statistical-inference.html#interval-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Interval estimation addresses uncertainty directly.</p>
+<p>Instead of reporting a single value, we report a range of plausible values for the parameter.</p>
+<p>Conceptually:</p>
+<ul>
+<li>A confidence interval is a random interval.</li>
+<li>Its randomness comes from the randomness of the sample.</li>
+</ul>
+<p>We illustrate this computationally.</p>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="intro-to-statistical-inference.html#cb419-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb419-2"><a href="intro-to-statistical-inference.html#cb419-2" tabindex="-1"></a></span>
+<span id="cb419-3"><a href="intro-to-statistical-inference.html#cb419-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb419-4"><a href="intro-to-statistical-inference.html#cb419-4" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb419-5"><a href="intro-to-statistical-inference.html#cb419-5" tabindex="-1"></a></span>
+<span id="cb419-6"><a href="intro-to-statistical-inference.html#cb419-6" tabindex="-1"></a>ci_bounds <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">100</span>, {</span>
+<span id="cb419-7"><a href="intro-to-statistical-inference.html#cb419-7" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">sample</span>(population, n)</span>
+<span id="cb419-8"><a href="intro-to-statistical-inference.html#cb419-8" tabindex="-1"></a>  x_bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb419-9"><a href="intro-to-statistical-inference.html#cb419-9" tabindex="-1"></a>  s     <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb419-10"><a href="intro-to-statistical-inference.html#cb419-10" tabindex="-1"></a>  </span>
+<span id="cb419-11"><a href="intro-to-statistical-inference.html#cb419-11" tabindex="-1"></a>  lower <span class="ot">&lt;-</span> x_bar <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb419-12"><a href="intro-to-statistical-inference.html#cb419-12" tabindex="-1"></a>  upper <span class="ot">&lt;-</span> x_bar <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb419-13"><a href="intro-to-statistical-inference.html#cb419-13" tabindex="-1"></a>  </span>
+<span id="cb419-14"><a href="intro-to-statistical-inference.html#cb419-14" tabindex="-1"></a>  <span class="fu">c</span>(lower, upper)</span>
+<span id="cb419-15"><a href="intro-to-statistical-inference.html#cb419-15" tabindex="-1"></a>})</span>
+<span id="cb419-16"><a href="intro-to-statistical-inference.html#cb419-16" tabindex="-1"></a></span>
+<span id="cb419-17"><a href="intro-to-statistical-inference.html#cb419-17" tabindex="-1"></a>ci_bounds <span class="ot">&lt;-</span> <span class="fu">t</span>(ci_bounds)</span>
+<span id="cb419-18"><a href="intro-to-statistical-inference.html#cb419-18" tabindex="-1"></a></span>
+<span id="cb419-19"><a href="intro-to-statistical-inference.html#cb419-19" tabindex="-1"></a><span class="fu">plot</span>(ci_bounds[,<span class="dv">1</span>], <span class="at">type=</span><span class="st">&quot;n&quot;</span>,</span>
+<span id="cb419-20"><a href="intro-to-statistical-inference.html#cb419-20" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">range</span>(ci_bounds),</span>
+<span id="cb419-21"><a href="intro-to-statistical-inference.html#cb419-21" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Simulation Index&quot;</span>,</span>
+<span id="cb419-22"><a href="intro-to-statistical-inference.html#cb419-22" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Confidence Interval&quot;</span>)</span>
+<span id="cb419-23"><a href="intro-to-statistical-inference.html#cb419-23" tabindex="-1"></a></span>
+<span id="cb419-24"><a href="intro-to-statistical-inference.html#cb419-24" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ci_bounds)){</span>
+<span id="cb419-25"><a href="intro-to-statistical-inference.html#cb419-25" tabindex="-1"></a>  <span class="fu">segments</span>(i, ci_bounds[i,<span class="dv">1</span>], i, ci_bounds[i,<span class="dv">2</span>],</span>
+<span id="cb419-26"><a href="intro-to-statistical-inference.html#cb419-26" tabindex="-1"></a>           <span class="at">col =</span> <span class="fu">ifelse</span>(ci_bounds[i,<span class="dv">1</span>] <span class="sc">&lt;=</span> mu_pop <span class="sc">&amp;</span></span>
+<span id="cb419-27"><a href="intro-to-statistical-inference.html#cb419-27" tabindex="-1"></a>                        ci_bounds[i,<span class="dv">2</span>] <span class="sc">&gt;=</span> mu_pop,</span>
+<span id="cb419-28"><a href="intro-to-statistical-inference.html#cb419-28" tabindex="-1"></a>                        <span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>))</span>
+<span id="cb419-29"><a href="intro-to-statistical-inference.html#cb419-29" tabindex="-1"></a>}</span>
+<span id="cb419-30"><a href="intro-to-statistical-inference.html#cb419-30" tabindex="-1"></a></span>
+<span id="cb419-31"><a href="intro-to-statistical-inference.html#cb419-31" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> mu_pop, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/int-sta-interval-estimation-example-1.png" width="672" /></p>
+<p>Each vertical segment is a confidence interval. Intervals that fail to contain μ are shown in red.</p>
+<p>This simulation illustrates:</p>
+<ul>
+<li>Confidence intervals vary from sample to sample.</li>
+<li>A fixed proportion contain the true parameter.</li>
+<li>The parameter itself is fixed; the interval is random.</li>
+</ul>
 <hr />
 </div>
 </div>
-<div id="course-perspective" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> Course Perspective<a href="index.html#course-perspective" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Across all four sections, the course emphasizes coherence between data, models, inference, and validation. By the end of the course, students will be able to approach data analysis as a structured yet flexible process—one that integrates empirical evidence, probabilistic reasoning, and critical evaluation in order to draw defensible conclusions from data.</p>
+<div id="hypothesis-testing" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Hypothesis Testing<a href="intro-to-statistical-inference.html#hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Hypothesis testing evaluates claims about population parameters.</p>
+<p>The structure is:</p>
+<ul>
+<li>Null hypothesis (H0): A claim about the parameter.</li>
+<li>Alternative hypothesis (H1): A competing claim.</li>
+</ul>
+<p>We measure how compatible the observed data are with the null hypothesis.</p>
+<p>For example:</p>
+<ul>
+<li>H0: μ = 50</li>
+<li>H1: μ ≠ 50</li>
+</ul>
+<p>Under H0, we can simulate the sampling distribution of the sample mean and assess how extreme our observed statistic is.</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="intro-to-statistical-inference.html#cb420-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb420-2"><a href="intro-to-statistical-inference.html#cb420-2" tabindex="-1"></a></span>
+<span id="cb420-3"><a href="intro-to-statistical-inference.html#cb420-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb420-4"><a href="intro-to-statistical-inference.html#cb420-4" tabindex="-1"></a>mu_null <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb420-5"><a href="intro-to-statistical-inference.html#cb420-5" tabindex="-1"></a></span>
+<span id="cb420-6"><a href="intro-to-statistical-inference.html#cb420-6" tabindex="-1"></a><span class="co"># simulate under null</span></span>
+<span id="cb420-7"><a href="intro-to-statistical-inference.html#cb420-7" tabindex="-1"></a>null_means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(n, <span class="at">mean =</span> mu_null, <span class="at">sd =</span> sd_pop)))</span>
+<span id="cb420-8"><a href="intro-to-statistical-inference.html#cb420-8" tabindex="-1"></a></span>
+<span id="cb420-9"><a href="intro-to-statistical-inference.html#cb420-9" tabindex="-1"></a><span class="fu">hist</span>(null_means, <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb420-10"><a href="intro-to-statistical-inference.html#cb420-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Sampling Distribution Under H0&quot;</span>,</span>
+<span id="cb420-11"><a href="intro-to-statistical-inference.html#cb420-11" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Sample Mean&quot;</span>)</span>
+<span id="cb420-12"><a href="intro-to-statistical-inference.html#cb420-12" tabindex="-1"></a></span>
+<span id="cb420-13"><a href="intro-to-statistical-inference.html#cb420-13" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(sample_data), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/int-sta-hypothesis-example-1.png" width="672" /></p>
+<p>The red line represents the observed sample mean. If it lies in the tails of the null distribution, we regard the data as inconsistent with H0.</p>
+<p>Hypothesis testing is therefore a probabilistic assessment of evidence.</p>
+<hr />
+</div>
+<div id="relationship-between-variables" class="section level3 hasAnchor" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> Relationship Between Variables<a href="intro-to-statistical-inference.html#relationship-between-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Statistical analysis is often concerned not only with single parameters but with relationships between variables.</p>
+<p>For example:</p>
+<ul>
+<li>Does increased calorie intake lead to higher body weight?</li>
+<li>Does study time affect exam scores?</li>
+<li>Does blood pressure increase with age?</li>
+</ul>
+<p>In such cases, the population model involves joint distributions.</p>
+<p>Suppose:</p>
+<p><span class="math display">\[
+(Y, X)
+\]</span></p>
+<p>has some joint probability distribution. We may be interested in:</p>
+<ul>
+<li>The population correlation</li>
+<li>The slope in a regression model</li>
+<li>Conditional expectations such as <span class="math inline">\(\mathbb{E}(Y \mid X)\)</span></li>
+</ul>
+<p>We can simulate data with a linear relationship.</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="intro-to-statistical-inference.html#cb421-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb421-2"><a href="intro-to-statistical-inference.html#cb421-2" tabindex="-1"></a></span>
+<span id="cb421-3"><a href="intro-to-statistical-inference.html#cb421-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb421-4"><a href="intro-to-statistical-inference.html#cb421-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">2000</span>, <span class="dv">300</span>)</span>
+<span id="cb421-5"><a href="intro-to-statistical-inference.html#cb421-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">+</span> <span class="fl">0.01</span><span class="sc">*</span>x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">5</span>)</span>
+<span id="cb421-6"><a href="intro-to-statistical-inference.html#cb421-6" tabindex="-1"></a></span>
+<span id="cb421-7"><a href="intro-to-statistical-inference.html#cb421-7" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span>
+<span id="cb421-8"><a href="intro-to-statistical-inference.html#cb421-8" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/int-sta-relationship-example-1.png" width="672" /></p>
+<p>The fitted line estimates the population relationship. However, if we were to resample repeatedly, the slope estimate would vary. Thus regression coefficients are also random variables with their own sampling distributions.</p>
+<p>Statistical inference in this setting focuses on:</p>
+<ul>
+<li>Estimating regression parameters</li>
+<li>Constructing confidence intervals</li>
+<li>Testing hypotheses about relationships</li>
+</ul>
+<hr />
+</div>
+<div id="prediction-of-future-observations" class="section level3 hasAnchor" number="7.2.4">
+<h3><span class="header-section-number">7.2.4</span> Prediction of Future Observations<a href="intro-to-statistical-inference.html#prediction-of-future-observations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Up to this point, we have discussed two primary objectives of statistics:</p>
+<ul>
+<li>Estimating unknown population parameters<br />
+</li>
+<li>Testing hypotheses about those parameters</li>
+</ul>
+<p>There is another important objective:</p>
+<blockquote>
+<p>Making predictions about future observations.</p>
+</blockquote>
+<p>This goal is slightly different from estimation. When we estimate a parameter, such as the population mean, we are trying to learn about a fixed (but unknown) characteristic of a probability distribution. When we make a prediction, we are trying to anticipate what value might be observed next.</p>
+<p>This distinction is subtle but fundamental.</p>
+<hr />
+<div id="the-basic-idea" class="section level4 hasAnchor" number="7.2.4.1">
+<h4><span class="header-section-number">7.2.4.1</span> The Basic Idea<a href="intro-to-statistical-inference.html#the-basic-idea" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Suppose we observe a random sample:</p>
+<p><span class="math display">\[
+X_1, X_2, \dots, X_n
+\]</span></p>
+<p>from a population distribution. We compute the sample mean:</p>
+<p><span class="math display">\[
+\bar{X}.
+\]</span></p>
+<p>We have already seen that <span class="math inline">\(\bar{X}\)</span> is a good estimator of the population mean <span class="math inline">\(\mu\)</span>.</p>
+<p>Now imagine that one more observation will be collected:</p>
+<p><span class="math display">\[
+X_{n+1}.
+\]</span></p>
+<p>A natural question arises:</p>
+<blockquote>
+<p>What value should we expect for <span class="math inline">\(X_{n+1}\)</span>?</p>
+</blockquote>
+<p>If the data are independent and identically distributed, the best single-number summary of the center of the distribution is <span class="math inline">\(\mu\)</span>. Since we do not know <span class="math inline">\(\mu\)</span>, we use <span class="math inline">\(\bar{X}\)</span> as our best guess.</p>
+<p>Thus, the sample mean serves two roles:</p>
+<ul>
+<li>It estimates the population mean.<br />
+</li>
+<li>It predicts the next observation.</li>
+</ul>
+<hr />
+</div>
+<div id="a-very-simple-simulation" class="section level4 hasAnchor" number="7.2.4.2">
+<h4><span class="header-section-number">7.2.4.2</span> A Very Simple Simulation<a href="intro-to-statistical-inference.html#a-very-simple-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To see this concretely, suppose the true population mean is 50 (unknown to us). We collect a sample and use the sample mean to predict the next observation.</p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="intro-to-statistical-inference.html#cb422-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb422-2"><a href="intro-to-statistical-inference.html#cb422-2" tabindex="-1"></a></span>
+<span id="cb422-3"><a href="intro-to-statistical-inference.html#cb422-3" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb422-4"><a href="intro-to-statistical-inference.html#cb422-4" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb422-5"><a href="intro-to-statistical-inference.html#cb422-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb422-6"><a href="intro-to-statistical-inference.html#cb422-6" tabindex="-1"></a></span>
+<span id="cb422-7"><a href="intro-to-statistical-inference.html#cb422-7" tabindex="-1"></a><span class="co"># Generate a sample</span></span>
+<span id="cb422-8"><a href="intro-to-statistical-inference.html#cb422-8" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu, sigma)</span>
+<span id="cb422-9"><a href="intro-to-statistical-inference.html#cb422-9" tabindex="-1"></a></span>
+<span id="cb422-10"><a href="intro-to-statistical-inference.html#cb422-10" tabindex="-1"></a><span class="co"># Compute sample mean</span></span>
+<span id="cb422-11"><a href="intro-to-statistical-inference.html#cb422-11" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb422-12"><a href="intro-to-statistical-inference.html#cb422-12" tabindex="-1"></a></span>
+<span id="cb422-13"><a href="intro-to-statistical-inference.html#cb422-13" tabindex="-1"></a><span class="co"># Generate a future observation</span></span>
+<span id="cb422-14"><a href="intro-to-statistical-inference.html#cb422-14" tabindex="-1"></a>x_future <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, mu, sigma)</span>
+<span id="cb422-15"><a href="intro-to-statistical-inference.html#cb422-15" tabindex="-1"></a></span>
+<span id="cb422-16"><a href="intro-to-statistical-inference.html#cb422-16" tabindex="-1"></a>xbar</span></code></pre></div>
+<pre><code>## [1] 51.52384</code></pre>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="intro-to-statistical-inference.html#cb424-1" tabindex="-1"></a>x_future</span></code></pre></div>
+<pre><code>## [1] 67.86913</code></pre>
+<p>The sample mean gives us a reasonable central value, but the future observation may differ substantially. This difference is not a mistake—it reflects natural randomness.</p>
+<hr />
+</div>
+</div>
+<div id="repeating-the-experiment" class="section level3 hasAnchor" number="7.2.5">
+<h3><span class="header-section-number">7.2.5</span> Repeating the Experiment<a href="intro-to-statistical-inference.html#repeating-the-experiment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let us repeat the process many times and examine how prediction errors behave.</p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="intro-to-statistical-inference.html#cb426-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb426-2"><a href="intro-to-statistical-inference.html#cb426-2" tabindex="-1"></a></span>
+<span id="cb426-3"><a href="intro-to-statistical-inference.html#cb426-3" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb426-4"><a href="intro-to-statistical-inference.html#cb426-4" tabindex="-1"></a></span>
+<span id="cb426-5"><a href="intro-to-statistical-inference.html#cb426-5" tabindex="-1"></a>errors <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
+<span id="cb426-6"><a href="intro-to-statistical-inference.html#cb426-6" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu, sigma)</span>
+<span id="cb426-7"><a href="intro-to-statistical-inference.html#cb426-7" tabindex="-1"></a>  xbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb426-8"><a href="intro-to-statistical-inference.html#cb426-8" tabindex="-1"></a>  x_future <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, mu, sigma)</span>
+<span id="cb426-9"><a href="intro-to-statistical-inference.html#cb426-9" tabindex="-1"></a>  x_future <span class="sc">-</span> xbar</span>
+<span id="cb426-10"><a href="intro-to-statistical-inference.html#cb426-10" tabindex="-1"></a>})</span>
+<span id="cb426-11"><a href="intro-to-statistical-inference.html#cb426-11" tabindex="-1"></a></span>
+<span id="cb426-12"><a href="intro-to-statistical-inference.html#cb426-12" tabindex="-1"></a><span class="fu">mean</span>(errors)</span></code></pre></div>
+<pre><code>## [1] -0.1871296</code></pre>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="intro-to-statistical-inference.html#cb428-1" tabindex="-1"></a><span class="fu">sd</span>(errors)</span></code></pre></div>
+<pre><code>## [1] 10.42275</code></pre>
+<p>We observe two key ideas:</p>
+<ul>
+<li>On average, the prediction error is close to zero.</li>
+<li>Individual predictions can still be far from the realized value.</li>
+</ul>
+<p>This illustrates an essential principle:</p>
+<blockquote>
+<p>Even if we estimate the mean very well, individual future outcomes still vary.</p>
+</blockquote>
+<hr />
+<div id="a-conceptual-perspective" class="section level4 hasAnchor" number="7.2.5.1">
+<h4><span class="header-section-number">7.2.5.1</span> A Conceptual Perspective<a href="intro-to-statistical-inference.html#a-conceptual-perspective" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Estimation focuses on learning about a fixed parameter.
+Prediction focuses on forecasting a random future value.</p>
+<p>As the sample size increases:</p>
+<ul>
+<li>Our estimate of the mean becomes more precise.</li>
+<li>But future observations remain inherently variable.</li>
+</ul>
+<p>This means that prediction always involves uncertainty that cannot be completely eliminated.</p>
+</div>
+</div>
+</div>
+<div id="example-of-statistical-inference" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Example of Statistical Inference<a href="intro-to-statistical-inference.html#example-of-statistical-inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To illustrate these ideas in context, consider research examining the relationship between calorie consumption and body weight.</p>
+<p>In nutritional epidemiology, researchers often study whether higher caloric intake is associated with increased body weight. Suppose a peer-reviewed study collects dietary data from a random sample of adults and measures their body weight.</p>
+<p>Conceptually, the research question is:</p>
+<ul>
+<li>Is average body weight associated with average daily calorie intake?</li>
+<li>Is the mean weight of individuals consuming more than 2,500 calories different from those consuming fewer?</li>
+</ul>
+<p>From a statistical perspective:</p>
+<ul>
+<li><p>The population is the joint distribution of calorie intake and body weight.</p></li>
+<li><p>Parameters may include:</p>
+<ul>
+<li>The mean body weight.</li>
+<li>The mean difference in weight between two groups.</li>
+<li>The slope in a regression model.</li>
+</ul></li>
+</ul>
+<p>The researchers do not observe the entire population. They observe a sample.</p>
+<p>Suppose we simulate such a scenario.</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="intro-to-statistical-inference.html#cb430-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb430-2"><a href="intro-to-statistical-inference.html#cb430-2" tabindex="-1"></a></span>
+<span id="cb430-3"><a href="intro-to-statistical-inference.html#cb430-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb430-4"><a href="intro-to-statistical-inference.html#cb430-4" tabindex="-1"></a></span>
+<span id="cb430-5"><a href="intro-to-statistical-inference.html#cb430-5" tabindex="-1"></a>calories <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">2200</span>, <span class="at">sd =</span> <span class="dv">400</span>)</span>
+<span id="cb430-6"><a href="intro-to-statistical-inference.html#cb430-6" tabindex="-1"></a>weight   <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">+</span> <span class="fl">0.01</span> <span class="sc">*</span> calories <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="dv">5</span>)</span>
+<span id="cb430-7"><a href="intro-to-statistical-inference.html#cb430-7" tabindex="-1"></a></span>
+<span id="cb430-8"><a href="intro-to-statistical-inference.html#cb430-8" tabindex="-1"></a><span class="fu">plot</span>(calories, weight,</span>
+<span id="cb430-9"><a href="intro-to-statistical-inference.html#cb430-9" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Calories&quot;</span>,</span>
+<span id="cb430-10"><a href="intro-to-statistical-inference.html#cb430-10" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Weight&quot;</span>,</span>
+<span id="cb430-11"><a href="intro-to-statistical-inference.html#cb430-11" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Simulated Relationship Between Calories and Weight&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/int-sta-analysis-example-1.png" width="672" /></p>
+<p>In this simulated data:</p>
+<ul>
+<li>There is a positive association.</li>
+<li>The relationship is noisy.</li>
+<li>The sample represents only one realization of many possible samples.</li>
+</ul>
+<p>From here, statistical inference addresses:</p>
+<ol style="list-style-type: decimal">
+<li><p>Estimation:</p>
+<ul>
+<li>What is the average effect of calories on weight?</li>
+<li>What is the estimated mean weight?</li>
+</ul></li>
+<li><p>Interval estimation:</p>
+<ul>
+<li>What is a plausible range for the true slope?</li>
+<li>How precise is the estimated mean?</li>
+</ul></li>
+<li><p>Hypothesis testing:</p>
+<ul>
+<li>Is the association statistically significant?</li>
+<li>Could the observed relationship arise by chance?</li>
+</ul></li>
+</ol>
+<p>Importantly, any conclusion must account for sampling variability. A different sample might produce a slightly different slope, different means, and different p-values.</p>
+<p>This example demonstrates the full transition:</p>
+<ul>
+<li>Probability describes how data could be generated.</li>
+<li>Statistics uses observed data to learn about the generating process.</li>
+</ul>
+<p>We do not claim certainty. Instead, we quantify uncertainty using probability models.</p>
+<hr />
+</div>
+<div id="concluding-perspective" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Concluding Perspective<a href="intro-to-statistical-inference.html#concluding-perspective" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Statistical inference rests on three foundational principles:</p>
+<ol style="list-style-type: decimal">
+<li>Data are realizations of random variables.</li>
+<li>Statistics computed from data are themselves random.</li>
+<li>Their sampling distributions determine the reliability of conclusions.</li>
+</ol>
+<p>Probability provides the language of randomness. Statistics uses that language to extract information from data.</p>
+<p>In the next lessons, we will formalize these ideas and develop the mathematical tools required for rigorous inference.</p>
 
 </div>
 </div>
@@ -706,8 +914,8 @@ Case studies with real datasets; end‑to‑end analysis; ethical considerations
           </div>
         </div>
       </div>
-
-<a href="intro-to-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="from-probability-to-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estimation-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
