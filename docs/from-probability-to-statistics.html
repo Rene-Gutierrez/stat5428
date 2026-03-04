@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="introduction-to-probability.html"/>
-
+<link rel="next" href="intro-to-statistical-inference.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -415,23 +415,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.7" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#example-random-sample-as-simple-random-sampling"><i class="fa fa-check"></i><b>6.7</b> Example: Random Sample as Simple Random Sampling</a></li>
 <li class="chapter" data-level="6.8" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#sampling-distribution-of-a-mean"><i class="fa fa-check"></i><b>6.8</b> Sampling Distribution of a Mean</a>
 <ul>
-<li class="chapter" data-level="6.8.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#fundamental-properties"><i class="fa fa-check"></i><b>6.8.1</b> Fundamental Properties</a></li>
-<li class="chapter" data-level="6.8.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#small-vs-large-sample-size"><i class="fa fa-check"></i><b>6.8.2</b> Small vs Large Sample Size</a></li>
-<li class="chapter" data-level="6.8.3" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#big-vs-small-variance"><i class="fa fa-check"></i><b>6.8.3</b> Big vs Small Variance</a></li>
+<li class="chapter" data-level="6.8.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#why-the-sample-mean-is-random"><i class="fa fa-check"></i><b>6.8.1</b> Why the Sample Mean is Random ?</a></li>
+<li class="chapter" data-level="6.8.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#fundamental-properties"><i class="fa fa-check"></i><b>6.8.2</b> Fundamental Properties</a></li>
+<li class="chapter" data-level="6.8.3" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#interpretation-averaging-reduces-variability"><i class="fa fa-check"></i><b>6.8.3</b> Interpretation: Averaging Reduces Variability</a></li>
+<li class="chapter" data-level="6.8.4" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#population-vs-sampling-distribution"><i class="fa fa-check"></i><b>6.8.4</b> Population vs Sampling Distribution</a></li>
+<li class="chapter" data-level="6.8.5" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#effect-of-bias"><i class="fa fa-check"></i><b>6.8.5</b> Effect of Bias</a></li>
+<li class="chapter" data-level="6.8.6" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#summary-3"><i class="fa fa-check"></i><b>6.8.6</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="6.9" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#shape-of-the-sampling-distribution"><i class="fa fa-check"></i><b>6.9</b> Shape of the Sampling Distribution</a>
+<li class="chapter" data-level="6.9" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#shape-of-the-sampling-distribution-of-the-mean"><i class="fa fa-check"></i><b>6.9</b> Shape of the Sampling Distribution of the Mean</a>
 <ul>
-<li class="chapter" data-level="6.9.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#binomial-example"><i class="fa fa-check"></i><b>6.9.1</b> Binomial Example</a></li>
-<li class="chapter" data-level="6.9.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#poisson-example"><i class="fa fa-check"></i><b>6.9.2</b> Poisson Example</a></li>
-<li class="chapter" data-level="6.9.3" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#normal-example"><i class="fa fa-check"></i><b>6.9.3</b> Normal Example</a></li>
+<li class="chapter" data-level="6.9.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#when-the-population-is-normal"><i class="fa fa-check"></i><b>6.9.1</b> When the Population is Normal</a></li>
+<li class="chapter" data-level="6.9.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#when-the-population-is-not-normal"><i class="fa fa-check"></i><b>6.9.2</b> When the Population is Not Normal</a></li>
+<li class="chapter" data-level="6.9.3" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#intuition-behind-the-central-limit-theorem"><i class="fa fa-check"></i><b>6.9.3</b> Intuition Behind the Central Limit Theorem</a></li>
+<li class="chapter" data-level="6.9.4" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#simulation-examples"><i class="fa fa-check"></i><b>6.9.4</b> Simulation Examples</a></li>
+<li class="chapter" data-level="6.9.5" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#practical-implications"><i class="fa fa-check"></i><b>6.9.5</b> Practical Implications</a></li>
+<li class="chapter" data-level="6.9.6" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#summary-4"><i class="fa fa-check"></i><b>6.9.6</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="6.10" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#sampling-distribution-of-a-variance"><i class="fa fa-check"></i><b>6.10</b> Sampling Distribution of a Variance</a>
 <ul>
-<li class="chapter" data-level="6.10.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#small-vs-large-sample-size-1"><i class="fa fa-check"></i><b>6.10.1</b> Small vs Large Sample Size</a></li>
-<li class="chapter" data-level="6.10.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#big-vs-small-variance-1"><i class="fa fa-check"></i><b>6.10.2</b> Big vs Small Variance</a></li>
+<li class="chapter" data-level="6.10.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#why-the-denominator-is-n-1"><i class="fa fa-check"></i><b>6.10.1</b> Why the Denominator is <span class="math inline">\(n-1\)</span></a></li>
+<li class="chapter" data-level="6.10.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#distribution-under-normality"><i class="fa fa-check"></i><b>6.10.2</b> Distribution Under Normality</a></li>
+<li class="chapter" data-level="6.10.3" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#the-chi-squared-distribution"><i class="fa fa-check"></i><b>6.10.3</b> The Chi-Squared Distribution</a></li>
+<li class="chapter" data-level="6.10.4" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#shape-of-the-sampling-distribution"><i class="fa fa-check"></i><b>6.10.4</b> Shape of the Sampling Distribution</a></li>
+<li class="chapter" data-level="6.10.5" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#contrast-with-the-sample-mean"><i class="fa fa-check"></i><b>6.10.5</b> Contrast with the Sample Mean</a></li>
+<li class="chapter" data-level="6.10.6" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#key-takeaways"><i class="fa fa-check"></i><b>6.10.6</b> Key Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="6.11" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#concentration-with-larger-samples"><i class="fa fa-check"></i><b>6.11</b> Concentration with Larger Samples</a></li>
-<li class="chapter" data-level="6.12" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#central-insight"><i class="fa fa-check"></i><b>6.12</b> Central Insight</a></li>
+<li class="chapter" data-level="6.11" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#assessing-normality-of-a-population-distribution"><i class="fa fa-check"></i><b>6.11</b> Assessing Normality of a Population Distribution</a></li>
+<li class="chapter" data-level="6.12" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#theoretical-foundation"><i class="fa fa-check"></i><b>6.12</b> Theoretical Foundation</a>
+<ul>
+<li class="chapter" data-level="6.12.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#the-qq-plot"><i class="fa fa-check"></i><b>6.12.1</b> The Q–Q Plot</a></li>
+<li class="chapter" data-level="6.12.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#practical-considerations"><i class="fa fa-check"></i><b>6.12.2</b> Practical Considerations</a></li>
+<li class="chapter" data-level="6.12.3" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#summary-5"><i class="fa fa-check"></i><b>6.12.3</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6.13" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#central-insight"><i class="fa fa-check"></i><b>6.13</b> Central Insight</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html"><i class="fa fa-check"></i><b>7</b> Intro to Statistical Inference</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#from-probability-to-statistics-a-simulation-perspective"><i class="fa fa-check"></i><b>7.1</b> From Probability to Statistics: A Simulation Perspective</a></li>
+<li class="chapter" data-level="7.2" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#objectives-of-statistical-inference"><i class="fa fa-check"></i><b>7.2</b> Objectives of Statistical Inference</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#estimation"><i class="fa fa-check"></i><b>7.2.1</b> Estimation</a></li>
+<li class="chapter" data-level="7.2.2" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#hypothesis-testing"><i class="fa fa-check"></i><b>7.2.2</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="7.2.3" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#relationship-between-variables"><i class="fa fa-check"></i><b>7.2.3</b> Relationship Between Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#example-of-statistical-inference"><i class="fa fa-check"></i><b>7.3</b> Example of Statistical Inference</a></li>
+<li class="chapter" data-level="7.4" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#concluding-perspective"><i class="fa fa-check"></i><b>7.4</b> Concluding Perspective</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="estimation-1.html"><a href="estimation-1.html"><i class="fa fa-check"></i><b>8</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="estimation-1.html"><a href="estimation-1.html#introduction-1"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="estimation-1.html"><a href="estimation-1.html#estimating-the-mean"><i class="fa fa-check"></i><b>8.2</b> Estimating the Mean</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="estimation-1.html"><a href="estimation-1.html#point-estimation-1"><i class="fa fa-check"></i><b>8.2.1</b> Point Estimation</a></li>
+<li class="chapter" data-level="8.2.2" data-path="estimation-1.html"><a href="estimation-1.html#interval-estimation-1"><i class="fa fa-check"></i><b>8.2.2</b> Interval Estimation</a></li>
+<li class="chapter" data-level="8.2.3" data-path="estimation-1.html"><a href="estimation-1.html#choosing-the-sample-size"><i class="fa fa-check"></i><b>8.2.3</b> Choosing the Sample Size</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="estimation-1.html"><a href="estimation-1.html#summary-6"><i class="fa fa-check"></i><b>8.3</b> Summary</a></li>
 </ul></li>
 </ul>
 
@@ -860,132 +899,838 @@ Statistics are random variables.</p>
 </div>
 <div id="sampling-distribution-of-a-mean" class="section level2 hasAnchor" number="6.8">
 <h2><span class="header-section-number">6.8</span> Sampling Distribution of a Mean<a href="from-probability-to-statistics.html#sampling-distribution-of-a-mean" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let <span class="math inline">\(X_1,\dots,X_n\)</span> be i.i.d. with:</p>
+<p>Let <span class="math inline">\(X_1, \dots, X_n\)</span> be independent and identically distributed (i.i.d.) random variables such that</p>
 <p><span class="math display">\[
-E[X_i] = \mu, \quad \mathbb{V}(X_i) = \sigma^2.
+\mathbb{E}[X_i] = \mu, \qquad \mathbb{V}(X_i) = \sigma^2.
 \]</span></p>
-<p>The sample mean:</p>
+<p>The <strong>sample mean</strong> is defined as</p>
 <p><span class="math display">\[
-\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i.
+\bar{X} = \frac{1}{n} \sum_{i=1}^n X_i.
+\]</span></p>
+<p>Because each <span class="math inline">\(X_i\)</span> is random, <span class="math inline">\(\bar{X}\)</span> is also a random variable. Its probability distribution is called the <strong>sampling distribution of the mean</strong>.</p>
+<hr />
+<div id="why-the-sample-mean-is-random" class="section level3 hasAnchor" number="6.8.1">
+<h3><span class="header-section-number">6.8.1</span> Why the Sample Mean is Random ?<a href="from-probability-to-statistics.html#why-the-sample-mean-is-random" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Even when the population distribution is fixed, different random samples produce different values of <span class="math inline">\(\bar{X}\)</span>. Thus:</p>
+<ul>
+<li>The population mean <span class="math inline">\(\mu\)</span> is a fixed constant.</li>
+<li>The sample mean <span class="math inline">\(\bar{X}\)</span> varies from sample to sample.</li>
+<li>The distribution of all possible <span class="math inline">\(\bar{X}\)</span> values is the sampling distribution.</li>
+</ul>
+<p>This distinction between <em>parameter</em> and <em>statistic</em> is fundamental:</p>
+<ul>
+<li><span class="math inline">\(\mu\)</span> is fixed but unknown.</li>
+<li><span class="math inline">\(\bar{X}\)</span> is observable but random.</li>
+</ul>
+<hr />
+</div>
+<div id="fundamental-properties" class="section level3 hasAnchor" number="6.8.2">
+<h3><span class="header-section-number">6.8.2</span> Fundamental Properties<a href="from-probability-to-statistics.html#fundamental-properties" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Because expectation is linear,</p>
+<p><span class="math display">\[
+\mathbb{E}[\bar{X}]
+= \mathbb{E}\left[\frac{1}{n}\sum_{i=1}^n X_i\right]
+= \frac{1}{n}\sum_{i=1}^n \mathbb{E}[X_i]
+= \frac{1}{n}(n\mu)
+= \mu.
 \]</span></p>
 <hr />
-<div id="fundamental-properties" class="section level3 hasAnchor" number="6.8.1">
-<h3><span class="header-section-number">6.8.1</span> Fundamental Properties<a href="from-probability-to-statistics.html#fundamental-properties" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="unbiasedness" class="section level4 hasAnchor" number="6.8.2.1">
+<h4><span class="header-section-number">6.8.2.1</span> Unbiasedness<a href="from-probability-to-statistics.html#unbiasedness" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><span class="math display">\[
-\mathbb{E}[\bar{X}] = \mu
+\mathbb{E}[\bar{X}] = \mu.
 \]</span></p>
+<p>The sample mean is therefore an <strong>unbiased estimator</strong> of the population mean.</p>
+<hr />
+</div>
+<div id="variance-of-the-sample-mean" class="section level4 hasAnchor" number="6.8.2.2">
+<h4><span class="header-section-number">6.8.2.2</span> Variance of the Sample Mean<a href="from-probability-to-statistics.html#variance-of-the-sample-mean" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Since the observations are independent,</p>
+<p><span class="math display">\[
+\mathbb{V}(\bar{X})=\mathbb{V}\left(\frac{1}{n}\sum_{i=1}^n X_i\right)=\frac{1}{n^2} \sum_{i=1}^n \mathbb{V}(X_i)=\frac{1}{n^2}(n\sigma^2)=\frac{\sigma^2}{n}.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\mathbb{V}(\bar{X}) = \frac{\sigma^2}{n}.
+\]</span></p>
+<hr />
+</div>
+<div id="standard-error" class="section level4 hasAnchor" number="6.8.2.3">
+<h4><span class="header-section-number">6.8.2.3</span> Standard Error<a href="from-probability-to-statistics.html#standard-error" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The standard deviation of the sampling distribution is</p>
+<p><span class="math display">\[
+\text{SE}(\bar{X}) = \sqrt{\mathbb{V}(\bar{X})}=
+\frac{\sigma}{\sqrt{n}}.
+\]</span></p>
+<p>This quantity is called the <strong>standard error</strong> of the mean.</p>
+<hr />
+</div>
+</div>
+<div id="interpretation-averaging-reduces-variability" class="section level3 hasAnchor" number="6.8.3">
+<h3><span class="header-section-number">6.8.3</span> Interpretation: Averaging Reduces Variability<a href="from-probability-to-statistics.html#interpretation-averaging-reduces-variability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The factor <span class="math inline">\(\frac{1}{n}\)</span> in the variance expression is crucial.</p>
+<p>As the sample size increases:</p>
+<ul>
+<li>The expectation remains <span class="math inline">\(\mu\)</span>.</li>
+<li>The variance decreases.</li>
+<li>The distribution becomes more concentrated around <span class="math inline">\(\mu\)</span>.</li>
+</ul>
+<p>Intuitively, averaging “cancels out” random fluctuations. Individual observations may vary substantially, but their average stabilizes.</p>
+<p>Formally,</p>
+<p><span class="math display">\[
+\mathbb{V}(\bar{X}) \to 0 \quad \text{as} \quad n \to \infty.
+\]</span></p>
+<p>This is the mechanism behind the <strong>Law of Large Numbers</strong>.</p>
+<hr />
+<div id="simulation-height-example" class="section level4 hasAnchor" number="6.8.3.1">
+<h4><span class="header-section-number">6.8.3.1</span> Simulation: Height Example<a href="from-probability-to-statistics.html#simulation-height-example" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Continuing with the height examples, we can see the behavior of sample mean. Different samples will produce different means</p>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="from-probability-to-statistics.html#cb388-1" tabindex="-1"></a><span class="co"># Number of Replications</span></span>
+<span id="cb388-2"><a href="from-probability-to-statistics.html#cb388-2" tabindex="-1"></a>numRep <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb388-3"><a href="from-probability-to-statistics.html#cb388-3" tabindex="-1"></a><span class="co"># Sample Size</span></span>
+<span id="cb388-4"><a href="from-probability-to-statistics.html#cb388-4" tabindex="-1"></a>samSiz <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb388-5"><a href="from-probability-to-statistics.html#cb388-5" tabindex="-1"></a></span>
+<span id="cb388-6"><a href="from-probability-to-statistics.html#cb388-6" tabindex="-1"></a><span class="co"># Sampling Means</span></span>
+<span id="cb388-7"><a href="from-probability-to-statistics.html#cb388-7" tabindex="-1"></a><span class="do">## Simple Random Sampling</span></span>
+<span id="cb388-8"><a href="from-probability-to-statistics.html#cb388-8" tabindex="-1"></a>meaSimRanSam <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="at">n =</span> numRep, <span class="fu">mean</span>(<span class="fu">sample</span>(<span class="at">x =</span> hei, <span class="at">size =</span> samSiz, <span class="at">replace =</span> <span class="cn">FALSE</span>)))</span>
+<span id="cb388-9"><a href="from-probability-to-statistics.html#cb388-9" tabindex="-1"></a>meaRanSam    <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="at">n =</span> numRep, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> samSiz, <span class="at">mean =</span> meaPop, <span class="at">sd =</span> stdPop)))</span>
+<span id="cb388-10"><a href="from-probability-to-statistics.html#cb388-10" tabindex="-1"></a>meaBiaSam    <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="at">n =</span> numRep, <span class="fu">mean</span>(<span class="fu">sample</span>(<span class="at">x =</span> hei[rac <span class="sc">==</span> <span class="st">&quot;asian&quot;</span>], <span class="at">size =</span> samSiz, <span class="at">replace =</span> <span class="cn">FALSE</span>)))</span>
+<span id="cb388-11"><a href="from-probability-to-statistics.html#cb388-11" tabindex="-1"></a></span>
+<span id="cb388-12"><a href="from-probability-to-statistics.html#cb388-12" tabindex="-1"></a><span class="co"># Histograms</span></span>
+<span id="cb388-13"><a href="from-probability-to-statistics.html#cb388-13" tabindex="-1"></a>meaDisSimRanSam <span class="ot">&lt;-</span> <span class="fu">hist</span>(meaSimRanSam,</span>
+<span id="cb388-14"><a href="from-probability-to-statistics.html#cb388-14" tabindex="-1"></a>                        <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb388-15"><a href="from-probability-to-statistics.html#cb388-15" tabindex="-1"></a>                        <span class="at">main =</span> <span class="st">&quot;Samplig Distribution Mean (SRS)&quot;</span>,</span>
+<span id="cb388-16"><a href="from-probability-to-statistics.html#cb388-16" tabindex="-1"></a>                        <span class="at">xlab =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb388-17"><a href="from-probability-to-statistics.html#cb388-17" tabindex="-1"></a>                        <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb388-18"><a href="from-probability-to-statistics.html#cb388-18" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> meaPop, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-sampling-distribution-mean-1.png" width="672" /></p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="from-probability-to-statistics.html#cb389-1" tabindex="-1"></a>meaDisRanSam <span class="ot">&lt;-</span> <span class="fu">hist</span>(meaRanSam,</span>
+<span id="cb389-2"><a href="from-probability-to-statistics.html#cb389-2" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb389-3"><a href="from-probability-to-statistics.html#cb389-3" tabindex="-1"></a>                     <span class="at">main =</span> <span class="st">&quot;Samplig Distribution Mean (Random Sample)&quot;</span>,</span>
+<span id="cb389-4"><a href="from-probability-to-statistics.html#cb389-4" tabindex="-1"></a>                     <span class="at">xlab =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb389-5"><a href="from-probability-to-statistics.html#cb389-5" tabindex="-1"></a>                     <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb389-6"><a href="from-probability-to-statistics.html#cb389-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> meaPop, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-sampling-distribution-mean-2.png" width="672" /></p>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="from-probability-to-statistics.html#cb390-1" tabindex="-1"></a>meaDisBiaSam <span class="ot">&lt;-</span> <span class="fu">hist</span>(meaBiaSam,</span>
+<span id="cb390-2"><a href="from-probability-to-statistics.html#cb390-2" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb390-3"><a href="from-probability-to-statistics.html#cb390-3" tabindex="-1"></a>                     <span class="at">main =</span> <span class="st">&quot;Samplig Distribution Mean (Biased)&quot;</span>,</span>
+<span id="cb390-4"><a href="from-probability-to-statistics.html#cb390-4" tabindex="-1"></a>                     <span class="at">xlab =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb390-5"><a href="from-probability-to-statistics.html#cb390-5" tabindex="-1"></a>                     <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb390-6"><a href="from-probability-to-statistics.html#cb390-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> meaPop, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-sampling-distribution-mean-3.png" width="672" /></p>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="from-probability-to-statistics.html#cb391-1" tabindex="-1"></a><span class="co"># Comparison</span></span>
+<span id="cb391-2"><a href="from-probability-to-statistics.html#cb391-2" tabindex="-1"></a>xmin <span class="ot">&lt;-</span> <span class="fu">min</span>(heiDisPop<span class="sc">$</span>breaks, meaDisSimRanSam<span class="sc">$</span>breaks, meaDisRanSam<span class="sc">$</span>breaks, meaDisBiaSam<span class="sc">$</span>breaks)</span>
+<span id="cb391-3"><a href="from-probability-to-statistics.html#cb391-3" tabindex="-1"></a>xmax <span class="ot">&lt;-</span> <span class="fu">max</span>(heiDisPop<span class="sc">$</span>breaks, meaDisSimRanSam<span class="sc">$</span>breaks, meaDisRanSam<span class="sc">$</span>breaks, meaDisBiaSam<span class="sc">$</span>breaks)</span>
+<span id="cb391-4"><a href="from-probability-to-statistics.html#cb391-4" tabindex="-1"></a>ymin <span class="ot">&lt;-</span> <span class="fu">min</span>(heiDisPop<span class="sc">$</span>density, meaDisSimRanSam<span class="sc">$</span>density, meaDisRanSam<span class="sc">$</span>density, meaDisBiaSam<span class="sc">$</span>density)</span>
+<span id="cb391-5"><a href="from-probability-to-statistics.html#cb391-5" tabindex="-1"></a>ymax <span class="ot">&lt;-</span> <span class="fu">max</span>(heiDisPop<span class="sc">$</span>density, meaDisSimRanSam<span class="sc">$</span>density, meaDisRanSam<span class="sc">$</span>density, meaDisBiaSam<span class="sc">$</span>density)</span>
+<span id="cb391-6"><a href="from-probability-to-statistics.html#cb391-6" tabindex="-1"></a></span>
+<span id="cb391-7"><a href="from-probability-to-statistics.html#cb391-7" tabindex="-1"></a><span class="co"># Simple Random Sample Mean Distribution vs Population Distribution</span></span>
+<span id="cb391-8"><a href="from-probability-to-statistics.html#cb391-8" tabindex="-1"></a><span class="fu">plot</span>(heiDisRanSam,</span>
+<span id="cb391-9"><a href="from-probability-to-statistics.html#cb391-9" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb391-10"><a href="from-probability-to-statistics.html#cb391-10" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distributions (Population vs Sampling Mean (SRS))&quot;</span>,</span>
+<span id="cb391-11"><a href="from-probability-to-statistics.html#cb391-11" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb391-12"><a href="from-probability-to-statistics.html#cb391-12" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb391-13"><a href="from-probability-to-statistics.html#cb391-13" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb391-14"><a href="from-probability-to-statistics.html#cb391-14" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb391-15"><a href="from-probability-to-statistics.html#cb391-15" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span>
+<span id="cb391-16"><a href="from-probability-to-statistics.html#cb391-16" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
+<span id="cb391-17"><a href="from-probability-to-statistics.html#cb391-17" tabindex="-1"></a><span class="fu">plot</span>(meaDisSimRanSam,</span>
+<span id="cb391-18"><a href="from-probability-to-statistics.html#cb391-18" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb391-19"><a href="from-probability-to-statistics.html#cb391-19" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb391-20"><a href="from-probability-to-statistics.html#cb391-20" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;&quot;</span>, </span>
+<span id="cb391-21"><a href="from-probability-to-statistics.html#cb391-21" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb391-22"><a href="from-probability-to-statistics.html#cb391-22" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>),</span>
+<span id="cb391-23"><a href="from-probability-to-statistics.html#cb391-23" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb391-24"><a href="from-probability-to-statistics.html#cb391-24" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-sampling-distribution-mean-4.png" width="672" /></p>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="from-probability-to-statistics.html#cb392-1" tabindex="-1"></a><span class="co"># Random Sample Mean Distribution vs Population Distribution</span></span>
+<span id="cb392-2"><a href="from-probability-to-statistics.html#cb392-2" tabindex="-1"></a><span class="fu">plot</span>(heiDisRanSam,</span>
+<span id="cb392-3"><a href="from-probability-to-statistics.html#cb392-3" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb392-4"><a href="from-probability-to-statistics.html#cb392-4" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distributions (Population vs Sampling Mean (RS))&quot;</span>,</span>
+<span id="cb392-5"><a href="from-probability-to-statistics.html#cb392-5" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb392-6"><a href="from-probability-to-statistics.html#cb392-6" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb392-7"><a href="from-probability-to-statistics.html#cb392-7" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb392-8"><a href="from-probability-to-statistics.html#cb392-8" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb392-9"><a href="from-probability-to-statistics.html#cb392-9" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span>
+<span id="cb392-10"><a href="from-probability-to-statistics.html#cb392-10" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
+<span id="cb392-11"><a href="from-probability-to-statistics.html#cb392-11" tabindex="-1"></a><span class="fu">plot</span>(meaDisRanSam,</span>
+<span id="cb392-12"><a href="from-probability-to-statistics.html#cb392-12" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb392-13"><a href="from-probability-to-statistics.html#cb392-13" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb392-14"><a href="from-probability-to-statistics.html#cb392-14" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;&quot;</span>, </span>
+<span id="cb392-15"><a href="from-probability-to-statistics.html#cb392-15" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb392-16"><a href="from-probability-to-statistics.html#cb392-16" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb392-17"><a href="from-probability-to-statistics.html#cb392-17" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb392-18"><a href="from-probability-to-statistics.html#cb392-18" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-sampling-distribution-mean-5.png" width="672" /></p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="from-probability-to-statistics.html#cb393-1" tabindex="-1"></a><span class="co"># Bias Sample Mean Distribution vs Population Distribution</span></span>
+<span id="cb393-2"><a href="from-probability-to-statistics.html#cb393-2" tabindex="-1"></a><span class="fu">plot</span>(heiDisRanSam,</span>
+<span id="cb393-3"><a href="from-probability-to-statistics.html#cb393-3" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb393-4"><a href="from-probability-to-statistics.html#cb393-4" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distributions (Population vs Sampling Mean (Bias SRS))&quot;</span>,</span>
+<span id="cb393-5"><a href="from-probability-to-statistics.html#cb393-5" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb393-6"><a href="from-probability-to-statistics.html#cb393-6" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb393-7"><a href="from-probability-to-statistics.html#cb393-7" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb393-8"><a href="from-probability-to-statistics.html#cb393-8" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb393-9"><a href="from-probability-to-statistics.html#cb393-9" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span>
+<span id="cb393-10"><a href="from-probability-to-statistics.html#cb393-10" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
+<span id="cb393-11"><a href="from-probability-to-statistics.html#cb393-11" tabindex="-1"></a><span class="fu">plot</span>(meaDisBiaSam,</span>
+<span id="cb393-12"><a href="from-probability-to-statistics.html#cb393-12" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb393-13"><a href="from-probability-to-statistics.html#cb393-13" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb393-14"><a href="from-probability-to-statistics.html#cb393-14" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;&quot;</span>, </span>
+<span id="cb393-15"><a href="from-probability-to-statistics.html#cb393-15" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb393-16"><a href="from-probability-to-statistics.html#cb393-16" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb393-17"><a href="from-probability-to-statistics.html#cb393-17" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb393-18"><a href="from-probability-to-statistics.html#cb393-18" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-sampling-distribution-mean-6.png" width="672" /></p>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="from-probability-to-statistics.html#cb394-1" tabindex="-1"></a><span class="co"># Comparison</span></span>
+<span id="cb394-2"><a href="from-probability-to-statistics.html#cb394-2" tabindex="-1"></a>xmin <span class="ot">&lt;-</span> <span class="fu">min</span>(meaDisSimRanSam<span class="sc">$</span>breaks,  meaDisRanSam<span class="sc">$</span>breaks,  meaDisBiaSam<span class="sc">$</span>breaks)</span>
+<span id="cb394-3"><a href="from-probability-to-statistics.html#cb394-3" tabindex="-1"></a>xmax <span class="ot">&lt;-</span> <span class="fu">max</span>(meaDisSimRanSam<span class="sc">$</span>breaks,  meaDisRanSam<span class="sc">$</span>breaks,  meaDisBiaSam<span class="sc">$</span>breaks)</span>
+<span id="cb394-4"><a href="from-probability-to-statistics.html#cb394-4" tabindex="-1"></a>ymin <span class="ot">&lt;-</span> <span class="fu">min</span>(meaDisSimRanSam<span class="sc">$</span>density, meaDisRanSam<span class="sc">$</span>density, meaDisBiaSam<span class="sc">$</span>density)</span>
+<span id="cb394-5"><a href="from-probability-to-statistics.html#cb394-5" tabindex="-1"></a>ymax <span class="ot">&lt;-</span> <span class="fu">max</span>(meaDisSimRanSam<span class="sc">$</span>density, meaDisRanSam<span class="sc">$</span>density, meaDisBiaSam<span class="sc">$</span>density)</span>
+<span id="cb394-6"><a href="from-probability-to-statistics.html#cb394-6" tabindex="-1"></a></span>
+<span id="cb394-7"><a href="from-probability-to-statistics.html#cb394-7" tabindex="-1"></a><span class="co"># Simple Random Sample Mean Distribution vs Population Distribution</span></span>
+<span id="cb394-8"><a href="from-probability-to-statistics.html#cb394-8" tabindex="-1"></a><span class="fu">plot</span>(meaDisSimRanSam,</span>
+<span id="cb394-9"><a href="from-probability-to-statistics.html#cb394-9" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;Height in inches&quot;</span>,</span>
+<span id="cb394-10"><a href="from-probability-to-statistics.html#cb394-10" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Sampling Mean Distributions (SRS vs RS vs BIased SRS)&quot;</span>,</span>
+<span id="cb394-11"><a href="from-probability-to-statistics.html#cb394-11" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb394-12"><a href="from-probability-to-statistics.html#cb394-12" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb394-13"><a href="from-probability-to-statistics.html#cb394-13" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>),</span>
+<span id="cb394-14"><a href="from-probability-to-statistics.html#cb394-14" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb394-15"><a href="from-probability-to-statistics.html#cb394-15" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span>
+<span id="cb394-16"><a href="from-probability-to-statistics.html#cb394-16" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
+<span id="cb394-17"><a href="from-probability-to-statistics.html#cb394-17" tabindex="-1"></a><span class="fu">plot</span>(meaDisRanSam,</span>
+<span id="cb394-18"><a href="from-probability-to-statistics.html#cb394-18" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb394-19"><a href="from-probability-to-statistics.html#cb394-19" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb394-20"><a href="from-probability-to-statistics.html#cb394-20" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb394-21"><a href="from-probability-to-statistics.html#cb394-21" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb394-22"><a href="from-probability-to-statistics.html#cb394-22" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb394-23"><a href="from-probability-to-statistics.html#cb394-23" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb394-24"><a href="from-probability-to-statistics.html#cb394-24" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span>
+<span id="cb394-25"><a href="from-probability-to-statistics.html#cb394-25" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span><span class="cn">TRUE</span>)</span>
+<span id="cb394-26"><a href="from-probability-to-statistics.html#cb394-26" tabindex="-1"></a><span class="fu">plot</span>(meaDisBiaSam,</span>
+<span id="cb394-27"><a href="from-probability-to-statistics.html#cb394-27" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb394-28"><a href="from-probability-to-statistics.html#cb394-28" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb394-29"><a href="from-probability-to-statistics.html#cb394-29" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb394-30"><a href="from-probability-to-statistics.html#cb394-30" tabindex="-1"></a>     <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb394-31"><a href="from-probability-to-statistics.html#cb394-31" tabindex="-1"></a>     <span class="at">col    =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>),</span>
+<span id="cb394-32"><a href="from-probability-to-statistics.html#cb394-32" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb394-33"><a href="from-probability-to-statistics.html#cb394-33" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax))</span>
+<span id="cb394-34"><a href="from-probability-to-statistics.html#cb394-34" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> meaPop, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-sampling-distribution-mean-7.png" width="672" /></p>
+<p>In the simulation:</p>
+<ul>
+<li><code>meaSimRanSam</code> represents simple random sampling from the finite population.</li>
+<li><code>meaRanSam</code> represents sampling from a normal population model.</li>
+<li><code>meaBiaSam</code> represents a biased sampling scheme.</li>
+</ul>
+<p>Each histogram approximates the sampling distribution of <span class="math inline">\(\bar{X}\)</span>.</p>
+</div>
+<div id="what-we-observe" class="section level4 hasAnchor" number="6.8.3.2">
+<h4><span class="header-section-number">6.8.3.2</span> What We Observe<a href="from-probability-to-statistics.html#what-we-observe" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p><strong>Center</strong></p>
+<ul>
+<li>The simple random sample mean distribution centers at <span class="math inline">\(\mu\)</span>.</li>
+<li>The random normal sampling also centers at <span class="math inline">\(\mu\)</span>.</li>
+<li>The biased sampling distribution is shifted away from <span class="math inline">\(\mu\)</span>.</li>
+</ul></li>
+<li><p><strong>Spread</strong></p>
+<ul>
+<li>The sampling distribution is much narrower than the population distribution.</li>
+<li>This narrowing reflects <span class="math inline">\(\mathbb{V}(\bar{X}) = \sigma^2 / n\)</span>.</li>
+</ul></li>
+<li><p><strong>Effect of Sample Size (<code>samSiz</code>)</strong></p>
+<ul>
+<li>Increasing <code>samSiz</code> shrinks the spread.</li>
+<li>The histograms become tighter around <span class="math inline">\(\mu\)</span>.</li>
+<li>The standard error decreases at rate <span class="math inline">\(1/\sqrt{n}\)</span>.</li>
+</ul></li>
+<li><p><strong>Effect of Number of Replications (<code>numRep</code>)</strong></p>
+<ul>
+<li>Increasing <code>numRep</code> improves the smoothness of the histogram.</li>
+<li>It does <strong>not</strong> change the true sampling distribution.</li>
+<li>Very small replication counts produce unstable visual approximations.</li>
+</ul></li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="population-vs-sampling-distribution" class="section level3 hasAnchor" number="6.8.4">
+<h3><span class="header-section-number">6.8.4</span> Population vs Sampling Distribution<a href="from-probability-to-statistics.html#population-vs-sampling-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is essential to distinguish:</p>
+<ul>
+<li><strong>Population distribution:</strong> variability of individual observations <span class="math inline">\(X_i\)</span>.</li>
+<li><strong>Sampling distribution:</strong> variability of the statistic <span class="math inline">\(\bar{X}\)</span>.</li>
+</ul>
+<p>The sampling distribution is always less variable:</p>
+<p><span class="math display">\[
+\mathbb{V}(\bar{X}) = \frac{\sigma^2}{n} &lt; \sigma^2.
+\]</span></p>
+<p>Thus, averages are more stable than individual observations.</p>
+<hr />
+</div>
+<div id="effect-of-bias" class="section level3 hasAnchor" number="6.8.5">
+<h3><span class="header-section-number">6.8.5</span> Effect of Bias<a href="from-probability-to-statistics.html#effect-of-bias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The biased sampling example demonstrates an important principle:</p>
+<p>Even though</p>
 <p><span class="math display">\[
 \mathbb{V}(\bar{X}) = \frac{\sigma^2}{n}
 \]</span></p>
-<p>Standard error:</p>
+<p>still holds under independence, the expectation changes if the sampling scheme does not represent the population.</p>
+<p>Instead of</p>
 <p><span class="math display">\[
-\frac{\sigma}{\sqrt{n}}.
+\mathbb{E}[\bar{X}] = \mu,
 \]</span></p>
-<p>Averaging reduces variability.</p>
+<p>we get</p>
+<p><span class="math display">\[
+\mathbb{E}[\bar{X}] \neq \mu.
+\]</span></p>
+<p>The sampling distribution is then centered at the wrong value.</p>
+<p>This illustrates a critical principle:</p>
+<blockquote>
+<p>Increasing sample size reduces variance but does not fix bias.</p>
+</blockquote>
 <hr />
 </div>
-<div id="small-vs-large-sample-size" class="section level3 hasAnchor" number="6.8.2">
-<h3><span class="header-section-number">6.8.2</span> Small vs Large Sample Size<a href="from-probability-to-statistics.html#small-vs-large-sample-size" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="from-probability-to-statistics.html#cb388-1" tabindex="-1"></a>means_small <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">5</span>)))</span>
-<span id="cb388-2"><a href="from-probability-to-statistics.html#cb388-2" tabindex="-1"></a>means_large <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">50</span>)))</span>
-<span id="cb388-3"><a href="from-probability-to-statistics.html#cb388-3" tabindex="-1"></a></span>
-<span id="cb388-4"><a href="from-probability-to-statistics.html#cb388-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb388-5"><a href="from-probability-to-statistics.html#cb388-5" tabindex="-1"></a><span class="fu">hist</span>(means_small, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;n=5&quot;</span>)</span>
-<span id="cb388-6"><a href="from-probability-to-statistics.html#cb388-6" tabindex="-1"></a><span class="fu">hist</span>(means_large, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;n=50&quot;</span>)</span>
-<span id="cb388-7"><a href="from-probability-to-statistics.html#cb388-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
-<p>Larger samples → smaller variance.</p>
-<hr />
-</div>
-<div id="big-vs-small-variance" class="section level3 hasAnchor" number="6.8.3">
-<h3><span class="header-section-number">6.8.3</span> Big vs Small Variance<a href="from-probability-to-statistics.html#big-vs-small-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="from-probability-to-statistics.html#cb389-1" tabindex="-1"></a>means1 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd=</span><span class="dv">1</span>)))</span>
-<span id="cb389-2"><a href="from-probability-to-statistics.html#cb389-2" tabindex="-1"></a>means2 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd=</span><span class="dv">5</span>)))</span>
-<span id="cb389-3"><a href="from-probability-to-statistics.html#cb389-3" tabindex="-1"></a></span>
-<span id="cb389-4"><a href="from-probability-to-statistics.html#cb389-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb389-5"><a href="from-probability-to-statistics.html#cb389-5" tabindex="-1"></a><span class="fu">hist</span>(means1, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;sd=1&quot;</span>)</span>
-<span id="cb389-6"><a href="from-probability-to-statistics.html#cb389-6" tabindex="-1"></a><span class="fu">hist</span>(means2, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;sd=5&quot;</span>)</span>
-<span id="cb389-7"><a href="from-probability-to-statistics.html#cb389-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
-<p>Larger population variance → wider sampling distribution.</p>
-<hr />
-</div>
-</div>
-<div id="shape-of-the-sampling-distribution" class="section level2 hasAnchor" number="6.9">
-<h2><span class="header-section-number">6.9</span> Shape of the Sampling Distribution<a href="from-probability-to-statistics.html#shape-of-the-sampling-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If the population is normal:</p>
+<div id="summary-3" class="section level3 hasAnchor" number="6.8.6">
+<h3><span class="header-section-number">6.8.6</span> Summary<a href="from-probability-to-statistics.html#summary-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For i.i.d. observations:</p>
 <ul>
-<li><span class="math inline">\(\bar{X}\)</span> is exactly normal.</li>
+<li><span class="math inline">\(\mathbb{E}[\bar{X}] = \mu\)</span> (unbiasedness)</li>
+<li><span class="math inline">\(\mathbb{V}(\bar{X}) = \sigma^2 / n\)</span></li>
+<li><span class="math inline">\(\text{SE}(\bar{X}) = \sigma / \sqrt{n}\)</span></li>
+<li>Variability decreases as <span class="math inline">\(n\)</span> increases</li>
+<li>The distribution becomes approximately normal for large <span class="math inline">\(n\)</span></li>
+<li>Bias shifts the center but does not change the variance formula under independence</li>
 </ul>
-<p>If not:</p>
+<p>The sampling distribution of the mean is the foundation of:</p>
 <ul>
-<li>The Central Limit Theorem implies approximate normality for large <span class="math inline">\(n\)</span>.</li>
+<li>Confidence intervals</li>
+<li>Hypothesis testing</li>
+<li>Statistical estimation theory</li>
+</ul>
+<p>It formalizes why averaging produces stable, reliable inference.</p>
+<hr />
+</div>
+</div>
+<div id="shape-of-the-sampling-distribution-of-the-mean" class="section level2 hasAnchor" number="6.9">
+<h2><span class="header-section-number">6.9</span> Shape of the Sampling Distribution of the Mean<a href="from-probability-to-statistics.html#shape-of-the-sampling-distribution-of-the-mean" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Understanding the <strong>shape</strong> of the sampling distribution of the mean is central to statistical inference. While the mean and variance determine its center and spread, the <em>form</em> of the distribution determines whether normal-based inference is justified.</p>
+<p>Let <span class="math inline">\(X_1, \dots, X_n\)</span> be i.i.d. with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, and let</p>
+<p><span class="math display">\[
+\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i.
+\]</span></p>
+<p>The distribution of <span class="math inline">\(\bar{X}\)</span> depends critically on the distribution of the underlying population.</p>
+<hr />
+<div id="when-the-population-is-normal" class="section level3 hasAnchor" number="6.9.1">
+<h3><span class="header-section-number">6.9.1</span> When the Population is Normal<a href="from-probability-to-statistics.html#when-the-population-is-normal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If</p>
+<p><span class="math display">\[
+X_i \sim \mathcal{N}(\mu, \sigma^2),
+\]</span></p>
+<p>then for <strong>any</strong> sample size <span class="math inline">\(n\)</span>,</p>
+<p><span class="math display">\[
+\bar{X} \sim \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right).
+\]</span></p>
+<p>This is an exact result — not an approximation.</p>
+<p>The reason is structural: linear combinations of independent normal random variables are also normal. Since <span class="math inline">\(\bar{X}\)</span> is a linear combination of normal variables, it must itself be normal.</p>
+<p><strong>Key implication:</strong>
+If the population is normal, small sample sizes are not a problem for normal-based inference.</p>
+<hr />
+</div>
+<div id="when-the-population-is-not-normal" class="section level3 hasAnchor" number="6.9.2">
+<h3><span class="header-section-number">6.9.2</span> When the Population is Not Normal<a href="from-probability-to-statistics.html#when-the-population-is-not-normal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If the population distribution is not normal, the sampling distribution of <span class="math inline">\(\bar{X}\)</span> is not necessarily normal for small <span class="math inline">\(n\)</span>.</p>
+<p>However, the <strong>Central Limit Theorem (CLT)</strong> states that:</p>
+<blockquote>
+<p>As <span class="math inline">\(n \to \infty\)</span>, the distribution of
+<span class="math display">\[
+\frac{\bar{X} - \mu}{\sigma/\sqrt{n}}
+\]</span>
+converges in distribution to <span class="math inline">\(\mathcal{N}(0,1)\)</span>.</p>
+</blockquote>
+<p>Equivalently,</p>
+<p><span class="math display">\[
+\bar{X} \approx \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right)
+\quad \text{for large } n.
+\]</span></p>
+<p>This approximation improves as:</p>
+<ul>
+<li>Sample size increases,</li>
+<li>The population distribution is less skewed,</li>
+<li>The population has finite variance.</li>
 </ul>
 <hr />
-<div id="binomial-example" class="section level3 hasAnchor" number="6.9.1">
-<h3><span class="header-section-number">6.9.1</span> Binomial Example<a href="from-probability-to-statistics.html#binomial-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="from-probability-to-statistics.html#cb390-1" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">rbinom</span>(<span class="dv">20</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)))</span>
-<span id="cb390-2"><a href="from-probability-to-statistics.html#cb390-2" tabindex="-1"></a><span class="fu">hist</span>(means, <span class="at">probability=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<div id="intuition-behind-the-central-limit-theorem" class="section level3 hasAnchor" number="6.9.3">
+<h3><span class="header-section-number">6.9.3</span> Intuition Behind the Central Limit Theorem<a href="from-probability-to-statistics.html#intuition-behind-the-central-limit-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Each <span class="math inline">\(X_i\)</span> may be highly skewed or discrete. But when we average:</p>
+<ul>
+<li>Extreme values offset one another,</li>
+<li>Irregularities smooth out,</li>
+<li>The resulting distribution becomes symmetric and bell-shaped.</li>
+</ul>
+<p>Averaging acts as a <strong>stabilizing mechanism</strong>.</p>
+<p>The CLT explains why the normal distribution appears ubiquitously in statistics, even when the underlying data are not normal.</p>
 <hr />
 </div>
-<div id="poisson-example" class="section level3 hasAnchor" number="6.9.2">
-<h3><span class="header-section-number">6.9.2</span> Poisson Example<a href="from-probability-to-statistics.html#poisson-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="from-probability-to-statistics.html#cb391-1" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">rpois</span>(<span class="dv">20</span>,<span class="dv">3</span>)))</span>
-<span id="cb391-2"><a href="from-probability-to-statistics.html#cb391-2" tabindex="-1"></a><span class="fu">hist</span>(means, <span class="at">probability=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div id="simulation-examples" class="section level3 hasAnchor" number="6.9.4">
+<h3><span class="header-section-number">6.9.4</span> Simulation Examples<a href="from-probability-to-statistics.html#simulation-examples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To illustrate the CLT, consider three different populations:</p>
+<ol style="list-style-type: decimal">
+<li>Binomial (discrete and bounded)</li>
+<li>Poisson (discrete and skewed)</li>
+<li>Normal (already symmetric)</li>
+</ol>
+<p>In each case, we generate many sample means and examine their distribution.</p>
+<hr />
+<div id="binomial-example" class="section level4 hasAnchor" number="6.9.4.1">
+<h4><span class="header-section-number">6.9.4.1</span> Binomial Example<a href="from-probability-to-statistics.html#binomial-example" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Population:</p>
+<ul>
+<li><span class="math inline">\(X \sim \text{Binomial}(1, 0.5)\)</span></li>
+<li>This is a Bernoulli random variable.</li>
+<li>It is discrete and highly non-normal.</li>
+</ul>
+<p>Simulation:</p>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="from-probability-to-statistics.html#cb395-1" tabindex="-1"></a><span class="co"># Distribution of the Binomial</span></span>
+<span id="cb395-2"><a href="from-probability-to-statistics.html#cb395-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">dbinom</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>),<span class="at">names.arg =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-binomial-clt-1.png" width="672" /></p>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="from-probability-to-statistics.html#cb396-1" tabindex="-1"></a><span class="co"># Distribution of the Mean</span></span>
+<span id="cb396-2"><a href="from-probability-to-statistics.html#cb396-2" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">rbinom</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)))</span>
+<span id="cb396-3"><a href="from-probability-to-statistics.html#cb396-3" tabindex="-1"></a><span class="fu">hist</span>(means, <span class="at">probability=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-binomial-clt-2.png" width="672" /></p>
+<div id="interpretation-1" class="section level5 hasAnchor" number="6.9.4.1.1">
+<h5><span class="header-section-number">6.9.4.1.1</span> Interpretation<a href="from-probability-to-statistics.html#interpretation-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<ul>
+<li>Each sample consists of 20 Bernoulli trials.</li>
+<li>The histogram represents the sampling distribution of <span class="math inline">\(\bar{X}\)</span>.</li>
+<li>Despite the discrete nature of the population, the histogram appears approximately bell-shaped.</li>
+</ul>
+<p>Even though individual observations are only 0 or 1, their average behaves approximately normally for <span class="math inline">\(n=20\)</span>.</p>
 <hr />
 </div>
-<div id="normal-example" class="section level3 hasAnchor" number="6.9.3">
-<h3><span class="header-section-number">6.9.3</span> Normal Example<a href="from-probability-to-statistics.html#normal-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="from-probability-to-statistics.html#cb392-1" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">1</span>)))</span>
-<span id="cb392-2"><a href="from-probability-to-statistics.html#cb392-2" tabindex="-1"></a><span class="fu">hist</span>(means, <span class="at">probability=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<div id="poisson-example" class="section level4 hasAnchor" number="6.9.4.2">
+<h4><span class="header-section-number">6.9.4.2</span> Poisson Example<a href="from-probability-to-statistics.html#poisson-example" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Population:</p>
+<ul>
+<li><span class="math inline">\(X \sim \text{Poisson}(3)\)</span></li>
+<li>Discrete and right-skewed.</li>
+</ul>
+<p>Simulation:</p>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="from-probability-to-statistics.html#cb397-1" tabindex="-1"></a><span class="co"># Distribution of the Poisson</span></span>
+<span id="cb397-2"><a href="from-probability-to-statistics.html#cb397-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">dpois</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">lambda =</span> <span class="dv">3</span>), <span class="at">names.arg =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-poisson-clt-1.png" width="672" /></p>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="from-probability-to-statistics.html#cb398-1" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">rpois</span>(<span class="dv">20</span>,<span class="dv">3</span>)))</span>
+<span id="cb398-2"><a href="from-probability-to-statistics.html#cb398-2" tabindex="-1"></a><span class="fu">hist</span>(means, <span class="at">probability=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-poisson-clt-2.png" width="672" /></p>
+<div id="interpretation-2" class="section level5 hasAnchor" number="6.9.4.2.1">
+<h5><span class="header-section-number">6.9.4.2.1</span> Interpretation<a href="from-probability-to-statistics.html#interpretation-2" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<ul>
+<li>Individual observations are skewed.</li>
+<li>The population distribution is asymmetric.</li>
+<li>Yet the sampling distribution of <span class="math inline">\(\bar{X}\)</span> is much more symmetric.</li>
+</ul>
+<p>This demonstrates the smoothing effect of averaging. The skewness is substantially reduced.</p>
 <hr />
+</div>
+</div>
+<div id="normal-example" class="section level4 hasAnchor" number="6.9.4.3">
+<h4><span class="header-section-number">6.9.4.3</span> Normal Example<a href="from-probability-to-statistics.html#normal-example" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Population:</p>
+<ul>
+<li><span class="math inline">\(X \sim \mathcal{N}(0,1)\)</span></li>
+</ul>
+<p>Simulation:</p>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="from-probability-to-statistics.html#cb399-1" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">1</span>)))</span>
+<span id="cb399-2"><a href="from-probability-to-statistics.html#cb399-2" tabindex="-1"></a><span class="fu">hist</span>(means, <span class="at">probability=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-normal-clt-1.png" width="672" /></p>
+<div id="interpretation-3" class="section level5 hasAnchor" number="6.9.4.3.1">
+<h5><span class="header-section-number">6.9.4.3.1</span> Interpretation<a href="from-probability-to-statistics.html#interpretation-3" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<ul>
+<li>Since the population is normal, the sampling distribution is exactly normal.</li>
+<li>The histogram should appear bell-shaped even for relatively small <span class="math inline">\(n\)</span>.</li>
+<li>The spread matches <span class="math inline">\(\sigma/\sqrt{n} = 1/\sqrt{20}\)</span>.</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="comparing-the-three-cases" class="section level4 hasAnchor" number="6.9.4.4">
+<h4><span class="header-section-number">6.9.4.4</span> Comparing the Three Cases<a href="from-probability-to-statistics.html#comparing-the-three-cases" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<table>
+<thead>
+<tr class="header">
+<th>Population Type</th>
+<th>Population Shape</th>
+<th>Sampling Distribution Shape</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Binomial</td>
+<td>Discrete</td>
+<td>Approximately normal</td>
+</tr>
+<tr class="even">
+<td>Poisson</td>
+<td>Skewed</td>
+<td>More symmetric, approx. normal</td>
+</tr>
+<tr class="odd">
+<td>Normal</td>
+<td>Symmetric</td>
+<td>Exactly normal</td>
+</tr>
+</tbody>
+</table>
+<p>The remarkable conclusion is:</p>
+<blockquote>
+<p>The sampling distribution of the mean tends toward normality regardless of the population distribution, provided the variance is finite.</p>
+</blockquote>
+<hr />
+</div>
+<div id="effect-of-sample-size" class="section level4 hasAnchor" number="6.9.4.5">
+<h4><span class="header-section-number">6.9.4.5</span> Effect of Sample Size<a href="from-probability-to-statistics.html#effect-of-sample-size" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If you change the sample size from 20 to:</p>
+<ul>
+<li>5 → distribution looks rough and possibly skewed.</li>
+<li>50 → noticeably smoother and more symmetric.</li>
+<li>100 → very close to normal.</li>
+</ul>
+<p>Formally:</p>
+<p><span class="math display">\[
+\bar{X} \overset{d}{\to} \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right).
+\]</span></p>
+<p>The approximation improves with larger <span class="math inline">\(n\)</span>.</p>
+<hr />
+</div>
+</div>
+<div id="practical-implications" class="section level3 hasAnchor" number="6.9.5">
+<h3><span class="header-section-number">6.9.5</span> Practical Implications<a href="from-probability-to-statistics.html#practical-implications" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The CLT justifies:</p>
+<ul>
+<li>Confidence intervals for means,</li>
+<li>Hypothesis tests about means,</li>
+<li>Approximate normal modeling in large samples.</li>
+</ul>
+<p>It explains why normal-based procedures are widely applicable even when the underlying data are not normally distributed.</p>
+<hr />
+</div>
+<div id="summary-4" class="section level3 hasAnchor" number="6.9.6">
+<h3><span class="header-section-number">6.9.6</span> Summary<a href="from-probability-to-statistics.html#summary-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>If the population is normal → <span class="math inline">\(\bar{X}\)</span> is exactly normal.</li>
+<li>If the population is not normal → <span class="math inline">\(\bar{X}\)</span> is approximately normal for large <span class="math inline">\(n\)</span>.</li>
+<li>Averaging reduces skewness and variability.</li>
+<li>The approximation improves with sample size.</li>
+<li>The variance of <span class="math inline">\(\bar{X}\)</span> is always <span class="math inline">\(\sigma^2/n\)</span> (under independence).</li>
+</ul>
+<p>The Central Limit Theorem is one of the foundational pillars of probability and statistics, providing the theoretical justification for large-sample inference.</p>
 </div>
 </div>
 <div id="sampling-distribution-of-a-variance" class="section level2 hasAnchor" number="6.10">
 <h2><span class="header-section-number">6.10</span> Sampling Distribution of a Variance<a href="from-probability-to-statistics.html#sampling-distribution-of-a-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The sample variance:</p>
+<p>Let <span class="math inline">\(X_1, \dots, X_n\)</span> be i.i.d. random variables with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. The <strong>sample variance</strong> is defined as</p>
 <p><span class="math display">\[
-S^2 = \frac{1}{n-1}\sum (X_i-\bar{X})^2.
+S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2.
 \]</span></p>
-<p>It is also a random variable.</p>
-<p>If the population is normal:</p>
+<p>The sample variance is itself a random variable because it is computed from random observations. Just like the sample mean <span class="math inline">\(\bar{X}\)</span>, its value changes from sample to sample.</p>
+<hr />
+<div id="why-the-denominator-is-n-1" class="section level3 hasAnchor" number="6.10.1">
+<h3><span class="header-section-number">6.10.1</span> Why the Denominator is <span class="math inline">\(n-1\)</span><a href="from-probability-to-statistics.html#why-the-denominator-is-n-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The use of <span class="math inline">\(n-1\)</span> instead of <span class="math inline">\(n\)</span> is not arbitrary. The quantity</p>
+<p><span class="math display">\[
+\sum_{i=1}^n (X_i - \bar{X})^2
+\]</span></p>
+<p>measures total variability around the sample mean. However, once <span class="math inline">\(\bar{X}\)</span> is computed, the deviations are no longer independent. Only <span class="math inline">\(n-1\)</span> of them are free to vary.</p>
+<p>This leads to the concept of <strong>degrees of freedom</strong>: after estimating <span class="math inline">\(\bar{X}\)</span>, we lose one degree of freedom. Therefore, dividing by <span class="math inline">\(n-1\)</span> ensures that</p>
+<p><span class="math display">\[
+\mathbb{E}[S^2] = \sigma^2,
+\]</span></p>
+<p>meaning the sample variance is an unbiased estimator of the population variance.</p>
+<hr />
+</div>
+<div id="distribution-under-normality" class="section level3 hasAnchor" number="6.10.2">
+<h3><span class="header-section-number">6.10.2</span> Distribution Under Normality<a href="from-probability-to-statistics.html#distribution-under-normality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If the population distribution is normal,</p>
+<p><span class="math display">\[
+X_i \sim \mathcal{N}(\mu, \sigma^2),
+\]</span></p>
+<p>then the sampling distribution of the variance has an exact and remarkable form:</p>
 <p><span class="math display">\[
 \frac{(n-1)S^2}{\sigma^2}
+\sim
+\chi^2_{n-1}.
 \]</span></p>
-<p>follows a chi-squared distribution with <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
-<hr />
-<div id="small-vs-large-sample-size-1" class="section level3 hasAnchor" number="6.10.1">
-<h3><span class="header-section-number">6.10.1</span> Small vs Large Sample Size<a href="from-probability-to-statistics.html#small-vs-large-sample-size-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="from-probability-to-statistics.html#cb393-1" tabindex="-1"></a>vars_small <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">2000</span>, <span class="fu">var</span>(<span class="fu">rnorm</span>(<span class="dv">5</span>)))</span>
-<span id="cb393-2"><a href="from-probability-to-statistics.html#cb393-2" tabindex="-1"></a>vars_large <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">2000</span>, <span class="fu">var</span>(<span class="fu">rnorm</span>(<span class="dv">50</span>)))</span>
-<span id="cb393-3"><a href="from-probability-to-statistics.html#cb393-3" tabindex="-1"></a></span>
-<span id="cb393-4"><a href="from-probability-to-statistics.html#cb393-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb393-5"><a href="from-probability-to-statistics.html#cb393-5" tabindex="-1"></a><span class="fu">hist</span>(vars_small, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;n=5&quot;</span>)</span>
-<span id="cb393-6"><a href="from-probability-to-statistics.html#cb393-6" tabindex="-1"></a><span class="fu">hist</span>(vars_large, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;n=50&quot;</span>)</span>
-<span id="cb393-7"><a href="from-probability-to-statistics.html#cb393-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<p>That is, the scaled sample variance follows a <strong>chi-squared distribution</strong> with <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
 <hr />
 </div>
-<div id="big-vs-small-variance-1" class="section level3 hasAnchor" number="6.10.2">
-<h3><span class="header-section-number">6.10.2</span> Big vs Small Variance<a href="from-probability-to-statistics.html#big-vs-small-variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="from-probability-to-statistics.html#cb394-1" tabindex="-1"></a>vars1 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">2000</span>, <span class="fu">var</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd=</span><span class="dv">1</span>)))</span>
-<span id="cb394-2"><a href="from-probability-to-statistics.html#cb394-2" tabindex="-1"></a>vars2 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">2000</span>, <span class="fu">var</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd=</span><span class="dv">5</span>)))</span>
-<span id="cb394-3"><a href="from-probability-to-statistics.html#cb394-3" tabindex="-1"></a></span>
-<span id="cb394-4"><a href="from-probability-to-statistics.html#cb394-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb394-5"><a href="from-probability-to-statistics.html#cb394-5" tabindex="-1"></a><span class="fu">hist</span>(vars1, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;sd=1&quot;</span>)</span>
-<span id="cb394-6"><a href="from-probability-to-statistics.html#cb394-6" tabindex="-1"></a><span class="fu">hist</span>(vars2, <span class="at">probability=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">&quot;sd=5&quot;</span>)</span>
-<span id="cb394-7"><a href="from-probability-to-statistics.html#cb394-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<div id="the-chi-squared-distribution" class="section level3 hasAnchor" number="6.10.3">
+<h3><span class="header-section-number">6.10.3</span> The Chi-Squared Distribution<a href="from-probability-to-statistics.html#the-chi-squared-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The chi-squared distribution arises as the sum of squared independent standard normal variables. If</p>
+<p><span class="math display">\[
+Z_1, \dots, Z_k \sim \mathcal{N}(0,1)
+\]</span></p>
+<p>independently, then</p>
+<p><span class="math display">\[
+\sum_{i=1}^k Z_i^2 \sim \chi^2_k.
+\]</span></p>
+<p>This connection explains why normality of the population is essential. The derivation of the sampling distribution of <span class="math inline">\(S^2\)</span> ultimately reduces to expressing variability in terms of squared standard normal variables.</p>
+<hr />
+</div>
+<div id="shape-of-the-sampling-distribution" class="section level3 hasAnchor" number="6.10.4">
+<h3><span class="header-section-number">6.10.4</span> Shape of the Sampling Distribution<a href="from-probability-to-statistics.html#shape-of-the-sampling-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The chi-squared distribution:</p>
+<ul>
+<li>Is defined only for positive values.</li>
+<li>Is right-skewed for small degrees of freedom.</li>
+<li>Becomes more symmetric as <span class="math inline">\(n\)</span> increases.</li>
+<li>Has mean equal to its degrees of freedom.</li>
+</ul>
+<p>Thus,</p>
+<p><span class="math display">\[
+\mathbb{E}\left[\frac{(n-1)S^2}{\sigma^2}\right] = n-1.
+\]</span></p>
+<p>Rescaling gives</p>
+<p><span class="math display">\[
+\mathbb{E}[S^2] = \sigma^2.
+\]</span></p>
+<p>As <span class="math inline">\(n\)</span> increases:</p>
+<ul>
+<li>The distribution becomes less skewed.</li>
+<li>The variability of <span class="math inline">\(S^2\)</span> decreases.</li>
+<li>The estimator becomes more concentrated around <span class="math inline">\(\sigma^2\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="from-probability-to-statistics.html#cb400-1" tabindex="-1"></a>numSam <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb400-2"><a href="from-probability-to-statistics.html#cb400-2" tabindex="-1"></a>samVar <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">var</span>(<span class="fu">rnorm</span>(numSam)))</span>
+<span id="cb400-3"><a href="from-probability-to-statistics.html#cb400-3" tabindex="-1"></a><span class="fu">hist</span>(samVar, <span class="at">probability=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-sample-variance-distribution-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="contrast-with-the-sample-mean" class="section level3 hasAnchor" number="6.10.5">
+<h3><span class="header-section-number">6.10.5</span> Contrast with the Sample Mean<a href="from-probability-to-statistics.html#contrast-with-the-sample-mean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The sampling distribution of the mean is symmetric and (eventually) normal.</p>
+<p>The sampling distribution of the variance:</p>
+<ul>
+<li>Is not normal.</li>
+<li>Is positively skewed.</li>
+<li>Depends critically on the assumption of normality.</li>
+</ul>
+<p>This difference is fundamental. Inference about variances relies on the chi-squared distribution, while inference about means relies on normal (or <span class="math inline">\(t\)</span>) distributions.</p>
+<hr />
+</div>
+<div id="key-takeaways" class="section level3 hasAnchor" number="6.10.6">
+<h3><span class="header-section-number">6.10.6</span> Key Takeaways<a href="from-probability-to-statistics.html#key-takeaways" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><span class="math inline">\(S^2\)</span> is a random variable.</li>
+<li><span class="math inline">\(\mathbb{E}[S^2] = \sigma^2\)</span> (unbiasedness).</li>
+<li>If the population is normal,
+<span class="math display">\[
+\frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{n-1}.
+\]</span></li>
+<li>The distribution is right-skewed for small <span class="math inline">\(n\)</span> and becomes more symmetric as <span class="math inline">\(n\)</span> increases.</li>
+<li>Normality of the population is required for the exact chi-squared result.</li>
+</ul>
+<p>The sampling distribution of the variance is the foundation for:</p>
+<ul>
+<li>Confidence intervals for <span class="math inline">\(\sigma^2\)</span>,</li>
+<li>Hypothesis tests about variability,</li>
+<li>Construction of the <span class="math inline">\(t\)</span> distribution.</li>
+</ul>
 <hr />
 </div>
 </div>
-<div id="concentration-with-larger-samples" class="section level2 hasAnchor" number="6.11">
-<h2><span class="header-section-number">6.11</span> Concentration with Larger Samples<a href="from-probability-to-statistics.html#concentration-with-larger-samples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As <span class="math inline">\(n\)</span> increases, statistics stabilize.</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="from-probability-to-statistics.html#cb395-1" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">0</span>, <span class="dv">1</span>)))</span>
-<span id="cb395-2"><a href="from-probability-to-statistics.html#cb395-2" tabindex="-1"></a><span class="fu">hist</span>(means, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">30</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
-<p>The distribution tightens around the true mean.</p>
+<div id="assessing-normality-of-a-population-distribution" class="section level2 hasAnchor" number="6.11">
+<h2><span class="header-section-number">6.11</span> Assessing Normality of a Population Distribution<a href="from-probability-to-statistics.html#assessing-normality-of-a-population-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Many classical inferential procedures rely on the assumption that the population distribution is normal. In particular:</p>
+<ul>
+<li>The exact sampling distribution of <span class="math inline">\(S^2\)</span> requires normality.</li>
+<li>Small-sample inference for means relies on the <span class="math inline">\(t\)</span> distribution.</li>
+<li>Many parametric models assume Gaussian errors.</li>
+</ul>
+<p>It is therefore essential to understand how to assess whether a population distribution is plausibly normal.</p>
+<p>Normality can never be proven from finite data. Instead, we evaluate whether the observed sample is consistent with what we would expect under a normal model.</p>
+<p>There are two complementary approaches:</p>
+<ul>
+<li>Graphical methods (especially the Q–Q plot)</li>
+<li>Formal hypothesis tests</li>
+</ul>
+<p>In practice, graphical methods are fundamental because they reveal <em>how</em> the distribution deviates from normality.</p>
 <hr />
 </div>
-<div id="central-insight" class="section level2 hasAnchor" number="6.12">
-<h2><span class="header-section-number">6.12</span> Central Insight<a href="from-probability-to-statistics.html#central-insight" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="theoretical-foundation" class="section level2 hasAnchor" number="6.12">
+<h2><span class="header-section-number">6.12</span> Theoretical Foundation<a href="from-probability-to-statistics.html#theoretical-foundation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A random variable <span class="math inline">\(X\)</span> is normally distributed if its cumulative distribution function (CDF) matches that of a normal distribution:</p>
+<p><span class="math display">\[
+X \sim \mathcal{N}(\mu, \sigma^2).
+\]</span></p>
+<p>This implies that the standardized variable</p>
+<p><span class="math display">\[
+Z = \frac{X - \mu}{\sigma}
+\]</span></p>
+<p>follows a standard normal distribution.</p>
+<p>Normality therefore means that the quantiles of the data align with the quantiles of a normal distribution.</p>
+<p>This observation leads directly to the construction of the <strong>quantile–quantile plot</strong>.</p>
+<hr />
+<div id="the-qq-plot" class="section level3 hasAnchor" number="6.12.1">
+<h3><span class="header-section-number">6.12.1</span> The Q–Q Plot<a href="from-probability-to-statistics.html#the-qq-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The idea behind a Q–Q plot is conceptually simple:</p>
+<blockquote>
+<p>If the data come from a normal distribution, then their ordered values should match the theoretical normal quantiles.</p>
+</blockquote>
+<p>Let <span class="math inline">\(X_1, \dots, X_n\)</span> be a sample. Construct the Q–Q plot as follows.</p>
+<div id="step-1-order-the-data" class="section level4 hasAnchor" number="6.12.1.1">
+<h4><span class="header-section-number">6.12.1.1</span> Step 1: Order the Data<a href="from-probability-to-statistics.html#step-1-order-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Let</p>
+<p><span class="math display">\[
+X_{(1)} \le X_{(2)} \le \dots \le X_{(n)}
+\]</span></p>
+<p>denote the order statistics.</p>
+<hr />
+</div>
+<div id="step-2-compute-theoretical-probabilities" class="section level4 hasAnchor" number="6.12.1.2">
+<h4><span class="header-section-number">6.12.1.2</span> Step 2: Compute Theoretical Probabilities<a href="from-probability-to-statistics.html#step-2-compute-theoretical-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For each ordered observation <span class="math inline">\(X_{(i)}\)</span>, associate a cumulative probability:</p>
+<p><span class="math display">\[
+p_i = \frac{i - 0.5}{n}.
+\]</span></p>
+<p>This choice centers each observation within its empirical probability interval.</p>
+<hr />
+</div>
+<div id="step-3-compute-theoretical-normal-quantiles" class="section level4 hasAnchor" number="6.12.1.3">
+<h4><span class="header-section-number">6.12.1.3</span> Step 3: Compute Theoretical Normal Quantiles<a href="from-probability-to-statistics.html#step-3-compute-theoretical-normal-quantiles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Let <span class="math inline">\(\Phi^{-1}\)</span> denote the inverse CDF of the standard normal distribution.</p>
+<p>Define</p>
+<p><span class="math display">\[
+z_i = \Phi^{-1}(p_i).
+\]</span></p>
+<p>These are the theoretical quantiles from <span class="math inline">\(\mathcal{N}(0,1)\)</span>.</p>
+<p>If the population has unknown <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, we estimate them using:</p>
+<p><span class="math display">\[
+\hat{\mu} = \bar{X}, \qquad \hat{\sigma} = S.
+\]</span></p>
+<p>Then the comparable normal quantiles are:</p>
+<p><span class="math display">\[
+q_i = \hat{\mu} + \hat{\sigma} z_i.
+\]</span></p>
+<hr />
+</div>
+<div id="step-4-plot-ordered-data-against-theoretical-quantiles" class="section level4 hasAnchor" number="6.12.1.4">
+<h4><span class="header-section-number">6.12.1.4</span> Step 4: Plot Ordered Data Against Theoretical Quantiles<a href="from-probability-to-statistics.html#step-4-plot-ordered-data-against-theoretical-quantiles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We plot:</p>
+<ul>
+<li>Horizontal axis: <span class="math inline">\(q_i\)</span> (theoretical normal quantiles)</li>
+<li>Vertical axis: <span class="math inline">\(X_{(i)}\)</span> (observed ordered data)</li>
+</ul>
+<p>If the data are normally distributed, the points should lie approximately on a straight line.</p>
+<hr />
+</div>
+<div id="why-this-works" class="section level4 hasAnchor" number="6.12.1.5">
+<h4><span class="header-section-number">6.12.1.5</span> Why This Works<a href="from-probability-to-statistics.html#why-this-works" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If <span class="math inline">\(X\)</span> truly follows <span class="math inline">\(\mathcal{N}(\mu,\sigma^2)\)</span>, then</p>
+<p><span class="math display">\[
+\mathbb{P}(X \le q_i) = p_i.
+\]</span></p>
+<p>Thus the <span class="math inline">\(p_i\)</span>-th population quantile should equal <span class="math inline">\(q_i\)</span>. The ordered sample values approximate those population quantiles.</p>
+<p>Therefore:</p>
+<ul>
+<li>Normal data → linear Q–Q plot</li>
+<li>Right-skewed data → upward curvature</li>
+<li>Left-skewed data → downward curvature</li>
+<li>Heavy tails → deviations at extremes</li>
+</ul>
+<p>The Q–Q plot transforms the question of distributional shape into a question of linearity.</p>
+<hr />
+</div>
+<div id="example-constructing-a-qq-plot-normal-distribution" class="section level4 hasAnchor" number="6.12.1.6">
+<h4><span class="header-section-number">6.12.1.6</span> Example: Constructing a Q–Q Plot Normal Distribution<a href="from-probability-to-statistics.html#example-constructing-a-qq-plot-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We now construct a Q–Q plot step by step from first principles.</p>
+<p>Generate Data from a Normal Distribution</p>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="from-probability-to-statistics.html#cb401-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb401-2"><a href="from-probability-to-statistics.html#cb401-2" tabindex="-1"></a><span class="co"># Generate Samples from a Norma</span></span>
+<span id="cb401-3"><a href="from-probability-to-statistics.html#cb401-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb401-4"><a href="from-probability-to-statistics.html#cb401-4" tabindex="-1"></a><span class="co"># Sort the Data</span></span>
+<span id="cb401-5"><a href="from-probability-to-statistics.html#cb401-5" tabindex="-1"></a>x_sorted <span class="ot">&lt;-</span> <span class="fu">sort</span>(x)</span>
+<span id="cb401-6"><a href="from-probability-to-statistics.html#cb401-6" tabindex="-1"></a><span class="co"># Theoretical Probabilities</span></span>
+<span id="cb401-7"><a href="from-probability-to-statistics.html#cb401-7" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(x_sorted)</span>
+<span id="cb401-8"><a href="from-probability-to-statistics.html#cb401-8" tabindex="-1"></a>p <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>n <span class="sc">-</span> <span class="fl">0.5</span>)<span class="sc">/</span>n</span>
+<span id="cb401-9"><a href="from-probability-to-statistics.html#cb401-9" tabindex="-1"></a><span class="co"># Theoretical QUantiles</span></span>
+<span id="cb401-10"><a href="from-probability-to-statistics.html#cb401-10" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(p)</span>
+<span id="cb401-11"><a href="from-probability-to-statistics.html#cb401-11" tabindex="-1"></a><span class="co"># Plot the Data</span></span>
+<span id="cb401-12"><a href="from-probability-to-statistics.html#cb401-12" tabindex="-1"></a><span class="fu">plot</span>(z, x_sorted,</span>
+<span id="cb401-13"><a href="from-probability-to-statistics.html#cb401-13" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Q-Q Plot (Manual Construction)&quot;</span>,</span>
+<span id="cb401-14"><a href="from-probability-to-statistics.html#cb401-14" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Theoretical Normal Quantiles&quot;</span>,</span>
+<span id="cb401-15"><a href="from-probability-to-statistics.html#cb401-15" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Sample Quantiles&quot;</span>)</span>
+<span id="cb401-16"><a href="from-probability-to-statistics.html#cb401-16" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-qq-plot-normal-1.png" width="672" /></p>
+<p>Since the data are already standard normal, no scaling is necessary. If the data are normal, the points cluster around a line.</p>
+<hr />
+</div>
+<div id="example-constructing-a-qq-plot-non-normal-distribution" class="section level4 hasAnchor" number="6.12.1.7">
+<h4><span class="header-section-number">6.12.1.7</span> Example: Constructing a Q–Q Plot Non-Normal Distribution<a href="from-probability-to-statistics.html#example-constructing-a-qq-plot-non-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Now consider skewed data.</p>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="from-probability-to-statistics.html#cb402-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb402-2"><a href="from-probability-to-statistics.html#cb402-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rchisq</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">df =</span> <span class="dv">100</span>)</span>
+<span id="cb402-3"><a href="from-probability-to-statistics.html#cb402-3" tabindex="-1"></a>x_sorted <span class="ot">&lt;-</span> <span class="fu">sort</span>(x)</span>
+<span id="cb402-4"><a href="from-probability-to-statistics.html#cb402-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(x_sorted)</span>
+<span id="cb402-5"><a href="from-probability-to-statistics.html#cb402-5" tabindex="-1"></a>p <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>n <span class="sc">-</span> <span class="fl">0.5</span>)<span class="sc">/</span>n</span>
+<span id="cb402-6"><a href="from-probability-to-statistics.html#cb402-6" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(p)</span>
+<span id="cb402-7"><a href="from-probability-to-statistics.html#cb402-7" tabindex="-1"></a><span class="fu">plot</span>(z, x_sorted,</span>
+<span id="cb402-8"><a href="from-probability-to-statistics.html#cb402-8" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Q-Q Plot (Exponential Data)&quot;</span>,</span>
+<span id="cb402-9"><a href="from-probability-to-statistics.html#cb402-9" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Theoretical Normal Quantiles&quot;</span>,</span>
+<span id="cb402-10"><a href="from-probability-to-statistics.html#cb402-10" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Sample Quantiles&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-qq-plot-non-normal-1.png" width="672" /></p>
+<p>You will observe pronounced curvature:</p>
+<ul>
+<li>Lower tail compressed</li>
+<li>Upper tail stretched</li>
+</ul>
+<p>This pattern indicates right skewness and non-normality.</p>
+<hr />
+</div>
+<div id="using-built-in-r-functions" class="section level4 hasAnchor" number="6.12.1.8">
+<h4><span class="header-section-number">6.12.1.8</span> Using Built-In R Functions<a href="from-probability-to-statistics.html#using-built-in-r-functions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>R provides a direct implementation:</p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="from-probability-to-statistics.html#cb403-1" tabindex="-1"></a><span class="fu">qqnorm</span>(x)</span>
+<span id="cb403-2"><a href="from-probability-to-statistics.html#cb403-2" tabindex="-1"></a><span class="fu">qqline</span>(x, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/pro-to-sta-qq-plot-r-1.png" width="672" /></p>
+<p>However, constructing the plot manually clarifies the theoretical foundation.</p>
+<hr />
+</div>
+</div>
+<div id="practical-considerations" class="section level3 hasAnchor" number="6.12.2">
+<h3><span class="header-section-number">6.12.2</span> Practical Considerations<a href="from-probability-to-statistics.html#practical-considerations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When assessing normality:</p>
+<ul>
+<li>For small <span class="math inline">\(n\)</span>, departures are difficult to detect.</li>
+<li>For moderate <span class="math inline">\(n\)</span>, the Q–Q plot is highly informative.</li>
+<li>For large <span class="math inline">\(n\)</span>, slight deviations are inevitable and rarely practically important.</li>
+</ul>
+<p>Moreover, by the Central Limit Theorem, inference about means may still be valid even if the population is not normal, provided <span class="math inline">\(n\)</span> is sufficiently large.</p>
+<p>Normality matters most for:</p>
+<ul>
+<li>Small samples</li>
+<li>Inference about variance</li>
+<li>Heavy-tailed distributions</li>
+</ul>
+<hr />
+</div>
+<div id="summary-5" class="section level3 hasAnchor" number="6.12.3">
+<h3><span class="header-section-number">6.12.3</span> Summary<a href="from-probability-to-statistics.html#summary-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To assess whether a population is normally distributed:</p>
+<ul>
+<li>Understand that normality implies matching quantiles.</li>
+<li>Construct a Q–Q plot by comparing ordered data to theoretical normal quantiles.</li>
+<li>Interpret deviations from linearity.</li>
+<li>Use formal tests cautiously.</li>
+</ul>
+<p>The Q–Q plot provides a direct visual diagnostic grounded in the definition of a distribution via its quantile function.</p>
+<p>It is one of the most powerful and conceptually transparent tools in statistical practice.</p>
+<hr />
+</div>
+</div>
+<div id="central-insight" class="section level2 hasAnchor" number="6.13">
+<h2><span class="header-section-number">6.13</span> Central Insight<a href="from-probability-to-statistics.html#central-insight" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Statistics are random variables.</p>
 <p>A statistic has:</p>
 <ul>
@@ -1011,8 +1756,8 @@ Statistics uses that description to learn from data.</p>
           </div>
         </div>
       </div>
-<a href="introduction-to-probability.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="introduction-to-probability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="intro-to-statistical-inference.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

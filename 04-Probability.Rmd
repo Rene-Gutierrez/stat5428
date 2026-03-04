@@ -661,7 +661,7 @@ The marginal probability describes the baseline likelihood of an event across th
 For the same die example, the marginal probability of rolling a 4 is:
 
 ```{r pro-marginal-probability-of-rolling-a-4}
-proMar <- mean(die == 4)
+proMar <- mean(dieRol == 4)
 print(paste0("Conditional probability of rolling a 4 given that a number greater than 3 is rolled: ", proCon))
 print(paste0("Marginal probability of rolling a 4: ", proMar))
 ```

@@ -459,169 +459,941 @@ plot(heiDisBiaSam,
 
 ## Sampling Distribution of a Mean
 
-Let $X_1,\dots,X_n$ be i.i.d. with:
+Let $X_1, \dots, X_n$ be independent and identically distributed (i.i.d.) random variables such that
 
 $$
-E[X_i] = \mu, \quad \mathbb{V}(X_i) = \sigma^2.
+\mathbb{E}[X_i] = \mu, \qquad \mathbb{V}(X_i) = \sigma^2.
 $$
 
-The sample mean:
+The **sample mean** is defined as
 
 $$
-\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i.
+\bar{X} = \frac{1}{n} \sum_{i=1}^n X_i.
 $$
+
+Because each $X_i$ is random, $\bar{X}$ is also a random variable. Its probability distribution is called the **sampling distribution of the mean**.
+
+---
+
+### Why the Sample Mean is Random ?
+
+Even when the population distribution is fixed, different random samples produce different values of $\bar{X}$. Thus:
+
+* The population mean $\mu$ is a fixed constant.
+* The sample mean $\bar{X}$ varies from sample to sample.
+* The distribution of all possible $\bar{X}$ values is the sampling distribution.
+
+This distinction between *parameter* and *statistic* is fundamental:
+
+* $\mu$ is fixed but unknown.
+* $\bar{X}$ is observable but random.
 
 ---
 
 ### Fundamental Properties
 
+Because expectation is linear,
+
 $$
-\mathbb{E}[\bar{X}] = \mu
+\mathbb{E}[\bar{X}]
+= \mathbb{E}\left[\frac{1}{n}\sum_{i=1}^n X_i\right]
+= \frac{1}{n}\sum_{i=1}^n \mathbb{E}[X_i]
+= \frac{1}{n}(n\mu)
+= \mu.
 $$
+
+---
+
+#### Unbiasedness
+
+$$
+\mathbb{E}[\bar{X}] = \mu.
+$$
+
+The sample mean is therefore an **unbiased estimator** of the population mean.
+
+---
+
+#### Variance of the Sample Mean
+
+Since the observations are independent,
+
+$$
+\mathbb{V}(\bar{X})=\mathbb{V}\left(\frac{1}{n}\sum_{i=1}^n X_i\right)=\frac{1}{n^2} \sum_{i=1}^n \mathbb{V}(X_i)=\frac{1}{n^2}(n\sigma^2)=\frac{\sigma^2}{n}.
+$$
+
+Thus,
+
+$$
+\mathbb{V}(\bar{X}) = \frac{\sigma^2}{n}.
+$$
+
+---
+
+#### Standard Error
+
+The standard deviation of the sampling distribution is
+
+$$
+\text{SE}(\bar{X}) = \sqrt{\mathbb{V}(\bar{X})}=
+\frac{\sigma}{\sqrt{n}}.
+$$
+
+This quantity is called the **standard error** of the mean.
+
+---
+
+### Interpretation: Averaging Reduces Variability
+
+The factor $\frac{1}{n}$ in the variance expression is crucial.
+
+As the sample size increases:
+
+* The expectation remains $\mu$.
+* The variance decreases.
+* The distribution becomes more concentrated around $\mu$.
+
+Intuitively, averaging "cancels out" random fluctuations. Individual observations may vary substantially, but their average stabilizes.
+
+Formally,
+
+$$
+\mathbb{V}(\bar{X}) \to 0 \quad \text{as} \quad n \to \infty.
+$$
+
+This is the mechanism behind the **Law of Large Numbers**.
+
+---
+
+#### Simulation: Height Example
+
+Continuing with the height examples, we can see the behavior of sample mean. Different samples will produce different means
+
+```{r pro-to-sta-sampling-distribution-mean}
+# Number of Replications
+numRep <- 1000
+# Sample Size
+samSiz <- 1000
+
+# Sampling Means
+## Simple Random Sampling
+meaSimRanSam <- replicate(n = numRep, mean(sample(x = hei, size = samSiz, replace = FALSE)))
+meaRanSam    <- replicate(n = numRep, mean(rnorm(n = samSiz, mean = meaPop, sd = stdPop)))
+meaBiaSam    <- replicate(n = numRep, mean(sample(x = hei[rac == "asian"], size = samSiz, replace = FALSE)))
+
+# Histograms
+meaDisSimRanSam <- hist(meaSimRanSam,
+                        breaks = 25,
+                        main = "Samplig Distribution Mean (SRS)",
+                        xlab = "Height in inches",
+                        freq = FALSE)
+abline(v = meaPop, lwd = 2, col = rgb(1, 0, 0))
+meaDisRanSam <- hist(meaRanSam,
+                     breaks = 25,
+                     main = "Samplig Distribution Mean (Random Sample)",
+                     xlab = "Height in inches",
+                     freq = FALSE)
+abline(v = meaPop, lwd = 2, col = rgb(1, 0, 0))
+meaDisBiaSam <- hist(meaBiaSam,
+                     breaks = 25,
+                     main = "Samplig Distribution Mean (Biased)",
+                     xlab = "Height in inches",
+                     freq = FALSE)
+abline(v = meaPop, lwd = 2, col = rgb(1, 0, 0))
+
+# Comparison
+xmin <- min(heiDisPop$breaks, meaDisSimRanSam$breaks, meaDisRanSam$breaks, meaDisBiaSam$breaks)
+xmax <- max(heiDisPop$breaks, meaDisSimRanSam$breaks, meaDisRanSam$breaks, meaDisBiaSam$breaks)
+ymin <- min(heiDisPop$density, meaDisSimRanSam$density, meaDisRanSam$density, meaDisBiaSam$density)
+ymax <- max(heiDisPop$density, meaDisSimRanSam$density, meaDisRanSam$density, meaDisBiaSam$density)
+
+# Simple Random Sample Mean Distribution vs Population Distribution
+plot(heiDisRanSam,
+     xlab   = "Height in inches",
+     main   = "Distributions (Population vs Sampling Mean (SRS))",
+     freq   = FALSE,
+     border = NA,
+     col    = rgb(1, 0, 0, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+par(new=TRUE)
+plot(meaDisSimRanSam,
+     freq   = FALSE,
+     main   = "",
+     xlab   = "", 
+     border = NA,
+     col    = rgb(0, 0, 1, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+
+# Random Sample Mean Distribution vs Population Distribution
+plot(heiDisRanSam,
+     xlab   = "Height in inches",
+     main   = "Distributions (Population vs Sampling Mean (RS))",
+     freq   = FALSE,
+     border = NA,
+     col    = rgb(1, 0, 0, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+par(new=TRUE)
+plot(meaDisRanSam,
+     freq   = FALSE,
+     main   = "",
+     xlab   = "", 
+     border = NA,
+     col    = rgb(0, 1, 0, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+
+# Bias Sample Mean Distribution vs Population Distribution
+plot(heiDisRanSam,
+     xlab   = "Height in inches",
+     main   = "Distributions (Population vs Sampling Mean (Bias SRS))",
+     freq   = FALSE,
+     border = NA,
+     col    = rgb(1, 0, 0, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+par(new=TRUE)
+plot(meaDisBiaSam,
+     freq   = FALSE,
+     main   = "",
+     xlab   = "", 
+     border = NA,
+     col    = rgb(0, 1, 0, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+
+# Comparison
+xmin <- min(meaDisSimRanSam$breaks,  meaDisRanSam$breaks,  meaDisBiaSam$breaks)
+xmax <- max(meaDisSimRanSam$breaks,  meaDisRanSam$breaks,  meaDisBiaSam$breaks)
+ymin <- min(meaDisSimRanSam$density, meaDisRanSam$density, meaDisBiaSam$density)
+ymax <- max(meaDisSimRanSam$density, meaDisRanSam$density, meaDisBiaSam$density)
+
+# Simple Random Sample Mean Distribution vs Population Distribution
+plot(meaDisSimRanSam,
+     xlab   = "Height in inches",
+     main   = "Sampling Mean Distributions (SRS vs RS vs BIased SRS)",
+     freq   = FALSE,
+     border = NA,
+     col    = rgb(0, 0, 1, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+par(new=TRUE)
+plot(meaDisRanSam,
+     xlab   = "",
+     main   = "",
+     freq   = FALSE,
+     border = NA,
+     col    = rgb(0, 1, 0, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+par(new=TRUE)
+plot(meaDisBiaSam,
+     xlab   = "",
+     main   = "",
+     freq   = FALSE,
+     border = NA,
+     col    = rgb(1, 0, 1, 0.25),
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax))
+abline(v = meaPop, lwd = 2, col = rgb(1, 0, 0))
+```
+
+In the simulation:
+
+* `meaSimRanSam` represents simple random sampling from the finite population.
+* `meaRanSam` represents sampling from a normal population model.
+* `meaBiaSam` represents a biased sampling scheme.
+
+Each histogram approximates the sampling distribution of $\bar{X}$.
+
+#### What We Observe
+
+1. **Center**
+
+   * The simple random sample mean distribution centers at $\mu$.
+   * The random normal sampling also centers at $\mu$.
+   * The biased sampling distribution is shifted away from $\mu$.
+
+2. **Spread**
+
+   * The sampling distribution is much narrower than the population distribution.
+   * This narrowing reflects $\mathbb{V}(\bar{X}) = \sigma^2 / n$.
+
+3. **Effect of Sample Size (`samSiz`)**
+
+   * Increasing `samSiz` shrinks the spread.
+   * The histograms become tighter around $\mu$.
+   * The standard error decreases at rate $1/\sqrt{n}$.
+
+4. **Effect of Number of Replications (`numRep`)**
+
+   * Increasing `numRep` improves the smoothness of the histogram.
+   * It does **not** change the true sampling distribution.
+   * Very small replication counts produce unstable visual approximations.
+
+---
+
+### Population vs Sampling Distribution
+
+It is essential to distinguish:
+
+* **Population distribution:** variability of individual observations $X_i$.
+* **Sampling distribution:** variability of the statistic $\bar{X}$.
+
+The sampling distribution is always less variable:
+
+$$
+\mathbb{V}(\bar{X}) = \frac{\sigma^2}{n} < \sigma^2.
+$$
+
+Thus, averages are more stable than individual observations.
+
+---
+
+### Effect of Bias
+
+The biased sampling example demonstrates an important principle:
+
+Even though
 
 $$
 \mathbb{V}(\bar{X}) = \frac{\sigma^2}{n}
 $$
 
-Standard error:
+still holds under independence, the expectation changes if the sampling scheme does not represent the population.
+
+Instead of
 
 $$
-\frac{\sigma}{\sqrt{n}}.
+\mathbb{E}[\bar{X}] = \mu,
 $$
 
-Averaging reduces variability.
+we get
+
+$$
+\mathbb{E}[\bar{X}] \neq \mu.
+$$
+
+The sampling distribution is then centered at the wrong value.
+
+This illustrates a critical principle:
+
+> Increasing sample size reduces variance but does not fix bias.
 
 ---
 
-### Small vs Large Sample Size
+### Summary
 
-```r
-means_small <- replicate(1000, mean(rnorm(5)))
-means_large <- replicate(1000, mean(rnorm(50)))
+For i.i.d. observations:
 
-par(mfrow=c(1,2))
-hist(means_small, probability=TRUE, main="n=5")
-hist(means_large, probability=TRUE, main="n=50")
-par(mfrow=c(1,1))
-```
+* $\mathbb{E}[\bar{X}] = \mu$ (unbiasedness)
+* $\mathbb{V}(\bar{X}) = \sigma^2 / n$
+* $\text{SE}(\bar{X}) = \sigma / \sqrt{n}$
+* Variability decreases as $n$ increases
+* The distribution becomes approximately normal for large $n$
+* Bias shifts the center but does not change the variance formula under independence
 
-Larger samples → smaller variance.
+The sampling distribution of the mean is the foundation of:
 
----
+* Confidence intervals
+* Hypothesis testing
+* Statistical estimation theory
 
-### Big vs Small Variance
-
-```r
-means1 <- replicate(1000, mean(rnorm(20, sd=1)))
-means2 <- replicate(1000, mean(rnorm(20, sd=5)))
-
-par(mfrow=c(1,2))
-hist(means1, probability=TRUE, main="sd=1")
-hist(means2, probability=TRUE, main="sd=5")
-par(mfrow=c(1,1))
-```
-
-Larger population variance → wider sampling distribution.
+It formalizes why averaging produces stable, reliable inference.
 
 ---
 
-## Shape of the Sampling Distribution
+## Shape of the Sampling Distribution of the Mean
 
-If the population is normal:
+Understanding the **shape** of the sampling distribution of the mean is central to statistical inference. While the mean and variance determine its center and spread, the *form* of the distribution determines whether normal-based inference is justified.
 
-* $\bar{X}$ is exactly normal.
+Let $X_1, \dots, X_n$ be i.i.d. with mean $\mu$ and variance $\sigma^2$, and let
 
-If not:
+$$
+\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i.
+$$
 
-* The Central Limit Theorem implies approximate normality for large $n$.
+The distribution of $\bar{X}$ depends critically on the distribution of the underlying population.
 
 ---
 
-### Binomial Example
+### When the Population is Normal
 
-```r
-means <- replicate(5000, mean(rbinom(20,1,0.5)))
+If
+
+$$
+X_i \sim \mathcal{N}(\mu, \sigma^2),
+$$
+
+then for **any** sample size $n$,
+
+$$
+\bar{X} \sim \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right).
+$$
+
+This is an exact result — not an approximation.
+
+The reason is structural: linear combinations of independent normal random variables are also normal. Since $\bar{X}$ is a linear combination of normal variables, it must itself be normal.
+
+**Key implication:**
+If the population is normal, small sample sizes are not a problem for normal-based inference.
+
+---
+
+### When the Population is Not Normal
+
+If the population distribution is not normal, the sampling distribution of $\bar{X}$ is not necessarily normal for small $n$.
+
+However, the **Central Limit Theorem (CLT)** states that:
+
+> As $n \to \infty$, the distribution of
+> $$
+> \frac{\bar{X} - \mu}{\sigma/\sqrt{n}}
+> $$
+> converges in distribution to $\mathcal{N}(0,1)$.
+
+Equivalently,
+
+$$
+\bar{X} \approx \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right)
+\quad \text{for large } n.
+$$
+
+This approximation improves as:
+
+* Sample size increases,
+* The population distribution is less skewed,
+* The population has finite variance.
+
+---
+
+### Intuition Behind the Central Limit Theorem
+
+Each $X_i$ may be highly skewed or discrete. But when we average:
+
+* Extreme values offset one another,
+* Irregularities smooth out,
+* The resulting distribution becomes symmetric and bell-shaped.
+
+Averaging acts as a **stabilizing mechanism**.
+
+The CLT explains why the normal distribution appears ubiquitously in statistics, even when the underlying data are not normal.
+
+---
+
+### Simulation Examples
+
+To illustrate the CLT, consider three different populations:
+
+1. Binomial (discrete and bounded)
+2. Poisson (discrete and skewed)
+3. Normal (already symmetric)
+
+In each case, we generate many sample means and examine their distribution.
+
+---
+
+#### Binomial Example
+
+Population:
+
+* $X \sim \text{Binomial}(1, 0.5)$
+* This is a Bernoulli random variable.
+* It is discrete and highly non-normal.
+
+Simulation:
+
+```{r pro-to-sta-binomial-clt}
+# Distribution of the Binomial
+barplot(dbinom(x = 0:10, size = 10, prob = 0.5),names.arg = 0:10)
+# Distribution of the Mean
+means <- replicate(5000, mean(rbinom(20,10,0.5)))
 hist(means, probability=TRUE)
 ```
 
+##### Interpretation
+
+* Each sample consists of 20 Bernoulli trials.
+* The histogram represents the sampling distribution of $\bar{X}$.
+* Despite the discrete nature of the population, the histogram appears approximately bell-shaped.
+
+Even though individual observations are only 0 or 1, their average behaves approximately normally for $n=20$.
+
 ---
 
-### Poisson Example
+#### Poisson Example
 
-```r
+Population:
+
+* $X \sim \text{Poisson}(3)$
+* Discrete and right-skewed.
+
+Simulation:
+
+```{r pro-to-sta-poisson-clt}
+# Distribution of the Poisson
+barplot(dpois(x = 0:20, lambda = 3), names.arg = 0:20)
 means <- replicate(5000, mean(rpois(20,3)))
 hist(means, probability=TRUE)
 ```
 
+##### Interpretation
+
+* Individual observations are skewed.
+* The population distribution is asymmetric.
+* Yet the sampling distribution of $\bar{X}$ is much more symmetric.
+
+This demonstrates the smoothing effect of averaging. The skewness is substantially reduced.
+
 ---
 
-### Normal Example
+#### Normal Example
 
-```r
+Population:
+
+* $X \sim \mathcal{N}(0,1)$
+
+Simulation:
+
+```{r pro-to-sta-normal-clt}
 means <- replicate(5000, mean(rnorm(20,0,1)))
 hist(means, probability=TRUE)
 ```
 
+##### Interpretation
+
+* Since the population is normal, the sampling distribution is exactly normal.
+* The histogram should appear bell-shaped even for relatively small $n$.
+* The spread matches $\sigma/\sqrt{n} = 1/\sqrt{20}$.
+
 ---
+
+#### Comparing the Three Cases
+
+| Population Type | Population Shape | Sampling Distribution Shape    |
+| --------------- | ---------------- | ------------------------------ |
+| Binomial        | Discrete         | Approximately normal           |
+| Poisson         | Skewed           | More symmetric, approx. normal |
+| Normal          | Symmetric        | Exactly normal                 |
+
+The remarkable conclusion is:
+
+> The sampling distribution of the mean tends toward normality regardless of the population distribution, provided the variance is finite.
+
+---
+
+#### Effect of Sample Size
+
+If you change the sample size from 20 to:
+
+* 5 → distribution looks rough and possibly skewed.
+* 50 → noticeably smoother and more symmetric.
+* 100 → very close to normal.
+
+Formally:
+
+$$
+\bar{X} \overset{d}{\to} \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right).
+$$
+
+The approximation improves with larger $n$.
+
+---
+
+### Practical Implications
+
+The CLT justifies:
+
+* Confidence intervals for means,
+* Hypothesis tests about means,
+* Approximate normal modeling in large samples.
+
+It explains why normal-based procedures are widely applicable even when the underlying data are not normally distributed.
+
+---
+
+### Summary
+
+* If the population is normal → $\bar{X}$ is exactly normal.
+* If the population is not normal → $\bar{X}$ is approximately normal for large $n$.
+* Averaging reduces skewness and variability.
+* The approximation improves with sample size.
+* The variance of $\bar{X}$ is always $\sigma^2/n$ (under independence).
+
+The Central Limit Theorem is one of the foundational pillars of probability and statistics, providing the theoretical justification for large-sample inference.
+
 
 ## Sampling Distribution of a Variance
 
-The sample variance:
+Let $X_1, \dots, X_n$ be i.i.d. random variables with mean $\mu$ and variance $\sigma^2$. The **sample variance** is defined as
 
 $$
-S^2 = \frac{1}{n-1}\sum (X_i-\bar{X})^2.
+S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2.
 $$
 
-It is also a random variable.
+The sample variance is itself a random variable because it is computed from random observations. Just like the sample mean $\bar{X}$, its value changes from sample to sample.
 
-If the population is normal:
+---
+
+### Why the Denominator is $n-1$
+
+The use of $n-1$ instead of $n$ is not arbitrary. The quantity
+
+$$
+\sum_{i=1}^n (X_i - \bar{X})^2
+$$
+
+measures total variability around the sample mean. However, once $\bar{X}$ is computed, the deviations are no longer independent. Only $n-1$ of them are free to vary.
+
+This leads to the concept of **degrees of freedom**: after estimating $\bar{X}$, we lose one degree of freedom. Therefore, dividing by $n-1$ ensures that
+
+$$
+\mathbb{E}[S^2] = \sigma^2,
+$$
+
+meaning the sample variance is an unbiased estimator of the population variance.
+
+---
+
+### Distribution Under Normality
+
+If the population distribution is normal,
+
+$$
+X_i \sim \mathcal{N}(\mu, \sigma^2),
+$$
+
+then the sampling distribution of the variance has an exact and remarkable form:
 
 $$
 \frac{(n-1)S^2}{\sigma^2}
+\sim
+\chi^2_{n-1}.
 $$
 
-follows a chi-squared distribution with $n-1$ degrees of freedom.
+That is, the scaled sample variance follows a **chi-squared distribution** with $n-1$ degrees of freedom.
 
 ---
 
-### Small vs Large Sample Size
+### The Chi-Squared Distribution
 
-```r
-vars_small <- replicate(2000, var(rnorm(5)))
-vars_large <- replicate(2000, var(rnorm(50)))
+The chi-squared distribution arises as the sum of squared independent standard normal variables. If
 
-par(mfrow=c(1,2))
-hist(vars_small, probability=TRUE, main="n=5")
-hist(vars_large, probability=TRUE, main="n=50")
-par(mfrow=c(1,1))
+$$
+Z_1, \dots, Z_k \sim \mathcal{N}(0,1)
+$$
+
+independently, then
+
+$$
+\sum_{i=1}^k Z_i^2 \sim \chi^2_k.
+$$
+
+This connection explains why normality of the population is essential. The derivation of the sampling distribution of $S^2$ ultimately reduces to expressing variability in terms of squared standard normal variables.
+
+---
+
+### Shape of the Sampling Distribution
+
+The chi-squared distribution:
+
+* Is defined only for positive values.
+* Is right-skewed for small degrees of freedom.
+* Becomes more symmetric as $n$ increases.
+* Has mean equal to its degrees of freedom.
+
+Thus,
+
+$$
+\mathbb{E}\left[\frac{(n-1)S^2}{\sigma^2}\right] = n-1.
+$$
+
+Rescaling gives
+
+$$
+\mathbb{E}[S^2] = \sigma^2.
+$$
+
+As $n$ increases:
+
+* The distribution becomes less skewed.
+* The variability of $S^2$ decreases.
+* The estimator becomes more concentrated around $\sigma^2$.
+
+```{r pro-to-sta-sample-variance-distribution}
+numSam <- 5
+samVar <- replicate(5000, var(rnorm(numSam)))
+hist(samVar, probability=TRUE)
 ```
 
 ---
 
-### Big vs Small Variance
+### Contrast with the Sample Mean
 
-```r
-vars1 <- replicate(2000, var(rnorm(20, sd=1)))
-vars2 <- replicate(2000, var(rnorm(20, sd=5)))
+The sampling distribution of the mean is symmetric and (eventually) normal.
 
-par(mfrow=c(1,2))
-hist(vars1, probability=TRUE, main="sd=1")
-hist(vars2, probability=TRUE, main="sd=5")
-par(mfrow=c(1,1))
-```
+The sampling distribution of the variance:
+
+* Is not normal.
+* Is positively skewed.
+* Depends critically on the assumption of normality.
+
+This difference is fundamental. Inference about variances relies on the chi-squared distribution, while inference about means relies on normal (or $t$) distributions.
 
 ---
 
-## Concentration with Larger Samples
+### Key Takeaways
 
-As $n$ increases, statistics stabilize.
+* $S^2$ is a random variable.
+* $\mathbb{E}[S^2] = \sigma^2$ (unbiasedness).
+* If the population is normal,
+  $$
+  \frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{n-1}.
+  $$
+* The distribution is right-skewed for small $n$ and becomes more symmetric as $n$ increases.
+* Normality of the population is required for the exact chi-squared result.
 
-```{r }
-means <- replicate(1000, mean(rnorm(30, 0, 1)))
-hist(means, probability = TRUE, breaks = 30)
+The sampling distribution of the variance is the foundation for:
+
+* Confidence intervals for $\sigma^2$,
+* Hypothesis tests about variability,
+* Construction of the $t$ distribution.
+
+---
+
+## Assessing Normality of a Population Distribution
+
+Many classical inferential procedures rely on the assumption that the population distribution is normal. In particular:
+
+* The exact sampling distribution of $S^2$ requires normality.
+* Small-sample inference for means relies on the $t$ distribution.
+* Many parametric models assume Gaussian errors.
+
+It is therefore essential to understand how to assess whether a population distribution is plausibly normal.
+
+Normality can never be proven from finite data. Instead, we evaluate whether the observed sample is consistent with what we would expect under a normal model.
+
+There are two complementary approaches:
+
+* Graphical methods (especially the Q–Q plot)
+* Formal hypothesis tests
+
+In practice, graphical methods are fundamental because they reveal *how* the distribution deviates from normality.
+
+---
+
+## Theoretical Foundation
+
+A random variable $X$ is normally distributed if its cumulative distribution function (CDF) matches that of a normal distribution:
+
+$$
+X \sim \mathcal{N}(\mu, \sigma^2).
+$$
+
+This implies that the standardized variable
+
+$$
+Z = \frac{X - \mu}{\sigma}
+$$
+
+follows a standard normal distribution.
+
+Normality therefore means that the quantiles of the data align with the quantiles of a normal distribution.
+
+This observation leads directly to the construction of the **quantile–quantile plot**.
+
+---
+
+### The Q–Q Plot
+
+The idea behind a Q–Q plot is conceptually simple:
+
+> If the data come from a normal distribution, then their ordered values should match the theoretical normal quantiles.
+
+Let $X_1, \dots, X_n$ be a sample. Construct the Q–Q plot as follows.
+
+#### Step 1: Order the Data
+
+Let
+
+$$
+X_{(1)} \le X_{(2)} \le \dots \le X_{(n)}
+$$
+
+denote the order statistics.
+
+---
+
+#### Step 2: Compute Theoretical Probabilities
+
+For each ordered observation $X_{(i)}$, associate a cumulative probability:
+
+$$
+p_i = \frac{i - 0.5}{n}.
+$$
+
+This choice centers each observation within its empirical probability interval.
+
+---
+
+#### Step 3: Compute Theoretical Normal Quantiles
+
+Let $\Phi^{-1}$ denote the inverse CDF of the standard normal distribution.
+
+Define
+
+$$
+z_i = \Phi^{-1}(p_i).
+$$
+
+These are the theoretical quantiles from $\mathcal{N}(0,1)$.
+
+If the population has unknown $\mu$ and $\sigma$, we estimate them using:
+
+$$
+\hat{\mu} = \bar{X}, \qquad \hat{\sigma} = S.
+$$
+
+Then the comparable normal quantiles are:
+
+$$
+q_i = \hat{\mu} + \hat{\sigma} z_i.
+$$
+
+---
+
+#### Step 4: Plot Ordered Data Against Theoretical Quantiles
+
+We plot:
+
+* Horizontal axis: $q_i$ (theoretical normal quantiles)
+* Vertical axis: $X_{(i)}$ (observed ordered data)
+
+If the data are normally distributed, the points should lie approximately on a straight line.
+
+---
+
+#### Why This Works
+
+If $X$ truly follows $\mathcal{N}(\mu,\sigma^2)$, then
+
+$$
+\mathbb{P}(X \le q_i) = p_i.
+$$
+
+Thus the $p_i$-th population quantile should equal $q_i$. The ordered sample values approximate those population quantiles.
+
+Therefore:
+
+* Normal data → linear Q–Q plot
+* Right-skewed data → upward curvature
+* Left-skewed data → downward curvature
+* Heavy tails → deviations at extremes
+
+The Q–Q plot transforms the question of distributional shape into a question of linearity.
+
+---
+
+#### Example: Constructing a Q–Q Plot Normal Distribution
+
+We now construct a Q–Q plot step by step from first principles.
+
+Generate Data from a Normal Distribution
+
+```{r pro-to-sta-qq-plot-normal}
+set.seed(1)
+# Generate Samples from a Norma
+x <- rnorm(100, mean = 0, sd = 1)
+# Sort the Data
+x_sorted <- sort(x)
+# Theoretical Probabilities
+n <- length(x_sorted)
+p <- (1:n - 0.5)/n
+# Theoretical QUantiles
+z <- qnorm(p)
+# Plot the Data
+plot(z, x_sorted,
+     main = "Q-Q Plot (Manual Construction)",
+     xlab = "Theoretical Normal Quantiles",
+     ylab = "Sample Quantiles")
+abline(0, 1, col = "red", lwd = 2)
 ```
 
-The distribution tightens around the true mean.
+Since the data are already standard normal, no scaling is necessary. If the data are normal, the points cluster around a line.
+
+---
+
+#### Example: Constructing a Q–Q Plot Non-Normal Distribution
+
+Now consider skewed data.
+
+```{r pro-to-sta-qq-plot-non-normal}
+set.seed(1)
+x <- rchisq(n = 100, df = 100)
+x_sorted <- sort(x)
+n <- length(x_sorted)
+p <- (1:n - 0.5)/n
+z <- qnorm(p)
+plot(z, x_sorted,
+     main = "Q-Q Plot (Exponential Data)",
+     xlab = "Theoretical Normal Quantiles",
+     ylab = "Sample Quantiles")
+```
+
+You will observe pronounced curvature:
+
+* Lower tail compressed
+* Upper tail stretched
+
+This pattern indicates right skewness and non-normality.
+
+---
+
+#### Using Built-In R Functions
+
+R provides a direct implementation:
+
+```{r pro-to-sta-qq-plot-r}
+qqnorm(x)
+qqline(x, col = "red", lwd = 2)
+```
+
+However, constructing the plot manually clarifies the theoretical foundation.
+
+---
+
+### Practical Considerations
+
+When assessing normality:
+
+* For small $n$, departures are difficult to detect.
+* For moderate $n$, the Q–Q plot is highly informative.
+* For large $n$, slight deviations are inevitable and rarely practically important.
+
+Moreover, by the Central Limit Theorem, inference about means may still be valid even if the population is not normal, provided $n$ is sufficiently large.
+
+Normality matters most for:
+
+* Small samples
+* Inference about variance
+* Heavy-tailed distributions
+
+---
+
+### Summary
+
+To assess whether a population is normally distributed:
+
+* Understand that normality implies matching quantiles.
+* Construct a Q–Q plot by comparing ordered data to theoretical normal quantiles.
+* Interpret deviations from linearity.
+* Use formal tests cautiously.
+
+The Q–Q plot provides a direct visual diagnostic grounded in the definition of a distribution via its quantile function.
+
+It is one of the most powerful and conceptually transparent tools in statistical practice.
 
 ---
 
