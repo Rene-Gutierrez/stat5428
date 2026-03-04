@@ -440,14 +440,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.10.5" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#contrast-with-the-sample-mean"><i class="fa fa-check"></i><b>6.10.5</b> Contrast with the Sample Mean</a></li>
 <li class="chapter" data-level="6.10.6" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#key-takeaways"><i class="fa fa-check"></i><b>6.10.6</b> Key Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="6.11" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#assessing-normality-of-a-population-distribution"><i class="fa fa-check"></i><b>6.11</b> Assessing Normality of a Population Distribution</a></li>
-<li class="chapter" data-level="6.12" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#theoretical-foundation"><i class="fa fa-check"></i><b>6.12</b> Theoretical Foundation</a>
+<li class="chapter" data-level="6.11" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#assessing-normality-of-a-population-distribution"><i class="fa fa-check"></i><b>6.11</b> Assessing Normality of a Population Distribution</a>
 <ul>
-<li class="chapter" data-level="6.12.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#the-qq-plot"><i class="fa fa-check"></i><b>6.12.1</b> The Q–Q Plot</a></li>
-<li class="chapter" data-level="6.12.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#practical-considerations"><i class="fa fa-check"></i><b>6.12.2</b> Practical Considerations</a></li>
-<li class="chapter" data-level="6.12.3" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#summary-5"><i class="fa fa-check"></i><b>6.12.3</b> Summary</a></li>
+<li class="chapter" data-level="6.11.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#theoretical-foundation"><i class="fa fa-check"></i><b>6.11.1</b> Theoretical Foundation</a></li>
+<li class="chapter" data-level="6.11.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#practical-considerations"><i class="fa fa-check"></i><b>6.11.2</b> Practical Considerations</a></li>
+<li class="chapter" data-level="6.11.3" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#summary-5"><i class="fa fa-check"></i><b>6.11.3</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="6.13" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#central-insight"><i class="fa fa-check"></i><b>6.13</b> Central Insight</a></li>
+<li class="chapter" data-level="6.12" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#central-insight"><i class="fa fa-check"></i><b>6.12</b> Central Insight</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html"><i class="fa fa-check"></i><b>7</b> Intro to Statistical Inference</a>
 <ul>
@@ -1557,9 +1556,8 @@ Z_1, \dots, Z_k \sim \mathcal{N}(0,1)
 </ul>
 <p>In practice, graphical methods are fundamental because they reveal <em>how</em> the distribution deviates from normality.</p>
 <hr />
-</div>
-<div id="theoretical-foundation" class="section level2 hasAnchor" number="6.12">
-<h2><span class="header-section-number">6.12</span> Theoretical Foundation<a href="from-probability-to-statistics.html#theoretical-foundation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="theoretical-foundation" class="section level3 hasAnchor" number="6.11.1">
+<h3><span class="header-section-number">6.11.1</span> Theoretical Foundation<a href="from-probability-to-statistics.html#theoretical-foundation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A random variable <span class="math inline">\(X\)</span> is normally distributed if its cumulative distribution function (CDF) matches that of a normal distribution:</p>
 <p><span class="math display">\[
 X \sim \mathcal{N}(\mu, \sigma^2).
@@ -1572,15 +1570,15 @@ Z = \frac{X - \mu}{\sigma}
 <p>Normality therefore means that the quantiles of the data align with the quantiles of a normal distribution.</p>
 <p>This observation leads directly to the construction of the <strong>quantile–quantile plot</strong>.</p>
 <hr />
-<div id="the-qq-plot" class="section level3 hasAnchor" number="6.12.1">
-<h3><span class="header-section-number">6.12.1</span> The Q–Q Plot<a href="from-probability-to-statistics.html#the-qq-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="the-qq-plot" class="section level4 hasAnchor" number="6.11.1.1">
+<h4><span class="header-section-number">6.11.1.1</span> The Q–Q Plot<a href="from-probability-to-statistics.html#the-qq-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The idea behind a Q–Q plot is conceptually simple:</p>
 <blockquote>
 <p>If the data come from a normal distribution, then their ordered values should match the theoretical normal quantiles.</p>
 </blockquote>
 <p>Let <span class="math inline">\(X_1, \dots, X_n\)</span> be a sample. Construct the Q–Q plot as follows.</p>
-<div id="step-1-order-the-data" class="section level4 hasAnchor" number="6.12.1.1">
-<h4><span class="header-section-number">6.12.1.1</span> Step 1: Order the Data<a href="from-probability-to-statistics.html#step-1-order-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="step-1-order-the-data" class="section level5 hasAnchor" number="6.11.1.1.1">
+<h5><span class="header-section-number">6.11.1.1.1</span> Step 1: Order the Data<a href="from-probability-to-statistics.html#step-1-order-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Let</p>
 <p><span class="math display">\[
 X_{(1)} \le X_{(2)} \le \dots \le X_{(n)}
@@ -1588,8 +1586,8 @@ X_{(1)} \le X_{(2)} \le \dots \le X_{(n)}
 <p>denote the order statistics.</p>
 <hr />
 </div>
-<div id="step-2-compute-theoretical-probabilities" class="section level4 hasAnchor" number="6.12.1.2">
-<h4><span class="header-section-number">6.12.1.2</span> Step 2: Compute Theoretical Probabilities<a href="from-probability-to-statistics.html#step-2-compute-theoretical-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="step-2-compute-theoretical-probabilities" class="section level5 hasAnchor" number="6.11.1.1.2">
+<h5><span class="header-section-number">6.11.1.1.2</span> Step 2: Compute Theoretical Probabilities<a href="from-probability-to-statistics.html#step-2-compute-theoretical-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>For each ordered observation <span class="math inline">\(X_{(i)}\)</span>, associate a cumulative probability:</p>
 <p><span class="math display">\[
 p_i = \frac{i - 0.5}{n}.
@@ -1597,8 +1595,8 @@ p_i = \frac{i - 0.5}{n}.
 <p>This choice centers each observation within its empirical probability interval.</p>
 <hr />
 </div>
-<div id="step-3-compute-theoretical-normal-quantiles" class="section level4 hasAnchor" number="6.12.1.3">
-<h4><span class="header-section-number">6.12.1.3</span> Step 3: Compute Theoretical Normal Quantiles<a href="from-probability-to-statistics.html#step-3-compute-theoretical-normal-quantiles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="step-3-compute-theoretical-normal-quantiles" class="section level5 hasAnchor" number="6.11.1.1.3">
+<h5><span class="header-section-number">6.11.1.1.3</span> Step 3: Compute Theoretical Normal Quantiles<a href="from-probability-to-statistics.html#step-3-compute-theoretical-normal-quantiles" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Let <span class="math inline">\(\Phi^{-1}\)</span> denote the inverse CDF of the standard normal distribution.</p>
 <p>Define</p>
 <p><span class="math display">\[
@@ -1615,8 +1613,8 @@ q_i = \hat{\mu} + \hat{\sigma} z_i.
 \]</span></p>
 <hr />
 </div>
-<div id="step-4-plot-ordered-data-against-theoretical-quantiles" class="section level4 hasAnchor" number="6.12.1.4">
-<h4><span class="header-section-number">6.12.1.4</span> Step 4: Plot Ordered Data Against Theoretical Quantiles<a href="from-probability-to-statistics.html#step-4-plot-ordered-data-against-theoretical-quantiles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="step-4-plot-ordered-data-against-theoretical-quantiles" class="section level5 hasAnchor" number="6.11.1.1.4">
+<h5><span class="header-section-number">6.11.1.1.4</span> Step 4: Plot Ordered Data Against Theoretical Quantiles<a href="from-probability-to-statistics.html#step-4-plot-ordered-data-against-theoretical-quantiles" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>We plot:</p>
 <ul>
 <li>Horizontal axis: <span class="math inline">\(q_i\)</span> (theoretical normal quantiles)</li>
@@ -1625,8 +1623,9 @@ q_i = \hat{\mu} + \hat{\sigma} z_i.
 <p>If the data are normally distributed, the points should lie approximately on a straight line.</p>
 <hr />
 </div>
-<div id="why-this-works" class="section level4 hasAnchor" number="6.12.1.5">
-<h4><span class="header-section-number">6.12.1.5</span> Why This Works<a href="from-probability-to-statistics.html#why-this-works" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="why-this-works" class="section level4 hasAnchor" number="6.11.1.2">
+<h4><span class="header-section-number">6.11.1.2</span> Why This Works<a href="from-probability-to-statistics.html#why-this-works" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>If <span class="math inline">\(X\)</span> truly follows <span class="math inline">\(\mathcal{N}(\mu,\sigma^2)\)</span>, then</p>
 <p><span class="math display">\[
 \mathbb{P}(X \le q_i) = p_i.
@@ -1642,8 +1641,8 @@ q_i = \hat{\mu} + \hat{\sigma} z_i.
 <p>The Q–Q plot transforms the question of distributional shape into a question of linearity.</p>
 <hr />
 </div>
-<div id="example-constructing-a-qq-plot-normal-distribution" class="section level4 hasAnchor" number="6.12.1.6">
-<h4><span class="header-section-number">6.12.1.6</span> Example: Constructing a Q–Q Plot Normal Distribution<a href="from-probability-to-statistics.html#example-constructing-a-qq-plot-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="example-constructing-a-qq-plot-normal-distribution" class="section level4 hasAnchor" number="6.11.1.3">
+<h4><span class="header-section-number">6.11.1.3</span> Example: Constructing a Q–Q Plot Normal Distribution<a href="from-probability-to-statistics.html#example-constructing-a-qq-plot-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We now construct a Q–Q plot step by step from first principles.</p>
 <p>Generate Data from a Normal Distribution</p>
 <div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="from-probability-to-statistics.html#cb401-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
@@ -1666,11 +1665,11 @@ q_i = \hat{\mu} + \hat{\sigma} z_i.
 <p>Since the data are already standard normal, no scaling is necessary. If the data are normal, the points cluster around a line.</p>
 <hr />
 </div>
-<div id="example-constructing-a-qq-plot-non-normal-distribution" class="section level4 hasAnchor" number="6.12.1.7">
-<h4><span class="header-section-number">6.12.1.7</span> Example: Constructing a Q–Q Plot Non-Normal Distribution<a href="from-probability-to-statistics.html#example-constructing-a-qq-plot-non-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="example-constructing-a-qq-plot-non-normal-distribution" class="section level4 hasAnchor" number="6.11.1.4">
+<h4><span class="header-section-number">6.11.1.4</span> Example: Constructing a Q–Q Plot Non-Normal Distribution<a href="from-probability-to-statistics.html#example-constructing-a-qq-plot-non-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Now consider skewed data.</p>
 <div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="from-probability-to-statistics.html#cb402-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb402-2"><a href="from-probability-to-statistics.html#cb402-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rchisq</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">df =</span> <span class="dv">100</span>)</span>
+<span id="cb402-2"><a href="from-probability-to-statistics.html#cb402-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rchisq</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">df =</span> <span class="dv">5</span>)</span>
 <span id="cb402-3"><a href="from-probability-to-statistics.html#cb402-3" tabindex="-1"></a>x_sorted <span class="ot">&lt;-</span> <span class="fu">sort</span>(x)</span>
 <span id="cb402-4"><a href="from-probability-to-statistics.html#cb402-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(x_sorted)</span>
 <span id="cb402-5"><a href="from-probability-to-statistics.html#cb402-5" tabindex="-1"></a>p <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>n <span class="sc">-</span> <span class="fl">0.5</span>)<span class="sc">/</span>n</span>
@@ -1688,8 +1687,8 @@ q_i = \hat{\mu} + \hat{\sigma} z_i.
 <p>This pattern indicates right skewness and non-normality.</p>
 <hr />
 </div>
-<div id="using-built-in-r-functions" class="section level4 hasAnchor" number="6.12.1.8">
-<h4><span class="header-section-number">6.12.1.8</span> Using Built-In R Functions<a href="from-probability-to-statistics.html#using-built-in-r-functions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="using-built-in-r-functions" class="section level4 hasAnchor" number="6.11.1.5">
+<h4><span class="header-section-number">6.11.1.5</span> Using Built-In R Functions<a href="from-probability-to-statistics.html#using-built-in-r-functions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>R provides a direct implementation:</p>
 <div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="from-probability-to-statistics.html#cb403-1" tabindex="-1"></a><span class="fu">qqnorm</span>(x)</span>
 <span id="cb403-2"><a href="from-probability-to-statistics.html#cb403-2" tabindex="-1"></a><span class="fu">qqline</span>(x, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
@@ -1698,8 +1697,8 @@ q_i = \hat{\mu} + \hat{\sigma} z_i.
 <hr />
 </div>
 </div>
-<div id="practical-considerations" class="section level3 hasAnchor" number="6.12.2">
-<h3><span class="header-section-number">6.12.2</span> Practical Considerations<a href="from-probability-to-statistics.html#practical-considerations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="practical-considerations" class="section level3 hasAnchor" number="6.11.2">
+<h3><span class="header-section-number">6.11.2</span> Practical Considerations<a href="from-probability-to-statistics.html#practical-considerations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When assessing normality:</p>
 <ul>
 <li>For small <span class="math inline">\(n\)</span>, departures are difficult to detect.</li>
@@ -1715,8 +1714,8 @@ q_i = \hat{\mu} + \hat{\sigma} z_i.
 </ul>
 <hr />
 </div>
-<div id="summary-5" class="section level3 hasAnchor" number="6.12.3">
-<h3><span class="header-section-number">6.12.3</span> Summary<a href="from-probability-to-statistics.html#summary-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="summary-5" class="section level3 hasAnchor" number="6.11.3">
+<h3><span class="header-section-number">6.11.3</span> Summary<a href="from-probability-to-statistics.html#summary-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To assess whether a population is normally distributed:</p>
 <ul>
 <li>Understand that normality implies matching quantiles.</li>
@@ -1729,8 +1728,8 @@ q_i = \hat{\mu} + \hat{\sigma} z_i.
 <hr />
 </div>
 </div>
-<div id="central-insight" class="section level2 hasAnchor" number="6.13">
-<h2><span class="header-section-number">6.13</span> Central Insight<a href="from-probability-to-statistics.html#central-insight" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="central-insight" class="section level2 hasAnchor" number="6.12">
+<h2><span class="header-section-number">6.12</span> Central Insight<a href="from-probability-to-statistics.html#central-insight" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Statistics are random variables.</p>
 <p>A statistic has:</p>
 <ul>

@@ -1184,7 +1184,7 @@ In practice, graphical methods are fundamental because they reveal *how* the dis
 
 ---
 
-## Theoretical Foundation
+### Theoretical Foundation
 
 A random variable $X$ is normally distributed if its cumulative distribution function (CDF) matches that of a normal distribution:
 
@@ -1206,7 +1206,7 @@ This observation leads directly to the construction of the **quantile–quantile
 
 ---
 
-### The Q–Q Plot
+#### The Q–Q Plot
 
 The idea behind a Q–Q plot is conceptually simple:
 
@@ -1214,7 +1214,7 @@ The idea behind a Q–Q plot is conceptually simple:
 
 Let $X_1, \dots, X_n$ be a sample. Construct the Q–Q plot as follows.
 
-#### Step 1: Order the Data
+##### Step 1: Order the Data
 
 Let
 
@@ -1226,7 +1226,7 @@ denote the order statistics.
 
 ---
 
-#### Step 2: Compute Theoretical Probabilities
+##### Step 2: Compute Theoretical Probabilities
 
 For each ordered observation $X_{(i)}$, associate a cumulative probability:
 
@@ -1238,7 +1238,7 @@ This choice centers each observation within its empirical probability interval.
 
 ---
 
-#### Step 3: Compute Theoretical Normal Quantiles
+##### Step 3: Compute Theoretical Normal Quantiles
 
 Let $\Phi^{-1}$ denote the inverse CDF of the standard normal distribution.
 
@@ -1264,7 +1264,7 @@ $$
 
 ---
 
-#### Step 4: Plot Ordered Data Against Theoretical Quantiles
+##### Step 4: Plot Ordered Data Against Theoretical Quantiles
 
 We plot:
 
@@ -1331,7 +1331,7 @@ Now consider skewed data.
 
 ```{r pro-to-sta-qq-plot-non-normal}
 set.seed(1)
-x <- rchisq(n = 100, df = 100)
+x <- rchisq(n = 100, df = 5)
 x_sorted <- sort(x)
 n <- length(x_sorted)
 p <- (1:n - 0.5)/n
