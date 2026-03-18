@@ -181,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="intro-to-r.html"><a href="intro-to-r.html#functions-and-expressions"><i class="fa fa-check"></i><b>2.5</b> Functions and Expressions</a>
 <ul>
-<li class="chapter" data-level="2.5.1" data-path="intro-to-r.html"><a href="intro-to-r.html#functions"><i class="fa fa-check"></i><b>2.5.1</b> Functions</a></li>
+<li class="chapter" data-level="2.5.1" data-path="intro-to-r.html"><a href="intro-to-r.html#function-arguments"><i class="fa fa-check"></i><b>2.5.1</b> Function arguments</a></li>
 <li class="chapter" data-level="2.5.2" data-path="intro-to-r.html"><a href="intro-to-r.html#expressions-and-nesting"><i class="fa fa-check"></i><b>2.5.2</b> Expressions and Nesting</a></li>
 <li class="chapter" data-level="2.5.3" data-path="intro-to-r.html"><a href="intro-to-r.html#creating-your-own-function"><i class="fa fa-check"></i><b>2.5.3</b> Creating Your Own Function</a></li>
 </ul></li>
@@ -193,6 +193,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6.4" data-path="intro-to-r.html"><a href="intro-to-r.html#inspecting-objects"><i class="fa fa-check"></i><b>2.6.4</b> Inspecting Objects</a></li>
 <li class="chapter" data-level="2.6.5" data-path="intro-to-r.html"><a href="intro-to-r.html#getting-package-help"><i class="fa fa-check"></i><b>2.6.5</b> Getting Package Help</a></li>
 </ul></li>
+<li class="chapter" data-level="2.7" data-path="intro-to-r.html"><a href="intro-to-r.html#why-r-for-statistics"><i class="fa fa-check"></i><b>2.7</b> Why R for Statistics</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="observational-and-experimental-studies.html"><a href="observational-and-experimental-studies.html"><i class="fa fa-check"></i><b>3</b> Observational and Experimental Studies</a>
 <ul>
@@ -462,16 +463,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#example-of-statistical-inference"><i class="fa fa-check"></i><b>7.3</b> Example of Statistical Inference</a></li>
 <li class="chapter" data-level="7.4" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#concluding-perspective"><i class="fa fa-check"></i><b>7.4</b> Concluding Perspective</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="estimation-1.html"><a href="estimation-1.html"><i class="fa fa-check"></i><b>8</b> Estimation</a>
+<li class="chapter" data-level="8" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html"><i class="fa fa-check"></i><b>8</b> Inference About the Mean</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="estimation-1.html"><a href="estimation-1.html#introduction-1"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
-<li class="chapter" data-level="8.2" data-path="estimation-1.html"><a href="estimation-1.html#estimating-the-mean"><i class="fa fa-check"></i><b>8.2</b> Estimating the Mean</a>
+<li class="chapter" data-level="8.1" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#introduction-1"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#example-blood-alcohol-level"><i class="fa fa-check"></i><b>8.2</b> Example: Blood Alcohol Level</a></li>
+<li class="chapter" data-level="8.3" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#assumptions"><i class="fa fa-check"></i><b>8.3</b> Assumptions</a></li>
+<li class="chapter" data-level="8.4" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#point-estimation-1"><i class="fa fa-check"></i><b>8.4</b> Point Estimation</a></li>
+<li class="chapter" data-level="8.5" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#interval-estimation-1"><i class="fa fa-check"></i><b>8.5</b> Interval Estimation</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="estimation-1.html"><a href="estimation-1.html#point-estimation-1"><i class="fa fa-check"></i><b>8.2.1</b> Point Estimation</a></li>
-<li class="chapter" data-level="8.2.2" data-path="estimation-1.html"><a href="estimation-1.html#interval-estimation-1"><i class="fa fa-check"></i><b>8.2.2</b> Interval Estimation</a></li>
-<li class="chapter" data-level="8.2.3" data-path="estimation-1.html"><a href="estimation-1.html#choosing-the-sample-size"><i class="fa fa-check"></i><b>8.2.3</b> Choosing the Sample Size</a></li>
+<li class="chapter" data-level="8.5.1" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#step-1-standardize"><i class="fa fa-check"></i><b>8.5.1</b> Step 1: Standardize</a></li>
+<li class="chapter" data-level="8.5.2" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#step-2-pick-a-confidence-level-1---alpha"><i class="fa fa-check"></i><b>8.5.2</b> Step 2: Pick a Confidence Level 1 - <span class="math inline">\(\alpha\)</span></a></li>
+<li class="chapter" data-level="8.5.3" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#step-3-substitute-back-for-z"><i class="fa fa-check"></i><b>8.5.3</b> Step 3: Substitute Back for <span class="math inline">\(Z\)</span></a></li>
+<li class="chapter" data-level="8.5.4" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#step-4-solve-for-mu"><i class="fa fa-check"></i><b>8.5.4</b> Step 4: Solve for <span class="math inline">\(\mu\)</span></a></li>
+<li class="chapter" data-level="8.5.5" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#final-result"><i class="fa fa-check"></i><b>8.5.5</b> Final Result</a></li>
+<li class="chapter" data-level="8.5.6" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#interpretation-4"><i class="fa fa-check"></i><b>8.5.6</b> Interpretation</a></li>
+<li class="chapter" data-level="8.5.7" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#example-interval-estimation"><i class="fa fa-check"></i><b>8.5.7</b> Example Interval Estimation</a></li>
+<li class="chapter" data-level="8.5.8" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#choosing-the-sample-size-for-estimating-the-population-mean"><i class="fa fa-check"></i><b>8.5.8</b> Choosing the Sample Size for Estimating the Population Mean</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="estimation-1.html"><a href="estimation-1.html#summary-6"><i class="fa fa-check"></i><b>8.3</b> Summary</a></li>
+<li class="chapter" data-level="8.6" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#hypothesis-testing-1"><i class="fa fa-check"></i><b>8.6</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#logical-structure-of-a-test"><i class="fa fa-check"></i><b>8.6.1</b> Logical Structure of a Test</a></li>
+<li class="chapter" data-level="8.6.2" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#developing-the-rejection-region"><i class="fa fa-check"></i><b>8.6.2</b> Developing the Rejection Region</a></li>
+<li class="chapter" data-level="8.6.3" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#interpretation-of-the-rejection-region"><i class="fa fa-check"></i><b>8.6.3</b> Interpretation of the Rejection Region</a></li>
+<li class="chapter" data-level="8.6.4" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#components-of-a-test"><i class="fa fa-check"></i><b>8.6.4</b> Components of a Test</a></li>
+<li class="chapter" data-level="8.6.5" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>8.6.5</b> Type I and Type II Errors</a></li>
+<li class="chapter" data-level="8.6.6" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#one-tailed-blood-alcohol-test-numerical-illustration"><i class="fa fa-check"></i><b>8.6.6</b> One-Tailed Blood Alcohol Test (Numerical Illustration)</a></li>
+<li class="chapter" data-level="8.6.7" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#general-forms-of-rejection-regions"><i class="fa fa-check"></i><b>8.6.7</b> General Forms of Rejection Regions</a></li>
+<li class="chapter" data-level="8.6.8" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#significance-level-and-p-value"><i class="fa fa-check"></i><b>8.6.8</b> Significance Level and p-Value</a></li>
+<li class="chapter" data-level="8.6.9" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#conceptual-summary-2"><i class="fa fa-check"></i><b>8.6.9</b> Conceptual Summary</a></li>
+<li class="chapter" data-level="8.6.10" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#choosing-the-sample-size-for-testing-the-population-mean"><i class="fa fa-check"></i><b>8.6.10</b> Choosing the Sample Size for Testing the Population Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#inference-about-the-mean-unknown-variance"><i class="fa fa-check"></i><b>8.7</b> Inference About the Mean Unknown Variance</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#review-properties-of-the-student-t-distribution"><i class="fa fa-check"></i><b>8.7.1</b> Review Properties of the Student t Distribution</a></li>
+<li class="chapter" data-level="8.7.2" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#confidence-intervals-unknown-variance"><i class="fa fa-check"></i><b>8.7.2</b> Confidence Intervals Unknown Variance</a></li>
+<li class="chapter" data-level="8.7.3" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#hypothesis-testing-unknown-variance"><i class="fa fa-check"></i><b>8.7.3</b> Hypothesis Testing Unknown Variance</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#not-normally-distributed-population"><i class="fa fa-check"></i><b>8.8</b> Not Normally Distributed Population</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#big-sample-size"><i class="fa fa-check"></i><b>8.8.1</b> Big Sample Size</a></li>
+<li class="chapter" data-level="8.8.2" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#intermediate-sample-size"><i class="fa fa-check"></i><b>8.8.2</b> Intermediate Sample Size</a></li>
+<li class="chapter" data-level="8.8.3" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#small-sample-size"><i class="fa fa-check"></i><b>8.8.3</b> Small Sample Size</a></li>
+<li class="chapter" data-level="8.8.4" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#what-to-check-before-applying-inference-methods"><i class="fa fa-check"></i><b>8.8.4</b> What to Check Before Applying Inference Methods</a></li>
+<li class="chapter" data-level="8.8.5" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#summary-table-of-when-inference-procedures-are-reliable"><i class="fa fa-check"></i><b>8.8.5</b> Summary Table of When Inference Procedures Are Reliable</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#inferences-with-small-n-bootstrap-methods"><i class="fa fa-check"></i><b>8.9</b> Inferences with Small n (Bootstrap Methods)</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#when-to-apply"><i class="fa fa-check"></i><b>8.9.1</b> When to Apply</a></li>
+<li class="chapter" data-level="8.9.2" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#steps-for-bootstrap-methods-about-the-mean-confidence-intervals"><i class="fa fa-check"></i><b>8.9.2</b> Steps for Bootstrap Methods about the Mean Confidence Intervals</a></li>
+<li class="chapter" data-level="8.9.3" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#steps-for-bootstrap-methods-about-the-mean-hypothesis-testing"><i class="fa fa-check"></i><b>8.9.3</b> Steps for Bootstrap Methods about the Mean Hypothesis Testing</a></li>
+<li class="chapter" data-level="8.9.4" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#bootstrap-t-or-studentized-bootstrap"><i class="fa fa-check"></i><b>8.9.4</b> Bootstrap-<span class="math inline">\(t\)</span> or Studentized Bootstrap</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -655,6 +697,9 @@ You type commands into the <strong>Console</strong>, and R evaluates them.</p>
 </div>
 <div id="vectors" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Vectors<a href="intro-to-r.html#vectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:vectorR" class="definition"><strong>Definition 2.1  (Vector in R) </strong></span>A vector is a collection of values of the same type stored in a single object in R.</p>
+</div>
 <p>Vectors are the <strong>basic building block</strong> in R: an ordered collection of values.</p>
 <div id="creating-vectors-with-c" class="section level3 hasAnchor" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> Creating Vectors with <code>c()</code><a href="intro-to-r.html#creating-vectors-with-c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -736,8 +781,9 @@ You type commands into the <strong>Console</strong>, and R evaluates them.</p>
 </div>
 <div id="functions-and-expressions" class="section level2 hasAnchor" number="2.5">
 <h2><span class="header-section-number">2.5</span> Functions and Expressions<a href="intro-to-r.html#functions-and-expressions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="functions" class="section level3 hasAnchor" number="2.5.1">
-<h3><span class="header-section-number">2.5.1</span> Functions<a href="intro-to-r.html#functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:function" class="definition"><strong>Definition 2.2  (Function) </strong></span>A function is a set of instructions that takes inputs and returns an output.</p>
+</div>
 <p>R has many built-in functions: <code>mean()</code>, <code>sum()</code>, <code>sd()</code>, etc.</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="intro-to-r.html#cb100-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>)</span>
 <span id="cb100-2"><a href="intro-to-r.html#cb100-2" tabindex="-1"></a></span>
@@ -751,14 +797,13 @@ You type commands into the <strong>Console</strong>, and R evaluates them.</p>
 <pre><code>## [1] 2</code></pre>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="intro-to-r.html#cb108-1" tabindex="-1"></a><span class="fu">max</span>(x)</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div id="function-arguments" class="section level4 hasAnchor" number="2.5.1.1">
-<h4><span class="header-section-number">2.5.1.1</span> Function arguments<a href="intro-to-r.html#function-arguments" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="function-arguments" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Function arguments<a href="intro-to-r.html#function-arguments" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Arguments control how the function behaves.</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="intro-to-r.html#cb110-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.14159</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 3.14</code></pre>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="intro-to-r.html#cb112-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-</div>
 </div>
 <div id="expressions-and-nesting" class="section level3 hasAnchor" number="2.5.2">
 <h3><span class="header-section-number">2.5.2</span> Expressions and Nesting<a href="intro-to-r.html#expressions-and-nesting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -777,8 +822,6 @@ You type commands into the <strong>Console</strong>, and R evaluates them.</p>
 <span id="cb116-5"><a href="intro-to-r.html#cb116-5" tabindex="-1"></a></span>
 <span id="cb116-6"><a href="intro-to-r.html#cb116-6" tabindex="-1"></a><span class="fu">zscore</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">20</span>))</span></code></pre></div>
 <pre><code>## [1] -0.9771621 -0.5173211  0.1724404  1.3220429</code></pre>
-<div id="another-example-a-summary-function" class="section level4 hasAnchor" number="2.5.3.1">
-<h4><span class="header-section-number">2.5.3.1</span> Another example: a summary function<a href="intro-to-r.html#another-example-a-summary-function" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="intro-to-r.html#cb118-1" tabindex="-1"></a>quick_summary <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb118-2"><a href="intro-to-r.html#cb118-2" tabindex="-1"></a>  <span class="fu">c</span>(</span>
 <span id="cb118-3"><a href="intro-to-r.html#cb118-3" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(x),</span>
@@ -792,7 +835,6 @@ You type commands into the <strong>Console</strong>, and R evaluates them.</p>
 <span id="cb118-11"><a href="intro-to-r.html#cb118-11" tabindex="-1"></a><span class="fu">quick_summary</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="cn">NA</span>, <span class="dv">5</span>))</span></code></pre></div>
 <pre><code>##        n     mean       sd      min      max 
 ## 5.000000 2.750000 1.707825 1.000000 5.000000</code></pre>
-</div>
 </div>
 </div>
 <div id="getting-help" class="section level2 hasAnchor" number="2.6">
@@ -826,70 +868,114 @@ You type commands into the <strong>Console</strong>, and R evaluates them.</p>
 <h3><span class="header-section-number">2.6.4</span> Inspecting Objects<a href="intro-to-r.html#inspecting-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="intro-to-r.html#cb124-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">5</span>)</span>
 <span id="cb124-2"><a href="intro-to-r.html#cb124-2" tabindex="-1"></a><span class="fu">str</span>(x)</span></code></pre></div>
-<pre><code>##  num [1:5] 0.141 -0.487 1.143 -0.128 -0.298</code></pre>
+<pre><code>##  num [1:5] -1.11 -0.806 0.303 0.318 -0.69</code></pre>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="intro-to-r.html#cb126-1" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="intro-to-r.html#cb128-1" tabindex="-1"></a><span class="fu">typeof</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="intro-to-r.html#cb130-1" tabindex="-1"></a><span class="fu">ls</span>()        <span class="co"># list objects in your environment</span></span></code></pre></div>
-<pre><code>##   [1] &quot;a&quot;                &quot;A&quot;                &quot;age&quot;              &quot;alpha&quot;            &quot;altVar&quot;           &quot;appMea&quot;          
-##   [7] &quot;appMeaLin&quot;        &quot;b&quot;                &quot;B&quot;                &quot;biaSam&quot;           &quot;breaks&quot;           &quot;c&quot;               
-##  [13] &quot;calories&quot;         &quot;ci_bounds&quot;        &quot;count&quot;            &quot;cover&quot;            &quot;d1&quot;               &quot;d2&quot;              
-##  [19] &quot;deck&quot;             &quot;df&quot;               &quot;dieRol&quot;           &quot;dirVar&quot;           &quot;disease&quot;          &quot;E&quot;               
-##  [25] &quot;eduPar&quot;           &quot;eduPer&quot;           &quot;exam_score&quot;       &quot;exaMeaBin&quot;        &quot;exaMeaLin&quot;        &quot;f&quot;               
-##  [31] &quot;final_grade&quot;      &quot;flag&quot;             &quot;gra&quot;              &quot;grades&quot;           &quot;graPer&quot;           &quot;griSta&quot;          
-##  [37] &quot;hei&quot;              &quot;heiDisBiaSam&quot;     &quot;heiDisPop&quot;        &quot;heiDisRanSam&quot;     &quot;heiDisSimRanSam&quot;  &quot;heiRacMea&quot;       
-##  [43] &quot;heiRacSd&quot;         &quot;i&quot;                &quot;incLev&quot;           &quot;incPer&quot;           &quot;j&quot;                &quot;k&quot;               
-##  [49] &quot;l&quot;                &quot;matSco&quot;           &quot;matScoBin&quot;        &quot;maxScoMat&quot;        &quot;maxScoVer&quot;        &quot;mea1&quot;            
-##  [55] &quot;mea2&quot;             &quot;meaBiaSam&quot;        &quot;meaDisBiaSam&quot;     &quot;meaDisRanSam&quot;     &quot;meaDisSimRanSam&quot;  &quot;means&quot;           
-##  [61] &quot;meaPop&quot;           &quot;meaRanSam&quot;        &quot;meaSimRanSam&quot;     &quot;meaX&quot;             &quot;meaX2&quot;            &quot;medians&quot;         
-##  [67] &quot;minScoMat&quot;        &quot;minScoVer&quot;        &quot;mu&quot;               &quot;mu_null&quot;          &quot;mu_pop&quot;           &quot;n&quot;               
-##  [73] &quot;n_required&quot;       &quot;name&quot;             &quot;namEduPar&quot;        &quot;namIncLev&quot;        &quot;namSch&quot;           &quot;null_means&quot;      
-##  [79] &quot;num_rep&quot;          &quot;numGra&quot;           &quot;numPeoRac&quot;        &quot;numRep&quot;           &quot;numSam&quot;           &quot;numSch&quot;          
-##  [85] &quot;numSel&quot;           &quot;numStu&quot;           &quot;numStuClu&quot;        &quot;numStuGra&quot;        &quot;p&quot;                &quot;pA&quot;              
-##  [91] &quot;pmf&quot;              &quot;pop&quot;              &quot;population&quot;       &quot;populationGrowth&quot; &quot;pro1&quot;             &quot;pro12&quot;           
-##  [97] &quot;pro2&quot;             &quot;pro50&quot;            &quot;proCon&quot;           &quot;proInf&quot;           &quot;proInt&quot;           &quot;proMar&quot;          
-## [103] &quot;proTab&quot;           &quot;quick_summary&quot;    &quot;rac&quot;              &quot;racNam&quot;           &quot;ranks&quot;            &quot;ranSam&quot;          
-## [109] &quot;relFreHea&quot;        &quot;rep&quot;              &quot;s&quot;                &quot;samCoi&quot;           &quot;sampA&quot;            &quot;sampB&quot;           
-## [115] &quot;sample_data&quot;      &quot;sample_means&quot;     &quot;sample1&quot;          &quot;sample2&quot;          &quot;samPop&quot;           &quot;samSiz&quot;          
-## [121] &quot;samVar&quot;           &quot;sch&quot;              &quot;schDat&quot;           &quot;schPer&quot;           &quot;sd_pop&quot;           &quot;sel&quot;             
-## [127] &quot;sel1&quot;             &quot;sel2&quot;             &quot;selGra&quot;           &quot;selInc&quot;           &quot;selPar&quot;           &quot;selSch&quot;          
-## [133] &quot;sen&quot;              &quot;sigma&quot;            &quot;simRanSam&quot;        &quot;sims&quot;             &quot;spe&quot;              &quot;stdPop&quot;          
-## [139] &quot;suits&quot;            &quot;t&quot;                &quot;test&quot;             &quot;trimmed&quot;          &quot;true_mean&quot;        &quot;u&quot;               
-## [145] &quot;u1&quot;               &quot;u2&quot;               &quot;v&quot;                &quot;var&quot;              &quot;varX&quot;             &quot;varY&quot;            
-## [151] &quot;verSco&quot;           &quot;weight&quot;           &quot;x&quot;                &quot;X&quot;                &quot;x_sorted&quot;         &quot;x2&quot;              
-## [157] &quot;xm&quot;               &quot;xmax&quot;             &quot;xmin&quot;             &quot;y&quot;                &quot;Y&quot;                &quot;ymax&quot;            
-## [163] &quot;ymin&quot;             &quot;yval&quot;             &quot;z&quot;                &quot;zscore&quot;</code></pre>
+<pre><code>##   [1] &quot;a&quot;                &quot;A&quot;                &quot;age&quot;              &quot;alpha&quot;           
+##   [5] &quot;altVar&quot;           &quot;appMea&quot;           &quot;appMeaLin&quot;        &quot;b&quot;               
+##   [9] &quot;B&quot;                &quot;bac&quot;              &quot;biaSam&quot;           &quot;boot_means&quot;      
+##  [13] &quot;breaks&quot;           &quot;c&quot;                &quot;calories&quot;         &quot;ci_bounds&quot;       
+##  [17] &quot;conInt&quot;           &quot;count&quot;            &quot;cov&quot;              &quot;cover&quot;           
+##  [21] &quot;d1&quot;               &quot;d2&quot;               &quot;data&quot;             &quot;deck&quot;            
+##  [25] &quot;densityChiSquare&quot; &quot;df&quot;               &quot;dieRol&quot;           &quot;dirVar&quot;          
+##  [29] &quot;disease&quot;          &quot;E&quot;                &quot;eduPar&quot;           &quot;eduPer&quot;          
+##  [33] &quot;errors&quot;           &quot;exam_score&quot;       &quot;exaMeaBin&quot;        &quot;exaMeaLin&quot;       
+##  [37] &quot;f&quot;                &quot;final_grade&quot;      &quot;flag&quot;             &quot;gra&quot;             
+##  [41] &quot;grades&quot;           &quot;graPer&quot;           &quot;griSta&quot;           &quot;hei&quot;             
+##  [45] &quot;heiDisBiaSam&quot;     &quot;heiDisPop&quot;        &quot;heiDisRanSam&quot;     &quot;heiDisSimRanSam&quot; 
+##  [49] &quot;heiRacMea&quot;        &quot;heiRacSd&quot;         &quot;i&quot;                &quot;incLev&quot;          
+##  [53] &quot;incPer&quot;           &quot;j&quot;                &quot;k&quot;                &quot;l&quot;               
+##  [57] &quot;lower&quot;            &quot;lowUpp&quot;           &quot;matSco&quot;           &quot;matScoBin&quot;       
+##  [61] &quot;maxScoMat&quot;        &quot;maxScoVer&quot;        &quot;mea1&quot;             &quot;mea2&quot;            
+##  [65] &quot;meaBiaSam&quot;        &quot;meaDisBiaSam&quot;     &quot;meaDisRanSam&quot;     &quot;meaDisSimRanSam&quot; 
+##  [69] &quot;means&quot;            &quot;meaPop&quot;           &quot;meaRanSam&quot;        &quot;meaSimRanSam&quot;    
+##  [73] &quot;meaX&quot;             &quot;meaX2&quot;            &quot;medians&quot;          &quot;minScoMat&quot;       
+##  [77] &quot;minScoVer&quot;        &quot;mu&quot;               &quot;mu_null&quot;          &quot;mu_pop&quot;          
+##  [81] &quot;mu0&quot;              &quot;n&quot;                &quot;n_required&quot;       &quot;name&quot;            
+##  [85] &quot;namEduPar&quot;        &quot;namIncLev&quot;        &quot;namSch&quot;           &quot;null_means&quot;      
+##  [89] &quot;num_rep&quot;          &quot;numDf&quot;            &quot;numGra&quot;           &quot;numPeoRac&quot;       
+##  [93] &quot;numRep&quot;           &quot;numSam&quot;           &quot;numSch&quot;           &quot;numSel&quot;          
+##  [97] &quot;numStu&quot;           &quot;numStuClu&quot;        &quot;numStuGra&quot;        &quot;obsAlc&quot;          
+## [101] &quot;obsErr&quot;           &quot;p&quot;                &quot;p_value&quot;          &quot;pA&quot;              
+## [105] &quot;pmf&quot;              &quot;pop&quot;              &quot;population&quot;       &quot;populationGrowth&quot;
+## [109] &quot;pro1&quot;             &quot;pro12&quot;            &quot;pro2&quot;             &quot;pro50&quot;           
+## [113] &quot;proCon&quot;           &quot;proInf&quot;           &quot;proInt&quot;           &quot;proMar&quot;          
+## [117] &quot;proTab&quot;           &quot;quick_summary&quot;    &quot;R&quot;                &quot;rac&quot;             
+## [121] &quot;racNam&quot;           &quot;ranks&quot;            &quot;ranSam&quot;           &quot;reaAlc&quot;          
+## [125] &quot;reaBac&quot;           &quot;relFreHea&quot;        &quot;rep&quot;              &quot;repTwo&quot;          
+## [129] &quot;s&quot;                &quot;samCoi&quot;           &quot;sampA&quot;            &quot;sampB&quot;           
+## [133] &quot;sample_boot&quot;      &quot;sample_data&quot;      &quot;sample_means&quot;     &quot;sample1&quot;         
+## [137] &quot;sample2&quot;          &quot;samPop&quot;           &quot;samSiz&quot;           &quot;samVar&quot;          
+## [141] &quot;sch&quot;              &quot;schDat&quot;           &quot;schPer&quot;           &quot;sd&quot;              
+## [145] &quot;sd_pop&quot;           &quot;se&quot;               &quot;sel&quot;              &quot;sel1&quot;            
+## [149] &quot;sel2&quot;             &quot;selGra&quot;           &quot;selInc&quot;           &quot;selPar&quot;          
+## [153] &quot;selSch&quot;           &quot;sen&quot;              &quot;sigma&quot;            &quot;simRanSam&quot;       
+## [157] &quot;sims&quot;             &quot;spe&quot;              &quot;stdPop&quot;           &quot;suits&quot;           
+## [161] &quot;t&quot;                &quot;t_crit&quot;           &quot;t_stat&quot;           &quot;test&quot;            
+## [165] &quot;trimmed&quot;          &quot;true_mean&quot;        &quot;u&quot;                &quot;u1&quot;              
+## [169] &quot;u2&quot;               &quot;upper&quot;            &quot;v&quot;                &quot;var&quot;             
+## [173] &quot;varKno&quot;           &quot;varX&quot;             &quot;varY&quot;             &quot;verSco&quot;          
+## [177] &quot;weight&quot;           &quot;x&quot;                &quot;X&quot;                &quot;x_bar&quot;           
+## [181] &quot;x_future&quot;         &quot;x_sorted&quot;         &quot;x2&quot;               &quot;xbar&quot;            
+## [185] &quot;xm&quot;               &quot;xmax&quot;             &quot;xmin&quot;             &quot;y&quot;               
+## [189] &quot;Y&quot;                &quot;y_bar&quot;            &quot;y_centered&quot;       &quot;ymax&quot;            
+## [193] &quot;ymin&quot;             &quot;yval&quot;             &quot;z&quot;                &quot;zlow&quot;            
+## [197] &quot;zscore&quot;           &quot;zupp&quot;</code></pre>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="intro-to-r.html#cb132-1" tabindex="-1"></a><span class="fu">rm</span>(x)       <span class="co"># remove x</span></span>
 <span id="cb132-2"><a href="intro-to-r.html#cb132-2" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
-<pre><code>##   [1] &quot;a&quot;                &quot;A&quot;                &quot;age&quot;              &quot;alpha&quot;            &quot;altVar&quot;           &quot;appMea&quot;          
-##   [7] &quot;appMeaLin&quot;        &quot;b&quot;                &quot;B&quot;                &quot;biaSam&quot;           &quot;breaks&quot;           &quot;c&quot;               
-##  [13] &quot;calories&quot;         &quot;ci_bounds&quot;        &quot;count&quot;            &quot;cover&quot;            &quot;d1&quot;               &quot;d2&quot;              
-##  [19] &quot;deck&quot;             &quot;df&quot;               &quot;dieRol&quot;           &quot;dirVar&quot;           &quot;disease&quot;          &quot;E&quot;               
-##  [25] &quot;eduPar&quot;           &quot;eduPer&quot;           &quot;exam_score&quot;       &quot;exaMeaBin&quot;        &quot;exaMeaLin&quot;        &quot;f&quot;               
-##  [31] &quot;final_grade&quot;      &quot;flag&quot;             &quot;gra&quot;              &quot;grades&quot;           &quot;graPer&quot;           &quot;griSta&quot;          
-##  [37] &quot;hei&quot;              &quot;heiDisBiaSam&quot;     &quot;heiDisPop&quot;        &quot;heiDisRanSam&quot;     &quot;heiDisSimRanSam&quot;  &quot;heiRacMea&quot;       
-##  [43] &quot;heiRacSd&quot;         &quot;i&quot;                &quot;incLev&quot;           &quot;incPer&quot;           &quot;j&quot;                &quot;k&quot;               
-##  [49] &quot;l&quot;                &quot;matSco&quot;           &quot;matScoBin&quot;        &quot;maxScoMat&quot;        &quot;maxScoVer&quot;        &quot;mea1&quot;            
-##  [55] &quot;mea2&quot;             &quot;meaBiaSam&quot;        &quot;meaDisBiaSam&quot;     &quot;meaDisRanSam&quot;     &quot;meaDisSimRanSam&quot;  &quot;means&quot;           
-##  [61] &quot;meaPop&quot;           &quot;meaRanSam&quot;        &quot;meaSimRanSam&quot;     &quot;meaX&quot;             &quot;meaX2&quot;            &quot;medians&quot;         
-##  [67] &quot;minScoMat&quot;        &quot;minScoVer&quot;        &quot;mu&quot;               &quot;mu_null&quot;          &quot;mu_pop&quot;           &quot;n&quot;               
-##  [73] &quot;n_required&quot;       &quot;name&quot;             &quot;namEduPar&quot;        &quot;namIncLev&quot;        &quot;namSch&quot;           &quot;null_means&quot;      
-##  [79] &quot;num_rep&quot;          &quot;numGra&quot;           &quot;numPeoRac&quot;        &quot;numRep&quot;           &quot;numSam&quot;           &quot;numSch&quot;          
-##  [85] &quot;numSel&quot;           &quot;numStu&quot;           &quot;numStuClu&quot;        &quot;numStuGra&quot;        &quot;p&quot;                &quot;pA&quot;              
-##  [91] &quot;pmf&quot;              &quot;pop&quot;              &quot;population&quot;       &quot;populationGrowth&quot; &quot;pro1&quot;             &quot;pro12&quot;           
-##  [97] &quot;pro2&quot;             &quot;pro50&quot;            &quot;proCon&quot;           &quot;proInf&quot;           &quot;proInt&quot;           &quot;proMar&quot;          
-## [103] &quot;proTab&quot;           &quot;quick_summary&quot;    &quot;rac&quot;              &quot;racNam&quot;           &quot;ranks&quot;            &quot;ranSam&quot;          
-## [109] &quot;relFreHea&quot;        &quot;rep&quot;              &quot;s&quot;                &quot;samCoi&quot;           &quot;sampA&quot;            &quot;sampB&quot;           
-## [115] &quot;sample_data&quot;      &quot;sample_means&quot;     &quot;sample1&quot;          &quot;sample2&quot;          &quot;samPop&quot;           &quot;samSiz&quot;          
-## [121] &quot;samVar&quot;           &quot;sch&quot;              &quot;schDat&quot;           &quot;schPer&quot;           &quot;sd_pop&quot;           &quot;sel&quot;             
-## [127] &quot;sel1&quot;             &quot;sel2&quot;             &quot;selGra&quot;           &quot;selInc&quot;           &quot;selPar&quot;           &quot;selSch&quot;          
-## [133] &quot;sen&quot;              &quot;sigma&quot;            &quot;simRanSam&quot;        &quot;sims&quot;             &quot;spe&quot;              &quot;stdPop&quot;          
-## [139] &quot;suits&quot;            &quot;t&quot;                &quot;test&quot;             &quot;trimmed&quot;          &quot;true_mean&quot;        &quot;u&quot;               
-## [145] &quot;u1&quot;               &quot;u2&quot;               &quot;v&quot;                &quot;var&quot;              &quot;varX&quot;             &quot;varY&quot;            
-## [151] &quot;verSco&quot;           &quot;weight&quot;           &quot;X&quot;                &quot;x_sorted&quot;         &quot;x2&quot;               &quot;xm&quot;              
-## [157] &quot;xmax&quot;             &quot;xmin&quot;             &quot;y&quot;                &quot;Y&quot;                &quot;ymax&quot;             &quot;ymin&quot;            
-## [163] &quot;yval&quot;             &quot;z&quot;                &quot;zscore&quot;</code></pre>
+<pre><code>##   [1] &quot;a&quot;                &quot;A&quot;                &quot;age&quot;              &quot;alpha&quot;           
+##   [5] &quot;altVar&quot;           &quot;appMea&quot;           &quot;appMeaLin&quot;        &quot;b&quot;               
+##   [9] &quot;B&quot;                &quot;bac&quot;              &quot;biaSam&quot;           &quot;boot_means&quot;      
+##  [13] &quot;breaks&quot;           &quot;c&quot;                &quot;calories&quot;         &quot;ci_bounds&quot;       
+##  [17] &quot;conInt&quot;           &quot;count&quot;            &quot;cov&quot;              &quot;cover&quot;           
+##  [21] &quot;d1&quot;               &quot;d2&quot;               &quot;data&quot;             &quot;deck&quot;            
+##  [25] &quot;densityChiSquare&quot; &quot;df&quot;               &quot;dieRol&quot;           &quot;dirVar&quot;          
+##  [29] &quot;disease&quot;          &quot;E&quot;                &quot;eduPar&quot;           &quot;eduPer&quot;          
+##  [33] &quot;errors&quot;           &quot;exam_score&quot;       &quot;exaMeaBin&quot;        &quot;exaMeaLin&quot;       
+##  [37] &quot;f&quot;                &quot;final_grade&quot;      &quot;flag&quot;             &quot;gra&quot;             
+##  [41] &quot;grades&quot;           &quot;graPer&quot;           &quot;griSta&quot;           &quot;hei&quot;             
+##  [45] &quot;heiDisBiaSam&quot;     &quot;heiDisPop&quot;        &quot;heiDisRanSam&quot;     &quot;heiDisSimRanSam&quot; 
+##  [49] &quot;heiRacMea&quot;        &quot;heiRacSd&quot;         &quot;i&quot;                &quot;incLev&quot;          
+##  [53] &quot;incPer&quot;           &quot;j&quot;                &quot;k&quot;                &quot;l&quot;               
+##  [57] &quot;lower&quot;            &quot;lowUpp&quot;           &quot;matSco&quot;           &quot;matScoBin&quot;       
+##  [61] &quot;maxScoMat&quot;        &quot;maxScoVer&quot;        &quot;mea1&quot;             &quot;mea2&quot;            
+##  [65] &quot;meaBiaSam&quot;        &quot;meaDisBiaSam&quot;     &quot;meaDisRanSam&quot;     &quot;meaDisSimRanSam&quot; 
+##  [69] &quot;means&quot;            &quot;meaPop&quot;           &quot;meaRanSam&quot;        &quot;meaSimRanSam&quot;    
+##  [73] &quot;meaX&quot;             &quot;meaX2&quot;            &quot;medians&quot;          &quot;minScoMat&quot;       
+##  [77] &quot;minScoVer&quot;        &quot;mu&quot;               &quot;mu_null&quot;          &quot;mu_pop&quot;          
+##  [81] &quot;mu0&quot;              &quot;n&quot;                &quot;n_required&quot;       &quot;name&quot;            
+##  [85] &quot;namEduPar&quot;        &quot;namIncLev&quot;        &quot;namSch&quot;           &quot;null_means&quot;      
+##  [89] &quot;num_rep&quot;          &quot;numDf&quot;            &quot;numGra&quot;           &quot;numPeoRac&quot;       
+##  [93] &quot;numRep&quot;           &quot;numSam&quot;           &quot;numSch&quot;           &quot;numSel&quot;          
+##  [97] &quot;numStu&quot;           &quot;numStuClu&quot;        &quot;numStuGra&quot;        &quot;obsAlc&quot;          
+## [101] &quot;obsErr&quot;           &quot;p&quot;                &quot;p_value&quot;          &quot;pA&quot;              
+## [105] &quot;pmf&quot;              &quot;pop&quot;              &quot;population&quot;       &quot;populationGrowth&quot;
+## [109] &quot;pro1&quot;             &quot;pro12&quot;            &quot;pro2&quot;             &quot;pro50&quot;           
+## [113] &quot;proCon&quot;           &quot;proInf&quot;           &quot;proInt&quot;           &quot;proMar&quot;          
+## [117] &quot;proTab&quot;           &quot;quick_summary&quot;    &quot;R&quot;                &quot;rac&quot;             
+## [121] &quot;racNam&quot;           &quot;ranks&quot;            &quot;ranSam&quot;           &quot;reaAlc&quot;          
+## [125] &quot;reaBac&quot;           &quot;relFreHea&quot;        &quot;rep&quot;              &quot;repTwo&quot;          
+## [129] &quot;s&quot;                &quot;samCoi&quot;           &quot;sampA&quot;            &quot;sampB&quot;           
+## [133] &quot;sample_boot&quot;      &quot;sample_data&quot;      &quot;sample_means&quot;     &quot;sample1&quot;         
+## [137] &quot;sample2&quot;          &quot;samPop&quot;           &quot;samSiz&quot;           &quot;samVar&quot;          
+## [141] &quot;sch&quot;              &quot;schDat&quot;           &quot;schPer&quot;           &quot;sd&quot;              
+## [145] &quot;sd_pop&quot;           &quot;se&quot;               &quot;sel&quot;              &quot;sel1&quot;            
+## [149] &quot;sel2&quot;             &quot;selGra&quot;           &quot;selInc&quot;           &quot;selPar&quot;          
+## [153] &quot;selSch&quot;           &quot;sen&quot;              &quot;sigma&quot;            &quot;simRanSam&quot;       
+## [157] &quot;sims&quot;             &quot;spe&quot;              &quot;stdPop&quot;           &quot;suits&quot;           
+## [161] &quot;t&quot;                &quot;t_crit&quot;           &quot;t_stat&quot;           &quot;test&quot;            
+## [165] &quot;trimmed&quot;          &quot;true_mean&quot;        &quot;u&quot;                &quot;u1&quot;              
+## [169] &quot;u2&quot;               &quot;upper&quot;            &quot;v&quot;                &quot;var&quot;             
+## [173] &quot;varKno&quot;           &quot;varX&quot;             &quot;varY&quot;             &quot;verSco&quot;          
+## [177] &quot;weight&quot;           &quot;X&quot;                &quot;x_bar&quot;            &quot;x_future&quot;        
+## [181] &quot;x_sorted&quot;         &quot;x2&quot;               &quot;xbar&quot;             &quot;xm&quot;              
+## [185] &quot;xmax&quot;             &quot;xmin&quot;             &quot;y&quot;                &quot;Y&quot;               
+## [189] &quot;y_bar&quot;            &quot;y_centered&quot;       &quot;ymax&quot;             &quot;ymin&quot;            
+## [193] &quot;yval&quot;             &quot;z&quot;                &quot;zlow&quot;             &quot;zscore&quot;          
+## [197] &quot;zupp&quot;</code></pre>
 </div>
 <div id="getting-package-help" class="section level3 hasAnchor" number="2.6.5">
 <h3><span class="header-section-number">2.6.5</span> Getting Package Help<a href="intro-to-r.html#getting-package-help" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -898,8 +984,18 @@ You type commands into the <strong>Console</strong>, and R evaluates them.</p>
 <span id="cb134-2"><a href="intro-to-r.html#cb134-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb134-3"><a href="intro-to-r.html#cb134-3" tabindex="-1"></a></span>
 <span id="cb134-4"><a href="intro-to-r.html#cb134-4" tabindex="-1"></a>?ggplot</span></code></pre></div>
-
 </div>
+</div>
+<div id="why-r-for-statistics" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Why R for Statistics<a href="intro-to-r.html#why-r-for-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this course, we will use R to:</p>
+<ul>
+<li>summarize data</li>
+<li>visualize patterns</li>
+<li>perform statistical analysis</li>
+</ul>
+<p>In the following sections, we will introduce statistical concepts and use R to implement them.</p>
+
 </div>
 </div>
             </section>

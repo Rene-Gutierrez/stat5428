@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Data Description | STAT 5428/6428 Spring 2026</title>
-  <meta name="description" content="4 Data Description | STAT 5428/6428 Spring 2026" />
+  <title>2 Introduction to R | STAT 5428/6428 Spring 2026</title>
+  <meta name="description" content="2 Introduction to R | STAT 5428/6428 Spring 2026" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Data Description | STAT 5428/6428 Spring 2026" />
+  <meta property="og:title" content="2 Introduction to R | STAT 5428/6428 Spring 2026" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Data Description | STAT 5428/6428 Spring 2026" />
+  <meta name="twitter:title" content="2 Introduction to R | STAT 5428/6428 Spring 2026" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="observational-and-experimental-studies.html"/>
-<link rel="next" href="introduction-to-probability.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="observational-and-experimental-studies.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -532,450 +532,480 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-description" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">4</span> Data Description<a href="data-description.html#data-description" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In this section, we explore how data can be <strong>classified</strong>, <strong>summarized</strong>, and <strong>interpreted</strong>.<br />
-We introduce key concepts for both <strong>categorical</strong> and <strong>quantitative</strong> data, and we examine graphical and numerical tools used in statistics.</p>
+<div id="introduction-to-r" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Introduction to R<a href="introduction-to-r.html#introduction-to-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>These notes introduce core R concepts you’ll use throughout the course.</p>
+<p>Each section includes short explanations and runnable code.</p>
+<blockquote>
+<p>Tip: You can run code line-by-line in RStudio with <strong>Ctrl+Enter</strong> (Windows) / <strong>Cmd+Enter</strong> (Mac).</p>
+</blockquote>
 <hr />
-<div id="data-simulation" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Data Simulation<a href="data-description.html#data-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For this section we will simulate a data set for student performance in math and verbal tests accross 10 schools. For each student we will include the following variables:</p>
-<p>Variables:</p>
+<div id="basic-r-operations-and-concepts" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Basic R Operations and Concepts<a href="introduction-to-r.html#basic-r-operations-and-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R works like a powerful calculator <em>and</em> a programming language.
+You type commands into the <strong>Console</strong>, and R evaluates them.</p>
+<hr />
+<div id="the-console-and-scripts" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> The Console and Scripts<a href="introduction-to-r.html#the-console-and-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Student ID</li>
-<li>Student School</li>
-<li>Student Grade</li>
-<li>Student Age</li>
-<li>Income Level</li>
-<li>Education Level Parents</li>
-<li>Math Score</li>
-<li>Verbal Score</li>
+<li><strong>Console</strong>: where commands run immediately.</li>
+<li><strong>Script (.R)</strong> / <strong>R Markdown (.Rmd)</strong>: where you write reproducible work you can save and re-run.</li>
 </ul>
+<blockquote>
+<p>In this course, most notes will be written in R Markdown (.Rmd), which combines text, code, and output in one document.</p>
+</blockquote>
+<hr />
 </div>
-<div id="types-of-data" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Types of Data<a href="data-description.html#types-of-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="quantitative-vs.-qualitative-data" class="section level3 hasAnchor" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> Quantitative vs. Qualitative Data<a href="data-description.html#quantitative-vs.-qualitative-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="comments" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Comments<a href="introduction-to-r.html#comments" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <code>#</code> to write comments. R ignores them.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-to-r.html#cb1-1" tabindex="-1"></a><span class="co"># This is a comment</span></span>
+<span id="cb1-2"><a href="introduction-to-r.html#cb1-2" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<hr />
+</div>
+<div id="printing-and-output" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Printing and Output<a href="introduction-to-r.html#printing-and-output" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Typing an object name prints it. You can also use <code>print()</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction-to-r.html#cb3-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb3-2"><a href="introduction-to-r.html#cb3-2" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="introduction-to-r.html#cb5-1" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<hr />
+</div>
+</div>
+<div id="arithmetic" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Arithmetic<a href="introduction-to-r.html#arithmetic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R supports standard arithmetic operators:</p>
+<ul>
+<li>Addition: <code>+</code></li>
+<li>Subtraction: <code>-</code></li>
+<li>Multiplication: <code>*</code></li>
+<li>Division: <code>/</code></li>
+<li>Exponentiation: <code>^</code></li>
+<li>Integer division: <code>%/%</code></li>
+<li>Remainder (mod): <code>%%</code></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="introduction-to-r.html#cb7-1" tabindex="-1"></a><span class="co"># Basic arithmetic</span></span>
+<span id="cb7-2"><a href="introduction-to-r.html#cb7-2" tabindex="-1"></a><span class="dv">5</span> <span class="sc">+</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="introduction-to-r.html#cb9-1" tabindex="-1"></a><span class="dv">10</span> <span class="sc">-</span> <span class="dv">4</span></span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="introduction-to-r.html#cb11-1" tabindex="-1"></a><span class="dv">6</span> <span class="sc">*</span> <span class="dv">7</span></span></code></pre></div>
+<pre><code>## [1] 42</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introduction-to-r.html#cb13-1" tabindex="-1"></a><span class="dv">20</span> <span class="sc">/</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="introduction-to-r.html#cb15-1" tabindex="-1"></a><span class="co"># Powers</span></span>
+<span id="cb15-2"><a href="introduction-to-r.html#cb15-2" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 32</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introduction-to-r.html#cb17-1" tabindex="-1"></a><span class="co"># Integer division and remainder</span></span>
+<span id="cb17-2"><a href="introduction-to-r.html#cb17-2" tabindex="-1"></a><span class="dv">17</span> <span class="sc">%/%</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="introduction-to-r.html#cb19-1" tabindex="-1"></a><span class="dv">17</span> <span class="sc">%%</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>These commands return numeric output immediately in the console.</p>
+<hr />
+<div id="order-of-operations" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Order of Operations<a href="introduction-to-r.html#order-of-operations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R follows standard order of operations. Use parentheses to be explicit.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="introduction-to-r.html#cb21-1" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">5</span>      <span class="co"># multiplication first</span></span></code></pre></div>
+<pre><code>## [1] 13</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="introduction-to-r.html#cb23-1" tabindex="-1"></a>(<span class="dv">3</span> <span class="sc">+</span> <span class="dv">2</span>) <span class="sc">*</span> <span class="dv">5</span>    <span class="co"># parentheses first</span></span></code></pre></div>
+<pre><code>## [1] 25</code></pre>
+</div>
+<div id="logical-comparisons" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Logical Comparisons<a href="introduction-to-r.html#logical-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>These return <code>TRUE</code> or <code>FALSE</code>.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="introduction-to-r.html#cb25-1" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="introduction-to-r.html#cb27-1" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="introduction-to-r.html#cb29-1" tabindex="-1"></a><span class="dv">5</span> <span class="sc">!=</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introduction-to-r.html#cb31-1" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&gt;=</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+</div>
+<div id="assignment-object-names-and-data-types" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Assignment, Object Names, and Data Types<a href="introduction-to-r.html#assignment-object-names-and-data-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="assignment" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Assignment<a href="introduction-to-r.html#assignment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <code>&lt;-</code> (common in R code) or <code>=</code>.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="introduction-to-r.html#cb33-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb33-2"><a href="introduction-to-r.html#cb33-2" tabindex="-1"></a>b <span class="ot">=</span> <span class="dv">12</span></span>
+<span id="cb33-3"><a href="introduction-to-r.html#cb33-3" tabindex="-1"></a>a <span class="sc">+</span> b</span></code></pre></div>
+<pre><code>## [1] 17</code></pre>
+</div>
+<div id="object-names" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Object Names<a href="introduction-to-r.html#object-names" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Good names are readable and informative.</p>
+<p><strong>Valid examples</strong></p>
+<ul>
+<li><code>height</code></li>
+<li><code>exam_score</code></li>
+<li><code>x1</code></li>
+</ul>
+<p><strong>Avoid</strong></p>
+<ul>
+<li>spaces (<code>exam score</code>)</li>
+<li>starting with numbers (<code>1st</code>)</li>
+<li>reserved words (<code>if</code>, <code>for</code>, <code>TRUE</code>, <code>FALSE</code>)</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="introduction-to-r.html#cb35-1" tabindex="-1"></a>exam_score <span class="ot">&lt;-</span> <span class="dv">92</span></span>
+<span id="cb35-2"><a href="introduction-to-r.html#cb35-2" tabindex="-1"></a>final_grade <span class="ot">&lt;-</span> <span class="st">&quot;A&quot;</span></span></code></pre></div>
+</div>
+<div id="common-data-types" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Common Data Types<a href="introduction-to-r.html#common-data-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="numeric-double" class="section level4 hasAnchor" number="2.3.3.1">
+<h4><span class="header-section-number">2.3.3.1</span> Numeric (double)<a href="introduction-to-r.html#numeric-double" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="introduction-to-r.html#cb36-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fl">3.14</span></span>
+<span id="cb36-2"><a href="introduction-to-r.html#cb36-2" tabindex="-1"></a><span class="fu">typeof</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="introduction-to-r.html#cb38-1" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+</div>
+<div id="integer" class="section level4 hasAnchor" number="2.3.3.2">
+<h4><span class="header-section-number">2.3.3.2</span> Integer<a href="introduction-to-r.html#integer" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="introduction-to-r.html#cb40-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">7</span><span class="dt">L</span></span>
+<span id="cb40-2"><a href="introduction-to-r.html#cb40-2" tabindex="-1"></a><span class="fu">typeof</span>(y)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="introduction-to-r.html#cb42-1" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+</div>
+<div id="character-strings" class="section level4 hasAnchor" number="2.3.3.3">
+<h4><span class="header-section-number">2.3.3.3</span> Character (strings)<a href="introduction-to-r.html#character-strings" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="introduction-to-r.html#cb44-1" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">&quot;Rene&quot;</span></span>
+<span id="cb44-2"><a href="introduction-to-r.html#cb44-2" tabindex="-1"></a><span class="fu">typeof</span>(name)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="introduction-to-r.html#cb46-1" tabindex="-1"></a><span class="fu">class</span>(name)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
+<div id="logical" class="section level4 hasAnchor" number="2.3.3.4">
+<h4><span class="header-section-number">2.3.3.4</span> Logical<a href="introduction-to-r.html#logical" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="introduction-to-r.html#cb48-1" tabindex="-1"></a>flag <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb48-2"><a href="introduction-to-r.html#cb48-2" tabindex="-1"></a><span class="fu">typeof</span>(flag)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="introduction-to-r.html#cb50-1" tabindex="-1"></a><span class="fu">class</span>(flag)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+</div>
+</div>
+<div id="missing-values" class="section level3 hasAnchor" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> Missing Values<a href="introduction-to-r.html#missing-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R uses <code>NA</code> for missing data.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="introduction-to-r.html#cb52-1" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>)</span>
+<span id="cb52-2"><a href="introduction-to-r.html#cb52-2" tabindex="-1"></a>z</span></code></pre></div>
+<pre><code>## [1]  1 NA  3</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introduction-to-r.html#cb54-1" tabindex="-1"></a><span class="fu">is.na</span>(z)</span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE</code></pre>
+<p><code>NA</code> affects calculations unless you remove missing values.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="introduction-to-r.html#cb56-1" tabindex="-1"></a><span class="fu">mean</span>(z)                 <span class="co"># returns NA</span></span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="introduction-to-r.html#cb58-1" tabindex="-1"></a><span class="fu">mean</span>(z, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)   <span class="co"># removes NA before computing mean</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+</div>
+</div>
+<div id="vectors" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Vectors<a href="introduction-to-r.html#vectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="definition">
-<p><span id="def:data-types" class="definition"><strong>Definition 4.1  (Types of Data) </strong></span>Data can be classified into <strong>quantitative</strong> (numerical) and <strong>qualitative</strong> (categorical) types.<br />
-Quantitative data consist of numerical measurements; qualitative data describe categories or attributes.</p>
+<p><span id="def:vector-in-R" class="definition"><strong>Definition 2.1  (Vector in R) </strong></span>A vector is a collection of values of the same type stored in a single object in R.</p>
+</div>
+<p>Vectors are the <strong>basic building blocks</strong> in R: an ordered collection of values.</p>
+<div id="creating-vectors-with-c" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Creating Vectors with <code>c()</code><a href="introduction-to-r.html#creating-vectors-with-c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="introduction-to-r.html#cb60-1" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>)</span>
+<span id="cb60-2"><a href="introduction-to-r.html#cb60-2" tabindex="-1"></a>v</span></code></pre></div>
+<pre><code>## [1] 2 4 6 8</code></pre>
+</div>
+<div id="vector-length" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Vector Length<a href="introduction-to-r.html#vector-length" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="introduction-to-r.html#cb62-1" tabindex="-1"></a><span class="fu">length</span>(v)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+</div>
+<div id="vector-arithmetic-vectorized-operations" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Vector Arithmetic (Vectorized Operations)<a href="introduction-to-r.html#vector-arithmetic-vectorized-operations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Operations apply element-by-element.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="introduction-to-r.html#cb64-1" tabindex="-1"></a>v <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<pre><code>## [1] 3 5 7 9</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="introduction-to-r.html#cb66-1" tabindex="-1"></a>v <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1]  4  8 12 16</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="introduction-to-r.html#cb68-1" tabindex="-1"></a>v<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1]  4 16 36 64</code></pre>
+</div>
+<div id="sequences-with-and-seq" class="section level3 hasAnchor" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> Sequences with <code>:</code> and <code>seq()</code><a href="introduction-to-r.html#sequences-with-and-seq" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="introduction-to-r.html#cb70-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="introduction-to-r.html#cb72-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.0 0.2 0.4 0.6 0.8 1.0</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="introduction-to-r.html#cb74-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1]  1.00  3.25  5.50  7.75 10.00</code></pre>
+</div>
+<div id="repetition-with-rep" class="section level3 hasAnchor" number="2.4.5">
+<h3><span class="header-section-number">2.4.5</span> Repetition with <code>rep()</code><a href="introduction-to-r.html#repetition-with-rep" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="introduction-to-r.html#cb76-1" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">5</span>, <span class="at">times =</span> <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] 5 5 5 5</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="introduction-to-r.html#cb78-1" tabindex="-1"></a><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="at">times =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot;</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="introduction-to-r.html#cb80-1" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">each =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1 1 2 2 3 3</code></pre>
+</div>
+<div id="indexing-vectors" class="section level3 hasAnchor" number="2.4.6">
+<h3><span class="header-section-number">2.4.6</span> Indexing Vectors<a href="introduction-to-r.html#indexing-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="by-position" class="section level4 hasAnchor" number="2.4.6.1">
+<h4><span class="header-section-number">2.4.6.1</span> By position<a href="introduction-to-r.html#by-position" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="introduction-to-r.html#cb82-1" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
+<span id="cb82-2"><a href="introduction-to-r.html#cb82-2" tabindex="-1"></a>v[<span class="dv">1</span>]      <span class="co"># first element</span></span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="introduction-to-r.html#cb84-1" tabindex="-1"></a>v[<span class="dv">3</span>]      <span class="co"># third element</span></span></code></pre></div>
+<pre><code>## [1] 30</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="introduction-to-r.html#cb86-1" tabindex="-1"></a>v[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>)] <span class="co"># second and fifth</span></span></code></pre></div>
+<pre><code>## [1] 20 50</code></pre>
+</div>
+<div id="by-negative-indexing-remove-elements" class="section level4 hasAnchor" number="2.4.6.2">
+<h4><span class="header-section-number">2.4.6.2</span> By negative indexing (remove elements)<a href="introduction-to-r.html#by-negative-indexing-remove-elements" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="introduction-to-r.html#cb88-1" tabindex="-1"></a>v[<span class="sc">-</span><span class="dv">1</span>]     <span class="co"># all but first</span></span></code></pre></div>
+<pre><code>## [1] 20 30 40 50</code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="introduction-to-r.html#cb90-1" tabindex="-1"></a>v[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)]</span></code></pre></div>
+<pre><code>## [1] 10 30 50</code></pre>
+</div>
+<div id="by-logical-indexing" class="section level4 hasAnchor" number="2.4.6.3">
+<h4><span class="header-section-number">2.4.6.3</span> By logical indexing<a href="introduction-to-r.html#by-logical-indexing" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="introduction-to-r.html#cb92-1" tabindex="-1"></a>v[v <span class="sc">&gt;</span> <span class="dv">25</span>]     <span class="co"># keep values greater than 25</span></span></code></pre></div>
+<pre><code>## [1] 30 40 50</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="introduction-to-r.html#cb94-1" tabindex="-1"></a>v[v <span class="sc">==</span> <span class="dv">20</span>]    <span class="co"># values equal to 20</span></span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
 </div>
 </div>
-<div id="quantitative-data" class="section level3 hasAnchor" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Quantitative Data<a href="data-description.html#quantitative-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Quantitative data represent <strong>numerical values</strong> that can be measured.</p>
-<p>Examples:</p>
-<ul>
-<li>Heights of students</li>
-<li>Weights of packages</li>
-<li>Exam scores</li>
-</ul>
-<p>They can be:</p>
-<ul>
-<li><strong>Discrete</strong>: countable (e.g., number of children)</li>
-<li><strong>Continuous</strong>: measured on a continuum (e.g., height, time)</li>
-</ul>
-</div>
-<div id="qualitative-data" class="section level3 hasAnchor" number="4.2.3">
-<h3><span class="header-section-number">4.2.3</span> Qualitative Data<a href="data-description.html#qualitative-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Qualitative (categorical) data represent <strong>non‑numeric labels or groups</strong>.</p>
-<p>Examples:</p>
-<ul>
-<li>Sex</li>
-<li>Favorite color</li>
-<li>Yes/No responses</li>
-<li>Satisfaction Level</li>
-</ul>
-<p>These categories may or may not have a natural order.</p>
-<hr />
+<div id="named-vectors" class="section level3 hasAnchor" number="2.4.7">
+<h3><span class="header-section-number">2.4.7</span> Named Vectors<a href="introduction-to-r.html#named-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Names make code easier to read.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="introduction-to-r.html#cb96-1" tabindex="-1"></a>grades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Midterm =</span> <span class="dv">88</span>, <span class="at">Final =</span> <span class="dv">93</span>, <span class="at">Project =</span> <span class="dv">90</span>)</span>
+<span id="cb96-2"><a href="introduction-to-r.html#cb96-2" tabindex="-1"></a>grades</span></code></pre></div>
+<pre><code>## Midterm   Final Project 
+##      88      93      90</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="introduction-to-r.html#cb98-1" tabindex="-1"></a>grades[<span class="st">&quot;Final&quot;</span>]</span></code></pre></div>
+<pre><code>## Final 
+##    93</code></pre>
 </div>
 </div>
-<div id="why-do-we-have-to-describe-data" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Why Do We Have to Describe Data?<a href="data-description.html#why-do-we-have-to-describe-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Describing data allows us to:</p>
-<ul>
-<li>Explain data.</li>
-<li>Identify <strong>patterns</strong> or <strong>trends</strong></li>
-<li>Summarize large datasets compactly</li>
-<li>Compare groups or populations</li>
-<li>Detect <strong>outliers</strong> or unusual observations</li>
-<li>Prepare for inferential analysis</li>
-</ul>
-<p>Raw data alone rarely reveal useful insight without proper summarization.</p>
-<hr />
+<div id="functions-and-expressions" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Functions and Expressions<a href="introduction-to-r.html#functions-and-expressions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:function-in-r" class="definition"><strong>Definition 2.2  (Function) </strong></span>A function is a set of instructions that takes inputs and returns an output.</p>
 </div>
-<div id="types-of-data-description" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> Types of Data Description<a href="data-description.html#types-of-data-description" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="numerical-description" class="section level3 hasAnchor" number="4.4.1">
-<h3><span class="header-section-number">4.4.1</span> Numerical Description<a href="data-description.html#numerical-description" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Focuses on numerical summaries such as:</p>
-<ul>
-<li>Mean</li>
-<li>Median</li>
-<li>Standard deviation</li>
-<li>Quantiles</li>
-</ul>
+<p>R has many built-in functions: <code>mean()</code>, <code>sum()</code>, <code>sd()</code>, etc.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="introduction-to-r.html#cb100-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>)</span>
+<span id="cb100-2"><a href="introduction-to-r.html#cb100-2" tabindex="-1"></a></span>
+<span id="cb100-3"><a href="introduction-to-r.html#cb100-3" tabindex="-1"></a><span class="fu">sum</span>(x)</span></code></pre></div>
+<pre><code>## [1] 30</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="introduction-to-r.html#cb102-1" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="introduction-to-r.html#cb104-1" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code></pre></div>
+<pre><code>## [1] 3.162278</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="introduction-to-r.html#cb106-1" tabindex="-1"></a><span class="fu">min</span>(x)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="introduction-to-r.html#cb108-1" tabindex="-1"></a><span class="fu">max</span>(x)</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div id="function-arguments" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Function arguments<a href="introduction-to-r.html#function-arguments" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Arguments control how the function behaves.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="introduction-to-r.html#cb110-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.14159</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 3.14</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="introduction-to-r.html#cb112-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
 </div>
-<div id="graphical-description" class="section level3 hasAnchor" number="4.4.2">
-<h3><span class="header-section-number">4.4.2</span> Graphical Description<a href="data-description.html#graphical-description" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Focuses on visualizations such as:</p>
-<ul>
-<li>Histograms</li>
-<li>Bar charts</li>
-<li>Pie charts</li>
-<li>Boxplots</li>
-</ul>
-<p>Both approaches are essential for understanding data behavior.</p>
-<hr />
+<div id="expressions-and-nesting" class="section level3 hasAnchor" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Expressions and Nesting<a href="introduction-to-r.html#expressions-and-nesting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can combine (nest) functions.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="introduction-to-r.html#cb114-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb114-2"><a href="introduction-to-r.html#cb114-2" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## [1] 7.416198</code></pre>
+</div>
+<div id="creating-your-own-function" class="section level3 hasAnchor" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> Creating Your Own Function<a href="introduction-to-r.html#creating-your-own-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <code>function()</code> to define reusable code.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="introduction-to-r.html#cb116-1" tabindex="-1"></a><span class="co"># A simple function: compute z-scores</span></span>
+<span id="cb116-2"><a href="introduction-to-r.html#cb116-2" tabindex="-1"></a>zscore <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb116-3"><a href="introduction-to-r.html#cb116-3" tabindex="-1"></a>  (x <span class="sc">-</span> <span class="fu">mean</span>(x)) <span class="sc">/</span> <span class="fu">sd</span>(x)</span>
+<span id="cb116-4"><a href="introduction-to-r.html#cb116-4" tabindex="-1"></a>}</span>
+<span id="cb116-5"><a href="introduction-to-r.html#cb116-5" tabindex="-1"></a></span>
+<span id="cb116-6"><a href="introduction-to-r.html#cb116-6" tabindex="-1"></a><span class="fu">zscore</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">20</span>))</span></code></pre></div>
+<pre><code>## [1] -0.9771621 -0.5173211  0.1724404  1.3220429</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="introduction-to-r.html#cb118-1" tabindex="-1"></a>quick_summary <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb118-2"><a href="introduction-to-r.html#cb118-2" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb118-3"><a href="introduction-to-r.html#cb118-3" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(x),</span>
+<span id="cb118-4"><a href="introduction-to-r.html#cb118-4" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb118-5"><a href="introduction-to-r.html#cb118-5" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb118-6"><a href="introduction-to-r.html#cb118-6" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb118-7"><a href="introduction-to-r.html#cb118-7" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb118-8"><a href="introduction-to-r.html#cb118-8" tabindex="-1"></a>  )</span>
+<span id="cb118-9"><a href="introduction-to-r.html#cb118-9" tabindex="-1"></a>}</span>
+<span id="cb118-10"><a href="introduction-to-r.html#cb118-10" tabindex="-1"></a></span>
+<span id="cb118-11"><a href="introduction-to-r.html#cb118-11" tabindex="-1"></a><span class="fu">quick_summary</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="cn">NA</span>, <span class="dv">5</span>))</span></code></pre></div>
+<pre><code>##        n     mean       sd      min      max 
+## 5.000000 2.750000 1.707825 1.000000 5.000000</code></pre>
 </div>
 </div>
-<div id="techniques-to-describe-categorical-data" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> Techniques to Describe Categorical Data<a href="data-description.html#techniques-to-describe-categorical-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="graphical-techniques" class="section level3 hasAnchor" number="4.5.1">
-<h3><span class="header-section-number">4.5.1</span> Graphical Techniques<a href="data-description.html#graphical-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="bar-charts" class="section level4 hasAnchor" number="4.5.1.1">
-<h4><span class="header-section-number">4.5.1.1</span> Bar Charts<a href="data-description.html#bar-charts" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Bar charts display the frequency of each category using rectangular bars.</p>
-<p>Example in R:</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="data-description.html#cb135-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(schDat<span class="sc">$</span>School), <span class="at">col=</span><span class="st">&quot;steelblue&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/barplot-schools-1.png" width="672" /></p>
+<div id="getting-help" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Getting Help<a href="introduction-to-r.html#getting-help" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R has excellent built-in help tools.</p>
+<div id="help-pages" class="section level3 hasAnchor" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Help Pages<a href="introduction-to-r.html#help-pages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <code>?</code> or <code>help()</code>.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="introduction-to-r.html#cb120-1" tabindex="-1"></a>?mean</span>
+<span id="cb120-2"><a href="introduction-to-r.html#cb120-2" tabindex="-1"></a><span class="fu">help</span>(sd)</span></code></pre></div>
 </div>
-</div>
-<div id="pie-charts" class="section level3 hasAnchor" number="4.5.2">
-<h3><span class="header-section-number">4.5.2</span> Pie Charts<a href="data-description.html#pie-charts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Pie charts show proportions as slices of a circle.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="data-description.html#cb136-1" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(schDat<span class="sc">$</span>Income_Level))</span></code></pre></div>
-<p><img src="_main_files/figure-html/pichart-income-1.png" width="672" /></p>
-</div>
-<div id="numerical-techniques" class="section level3 hasAnchor" number="4.5.3">
-<h3><span class="header-section-number">4.5.3</span> Numerical Techniques<a href="data-description.html#numerical-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The main numerical summaries for categorical data include:</p>
-<ul>
-<li><strong>Counts</strong> (frequencies)</li>
-<li><strong>Proportions</strong></li>
-<li><strong>Relative frequencies</strong></li>
-</ul>
-<p>Example:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="data-description.html#cb137-1" tabindex="-1"></a><span class="co"># Frequency Table</span></span>
-<span id="cb137-2"><a href="data-description.html#cb137-2" tabindex="-1"></a><span class="fu">table</span>(schDat<span class="sc">$</span>Income_Level)</span></code></pre></div>
+<div id="examples-in-help-files" class="section level3 hasAnchor" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> Examples in Help Files<a href="introduction-to-r.html#examples-in-help-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Many help pages include examples you can run:</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="introduction-to-r.html#cb121-1" tabindex="-1"></a><span class="fu">example</span>(mean)</span></code></pre></div>
 <pre><code>## 
-##   High    Low Middle 
-##    937   2747   5316</code></pre>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="data-description.html#cb139-1" tabindex="-1"></a><span class="co"># Proportional Table</span></span>
-<span id="cb139-2"><a href="data-description.html#cb139-2" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(schDat<span class="sc">$</span>Income_Level))</span></code></pre></div>
-<pre><code>## 
-##      High       Low    Middle 
-## 0.1041111 0.3052222 0.5906667</code></pre>
-<hr />
-</div>
-</div>
-<div id="techniques-to-describe-quantitative-data" class="section level2 hasAnchor" number="4.6">
-<h2><span class="header-section-number">4.6</span> Techniques to Describe Quantitative Data<a href="data-description.html#techniques-to-describe-quantitative-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="displaying-all-the-data" class="section level3 hasAnchor" number="4.6.1">
-<h3><span class="header-section-number">4.6.1</span> Displaying All the Data<a href="data-description.html#displaying-all-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Tools:</p>
-<ul>
-<li>Raw data lists</li>
-<li>Dotplots</li>
-<li>Stem‑and‑leaf plots</li>
-</ul>
-<p>Example:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="data-description.html#cb141-1" tabindex="-1"></a><span class="fu">stem</span>(<span class="fu">c</span>(<span class="dv">23</span>,<span class="dv">25</span>,<span class="dv">25</span>,<span class="dv">30</span>,<span class="dv">31</span>,<span class="dv">33</span>,<span class="dv">35</span>,<span class="dv">40</span>))</span></code></pre></div>
-<pre><code>## 
-##   The decimal point is 1 digit(s) to the right of the |
+## mean&gt; x &lt;- c(0:10, 50)
 ## 
-##   2 | 3
-##   2 | 55
-##   3 | 013
-##   3 | 5
-##   4 | 0</code></pre>
-<hr />
+## mean&gt; xm &lt;- mean(x)
+## 
+## mean&gt; c(xm, mean(x, trim = 0.10))
+## [1] 8.75 5.50</code></pre>
+</div>
+<div id="searching-for-a-function" class="section level3 hasAnchor" number="2.6.3">
+<h3><span class="header-section-number">2.6.3</span> Searching for a Function<a href="introduction-to-r.html#searching-for-a-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you don’t know the exact name, use <code>help.search()</code> or <code>??</code>.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="introduction-to-r.html#cb123-1" tabindex="-1"></a>??regression</span>
+<span id="cb123-2"><a href="introduction-to-r.html#cb123-2" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">&quot;histogram&quot;</span>)</span></code></pre></div>
+</div>
+<div id="inspecting-objects" class="section level3 hasAnchor" number="2.6.4">
+<h3><span class="header-section-number">2.6.4</span> Inspecting Objects<a href="introduction-to-r.html#inspecting-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="introduction-to-r.html#cb124-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">5</span>)</span>
+<span id="cb124-2"><a href="introduction-to-r.html#cb124-2" tabindex="-1"></a><span class="fu">str</span>(x)</span></code></pre></div>
+<pre><code>##  num [1:5] 0.0814 -0.9969 0.8349 -1.9402 -1.1163</code></pre>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="introduction-to-r.html#cb126-1" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="introduction-to-r.html#cb128-1" tabindex="-1"></a><span class="fu">typeof</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="introduction-to-r.html#cb130-1" tabindex="-1"></a><span class="fu">ls</span>()        <span class="co"># list objects in your environment</span></span></code></pre></div>
+<pre><code>##   [1] &quot;a&quot;                &quot;A&quot;                &quot;age&quot;              &quot;alpha&quot;           
+##   [5] &quot;altVar&quot;           &quot;appMea&quot;           &quot;appMeaLin&quot;        &quot;b&quot;               
+##   [9] &quot;B&quot;                &quot;bac&quot;              &quot;biaSam&quot;           &quot;boot_means&quot;      
+##  [13] &quot;breaks&quot;           &quot;c&quot;                &quot;calories&quot;         &quot;ci_bounds&quot;       
+##  [17] &quot;conInt&quot;           &quot;count&quot;            &quot;cov&quot;              &quot;cover&quot;           
+##  [21] &quot;d1&quot;               &quot;d2&quot;               &quot;data&quot;             &quot;deck&quot;            
+##  [25] &quot;densityChiSquare&quot; &quot;df&quot;               &quot;dieRol&quot;           &quot;dirVar&quot;          
+##  [29] &quot;disease&quot;          &quot;E&quot;                &quot;eduPar&quot;           &quot;eduPer&quot;          
+##  [33] &quot;errors&quot;           &quot;exam_score&quot;       &quot;exaMeaBin&quot;        &quot;exaMeaLin&quot;       
+##  [37] &quot;f&quot;                &quot;final_grade&quot;      &quot;flag&quot;             &quot;gra&quot;             
+##  [41] &quot;grades&quot;           &quot;graPer&quot;           &quot;griSta&quot;           &quot;hei&quot;             
+##  [45] &quot;heiDisBiaSam&quot;     &quot;heiDisPop&quot;        &quot;heiDisRanSam&quot;     &quot;heiDisSimRanSam&quot; 
+##  [49] &quot;heiRacMea&quot;        &quot;heiRacSd&quot;         &quot;i&quot;                &quot;incLev&quot;          
+##  [53] &quot;incPer&quot;           &quot;j&quot;                &quot;k&quot;                &quot;l&quot;               
+##  [57] &quot;lower&quot;            &quot;lowUpp&quot;           &quot;matSco&quot;           &quot;matScoBin&quot;       
+##  [61] &quot;maxScoMat&quot;        &quot;maxScoVer&quot;        &quot;mea1&quot;             &quot;mea2&quot;            
+##  [65] &quot;meaBiaSam&quot;        &quot;meaDisBiaSam&quot;     &quot;meaDisRanSam&quot;     &quot;meaDisSimRanSam&quot; 
+##  [69] &quot;means&quot;            &quot;meaPop&quot;           &quot;meaRanSam&quot;        &quot;meaSimRanSam&quot;    
+##  [73] &quot;meaX&quot;             &quot;meaX2&quot;            &quot;medians&quot;          &quot;minScoMat&quot;       
+##  [77] &quot;minScoVer&quot;        &quot;mu&quot;               &quot;mu_null&quot;          &quot;mu_pop&quot;          
+##  [81] &quot;mu0&quot;              &quot;n&quot;                &quot;n_required&quot;       &quot;name&quot;            
+##  [85] &quot;namEduPar&quot;        &quot;namIncLev&quot;        &quot;namSch&quot;           &quot;null_means&quot;      
+##  [89] &quot;num_rep&quot;          &quot;numDf&quot;            &quot;numGra&quot;           &quot;numPeoRac&quot;       
+##  [93] &quot;numRep&quot;           &quot;numSam&quot;           &quot;numSch&quot;           &quot;numSel&quot;          
+##  [97] &quot;numStu&quot;           &quot;numStuClu&quot;        &quot;numStuGra&quot;        &quot;obsAlc&quot;          
+## [101] &quot;obsErr&quot;           &quot;p&quot;                &quot;p_value&quot;          &quot;pA&quot;              
+## [105] &quot;pmf&quot;              &quot;pop&quot;              &quot;population&quot;       &quot;populationGrowth&quot;
+## [109] &quot;pro1&quot;             &quot;pro12&quot;            &quot;pro2&quot;             &quot;pro50&quot;           
+## [113] &quot;proCon&quot;           &quot;proInf&quot;           &quot;proInt&quot;           &quot;proMar&quot;          
+## [117] &quot;proTab&quot;           &quot;quick_summary&quot;    &quot;R&quot;                &quot;rac&quot;             
+## [121] &quot;racNam&quot;           &quot;ranks&quot;            &quot;ranSam&quot;           &quot;reaAlc&quot;          
+## [125] &quot;reaBac&quot;           &quot;relFreHea&quot;        &quot;rep&quot;              &quot;repTwo&quot;          
+## [129] &quot;s&quot;                &quot;samCoi&quot;           &quot;sampA&quot;            &quot;sampB&quot;           
+## [133] &quot;sample_boot&quot;      &quot;sample_data&quot;      &quot;sample_means&quot;     &quot;sample1&quot;         
+## [137] &quot;sample2&quot;          &quot;samPop&quot;           &quot;samSiz&quot;           &quot;samVar&quot;          
+## [141] &quot;sch&quot;              &quot;schDat&quot;           &quot;schPer&quot;           &quot;sd&quot;              
+## [145] &quot;sd_pop&quot;           &quot;se&quot;               &quot;sel&quot;              &quot;sel1&quot;            
+## [149] &quot;sel2&quot;             &quot;selGra&quot;           &quot;selInc&quot;           &quot;selPar&quot;          
+## [153] &quot;selSch&quot;           &quot;sen&quot;              &quot;sigma&quot;            &quot;simRanSam&quot;       
+## [157] &quot;sims&quot;             &quot;spe&quot;              &quot;stdPop&quot;           &quot;suits&quot;           
+## [161] &quot;t&quot;                &quot;t_crit&quot;           &quot;t_stat&quot;           &quot;test&quot;            
+## [165] &quot;trimmed&quot;          &quot;true_mean&quot;        &quot;u&quot;                &quot;u1&quot;              
+## [169] &quot;u2&quot;               &quot;upper&quot;            &quot;v&quot;                &quot;var&quot;             
+## [173] &quot;varKno&quot;           &quot;varX&quot;             &quot;varY&quot;             &quot;verSco&quot;          
+## [177] &quot;weight&quot;           &quot;x&quot;                &quot;X&quot;                &quot;x_bar&quot;           
+## [181] &quot;x_future&quot;         &quot;x_sorted&quot;         &quot;x2&quot;               &quot;xbar&quot;            
+## [185] &quot;xm&quot;               &quot;xmax&quot;             &quot;xmin&quot;             &quot;y&quot;               
+## [189] &quot;Y&quot;                &quot;y_bar&quot;            &quot;y_centered&quot;       &quot;ymax&quot;            
+## [193] &quot;ymin&quot;             &quot;yval&quot;             &quot;z&quot;                &quot;zlow&quot;            
+## [197] &quot;zscore&quot;           &quot;zupp&quot;</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="introduction-to-r.html#cb132-1" tabindex="-1"></a><span class="fu">rm</span>(x)       <span class="co"># remove x</span></span>
+<span id="cb132-2"><a href="introduction-to-r.html#cb132-2" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<pre><code>##   [1] &quot;a&quot;                &quot;A&quot;                &quot;age&quot;              &quot;alpha&quot;           
+##   [5] &quot;altVar&quot;           &quot;appMea&quot;           &quot;appMeaLin&quot;        &quot;b&quot;               
+##   [9] &quot;B&quot;                &quot;bac&quot;              &quot;biaSam&quot;           &quot;boot_means&quot;      
+##  [13] &quot;breaks&quot;           &quot;c&quot;                &quot;calories&quot;         &quot;ci_bounds&quot;       
+##  [17] &quot;conInt&quot;           &quot;count&quot;            &quot;cov&quot;              &quot;cover&quot;           
+##  [21] &quot;d1&quot;               &quot;d2&quot;               &quot;data&quot;             &quot;deck&quot;            
+##  [25] &quot;densityChiSquare&quot; &quot;df&quot;               &quot;dieRol&quot;           &quot;dirVar&quot;          
+##  [29] &quot;disease&quot;          &quot;E&quot;                &quot;eduPar&quot;           &quot;eduPer&quot;          
+##  [33] &quot;errors&quot;           &quot;exam_score&quot;       &quot;exaMeaBin&quot;        &quot;exaMeaLin&quot;       
+##  [37] &quot;f&quot;                &quot;final_grade&quot;      &quot;flag&quot;             &quot;gra&quot;             
+##  [41] &quot;grades&quot;           &quot;graPer&quot;           &quot;griSta&quot;           &quot;hei&quot;             
+##  [45] &quot;heiDisBiaSam&quot;     &quot;heiDisPop&quot;        &quot;heiDisRanSam&quot;     &quot;heiDisSimRanSam&quot; 
+##  [49] &quot;heiRacMea&quot;        &quot;heiRacSd&quot;         &quot;i&quot;                &quot;incLev&quot;          
+##  [53] &quot;incPer&quot;           &quot;j&quot;                &quot;k&quot;                &quot;l&quot;               
+##  [57] &quot;lower&quot;            &quot;lowUpp&quot;           &quot;matSco&quot;           &quot;matScoBin&quot;       
+##  [61] &quot;maxScoMat&quot;        &quot;maxScoVer&quot;        &quot;mea1&quot;             &quot;mea2&quot;            
+##  [65] &quot;meaBiaSam&quot;        &quot;meaDisBiaSam&quot;     &quot;meaDisRanSam&quot;     &quot;meaDisSimRanSam&quot; 
+##  [69] &quot;means&quot;            &quot;meaPop&quot;           &quot;meaRanSam&quot;        &quot;meaSimRanSam&quot;    
+##  [73] &quot;meaX&quot;             &quot;meaX2&quot;            &quot;medians&quot;          &quot;minScoMat&quot;       
+##  [77] &quot;minScoVer&quot;        &quot;mu&quot;               &quot;mu_null&quot;          &quot;mu_pop&quot;          
+##  [81] &quot;mu0&quot;              &quot;n&quot;                &quot;n_required&quot;       &quot;name&quot;            
+##  [85] &quot;namEduPar&quot;        &quot;namIncLev&quot;        &quot;namSch&quot;           &quot;null_means&quot;      
+##  [89] &quot;num_rep&quot;          &quot;numDf&quot;            &quot;numGra&quot;           &quot;numPeoRac&quot;       
+##  [93] &quot;numRep&quot;           &quot;numSam&quot;           &quot;numSch&quot;           &quot;numSel&quot;          
+##  [97] &quot;numStu&quot;           &quot;numStuClu&quot;        &quot;numStuGra&quot;        &quot;obsAlc&quot;          
+## [101] &quot;obsErr&quot;           &quot;p&quot;                &quot;p_value&quot;          &quot;pA&quot;              
+## [105] &quot;pmf&quot;              &quot;pop&quot;              &quot;population&quot;       &quot;populationGrowth&quot;
+## [109] &quot;pro1&quot;             &quot;pro12&quot;            &quot;pro2&quot;             &quot;pro50&quot;           
+## [113] &quot;proCon&quot;           &quot;proInf&quot;           &quot;proInt&quot;           &quot;proMar&quot;          
+## [117] &quot;proTab&quot;           &quot;quick_summary&quot;    &quot;R&quot;                &quot;rac&quot;             
+## [121] &quot;racNam&quot;           &quot;ranks&quot;            &quot;ranSam&quot;           &quot;reaAlc&quot;          
+## [125] &quot;reaBac&quot;           &quot;relFreHea&quot;        &quot;rep&quot;              &quot;repTwo&quot;          
+## [129] &quot;s&quot;                &quot;samCoi&quot;           &quot;sampA&quot;            &quot;sampB&quot;           
+## [133] &quot;sample_boot&quot;      &quot;sample_data&quot;      &quot;sample_means&quot;     &quot;sample1&quot;         
+## [137] &quot;sample2&quot;          &quot;samPop&quot;           &quot;samSiz&quot;           &quot;samVar&quot;          
+## [141] &quot;sch&quot;              &quot;schDat&quot;           &quot;schPer&quot;           &quot;sd&quot;              
+## [145] &quot;sd_pop&quot;           &quot;se&quot;               &quot;sel&quot;              &quot;sel1&quot;            
+## [149] &quot;sel2&quot;             &quot;selGra&quot;           &quot;selInc&quot;           &quot;selPar&quot;          
+## [153] &quot;selSch&quot;           &quot;sen&quot;              &quot;sigma&quot;            &quot;simRanSam&quot;       
+## [157] &quot;sims&quot;             &quot;spe&quot;              &quot;stdPop&quot;           &quot;suits&quot;           
+## [161] &quot;t&quot;                &quot;t_crit&quot;           &quot;t_stat&quot;           &quot;test&quot;            
+## [165] &quot;trimmed&quot;          &quot;true_mean&quot;        &quot;u&quot;                &quot;u1&quot;              
+## [169] &quot;u2&quot;               &quot;upper&quot;            &quot;v&quot;                &quot;var&quot;             
+## [173] &quot;varKno&quot;           &quot;varX&quot;             &quot;varY&quot;             &quot;verSco&quot;          
+## [177] &quot;weight&quot;           &quot;X&quot;                &quot;x_bar&quot;            &quot;x_future&quot;        
+## [181] &quot;x_sorted&quot;         &quot;x2&quot;               &quot;xbar&quot;             &quot;xm&quot;              
+## [185] &quot;xmax&quot;             &quot;xmin&quot;             &quot;y&quot;                &quot;Y&quot;               
+## [189] &quot;y_bar&quot;            &quot;y_centered&quot;       &quot;ymax&quot;             &quot;ymin&quot;            
+## [193] &quot;yval&quot;             &quot;z&quot;                &quot;zlow&quot;             &quot;zscore&quot;          
+## [197] &quot;zupp&quot;</code></pre>
+</div>
+<div id="getting-package-help" class="section level3 hasAnchor" number="2.6.5">
+<h3><span class="header-section-number">2.6.5</span> Getting Package Help<a href="introduction-to-r.html#getting-package-help" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Some functions come from additional packages, which extend base R. If you use a package, load it first (if installed).</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="introduction-to-r.html#cb134-1" tabindex="-1"></a><span class="co"># install.packages(&quot;ggplot2&quot;)  # run once if needed</span></span>
+<span id="cb134-2"><a href="introduction-to-r.html#cb134-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb134-3"><a href="introduction-to-r.html#cb134-3" tabindex="-1"></a></span>
+<span id="cb134-4"><a href="introduction-to-r.html#cb134-4" tabindex="-1"></a>?ggplot</span></code></pre></div>
 </div>
 </div>
-<div id="frequency-table" class="section level2 hasAnchor" number="4.7">
-<h2><span class="header-section-number">4.7</span> Frequency Table<a href="data-description.html#frequency-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A frequency table groups quantitative data into <strong>intervals</strong> (classes).</p>
-<div id="class-frequency" class="section level3 hasAnchor" number="4.7.1">
-<h3><span class="header-section-number">4.7.1</span> Class Frequency<a href="data-description.html#class-frequency" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="definition">
-<p><span id="def:class-frequency" class="definition"><strong>Definition 4.2  (Class Frequency) </strong></span>The <strong>class frequency</strong> is the number of observations that fall within a specific interval.</p>
-</div>
-</div>
-<div id="relative-frequency" class="section level3 hasAnchor" number="4.7.2">
-<h3><span class="header-section-number">4.7.2</span> Relative Frequency<a href="data-description.html#relative-frequency" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="definition">
-<p><span id="def:rel-frequency" class="definition"><strong>Definition 4.3  (Relative Frequency) </strong></span>The <strong>relative frequency</strong> is the class frequency divided by the total number of observations.</p>
-</div>
-<p>Example:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="data-description.html#cb143-1" tabindex="-1"></a><span class="co"># Frequency Classes</span></span>
-<span id="cb143-2"><a href="data-description.html#cb143-2" tabindex="-1"></a>breaks    <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">800</span>, <span class="at">by =</span> <span class="dv">100</span>)</span>
-<span id="cb143-3"><a href="data-description.html#cb143-3" tabindex="-1"></a>matScoBin <span class="ot">&lt;-</span> <span class="fu">cut</span>(matSco, <span class="at">breaks =</span> breaks, <span class="at">right =</span> <span class="cn">TRUE</span>) </span>
-<span id="cb143-4"><a href="data-description.html#cb143-4" tabindex="-1"></a><span class="fu">table</span>(matScoBin)</span></code></pre></div>
-<pre><code>## matScoBin
-##   (0,100] (100,200] (200,300] (300,400] (400,500] (500,600] (600,700] (700,800] 
-##       756      1163      1132      1156      1166      1203      1225      1198</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="data-description.html#cb145-1" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(matScoBin))</span></code></pre></div>
-<pre><code>## matScoBin
-##    (0,100]  (100,200]  (200,300]  (300,400]  (400,500]  (500,600]  (600,700] 
-## 0.08400933 0.12923658 0.12579175 0.12845872 0.12956995 0.13368152 0.13612624 
-##  (700,800] 
-## 0.13312590</code></pre>
-<hr />
-</div>
-<div id="histograms" class="section level3 hasAnchor" number="4.7.3">
-<h3><span class="header-section-number">4.7.3</span> Histograms<a href="data-description.html#histograms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Histograms partition quantitative data into <strong>bins</strong> and display frequencies as bars.</p>
-<div id="how-to-build-them" class="section level4 hasAnchor" number="4.7.3.1">
-<h4><span class="header-section-number">4.7.3.1</span> How to Build Them<a href="data-description.html#how-to-build-them" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Steps:</p>
-<ol style="list-style-type: decimal">
-<li>Choose number of intervals (bins).</li>
-<li>Determine bin width.</li>
-<li>Count frequencies per bin.</li>
-<li>Draw adjacent bars.</li>
-</ol>
-</div>
-<div id="number-of-intervals" class="section level4 hasAnchor" number="4.7.3.2">
-<h4><span class="header-section-number">4.7.3.2</span> Number of Intervals<a href="data-description.html#number-of-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Common guidelines:</p>
+<div id="why-r-for-statistics" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Why R for Statistics<a href="introduction-to-r.html#why-r-for-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this course, we will use R to:</p>
 <ul>
-<li>Square-root rule: <span class="math display">\[k = \sqrt{n}\]</span></li>
-<li>Sturges’ rule: <span class="math display">\[k = 1 + \log_2(n)\]</span></li>
+<li>summarize data</li>
+<li>visualize patterns</li>
+<li>perform statistical analysis</li>
 </ul>
-<p>Example:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="data-description.html#cb147-1" tabindex="-1"></a><span class="fu">hist</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">1</span>], <span class="at">col=</span><span class="st">&quot;skyblue&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Histogram of Math Scores for First Grade&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Math Scores&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/histogram-schools-1.png" width="672" /></p>
-</div>
-<div id="characteristics-of-histograms" class="section level4 hasAnchor" number="4.7.3.3">
-<h4><span class="header-section-number">4.7.3.3</span> Characteristics of Histograms<a href="data-description.html#characteristics-of-histograms" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div id="unimodal" class="section level5 hasAnchor" number="4.7.3.3.1">
-<h5><span class="header-section-number">4.7.3.3.1</span> Unimodal<a href="data-description.html#unimodal" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>One peak.</p>
-</div>
-<div id="bimodal" class="section level5 hasAnchor" number="4.7.3.3.2">
-<h5><span class="header-section-number">4.7.3.3.2</span> Bimodal<a href="data-description.html#bimodal" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>Two distinct peaks.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="data-description.html#cb148-1" tabindex="-1"></a><span class="fu">hist</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">3</span> <span class="sc">|</span> schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">5</span>], <span class="at">col=</span><span class="st">&quot;skyblue&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Histogram of Math Scores for Third and Fifth Grade&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Math Scores&quot;</span>, <span class="at">breaks =</span> <span class="dv">20</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/histogram-schools-bimodal-1.png" width="672" /></p>
-</div>
-<div id="symmetry" class="section level5 hasAnchor" number="4.7.3.3.3">
-<h5><span class="header-section-number">4.7.3.3.3</span> Symmetry<a href="data-description.html#symmetry" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<ul>
-<li><strong>Symmetric</strong>: left and right sides mirror</li>
-<li><strong>Skewed Right</strong>: long right tail</li>
-<li><strong>Skewed Left</strong>: long left tail</li>
-</ul>
-<hr />
-</div>
-</div>
-</div>
-</div>
-<div id="general-guidelines-for-successful-graphics" class="section level2 hasAnchor" number="4.8">
-<h2><span class="header-section-number">4.8</span> General Guidelines for Successful Graphics<a href="data-description.html#general-guidelines-for-successful-graphics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>Label axes clearly</li>
-<li>Use consistent scales</li>
-<li>Avoid unnecessary decoration</li>
-<li>Ensure readability</li>
-<li>Highlight key trends</li>
-</ul>
-<hr />
-</div>
-<div id="measures-of-central-tendency" class="section level2 hasAnchor" number="4.9">
-<h2><span class="header-section-number">4.9</span> Measures of Central Tendency<a href="data-description.html#measures-of-central-tendency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="mode" class="section level3 hasAnchor" number="4.9.1">
-<h3><span class="header-section-number">4.9.1</span> Mode<a href="data-description.html#mode" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="definition">
-<p><span id="def:mode-def" class="definition"><strong>Definition 4.4  (Mode) </strong></span>The <strong>mode</strong> is the value that occurs most frequently in a dataset.</p>
-</div>
-</div>
-<div id="median" class="section level3 hasAnchor" number="4.9.2">
-<h3><span class="header-section-number">4.9.2</span> Median<a href="data-description.html#median" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="definition">
-<p><span id="def:median-def" class="definition"><strong>Definition 4.5  (Median) </strong></span>The <strong>median</strong> is the middle value when data are ordered.</p>
-</div>
-</div>
-<div id="mean" class="section level3 hasAnchor" number="4.9.3">
-<h3><span class="header-section-number">4.9.3</span> Mean<a href="data-description.html#mean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="definition">
-<p><span id="def:mean-def" class="definition"><strong>Definition 4.6  (Mean) </strong></span>The <strong>mean</strong> is the arithmetic average of all observations <span class="math inline">\(x_1, x_2, \ldots x_n\)</span>. Denoted by:
-<span class="math display">\[ \bar{x} = \frac{\sum_{i=1}^n x_i}{n} \]</span></p>
-</div>
-<p>Example:</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="data-description.html#cb149-1" tabindex="-1"></a><span class="fu">mean</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">1</span>]); <span class="fu">median</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">1</span>])</span></code></pre></div>
-<pre><code>## [1] 81.79429</code></pre>
-<pre><code>## [1] 82</code></pre>
-<hr />
-</div>
-</div>
-<div id="measures-of-variability" class="section level2 hasAnchor" number="4.10">
-<h2><span class="header-section-number">4.10</span> Measures of Variability<a href="data-description.html#measures-of-variability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="range" class="section level3 hasAnchor" number="4.10.1">
-<h3><span class="header-section-number">4.10.1</span> Range<a href="data-description.html#range" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="definition">
-<p><span id="def:range-def" class="definition"><strong>Definition 4.7  (Range) </strong></span>The <strong>range</strong> is the difference between the maximum and minimum values in a dataset.</p>
-</div>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-description.html#cb152-1" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">max</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">3</span>]),</span>
-<span id="cb152-2"><a href="data-description.html#cb152-2" tabindex="-1"></a><span class="fu">min</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">3</span>]))</span></code></pre></div>
-<pre><code>## [1] 354 156</code></pre>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-description.html#cb154-1" tabindex="-1"></a><span class="fu">max</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">3</span>]) <span class="sc">-</span> <span class="fu">min</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">3</span>])</span></code></pre></div>
-<pre><code>## [1] 198</code></pre>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data-description.html#cb156-1" tabindex="-1"></a><span class="co"># Average score 3rd Grade</span></span>
-<span id="cb156-2"><a href="data-description.html#cb156-2" tabindex="-1"></a><span class="fu">mean</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">3</span>])</span></code></pre></div>
-<pre><code>## [1] 251.898</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="data-description.html#cb158-1" tabindex="-1"></a><span class="co"># Average score 4th Grade</span></span>
-<span id="cb158-2"><a href="data-description.html#cb158-2" tabindex="-1"></a><span class="fu">mean</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">4</span>])</span></code></pre></div>
-<pre><code>## [1] 335.5399</code></pre>
-</div>
-<div id="quantiles" class="section level3 hasAnchor" number="4.10.2">
-<h3><span class="header-section-number">4.10.2</span> Quantiles<a href="data-description.html#quantiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Quantiles divide data into equal-sized groups.</p>
-</div>
-<div id="quantile-plot" class="section level3 hasAnchor" number="4.10.3">
-<h3><span class="header-section-number">4.10.3</span> Quantile Plot<a href="data-description.html#quantile-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-description.html#cb160-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">sort</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Age <span class="sc">==</span> <span class="dv">11</span>]),</span>
-<span id="cb160-2"><a href="data-description.html#cb160-2" tabindex="-1"></a>     <span class="fu">ppoints</span>(<span class="fu">length</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Age <span class="sc">==</span> <span class="dv">11</span>])),</span>
-<span id="cb160-3"><a href="data-description.html#cb160-3" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Math Score&quot;</span>,</span>
-<span id="cb160-4"><a href="data-description.html#cb160-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Quantile&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/quantile-plot_math_scores-1.png" width="672" /></p>
-</div>
-<div id="percentiles" class="section level3 hasAnchor" number="4.10.4">
-<h3><span class="header-section-number">4.10.4</span> Percentiles<a href="data-description.html#percentiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The p-th percentile is the value below which p% of the data fall.</p>
-</div>
-<div id="quartiles" class="section level3 hasAnchor" number="4.10.5">
-<h3><span class="header-section-number">4.10.5</span> Quartiles<a href="data-description.html#quartiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Quartiles divide data into four equal parts:</p>
-<ul>
-<li>Q1</li>
-<li>Q2 (median)</li>
-<li>Q3</li>
-</ul>
-</div>
-<div id="deviation" class="section level3 hasAnchor" number="4.10.6">
-<h3><span class="header-section-number">4.10.6</span> Deviation<a href="data-description.html#deviation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A deviation is the difference between an observation and the mean. That is
-<span class="math display">\[ x_i - \bar{x} \]</span></p>
-</div>
-<div id="variance" class="section level3 hasAnchor" number="4.10.7">
-<h3><span class="header-section-number">4.10.7</span> Variance<a href="data-description.html#variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="definition">
-<p><span id="def:variance-def" class="definition"><strong>Definition 4.8  (Variance) </strong></span>The <strong>variance</strong> measures the average squared deviation from the mean.
-<span class="math display">\[ s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1} \]</span></p>
-</div>
-</div>
-<div id="standard-deviation" class="section level3 hasAnchor" number="4.10.8">
-<h3><span class="header-section-number">4.10.8</span> Standard Deviation<a href="data-description.html#standard-deviation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="definition">
-<p><span id="def:sd-def" class="definition"><strong>Definition 4.9  (Standard Deviation) </strong></span>The <strong>standard deviation</strong> is the square root of the variance.</p>
-</div>
-<p>Example:</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="data-description.html#cb161-1" tabindex="-1"></a><span class="fu">sd</span>(schDat<span class="sc">$</span>Math_Score)</span></code></pre></div>
-<pre><code>## [1] 221.3948</code></pre>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="data-description.html#cb163-1" tabindex="-1"></a><span class="fu">var</span>(schDat<span class="sc">$</span>Math_Score)</span></code></pre></div>
-<pre><code>## [1] 49015.67</code></pre>
-</div>
-<div id="absolute-deviation" class="section level3 hasAnchor" number="4.10.9">
-<h3><span class="header-section-number">4.10.9</span> Absolute Deviation<a href="data-description.html#absolute-deviation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Average of absolute deviations from the mean.</p>
-</div>
-<div id="median-absolute-deviation-mad" class="section level3 hasAnchor" number="4.10.10">
-<h3><span class="header-section-number">4.10.10</span> Median Absolute Deviation (MAD)<a href="data-description.html#median-absolute-deviation-mad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Robust measure of variability.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="data-description.html#cb165-1" tabindex="-1"></a><span class="fu">mad</span>(matSco)</span></code></pre></div>
-<pre><code>## [1] 281.694</code></pre>
-<hr />
-</div>
-<div id="and-99.7-empirical-rule" class="section level3 hasAnchor" number="4.10.11">
-<h3><span class="header-section-number">4.10.11</span> 68%, 95%, and 99.7% Empirical Rule<a href="data-description.html#and-99.7-empirical-rule" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>For bell‑shaped distributions:</p>
-<ul>
-<li>68% of values fall within 1 SD of mean</li>
-<li>95% within 2 SD</li>
-<li>99.7% within 3 SD</li>
-</ul>
-<hr />
-</div>
-<div id="coefficient-of-variation" class="section level3 hasAnchor" number="4.10.12">
-<h3><span class="header-section-number">4.10.12</span> Coefficient of Variation<a href="data-description.html#coefficient-of-variation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The CV measures spread relative to the mean:</p>
-<p><span class="math display">\[
-CV = \frac{SD}{\text{mean}}
-\]</span></p>
-<hr />
-</div>
-<div id="the-boxplot" class="section level3 hasAnchor" number="4.10.13">
-<h3><span class="header-section-number">4.10.13</span> The Boxplot<a href="data-description.html#the-boxplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Displays:</p>
-<ul>
-<li>Median</li>
-<li>Quartiles</li>
-<li>Whiskers</li>
-<li>Outliers</li>
-</ul>
-<p>Example:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="data-description.html#cb167-1" tabindex="-1"></a><span class="fu">boxplot</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">3</span>], schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">4</span>], schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">5</span>])</span></code></pre></div>
-<p><img src="_main_files/figure-html/boxplot-math-scores-1.png" width="672" /></p>
-<hr />
-</div>
-<div id="outliers" class="section level3 hasAnchor" number="4.10.14">
-<h3><span class="header-section-number">4.10.14</span> Outliers<a href="data-description.html#outliers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Observations unusually far from the rest:</p>
-<ul>
-<li>Often defined as:
-<ul>
-<li>Below Q1 – 1.5(IQR)</li>
-<li>Above Q3 + 1.5(IQR)</li>
-</ul></li>
-</ul>
-<hr />
-</div>
-</div>
-<div id="techniques-for-two-variables" class="section level2 hasAnchor" number="4.11">
-<h2><span class="header-section-number">4.11</span> Techniques for Two Variables<a href="data-description.html#techniques-for-two-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="contingency-tables" class="section level3 hasAnchor" number="4.11.1">
-<h3><span class="header-section-number">4.11.1</span> Contingency Tables<a href="data-description.html#contingency-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Summarize two categorical variables.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="data-description.html#cb168-1" tabindex="-1"></a><span class="fu">table</span>(schDat<span class="sc">$</span>Income_Level, schDat<span class="sc">$</span>Parent_Education)</span></code></pre></div>
-<pre><code>##         
-##          College Graduate School Highschool No Highschool
-##   High       225             219        256           237
-##   Low        692             648        671           736
-##   Middle    1330            1294       1339          1353</code></pre>
-</div>
-<div id="stacked-bar-graph" class="section level3 hasAnchor" number="4.11.2">
-<h3><span class="header-section-number">4.11.2</span> Stacked Bar Graph<a href="data-description.html#stacked-bar-graph" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="data-description.html#cb170-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(schDat<span class="sc">$</span>Income_Level, schDat<span class="sc">$</span>Parent_Education), <span class="at">beside=</span><span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/dat-des-stacked-graph-1.png" width="672" /></p>
-</div>
-<div id="cluster-bar-graph" class="section level3 hasAnchor" number="4.11.3">
-<h3><span class="header-section-number">4.11.3</span> Cluster Bar Graph<a href="data-description.html#cluster-bar-graph" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="data-description.html#cb171-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(schDat<span class="sc">$</span>Income_Level, schDat<span class="sc">$</span>Parent_Education), <span class="at">beside=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/dat-des-cluster-graph-1.png" width="672" /></p>
-</div>
-<div id="scatter-plot" class="section level3 hasAnchor" number="4.11.4">
-<h3><span class="header-section-number">4.11.4</span> Scatter Plot<a href="data-description.html#scatter-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Used for two quantitative variables.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="data-description.html#cb172-1" tabindex="-1"></a><span class="fu">plot</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">8</span>], schDat<span class="sc">$</span>Verbal_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">8</span>], <span class="at">xlab =</span> <span class="st">&quot;Math Score&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Verbal Score&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/scatterplot-math-verbal-scores-1.png" width="672" /></p>
-</div>
-<div id="correlation-coefficient" class="section level3 hasAnchor" number="4.11.5">
-<h3><span class="header-section-number">4.11.5</span> Correlation Coefficient<a href="data-description.html#correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Measures linear association.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="data-description.html#cb173-1" tabindex="-1"></a><span class="fu">cor</span>(schDat<span class="sc">$</span>Math_Score, schDat<span class="sc">$</span>Verbal_Score)</span></code></pre></div>
-<pre><code>## [1] 0.9979339</code></pre>
-</div>
-<div id="block-boxplots" class="section level3 hasAnchor" number="4.11.6">
-<h3><span class="header-section-number">4.11.6</span> Block Boxplots<a href="data-description.html#block-boxplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Grouped boxplots.</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="data-description.html#cb175-1" tabindex="-1"></a><span class="fu">boxplot</span>(Math_Score <span class="sc">~</span> Income_Level, <span class="at">data =</span> schDat)</span></code></pre></div>
-<p><img src="_main_files/figure-html/dat-des-grouped-boxplots-1.png" width="672" /></p>
-</div>
-<div id="block-scatter-plots" class="section level3 hasAnchor" number="4.11.7">
-<h3><span class="header-section-number">4.11.7</span> Block Scatter Plots<a href="data-description.html#block-scatter-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Scatter plots grouped by category.</p>
+<p>In the following sections, we will introduce statistical concepts and use R to implement them.</p>
 
-</div>
 </div>
 </div>
             </section>
@@ -983,8 +1013,8 @@ CV = \frac{SD}{\text{mean}}
           </div>
         </div>
       </div>
-<a href="observational-and-experimental-studies.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-to-probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="observational-and-experimental-studies.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
