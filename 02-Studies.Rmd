@@ -1,155 +1,176 @@
-# Observational and Experimental Studies
+# Studies and Data Collection
 
-## Introduction
+In statistics, we collect data in order to answer questions about a population.  
 
-Reliable statistical inference depends critically on the quality and structure of
-the data collected. This chapter introduces two major frameworks for gathering
-data: **surveys** and **experimental studies**. These methods differ in their level
-of control, susceptibility to bias, and the strength of the conclusions permitted.
-
-This chapter corresponds to the *Data* stage of the course workflow:
-**collecting, describing data, understanding structure, and identifying intrinsic properties before modeling.**
-
+A well-designed study is essential to ensure that the conclusions we draw are reliable.
 
 ---
 
-## Surveys
+## Statistical Studies
 
-Surveys are systematic procedures for obtaining information from a sample that
-represents a broader population. Effective survey design minimizes bias and
-ensures appropriate representation.
+```{definition, study, name="Statistical Study"}
+A statistical study is a process of collecting data in order to answer a question about a population or phenomenon.
+```
 
-### Populations and Sampling Frames
-
-- **Population:** the complete set of units of interest.  
-- **Sampling frame:** the operational list from which the sample is drawn.
-
-A mismatch between population and frame leads to **coverage error**. 
-
-### Sampling Methods
-
-#### Simple Random Sampling (SRS)
-Every subset of a given size has an equal chance of being selected.  
-Advantages:
-- Unbiased representation. We will see what do we mean by this later. 
-- Straightforward design and analysis.
-
-
-#### Stratified Sampling
-The population is divided into homogeneous groups (*strata*), and SRS is applied within each.
-- Reduces sampling variability  
-- Ensures representation of important subpopulations
-
-
-#### Cluster Sampling
-Naturally occurring groups (clusters) are sampled instead of individuals.
-- Efficient for large geographic populations  
-- Requires careful design to ensure representativeness  
-
-#### Systematic Sampling
-Select every *kth* element after a random start.
-- Easy to implement  
-- Sensitive to hidden periodic patterns  
-
-### Sources of Survey Bias
-
-#### Selection Bias
-The sample differs systematically from the population.
-
-#### Nonresponse Bias
-Failure to obtain measurements from selected units creates distortion.
-
-#### Response Bias
-Arises from poor question wording, respondent discomfort, or interviewer influence.
-
-### Questionnaire Design Principles
-
-- Use clear, neutral language  
-- Avoid leading or double‑barreled questions  
-- Choose appropriate measurement scales:
-  - Nominal  
-  - Ordinal  
-  - Interval  
-  - Ratio  
+A study begins with a clear question and a plan for how data will be collected.
 
 ---
 
-## Experimental Studies
+## Population and Sample
 
-Experiments involve deliberate manipulation of conditions to identify causal effects.
-They provide control over sources of variability through specific design features.
+```{definition, population, name="Population"}
+A population is the complete collection of all individuals or objects of interest.
+```
 
-### Key Components of Experimental Design
+```{definition, sample, name="Sample"}
+A sample is a subset of the population used to collect data.
+```
 
-#### Experimental Units
-Entities to which treatments are applied.
+In most situations, it is not feasible to observe the entire population.
 
-#### Treatments and Control
-Interventions or conditions imposed on units; control group provides a baseline.
-
-#### Random Assignment
-Distributes potential confounders across treatment groups.
-
-#### Replication
-Multiple units exposed to each treatment enable the estimation of experimental variability.
-
-#### Blocking
-Grouping similar units to reduce the influence of nuisance factors.
-
-### Confounding
-
-A confounding variable affects both treatment assignment and response, obscuring
-causal relationships.  
-Good experimental design aims to reduce confounding through:
-- Randomization  
-- Control  
-- Proper blocking  
+Instead, we collect data from a sample and use it to learn about the population.
 
 ---
 
-## Observational vs Experimental Studies
+## Variables
 
-### Comparative Characteristics
+```{definition, variable, name="Variable"}
+A variable is a characteristic or measurement that can take different values across observations.
+```
 
-| Feature | Observational Study | Experimental Study |
-|--------|---------------------|--------------------|
-| Researcher control | None | High |
-| Confounding | Often present | Reduced |
-| Causal claims | Weak | Strong |
-| Difficulty | Usually easier to conduct | May be expensive or unethical |
-
-### Interpretational Considerations
-
-Observational studies support **associational** conclusions.  
-Experiments support **causal** conclusions, conditional on valid design.
+Each observation in a study consists of measurements of one or more variables.
 
 ---
 
-## Data Quality and Measurement
+## Types of Studies
 
-### Validity and Reliability
+There are two main types of statistical studies.
 
-#### Validity
-Whether measurement reflects the concept intended.
+---
 
-#### Reliability
-Consistency of repeated measurements under identical conditions.
+### Observational Studies
 
-### Sources of Variability
+```{definition, observational-study, name="Observational Study"}
+An observational study is a study where the researcher records data without manipulating any variables.
+```
 
-- Natural biological or environmental variation  
-- Measurement error  
-- Experimental or observational conditions  
-- Sampling variability  
+In an observational study, the researcher is a passive observer and does not interfere with the process generating the data.
 
-Reducing uncontrolled variation increases the precision and reliability of statistical findings.
+---
+
+### Experimental Studies
+
+```{definition, experimental-study, name="Experimental Study"}
+An experimental study is a study where the researcher actively manipulates one or more variables to observe their effect.
+```
+
+In an experiment, the researcher controls certain variables and studies how they affect the outcome.
+
+---
+
+### Association vs Causation
+
+A key distinction between observational and experimental studies is the ability to establish causation.
+
+* Observational studies can identify **associations** between variables.
+* Experimental studies allow for stronger conclusions about **cause-and-effect relationships**.
+
+```{definition, confounding-variable, name="Confounding Variable"}
+A confounding variable is a variable that affects both the explanatory and response variables, potentially distorting their relationship.
+```
+
+Confounding variables are a major limitation of observational studies, since they can create misleading associations.
+
+---
+
+## Explanatory and Response Variables
+
+```{definition, explanatory-variable, name="Explanatory Variable"}
+An explanatory variable is a variable that may explain changes in another variable.
+```
+
+```{definition, response-variable, name="Response Variable"}
+A response variable is the variable being explained or predicted.
+```
+
+The goal of many studies is to understand how explanatory variables influence the response variable.
+
+---
+
+## Types of Observational Studies
+
+Observational studies can take different forms depending on how data are collected.
+
+---
+
+### Sample Surveys
+
+```{definition, sample-survey, name="Sample Survey"}
+A sample survey is an observational study that collects information about a population at a single point in time.
+```
+
+Sample surveys are commonly used in polls and questionnaires.
+
+---
+
+### Prospective Studies
+
+A prospective study follows a group of individuals forward in time and records future outcomes.
+
+---
+
+### Retrospective Studies
+
+A retrospective study examines past data to identify relationships between variables.
+
+---
+
+## Units in a Study
+
+```{definition, observation-unit, name="Observation Unit"}
+The observation unit is the entity on which measurements are taken.
+```
+
+```{definition, sampling-unit, name="Sampling Unit"}
+The sampling unit is the entity selected during the sampling process.
+```
+
+In many cases, the observation unit and the sampling unit are the same, but they can differ depending on the study design.
+
+---
+
+## Bias in Studies
+
+```{definition, bias, name="Bias"}
+Bias is a systematic error in data collection or analysis that leads to incorrect conclusions.
+```
+
+Bias can arise in many ways and can significantly affect the validity of a study.
+
+---
+
+### Common Types of Bias
+
+* **Selection bias**: occurs when the sample is not representative of the population.
+* **Nonresponse bias**: occurs when individuals selected for the sample do not respond.
+
+Careful study design is required to minimize bias.
 
 ---
 
 ## Summary
 
-This chapter establishes essential principles for gathering high‑quality data.
-Surveys and experiments differ in control structure, design complexity, and inferential capability, but both aim to produce data suitable for statistical reasoning.
+A well-designed study requires:
 
-In the next chapter, we transition to **Data Modeling**, where probability is introduced as a generative mechanism to describe theoretical data behavior.
+* a clear definition of the population and sample
+* an understanding of the variables involved
+* an appropriate study design (observational or experimental)
+* awareness of potential bias and confounding variables
 
+---
+
+## From Studies to Data
+
+Once a study is designed and data are collected, the next step is to summarize and describe the data.
+
+In the next section, we introduce methods for data description.
