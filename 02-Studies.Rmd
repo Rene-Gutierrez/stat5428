@@ -139,6 +139,121 @@ In many cases, the observation unit and the sampling unit are the same, but they
 
 ---
 
+## Sampling Methods
+
+The way a sample is selected from a population plays a critical role in the quality of a study.
+
+A good sampling method helps ensure that the sample is representative of the population.
+
+---
+
+### Simple Random Sampling
+
+```{definition, simple-random-sampling, name="Simple Random Sampling"}
+Simple random sampling is a method where every possible sample of a given size has an equal chance of being selected.
+```
+
+Each observation in the population has the same probability of being included in the sample.
+
+**Advantages**
+
+* Easy to understand and implement
+* Produces unbiased samples when properly conducted
+
+**Disadvantages**
+
+* Requires a complete list of the population
+* Can be impractical for large or geographically dispersed populations
+
+---
+
+### Stratified Sampling
+
+```{definition, stratified-sampling, name="Stratified Sampling"}
+Stratified sampling divides the population into homogeneous groups called strata and then takes a sample from each group.
+```
+
+The strata are formed based on characteristics that are relevant to the study.
+
+**Advantages**
+
+* Ensures representation from all important subgroups
+* Can increase precision of estimates
+
+**Disadvantages**
+
+* Requires knowledge of population structure
+* More complex to implement
+
+---
+
+### Cluster Sampling
+
+```{definition, cluster-sampling, name="Cluster Sampling"}
+Cluster sampling divides the population into groups called clusters and randomly selects entire clusters to include in the sample.
+```
+
+All observations within selected clusters are included in the sample.
+
+**Advantages**
+
+* Cost-effective and practical for large populations
+* Useful when the population is geographically spread out
+
+**Disadvantages**
+
+* Can lead to higher variability in estimates
+* Clusters may not be representative of the population
+
+---
+
+### Systematic Sampling
+
+```{definition, systematic-sampling, name="Systematic Sampling"}
+Systematic sampling selects observations at regular intervals from an ordered list of the population.
+```
+
+For example, selecting every $k$-th observation after a random starting point.
+
+**Advantages**
+
+* Simple and quick to implement
+* Ensures a spread of observations across the population
+
+**Disadvantages**
+
+* Can introduce bias if there is a pattern in the data
+* Not truly random if ordering is structured
+
+---
+
+### Convenience Sampling
+
+```{definition, convenience-sampling, name="Convenience Sampling"}
+Convenience sampling selects observations that are easiest to access.
+```
+
+**Advantages**
+
+* Easy and inexpensive
+* Useful for exploratory analysis
+
+**Disadvantages**
+
+* Often highly biased
+* Not representative of the population
+* Results cannot be generalized reliably
+
+---
+
+## Summary of Sampling Methods
+
+* Probability sampling methods (simple random, stratified, cluster, systematic) allow for more reliable conclusions.
+* Non-probability methods (such as convenience sampling) are prone to bias.
+* The choice of sampling method depends on the study objectives, resources, and population structure.
+
+---
+
 ## Bias in Studies
 
 ```{definition, bias, name="Bias"}
@@ -166,6 +281,221 @@ A well-designed study requires:
 * an understanding of the variables involved
 * an appropriate study design (observational or experimental)
 * awareness of potential bias and confounding variables
+
+---
+
+## Example: Observational Study
+
+Suppose we want to study the relationship between **study time** and **exam performance** among university students.
+
+---
+
+### Description of the Study
+
+We collect data from a group of students without assigning or controlling how much they study.  
+We simply record their study habits and exam scores.
+
+This is an observational study because no variables are manipulated by the researcher.
+
+---
+
+### Identifying the Components
+
+**Population**
+
+All university students enrolled in the course.
+
+---
+
+**Sample**
+
+A group of 100 students selected from the course.
+
+---
+
+**Sampling Method**
+
+Suppose we select students by choosing every 5th student from the class roster.
+
+This is an example of **systematic sampling**.
+
+---
+
+**Observation Unit**
+
+Each individual student.
+
+---
+
+**Sampling Unit**
+
+Each student selected from the roster.
+
+In this case, the sampling unit and observation unit are the same.
+
+---
+
+**Variables**
+
+- Explanatory variable: number of hours studied per week  
+- Response variable: exam score  
+
+Each student contributes one observation consisting of these measurements.
+
+---
+
+### Potential Confounding Variables
+
+There are other variables that may affect exam performance, such as:
+
+- prior academic ability  
+- attendance  
+- access to tutoring  
+- sleep and health  
+
+These variables may influence both study time and exam scores.
+
+These are **confounding variables** because they can distort the relationship between the explanatory and response variables.
+
+---
+
+### Bias Considerations
+
+If some students are absent when data are collected, the sample may suffer from **nonresponse bias**.
+
+If the class roster is ordered in a non-random way (for example, by performance), systematic sampling could introduce **selection bias**.
+
+---
+
+### Why Causality Cannot Be Established
+
+Even if we observe that students who study more tend to have higher exam scores, we cannot conclude that studying more causes higher scores.
+
+This is because:
+
+- confounding variables may explain the relationship  
+- the researcher did not control or assign study time  
+
+As a result, the study can identify **associations**, but not **cause-and-effect relationships**.
+
+---
+
+## Example: Experimental Study
+
+Suppose we want to study whether a **new tutoring program** improves exam performance among university students.
+
+---
+
+### Description of the Study
+
+We select a group of students and randomly assign them to one of two groups:
+
+- a **treatment group** that receives the tutoring program  
+- a **control group** that does not receive the program  
+
+We then compare their exam scores at the end of the semester.
+
+This is an experimental study because the researcher actively assigns the treatment.
+
+---
+
+### Identifying the Components
+
+**Population**
+
+All university students enrolled in the course.
+
+---
+
+**Sample**
+
+A group of 100 students selected from the course.
+
+---
+
+**Sampling Method**
+
+Suppose the students are selected using **simple random sampling** from the class roster.
+
+---
+
+**Observation Unit**
+
+Each individual student.
+
+---
+
+**Sampling Unit**
+
+Each student selected from the roster.
+
+In this case, the sampling unit and observation unit are the same.
+
+---
+
+**Variables**
+
+- Explanatory variable: participation in the tutoring program (yes or no)  
+- Response variable: exam score  
+
+Each student contributes one observation.
+
+---
+
+### Random Assignment
+
+After selecting the sample, students are randomly assigned to the treatment or control group.
+
+Random assignment helps ensure that the two groups are comparable.
+
+---
+
+### Role of Confounding Variables
+
+Variables such as:
+
+- prior academic ability  
+- motivation  
+- attendance  
+
+may still affect exam performance.
+
+However, because of random assignment, these variables are expected to be balanced across the groups.
+
+This reduces the impact of confounding variables.
+
+---
+
+### Bias Considerations
+
+If the initial sample is not representative of the population, the study may still suffer from **selection bias**.
+
+However, within the experiment, random assignment reduces systematic differences between groups.
+
+---
+
+### Why Causality Can Be Established
+
+If the treatment group has significantly higher exam scores than the control group, we can attribute this difference to the tutoring program.
+
+This is because:
+
+- the researcher controlled the explanatory variable  
+- random assignment reduces the effect of confounding variables  
+
+As a result, experimental studies allow for **cause-and-effect conclusions**.
+
+---
+
+### Conclusion
+
+This example illustrates the key features of an experimental study:
+
+- control of the explanatory variable  
+- random assignment  
+- reduced influence of confounding variables  
+
+These features allow experimental studies to establish causal relationships, unlike observational studies.
 
 ---
 
