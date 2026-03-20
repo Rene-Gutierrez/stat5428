@@ -1,26 +1,50 @@
 # Data Description
 
-In this section, we explore how data can be **classified**, **summarized**, and **interpreted**.  
-We introduce key concepts for both **categorical** and **quantitative** data, and we examine graphical and numerical tools used in statistics.
+In this section, we focus on how to organize, summarize, and describe data.
+
+The goal of data description is to understand the main features of a data set before developing probability models or performing statistical inference.
+
+We will use the simulated school data throughout this section.
+
+Describing data is an essential first step in statistical analysis. Before building models or making formal inferences, we want to understand what the observed data look like, where the values tend to be concentrated, how much variability is present, and whether there are any unusual patterns that deserve attention.
 
 ---
 
-## Data Simulation
+## Descriptive Statistics
+
+```{definition, descriptive-statistics, name="Descriptive Statistics"}
+Descriptive statistics are methods used to organize, summarize, and describe the main features of a data set.
+```
+
+Descriptive statistics help us answer questions such as:
+
+* What values are typical?
+* How much variability is present?
+* Are there unusual observations?
+* How are values distributed?
+
+At this stage, the goal is to describe the observed data, not to make conclusions beyond the data set.
+
+Descriptive statistics include both graphical summaries, such as bar plots and histograms, and numerical summaries, such as the mean, median, and standard deviation. Each summary highlights a different aspect of the data, so in practice we often use several summaries together.
+
+---
+
+## The Simulated School Data
 
 For this section we will simulate a data set for student performance in math and verbal tests accross 10 schools. For each student we will include the following variables:
 
 Variables:
 
-- Student ID
-- Student School
-- Student Grade
-- Student Age
-- Income Level
-- Education Level Parents
-- Math Score
-- Verbal Score
+* Student ID
+* Student School
+* Student Grade
+* Student Age
+* Income Level
+* Education Level Parents
+* Math Score
+* Verbal Score
 
-```{r school-data-simulation, echo=FALSE}
+```{r school-data-simulation}
 # Data Simulation
 set.seed(2026)
 
@@ -93,436 +117,560 @@ verSco <- round(verSco)
 schDat <- as.data.frame(1:numStu)
 schDat <- cbind(schDat, sch, gra, age, incLev, eduPar, matSco, verSco)
 colnames(schDat) <- c("Student_ID", "School", "Grade", "Age", "Income_Level", "Parent_Education", "Math_Score", "Verbal_Score")
+
+# Displays the First Rows of the Data Set
+head(schDat)
 ```
 
-## Types of Data
+The code above simulates a student-level data set and stores it in the object `schDat`. It creates demographic variables such as school, grade, age, income level, and parent education, and then generates math and verbal scores that depend on school performance, income level, parent education, and grade level.
 
-### Quantitative vs. Qualitative Data
+The command `head(schDat)` displays the first few rows of the data set. This is useful as an initial check that the variables were created correctly, that the data have the expected structure, and that each row corresponds to one student.
 
-```{definition, data-types, name="Types of Data"}
-Data can be classified into **quantitative** (numerical) and **qualitative** (categorical) types.  
-Quantitative data consist of numerical measurements; qualitative data describe categories or attributes.
-```
-
-### Quantitative Data
-
-Quantitative data represent **numerical values** that can be measured.
-
-Examples:
-
-*   Heights of students
-*   Weights of packages
-*   Exam scores
-
-They can be:
-
-*   **Discrete**: countable (e.g., number of children)
-*   **Continuous**: measured on a continuum (e.g., height, time)
-
-### Qualitative Data
-
-Qualitative (categorical) data represent **non‑numeric labels or groups**.
-
-Examples:
-
-*   Sex
-*   Favorite color
-*   Yes/No responses
-*   Satisfaction Level
-
-These categories may or may not have a natural order.
+Each row of the data set represents one student, and each column represents a variable measured on that student.
 
 ---
 
-## Why Do We Have to Describe Data?
+## Types of Variables
 
-Describing data allows us to:
+Before choosing a graph or a numerical summary, we need to determine the type of variable we are describing.
 
-*   Explain data.
-*   Identify **patterns** or **trends**
-*   Summarize large datasets compactly
-*   Compare groups or populations
-*   Detect **outliers** or unusual observations
-*   Prepare for inferential analysis
+The type of variable matters because different kinds of variables require different summaries. For example, a bar plot is appropriate for a categorical variable, while a histogram is appropriate for a numerical variable.
 
-Raw data alone rarely reveal useful insight without proper summarization.
+### Categorical Variables
 
----
-
-## Types of Data Description
-
-### Numerical Description
-
-Focuses on numerical summaries such as:
-
-*   Mean
-*   Median
-*   Standard deviation
-*   Quantiles
-
-### Graphical Description
-
-Focuses on visualizations such as:
-
-*   Histograms
-*   Bar charts
-*   Pie charts
-*   Boxplots
-
-Both approaches are essential for understanding data behavior.
-
----
-
-## Techniques to Describe Categorical Data
-
-### Graphical Techniques
-
-#### Bar Charts
-
-Bar charts display the frequency of each category using rectangular bars.
-
-Example in R:
-
-```{r barplot-schools, }
-barplot(table(schDat$School), col="steelblue")
+```{definition, categorical-variable, name="Categorical Variable"}
+A categorical variable is a variable whose values represent categories or groups.
 ```
 
-### Pie Charts
+Examples from the simulated school data may include:
 
-Pie charts show proportions as slices of a circle.
+* school
+* grade level
+* income level
+* parents education level
 
+These variables classify students into groups rather than measuring a numerical amount.
 
-```{r pichart-income}
+```{r categorical-variables}
+head(schDat[, c(2, 3, 5, 6)])
+```
+
+This code displays the first few observations for the categorical variables in the data set.
+
+From this output, we can verify that these variables are recorded as labels or group memberships. For example, a student belongs to a particular school, income category, and parent education category.
+
+---
+
+### Numerical Variables
+
+```{definition, numerical-variable, name="Numerical Variable"}
+A numerical variable is a variable whose values are numerical measurements or counts.
+```
+
+Examples from the simulated school data may include:
+
+* age
+* math score
+* verbal score
+
+These variables measure a quantity for each student and can be meaningfully averaged or compared numerically.
+
+```{r numerical-variables}
+head(schDat[, c(4, 7, 8)])
+```
+
+This code displays the first few observations for the numerical variables.
+
+From this output, we see that these variables take numerical values, so they can be summarized using quantities such as the mean, median, variance, and standard deviation.
+
+---
+
+#### Discrete Variables
+
+```{definition, discrete-variable, name="Discrete Variable"}
+A discrete variable is a numerical variable that takes countable values.
+```
+
+Examples may include:
+
+* Age
+* math score
+* verbal score
+
+In this data set, these variables are recorded as integers, so they behave as discrete variables.
+
+```{r discrete-variables}
+head(schDat[, c(4, 7, 8)])
+```
+
+This code again shows examples of values for variables recorded in whole-number form.
+
+The output illustrates that these variables take separated, countable values rather than every possible value in an interval.
+
+---
+
+#### Continuous Variables
+
+```{definition, continuous-variable, name="Continuous Variable"}
+A continuous variable is a numerical variable that can take any value in an interval.
+```
+
+Examples may include:
+
+* height of students
+* weight of students
+
+A continuous variable is measured on a scale where, at least conceptually, values between any two observed values are also possible. In this particular simulated data set, the main numerical variables were recorded as integers, but in many real data sets numerical variables such as height, weight, time, and distance are continuous.
+
+---
+
+## Graphical Summaries
+
+Graphs are useful because they allow us to quickly identify patterns in the data.
+
+A good graph often reveals structure that may not be obvious from a table of raw numbers. In particular, graphs help us see the distribution of a variable, compare groups, and detect unusual observations.
+
+---
+
+### Graphical Summaries for Categorical Variables
+
+#### Bar Plots
+
+A bar plot is useful for displaying the frequencies of categories.
+
+```{r barplot-income-level}
+barplot(table(schDat$Income_Level), col="steelblue")
+```
+
+This code first counts the number of students in each income level and then displays those counts in a bar plot.
+
+The height of each bar represents the frequency of a category. In this example, the graph shows how the students are distributed across the low, middle, and high income levels. We expect the middle-income category to appear most often because the data were simulated with a larger probability for that group.
+
+A bar plot helps us compare how often each category appears.
+
+---
+
+#### Pie Charts
+
+Pie charts may also be used for categorical variables, although bar plots are usually easier to interpret.
+
+```{r pichart-income-level}
 pie(table(schDat$Income_Level))
 ```
 
-### Numerical Techniques
+This code shows the same income-level frequencies using a pie chart.
 
-The main numerical summaries for categorical data include:
-
-*   **Counts** (frequencies)
-*   **Proportions**
-*   **Relative frequencies**
-
-Example:
-
-```{r table-income}
-# Frequency Table
-table(schDat$Income_Level)
-# Proportional Table
-prop.table(table(schDat$Income_Level))
-```
+The pie chart emphasizes proportions of the whole rather than direct comparisons of counts. It provides a visual impression of how much of the sample belongs to each income category, although the exact comparison between groups is often clearer in a bar plot.
 
 ---
 
-## Techniques to Describe Quantitative Data
+### Graphical Summaries for Numerical Variables
 
-### Displaying All the Data
+#### Histograms
 
-Tools:
-
-*   Raw data lists
-*   Dotplots
-*   Stem‑and‑leaf plots
-
-Example:
-
-```{r dat-des-stem-and-leaf-plot}
-stem(c(23,25,25,30,31,33,35,40))
+```{definition, histogram, name="Histogram"}
+A histogram is a graph that displays the distribution of a numerical variable by grouping values into intervals.
 ```
 
----
-
-## Frequency Table
-
-A frequency table groups quantitative data into **intervals** (classes).
-
-### Class Frequency
-
-```{definition, class-frequency, name="Class Frequency"}
-The **class frequency** is the number of observations that fall within a specific interval.
-```
-
-### Relative Frequency
-
-```{definition, rel-frequency, name="Relative Frequency"}
-The **relative frequency** is the class frequency divided by the total number of observations.
-```
-
-Example:
-
-```{r frequency-table}
-# Frequency Classes
-breaks    <- seq(0, 800, by = 100)
-matScoBin <- cut(matSco, breaks = breaks, right = TRUE) 
-table(matScoBin)
-prop.table(table(matScoBin))
-```
-
----
-
-### Histograms
-
-Histograms partition quantitative data into **bins** and display frequencies as bars.
-
-#### How to Build Them
-
-Steps:
-
-1.  Choose number of intervals (bins).
-2.  Determine bin width.
-3.  Count frequencies per bin.
-4.  Draw adjacent bars.
-
-#### Number of Intervals
-
-Common guidelines:
-
-*   Square-root rule: $$k = \sqrt{n}$$
-*   Sturges' rule: $$k = 1 + \log_2(n)$$
-
-Example:
-
-```{r histogram-schools}
+```{r histogram-math-score}
 hist(schDat$Math_Score[schDat$Grade == 1], col="skyblue", main = "Histogram of Math Scores for First Grade", xlab = "Math Scores")
 ```
 
-#### Characteristics of Histograms
+This code selects the math scores for first-grade students and groups them into intervals to produce a histogram.
 
-##### Unimodal
+The histogram shows how first-grade math scores are distributed. It helps us see where scores are concentrated, how spread out they are, and whether the distribution is approximately symmetric or skewed. In this setting, the histogram also gives us a first idea of the range of performance among first-grade students.
 
-One peak.
-
-##### Bimodal
-
-Two distinct peaks.
-
-```{r histogram-schools-bimodal}
-hist(schDat$Math_Score[schDat$Grade == 3 | schDat$Grade == 5], col="skyblue", main = "Histogram of Math Scores for Third and Fifth Grade", xlab = "Math Scores", breaks = 20)
-```
-
-##### Symmetry
-
-*   **Symmetric**: left and right sides mirror
-*   **Skewed Right**: long right tail
-*   **Skewed Left**: long left tail
+A histogram helps us see where values are concentrated and whether the data are symmetric, skewed, or have unusual observations.
 
 ---
 
-## General Guidelines for Successful Graphics
+#### Boxplots
 
-*   Label axes clearly
-*   Use consistent scales
-*   Avoid unnecessary decoration
-*   Ensure readability
-*   Highlight key trends
+```{definition, boxplot, name="Boxplot"}
+A boxplot is a graphical summary based on the median, quartiles, and potential outliers.
+```
+
+```{r boxplot-scores-grade-9}
+boxplot(schDat$Math_Score[schDat$Grade == 9],
+        main = "Math Scores Grade 9",
+        xlab = "Grade",
+        ylab = "Math Score")
+```
+
+This code produces a boxplot for the math scores of ninth-grade students.
+
+The boxplot summarizes the center and spread of the grade 9 math scores using the median and quartiles. It also highlights possible outliers. Compared with a histogram, the boxplot provides a more compact summary and is especially useful when we want to compare several groups side by side.
+
+A boxplot is especially useful for identifying outliers and comparing distributions across groups.
 
 ---
 
-## Measures of Central Tendency
+### Comparing Numerical Variables Across Groups
 
-### Mode
+A common goal is to compare a numerical variable across levels of a categorical variable.
 
-```{definition, mode-def, name="Mode"}
-The **mode** is the value that occurs most frequently in a dataset.
+For example, we may want to compare:
+
+* scores by income level
+* scores by school
+* scores by grade level
+
+Grouped comparisons help us determine whether the distribution of a numerical variable changes from one category to another.
+
+```{r boxplot-scores-by-grade}
+boxplot(Math_Score ~ schDat$Grade,
+        data = schDat,
+        main = "Math Scores Grade 9",
+        xlab = "Grade",
+        ylab = "Math Score")
 ```
 
-### Median
+This code creates a separate boxplot of math scores for each grade.
 
-```{definition, median-def, name="Median"}
-The **median** is the middle value when data are ordered.
-```
+The resulting display allows us to compare medians, spread, and possible outliers across grade levels. Since the simulated scores were constructed to increase with grade, we expect the typical math score to rise as grade increases. This kind of plot is very helpful for identifying systematic differences between groups.
 
-### Mean
-
-```{definition, mean-def, name="Mean"}
-The **mean** is the arithmetic average of all observations $x_1, x_2, \ldots x_n$. Denoted by:
-  $$ \bar{x} = \frac{\sum_{i=1}^n x_i}{n} $$
-```
-
-Example:
-
-```{r dat-des-mean-median-comparisson}
-mean(schDat$Math_Score[schDat$Grade == 1]); median(schDat$Math_Score[schDat$Grade == 1])
-```
+These comparisons help us describe how the distribution changes from one group to another.
 
 ---
 
-## Measures of Variability
+## Distribution of a Numerical Variable
 
-### Range
-
-```{definition, range-def, name="Range"}
-The **range** is the difference between the maximum and minimum values in a dataset.
+```{definition, distribution, name="Distribution"}
+The distribution of a variable describes how the values of the variable are spread across possible values.
 ```
 
-```{r dat-des-min-max-range}
-c(max(schDat$Math_Score[schDat$Grade == 3]),
-min(schDat$Math_Score[schDat$Grade == 3]))
-max(schDat$Math_Score[schDat$Grade == 3]) - min(schDat$Math_Score[schDat$Grade == 3])
-# Average score 3rd Grade
-mean(schDat$Math_Score[schDat$Grade == 3])
-# Average score 4th Grade
-mean(schDat$Math_Score[schDat$Grade == 4])
-```
+When describing the distribution of a numerical variable, we focus on four main features:
 
-### Quantiles
+* center
+* spread
+* shape
+* outliers
 
-Quantiles divide data into equal-sized groups.
-
-### Quantile Plot
-
-```{r quantile-plot_math_scores}
-plot(sort(schDat$Math_Score[schDat$Age == 11]),
-     ppoints(length(schDat$Math_Score[schDat$Age == 11])),
-     xlab = "Math Score",
-     ylab = "Quantile")
-```
-
-### Percentiles
-
-The p-th percentile is the value below which p% of the data fall.
-
-### Quartiles
-
-Quartiles divide data into four equal parts:
-
-*   Q1
-*   Q2 (median)
-*   Q3
-
-### Deviation
-
-A deviation is the difference between an observation and the mean. That is
-$$ x_i - \bar{x} $$
-
-### Variance
-
-```{definition, variance-def, name="Variance"}
-The **variance** measures the average squared deviation from the mean.
-$$ s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1} $$
-```
-
-### Standard Deviation
-
-```{definition, sd-def, name="Standard Deviation"}
-The **standard deviation** is the square root of the variance.
-```
-
-Example:
-
-```{r sd-and-variance-math-scores}
-sd(schDat$Math_Score)
-var(schDat$Math_Score)
-```
-
-### Absolute Deviation
-
-Average of absolute deviations from the mean.
-
-### Median Absolute Deviation (MAD)
-
-Robust measure of variability.
-
-```{r median-absolute-deviation-math-scores}
-mad(matSco)
-```
+A complete description of a numerical variable usually includes all four features. Looking at only one of them can give an incomplete picture of the data.
 
 ---
 
-### 68%, 95%, and 99.7% Empirical Rule
+### Center
 
-For bell‑shaped distributions:
+The center of a distribution describes a typical value.
 
-*   68% of values fall within 1 SD of mean
-*   95% within 2 SD
-*   99.7% within 3 SD
+Two common measures of center are the mean and the median.
 
----
-
-### Coefficient of Variation
-
-The CV measures spread relative to the mean:
-
-$$
-CV = \frac{SD}{\text{mean}}
-$$
+The center tells us where the bulk of the observations are located. When the distribution is roughly symmetric, the mean and median are often close. When the distribution is skewed or contains outliers, they may differ noticeably.
 
 ---
 
-### The Boxplot
+### Spread
 
-Displays:
+The spread of a distribution describes how much the values vary.
 
-*   Median
-*   Quartiles
-*   Whiskers
-*   Outliers
+Variables with larger spread show greater variability.
 
-Example:
+Two data sets can have similar centers but very different spreads. A small spread means the observations are clustered closely together, while a large spread means they are more dispersed.
 
-```{r boxplot-math-scores}
-boxplot(schDat$Math_Score[schDat$Grade == 3], schDat$Math_Score[schDat$Grade == 4], schDat$Math_Score[schDat$Grade == 5])
-```
+---
+
+### Shape
+
+The shape of a distribution describes the overall pattern of values.
+
+A distribution may be:
+
+* approximately symmetric
+* skewed to the right
+* skewed to the left
+
+The shape helps us understand whether observations are balanced around the center or whether one tail of the distribution extends farther than the other. Histograms and boxplots are especially useful for assessing shape.
+
+Use your existing histogram examples to illustrate these ideas.
 
 ---
 
 ### Outliers
 
-Observations unusually far from the rest:
+Outliers are observations that are much smaller or much larger than the rest of the data.
 
-*   Often defined as:
-    *   Below Q1 – 1.5(IQR)
-    *   Above Q3 + 1.5(IQR)
+They should be examined carefully because they may represent:
+
+* unusual but valid observations
+* data entry errors
+* special cases that deserve further attention
+
+An outlier can have a strong effect on some summaries, especially the mean and the standard deviation. For that reason, outliers should be identified and interpreted rather than ignored.
 
 ---
 
-## Techniques for Two Variables
+## Numerical Summaries
 
-### Contingency Tables
+Graphs are useful, but we often also want numerical summaries.
 
-Summarize two categorical variables.
+Numerical summaries provide a compact description of a data set. They are especially useful when we need to report key features of the data in a table or compare several groups using a few numbers.
 
-```{r table-income-education}
-table(schDat$Income_Level, schDat$Parent_Education)
+---
+
+### Measures of Center
+
+#### Mean
+
+```{definition, mean, name="Mean"}
+The mean is the average of a set of numerical values.
 ```
 
-### Stacked Bar Graph
+If the observed values are $y_1, y_2, \ldots, y_n$, the mean is
 
-```{r dat-des-stacked-graph}
-barplot(table(schDat$Income_Level, schDat$Parent_Education), beside=FALSE)
+$$
+\bar{y} = \frac{1}{n}\sum_{i=1}^n y_i.
+$$
+
+Use your existing code to compute the mean for a numerical variable from the simulated school data.
+
+```{r dat-mean-math-score}
+# Mean math score for first Graders
+mean(schDat$Math_Score[schDat$Grade == 1])
 ```
 
-### Cluster Bar Graph
+This code computes the average math score for first-grade students.
 
-```{r dat-des-cluster-graph}
-barplot(table(schDat$Income_Level, schDat$Parent_Education), beside=TRUE)
+The result gives the arithmetic mean of the first-grade math scores and serves as a measure of the center of that distribution. Because the mean uses all observations, it summarizes the full data set but can be pulled upward or downward by extreme values.
+
+The mean uses all observations, so it can be affected by extreme values.
+
+---
+
+#### Median
+
+```{definition, median, name="Median"}
+The median is the middle value when the observations are arranged in order.
 ```
 
-### Scatter Plot
+```{r dat-median-math-score}
+# Median math score for first Graders
+median(schDat$Math_Score[schDat$Grade == 1])
+```
 
-Used for two quantitative variables.
+This code computes the median math score for first-grade students.
+
+The median gives the middle score after ordering the observations. About half of the students have scores below the median and about half have scores above it. Comparing the mean and median can also provide information about skewness.
+
+The median is less sensitive to extreme values than the mean.
+
+---
+
+### Measures of Spread
+
+#### Range
+
+```{definition, range, name="Range"}
+The range is the difference between the largest and smallest observations.
+```
+
+```{r dat-range-math-score}
+# Range of math score for first Graders
+range(schDat$Math_Score[schDat$Grade == 1])
+```
+
+This code returns the minimum and maximum math scores for first-grade students.
+
+From these two values, we can see the overall span of the observed scores. The range gives a quick idea of spread, but since it depends only on the most extreme observations, it can be strongly affected by outliers.
+
+The range is simple to compute, but it depends only on the two most extreme observations.
+
+---
+
+#### Variance
+
+```{definition, sample-variance, name="Sample Variance"}
+The sample variance measures the average squared distance of the observations from their sample mean.
+
+Given observations $y_1, y_2, \ldots, y_n$, the sample variance is defined as
+
+$$
+s^2 = \frac{1}{n - 1} \sum_{i=1}^n (y_i - \bar{y})^2,
+$$
+
+where $\bar{y}$ is the sample mean.
+```
+
+
+```{r dat-variance-math-score}
+# Range of math score for first Graders
+var(schDat$Math_Score[schDat$Grade == 1])
+```
+
+This code computes the variance of first-grade math scores.
+
+A larger variance indicates that the scores tend to lie farther from their mean, while a smaller variance indicates that the scores are more concentrated around the mean. Because variance is expressed in squared units, it is usually interpreted together with the standard deviation.
+
+Variance is measured in squared units, so it is often harder to interpret directly.
+
+---
+
+#### Standard Deviation
+
+```{definition, standard-deviation, name="Standard Deviation"}
+The standard deviation is the square root of the variance.
+```
+
+```{r dat-sd-math-score}
+# Range of math score for first Graders
+sd(schDat$Math_Score[schDat$Grade == 1])
+```
+
+This code computes the standard deviation of first-grade math scores.
+
+The standard deviation describes the typical distance of the scores from the mean, measured in the original units of the variable. This makes it easier to interpret than the variance. A larger standard deviation means more variability in student performance.
+
+The standard deviation is easier to interpret than the variance because it is in the same units as the original data.
+
+---
+
+#### Quartiles and Interquartile Range
+
+```{definition, quartiles, name="Quartiles"}
+Quartiles divide the ordered data into four parts.
+```
+
+```{definition, iqr, name="Interquartile Range"}
+The interquartile range is the difference between the third quartile and the first quartile.
+```
+
+Use your existing code to compute quartiles and the interquartile range.
+
+```{r dat-iqr-math-score}
+# Interquartile Range of math score for first Graders
+qua <- quantile(schDat$Math_Score[schDat$Grade == 1], c(0.25, 0.75))
+print(paste0("The interquartile range of Math scores for first graders is: ",qua[2] - qua[1]))
+```
+
+This code computes the first and third quartiles and then subtracts them to obtain the interquartile range.
+
+The interquartile range measures the spread of the middle 50% of the data. Because it ignores the most extreme observations, it is less sensitive to outliers than the full range and often provides a more stable summary of variability.
+
+The interquartile range describes the spread of the middle 50% of the data.
+
+---
+
+### Five-Number Summary
+
+```{definition, def-five-number-summary, name="Five-Number Summary"}
+The five-number summary consists of the minimum, first quartile, median, third quartile, and maximum.
+```
+
+Use your existing code to obtain the five-number summary.
+
+```{r dat-5-number-summary-math-score}
+# Range of math score for first Graders
+summary(schDat$Math_Score[schDat$Grade == 1])
+```
+
+This code returns a compact summary of the first-grade math scores.
+
+The output reports the minimum, first quartile, median, mean, third quartile, and maximum. The five-number summary is especially useful because it provides information about both center and spread and forms the basis for constructing a boxplot.
+
+The five-number summary gives a compact description of the distribution and is the basis for the boxplot.
+
+---
+
+## Outliers and the Boxplot Rule
+
+```{definition, outlier, name="Outlier"}
+An outlier is an observation that lies far from the rest of the data.
+```
+
+A common rule labels an observation as an outlier if it is:
+
+* below $Q_1 - 1.5 \times IQR$, or
+* above $Q_3 + 1.5 \times IQR$
+
+This rule is commonly used in boxplots to flag observations that are unusually far from the middle 50% of the data.
+
+Use your existing code if you already compute or identify outliers.
+
+```{r boxplot-scores-by-grade-2}
+boxplot(Math_Score ~ Grade,
+        data = schDat,
+        main = "Math Scores by Grade",
+        xlab = "Grade",
+        ylab = "Math Score")
+```
+
+This grouped boxplot applies the boxplot rule separately to each grade.
+
+The display allows us to compare distributions across grades while also identifying possible outliers in each group. If any points appear beyond the whiskers, those observations are flagged as unusual relative to the rest of the scores for that grade.
+
+Outliers should not be removed automatically. They should first be investigated.
+
+---
+
+## Describing More Than One Variable
+
+So far, we have described one variable at a time.
+
+In many studies, we are interested in relationships between variables.
+
+For example, in the simulated school data, we may want to study the relationship between:
+
+* grade and exam score
+* age and exam score
+
+When two or more variables are considered together, the goal is no longer only to describe each variable separately, but also to understand how they move together.
+
+---
+
+### Scatterplots
+
+A scatterplot is useful for displaying the relationship between two numerical variables.
 
 ```{r scatterplot-math-verbal-scores}
 plot(schDat$Math_Score[schDat$Grade == 8], schDat$Verbal_Score[schDat$Grade == 8], xlab = "Math Score", ylab = "Verbal Score")
 ```
 
-### Correlation Coefficient
+This code plots math score against verbal score for eighth-grade students.
 
-Measures linear association.
+Each point represents one student. If the points tend to rise from left to right, that suggests a positive relationship: students with higher math scores also tend to have higher verbal scores. If no pattern is visible, the association is weak or absent.
 
-```{r dat-des-linear-correlation}
-cor(schDat$Math_Score, schDat$Verbal_Score)
+A scatterplot helps us see whether two variables tend to increase together, decrease together, or show no clear relationship.
+
+---
+
+### Correlation
+
+```{definition, correlation, name="Correlation"}
+Correlation is a numerical measure of the strength and direction of a linear relationship between two numerical variables.
 ```
 
-### Block Boxplots
-
-Grouped boxplots.
-
-```{r dat-des-grouped-boxplots}
-boxplot(Math_Score ~ Income_Level, data = schDat)
+```{r dat-correlation-math-verbal-scores}
+cor(schDat$Math_Score[schDat$Grade == 8], schDat$Verbal_Score[schDat$Grade == 8])
 ```
 
-### Block Scatter Plots
+This code computes the correlation between math and verbal scores for eighth-grade students.
 
-Scatter plots grouped by category.
+A positive correlation indicates that higher values of one variable tend to be associated with higher values of the other. A value close to 1 indicates a strong positive linear relationship, a value close to -1 indicates a strong negative linear relationship, and a value near 0 indicates little or no linear relationship.
+
+Correlation describes association, but it does not imply causation.
+
+---
+
+## Summary
+
+Descriptive statistics allow us to summarize and understand a data set.
+
+In this section, we introduced:
+
+* types of variables
+* graphical summaries
+* numerical summaries
+* ways to describe the distribution of a variable
+* basic methods for describing relationships between variables
+
+The main purpose of these tools is to help us understand the data before moving to probability models or inferential procedures. In practice, a good description of the data combines both graphs and numerical summaries, since each contributes different information.
+
+Each graph or numerical summary should add useful information and should not simply repeat what has already been shown.
+
+---
+
+## From Description to Probability
+
+So far, we have focused on describing observed data.
+
+In the next section, we introduce probability as a way to model randomness and variability.
