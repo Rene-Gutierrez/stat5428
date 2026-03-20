@@ -183,19 +183,10 @@
       "bases:Create new base": false
     }
   },
-  "active": "5fabac2501493aa7",
+  "active": "e1d9402454c714b6",
   "lastOpenFiles": [
-    "docs/_main_files/figure-html/boxplot-scores-by-grade-2-1.png",
-    "docs/_main_files/figure-html/histogram-math-score-1.png",
-    "docs/_main_files/figure-html/pichart-income-level-1.png",
-    "docs/_main_files/figure-html/barplot-income-level-1.png",
-    "_main_files/figure-html/boxplot-scores-by-grade-2-1.png",
-    "docs/_main_files/figure-html/boxplot-scores-by-grade-1.png",
-    "docs/_main_files/figure-html/boxplot-scores-grade-9-1.png",
-    "_main_files/figure-html/boxplot-scores-grade-9-1.png",
-    "_main_files/figure-html/boxplot-scores-by-grade-1.png",
-    "_main_files/figure-html/histogram-math-score-1.png",
-    "_main_files/figure-html/pichart-income-level-1.png",
+    "Outline Intro to Probability.md",
+    "project_charter_stat_5428.md",
     "inference-about-the-mean.html",
     "intro-to-statistical-inference.html",
     "from-probability-to-statistics.html",
@@ -205,8 +196,17 @@
     "introduction-to-r.html",
     "index.html",
     "_main.html",
+    "libs/anchor-sections-1.1.0/anchor-sections.js",
     "_main.knit.md",
-    "_bookdown_files/_main_files/figure-html",
-    "project_charter_stat_5428.md"
+    "docs/_main_files/figure-html/boxplot-scores-by-grade-2-1.png",
+    "docs/_main_files/figure-html/histogram-math-score-1.png",
+    "docs/_main_files/figure-html/pichart-income-level-1.png",
+    "docs/_main_files/figure-html/barplot-income-level-1.png",
+    "_main_files/figure-html/boxplot-scores-by-grade-2-1.png",
+    "docs/_main_files/figure-html/boxplot-scores-by-grade-1.png",
+    "docs/_main_files/figure-html/boxplot-scores-grade-9-1.png",
+    "_main_files/figure-html/boxplot-scores-grade-9-1.png",
+    "_main_files/figure-html/boxplot-scores-by-grade-1.png",
+    "_main_files/figure-html/histogram-math-score-1.png"
   ]
 }

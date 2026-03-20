@@ -1,3230 +1,403 @@
-# Introduction to Probability
+# Probability
 
-Probability provides a **mathematical framework** for reasoning about uncertainty and complexity.  
-In this lecture, we develop probability ideas using **simulation and computation**, treating probability models as *data‑producing mechanisms*. This approach emphasizes understanding over memorization and mirrors how probability is used in modern data analysis.
+## From Data Description to Probability
+
+### Observed Data vs Underlying Process
+
+In the previous section, we described data using numerical and graphical summaries.
+
+However, the data we observe are only a **subset of all possible outcomes** of a process.
+
+In most applications, there is an underlying mechanism generating the data, and what we observe is only one realization of that process.
+
+---
+
+### The Idea of a Theoretical Distribution
+
+```{definition, theoretical-distribution, name="Theoretical Distribution"}
+A theoretical distribution is a mathematical description of all possible outcomes of a process and their associated likelihoods.
+```
+
+* We do not observe the full distribution
+* We only observe a sample from it
+* Our goal is to model this underlying structure
+
+---
+
+### Example: Repeated Sampling Interpretation
+
+If we repeatedly collected data under the same conditions:
+
+* we would obtain different samples
+* each sample would vary
+* all samples come from the same underlying distribution
+
+The theoretical distribution represents this full set of possible outcomes.
+
+---
+
+### Deterministic vs Random Phenomena
+
+* Deterministic phenomena: outcomes are fully predictable
+* Random phenomena: outcomes are uncertain
+
+Probability is used to model **random phenomena**.
 
 ---
 
 ## Probability as a Model for Uncertain and Complex Phenomena
 
-### Probability as a Data‑Producing Machine
+### Why We Need a Model
 
-```{definition, prob-model, name="Probability Model"}
-A probability model is a mathematical description of a process that produces data under uncertainty, assigning probabilities to possible outcomes.
-```
+Real-world processes are:
 
-Rather than viewing probability as an abstract formula, we interpret it as a **machine that generates data**.  
-Once a model is specified, we can simulate outcomes and study their long‑run behavior.
+* variable
+* uncertain
+* partially observed
 
-#### Example: A Simple Data‑Producing Machine
-
-```{r head-tails-example}
-set.seed(2026)
-sample(c("Heads", "Tails"), size = 10, replace = TRUE, prob = c(0.5, 0.5))
-```
-
-Each run produces different data, yet the underlying mechanism remains fixed.
-
-***
-
-### Example of an Uncertain Phenomenon
-
-Uncertain phenomena are characterized by **random variation**, even when conditions appear identical.
-
-Example:
-
-*   Tossing a fair coin
-*   Rolling a die
-*   Drawing a card from a shuffled deck
-
-***
-
-### Example of a Complex Phenomenon
-
-Complex phenomena involve many interacting components:
-
-*   Student performance
-*   Financial markets
-*   Weather systems
-
-Even if deterministic rules exist, the combined system behaves unpredictably.
-
-```{r complex-system-data}
-# Function Describing Population Growth
-populationGrowth <- function(x = 1, r = 1, t = 1){
-  for(i in 1:t){
-    x <- r * x * (1 - x)
-  }
-  return(x)
-}
-# Samples obtained at different initial states for 10 periods
-griSta <- seq(0.1,0.9, by = 0.001)
-samPop <- populationGrowth(x = griSta, r = 4, t = 100)
-# Print Table
-names(samPop) <- griSta
-print(round(samPop, 2))
-#
-plot(x = griSta, y = samPop, type = 'l')
-```
-
-***
-
-### Using Models to Explain Phenomena
-
-Models simplify reality while retaining essential structure.  
-A **good probability model**:
-
-*   Explains observed variability
-*   Produces realistic simulated data
-*   Can be refined as new information becomes available
-
-***
-
-### Final Idea: Inference Without a Model
-
-When you don't have a model it is really hard to do inference.  
-All of probability and statistics rely, either explicitly or implicitly, on the existence of a **model** that describes how data are generated.
-
-A **model** provides a structured description of uncertainty. It specifies:
-- what outcomes are possible,
-- how these outcomes are related,
-- and how frequently they are expected to occur.
-
-Without such a structure, observed data are simply a collection of numbers or categories with no principled way to generalize beyond what has already been seen.
-
-In probability theory, models play the role of an *idealized data‑generating mechanism*. They allow us to ask meaningful questions such as:
-- *How surprising is this outcome?*
-- *What should we expect to see if the process repeats?*
-- *How does changing assumptions affect long‑run behavior?*
-
-When a model is clearly defined, inference becomes possible because we can compare observed data to what the model predicts. Differences between data and model expectations can then be interpreted as evidence about the underlying process.
-
-By contrast, **without a model**:
-- There is no clear notion of what outcomes are “likely” or “unlikely.”
-- Uncertainty cannot be quantified in a principled way.
-- There is no reliable mechanism for extrapolation beyond the observed data.
-- Conclusions become informal, subjective, or anecdotal.
-
-```{definition, inference, name="Statistical Inference"}
-Statistical inference is the process of drawing conclusions about an underlying process, population, or mechanism by comparing observed data to a probabilistic model.
-```
-
-***
-
-## Interpretations of Probability
-
-### Classical Interpretation
-
-```{definition, classical-prob, name="Classical Probability"}
-Classical probability defines the probability of an event as the ratio of the number of favorable outcomes to the total number of equally likely outcomes.
-```
-
-The classical interpretation is the earliest formal approach to probability. It views probability as a **logical consequence of symmetry** in a well‑defined experiment. When all outcomes are equally plausible *before* the experiment is performed, probability can be computed by simple counting.
-
-This approach treats probability as an *a priori* quantity: probabilities are determined entirely by the structure of the experiment, not by observed data.
-
-***
-
-#### History
-
-The classical interpretation emerged in the **17th and 18th centuries**, primarily through the study of games of chance.
-
-Key contributors include:
-
-*   **Blaise Pascal** and **Pierre de Fermat**, who studied fair division of gambling stakes.
-*   **Pierre‑Simon Laplace**, who formalized probability as a mathematical discipline.
-
-During this period, probability problems typically involved:
-
-*   dice,
-*   cards,
-*   coins,
-*   lottery‑type mechanisms.
-
-These systems were appealing because they naturally possessed **symmetry**, making the assumption of equally likely outcomes reasonable.
-
-***
-
-#### Key Assumption: Equally Likely Outcomes
-
-The classical definition **requires** that all outcomes in the sample space are equally likely.
-
-This assumption is critical and restrictive.
-
-Consequences:
-
-*   Classical probability works well for idealized systems with symmetry.
-*   It becomes difficult or impossible to apply when outcomes are not equally likely or when the sample space is not finite and well defined.
-
-Thus, the classical interpretation is best viewed as a **modeling choice**, not a universal definition.
-
-***
-
-#### Example: Rolling a Fair Die
-
-Consider rolling a well‑balanced six‑sided die.
-
-*   The sample space contains 6 outcomes:  
-    {1, 2, 3, 4, 5, 6}
-*   Each outcome is assumed equally likely.
-
-The probability of rolling a 4 is therefore:
-
-$$
-1 / 6
-$$
-
-This probability is computed *before* any data are collected and does not depend on repeated trials.
-
-***
-
-#### Outcomes and Events
-
-```{definition, outcome, name="Outcome"}
-An outcome is a single possible result of a random experiment.
-```
-
-Examples:
-
-*   Rolling a 4 on a die
-*   Drawing the Ace of Spades from a deck
-*   Getting Heads in a coin toss
-
-Outcomes represent the **most granular level** of description of a random experiment.
-
-```{definition, event, name="Event"}
-An event is a collection of one or more outcomes.
-```
-
-Examples:
-
-*   Rolling an even number: {2, 4, 6}
-*   Drawing a face card from a deck
-*   Getting at least one Head in two coin tosses
-
-An event can be interpreted as a **question** about the experiment whose answer is either *yes* (the event occurs) or *no* (the event does not occur).
-
-***
-
-#### Strengths and Limitations of the Classical Interpretation
-
-**Strengths**
-
-*   Simple and intuitive
-*   Requires no data
-*   Provides exact probabilities in symmetric settings
-
-**Limitations**
-
-*   Depends critically on the equally likely assumption
-*   Not suitable for complex, real‑world phenomena
-*   Does not explain how probabilities change or emerge with repeated observations
-
-These limitations motivate alternative interpretations of probability, especially those based on **long‑run behavior** and **data‑driven modeling**.
-
-***
-
-In summary, the classical interpretation introduces probability as a *counting rule based on symmetry*. While historically foundational and mathematically elegant, it is best understood as a **special case of probability modeling**, applicable only when symmetry and equally likely outcomes are plausible assumptions.
-
-
-***
-
-### Relative Frequency Interpretation
-
-```{definition, relfreq, name="Relative Frequency Probability"}
-Probability is defined as the long‑run proportion of times an event occurs when a random experiment is repeated under identical conditions.
-```
-
-The relative frequency interpretation views probability not as a purely theoretical quantity, but as a **property that emerges through repetition**. Under this interpretation, probability is tied directly to observable data and is meaningful only in contexts where an experiment can, at least in principle, be repeated many times.
-
-Rather than assuming equally likely outcomes, this approach defines probability through **empirical behavior**. Probabilities are not assigned in advance; they are *revealed* through repeated trials.
-
-***
-
-#### History
-
-The relative frequency interpretation developed primarily in the **19th and early 20th centuries**, alongside advances in experimental science and statistics.
-
-Key features of its historical development:
-
-*   Closely associated with scientists such as **John Venn** and **Richard von Mises**
-*   Motivated by the need to describe probabilities in **physical and social phenomena**
-*   Emphasized objectivity through repeatable experiments
-
-This interpretation arose as a response to the limitations of classical probability, especially in situations lacking symmetry or equally likely outcomes.
-
-***
-
-#### Core Idea: Long‑Run Behavior
-
-Under the relative frequency interpretation:
-
-*   Probability is not about a single trial
-*   Probability is about what happens **in the long run**
-
-A single coin toss provides no meaningful probability information. Thousands of tosses, however, reveal stable patterns.
-
-This interpretation implicitly assumes:
-
-*   The experiment can be repeated indefinitely
-*   The underlying mechanism remains stable over time
-
-***
-
-#### Probability as an Approximation
-
-In practice, probabilities are **approximated**, not known exactly. The relative frequency of an event after $n$ trials is:
-
-$$
-\text{Relative Frequency} = \frac{\text{Number of times the event occurs}}{n}
-$$
-
-Simulation provides a natural way to observe this idea.
-
-```{r relative-frequency}
-p         <- 0.4
-n         <- 1000
-samCoi    <- sample(c("Heads", "Tails"), size = n, replace = TRUE, prob = c(p, 1 - p))
-relFreHea <- sum(samCoi == "Heads") / n
-print(relFreHea)
-```
-
-Each execution of this code generates a different result, but as the number of trials increases, the relative frequency tends to stabilize near a constant value.
-
-This stabilization is an empirical manifestation of the **Law of Large Numbers** that we will talk about later.
-
-***
-
-#### Interpretation and Modeling Perspective
-
-From a modeling standpoint, the relative frequency interpretation treats probability as a **feature of the data‑generating process**. The model is validated not by symmetry or logic alone, but by consistency between:
-
-*   simulated behavior,
-*   observed data,
-*   and long‑run frequencies.
-
-Probability models under this interpretation are often assessed by asking:
-
-*   Do simulated frequencies resemble observed frequencies?
-*   Does the model reproduce stable long‑run patterns?
-
-***
-
-#### Strengths and Limitations
-
-**Strengths**
-
-*   Grounded in observable data
-*   Does not require equally likely outcomes
-*   Naturally compatible with simulation and computation
-
-**Limitations**
-
-*   Requires repeatable experiments
-*   Not applicable to one‑time events (e.g., a specific election outcome)
-*   Does not directly address uncertainty in small samples
-
-***
-
-In summary, the relative frequency interpretation reframes probability as a **long‑run empirical regularity**. It forms the conceptual foundation for simulation‑based probability and provides a bridge between abstract models and observed data.
-
-***
-
-Here is an **expanded, textbook‑style version** of the **Subjective Interpretation**, written fully in **R Markdown**, consistent with your formatting rules and the level of depth used for the Classical and Relative Frequency sections. It emphasizes **modeling, information, and belief**, with a clear conceptual narrative.
-
-### Subjective Interpretation
-
-```{definition, subjective, name="Subjective Probability"}
-Subjective probability represents an individual's degree of belief about the occurrence of an event, given the information available to them.
-```
-
-The subjective interpretation treats probability as a **measure of uncertainty based on information, judgment, and belief**, rather than symmetry or long‑run frequency. Under this view, probability quantifies how strongly an individual believes an event will occur, conditional on what they currently know.
-
-Unlike classical or relative frequency interpretations, subjective probability does **not require repeatable experiments** or equally likely outcomes. Instead, it is fundamentally **conditional on information** and is allowed to change as new information becomes available.
-
-***
-
-#### History
-
-The subjective interpretation developed primarily in the **20th century** and is closely associated with the rise of **Bayesian statistics**.
-
-Key contributors include:
-
-*   **Frank Ramsey**, who linked probability to rational decision‑making
-*   **Bruno de Finetti**, who argued that “probability does not exist” outside personal belief
-*   Later formalization within Bayesian inference and decision theory
-
-This interpretation arose from the need to reason probabilistically about:
-
-*   unique or one‑time events,
-*   decision‑making under uncertainty,
-*   situations where long‑run frequencies are unavailable or meaningless.
-
-***
-
-#### Core Idea: Probability as Information‑Dependent Belief
-
-Under the subjective interpretation:
-
-*   Probability is always **conditional** on available information.
-*   Different individuals may assign different probabilities to the same event.
-*   Updating beliefs in light of new data is a central feature.
-
-From a modeling perspective, a subjective probability model represents the analyst’s **state of knowledge** rather than an objective property of the physical world.
-
-As information changes, probabilities are updated accordingly, typically using **Bayes’ theorem**.
-
-***
-
-#### Example: Betting Interpretation
-
-One way to operationalize subjective probability is through **betting behavior**.
-
-If you are willing to bet $70 to win $100 on an event occurring, your implied probability is:
-
-$$
-70 / 100
-$$
-
-This value represents the minimum probability at which you consider the bet fair, given your beliefs and risk tolerance.
-
-In this framework:
-
-*   Probabilities reflect willingness to accept risk
-*   Inconsistent probabilities can lead to guaranteed losses (Dutch books)
-*   Rational probability assignments are those that avoid sure loss
-
-***
-
-#### Subjective Probability as a Model
-
-In subjective probability, a **probability model** represents beliefs about how the world operates, not just observed frequencies. These models are often used when:
-
-*   events are unique (e.g., an election outcome),
-*   data are scarce or incomplete,
-*   decisions must be made before data are observed.
-
-Such models are evaluated not by long‑run frequencies, but by:
-
-*   internal coherence,
-*   consistency with observed evidence,
-*   usefulness for decision‑making.
-
-***
-
-#### Strengths and Limitations
-
-**Strengths**
-
-*   Applicable to one‑time or non‑repeatable events
-*   Naturally incorporates prior knowledge and expert judgment
-*   Provides a coherent framework for updating beliefs
-
-**Limitations**
-
-*   Depends on subjective judgment
-*   Different individuals may disagree
-*   Requires careful justification of assumptions
-
-***
-
-In summary, the subjective interpretation views probability as a **quantitative expression of uncertainty given information**. It plays a central role in Bayesian modeling, where probability models evolve as data are observed, and inference is understood as a process of **belief updating** rather than long‑run stabilization.
-
-***
-
-## How to Build Probability Models
-
-***
-
-### Finding the Probability of an Event
-
-```{definition, prob-event, name="Probability of an Event"}
-The probability of an event is the sum of the probabilities of the outcomes that compose the event.
-```
-
-In probability theory, events are not primitive objects. Instead, they are built from **outcomes**, which represent the most basic possible results of a random experiment. A probability model assigns probabilities to these outcomes, and the probability of any event is obtained by aggregating the probabilities of the outcomes that form the event.
-
-From a modeling perspective, this definition emphasizes that probability is **additive over disjoint outcomes**. Once the model specifies probabilities at the outcome level, probabilities for more complex events follow automatically.
-
-In classical settings, this is achieved through counting. In simulation‑based approaches, this aggregation is approximated empirically.
-
-***
-
-#### Simulation Approach to Event Probability
-
-Rather than computing probabilities analytically, we can **estimate probabilities through repeated simulation**.
-
-For example, consider estimating the probability of rolling a 6 on a fair die.
-
-```{r probability-of-a-six}
-mean(sample(1:6, size = 10000, replace = TRUE) == 6)
-```
-
-Each simulation run produces a slightly different value, but as the number of trials increases, the estimate stabilizes. This illustrates how probability emerges as a **long‑run average behavior of a model**, rather than a single deterministic calculation.
-
-This computational viewpoint aligns naturally with the relative frequency interpretation of probability.
-
-***
-
-### Basic Event Relations and Probability Laws
-
-***
-
-The power of probability models lies not only in assigning probabilities to single events, but in understanding how events **combine and relate** to one another. These relationships are governed by fundamental probability laws that hold regardless of the specific model used.
-
-***
-
-#### Mutually Exclusive Events
-
-***
-
-```{definition, mutually-exclusive, name="Mutually Exclusive Events"}
-Two events are mutually exclusive if they cannot occur at the same time.
-```
-
-Mutually exclusive events share **no common outcomes**. If one event occurs, the other cannot.
-
-Examples:
-
-*   Rolling a die and obtaining a 1 versus obtaining a 2
-*   Drawing a card that is a heart versus drawing a card that is a spade
-
-Because these events do not overlap, their probabilities combine in a particularly simple way.
-
-```{definition, prob-mut-ex, name="Probability of Mutually Exclusive Events"}
-If A and B are mutually exclusive, then  
-P(A ∪ B) = P(A) + P(B).
-```
-
-This property follows directly from the definition of probability as additive over disjoint outcomes.
-
-#### Simulation Example
-
-Estimate the probability that a fair die roll results in either a 1 or a 2.
-
-```{r pro-probabilityof-a-1-or-2}
-dieRol <- sample(1:6, 10000, TRUE) 
-pro12  <- mean(dieRol %in% c(1, 2))
-pro1   <- mean(dieRol == 1)
-pro2   <- mean(dieRol == 2)
-print(paste0("Probability of 1: ", pro1))
-print(paste0("Probability of 2: ", pro2))
-print(paste0("Probability of 1 and 2: ", pro12))
-```
-
-This probability is approximately twice the probability of a single outcome because the events are mutually exclusive.
-
-***
-
-#### Complement Events
-
-***
-
-```{definition, complement, name="Complement of an Event"}
-The complement of an event A consists of all outcomes that are not in A.
-```
-
-Every event has a complement, representing the event “not A.” Together, an event and its complement exhaust the entire sample space.
-
-```{definition, complement-prob, name="Probability of the Complement"}
-P(Aᶜ) = 1 − P(A)
-```
-
-This identity is fundamental and does not depend on assumptions such as equal likelihood or independence. It follows from the fact that the total probability of the sample space is 1.
-
-#### Simulation Example
-
-Estimate the probability of *not* rolling a 1 on a fair die.
-
-```{r pro-probability-not-rolling-a-1}
-pA <- mean(sample(1:6, 10000, TRUE) == 1)
-print(paste0("Probability of rolling a 1 : ", pA))
-print(paste0("Probability of not rolling a 1 : ", 1 - pA))
-```
-
-Using the complement is often computationally simpler, especially when the event of interest is complicated but its complement is not.
-
-***
-
-### Properties of Probability
-
-***
-
-Probability models are governed by a small set of foundational properties that ensure internal consistency.
-
-```{definition, prob-properties, name="Probability Model Properties"}
-A probability model must satisfy:
-  
-1. 0 ≤ P(A) ≤ 1  
-2. P(S) = 1  
-3. If A and B are mutually exclusive, P(A ∪ B) = P(A) + P(B)
-```
-
-These axioms define what it means for a function to be a valid probability measure. All other probability rules can be derived from them.
-
-***
-
-#### Unions and Intersections of Events
-
-```{definition, union, name="Union of Events"}
-The union of events A and B consists of all outcomes that are in A or B (or both).
-```
-
-```{definition, intersection, name="Intersection of Events"}
-The intersection of events A and B consists of all outcomes that are in both A and B.
-```
-
-Unlike mutually exclusive events, most events **overlap**, meaning their intersection is not empty. In such cases, naïvely adding probabilities would double‑count shared outcomes.
-
-```{definition, union-prob, name="Probability of the Union"}
-P(A ∪ B) = P(A) + P(B) − P(A ∩ B)
-```
-
-This formula corrects for double counting and is essential for building probability models in realistic settings.
-
-***
-
-#### Modeling Perspective
-
-From a modeling standpoint, these properties:
-
-*   ensure internal consistency of probability assignments,
-*   allow complex event probabilities to be constructed from simpler ones,
-*   connect analytical probability laws with simulation‑based estimation.
-
-In computational probability, unions, intersections, and complements are implemented using **logical operations on simulated data**, reinforcing the interpretation of probability models as data‑generating mechanisms.
-
-***
-
-### Conditional Probability
-
-***
-
-```{definition, conditional, name="Conditional Probability"}
-The conditional probability of an event A given that event B has occurred is  
-\[
-P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \quad \text{provided } P(B) > 0.
-\]
-```
-
-Conditional probability formalizes the idea of **updating probabilities when additional information is available**. Rather than asking whether event A occurs in general, we now ask whether A occurs *given that* B has already occurred.
-
-From a modeling perspective, conditioning restricts attention to a **reduced sample space**: only those outcomes consistent with event B are considered possible. Probabilities are then rescaled so that this restricted space has total probability 1.
-
-In this way, conditional probability connects probability models to the flow of information.
-
-***
-
-#### Interpretation via Simulation
-
-Consider a fair die. Let:
-
-*   A = {the outcome is 4}
-*   B = {the outcome is greater than 3}
-
-Rather than reasoning abstractly, we estimate this conditional probability by simulation.
-
-```{r conditional-probability-die-Roll}
-dieRol <- sample(1:6, 10000, TRUE)
-proCon <- mean(dieRol == 4 & dieRol > 3) / mean(dieRol > 3)
-print(paste0("Conditional probability of rolling a 4 given that a number greater than 3 is rolled: ", proCon))
-```
-
-Here:
-
-*   `dieRol > 3` identifies the outcomes consistent with the condition B,
-*   `dieRol == 4 & dieRol > 3` identifies outcomes where both A and B occur.
-
-The ratio estimates the probability of rolling a 4 *given* that the roll exceeds 3.
-
-This computational approach makes the conditioning mechanism explicit: we focus only on simulated outcomes where B occurs and examine how often A appears within that subset.
-
-***
-
-#### Conditional Probability as a Modeling Tool
-
-Conditional probabilities are central to probabilistic modeling because they allow us to express **structured dependence** between events. In complex systems, probabilities rarely exist in isolation; they reflect assumptions about what is known and unknown.
-
-Practically, conditional probabilities help answer questions of the form:
-
-*   *What is the chance of A when we know B has happened?*
-*   *How does information change our expectations?*
-
-***
-
-```{definition, marginal, name="Marginal Probability"}
-A marginal (or unconditional) probability is the probability of an event considered without conditioning on any other event.
-```
-
-The marginal probability describes the baseline likelihood of an event across the entire sample space, before incorporating additional information.
-
-For the same die example, the marginal probability of rolling a 4 is:
-
-```{r pro-marginal-probability-of-rolling-a-4}
-proMar <- mean(dieRol == 4)
-print(paste0("Conditional probability of rolling a 4 given that a number greater than 3 is rolled: ", proCon))
-print(paste0("Marginal probability of rolling a 4: ", proMar))
-```
-
-Comparing marginal and conditional probabilities highlights how information can **increase, decrease, or leave unchanged** the likelihood of an event.
-
-***
-
-### Law of Total Probability
-
-***
-
-```{definition, total-prob, name="Law of Total Probability"}
-If events \( B_1, B_2, \dots, B_n \) form a partition of the sample space, then
-\[
-P(A) = \sum_{i=1}^{n} P(A \mid B_i)\,P(B_i).
-\]
-```
-
-The Law of Total Probability provides a way to compute the probability of an event by **decomposing it into simpler scenarios**. Each event $$B_i$$ represents a mutually exclusive and exhaustive case under which A might occur.
-
-From a modeling perspective, this law expresses how **overall probability emerges from conditional structure**. It is especially useful when direct computation of $$P(A)$$ is difficult, but conditional probabilities are easier to specify or estimate.
-
-***
-
-### Bayes’ Formula
-
-***
-
-```{definition, bayes, name="Bayes' Formula"}
-For events A and B with P(A) > 0,
-\[
-P(B \mid A) = \frac{P(A \mid B)\,P(B)}{P(A)}.
-\]
-```
-
-Bayes’ formula reverses the direction of conditioning. Instead of computing the probability of observing A given B, it computes the probability of B given that A has been observed.
-
-This inversion is fundamental to **Bayesian modeling**, where probabilities are updated as data arrive. Prior beliefs $$P(B)$$ are combined with evidence $$P(A \mid B)$$ to produce updated beliefs $$P(B \mid A)$$.
-
-***
-
-#### Simulation Example: Medical Testing
-
-We illustrate Bayes’ formula using a diagnostic testing scenario.
-
-```{r pro-bayes-formula-diagnostic-test}
-# Bayes example via simulation
-proInf <- 0.01
-## Sample disease status
-disease <- sample(c(TRUE, FALSE), 100000, TRUE, prob = c(proInf, 1 - proInf))
-## Sample test results given disease status
-sen <- 0.95
-spe <- 0.05
-test <- ifelse(disease,
-               sample(c(TRUE,FALSE), 100000, TRUE,prob=c(sen,    1 - sen)),
-               sample(c(TRUE,FALSE), 100000, TRUE,prob=c(1- spe, spe)))
-
-mean(disease[test])
-```
-
-In this simulation:
-
-*   Only 1% of individuals have the disease,
-*   The test is accurate but imperfect,
-*   We compute the probability of disease **given a positive test result**.
-
-Despite high test accuracy, the conditional probability may be much lower than expected due to the rarity of the disease. This illustrates how conditioning can dramatically change intuitive conclusions.
-
-***
-
-```{definition, states, name="States of Nature and Observable Events"}
-States of nature represent the true but unobserved condition of a system, while observable events are the data or measurements produced by that system.
-```
-
-Bayesian reasoning explicitly distinguishes between:
-
-*   **states of nature**, which are unknown but real,
-*   **observable events**, which provide indirect information about those states.
-
-Conditional probability provides the mathematical bridge between what we observe and what we wish to infer.
-
-***
-
-### Modeling Perspective Summary
-
-Conditional probability is not merely a computational rule—it is a **modeling principle**. It encodes how information alters uncertainty, enables the construction of hierarchical and Bayesian models, and connects probability theory directly to inference.
-
-In simulation‑based approaches, conditioning is implemented by **subsetting data and renormalizing**, reinforcing the idea that probability models are best understood as data‑generating mechanisms shaped by information.
-
-***
-
-## Summary First Part: Intro to Probability
-
-*   Probability models are **data‑generating mechanisms**
-*   Simulation connects theory to observable behavior
-*   Different interpretations serve different purposes
-*   Conditional probability and Bayes’ formula link belief, data, and inference
-
-Understood. Here is the expanded text with inline math using `$ $` instead of `\(...\)` or `\[...\]`, while keeping your structure and code chunks unchanged.
+Probability provides a framework to describe this uncertainty.
 
 ---
 
-## Independence of events
+### Probability as a Distribution
+
+Probability assigns a value to each possible outcome, describing how likely it is.
+
+This allows us to:
+
+* model variability
+* describe uncertainty
+* make predictions
+
+---
+
+### Connection to Data
+
+* Data = one realization
+* Probability = full distribution
+
+This connection is fundamental for statistical inference.
+
+---
+
+## Random Experiments
+
+```{definition, random-experiment, name="Random Experiment"}
+A random experiment is a process that produces outcomes that cannot be predicted with certainty.
+```
+
+---
+
+## Sample Space and Events
+
+### Sample Space
+
+```{definition, sample-space, name="Sample Space"}
+The sample space is the set of all possible outcomes of a random experiment.
+```
+
+---
+
+### Events
+
+```{definition, event, name="Event"}
+An event is a subset of the sample space.
+```
+
+---
+
+### Event Operations
+
+* Union: $A \cup B$
+* Intersection: $A \cap B$
+* Complement: $A^c$
+
+---
+
+## Probability
+
+### Definition of Probability
+
+```{definition, probability, name="Probability"}
+Probability assigns a number between 0 and 1 to each event, representing its likelihood.
+```
+
+---
+
+### Basic Properties
+
+* $0 \leq P(A) \leq 1$
+* $P(S) = 1$
+
+---
+
+## Probability Rules
+
+### Complement Rule
+
+$$
+P(A^c) = 1 - P(A)
+$$
+
+---
+
+### Addition Rule (General)
+
+$$
+P(A \cup B) = P(A) + P(B) - P(A \cap B)
+$$
+
+---
+
+### Addition Rule (Mutually Exclusive Events)
+
+If $A \cap B = \emptyset$:
+
+$$
+P(A \cup B) = P(A) + P(B)
+$$
+
+---
+
+## Conditional Probability
 
 ### Definition
 
-```{definition, indep-events, name="Independence of Events"}
-Two events A and B are independent if the occurrence of one does not change the probability of the other:
-\[
-P(A \mid B) = P(A) \quad\text{and}\quad P(B \mid A) = P(B).
-\]
-Equivalently,
-\[
-P(A \cap B) = P(A) P(B).
-\]
-```
-
-Independence is a **structural assumption** about the probability model. It is not something that can be verified with certainty from finite data; rather, it is justified by the way the experiment is constructed or by scientific knowledge about the mechanism generating the data.
-
-Informally, two events are independent if learning that one has occurred provides **no information** about whether the other occurs. In that case, knowing that event $B$ happened leaves the probability of $A$ unchanged:
-$P(A \mid B) = P(A).$
-
-Using the definition of conditional probability,
-$P(A \mid B) = \frac{P(A \cap B)}{P(B)},$
-we see that (provided $P(B) > 0$) independence is equivalent to
-$P(A \cap B) = P(A)P(B).$
-
-This multiplicative rule is often the most convenient working definition: when events are independent, the probability that both occur equals the product of their marginal probabilities.
-
-It is important to distinguish between:
-
-* **Mathematical independence:** a property defined within a probability model.
-* **Empirical evidence:** data may suggest approximate independence, but cannot prove it exactly.
-
-In practice, we often assume independence because the design of the experiment makes interaction between outcomes implausible (for example, separate coin flips or independent sampling with replacement).
-
----
-
-### Example 1: Independent Events
-
-- Event A = "first die shows 6"
-- Event B = "second die shows 1"
-
-When two dice are rolled independently, the outcome of one die does not affect the outcome of the other. Thus,
-$$P(A)=\frac{1}{6}, \qquad P(B)=\frac{1}{6}, \qquad P(A\cap B)=\frac{1}{36}.$$
-We should therefore observe
-$$P(A\cap B)=P(A)P(B).$$
-
-The following simulation approximates these probabilities.
-
-```{r two-dice-roll}
-set.seed(1)
-d1 <- sample(1:6, 100000, TRUE)
-d2 <- sample(1:6, 100000, TRUE)
-
-mean(d1 == 6 & d2 == 1)
-mean(d1 == 6) * mean(d2 == 1)
-```
-
-With a large number of repetitions, the two quantities should be very close, illustrating the multiplicative rule for independent events.
-
----
-
-### Example 2: Independent Events (Card Draws)
-
-- Event A = “draw a heart”
-- Event B = “draw a king”
-
-If we draw **with replacement** (or equivalently draw from two independent decks), the events are independent. The probability of drawing a heart on one draw does not affect the probability of drawing a king on another.
-
+```{definition, conditional-probability, name="Conditional Probability"}
+The conditional probability of an event $A$ given $B$ is
 $$
-P(A)=\frac{13}{52}=\frac{1}{4}, \qquad
-P(B)=\frac{4}{52}=\frac{1}{13}.
-$$
-
-Hence,
-$$
-P(A\cap B)=\frac{1}{4}\cdot\frac{1}{13}=\frac{1}{52}.
-$$
-
-The simulation below draws two cards and verifies the multiplicative relationship.
-
-```{r card-deck-draws}
-suits  <- rep(c("H","S","D","C"), each = 13)
-ranks  <- rep(1:13, 4)
-deck   <- data.frame(suits, ranks)
-
-sampA  <- deck[sample(1:52, 100000, TRUE), ]
-sampB  <- deck[sample(1:52, 100000, TRUE), ]
-
-mean(sampA$suits == "H" & sampB$ranks == 13)
-mean(sampA$suits == "H") * mean(sampB$ranks == 13)
-```
-
-Again, the simulated joint probability should be close to the product of the marginal probabilities.
-
----
-
-### Example of Dependent Events
-
-Cards **without** replacement:
-
-- Event A = “first card is Ace”
-- Event B = “second card is Ace”
-
-Here the events are not independent. If the first card is an Ace, there are only three Aces left in the deck, so the probability that the second card is an Ace decreases. Specifically,
-$$
-P(B \mid A) = \frac{3}{51} \neq \frac{4}{52} = P(B).
-$$
-
-Thus,
-$$
-P(A\cap B) = P(A)P(B \mid A) = \frac{4}{52}\cdot\frac{3}{51},
-$$
-which is not equal to $P(A)P(B)$.
-
-The simulation below illustrates this dependence.
-
-```{r drawing-cards-without-replacement}
-set.seed(2)
-count <- 0
-rep   <- 20000
-for(i in 1:rep){
-  sel1  <- sample(x = 1:52, size = 1)
-  sel2  <- sample(x = (1:52)[-sel1], size = 1)
-  A     <- deck$ranks[sel1] == 1
-  B     <- deck$ranks[sel2] == 1
-  count <- count + (A & B)
-}
-count/rep
-(4/52) * (4/52)   # independence NOT satisfied
-```
-
-The simulated joint probability is smaller than the product $(4/52)^2$, reflecting the negative dependence introduced by sampling without replacement.
-
----
-
-### Independence vs. Mutually Exclusive
-
-Two events are **mutually exclusive** if they cannot occur at the same time:
-$$
-A \cap B = \varnothing.
-$$
-In that case,
-$$
-P(A\cap B)=0.
-$$
-
-If both $P(A)$ and $P(B)$ are positive, then
-$$
-P(A)P(B) > 0,
-$$
-so
-$$
-P(A\cap B)=0 \neq P(A)P(B).
-$$
-
-Therefore, mutually exclusive events with positive probability cannot be independent.
-
-The distinction is conceptual:
-
-* Mutual exclusivity concerns **impossibility**: the events cannot happen together.
-* Independence concerns **information**: knowing one event occurs does not change the probability of the other.
-
-These ideas are fundamentally different. In fact, independence typically requires that events be able to occur together, whereas mutual exclusivity forbids it.
-
----
-
-## Random Variables
-
-Random variables allow us to translate outcomes of an experiment into **numerical quantities** that can be analyzed algebraically. Formally, a random variable is not itself random; rather, it is a **function** defined on the sample space.
-
-Let $\Omega$ denote the sample space of an experiment. A random variable $X$ is a function
-$$
-X:\Omega \rightarrow \mathbb{R},
-$$
-meaning that for each outcome $\omega \in \Omega$, the random variable assigns a real number $X(\omega)$.
-
-This perspective is fundamental: probability is defined on events in the sample space, but statistical analysis is typically conducted using numerical values. Random variables provide the bridge between these two viewpoints.
-
-Random variables are useful because they:
-
-* Simplify notation,
-* Allow probability models to be expressed algebraically,
-* Make it possible to compute expectations, variances, and other summaries,
-* Are convenient for simulation and computation.
-
-Example (sum of two dice):
-
-```{r random-variable-die-sum}
-d1 <- sample(1:6, 20, TRUE)
-d2 <- sample(1:6, 20, TRUE)
-X  <- d1 + d2
-X
-```
-
-Here the experiment consists of rolling two dice. The sample space contains ordered pairs such as $(1,4)$ or $(6,6)$. The random variable $X$ assigns to each outcome the sum of the two dice. For instance, if the outcome is $(2,5)$, then $X=7$.
-
-Thus, instead of working directly with pairs of dice outcomes, we work with the numerical values of their sum.
-
----
-
-## Discrete Random Variables
-
-### Introducing RVs as Convenient Labels for Outcomes
-
-A random variable is a **rule assigning numbers to outcomes**. In many experiments, the outcomes themselves are complicated objects, but we only care about certain numerical summaries. A random variable extracts that information.
-
-Examples:
-
-1. Number of heads in 3 flips
-2. Number of defective items in a batch
-3. Sum of two dice
-4. Number of emails received per hour
-
-In each case, the underlying experiment may be complex, but the random variable records only the quantity of interest.
-
-For example, in three coin flips the sample space has $2^3=8$ outcomes, but the random variable “number of heads” takes only the values $0,1,2,3$. Many different outcomes correspond to the same value of the random variable.
-
-This many-to-one mapping is typical and useful: it reduces the complexity of the sample space while preserving the information relevant to the problem.
-
----
-
-### Qualitative Random Variable
-
-```{definition, qualrv, name="Random Variable (General) "}
-A random variable is a function that assigns a numerical value to each outcome of a random experiment.
-```
-
-In practice, not all variables of interest are naturally numerical. Some experiments produce **categories** rather than numbers. These are often called qualitative or categorical variables. Strictly speaking, probability theory still requires numerical values, but we can encode categories using labels.
-
-Examples of qualitative outcomes:
-
-1. Weather: {sunny, cloudy, rainy}
-2. Political affiliation: {A, B, C}
-3. Survey response: {agree, neutral, disagree}
-
-To treat these within the framework of random variables, we typically assign numerical codes (for example, 1 = sunny, 2 = cloudy, 3 = rainy). The numerical values themselves have no arithmetic meaning; they simply serve as labels.
-
-Thus, qualitative variables can be represented numerically, but their interpretation remains categorical rather than quantitative.
-
----
-
-### Quantitative Random Variables
-
-```{definition, discrv, name="Discrete Random Variable"}
-A discrete random variable is one that takes on a countable set of possible values.
-```
-
-A discrete random variable has a finite or countably infinite set of possible values. These values often arise from counting processes.
-
-Examples:
-
-1. Number of children in a family
-2. Number of goals in a soccer match
-3. Number of customers arriving in a minute
-4. Number of defective items in a shipment
-
-In each case, the random variable can take values such as $0,1,2,\dots$. Because the set of possible values is countable, we can assign a probability to each individual value.
-
-This leads to the concept of a probability distribution for a discrete random variable.
-
----
-
-### Probability Distribution for a Discrete Random Variable
-
-```{definition, pmf-def, name="Probability Distribution for a Discrete RV"}
-A probability distribution assigns a probability to each possible value of a discrete random variable, satisfying:
-  
-1. $0 \le P(X=x) \le 1$
-2. $\sum_x P(X=x) = 1$
-```
-
-The function $p(x)=P(X=x)$ is called the **probability mass function (pmf)** of the discrete random variable. It describes how probability is distributed across the possible values of $X$.
-
-Two basic requirements must hold:
-
-* Each probability must lie between 0 and 1.
-* The probabilities over all possible values must sum to 1.
-
-If either condition fails, the proposed function cannot be a valid probability distribution.
-
-#### Example 1: Number of Heads in 3 Flips
-
-Let $X$ be the number of heads in three independent coin flips. The possible values are $0,1,2,3$. The simulation below approximates the distribution.
-
-```{r number-of-heads}
-sims <- replicate(30000, sum(sample(c(0,1),3,TRUE)))
-table(sims)/length(sims)
-```
-
-The empirical probabilities should be close to:
-$$
-P(X=0)=\tfrac{1}{8}; \quad
-P(X=1)=\tfrac{3}{8}; \quad
-P(X=2)=\tfrac{3}{8}; \quad
-P(X=3)=\tfrac{1}{8}.
-$$
-
-#### Example 2: Sum of Two Dice
-
-Let $X$ be the sum of two dice. The possible values are $2,3,\dots,12$. The distribution is not uniform: middle values such as 6, 7, and 8 occur more frequently because more combinations produce them.
-
-```{r sum-of-two-dice}
-X <- rowSums(cbind(sample(1:6,20000,TRUE), sample(1:6,20000,TRUE)))
-prop.table(table(X))
-```
-
-The simulation shows that $P(X=7)$ is the largest probability, reflecting the six combinations that produce a sum of 7.
-
-#### Example 3: Customers Arriving (Poisson-like simulation)
-
-Counts of arrivals over time are often modeled using the Poisson distribution. The command below generates simulated counts with mean 3.
-
-```{r custumer-arriving}
-mean(rpois(10000, lambda = 3))
-```
-
-Here the random variable represents the number of arrivals in a fixed time interval. Its possible values are $0,1,2,\dots$.
-
----
-
-**Important:** A proposed discrete distribution must satisfy the basic probability laws. In particular, the probabilities assigned to all possible values must sum to 1. Any proposed model that violates this condition cannot represent a valid random variable.
-
-Random variables and their distributions form the foundation of statistical analysis. Once outcomes are expressed numerically, we can compute expectations, variances, and other summaries, and we can build probability models for real-world phenomena.
-
----
-
-## Important Discrete Distributions
-
-Probability distributions provide **standardized probabilistic models** for commonly occurring types of random variables. Instead of building a model from scratch each time, we match a real-world situation to a known distribution whose mathematical properties are already understood.
-
-A useful conceptual distinction:
-
-* A **random variable** is the numerical quantity of interest.
-* A **distribution** is the mathematical model describing how that quantity behaves probabilistically.
-
-Once a random variable is associated with a known distribution, we can compute probabilities, expectations, variances, and make predictions using established formulas.
-
----
-
-### The Binomial Distribution
-
-The binomial distribution models the number of successes in a fixed number of independent trials, where each trial has only two possible outcomes and a constant probability of success.
-
-#### Customers Purchases
-
-Suppose each customer independently makes a purchase with probability $0.3$.
-Let $X =$ number of purchasers among $20$ customers.
-
-Then $X$ counts how many of the 20 independent customers make a purchase. This is a typical binomial setting.
-
-```{r customers-buying}
-mean(rbinom(1e5,20,0.3))
-```
-
-The simulated mean should be close to $20 \times 0.3 = 6$, which is the theoretical expected value of a binomial random variable with parameters $n=20$ and $p=0.3$.
-
----
-
-#### Definition: Binomial Experiment
-
-A binomial model is appropriate when the following conditions hold:
-
-1. There is a fixed number of trials $n$.
-2. Each trial has only two possible outcomes: success or failure.
-3. The probability of success $p$ is the same for every trial.
-4. The trials are independent.
-
-If all four conditions are satisfied, then the total number of successes follows a binomial distribution.
-
----
-
-#### Independent Random Variables
-
-```{definition, indep-rv, name="Independence of Random Variables"}
-Random variables $X$ and $Y$ are independent if
-$$
-P(X=x, Y=y) = P(X=x)P(Y=y)
-$$
-for all values $x$ and $y$.
-```
-
-Independence of random variables means that knowing the value of one random variable provides no information about the other. In this case, the joint probability distribution factors into the product of the marginal distributions.
-
-It is important to distinguish:
-
-* **Independence of events:**
-  $$
-  P(A \mid B) = P(A).
-  $$
-
-* **Independence of random variables:**
-  The joint distribution factorizes into marginal distributions.
-
-Event independence is a statement about particular subsets of the sample space. Random-variable independence is a stronger statement about the entire joint distribution.
-
----
-
-#### Binomial Examples
-
-##### Coin Flips Example
-
-Twenty independent coin flips with probability of heads $p=0.5$. Let $X$ be the number of heads.
-
-```{r pro-binomial-example-coin-flips}
-rbinom(10,20,0.5)
-```
-
-All binomial conditions hold: fixed $n$, two outcomes, constant probability, independence.
-
-##### 2. Not Binomial — Fails identical trials
-
-Suppose the probability of success changes from trial to trial (for example, a machine that becomes less reliable over time). Then the trials are not identical, and the binomial model does not apply.
-
-##### 3. Not Binomial — Fails only two outcomes
-
-Rolling a die produces six outcomes, not two. If we are counting something more complex than success/failure, the binomial model is inappropriate unless we recode outcomes into two categories.
-
-##### 4. Not Binomial — Fails same $p$
-
-If the probability of success changes across trials (for example, a coin that becomes increasingly biased), the binomial assumptions are violated.
-
-##### 5. Not Binomial — Fails independence
-
-Drawing cards without replacement introduces dependence between trials. Once a card is drawn, the probabilities for subsequent draws change.
-
-The binomial model is appropriate only when **all** four conditions are satisfied.
-
----
-
-#### PMF of the Binomial
-
-```{definition, binompmf, name="Binomial PMF"}
-$$
-P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
 $$
 ```
 
-Here:
+---
 
-* $n$ is the number of trials,
-* $p$ is the probability of success on each trial,
-* $k$ is the number of observed successes.
+### Multiplication Rule
 
-The binomial coefficient
 $$
-\binom{n}{k}
+P(A \cap B) = P(A \mid B)P(B)
 $$
-counts the number of ways to arrange $k$ successes among $n$ trials. The term $p^k(1-p)^{n-k}$ gives the probability of any specific sequence with $k$ successes and $n-k$ failures.
 
-Multiplying these gives the probability of observing exactly $k$ successes.
+---
 
-#### Binomila Visualization
+## Independence
 
-```{r binomial-visualization}
-k <- 0:20
-plot(k, dbinom(k,20,0.3), type="h", lwd=4)
+### Definition
+
+```{definition, independence, name="Independence"}
+Two events $A$ and $B$ are independent if
+$$
+P(A \cap B) = P(A)P(B).
+$$
 ```
-
-The shape of the binomial distribution depends on $p$:
-
-* $p = 0.5$ → symmetric distribution
-* $p < 0.5$ → right-skewed
-* $p > 0.5$ → left-skewed
-
-As $n$ becomes large, the binomial distribution becomes more bell-shaped, especially when $p$ is near $0.5$.
-
----
-
-#### Deriving the Poisson from the Binomial
-
-The Poisson distribution can be obtained as a limiting case of the binomial distribution.
-
-Suppose:
-
-* $n$ is large,
-* $p$ is small,
-* $\lambda = np$ remains fixed.
-
-Then for fixed $k$,
-$$
-\binom{n}{k} p^k (1-p)^{n-k}
-\rightarrow
-\frac{e^{-\lambda}\lambda^k}{k!}.
-$$
-
-This result explains why the Poisson distribution is often used to model counts of rare events occurring in a large number of opportunities.
-
----
-
-#### Properties of the Binomial
-
-For a binomial random variable $X \sim \text{Binomial}(n,p)$:
-
-$$
-E[X] = np,
-$$
-
-$$
-\text{Var}(X) = np(1-p),
-$$
-
-$$
-\text{SD}(X) = \sqrt{np(1-p)}.
-$$
-
-The mean represents the expected number of successes, while the variance measures variability around that mean.
-
----
-
-### The Poisson Distribution
-
-The Poisson distribution models counts of events occurring over time, space, or some other continuous dimension, when events occur randomly and independently at a constant average rate.
-
-#### Examples
-
-1. Number of website hits per minute
-2. Number of accidents per month
-3. Number of emails per hour
-4. Number of defects per unit length of material
-
-In each case, we count how many events occur within a fixed interval.
-
----
-
-#### Definition: Poisson Conditions
-
-A Poisson model is appropriate when:
-
-* Events occur independently.
-* The average rate $\lambda$ is constant over any interval of the same size.
-* Events occur one at a time.
-* The probability of more than one event in a very small interval is approximately zero.
-
-These assumptions describe a process in which events occur randomly but with a stable average rate.
-
----
-
-#### PMF
-
-For a Poisson random variable $X$ with rate parameter $\lambda > 0$,
-
-$$
-P(X=k) = \frac{e^{-\lambda}\lambda^k}{k!}, \quad k=0,1,2,\dots
-$$
-
-The parameter $\lambda$ represents the expected number of events in the interval.
-
-Example simulation:
-
-```{r pro-empiriacal-distribution-poisson}
-table(rpois(10000,3))/10000
-```
-
-The simulated relative frequencies should approximate the theoretical Poisson probabilities with $\lambda = 3$.
-
----
-
-#### Properties of Poisson
-
-For $X \sim \text{Poisson}(\lambda)$:
-
-$$
-E[X] = \lambda,
-$$
-
-$$
-\text{Var}(X) = \lambda.
-$$
-
-Thus, the mean and variance of a Poisson distribution are equal. This property is often used as a diagnostic when assessing whether a Poisson model is reasonable for observed data.
-
----
-
-## Continuous Random Variables
-
-### From Discrete to Continuous
-
-Up to this point we have assigned probability directly to individual values of a random variable. This works naturally for **discrete** random variables, such as the number of heads in coin flips or the number of customers arriving in a store. In those settings, it makes sense to ask for probabilities like $P(X=3)$ or $P(X=10)$.
-
-Many quantities in science and data analysis, however, are not naturally discrete. Measurements such as time, temperature, weight, voltage, and distance vary on a continuum. When we measure them, we record a finite number of decimal places, but conceptually they can take any value within an interval. These are modeled using **continuous random variables**.
-
-A continuous random variable takes values on an interval (or a union of intervals) of the real line. Unlike discrete random variables, which take a countable set of values, a continuous random variable can take **uncountably many** possible values.
-
-A key conceptual difference is that for a continuous random variable,
-$$
-P(X = x) = 0
-$$
-for any specific value $x$. Individual points have zero probability because probability is spread continuously across an interval rather than concentrated at individual values.
-
-This can initially feel counterintuitive. If $X$ represents a measurement such as height, surely someone could have height exactly $170$ cm. But in a continuous model, the probability of observing that exact number is zero because there are infinitely many possible values near 170, and probability is distributed across all of them.
-
-The appropriate question is not “What is the probability that $X$ equals exactly 170?” but rather:
-
-$$
-P(169.5 \le X \le 170.5).
-$$
-
-We assign probability to **intervals**, not individual points.
-
-Simulation example:
-
-```{r zero-point-probability}
-set.seed(2026)
-x <- runif(n = 100000, min = 0, max = 100)
-# Zero Probability for a Point
-pro50 <- mean(x == 50)  # always 0
-# Non-zero probability for an Interval
-proInt <- mean(49 < x & x < 51)
-print(paste0("Probability getting exactly 50: ", round(pro50 * 100, 2), "%"))
-print(paste0("Probability getting around  50: ", round(proInt * 100, 2), "%"))
-```
-
-The simulation shows two important facts:
-
-1. The probability of observing **exactly** 50 is essentially zero.
-2. The probability of observing a value **near** 50 is positive.
-
-Even though values close to 50 occur frequently, the probability of observing exactly 50 is zero in a continuous model.
-
-Because single points have zero probability, probability must be assigned to **intervals** rather than individual values. For example,
-
-$$
-P(a \le X \le b)
-$$
-
-represents the probability that $X$ falls within an interval. Graphically, this probability corresponds to the **area under a curve** between $a$ and $b$.
-
-This shift—from point probabilities to interval probabilities—is the defining feature of continuous distributions and marks the transition from discrete probability to continuous probability.
-
----
-
-### PDF and CDF
-
-A continuous distribution is described using two related functions:
-
-* the **probability density function (PDF)** $f(x)$
-* the **cumulative distribution function (CDF)** $F(x)$
-
-These functions play complementary roles.
-
-#### Probability Density Function (PDF)
-
-The PDF, denoted $f(x)$, describes how probability is distributed across values of $x$. It is a nonnegative function satisfying
-
-$$
-f(x) \ge 0
-$$
-
-and
-
-$$
-\int_{-\infty}^{\infty} f(x)dx = 1.
-$$
-
-The PDF itself does not give probabilities directly. Instead, probabilities are obtained by integrating the density over an interval:
-
-$$
-P(a \le X \le b) = \int_a^b f(x)dx.
-$$
-
-Thus, probability corresponds to **area under the density curve**. Regions where the density is high correspond to values of $X$ that are more likely to occur.
-
-#### Cumulative Distribution Function (CDF)
-
-The CDF is defined as
-
-$$
-F(x) = P(X \le x).
-$$
-
-It gives the total probability accumulated up to the point $x$. For a continuous random variable, the CDF can be written in terms of the PDF:
-
-$$
-F(x) = \int_{-\infty}^{x} f(t)dt.
-$$
-
-The CDF has several important properties:
-
-* It is nondecreasing.
-* It approaches 0 as $x \to -\infty$.
-* It approaches 1 as $x \to \infty$.
-
-Probabilities for intervals can be computed using the CDF:
-
-$$
-P(a \le X \le b) = F(b) - F(a).
-$$
-
-Thus, the CDF accumulates probability up to a given point, while the PDF describes how probability density is distributed across values.
-
-#### Example: Normal Distribution
-
-The following code visualizes both the PDF and CDF for a normal distribution.
-
-```{r pro-pdf-cdf-normal-distribution-example}
-curve(dnorm(x), -4,4)
-curve(pnorm(x), -4,4)
-```
-
-The first curve is the PDF of a normal distribution. It shows the familiar bell-shaped density.
-
-The second curve is the CDF. It starts near 0, increases steadily, and approaches 1 as $x$ increases. Each value of the CDF represents the probability that the random variable is less than or equal to that value.
-
-Together, the PDF and CDF provide two complementary ways of describing a continuous random variable:
-
-* The PDF describes how probability is distributed.
-* The CDF describes how probability accumulates.
-
-### Interpreting Areas as Probabilities
-
-A useful way to think about a continuous distribution is to imagine probability as **area under a curve**. The total area under the PDF is 1, representing total probability. Any subinterval corresponds to a portion of that area.
-
-For example, consider a normal distribution again. The shaded region between two values represents the probability that the random variable falls in that interval.
-
-```{r pro-probability-of-an-interval-normal}
-curve(dnorm(x), -4, 4, lwd=2,
-      main="Probability as Area Under the Curve",
-      ylab="Density")
-a <- -1
-b <- 1
-x <- seq(a, b, length=200)
-y <- dnorm(x)
-polygon(c(a, x, b), c(0, y, 0), col="lightblue")
-abline(v=c(a,b), col="red", lty=2)
-```
-
-This shaded area corresponds to
-$$
-P(-1 \le X \le 1).
-$$
-
-We compute it numerically using the CDF:
-
-```{r pro-exact-probability-of-an-interval}
-pnorm(1) - pnorm(-1)
-```
-
-Even though the PDF at a point gives the height of the curve, probability is always determined by **area**, not height. This distinction is essential:
-
-* $f(x)$ is not a probability.
-* Probabilities come from integrals (areas).
-
----
-
-### Why the PDF Can Be Greater Than 1
-
-Students often expect probabilities to be at most 1, and they are. However, the **density** $f(x)$ itself can be greater than 1 in some distributions.
-
-For example, consider a uniform distribution on a very small interval:
-
-```{r pro-density-curve-uniform}
-curve(dunif(x, 0, 0.2), from=-0.1, to=0.3, lwd=2,
-      main="Uniform Density on a Small Interval")
-```
-
-The height of this density is $1/0.2 = 5$, which is greater than 1. This is not a problem because probability is area:
-
-$$
-\text{area} = \text{height} \times \text{width} = 5 \times 0.2 = 1.
-$$
-
-Thus:
-
-* The PDF describes density.
-* Probability corresponds to area under the curve.
-
----
-
-### From Simulation to Density
-
-A computational approach helps build intuition. We can simulate many observations and compare a histogram with a theoretical density.
-
-```{r pro-histogram-density-comparisson}
-set.seed(1)
-x <- rnorm(5000)
-
-hist(x, probability=TRUE, breaks=40,
-     main="Histogram and Density",
-     col="lightgray", border="white")
-
-curve(dnorm(x), add=TRUE, lwd=2, col="blue")
-```
-
-The histogram approximates the distribution of simulated data. As the sample size increases:
-
-* The histogram becomes smoother.
-* It approaches the theoretical density curve.
-
-This demonstrates an important principle:
-
-> A probability density function can be viewed as the limiting shape of a histogram as the number of observations grows and bin widths shrink.
-
----
-
-### Computing Interval Probabilities in R
-
-In practice, we compute probabilities using built-in functions for distributions.
-
-General pattern:
-
-* `d*` gives the density (PDF)
-* `p*` gives cumulative probabilities (CDF)
-* `q*` gives quantiles
-* `r*` generates random values
-
-For the normal distribution:
-
-```{r pro-normal-function-r}
-# Density at a point
-dnorm(0)
-
-# Probability up to a point
-pnorm(1.5)
-
-# Probability between two values
-pnorm(2) - pnorm(-1)
-
-# Random sample
-rnorm(5)
-```
-
-These functions exist for many distributions and allow us to move seamlessly between:
-
-* Simulation
-* Visualization
-* Analytical probability
-
----
-
-### Key Conceptual Shift
-
-For discrete random variables:
-
-* Probability is assigned to individual values.
-* We sum probabilities.
-
-For continuous random variables:
-
-* Probability is assigned to intervals.
-* We integrate densities.
-
-In summary:
-
-$$
-P(X = x) = 0
-$$
-
-$$
-P(a \le X \le b) = \int_a^b f(x)dx = F(b) - F(a).
-$$
-
-This framework—probability as accumulated area—will guide everything that follows when we study specific continuous distributions.
-
----
-
-## Important Continuous Distributions
-
-### The Uniform Distribution
-
-The uniform distribution is the most intuitive continuous distribution. Every value in an interval is equally likely.
-
-#### Discrete Uniform
-
-Rolling a fair die is a discrete uniform distribution: each value has equal probability.
-
-```{r pro-frequency-table-roll-of-a-die}
-table(sample(1:10,10000,TRUE))/10000
-```
-
-#### Continuous Uniform
-
-A continuous uniform distribution on $[a,b]$ has density
-
-$$
-f(x) = \frac{1}{b-a}, \quad a \le x \le b.
-$$
-
-Simulation:
-
-```{r pro-continuos-uniform-distribution}
-x <- runif(10000,0,10)
-hist(x, probability=TRUE, breaks=30)
-curve(dunif(x,0,10), add=TRUE, col="red", lwd=2)
-```
-
-#### From Discrete to Continuous Uniform
-
-If we refine a discrete uniform grid enough, it begins to resemble a continuous uniform distribution.
-
-```{r pro-discrete-uniform-distribution}
-samSiz <- 10000
-x      <- sample(seq(0,10,length=samSiz), samSiz, TRUE)
-hist(x, probability=TRUE, breaks=30)
-```
-
-On a fine grid, discrete and continuous uniform models can look nearly identical.
-
----
-
-### The Normal Distribution
-
-The normal distribution is the most important distribution in statistics. It serves both as a theoretical model and as a practical approximation for many real-world phenomena.
-
-It appears in:
-
-* measurement error
-* biological traits
-* averages and sample means
-* noise in physical and engineering systems
-
-Because of its mathematical properties and frequent appearance in data, the normal distribution is a central reference point for statistical modeling.
-
----
-
-#### Where Does It Come From?
-
-The normal distribution often arises as the sum of many small, independent effects. Each individual effect may not be normal, but their sum tends to be approximately normal. This phenomenon is formalized by the **Central Limit Theorem** (which we will study later).
-
-A computational illustration helps build intuition.
-
-```{r pro-sum-of-uniforms-distribution}
-set.seed(2026)
-s <- replicate(10000, sum(runif(10, -1, 1)))
-
-hist(s, probability=TRUE, breaks=40,
-     main="Sum of Uniform Variables",
-     col="lightgray", border="white")
-
-curve(dnorm(x, mean(s), sd(s)),
-      add=TRUE, col="red", lwd=2)
-```
-
-Each observation in `s` is the sum of 10 uniform random variables. Even though the underlying variables are not normal, the distribution of their sum is approximately normal.
-
-This idea explains why normal distributions appear so often:
-
-> Many processes are influenced by numerous small, independent factors. Their combined effect tends to be approximately normal.
-
----
-
-#### The Normal Curve
-
-If $X \sim N(\mu,\sigma^2)$, its probability density function is
-
-$$
-f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-(x-\mu)^2/(2\sigma^2)}.
-$$
-
-The parameters have clear interpretations:
-
-* $\mu$ controls the **center** (location)
-* $\sigma$ controls the **spread** (scale)
-
-Visualization:
-
-```{r pro-normal-distribution-shape}
-curve(dnorm(x,0,1), -4,4, lwd=2,
-      main="Standard Normal Density",
-      ylab="Density")
-```
-
-This is the **standard normal distribution**, which has $\mu=0$ and $\sigma=1$.
-
-Changing parameters shifts or stretches the curve:
-
-```{r pro-normal-distribution-shift-and-stretch}
-curve(dnorm(x,0,1), -6,6, lwd=2, col="black",
-      main="Effect of Mean and SD")
-curve(dnorm(x,2,1), add=TRUE, col="blue", lwd=2)
-curve(dnorm(x,0,2), add=TRUE, col="red", lwd=2)
-legend("topright",
-       legend=c("N(0,1)", "N(2,1)", "N(0,2)"),
-       col=c("black","blue","red"),
-       lwd=2)
-```
-
-* Changing $\mu$ shifts the curve horizontally.
-* Changing $\sigma$ stretches or compresses the curve.
-
----
-
-#### Description of the Normal Distribution
-
-Key properties:
-
-* symmetric around $\mu$
-* bell-shaped
-* unimodal (one peak)
-* mean = median = mode
-* tails extend indefinitely in both directions
-
-Although the curve extends to infinity, most probability mass is concentrated near the center.
-
----
-
-#### Standardization
-
-A crucial idea is **standardizing** a normal random variable.
-
-If $X \sim N(\mu,\sigma^2)$, define
-
-$$
-Z = \frac{X-\mu}{\sigma}.
-$$
-
-Then $Z \sim N(0,1)$.
-
-This allows any normal probability to be computed using the standard normal distribution:
-
-$$
-P(a \le X \le b)
-=
-P\left(\frac{a-\mu}{\sigma} \le Z \le \frac{b-\mu}{\sigma}\right).
-$$
-
-In R:
-
-```{r pro-computation-using-standarization}
-# Example: X ~ N(10, 4^2)
-pnorm(12, mean=10, sd=4) - pnorm(8, mean=10, sd=4)
-
-# Using standardization
-pnorm((12-10)/4) - pnorm((8-10)/4)
-```
-
-Both calculations give the same result.
-
----
-
-#### 68–95–99.7 Rule
-
-For a normal distribution:
-
-$$
-P(\mu \pm \sigma) \approx 0.68
-$$
-
-$$
-P(\mu \pm 2\sigma) \approx 0.95
-$$
-
-$$
-P(\mu \pm 3\sigma) \approx 0.997
-$$
-
-We can verify computationally for the standard normal:
-
-```{r pro-68-95-99-rule}
-pnorm(1) - pnorm(-1)
-pnorm(2) - pnorm(-2)
-pnorm(3) - pnorm(-3)
-```
-
-Visualization:
-
-```{r pro-68-95-99-rule-plot}
-curve(dnorm(x), -4,4, lwd=2,
-      main="68-95-99.7 Rule")
-
-x <- seq(-1,1,length=200)
-polygon(c(-1,x,1), c(0,dnorm(x),0), col="lightblue")
-
-x2 <- seq(-2,2,length=200)
-polygon(c(-2,x2,2), c(0,dnorm(x2),0), col=rgb(1,0,0,0.2))
-```
-
-These percentages provide quick approximations for probabilities without computation.
-
----
-
-#### Computing Probabilities in R
-
-For a normal distribution:
-
-* `dnorm(x, mean, sd)` → density
-* `pnorm(x, mean, sd)` → cumulative probability
-* `qnorm(p, mean, sd)` → quantile
-* `rnorm(n, mean, sd)` → simulation
-
-Example:
-
-```{r pro-normal-distribution-probability-computation}
-# Probability between 0.5 and 1.5
-pnorm(1.5) - pnorm(0.5)
-
-# Upper tail probability
-1 - pnorm(2)
-
-# Lower tail probability
-pnorm(-1)
-```
-
----
-
-#### Three Example Calculations
-
-```{r pro-normal-distribution-probability-computation-2}
-# Example 1
-pnorm(1)
-
-# Example 2
-1 - pnorm(2)
-
-# Example 3
-pnorm(0.5) - pnorm(-1)
-```
-
-These represent:
-
-* probability below a value
-* probability above a value
-* probability between two values
-
----
-
-#### From Histogram to Density
-
-A histogram of simulated normal data approximates the theoretical density.
-
-```{r pro-histogram-density-approximation}
-set.seed(2026)
-x <- rnorm(1000)
-
-hist(x, probability=TRUE, breaks=30,
-     main="Histogram Approximating a Density",
-     col="lightgray", border="white")
-
-curve(dnorm(x, mean(x), sd(x)),
-      add=TRUE, col="red", lwd=2)
-```
-
-As sample size increases:
-
-* the histogram becomes smoother
-* it approaches the theoretical density
-
-This illustrates how densities describe the limiting behavior of large samples.
-
----
-
-#### Are Observations From the Same Variable?
-
-A histogram may represent:
-
-* repeated measurements of one variable
-* measurements from different individuals
-
-For example:
-
-* heights of many people
-* repeated measurements of one instrument
-* test scores from many students
-
-In all cases, the normal distribution can serve as a useful model. The interpretation depends on context:
-
-* One variable measured repeatedly
-* Many individuals with similar variability
-
-The key is whether the distribution of values is approximately normal.
-
----
-
-#### Why the Normal Distribution Matters
-
-The normal distribution is fundamental because:
-
-1. It models many natural phenomena.
-2. It arises from sums of small effects.
-3. It provides approximations for many other distributions.
-4. It underlies much of statistical inference.
-
-Most statistical methods—confidence intervals, hypothesis tests, regression—rely on normal-based reasoning. Understanding the normal distribution is therefore essential before moving forward to other continuous distributions.
-
----
-
-### Chi-Squared Distribution
-
-One advantage of working with random variables is that we can form **transformations** of existing variables and study the resulting distributions. Many important distributions arise as functions of simpler ones.
-
-A central example comes from the normal distribution.
-
-If $Z \sim N(0,1)$, then
-
-$$
-Z^2
-$$
-
-follows a chi-squared distribution with 1 degree of freedom. We write
-
-$$
-Z^2 \sim \chi^2_1.
-$$
-
-More generally, if $Z_1,\dots,Z_k$ are independent standard normal random variables, then the sum of their squares
-
-$$
-\sum_{i=1}^k Z_i^2
-$$
-
-follows a chi-squared distribution with $k$ degrees of freedom:
-
-$$
-\sum_{i=1}^k Z_i^2 \sim \chi^2_k.
-$$
-
-The parameter $k$ is called the **degrees of freedom**. It determines the shape and spread of the distribution.
-
-This construction is fundamental in statistics because many important quantities—such as sample variances and sums of squared residuals—can be expressed as sums of squared normal variables.
-
----
-
-#### Simulation of a Chi-Squared Distribution
-
-We can build a chi-squared distribution directly from simulated normal variables.
-
-```{r pro-chi-squared-simulation}
-set.seed(2026)
-
-z <- rnorm(10000)
-x <- z^2
-
-hist(x, probability=TRUE, breaks=40,
-     main="Chi-Squared Distribution (df = 1)",
-     col="lightgray", border="white")
-
-curve(dchisq(x, df=1),
-      add=TRUE, col="red", lwd=2)
-```
-
-Each value in `x` is the square of a standard normal observation. The resulting histogram closely matches the theoretical chi-squared density.
-
-This illustrates the transformation:
-
-$$
-Z \rightarrow Z^2.
-$$
-
----
-
-#### Simulation with Multiple Degrees of Freedom
-
-To generate a chi-squared distribution with $k$ degrees of freedom, we sum the squares of $k$ independent standard normal variables.
-
-```{r pro-chi-squared-k-degrees-simulation}
-set.seed(2026)
-
-k <- 5
-z <- matrix(rnorm(10000 * k), ncol=k)
-x <- rowSums(z^2)
-
-hist(x, probability=TRUE, breaks=40,
-     main=paste("Chi-Squared Distribution (df =", k, ")"),
-     col="lightgray", border="white")
-
-curve(dchisq(x, df=k),
-      add=TRUE, col="red", lwd=2)
-```
-
-As the number of degrees of freedom increases, the distribution becomes less skewed and more symmetric.
-
----
-
-#### Shape of the Chi-Squared Distribution
-
-The shape of the chi-squared distribution depends strongly on the degrees of freedom.
-
-Key properties:
-
-* defined only for $x \ge 0$
-* right-skewed for small $k$
-* becomes more symmetric as $k$ increases
-* mean = $k$
-* variance = $2k$
-
-Visualization:
-
-```{r pro-chi-squared-distribution}
-curve(dchisq(x,1), 0, 12, lwd=2,
-      main="Effect of Degrees of Freedom",
-      ylab="Density")
-
-curve(dchisq(x,5), 0, 12, col="red", lwd=2, add=TRUE)
-curve(dchisq(x,10), 0, 12, col="blue", lwd=2, add=TRUE)
-
-legend("topright",
-       legend=c("df = 1", "df = 5", "df = 10"),
-       col=c("black","red","blue"),
-       lwd=2)
-```
-
-For small degrees of freedom:
-
-* the distribution is highly skewed
-* most mass is near zero
-
-For larger degrees of freedom:
-
-* the distribution becomes more bell-shaped
-* it begins to resemble a normal distribution
-
-In fact, for large $k$,
-
-$$
-\chi^2_k \approx N(k, 2k).
-$$
-
----
-
-#### Why the Chi-Squared Distribution Matters
-
-The chi-squared distribution plays a central role in statistics because it appears naturally when we work with squared deviations.
-
-Examples:
-
-* sample variance of normal data
-* sums of squared residuals in regression
-* goodness-of-fit tests
-* contingency table analysis
-
-Many statistical procedures rely on the fact that certain sums of squared normal variables follow a chi-squared distribution.
-
----
-
-#### Generating Chi-Squared Values in R
-
-R provides built-in functions for working with the chi-squared distribution:
-
-* `dchisq(x, df)` → density
-* `pchisq(x, df)` → cumulative probability
-* `qchisq(p, df)` → quantile
-* `rchisq(n, df)` → simulation
-
-Examples:
-
-```{r pro-chi-squared-function-r}
-# Simulate chi-squared values
-rchisq(10, df=3)
-
-# Probability X ≤ 4
-pchisq(4, df=3)
-
-# Upper tail probability
-1 - pchisq(6, df=3)
-```
-
----
-
-#### Conceptual Summary
-
-The chi-squared distribution illustrates an important principle:
-
-> Transformations of random variables produce new random variables with new distributions.
-
-Starting with standard normal variables and squaring them leads to the chi-squared distribution. Summing multiple squared normals introduces the degrees of freedom parameter.
-
-This connection between normal variables and squared sums is foundational for later topics such as:
-
-* sampling distributions
-* variance estimation
-* hypothesis testing
-* regression analysis
-
-Understanding the chi-squared distribution prepares us for many of the statistical tools developed later in the course.
-
----
-
-### t Distribution
-
-The $t$ distribution is one of the most important continuous distributions in statistics. It arises naturally when estimating means using small samples and unknown variance. Much of classical statistical inference—confidence intervals, hypothesis tests, regression coefficients—relies on this distribution.
-
----
-
-#### History
-
-The $t$ distribution was developed by William Gosset, a statistician working at the Guinness brewery in the early 1900s. Because company policy prohibited publishing under his real name, he wrote under the pseudonym **“Student.”** For this reason, the distribution is sometimes called the *Student’s $t$ distribution*.
-
-Gosset needed methods for making reliable inferences from **small samples**, where the normal approximation alone was insufficient. His work showed that when variance must be estimated from the data, additional uncertainty must be incorporated into the distribution used for inference. The result was the $t$ distribution.
-
----
-
-#### Difference from the Normal Distribution
-
-The $t$ distribution resembles the normal distribution but has important differences.
-
-Key characteristics:
-
-* symmetric and centered at 0
-* bell-shaped
-* heavier tails than the normal distribution
-* depends on degrees of freedom $k$
-
-“Heavier tails” means that extreme values are more likely than under a normal model. This reflects the additional uncertainty introduced when estimating variance from data.
-
-As the degrees of freedom increase,
-
-$$
-t_k \longrightarrow N(0,1).
-$$
-
-Thus, for large samples, the $t$ distribution becomes nearly indistinguishable from the standard normal distribution.
-
----
-
-#### Visualization: Effect of Degrees of Freedom
-
-```{r pro-t-distribution}
-curve(dnorm(x), -4,4, lwd=2,
-      main="Normal vs t Distributions",
-      ylab="Density")
-
-curve(dt(x,1),  -4,4, col="red",   lwd=2, add=TRUE)
-curve(dt(x,5),  -4,4, col="blue",  lwd=2, add=TRUE)
-curve(dt(x,20), -4,4, col="green", lwd=2, add=TRUE)
-
-legend("topright",
-       legend=c("Normal","t df=1","t df=5","t df=20"),
-       col=c("black","red","blue","green"),
-       lwd=2)
-```
-
-For small degrees of freedom:
-
-* tails are very heavy
-* extreme values are more common
-
-For large degrees of freedom:
-
-* the curve approaches the normal density
-
----
-
-#### Derivation from Normal and Chi-Squared Variables
-
-The $t$ distribution arises from combining a normal random variable and a chi-squared random variable.
-
-If
-
-$$
-Z \sim N(0,1), \quad U \sim \chi^2_k,
-$$
-
-and $Z$ and $U$ are independent, then
-
-$$
-T = \frac{Z}{\sqrt{U/k}}
-$$
-
-follows a $t$ distribution with $k$ degrees of freedom. We write
-
-$$
-T \sim t_k.
-$$
-
-This construction shows that the $t$ distribution accounts for the variability introduced by estimating variance. The denominator $\sqrt{U/k}$ behaves like a random estimate of the standard deviation, which introduces extra spread compared with the normal distribution.
-
----
-
-#### Simulation from Definition
-
-We can simulate the $t$ distribution directly from its defining relationship.
-
-```{r pro-t-distribution-generation}
-set.seed(2026)
-
-z <- rnorm(10000)
-u <- rchisq(10000, df=5)
-t <- z / sqrt(u/5)
-
-hist(t, probability=TRUE, breaks=40,
-     main="t Distribution (df = 5)",
-     col="lightgray", border="white")
-
-curve(dt(x, df=5),
-      add=TRUE, col="red", lwd=2)
-```
-
-The simulated histogram aligns closely with the theoretical $t$ density.
-
----
-
-#### Generating t Values in R
-
-R provides built-in functions for the $t$ distribution:
-
-* `dt(x, df)` → density
-* `pt(x, df)` → cumulative probability
-* `qt(p, df)` → quantile
-* `rt(n, df)` → simulation
-
-Examples:
-
-```{r pro-t-distribution-function-r}
-# simulate
-rt(10, df=5)
-
-# probability T ≤ 1.5
-pt(1.5, df=5)
-
-# upper tail probability
-1 - pt(2, df=5)
-```
-
----
-
-#### Why the t Distribution Matters
-
-The $t$ distribution is central to statistical inference because it appears whenever we standardize a sample mean using an estimated standard deviation.
-
-If $X_1,\dots,X_n$ are independent normal observations with unknown variance, then
-
-$$
-\frac{\bar{X} - \mu}{S/\sqrt{n}}
-$$
-
-follows a $t$ distribution with $n-1$ degrees of freedom.
-
-This result underlies:
-
-* confidence intervals for means
-* hypothesis tests for means
-* regression coefficient inference
-* many classical statistical procedures
-
----
-
-#### Conceptual Summary
-
-The $t$ distribution arises from combining:
-
-* a normal random variable (numerator)
-* a chi-squared random variable (denominator)
-
-It reflects the extra uncertainty introduced when variance must be estimated from data.
-
-Compared with the normal distribution:
-
-* same center
-* similar shape
-* heavier tails
-* depends on degrees of freedom
-
-As sample size increases, the $t$ distribution converges to the normal distribution, linking small-sample inference to large-sample approximations used throughout statistics.
-
----
-
-### F Distribution
-
-The $F$ distribution is another fundamental continuous distribution that arises from transformations of normal random variables. It plays a central role in comparing variances and in many procedures in regression and analysis of variance.
-
----
-
-#### History
-
-The $F$ distribution was introduced by **Ronald Fisher** in the development of analysis of variance (ANOVA). Fisher needed a distribution for comparing two independent estimates of variance. The ratio of these variance estimates led naturally to the $F$ distribution.
-
-Today, the $F$ distribution is used in:
-
-* comparing population variances
-* regression model comparisons
-* ANOVA
-* many hypothesis testing procedures
-
----
-
-#### Difference from the Normal Distribution
-
-The $F$ distribution differs substantially from the normal distribution.
-
-Key characteristics:
-
-* takes only positive values
-* right-skewed
-* depends on two degrees of freedom parameters
-* becomes more symmetric as degrees of freedom increase
-
-If $F \sim F_{d_1,d_2}$, then:
-
-* $d_1$ = numerator degrees of freedom
-* $d_2$ = denominator degrees of freedom
-
-The shape depends on both parameters.
-
-For small degrees of freedom:
-
-* highly skewed
-* long right tail
-
-For large degrees of freedom:
-
-* more concentrated
-* less skewed
-
----
-
-#### Derivation from Chi-Squared Variables
-
-The $F$ distribution arises from ratios of scaled chi-squared random variables.
-
-If
-
-$$
-U_1 \sim \chi^2_{d_1}, \quad
-U_2 \sim \chi^2_{d_2}
-$$
-
-are independent, then
-
-$$
-F = \frac{U_1/d_1}{U_2/d_2}
-$$
-
-follows an $F$ distribution with $(d_1,d_2)$ degrees of freedom:
-
-$$
-F \sim F_{d_1,d_2}.
-$$
-
-This construction shows that the $F$ distribution measures the relative size of two variance-like quantities. Each chi-squared variable represents a sum of squared normal variables, so their ratio compares two independent estimates of variability.
-
----
-
-#### Simulation from Definition
-
-We can simulate an $F$ distribution directly from its definition.
-
-```{r f-distribution-generation}
-set.seed(2026)
-
-u1 <- rchisq(10000, df=5)
-u2 <- rchisq(10000, df=10)
-
-f  <- (u1/5)/(u2/10)
-
-hist(f, probability=TRUE, breaks=40,
-     main="F Distribution (df1 = 5, df2 = 10)",
-     col="lightgray", border="white")
-
-curve(df(x,5,10),
-      add=TRUE, col="red", lwd=2)
-```
-
-The histogram of simulated values closely matches the theoretical $F$ density.
-
----
-
-#### Shape and Behavior
-
-The $F$ distribution has several notable properties:
-
-* defined only for $x>0$
-* right-skewed
-* mean exists when $d_2>2$
-* variance exists when $d_2>4$
-
-As the denominator degrees of freedom $d_2$ increase, the distribution becomes less variable. As both degrees of freedom grow large, the distribution becomes more concentrated around 1.
-
-Visualization for different parameters:
-
-```{r f-distribution}
-curve(df(x,1,5), 0,5, lwd=2,
-      main="Effect of Degrees of Freedom",
-      ylab="Density")
-
-curve(df(x,5,5), 0,5, col="red", lwd=2, add=TRUE)
-curve(df(x,10,10), 0,5, col="blue", lwd=2, add=TRUE)
-
-legend("topright",
-       legend=c("F(1,5)","F(5,5)","F(10,10)"),
-       col=c("black","red","blue"),
-       lwd=2)
-```
-
----
-
-#### Generating F Values in R
-
-R includes built-in functions for the $F$ distribution:
-
-* `df(x, d1, d2)` → density
-* `pf(x, d1, d2)` → cumulative probability
-* `qf(p, d1, d2)` → quantile
-* `rf(n, d1, d2)` → simulation
-
-Examples:
-
-```{r f-distribution-function-r}
-# simulate values
-rf(10, 5, 10)
-
-# probability F ≤ 2
-pf(2, 5, 10)
-
-# upper tail probability
-1 - pf(3, 5, 10)
-```
-
----
-
-### Summary
-
-Continuous random variables differ from discrete random variables in a fundamental way: they assign probability to **intervals** rather than individual points.
-
-They are described using two functions:
-
-* the probability density function (PDF)
-* the cumulative distribution function (CDF)
-
-Several key continuous distributions appear repeatedly in statistics:
-
-* Uniform
-* Normal
-* Chi-squared
-* $t$
-* $F$
-
-Each arises from transformations of simpler random variables, particularly the normal distribution. These connections are crucial because they allow complex statistical quantities to be studied using known probability models.
-
-Simulation provides a powerful computational approach for understanding continuous distributions:
-
-* visualizing densities
-* approximating probabilities
-* verifying theoretical results
-* building intuition
-
-These distributions form the mathematical foundation for statistical inference developed in later chapters, including confidence intervals, hypothesis testing, regression, and analysis of variance.
-
----
-
-## The Mean of a Random Variable
-
-The **mean** (or expected value) of a random variable describes its long-run average value.
-It is not the average of a particular dataset, but rather a property of the **probability model** itself.
-
-If we imagine repeating the same random experiment over and over under identical conditions, the sample average of the outcomes will tend to stabilize near the mean. For this reason, the mean is often interpreted as the **center of the distribution** or the value around which observations fluctuate.
-
-From a modeling perspective, the mean is determined entirely by the probability distribution of the random variable.
-
-For a discrete random variable $X$ with probabilities $P(X=x)$,
-
-$$
-E[X] = \sum_x x P(X=x).
-$$
-
-For a continuous random variable with density $f(x)$,
-
-$$
-E[X] = \int_{-\infty}^{\infty} x f(x)dx.
-$$
-
-Both formulas express the same idea: the mean is a **probability-weighted average** of all possible values the random variable can take.
-
----
-
-### Interpreting the Mean
-
-There are several useful interpretations of the mean:
-
-* **Long-run average:** If we simulate the experiment many times, the sample average approaches the mean.
-* **Balance point:** In physics, the mean is the balance point of a distribution.
-* **Center of mass:** Values farther from the mean contribute more strongly if they occur with high probability.
-* **Prediction under squared loss:** The mean is the best constant predictor when using squared error.
-
-These interpretations make the mean one of the most important summaries of a random variable.
-
----
-
-### Mean as a Distribution Parameter vs Not
-
-In many probability models, the mean is one of the defining parameters of the distribution.
-In others, it is a derived quantity computed from the parameters.
-
-Examples where the mean **is** a parameter:
-
-* Normal distribution: mean $=\mu$
-* Poisson distribution: mean $=\lambda$
-* Exponential distribution: mean $=1/\lambda$
-
-Examples where the mean is **not directly** a parameter:
-
-* Uniform distribution on $[a,b]$: mean is $(a+b)/2$
-* Derived variables such as $X^2$ when $X\sim N(0,1)$
-* The binomial distribution with parameters $n$ and $p$, whose mean is $np$
-
-Even when the mean is not explicitly listed as a parameter, it is still determined by the distribution.
-
----
-
-### Simulation Example: Mean of a Binomial Distribution
-
-Consider a binomial random variable $X\sim \text{Binomial}(n,p)$.
-The theoretical mean is
-
-$$
-E[X]=np.
-$$
-
-We can verify this using simulation and direct calculation.
-
-```{r mean-of-a-binomial-distribution}
-set.seed(1)
-n <- 5
-p <- 0.3
-x <- rbinom(n = 10000, size = n, prob = p)
-
-# Mean Computed Directly
-print(paste0("The exact mean is: ", n * p))
-print(paste0("The approximate mean is: ", mean(x)))
-
-# Computing the Mean using the formula
-pmf <- dbinom(x = 0:n, size = n, prob = p)
-exaMeaBin <- sum(pmf * (0:n))
-print(paste0("The exact mean is: ", exaMeaBin))
-
-# Approximate Mean using empirical probabilities
-proTab <- prop.table(table(x))
-appMea <- sum(proTab * (0:n))
-print(paste0("The approximate mean is: ", appMea))
-```
-
-This example illustrates several key points:
-
-1. The mean can be computed **analytically** from the formula.
-2. It can be approximated using **simulation**.
-3. It can be approximated using **empirical frequencies**.
-4. All approaches converge as the number of simulations increases.
-
-Simulation provides an intuitive interpretation: the mean is the value the random variable averages to over many repetitions.
-
----
-
-### The Mean as a Weighted Average
-
-The expected value is a weighted average in which each possible outcome is weighted by its probability. Values that occur with high probability contribute more strongly to the mean.
-
-For example, if a random variable takes values $0,1,2,3$ with different probabilities, the mean reflects both the magnitude of each value and how often it occurs.
-
-This explains why the mean does not always coincide with the most likely value or the median. In skewed distributions, the mean can be pulled toward extreme values.
-
----
-
-### Properties of the Mean Operator
-
-The mean operator has several important mathematical properties.
-The most important is **linearity**.
-
-#### Linearity
-
-For random variables $X$ and $Y$ and constants $a$ and $b$,
-
-$$
-E[aX + bY] = aE[X] + bE[Y].
-$$
-
-This property holds regardless of whether $X$ and $Y$ are independent.
-
-Linearity allows us to compute means of complicated expressions by breaking them into simpler parts. It is one of the most frequently used tools in probability and statistics.
-
----
-
-#### Consequences of Linearity
-
-Some useful special cases:
-
-$$
-E[X + Y] = E[X] + E[Y]
-$$
-
-$$
-E[cX] = cE[X]
-$$
-
-$$
-E[X + c] = E[X] + c
-$$
-
-These rules allow us to compute expected values without needing the full distribution of the transformed variable.
-
----
-
-#### Example of Linearity via Simulation
-
-```{r pro-expectation-linearity}
-set.seed(1)
-mea1 <- 2
-mea2 <- 5
-x <- rnorm(10000, mean = mea1, sd = 1)
-y <- rnorm(10000, mean = mea2, sd = 2)
-z <- 3 * x + 2 * y
-
-# Using the simulation
-appMea    <- mean(z)
-appMeaLin <- 3*mean(x) + 2*mean(y)
-exaMeaLin <- 3 * mea1 + 2 * mea2
-
-print(paste0("The approximate mean is: ", appMea))
-print(paste0("The approximate mean using linearity is: ", appMeaLin))
-print(paste0("The exact mean using linearity is: ", exaMeaLin))
-```
-
-The three quantities are approximately equal:
-
-* the simulated mean of $z$
-* the simulated linear combination of means
-* the exact theoretical value
-
-This demonstrates that linearity holds both theoretically and empirically.
-
----
-
-### Why the Mean Matters
-
-The mean plays a central role throughout statistics:
-
-* It is the foundation of estimation and inference.
-* Many statistical procedures are built around averages.
-* Sampling distributions of means are central to statistical theory.
-* The Central Limit Theorem explains why averages tend to be normally distributed.
-
-Because of these properties, understanding the mean of a random variable is essential for understanding statistical modeling and inference.
-
-In later sections, we will study how means behave when computed from samples, leading to the concept of **sampling distributions** and the foundations of statistical inference.
-
----
-
-## The Variance of a Random Variable
-
-The variance of a random variable quantifies how much its values fluctuate around its mean. While the mean captures the center of a distribution, the variance measures its dispersion. Together, these two quantities provide a fundamental summary of a distribution’s behavior.
-
-For a random variable $X$ with mean $E[X]$, the variance is defined as
-
-$$
-\mathbb{V}(X) = E\big[(X - E[X])^2\big].
-$$
-
-This definition expresses variance as the expected squared deviation from the mean. Squaring ensures that deviations above and below the mean do not cancel each other out and that larger deviations contribute more heavily to the measure of spread.
-
-Using algebra and the linearity of the mean operator, we can derive an equivalent and often more convenient expression:
-
-$$
-\mathbb{V}(X) = E[X^2] - (E[X])^2.
-$$
-
-This alternative representation is widely used in both theoretical work and computation because it separates the variance into two simpler expectations: the mean of the square and the square of the mean.
-
----
-
-### Interpreting Variance
-
-Variance is always nonnegative. A variance of zero implies that the random variable takes a constant value with probability one. Larger variances indicate greater dispersion around the mean.
-
-In practical terms, if we repeatedly observe outcomes from the distribution of $X$, the variance describes how widely those outcomes tend to vary. For instance:
-
-* A distribution tightly clustered around its mean has small variance.
-* A distribution with frequent extreme values has large variance.
-
-Because variance is expressed in squared units, it is often useful to also consider the standard deviation, defined as $\sqrt{\mathbb{V}(X)}$, which returns the measure of spread to the original units of the variable.
-
----
-
-### Variance as a Distribution Parameter vs Derived Quantity
-
-In some probability models, the variance appears explicitly as a parameter of the distribution. In others, it is determined indirectly from the model’s parameters.
-
-Examples where the variance is a parameter:
-
-* Normal distribution: variance = $\sigma^2$
-* Poisson distribution: variance = $\lambda$
-
-Examples where the variance is derived from parameters:
-
-* Uniform distribution on $[a,b]$: variance is $(b-a)^2/12$
-* Binomial distribution with parameters $n$ and $p$: variance is $np(1-p)$
-* Transformed variables such as $Y = X^2$ where $X\sim N(0,1)$
-
-This distinction is important conceptually. Sometimes the variance is directly specified in the model; other times it must be computed from the structure of the random variable.
-
----
-
-### Simulation-Based Understanding of Variance
-
-Simulation allows us to approximate variance numerically and verify theoretical identities. The following code generates data from a normal distribution and compares different ways of computing variance.
-
-```{r variance-computation}
-set.seed(1)
-var <- 4
-x   <- rnorm(10000, mean = 0, sd = sqrt(var))
-# Compute the Mean
-meaX <- mean(x)
-# Compute the Mean of the Square
-meaX2 <- mean(x^2)
-# Variance directly
-dirVar <- var(x)
-# Variance alternative representation
-altVar <- meaX2 - meaX^2
-# Prints results
-print(paste0("Direct approximate variance: ", dirVar))
-print(paste0("Alternative approximate variance: ", altVar))
-```
-
-The direct computation using `var(x)` should closely match the alternative computation $E[X^2] - (E[X])^2$. Small discrepancies arise only from simulation noise.
-
-This illustrates that variance is fundamentally an expectation-based quantity that can be approximated through repeated sampling.
-
----
-
-### Properties of Variance
-
-Variance has several algebraic properties that make it useful for analyzing transformed variables and combinations of random variables.
-
----
-
-#### Adding a Constant
-
-If we define a new random variable $Y = X + c$, where $c$ is a constant, then
-
-$$
-\mathbb{V}(Y) = \mathbb{V}(X).
-$$
-
-Adding a constant shifts the distribution without changing its spread. The distance between observations remains the same, so the variance is unchanged.
-
-```{r varaince-adding-a-constant}
-c <- 5
-x <- rnorm(10000)
-y <- x + c
-print(paste0("Approximate varaince X: ", var(x)))
-print(paste0("Approximate varaince Y: ", var(y)))
-# Visualization
-curve(dnorm(x, mean = 0, sd = 1),
-      from = -5,
-      to   = 5 + c,
-      lwd  = 2,
-      col  = rgb(1,0,0),
-      ylab = "pdf")
-par(new=TRUE)
-curve(dnorm(x, mean = 0 + c, sd = 1),
-      from = -5,
-      to   = 5 + c,
-      lwd  = 2,
-      col  = rgb(0,0,1),
-      ylab = "")
-```
-
-The two curves have identical shapes but different centers, illustrating that variance measures spread rather than location.
-
----
-
-#### Multiplying by a Scalar
-
-If $Y = aX$ for some constant $a$, then
-
-$$
-\mathbb{V}(Y) = a^2 \mathbb{V}(X).
-$$
-
-Multiplying by a constant rescales the spread of the distribution. If $|a|>1$, the distribution becomes more spread out; if $|a|<1$, it becomes more concentrated.
-
-```{r varaince-multiplying-by-a-constant}
-a    <- 2
-varX <- 1
-x    <- rnorm(10000, mean = 0, sd = sqrt(varX))
-y    <- a * x
-varY <- a^2 * varX
-print(paste0("Exact varaince X: ", varX))
-print(paste0("Approximate varaince X: ", var(x)))
-print(paste0("Exact varaince Y: ", varY))
-print(paste0("Approximate varaince Y: ", var(y)))
-# Visualization
-xmin <- -3 * max(a, 1) ^ 2
-xmax <- 3 * max(a, 1) ^ 2 
-yval <- dnorm(x = seq(xmin, xmax, length = 101), mean = 0, sd = sqrt(varX))
-ymin <- min(yval)
-ymax <- max(yval)
-curve(dnorm(x, mean = 0, sd = sqrt(varX)),
-      from = xmin,
-      to   = xmax,
-      ylim = c(ymin, ymax),
-      lwd  = 2,
-      col  = rgb(1,0,0),
-      ylab = "pdf")
-par(new=TRUE)
-curve(dnorm(x, mean = 0, sd = a * sqrt(varX)),
-      from = xmin,
-      to   = xmax,
-      ylim = c(ymin, ymax),
-      lwd  = 2,
-      col  = rgb(0,0,1),
-      ylab = "")
-```
-
-The blue curve is wider, reflecting the increased variance after scaling by $a=2$.
-
----
-
-#### Adding Two Random Variables
-
-When combining two random variables, variance depends not only on their individual variances but also on how they move together.
-
-For random variables $X$ and $Y$,
-
-$$
-\mathbb{V}(X+Y) = \mathbb{V}(X) + \mathbb{V}(Y) + 2,\text{Cov}(X,Y).
-$$
-
-If $X$ and $Y$ are independent, then $\text{Cov}(X,Y)=0$, and the formula simplifies to
-
-$$
-\mathbb{V}(X+Y) = \mathbb{V}(X) + \mathbb{V}(Y).
-$$
-
-This result is central in probability and statistics. It explains why sums of independent random variables tend to have larger variance and underlies many results involving sampling distributions and the Central Limit Theorem.
-
-```{r variance-sum-independent}
-set.seed(1)
-x <- rnorm(10000, mean = 0, sd = 1)
-y <- rnorm(10000, mean = 0, sd = 2)
-z <- x + y
-print(paste0("Approx var(X): ", var(x)))
-print(paste0("Approx var(Y): ", var(y)))
-print(paste0("Approx var(X)+var(Y): ", var(x)+var(y)))
-print(paste0("Approx var(X+Y): ", var(z)))
-```
-
-Because the variables are generated independently, the variance of the sum is approximately the sum of the variances.
-
-If the variables were positively correlated, the variance of the sum would be larger. If negatively correlated, it would be smaller.
-
-```{r variance-sum-dependent}
-set.seed(1)
-x <- rnorm(10000, mean = 0, sd = 1)
-y <- x + rnorm(10000, mean = 0, sd = 1)
-z <- x + y
-print(paste0("Approx var(X): ", var(x)))
-print(paste0("Approx var(Y): ", var(y)))
-print(paste0("Approx var(X)+var(Y): ", var(x)+var(y)+2*cov(x,y)))
-print(paste0("Approx var(X+Y): ", var(z)))
-```
-
----
-
-### Summary
-
-Variance measures how much a random variable fluctuates around its mean. It can be computed as $E[(X-E[X])^2]$ or as $E[X^2] - (E[X])^2$. Some distributions include variance as a parameter, while in others it must be derived.
-
-Key properties include:
-
-* Adding a constant does not change variance.
-* Multiplying by a constant scales variance by the square of that constant.
-* The variance of a sum depends on both individual variances and covariance.
-
-Understanding these properties is essential for analyzing transformations of random variables and for studying sampling distributions, which rely heavily on how means and variances behave under repeated sampling.
-
----
-
-## Conditional Expectation
-
-Conditional expectation formalizes the idea of the “average value of $X$ once we know $Y$.”
-
-It is one of the central objects in probability and statistics because it connects information, prediction, and uncertainty.
-
----
-
-### Discrete Case
-
-If $X$ and $Y$ are discrete random variables, the conditional expectation of $X$ given $Y=y$ is
-
-$$
-E[X \mid Y=y] = \sum_x x  P(X=x \mid Y=y).
-$$
-
-It is simply the mean of the conditional distribution of $X$ given that $Y=y$.
-
-For a random variable $Y$, the conditional expectation $E[X \mid Y]$ is itself a random variable, because it depends on the random value of $Y$.
-
----
-
-### Continuous Case
-
-If $X$ and $Y$ are continuous with conditional density $f_{X \mid Y}(x \mid y)$, then
-
-$$
-E[X \mid Y=y] = \int x  f_{X \mid Y}(x \mid y) dx.
-$$
-
-Again, this is just the mean of the conditional distribution.
 
 ---
 
 ### Interpretation
 
-There are two complementary ways to understand $E[X \mid Y]$:
-
-1. **As a conditional mean**
-   It is the expected value of $X$ after restricting attention to the subpopulation where $Y=y$.
-
-2. **As the best predictor of $X$ given $Y$ (in mean squared error)**
-   Among all functions $g(Y)$, the function that minimizes
-
-   $$
-   E\big[(X - g(Y))^2\big]
-   $$
-
-   is
-
-   $$
-   g(Y) = E[X \mid Y].
-   $$
-
-This makes conditional expectation fundamental in regression, prediction theory, and statistical learning.
+Independence means that knowing one event occurs does not change the probability of the other.
 
 ---
 
-### Simple Example
+## Random Variables
 
-Suppose
+### Definition
 
-* $P(Y=0)=0.6$,
-* $P(Y=1)=0.4$,
-
-and
-
-* $X \mid Y=0 \sim N(5,1)$,
-* $X \mid Y=1 \sim N(10,1)$.
-
-Then
-
-$$
-E[X \mid Y=0] = 5, \quad E[X \mid Y=1] = 10.
-$$
-
-So
-
-$$
-E[X \mid Y] =
-\begin{cases}
-5  & \text{if } Y=0, \\
-10 & \text{if } Y=1.
-\end{cases}
-$$
-
-Notice that this is a random variable that takes two possible values depending on $Y$.
-
----
-
-### Simulation Illustration
-
-```{r conditional-expectation}
-set.seed(123)
-
-n <- 100000
-
-Y <- rbinom(n, 1, 0.4)
-
-X <- ifelse(Y == 0,
-            rnorm(n, mean = 5, sd = 1),
-            rnorm(n, mean = 10, sd = 1))
-
-# Empirical conditional expectations
-mean(X[Y == 0])
-mean(X[Y == 1])
+```{definition, random-variable, name="Random Variable"}
+A random variable is a function that assigns a numerical value to each outcome in the sample space.
 ```
 
-You will observe that:
+---
 
-* The empirical mean when $Y=0$ is close to 5.
-* The empirical mean when $Y=1$ is close to 10.
+### Discrete Random Variables
 
-These are empirical estimates of
+A discrete random variable takes countable values.
+
+---
+
+### Continuous Random Variables
+
+A continuous random variable takes values in an interval.
+
+---
+
+## Distributions of Random Variables
+
+### Distribution Induced by a Random Variable
+
+A random variable induces a distribution by assigning probabilities to its possible values.
+
+---
+
+### Probability Mass Function
+
+For discrete variables:
 
 $$
-E[X \mid Y=0] \quad \text{and} \quad E[X \mid Y=1].
+P(Y = y)
 $$
 
 ---
 
-### Key Properties
+### Probability Density Function
 
-1. **Linearity**
+For continuous variables:
 
-   $$
-   E[aX + bZ \mid Y] = aE[X \mid Y] + bE[Z \mid Y].
-   $$
-
-2. **Taking out what is known**
-
-   If $g(Y)$ is a function of $Y$, then
-
-   $$
-   E[g(Y)X \mid Y] = g(Y)E[X \mid Y].
-   $$
-
-3. **Law of Total Expectation**
-
-   $$
-   E[X] = E[E[X \mid Y]].
-   $$
+$$
+f(y)
+$$
 
 ---
 
-### Conceptual Importance
+### Cumulative Distribution Function
 
-Conditional expectation is the mathematical foundation of:
+$$
+F(y) = P(Y \leq y)
+$$
 
-* Regression functions
-* Bayesian updating
-* Hierarchical models
-* Martingales
-* Optimal prediction
+---
 
-It formalizes the idea that once we incorporate available information ($Y$), our best description of $X$ is its conditional mean.
+## Expected Value and Variance
 
+### Expected Value
+
+```{definition, expected-value, name="Expected Value"}
+The expected value is the average value of a random variable over many repetitions.
+```
+
+---
+
+### Variance
+
+```{definition, variance, name="Variance"}
+Variance measures the variability of a random variable around its mean.
+```
+
+---
+
+### Properties of Expectation
+
+* Linearity:
+  $$
+  E(aY + b) = aE(Y) + b
+  $$
+
+---
+
+### Properties of Variance
+
+* Scaling:
+  $$
+  \mathbb{V}(aY + b) = a^2 \mathbb{V}(Y)
+  $$
+
+---
 
 ### Law of Total Expectation
 
-The **Law of Total Expectation** (also called the **Tower Property**) provides a systematic way to compute an expected value by conditioning on another random variable.
-
----
-
-#### Statement (Discrete Case)
-
-Let $X$ and $Y$ be random variables. Then
+```{definition, law-total-expectation, name="Law of Total Expectation"}
+The expected value of a random variable can be computed by conditioning on another variable.
+```
 
 $$
-E[X] = E\big[E[X \mid Y]\big].
-$$
-
-If $Y$ is discrete, this can be written explicitly as
-
-$$
-E[X] = \sum_y E[X \mid Y=y]  P(Y=y).
-$$
-
-This formula says:
-
-1. Compute the conditional expectation of $X$ given each value of $Y$.
-2. Average those conditional expectations using the probabilities of $Y$.
-
----
-
-#### Continuous Version
-
-If $Y$ has density $f_Y(y)$, then
-
-$$
-E[X] = \int E[X \mid Y=y]  f_Y(y) dy.
-$$
-
-Same structure: compute conditional expectations first, then average over the distribution of $Y$.
-
----
-
-#### Intuition
-
-Think of $Y$ as defining subpopulations.
-
-* Within each subgroup ($Y=y$), $X$ has its own mean.
-* The overall mean of $X$ is a weighted average of those subgroup means.
-* The weights are determined by the distribution of $Y$.
-
-In words:
-
-> The expectation of $X$ equals the expectation of its conditional expectation.
-
----
-
-#### Analytical Example
-
-Suppose
-
-* $P(Y=0) = 0.6$
-* $P(Y=1) = 0.4$
-
-And
-
-* $X \mid Y=0 \sim N(5,1)$
-* $X \mid Y=1 \sim N(10,1)$
-
-Then
-
-$$
-E[X \mid Y=0] = 5, \quad E[X \mid Y=1] = 10.
-$$
-
-By the Law of Total Expectation,
-
-$$
-E[X] = 5(0.6) + 10(0.4) = 7.
+E(Y) = E[E(Y \mid X)]
 $$
 
 ---
 
-### Simulation Example
+### Linear Combinations
 
-We now verify this result with simulation.
+#### Expected Value of Linear Combinations
 
-```{r law-of-total-expectation}
-set.seed(123)
+$$
+E\left(\sum a_i Y_i\right) = \sum a_i E(Y_i)
+$$
 
-n <- 100000
+---
 
-# Generate Y
-Y <- rbinom(n, 1, 0.4)
+#### Variance of Linear Combinations (Independent Variables)
 
-# Generate X conditional on Y
-X <- ifelse(Y == 0,
-            rnorm(n, mean = 5, sd = 1),
-            rnorm(n, mean = 10, sd = 1))
+$$
+\mathbb{V}\left(\sum a_i Y_i\right) = \sum a_i^2 \mathbb{V}(Y_i)
+$$
 
-# Empirical mean of X
-mean(X)
+---
 
-# Conditional means
-mean(X[Y == 0])
-mean(X[Y == 1])
+#### Variance of Linear Combinations (Dependent Variables)
 
-# Weighted average of conditional means
-mean(X[Y == 0]) * mean(Y == 0) +
-  mean(X[Y == 1]) * mean(Y == 1)
+$$
+\mathbb{V}(Y_1 + Y_2) = \mathbb{V}(Y_1) + \mathbb{V}(Y_2) + 2\text{Cov}(Y_1, Y_2)
+$$
+
+---
+
+## Important Probability Distributions
+
+### Discrete Distributions
+
+#### Binomial Distribution
+
+```{r binomial-chunk}
+# KEEP your original binomial code chunk here
 ```
 
 ---
 
-#### What This Shows
+#### Poisson Distribution
 
-1. `mean(X)` will be very close to 7.
-2. The weighted average of the empirical conditional means will also be very close to 7.
-3. The two quantities will be nearly identical (up to simulation error).
-
-This simulation illustrates the identity:
-
-$$
-E[X] = E[E[X \mid Y]].
-$$
-
-Even though $X$ comes from two different normal distributions depending on $Y$, the overall mean is simply the probability-weighted average of the subgroup means.
+```{r poisson-chunk}
+# KEEP your original poisson code chunk here
+```
 
 ---
 
-### Key Insight
+### Continuous Distributions
 
-The Law of Total Expectation allows us to:
+#### Uniform Distribution
 
-* Decompose complex expectations
-* Analyze mixture distributions
-* Understand hierarchical and Bayesian models
-* Connect conditional and marginal behavior
+```{r uniform-chunk}
+# KEEP your original uniform code chunk here
+```
 
-It is one of the structural identities that underlies nearly all modern probability and statistical modeling.
+---
 
+#### Normal Distribution
 
+```{r normal-chunk}
+# KEEP your original normal code chunk here
+```
 
+---
 
+#### Chi-Squared Distribution
 
+```{r chisq-chunk}
+# KEEP your original chi-squared code chunk here
+```
 
+---
 
+#### t Distribution
 
+```{r t-chunk}
+# KEEP your original t distribution code chunk here
+```
 
+---
 
+#### F Distribution
 
+```{r f-chunk}
+# KEEP your original F distribution code chunk here
+```
 
+---
 
+## Summary
 
-
+* Probability models a theoretical distribution
+* Data are realizations from that distribution
+* Random variables translate outcomes into numerical form
+* Distributions describe how values behave
+* Expectation and variance summarize key features
+* These ideas form the foundation for statistical inference
