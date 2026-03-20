@@ -4,11 +4,20 @@
 
 ### Observed Data vs Underlying Process
 
-In the previous section, we described data using numerical and graphical summaries.
+In the previous section, we focused on describing data using tables, graphs, and numerical summaries.
 
-However, the data we observe are only a **subset of all possible outcomes** of a process.
+However, an important limitation arises:
 
-In most applications, there is an underlying mechanism generating the data, and what we observe is only one realization of that process.
+- the data we observe represent only a **finite collection of observations**
+- these observations come from a **process that could generate many more outcomes**
+
+For example, in the simulated school data:
+
+- we observe a set of students  
+- but we could have observed a different set of students  
+- the values would change  
+
+This suggests that the data are **one realization of a broader process**.
 
 ---
 
@@ -18,30 +27,68 @@ In most applications, there is an underlying mechanism generating the data, and 
 A theoretical distribution is a mathematical description of all possible outcomes of a process and their associated likelihoods.
 ```
 
-* We do not observe the full distribution
-* We only observe a sample from it
-* Our goal is to model this underlying structure
+A theoretical distribution:
+
+* describes all possible values a variable can take
+* assigns a likelihood to each value
+* is typically **not fully observable**
+
+We only observe:
+
+* a sample from this distribution
+
+Our goal in statistics is to:
+
+* understand this underlying distribution
+* use it to describe and predict outcomes
 
 ---
 
 ### Example: Repeated Sampling Interpretation
 
-If we repeatedly collected data under the same conditions:
+To better understand this idea, imagine repeating a study many times under the same conditions.
 
-* we would obtain different samples
-* each sample would vary
-* all samples come from the same underlying distribution
+Each time:
 
-The theoretical distribution represents this full set of possible outcomes.
+* we collect a new sample
+* the observed values change
+* patterns vary
+
+However:
+
+* all samples are generated from the same underlying distribution
+
+This distribution represents:
+
+* the long-run behavior of the process
+
+---
+
+```{r repeated-sampling-placeholder}
+# KEEP your existing simulation or sampling code here
+# Example: repeatedly sample from your school dataset or a model
+```
 
 ---
 
 ### Deterministic vs Random Phenomena
 
-* Deterministic phenomena: outcomes are fully predictable
-* Random phenomena: outcomes are uncertain
+It is useful to distinguish between two types of processes:
 
-Probability is used to model **random phenomena**.
+* Deterministic processes: outcomes are fully predictable
+* Random processes: outcomes are uncertain
+
+```{definition, random-phenomenon, name="Random Phenomenon"}
+A random phenomenon is a process whose outcome cannot be predicted with certainty.
+```
+
+Most real-world processes in data analysis are random:
+
+* student performance
+* attendance
+* test scores
+
+Probability provides a framework to model this uncertainty.
 
 ---
 
@@ -49,34 +96,56 @@ Probability is used to model **random phenomena**.
 
 ### Why We Need a Model
 
-Real-world processes are:
+In real-world settings:
 
-* variable
-* uncertain
-* partially observed
+* data are variable
+* outcomes are uncertain
+* we cannot observe all possibilities
 
-Probability provides a framework to describe this uncertainty.
+Without a model:
+
+* we cannot generalize beyond the observed data
+
+Probability provides:
+
+* a structured way to describe uncertainty
+* a way to reason about variability
 
 ---
 
 ### Probability as a Distribution
 
-Probability assigns a value to each possible outcome, describing how likely it is.
+Probability assigns values to outcomes:
 
-This allows us to:
+* values between 0 and 1
+* representing how likely each outcome is
 
-* model variability
-* describe uncertainty
-* make predictions
+These values define a **distribution**.
+
+This distribution allows us to:
+
+* understand patterns
+* quantify uncertainty
+* compare outcomes
 
 ---
 
 ### Connection to Data
 
+It is essential to distinguish between:
+
+* data: what we observe
+* probability: the model for all possible outcomes
+
+This relationship can be summarized as:
+
 * Data = one realization
 * Probability = full distribution
 
-This connection is fundamental for statistical inference.
+This idea will be critical when we move to:
+
+* sampling distributions
+* statistical inference
 
 ---
 
@@ -85,6 +154,12 @@ This connection is fundamental for statistical inference.
 ```{definition, random-experiment, name="Random Experiment"}
 A random experiment is a process that produces outcomes that cannot be predicted with certainty.
 ```
+
+Examples:
+
+* selecting a student at random
+* recording a test score
+* counting the number of absences
 
 ---
 
@@ -96,6 +171,12 @@ A random experiment is a process that produces outcomes that cannot be predicted
 The sample space is the set of all possible outcomes of a random experiment.
 ```
 
+Examples:
+
+* coin flip: ${H, T}$
+* test score: all possible scores
+* number of absences: ${0, 1, 2, \dots}$
+
 ---
 
 ### Events
@@ -104,13 +185,27 @@ The sample space is the set of all possible outcomes of a random experiment.
 An event is a subset of the sample space.
 ```
 
+Examples:
+
+* passing an exam
+* scoring above 80
+* having more than 5 absences
+
 ---
 
 ### Event Operations
 
-* Union: $A \cup B$
-* Intersection: $A \cap B$
-* Complement: $A^c$
+We can combine events using:
+
+* Union: $A \cup B$ (A or B)
+* Intersection: $A \cap B$ (A and B)
+* Complement: $A^c$ (not A)
+
+---
+
+```{r event-operations-placeholder}
+# KEEP your existing code illustrating events and set operations
+```
 
 ---
 
@@ -126,8 +221,15 @@ Probability assigns a number between 0 and 1 to each event, representing its lik
 
 ### Basic Properties
 
+For any event $A$:
+
 * $0 \leq P(A) \leq 1$
 * $P(S) = 1$
+
+These properties ensure:
+
+* probabilities are interpretable
+* the total probability is 1
 
 ---
 
@@ -159,6 +261,12 @@ $$
 
 ---
 
+```{r probability-rules-placeholder}
+# KEEP your existing examples illustrating probability rules
+```
+
+---
+
 ## Conditional Probability
 
 ### Definition
@@ -175,8 +283,14 @@ $$
 ### Multiplication Rule
 
 $$
-P(A \cap B) = P(A \mid B)P(B)
+P(A \cap B) = P(A \mid B) P(B)
 $$
+
+---
+
+```{r conditional-probability-placeholder}
+# KEEP your existing conditional probability examples
+```
 
 ---
 
@@ -195,7 +309,15 @@ $$
 
 ### Interpretation
 
-Independence means that knowing one event occurs does not change the probability of the other.
+Independence means:
+
+* knowing one event occurs does not change the probability of the other
+
+---
+
+```{r independence-placeholder}
+# KEEP your existing independence examples
+```
 
 ---
 
@@ -211,13 +333,33 @@ A random variable is a function that assigns a numerical value to each outcome i
 
 ### Discrete Random Variables
 
-A discrete random variable takes countable values.
+A discrete random variable takes:
+
+* countable values
+
+Examples:
+
+* number of absences
+* number of correct answers
 
 ---
 
 ### Continuous Random Variables
 
-A continuous random variable takes values in an interval.
+A continuous random variable takes:
+
+* values in an interval
+
+Examples:
+
+* time spent studying
+* exam scores (treated as continuous)
+
+---
+
+```{r random-variable-placeholder}
+# KEEP your existing examples defining random variables
+```
 
 ---
 
@@ -225,7 +367,7 @@ A continuous random variable takes values in an interval.
 
 ### Distribution Induced by a Random Variable
 
-A random variable induces a distribution by assigning probabilities to its possible values.
+A random variable defines a distribution by assigning probabilities to its values.
 
 ---
 
@@ -257,12 +399,18 @@ $$
 
 ---
 
+```{r distribution-placeholder}
+# KEEP your existing distribution examples
+```
+
+---
+
 ## Expected Value and Variance
 
 ### Expected Value
 
 ```{definition, expected-value, name="Expected Value"}
-The expected value is the average value of a random variable over many repetitions.
+The expected value is the long-run average value of a random variable.
 ```
 
 ---
@@ -286,10 +434,9 @@ Variance measures the variability of a random variable around its mean.
 
 ### Properties of Variance
 
-* Scaling:
-  $$
-  \mathbb{V}(aY + b) = a^2 \mathbb{V}(Y)
-  $$
+$$
+\mathbb{V}(aY + b) = a^2 \mathbb{V}(Y)
+$$
 
 ---
 
@@ -331,6 +478,12 @@ $$
 
 ---
 
+```{r expectation-variance-placeholder}
+# KEEP your existing expectation/variance examples
+```
+
+---
+
 ## Important Probability Distributions
 
 ### Discrete Distributions
@@ -338,7 +491,7 @@ $$
 #### Binomial Distribution
 
 ```{r binomial-chunk}
-# KEEP your original binomial code chunk here
+# KEEP your original binomial code
 ```
 
 ---
@@ -346,7 +499,7 @@ $$
 #### Poisson Distribution
 
 ```{r poisson-chunk}
-# KEEP your original poisson code chunk here
+# KEEP your original poisson code
 ```
 
 ---
@@ -356,7 +509,7 @@ $$
 #### Uniform Distribution
 
 ```{r uniform-chunk}
-# KEEP your original uniform code chunk here
+# KEEP your original uniform code
 ```
 
 ---
@@ -364,7 +517,7 @@ $$
 #### Normal Distribution
 
 ```{r normal-chunk}
-# KEEP your original normal code chunk here
+# KEEP your original normal code
 ```
 
 ---
@@ -372,7 +525,7 @@ $$
 #### Chi-Squared Distribution
 
 ```{r chisq-chunk}
-# KEEP your original chi-squared code chunk here
+# KEEP your original chi-squared code
 ```
 
 ---
@@ -380,7 +533,7 @@ $$
 #### t Distribution
 
 ```{r t-chunk}
-# KEEP your original t distribution code chunk here
+# KEEP your original t code
 ```
 
 ---
@@ -388,7 +541,7 @@ $$
 #### F Distribution
 
 ```{r f-chunk}
-# KEEP your original F distribution code chunk here
+# KEEP your original F code
 ```
 
 ---
@@ -397,7 +550,7 @@ $$
 
 * Probability models a theoretical distribution
 * Data are realizations from that distribution
-* Random variables translate outcomes into numerical form
-* Distributions describe how values behave
-* Expectation and variance summarize key features
+* Random variables translate outcomes into numerical values
+* Distributions describe variability
+* Expectation and variance summarize key properties
 * These ideas form the foundation for statistical inference

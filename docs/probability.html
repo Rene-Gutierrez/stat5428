@@ -509,9 +509,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.1</span> From Data Description to Probability<a href="probability.html#from-data-description-to-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="observed-data-vs-underlying-process" class="section level3 hasAnchor" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Observed Data vs Underlying Process<a href="probability.html#observed-data-vs-underlying-process" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In the previous section, we described data using numerical and graphical summaries.</p>
-<p>However, the data we observe are only a <strong>subset of all possible outcomes</strong> of a process.</p>
-<p>In most applications, there is an underlying mechanism generating the data, and what we observe is only one realization of that process.</p>
+<p>In the previous section, we focused on describing data using tables, graphs, and numerical summaries.</p>
+<p>However, an important limitation arises:</p>
+<ul>
+<li>the data we observe represent only a <strong>finite collection of observations</strong></li>
+<li>these observations come from a <strong>process that could generate many more outcomes</strong></li>
+</ul>
+<p>For example, in the simulated school data:</p>
+<ul>
+<li>we observe a set of students<br />
+</li>
+<li>but we could have observed a different set of students<br />
+</li>
+<li>the values would change</li>
+</ul>
+<p>This suggests that the data are <strong>one realization of a broader process</strong>.</p>
 <hr />
 </div>
 <div id="the-idea-of-a-theoretical-distribution" class="section level3 hasAnchor" number="5.1.2">
@@ -519,31 +531,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="definition">
 <p><span id="def:theoretical-distribution" class="definition"><strong>Definition 5.1  (Theoretical Distribution) </strong></span>A theoretical distribution is a mathematical description of all possible outcomes of a process and their associated likelihoods.</p>
 </div>
+<p>A theoretical distribution:</p>
 <ul>
-<li>We do not observe the full distribution</li>
-<li>We only observe a sample from it</li>
-<li>Our goal is to model this underlying structure</li>
+<li>describes all possible values a variable can take</li>
+<li>assigns a likelihood to each value</li>
+<li>is typically <strong>not fully observable</strong></li>
+</ul>
+<p>We only observe:</p>
+<ul>
+<li>a sample from this distribution</li>
+</ul>
+<p>Our goal in statistics is to:</p>
+<ul>
+<li>understand this underlying distribution</li>
+<li>use it to describe and predict outcomes</li>
 </ul>
 <hr />
 </div>
 <div id="example-repeated-sampling-interpretation" class="section level3 hasAnchor" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> Example: Repeated Sampling Interpretation<a href="probability.html#example-repeated-sampling-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>If we repeatedly collected data under the same conditions:</p>
+<p>To better understand this idea, imagine repeating a study many times under the same conditions.</p>
+<p>Each time:</p>
 <ul>
-<li>we would obtain different samples</li>
-<li>each sample would vary</li>
-<li>all samples come from the same underlying distribution</li>
+<li>we collect a new sample</li>
+<li>the observed values change</li>
+<li>patterns vary</li>
 </ul>
-<p>The theoretical distribution represents this full set of possible outcomes.</p>
+<p>However:</p>
+<ul>
+<li>all samples are generated from the same underlying distribution</li>
+</ul>
+<p>This distribution represents:</p>
+<ul>
+<li>the long-run behavior of the process</li>
+</ul>
+<hr />
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="probability.html#cb166-1" tabindex="-1"></a><span class="co"># KEEP your existing simulation or sampling code here</span></span>
+<span id="cb166-2"><a href="probability.html#cb166-2" tabindex="-1"></a><span class="co"># Example: repeatedly sample from your school dataset or a model</span></span></code></pre></div>
 <hr />
 </div>
 <div id="deterministic-vs-random-phenomena" class="section level3 hasAnchor" number="5.1.4">
 <h3><span class="header-section-number">5.1.4</span> Deterministic vs Random Phenomena<a href="probability.html#deterministic-vs-random-phenomena" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is useful to distinguish between two types of processes:</p>
 <ul>
-<li>Deterministic phenomena: outcomes are fully predictable</li>
-<li>Random phenomena: outcomes are uncertain</li>
+<li>Deterministic processes: outcomes are fully predictable</li>
+<li>Random processes: outcomes are uncertain</li>
 </ul>
-<p>Probability is used to model <strong>random phenomena</strong>.</p>
+<div class="definition">
+<p><span id="def:random-phenomenon" class="definition"><strong>Definition 5.2  (Random Phenomenon) </strong></span>A random phenomenon is a process whose outcome cannot be predicted with certainty.</p>
+</div>
+<p>Most real-world processes in data analysis are random:</p>
+<ul>
+<li>student performance</li>
+<li>attendance</li>
+<li>test scores</li>
+</ul>
+<p>Probability provides a framework to model this uncertainty.</p>
 <hr />
 </div>
 </div>
@@ -551,41 +594,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.2</span> Probability as a Model for Uncertain and Complex Phenomena<a href="probability.html#probability-as-a-model-for-uncertain-and-complex-phenomena" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="why-we-need-a-model" class="section level3 hasAnchor" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Why We Need a Model<a href="probability.html#why-we-need-a-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Real-world processes are:</p>
+<p>In real-world settings:</p>
 <ul>
-<li>variable</li>
-<li>uncertain</li>
-<li>partially observed</li>
+<li>data are variable</li>
+<li>outcomes are uncertain</li>
+<li>we cannot observe all possibilities</li>
 </ul>
-<p>Probability provides a framework to describe this uncertainty.</p>
+<p>Without a model:</p>
+<ul>
+<li>we cannot generalize beyond the observed data</li>
+</ul>
+<p>Probability provides:</p>
+<ul>
+<li>a structured way to describe uncertainty</li>
+<li>a way to reason about variability</li>
+</ul>
 <hr />
 </div>
 <div id="probability-as-a-distribution" class="section level3 hasAnchor" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Probability as a Distribution<a href="probability.html#probability-as-a-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Probability assigns a value to each possible outcome, describing how likely it is.</p>
-<p>This allows us to:</p>
+<p>Probability assigns values to outcomes:</p>
 <ul>
-<li>model variability</li>
-<li>describe uncertainty</li>
-<li>make predictions</li>
+<li>values between 0 and 1</li>
+<li>representing how likely each outcome is</li>
+</ul>
+<p>These values define a <strong>distribution</strong>.</p>
+<p>This distribution allows us to:</p>
+<ul>
+<li>understand patterns</li>
+<li>quantify uncertainty</li>
+<li>compare outcomes</li>
 </ul>
 <hr />
 </div>
 <div id="connection-to-data" class="section level3 hasAnchor" number="5.2.3">
 <h3><span class="header-section-number">5.2.3</span> Connection to Data<a href="probability.html#connection-to-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is essential to distinguish between:</p>
+<ul>
+<li>data: what we observe</li>
+<li>probability: the model for all possible outcomes</li>
+</ul>
+<p>This relationship can be summarized as:</p>
 <ul>
 <li>Data = one realization</li>
 <li>Probability = full distribution</li>
 </ul>
-<p>This connection is fundamental for statistical inference.</p>
+<p>This idea will be critical when we move to:</p>
+<ul>
+<li>sampling distributions</li>
+<li>statistical inference</li>
+</ul>
 <hr />
 </div>
 </div>
 <div id="random-experiments" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Random Experiments<a href="probability.html#random-experiments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="definition">
-<p><span id="def:random-experiment" class="definition"><strong>Definition 5.2  (Random Experiment) </strong></span>A random experiment is a process that produces outcomes that cannot be predicted with certainty.</p>
+<p><span id="def:random-experiment" class="definition"><strong>Definition 5.3  (Random Experiment) </strong></span>A random experiment is a process that produces outcomes that cannot be predicted with certainty.</p>
 </div>
+<p>Examples:</p>
+<ul>
+<li>selecting a student at random</li>
+<li>recording a test score</li>
+<li>counting the number of absences</li>
+</ul>
 <hr />
 </div>
 <div id="sample-space-and-events" class="section level2 hasAnchor" number="5.4">
@@ -593,24 +665,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="sample-space" class="section level3 hasAnchor" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Sample Space<a href="probability.html#sample-space" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
-<p><span id="def:sample-space" class="definition"><strong>Definition 5.3  (Sample Space) </strong></span>The sample space is the set of all possible outcomes of a random experiment.</p>
+<p><span id="def:sample-space" class="definition"><strong>Definition 5.4  (Sample Space) </strong></span>The sample space is the set of all possible outcomes of a random experiment.</p>
 </div>
+<p>Examples:</p>
+<ul>
+<li>coin flip: <span class="math inline">\({H, T}\)</span></li>
+<li>test score: all possible scores</li>
+<li>number of absences: <span class="math inline">\({0, 1, 2, \dots}\)</span></li>
+</ul>
 <hr />
 </div>
 <div id="events" class="section level3 hasAnchor" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> Events<a href="probability.html#events" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
-<p><span id="def:event" class="definition"><strong>Definition 5.4  (Event) </strong></span>An event is a subset of the sample space.</p>
+<p><span id="def:event" class="definition"><strong>Definition 5.5  (Event) </strong></span>An event is a subset of the sample space.</p>
 </div>
+<p>Examples:</p>
+<ul>
+<li>passing an exam</li>
+<li>scoring above 80</li>
+<li>having more than 5 absences</li>
+</ul>
 <hr />
 </div>
 <div id="event-operations" class="section level3 hasAnchor" number="5.4.3">
 <h3><span class="header-section-number">5.4.3</span> Event Operations<a href="probability.html#event-operations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can combine events using:</p>
 <ul>
-<li>Union: <span class="math inline">\(A \cup B\)</span></li>
-<li>Intersection: <span class="math inline">\(A \cap B\)</span></li>
-<li>Complement: <span class="math inline">\(A^c\)</span></li>
+<li>Union: <span class="math inline">\(A \cup B\)</span> (A or B)</li>
+<li>Intersection: <span class="math inline">\(A \cap B\)</span> (A and B)</li>
+<li>Complement: <span class="math inline">\(A^c\)</span> (not A)</li>
 </ul>
+<hr />
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="probability.html#cb167-1" tabindex="-1"></a><span class="co"># KEEP your existing code illustrating events and set operations</span></span></code></pre></div>
 <hr />
 </div>
 </div>
@@ -619,15 +706,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="definition-of-probability" class="section level3 hasAnchor" number="5.5.1">
 <h3><span class="header-section-number">5.5.1</span> Definition of Probability<a href="probability.html#definition-of-probability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
-<p><span id="def:probability" class="definition"><strong>Definition 5.5  (Probability) </strong></span>Probability assigns a number between 0 and 1 to each event, representing its likelihood.</p>
+<p><span id="def:probability" class="definition"><strong>Definition 5.6  (Probability) </strong></span>Probability assigns a number between 0 and 1 to each event, representing its likelihood.</p>
 </div>
 <hr />
 </div>
 <div id="basic-properties" class="section level3 hasAnchor" number="5.5.2">
 <h3><span class="header-section-number">5.5.2</span> Basic Properties<a href="probability.html#basic-properties" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For any event <span class="math inline">\(A\)</span>:</p>
 <ul>
 <li><span class="math inline">\(0 \leq P(A) \leq 1\)</span></li>
 <li><span class="math inline">\(P(S) = 1\)</span></li>
+</ul>
+<p>These properties ensure:</p>
+<ul>
+<li>probabilities are interpretable</li>
+<li>the total probability is 1</li>
 </ul>
 <hr />
 </div>
@@ -655,6 +748,8 @@ P(A \cup B) = P(A) + P(B) - P(A \cap B)
 P(A \cup B) = P(A) + P(B)
 \]</span></p>
 <hr />
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="probability.html#cb168-1" tabindex="-1"></a><span class="co"># KEEP your existing examples illustrating probability rules</span></span></code></pre></div>
+<hr />
 </div>
 </div>
 <div id="conditional-probability" class="section level2 hasAnchor" number="5.7">
@@ -662,7 +757,7 @@ P(A \cup B) = P(A) + P(B)
 <div id="definition" class="section level3 hasAnchor" number="5.7.1">
 <h3><span class="header-section-number">5.7.1</span> Definition<a href="probability.html#definition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
-<p><span id="def:conditional-probability" class="definition"><strong>Definition 5.6  (Conditional Probability) </strong></span>The conditional probability of an event <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span> is
+<p><span id="def:conditional-probability" class="definition"><strong>Definition 5.7  (Conditional Probability) </strong></span>The conditional probability of an event <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span> is
 <span class="math display">\[
 P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
 \]</span></p>
@@ -672,8 +767,10 @@ P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
 <div id="multiplication-rule" class="section level3 hasAnchor" number="5.7.2">
 <h3><span class="header-section-number">5.7.2</span> Multiplication Rule<a href="probability.html#multiplication-rule" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[
-P(A \cap B) = P(A \mid B)P(B)
+P(A \cap B) = P(A \mid B) P(B)
 \]</span></p>
+<hr />
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="probability.html#cb169-1" tabindex="-1"></a><span class="co"># KEEP your existing conditional probability examples</span></span></code></pre></div>
 <hr />
 </div>
 </div>
@@ -682,7 +779,7 @@ P(A \cap B) = P(A \mid B)P(B)
 <div id="definition-1" class="section level3 hasAnchor" number="5.8.1">
 <h3><span class="header-section-number">5.8.1</span> Definition<a href="probability.html#definition-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
-<p><span id="def:independence" class="definition"><strong>Definition 5.7  (Independence) </strong></span>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if
+<p><span id="def:independence" class="definition"><strong>Definition 5.8  (Independence) </strong></span>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if
 <span class="math display">\[
 P(A \cap B) = P(A)P(B).
 \]</span></p>
@@ -691,7 +788,12 @@ P(A \cap B) = P(A)P(B).
 </div>
 <div id="interpretation" class="section level3 hasAnchor" number="5.8.2">
 <h3><span class="header-section-number">5.8.2</span> Interpretation<a href="probability.html#interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Independence means that knowing one event occurs does not change the probability of the other.</p>
+<p>Independence means:</p>
+<ul>
+<li>knowing one event occurs does not change the probability of the other</li>
+</ul>
+<hr />
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="probability.html#cb170-1" tabindex="-1"></a><span class="co"># KEEP your existing independence examples</span></span></code></pre></div>
 <hr />
 </div>
 </div>
@@ -700,18 +802,36 @@ P(A \cap B) = P(A)P(B).
 <div id="definition-2" class="section level3 hasAnchor" number="5.9.1">
 <h3><span class="header-section-number">5.9.1</span> Definition<a href="probability.html#definition-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
-<p><span id="def:random-variable" class="definition"><strong>Definition 5.8  (Random Variable) </strong></span>A random variable is a function that assigns a numerical value to each outcome in the sample space.</p>
+<p><span id="def:random-variable" class="definition"><strong>Definition 5.9  (Random Variable) </strong></span>A random variable is a function that assigns a numerical value to each outcome in the sample space.</p>
 </div>
 <hr />
 </div>
 <div id="discrete-random-variables" class="section level3 hasAnchor" number="5.9.2">
 <h3><span class="header-section-number">5.9.2</span> Discrete Random Variables<a href="probability.html#discrete-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A discrete random variable takes countable values.</p>
+<p>A discrete random variable takes:</p>
+<ul>
+<li>countable values</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li>number of absences</li>
+<li>number of correct answers</li>
+</ul>
 <hr />
 </div>
 <div id="continuous-random-variables" class="section level3 hasAnchor" number="5.9.3">
 <h3><span class="header-section-number">5.9.3</span> Continuous Random Variables<a href="probability.html#continuous-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A continuous random variable takes values in an interval.</p>
+<p>A continuous random variable takes:</p>
+<ul>
+<li>values in an interval</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li>time spent studying</li>
+<li>exam scores (treated as continuous)</li>
+</ul>
+<hr />
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="probability.html#cb171-1" tabindex="-1"></a><span class="co"># KEEP your existing examples defining random variables</span></span></code></pre></div>
 <hr />
 </div>
 </div>
@@ -719,7 +839,7 @@ P(A \cap B) = P(A)P(B).
 <h2><span class="header-section-number">5.10</span> Distributions of Random Variables<a href="probability.html#distributions-of-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="distribution-induced-by-a-random-variable" class="section level3 hasAnchor" number="5.10.1">
 <h3><span class="header-section-number">5.10.1</span> Distribution Induced by a Random Variable<a href="probability.html#distribution-induced-by-a-random-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A random variable induces a distribution by assigning probabilities to its possible values.</p>
+<p>A random variable defines a distribution by assigning probabilities to its values.</p>
 <hr />
 </div>
 <div id="probability-mass-function" class="section level3 hasAnchor" number="5.10.2">
@@ -744,6 +864,8 @@ f(y)
 F(y) = P(Y \leq y)
 \]</span></p>
 <hr />
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="probability.html#cb172-1" tabindex="-1"></a><span class="co"># KEEP your existing distribution examples</span></span></code></pre></div>
+<hr />
 </div>
 </div>
 <div id="expected-value-and-variance" class="section level2 hasAnchor" number="5.11">
@@ -751,14 +873,14 @@ F(y) = P(Y \leq y)
 <div id="expected-value" class="section level3 hasAnchor" number="5.11.1">
 <h3><span class="header-section-number">5.11.1</span> Expected Value<a href="probability.html#expected-value" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
-<p><span id="def:expected-value" class="definition"><strong>Definition 5.9  (Expected Value) </strong></span>The expected value is the average value of a random variable over many repetitions.</p>
+<p><span id="def:expected-value" class="definition"><strong>Definition 5.10  (Expected Value) </strong></span>The expected value is the long-run average value of a random variable.</p>
 </div>
 <hr />
 </div>
 <div id="variance-1" class="section level3 hasAnchor" number="5.11.2">
 <h3><span class="header-section-number">5.11.2</span> Variance<a href="probability.html#variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
-<p><span id="def:variance" class="definition"><strong>Definition 5.10  (Variance) </strong></span>Variance measures the variability of a random variable around its mean.</p>
+<p><span id="def:variance" class="definition"><strong>Definition 5.11  (Variance) </strong></span>Variance measures the variability of a random variable around its mean.</p>
 </div>
 <hr />
 </div>
@@ -774,18 +896,15 @@ E(aY + b) = aE(Y) + b
 </div>
 <div id="properties-of-variance" class="section level3 hasAnchor" number="5.11.4">
 <h3><span class="header-section-number">5.11.4</span> Properties of Variance<a href="probability.html#properties-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>Scaling:
-<span class="math display">\[
+<p><span class="math display">\[
 \mathbb{V}(aY + b) = a^2 \mathbb{V}(Y)
-\]</span></li>
-</ul>
+\]</span></p>
 <hr />
 </div>
 <div id="law-of-total-expectation" class="section level3 hasAnchor" number="5.11.5">
 <h3><span class="header-section-number">5.11.5</span> Law of Total Expectation<a href="probability.html#law-of-total-expectation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
-<p><span id="def:law-total-expectation" class="definition"><strong>Definition 5.11  (Law of Total Expectation) </strong></span>The expected value of a random variable can be computed by conditioning on another variable.</p>
+<p><span id="def:law-total-expectation" class="definition"><strong>Definition 5.12  (Law of Total Expectation) </strong></span>The expected value of a random variable can be computed by conditioning on another variable.</p>
 </div>
 <p><span class="math display">\[
 E(Y) = E[E(Y \mid X)]
@@ -814,6 +933,8 @@ E\left(\sum a_i Y_i\right) = \sum a_i E(Y_i)
 \mathbb{V}(Y_1 + Y_2) = \mathbb{V}(Y_1) + \mathbb{V}(Y_2) + 2\text{Cov}(Y_1, Y_2)
 \]</span></p>
 <hr />
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="probability.html#cb173-1" tabindex="-1"></a><span class="co"># KEEP your existing expectation/variance examples</span></span></code></pre></div>
+<hr />
 </div>
 </div>
 </div>
@@ -823,12 +944,12 @@ E\left(\sum a_i Y_i\right) = \sum a_i E(Y_i)
 <h3><span class="header-section-number">5.12.1</span> Discrete Distributions<a href="probability.html#discrete-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="binomial-distribution" class="section level4 hasAnchor" number="5.12.1.1">
 <h4><span class="header-section-number">5.12.1.1</span> Binomial Distribution<a href="probability.html#binomial-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="probability.html#cb166-1" tabindex="-1"></a><span class="co"># KEEP your original binomial code chunk here</span></span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="probability.html#cb174-1" tabindex="-1"></a><span class="co"># KEEP your original binomial code</span></span></code></pre></div>
 <hr />
 </div>
 <div id="poisson-distribution" class="section level4 hasAnchor" number="5.12.1.2">
 <h4><span class="header-section-number">5.12.1.2</span> Poisson Distribution<a href="probability.html#poisson-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="probability.html#cb167-1" tabindex="-1"></a><span class="co"># KEEP your original poisson code chunk here</span></span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="probability.html#cb175-1" tabindex="-1"></a><span class="co"># KEEP your original poisson code</span></span></code></pre></div>
 <hr />
 </div>
 </div>
@@ -836,27 +957,27 @@ E\left(\sum a_i Y_i\right) = \sum a_i E(Y_i)
 <h3><span class="header-section-number">5.12.2</span> Continuous Distributions<a href="probability.html#continuous-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="uniform-distribution" class="section level4 hasAnchor" number="5.12.2.1">
 <h4><span class="header-section-number">5.12.2.1</span> Uniform Distribution<a href="probability.html#uniform-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="probability.html#cb168-1" tabindex="-1"></a><span class="co"># KEEP your original uniform code chunk here</span></span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="probability.html#cb176-1" tabindex="-1"></a><span class="co"># KEEP your original uniform code</span></span></code></pre></div>
 <hr />
 </div>
 <div id="normal-distribution" class="section level4 hasAnchor" number="5.12.2.2">
 <h4><span class="header-section-number">5.12.2.2</span> Normal Distribution<a href="probability.html#normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="probability.html#cb169-1" tabindex="-1"></a><span class="co"># KEEP your original normal code chunk here</span></span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="probability.html#cb177-1" tabindex="-1"></a><span class="co"># KEEP your original normal code</span></span></code></pre></div>
 <hr />
 </div>
 <div id="chi-squared-distribution" class="section level4 hasAnchor" number="5.12.2.3">
 <h4><span class="header-section-number">5.12.2.3</span> Chi-Squared Distribution<a href="probability.html#chi-squared-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="probability.html#cb170-1" tabindex="-1"></a><span class="co"># KEEP your original chi-squared code chunk here</span></span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="probability.html#cb178-1" tabindex="-1"></a><span class="co"># KEEP your original chi-squared code</span></span></code></pre></div>
 <hr />
 </div>
 <div id="t-distribution" class="section level4 hasAnchor" number="5.12.2.4">
 <h4><span class="header-section-number">5.12.2.4</span> t Distribution<a href="probability.html#t-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="probability.html#cb171-1" tabindex="-1"></a><span class="co"># KEEP your original t distribution code chunk here</span></span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="probability.html#cb179-1" tabindex="-1"></a><span class="co"># KEEP your original t code</span></span></code></pre></div>
 <hr />
 </div>
 <div id="f-distribution" class="section level4 hasAnchor" number="5.12.2.5">
 <h4><span class="header-section-number">5.12.2.5</span> F Distribution<a href="probability.html#f-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="probability.html#cb172-1" tabindex="-1"></a><span class="co"># KEEP your original F distribution code chunk here</span></span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="probability.html#cb180-1" tabindex="-1"></a><span class="co"># KEEP your original F code</span></span></code></pre></div>
 <hr />
 </div>
 </div>
@@ -866,9 +987,9 @@ E\left(\sum a_i Y_i\right) = \sum a_i E(Y_i)
 <ul>
 <li>Probability models a theoretical distribution</li>
 <li>Data are realizations from that distribution</li>
-<li>Random variables translate outcomes into numerical form</li>
-<li>Distributions describe how values behave</li>
-<li>Expectation and variance summarize key features</li>
+<li>Random variables translate outcomes into numerical values</li>
+<li>Distributions describe variability</li>
+<li>Expectation and variance summarize key properties</li>
 <li>These ideas form the foundation for statistical inference</li>
 </ul>
 

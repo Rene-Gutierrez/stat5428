@@ -37,6 +37,7 @@ def:def-five-number-summary
 def:outlier
 def:correlation
 def:theoretical-distribution
+def:random-phenomenon
 def:random-experiment
 def:sample-space
 def:event
