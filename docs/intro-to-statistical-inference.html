@@ -332,7 +332,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.9.1" data-path="probability.html"><a href="probability.html#definition-2"><i class="fa fa-check"></i><b>5.9.1</b> Definition</a></li>
 <li class="chapter" data-level="5.9.2" data-path="probability.html"><a href="probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>5.9.2</b> Discrete Random Variables</a></li>
-<li class="chapter" data-level="5.9.3" data-path="probability.html"><a href="probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>5.9.3</b> Continuous Random Variables</a></li>
+<li class="chapter" data-level="5.9.3" data-path="probability.html"><a href="probability.html#from-discrete-to-continuous"><i class="fa fa-check"></i><b>5.9.3</b> From Discrete to Continuous</a></li>
+<li class="chapter" data-level="5.9.4" data-path="probability.html"><a href="probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>5.9.4</b> Continuous Random Variables</a></li>
 </ul></li>
 <li class="chapter" data-level="5.10" data-path="probability.html"><a href="probability.html#distributions-of-random-variables"><i class="fa fa-check"></i><b>5.10</b> Distributions of Random Variables</a>
 <ul>
@@ -461,7 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6.6" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#one-tailed-blood-alcohol-test-numerical-illustration"><i class="fa fa-check"></i><b>8.6.6</b> One-Tailed Blood Alcohol Test (Numerical Illustration)</a></li>
 <li class="chapter" data-level="8.6.7" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#general-forms-of-rejection-regions"><i class="fa fa-check"></i><b>8.6.7</b> General Forms of Rejection Regions</a></li>
 <li class="chapter" data-level="8.6.8" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#significance-level-and-p-value"><i class="fa fa-check"></i><b>8.6.8</b> Significance Level and p-Value</a></li>
-<li class="chapter" data-level="8.6.9" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#conceptual-summary"><i class="fa fa-check"></i><b>8.6.9</b> Conceptual Summary</a></li>
+<li class="chapter" data-level="8.6.9" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#conceptual-summary-2"><i class="fa fa-check"></i><b>8.6.9</b> Conceptual Summary</a></li>
 <li class="chapter" data-level="8.6.10" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#choosing-the-sample-size-for-testing-the-population-mean"><i class="fa fa-check"></i><b>8.6.10</b> Choosing the Sample Size for Testing the Population Mean</a></li>
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#inference-about-the-mean-unknown-variance"><i class="fa fa-check"></i><b>8.7</b> Inference About the Mean Unknown Variance</a>
@@ -524,25 +525,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Use that sample to learn about the underlying distribution.</li>
 </ol>
 <p>We can understand this transition by simulating a known population and pretending we do not know its parameters.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="intro-to-statistical-inference.html#cb220-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb220-2"><a href="intro-to-statistical-inference.html#cb220-2" tabindex="-1"></a></span>
-<span id="cb220-3"><a href="intro-to-statistical-inference.html#cb220-3" tabindex="-1"></a><span class="co"># Define a population distribution</span></span>
-<span id="cb220-4"><a href="intro-to-statistical-inference.html#cb220-4" tabindex="-1"></a>mu_pop  <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb220-5"><a href="intro-to-statistical-inference.html#cb220-5" tabindex="-1"></a>sd_pop  <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb220-6"><a href="intro-to-statistical-inference.html#cb220-6" tabindex="-1"></a></span>
-<span id="cb220-7"><a href="intro-to-statistical-inference.html#cb220-7" tabindex="-1"></a><span class="co"># Generate a large population</span></span>
-<span id="cb220-8"><a href="intro-to-statistical-inference.html#cb220-8" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100000</span>, <span class="at">mean =</span> mu_pop, <span class="at">sd =</span> sd_pop)</span>
-<span id="cb220-9"><a href="intro-to-statistical-inference.html#cb220-9" tabindex="-1"></a></span>
-<span id="cb220-10"><a href="intro-to-statistical-inference.html#cb220-10" tabindex="-1"></a><span class="fu">mean</span>(population)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="intro-to-statistical-inference.html#cb314-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb314-2"><a href="intro-to-statistical-inference.html#cb314-2" tabindex="-1"></a></span>
+<span id="cb314-3"><a href="intro-to-statistical-inference.html#cb314-3" tabindex="-1"></a><span class="co"># Define a population distribution</span></span>
+<span id="cb314-4"><a href="intro-to-statistical-inference.html#cb314-4" tabindex="-1"></a>mu_pop  <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb314-5"><a href="intro-to-statistical-inference.html#cb314-5" tabindex="-1"></a>sd_pop  <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb314-6"><a href="intro-to-statistical-inference.html#cb314-6" tabindex="-1"></a></span>
+<span id="cb314-7"><a href="intro-to-statistical-inference.html#cb314-7" tabindex="-1"></a><span class="co"># Generate a large population</span></span>
+<span id="cb314-8"><a href="intro-to-statistical-inference.html#cb314-8" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100000</span>, <span class="at">mean =</span> mu_pop, <span class="at">sd =</span> sd_pop)</span>
+<span id="cb314-9"><a href="intro-to-statistical-inference.html#cb314-9" tabindex="-1"></a></span>
+<span id="cb314-10"><a href="intro-to-statistical-inference.html#cb314-10" tabindex="-1"></a><span class="fu">mean</span>(population)</span></code></pre></div>
 <pre><code>## [1] 50.00977</code></pre>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="intro-to-statistical-inference.html#cb222-1" tabindex="-1"></a><span class="fu">sd</span>(population)</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="intro-to-statistical-inference.html#cb316-1" tabindex="-1"></a><span class="fu">sd</span>(population)</span></code></pre></div>
 <pre><code>## [1] 9.997334</code></pre>
 <p>In practice, we do not have access to the full population. We only observe a sample.</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="intro-to-statistical-inference.html#cb224-1" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">sample</span>(population, <span class="at">size =</span> <span class="dv">50</span>)</span>
-<span id="cb224-2"><a href="intro-to-statistical-inference.html#cb224-2" tabindex="-1"></a></span>
-<span id="cb224-3"><a href="intro-to-statistical-inference.html#cb224-3" tabindex="-1"></a><span class="fu">mean</span>(sample_data)</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="intro-to-statistical-inference.html#cb318-1" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">sample</span>(population, <span class="at">size =</span> <span class="dv">50</span>)</span>
+<span id="cb318-2"><a href="intro-to-statistical-inference.html#cb318-2" tabindex="-1"></a></span>
+<span id="cb318-3"><a href="intro-to-statistical-inference.html#cb318-3" tabindex="-1"></a><span class="fu">mean</span>(sample_data)</span></code></pre></div>
 <pre><code>## [1] 50.80728</code></pre>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="intro-to-statistical-inference.html#cb226-1" tabindex="-1"></a><span class="fu">sd</span>(sample_data)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="intro-to-statistical-inference.html#cb320-1" tabindex="-1"></a><span class="fu">sd</span>(sample_data)</span></code></pre></div>
 <pre><code>## [1] 9.218034</code></pre>
 <p>The population mean is fixed. The sample mean varies from sample to sample. That variability is the foundation of statistical inference.</p>
 <hr />
@@ -570,19 +571,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>How variable is x̄ across repeated samples?</li>
 </ul>
 <p>We explore these questions computationally.</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="intro-to-statistical-inference.html#cb228-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb228-2"><a href="intro-to-statistical-inference.html#cb228-2" tabindex="-1"></a></span>
-<span id="cb228-3"><a href="intro-to-statistical-inference.html#cb228-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb228-4"><a href="intro-to-statistical-inference.html#cb228-4" tabindex="-1"></a>num_rep <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
-<span id="cb228-5"><a href="intro-to-statistical-inference.html#cb228-5" tabindex="-1"></a></span>
-<span id="cb228-6"><a href="intro-to-statistical-inference.html#cb228-6" tabindex="-1"></a>sample_means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(num_rep, {</span>
-<span id="cb228-7"><a href="intro-to-statistical-inference.html#cb228-7" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">sample</span>(population, <span class="at">size =</span> n))</span>
-<span id="cb228-8"><a href="intro-to-statistical-inference.html#cb228-8" tabindex="-1"></a>})</span>
-<span id="cb228-9"><a href="intro-to-statistical-inference.html#cb228-9" tabindex="-1"></a></span>
-<span id="cb228-10"><a href="intro-to-statistical-inference.html#cb228-10" tabindex="-1"></a><span class="fu">hist</span>(sample_means, <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb228-11"><a href="intro-to-statistical-inference.html#cb228-11" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Sampling Distribution of the Sample Mean&quot;</span>,</span>
-<span id="cb228-12"><a href="intro-to-statistical-inference.html#cb228-12" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Sample Mean&quot;</span>)</span>
-<span id="cb228-13"><a href="intro-to-statistical-inference.html#cb228-13" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mu_pop, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="intro-to-statistical-inference.html#cb322-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb322-2"><a href="intro-to-statistical-inference.html#cb322-2" tabindex="-1"></a></span>
+<span id="cb322-3"><a href="intro-to-statistical-inference.html#cb322-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb322-4"><a href="intro-to-statistical-inference.html#cb322-4" tabindex="-1"></a>num_rep <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb322-5"><a href="intro-to-statistical-inference.html#cb322-5" tabindex="-1"></a></span>
+<span id="cb322-6"><a href="intro-to-statistical-inference.html#cb322-6" tabindex="-1"></a>sample_means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(num_rep, {</span>
+<span id="cb322-7"><a href="intro-to-statistical-inference.html#cb322-7" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">sample</span>(population, <span class="at">size =</span> n))</span>
+<span id="cb322-8"><a href="intro-to-statistical-inference.html#cb322-8" tabindex="-1"></a>})</span>
+<span id="cb322-9"><a href="intro-to-statistical-inference.html#cb322-9" tabindex="-1"></a></span>
+<span id="cb322-10"><a href="intro-to-statistical-inference.html#cb322-10" tabindex="-1"></a><span class="fu">hist</span>(sample_means, <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb322-11"><a href="intro-to-statistical-inference.html#cb322-11" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Sampling Distribution of the Sample Mean&quot;</span>,</span>
+<span id="cb322-12"><a href="intro-to-statistical-inference.html#cb322-12" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Sample Mean&quot;</span>)</span>
+<span id="cb322-13"><a href="intro-to-statistical-inference.html#cb322-13" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mu_pop, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/int-sta-estimation-example-histogram-1.png" width="672" /></p>
 <p>The histogram shows the sampling distribution of the sample mean. The red line indicates the true population mean.</p>
 <p>This visualization captures a central idea:</p>
@@ -598,13 +599,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The sample proportion estimates the population proportion.</li>
 </ul>
 <p>In our simulation:</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="intro-to-statistical-inference.html#cb229-1" tabindex="-1"></a><span class="fu">mean</span>(sample_data)</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="intro-to-statistical-inference.html#cb323-1" tabindex="-1"></a><span class="fu">mean</span>(sample_data)</span></code></pre></div>
 <pre><code>## [1] 50.80728</code></pre>
 <p>This number is our point estimate of μ.</p>
 <p>A point estimate is simple and intuitive. However, it does not communicate uncertainty. Two different samples produce two different point estimates.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="intro-to-statistical-inference.html#cb231-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sample</span>(population, <span class="dv">50</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="intro-to-statistical-inference.html#cb325-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sample</span>(population, <span class="dv">50</span>))</span></code></pre></div>
 <pre><code>## [1] 51.25051</code></pre>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="intro-to-statistical-inference.html#cb233-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sample</span>(population, <span class="dv">50</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="intro-to-statistical-inference.html#cb327-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sample</span>(population, <span class="dv">50</span>))</span></code></pre></div>
 <pre><code>## [1] 49.7197</code></pre>
 <p>Both estimates target the same μ, but they differ because of sampling variability.</p>
 <hr />
@@ -619,37 +620,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Its randomness comes from the randomness of the sample.</li>
 </ul>
 <p>We illustrate this computationally.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="intro-to-statistical-inference.html#cb235-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb235-2"><a href="intro-to-statistical-inference.html#cb235-2" tabindex="-1"></a></span>
-<span id="cb235-3"><a href="intro-to-statistical-inference.html#cb235-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb235-4"><a href="intro-to-statistical-inference.html#cb235-4" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb235-5"><a href="intro-to-statistical-inference.html#cb235-5" tabindex="-1"></a></span>
-<span id="cb235-6"><a href="intro-to-statistical-inference.html#cb235-6" tabindex="-1"></a>ci_bounds <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">100</span>, {</span>
-<span id="cb235-7"><a href="intro-to-statistical-inference.html#cb235-7" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">sample</span>(population, n)</span>
-<span id="cb235-8"><a href="intro-to-statistical-inference.html#cb235-8" tabindex="-1"></a>  x_bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
-<span id="cb235-9"><a href="intro-to-statistical-inference.html#cb235-9" tabindex="-1"></a>  s     <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
-<span id="cb235-10"><a href="intro-to-statistical-inference.html#cb235-10" tabindex="-1"></a>  </span>
-<span id="cb235-11"><a href="intro-to-statistical-inference.html#cb235-11" tabindex="-1"></a>  lower <span class="ot">&lt;-</span> x_bar <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
-<span id="cb235-12"><a href="intro-to-statistical-inference.html#cb235-12" tabindex="-1"></a>  upper <span class="ot">&lt;-</span> x_bar <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
-<span id="cb235-13"><a href="intro-to-statistical-inference.html#cb235-13" tabindex="-1"></a>  </span>
-<span id="cb235-14"><a href="intro-to-statistical-inference.html#cb235-14" tabindex="-1"></a>  <span class="fu">c</span>(lower, upper)</span>
-<span id="cb235-15"><a href="intro-to-statistical-inference.html#cb235-15" tabindex="-1"></a>})</span>
-<span id="cb235-16"><a href="intro-to-statistical-inference.html#cb235-16" tabindex="-1"></a></span>
-<span id="cb235-17"><a href="intro-to-statistical-inference.html#cb235-17" tabindex="-1"></a>ci_bounds <span class="ot">&lt;-</span> <span class="fu">t</span>(ci_bounds)</span>
-<span id="cb235-18"><a href="intro-to-statistical-inference.html#cb235-18" tabindex="-1"></a></span>
-<span id="cb235-19"><a href="intro-to-statistical-inference.html#cb235-19" tabindex="-1"></a><span class="fu">plot</span>(ci_bounds[,<span class="dv">1</span>], <span class="at">type=</span><span class="st">&quot;n&quot;</span>,</span>
-<span id="cb235-20"><a href="intro-to-statistical-inference.html#cb235-20" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">range</span>(ci_bounds),</span>
-<span id="cb235-21"><a href="intro-to-statistical-inference.html#cb235-21" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Simulation Index&quot;</span>,</span>
-<span id="cb235-22"><a href="intro-to-statistical-inference.html#cb235-22" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Confidence Interval&quot;</span>)</span>
-<span id="cb235-23"><a href="intro-to-statistical-inference.html#cb235-23" tabindex="-1"></a></span>
-<span id="cb235-24"><a href="intro-to-statistical-inference.html#cb235-24" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ci_bounds)){</span>
-<span id="cb235-25"><a href="intro-to-statistical-inference.html#cb235-25" tabindex="-1"></a>  <span class="fu">segments</span>(i, ci_bounds[i,<span class="dv">1</span>], i, ci_bounds[i,<span class="dv">2</span>],</span>
-<span id="cb235-26"><a href="intro-to-statistical-inference.html#cb235-26" tabindex="-1"></a>           <span class="at">col =</span> <span class="fu">ifelse</span>(ci_bounds[i,<span class="dv">1</span>] <span class="sc">&lt;=</span> mu_pop <span class="sc">&amp;</span></span>
-<span id="cb235-27"><a href="intro-to-statistical-inference.html#cb235-27" tabindex="-1"></a>                        ci_bounds[i,<span class="dv">2</span>] <span class="sc">&gt;=</span> mu_pop,</span>
-<span id="cb235-28"><a href="intro-to-statistical-inference.html#cb235-28" tabindex="-1"></a>                        <span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>))</span>
-<span id="cb235-29"><a href="intro-to-statistical-inference.html#cb235-29" tabindex="-1"></a>}</span>
-<span id="cb235-30"><a href="intro-to-statistical-inference.html#cb235-30" tabindex="-1"></a></span>
-<span id="cb235-31"><a href="intro-to-statistical-inference.html#cb235-31" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> mu_pop, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="intro-to-statistical-inference.html#cb329-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb329-2"><a href="intro-to-statistical-inference.html#cb329-2" tabindex="-1"></a></span>
+<span id="cb329-3"><a href="intro-to-statistical-inference.html#cb329-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb329-4"><a href="intro-to-statistical-inference.html#cb329-4" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb329-5"><a href="intro-to-statistical-inference.html#cb329-5" tabindex="-1"></a></span>
+<span id="cb329-6"><a href="intro-to-statistical-inference.html#cb329-6" tabindex="-1"></a>ci_bounds <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">100</span>, {</span>
+<span id="cb329-7"><a href="intro-to-statistical-inference.html#cb329-7" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">sample</span>(population, n)</span>
+<span id="cb329-8"><a href="intro-to-statistical-inference.html#cb329-8" tabindex="-1"></a>  x_bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb329-9"><a href="intro-to-statistical-inference.html#cb329-9" tabindex="-1"></a>  s     <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb329-10"><a href="intro-to-statistical-inference.html#cb329-10" tabindex="-1"></a>  </span>
+<span id="cb329-11"><a href="intro-to-statistical-inference.html#cb329-11" tabindex="-1"></a>  lower <span class="ot">&lt;-</span> x_bar <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb329-12"><a href="intro-to-statistical-inference.html#cb329-12" tabindex="-1"></a>  upper <span class="ot">&lt;-</span> x_bar <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb329-13"><a href="intro-to-statistical-inference.html#cb329-13" tabindex="-1"></a>  </span>
+<span id="cb329-14"><a href="intro-to-statistical-inference.html#cb329-14" tabindex="-1"></a>  <span class="fu">c</span>(lower, upper)</span>
+<span id="cb329-15"><a href="intro-to-statistical-inference.html#cb329-15" tabindex="-1"></a>})</span>
+<span id="cb329-16"><a href="intro-to-statistical-inference.html#cb329-16" tabindex="-1"></a></span>
+<span id="cb329-17"><a href="intro-to-statistical-inference.html#cb329-17" tabindex="-1"></a>ci_bounds <span class="ot">&lt;-</span> <span class="fu">t</span>(ci_bounds)</span>
+<span id="cb329-18"><a href="intro-to-statistical-inference.html#cb329-18" tabindex="-1"></a></span>
+<span id="cb329-19"><a href="intro-to-statistical-inference.html#cb329-19" tabindex="-1"></a><span class="fu">plot</span>(ci_bounds[,<span class="dv">1</span>], <span class="at">type=</span><span class="st">&quot;n&quot;</span>,</span>
+<span id="cb329-20"><a href="intro-to-statistical-inference.html#cb329-20" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">range</span>(ci_bounds),</span>
+<span id="cb329-21"><a href="intro-to-statistical-inference.html#cb329-21" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Simulation Index&quot;</span>,</span>
+<span id="cb329-22"><a href="intro-to-statistical-inference.html#cb329-22" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Confidence Interval&quot;</span>)</span>
+<span id="cb329-23"><a href="intro-to-statistical-inference.html#cb329-23" tabindex="-1"></a></span>
+<span id="cb329-24"><a href="intro-to-statistical-inference.html#cb329-24" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ci_bounds)){</span>
+<span id="cb329-25"><a href="intro-to-statistical-inference.html#cb329-25" tabindex="-1"></a>  <span class="fu">segments</span>(i, ci_bounds[i,<span class="dv">1</span>], i, ci_bounds[i,<span class="dv">2</span>],</span>
+<span id="cb329-26"><a href="intro-to-statistical-inference.html#cb329-26" tabindex="-1"></a>           <span class="at">col =</span> <span class="fu">ifelse</span>(ci_bounds[i,<span class="dv">1</span>] <span class="sc">&lt;=</span> mu_pop <span class="sc">&amp;</span></span>
+<span id="cb329-27"><a href="intro-to-statistical-inference.html#cb329-27" tabindex="-1"></a>                        ci_bounds[i,<span class="dv">2</span>] <span class="sc">&gt;=</span> mu_pop,</span>
+<span id="cb329-28"><a href="intro-to-statistical-inference.html#cb329-28" tabindex="-1"></a>                        <span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>))</span>
+<span id="cb329-29"><a href="intro-to-statistical-inference.html#cb329-29" tabindex="-1"></a>}</span>
+<span id="cb329-30"><a href="intro-to-statistical-inference.html#cb329-30" tabindex="-1"></a></span>
+<span id="cb329-31"><a href="intro-to-statistical-inference.html#cb329-31" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> mu_pop, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/int-sta-interval-estimation-example-1.png" width="672" /></p>
 <p>Each vertical segment is a confidence interval. Intervals that fail to contain μ are shown in red.</p>
 <p>This simulation illustrates:</p>
@@ -676,19 +677,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>H1: μ ≠ 50</li>
 </ul>
 <p>Under H0, we can simulate the sampling distribution of the sample mean and assess how extreme our observed statistic is.</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="intro-to-statistical-inference.html#cb236-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb236-2"><a href="intro-to-statistical-inference.html#cb236-2" tabindex="-1"></a></span>
-<span id="cb236-3"><a href="intro-to-statistical-inference.html#cb236-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb236-4"><a href="intro-to-statistical-inference.html#cb236-4" tabindex="-1"></a>mu_null <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb236-5"><a href="intro-to-statistical-inference.html#cb236-5" tabindex="-1"></a></span>
-<span id="cb236-6"><a href="intro-to-statistical-inference.html#cb236-6" tabindex="-1"></a><span class="co"># simulate under null</span></span>
-<span id="cb236-7"><a href="intro-to-statistical-inference.html#cb236-7" tabindex="-1"></a>null_means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(n, <span class="at">mean =</span> mu_null, <span class="at">sd =</span> sd_pop)))</span>
-<span id="cb236-8"><a href="intro-to-statistical-inference.html#cb236-8" tabindex="-1"></a></span>
-<span id="cb236-9"><a href="intro-to-statistical-inference.html#cb236-9" tabindex="-1"></a><span class="fu">hist</span>(null_means, <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb236-10"><a href="intro-to-statistical-inference.html#cb236-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Sampling Distribution Under H0&quot;</span>,</span>
-<span id="cb236-11"><a href="intro-to-statistical-inference.html#cb236-11" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Sample Mean&quot;</span>)</span>
-<span id="cb236-12"><a href="intro-to-statistical-inference.html#cb236-12" tabindex="-1"></a></span>
-<span id="cb236-13"><a href="intro-to-statistical-inference.html#cb236-13" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(sample_data), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="intro-to-statistical-inference.html#cb330-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb330-2"><a href="intro-to-statistical-inference.html#cb330-2" tabindex="-1"></a></span>
+<span id="cb330-3"><a href="intro-to-statistical-inference.html#cb330-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb330-4"><a href="intro-to-statistical-inference.html#cb330-4" tabindex="-1"></a>mu_null <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb330-5"><a href="intro-to-statistical-inference.html#cb330-5" tabindex="-1"></a></span>
+<span id="cb330-6"><a href="intro-to-statistical-inference.html#cb330-6" tabindex="-1"></a><span class="co"># simulate under null</span></span>
+<span id="cb330-7"><a href="intro-to-statistical-inference.html#cb330-7" tabindex="-1"></a>null_means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">rnorm</span>(n, <span class="at">mean =</span> mu_null, <span class="at">sd =</span> sd_pop)))</span>
+<span id="cb330-8"><a href="intro-to-statistical-inference.html#cb330-8" tabindex="-1"></a></span>
+<span id="cb330-9"><a href="intro-to-statistical-inference.html#cb330-9" tabindex="-1"></a><span class="fu">hist</span>(null_means, <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb330-10"><a href="intro-to-statistical-inference.html#cb330-10" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Sampling Distribution Under H0&quot;</span>,</span>
+<span id="cb330-11"><a href="intro-to-statistical-inference.html#cb330-11" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Sample Mean&quot;</span>)</span>
+<span id="cb330-12"><a href="intro-to-statistical-inference.html#cb330-12" tabindex="-1"></a></span>
+<span id="cb330-13"><a href="intro-to-statistical-inference.html#cb330-13" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(sample_data), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/int-sta-hypothesis-example-1.png" width="672" /></p>
 <p>The red line represents the observed sample mean. If it lies in the tails of the null distribution, we regard the data as inconsistent with H0.</p>
 <p>Hypothesis testing is therefore a probabilistic assessment of evidence.</p>
@@ -715,14 +716,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Conditional expectations such as <span class="math inline">\(\mathbb{E}(Y \mid X)\)</span></li>
 </ul>
 <p>We can simulate data with a linear relationship.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="intro-to-statistical-inference.html#cb237-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb237-2"><a href="intro-to-statistical-inference.html#cb237-2" tabindex="-1"></a></span>
-<span id="cb237-3"><a href="intro-to-statistical-inference.html#cb237-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb237-4"><a href="intro-to-statistical-inference.html#cb237-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">2000</span>, <span class="dv">300</span>)</span>
-<span id="cb237-5"><a href="intro-to-statistical-inference.html#cb237-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">+</span> <span class="fl">0.01</span><span class="sc">*</span>x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">5</span>)</span>
-<span id="cb237-6"><a href="intro-to-statistical-inference.html#cb237-6" tabindex="-1"></a></span>
-<span id="cb237-7"><a href="intro-to-statistical-inference.html#cb237-7" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span>
-<span id="cb237-8"><a href="intro-to-statistical-inference.html#cb237-8" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="intro-to-statistical-inference.html#cb331-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb331-2"><a href="intro-to-statistical-inference.html#cb331-2" tabindex="-1"></a></span>
+<span id="cb331-3"><a href="intro-to-statistical-inference.html#cb331-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb331-4"><a href="intro-to-statistical-inference.html#cb331-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">2000</span>, <span class="dv">300</span>)</span>
+<span id="cb331-5"><a href="intro-to-statistical-inference.html#cb331-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">+</span> <span class="fl">0.01</span><span class="sc">*</span>x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">5</span>)</span>
+<span id="cb331-6"><a href="intro-to-statistical-inference.html#cb331-6" tabindex="-1"></a></span>
+<span id="cb331-7"><a href="intro-to-statistical-inference.html#cb331-7" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span>
+<span id="cb331-8"><a href="intro-to-statistical-inference.html#cb331-8" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/int-sta-relationship-example-1.png" width="672" /></p>
 <p>The fitted line estimates the population relationship. However, if we were to resample repeatedly, the slope estimate would vary. Thus regression coefficients are also random variables with their own sampling distributions.</p>
 <p>Statistical inference in this setting focuses on:</p>
@@ -779,24 +780,24 @@ X_{n+1}.
 <div id="a-very-simple-simulation" class="section level4 hasAnchor" number="7.2.4.2">
 <h4><span class="header-section-number">7.2.4.2</span> A Very Simple Simulation<a href="intro-to-statistical-inference.html#a-very-simple-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To see this concretely, suppose the true population mean is 50 (unknown to us). We collect a sample and use the sample mean to predict the next observation.</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="intro-to-statistical-inference.html#cb238-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb238-2"><a href="intro-to-statistical-inference.html#cb238-2" tabindex="-1"></a></span>
-<span id="cb238-3"><a href="intro-to-statistical-inference.html#cb238-3" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb238-4"><a href="intro-to-statistical-inference.html#cb238-4" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb238-5"><a href="intro-to-statistical-inference.html#cb238-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">15</span></span>
-<span id="cb238-6"><a href="intro-to-statistical-inference.html#cb238-6" tabindex="-1"></a></span>
-<span id="cb238-7"><a href="intro-to-statistical-inference.html#cb238-7" tabindex="-1"></a><span class="co"># Generate a sample</span></span>
-<span id="cb238-8"><a href="intro-to-statistical-inference.html#cb238-8" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu, sigma)</span>
-<span id="cb238-9"><a href="intro-to-statistical-inference.html#cb238-9" tabindex="-1"></a></span>
-<span id="cb238-10"><a href="intro-to-statistical-inference.html#cb238-10" tabindex="-1"></a><span class="co"># Compute sample mean</span></span>
-<span id="cb238-11"><a href="intro-to-statistical-inference.html#cb238-11" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
-<span id="cb238-12"><a href="intro-to-statistical-inference.html#cb238-12" tabindex="-1"></a></span>
-<span id="cb238-13"><a href="intro-to-statistical-inference.html#cb238-13" tabindex="-1"></a><span class="co"># Generate a future observation</span></span>
-<span id="cb238-14"><a href="intro-to-statistical-inference.html#cb238-14" tabindex="-1"></a>x_future <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, mu, sigma)</span>
-<span id="cb238-15"><a href="intro-to-statistical-inference.html#cb238-15" tabindex="-1"></a></span>
-<span id="cb238-16"><a href="intro-to-statistical-inference.html#cb238-16" tabindex="-1"></a>xbar</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="intro-to-statistical-inference.html#cb332-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb332-2"><a href="intro-to-statistical-inference.html#cb332-2" tabindex="-1"></a></span>
+<span id="cb332-3"><a href="intro-to-statistical-inference.html#cb332-3" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb332-4"><a href="intro-to-statistical-inference.html#cb332-4" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb332-5"><a href="intro-to-statistical-inference.html#cb332-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb332-6"><a href="intro-to-statistical-inference.html#cb332-6" tabindex="-1"></a></span>
+<span id="cb332-7"><a href="intro-to-statistical-inference.html#cb332-7" tabindex="-1"></a><span class="co"># Generate a sample</span></span>
+<span id="cb332-8"><a href="intro-to-statistical-inference.html#cb332-8" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu, sigma)</span>
+<span id="cb332-9"><a href="intro-to-statistical-inference.html#cb332-9" tabindex="-1"></a></span>
+<span id="cb332-10"><a href="intro-to-statistical-inference.html#cb332-10" tabindex="-1"></a><span class="co"># Compute sample mean</span></span>
+<span id="cb332-11"><a href="intro-to-statistical-inference.html#cb332-11" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb332-12"><a href="intro-to-statistical-inference.html#cb332-12" tabindex="-1"></a></span>
+<span id="cb332-13"><a href="intro-to-statistical-inference.html#cb332-13" tabindex="-1"></a><span class="co"># Generate a future observation</span></span>
+<span id="cb332-14"><a href="intro-to-statistical-inference.html#cb332-14" tabindex="-1"></a>x_future <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, mu, sigma)</span>
+<span id="cb332-15"><a href="intro-to-statistical-inference.html#cb332-15" tabindex="-1"></a></span>
+<span id="cb332-16"><a href="intro-to-statistical-inference.html#cb332-16" tabindex="-1"></a>xbar</span></code></pre></div>
 <pre><code>## [1] 51.52384</code></pre>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="intro-to-statistical-inference.html#cb240-1" tabindex="-1"></a>x_future</span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="intro-to-statistical-inference.html#cb334-1" tabindex="-1"></a>x_future</span></code></pre></div>
 <pre><code>## [1] 67.86913</code></pre>
 <p>The sample mean gives us a reasonable central value, but the future observation may differ substantially. This difference is not a mistake—it reflects natural randomness.</p>
 <hr />
@@ -805,20 +806,20 @@ X_{n+1}.
 <div id="repeating-the-experiment" class="section level3 hasAnchor" number="7.2.5">
 <h3><span class="header-section-number">7.2.5</span> Repeating the Experiment<a href="intro-to-statistical-inference.html#repeating-the-experiment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let us repeat the process many times and examine how prediction errors behave.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="intro-to-statistical-inference.html#cb242-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb242-2"><a href="intro-to-statistical-inference.html#cb242-2" tabindex="-1"></a></span>
-<span id="cb242-3"><a href="intro-to-statistical-inference.html#cb242-3" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb242-4"><a href="intro-to-statistical-inference.html#cb242-4" tabindex="-1"></a></span>
-<span id="cb242-5"><a href="intro-to-statistical-inference.html#cb242-5" tabindex="-1"></a>errors <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
-<span id="cb242-6"><a href="intro-to-statistical-inference.html#cb242-6" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu, sigma)</span>
-<span id="cb242-7"><a href="intro-to-statistical-inference.html#cb242-7" tabindex="-1"></a>  xbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
-<span id="cb242-8"><a href="intro-to-statistical-inference.html#cb242-8" tabindex="-1"></a>  x_future <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, mu, sigma)</span>
-<span id="cb242-9"><a href="intro-to-statistical-inference.html#cb242-9" tabindex="-1"></a>  x_future <span class="sc">-</span> xbar</span>
-<span id="cb242-10"><a href="intro-to-statistical-inference.html#cb242-10" tabindex="-1"></a>})</span>
-<span id="cb242-11"><a href="intro-to-statistical-inference.html#cb242-11" tabindex="-1"></a></span>
-<span id="cb242-12"><a href="intro-to-statistical-inference.html#cb242-12" tabindex="-1"></a><span class="fu">mean</span>(errors)</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="intro-to-statistical-inference.html#cb336-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb336-2"><a href="intro-to-statistical-inference.html#cb336-2" tabindex="-1"></a></span>
+<span id="cb336-3"><a href="intro-to-statistical-inference.html#cb336-3" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb336-4"><a href="intro-to-statistical-inference.html#cb336-4" tabindex="-1"></a></span>
+<span id="cb336-5"><a href="intro-to-statistical-inference.html#cb336-5" tabindex="-1"></a>errors <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
+<span id="cb336-6"><a href="intro-to-statistical-inference.html#cb336-6" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu, sigma)</span>
+<span id="cb336-7"><a href="intro-to-statistical-inference.html#cb336-7" tabindex="-1"></a>  xbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb336-8"><a href="intro-to-statistical-inference.html#cb336-8" tabindex="-1"></a>  x_future <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, mu, sigma)</span>
+<span id="cb336-9"><a href="intro-to-statistical-inference.html#cb336-9" tabindex="-1"></a>  x_future <span class="sc">-</span> xbar</span>
+<span id="cb336-10"><a href="intro-to-statistical-inference.html#cb336-10" tabindex="-1"></a>})</span>
+<span id="cb336-11"><a href="intro-to-statistical-inference.html#cb336-11" tabindex="-1"></a></span>
+<span id="cb336-12"><a href="intro-to-statistical-inference.html#cb336-12" tabindex="-1"></a><span class="fu">mean</span>(errors)</span></code></pre></div>
 <pre><code>## [1] -0.1871296</code></pre>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="intro-to-statistical-inference.html#cb244-1" tabindex="-1"></a><span class="fu">sd</span>(errors)</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="intro-to-statistical-inference.html#cb338-1" tabindex="-1"></a><span class="fu">sd</span>(errors)</span></code></pre></div>
 <pre><code>## [1] 10.42275</code></pre>
 <p>We observe two key ideas:</p>
 <ul>
@@ -864,17 +865,17 @@ Prediction focuses on forecasting a random future value.</p>
 </ul>
 <p>The researchers do not observe the entire population. They observe a sample.</p>
 <p>Suppose we simulate such a scenario.</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="intro-to-statistical-inference.html#cb246-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb246-2"><a href="intro-to-statistical-inference.html#cb246-2" tabindex="-1"></a></span>
-<span id="cb246-3"><a href="intro-to-statistical-inference.html#cb246-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
-<span id="cb246-4"><a href="intro-to-statistical-inference.html#cb246-4" tabindex="-1"></a></span>
-<span id="cb246-5"><a href="intro-to-statistical-inference.html#cb246-5" tabindex="-1"></a>calories <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">2200</span>, <span class="at">sd =</span> <span class="dv">400</span>)</span>
-<span id="cb246-6"><a href="intro-to-statistical-inference.html#cb246-6" tabindex="-1"></a>weight   <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">+</span> <span class="fl">0.01</span> <span class="sc">*</span> calories <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="dv">5</span>)</span>
-<span id="cb246-7"><a href="intro-to-statistical-inference.html#cb246-7" tabindex="-1"></a></span>
-<span id="cb246-8"><a href="intro-to-statistical-inference.html#cb246-8" tabindex="-1"></a><span class="fu">plot</span>(calories, weight,</span>
-<span id="cb246-9"><a href="intro-to-statistical-inference.html#cb246-9" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Calories&quot;</span>,</span>
-<span id="cb246-10"><a href="intro-to-statistical-inference.html#cb246-10" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Weight&quot;</span>,</span>
-<span id="cb246-11"><a href="intro-to-statistical-inference.html#cb246-11" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Simulated Relationship Between Calories and Weight&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="intro-to-statistical-inference.html#cb340-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb340-2"><a href="intro-to-statistical-inference.html#cb340-2" tabindex="-1"></a></span>
+<span id="cb340-3"><a href="intro-to-statistical-inference.html#cb340-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb340-4"><a href="intro-to-statistical-inference.html#cb340-4" tabindex="-1"></a></span>
+<span id="cb340-5"><a href="intro-to-statistical-inference.html#cb340-5" tabindex="-1"></a>calories <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">2200</span>, <span class="at">sd =</span> <span class="dv">400</span>)</span>
+<span id="cb340-6"><a href="intro-to-statistical-inference.html#cb340-6" tabindex="-1"></a>weight   <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">+</span> <span class="fl">0.01</span> <span class="sc">*</span> calories <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="dv">5</span>)</span>
+<span id="cb340-7"><a href="intro-to-statistical-inference.html#cb340-7" tabindex="-1"></a></span>
+<span id="cb340-8"><a href="intro-to-statistical-inference.html#cb340-8" tabindex="-1"></a><span class="fu">plot</span>(calories, weight,</span>
+<span id="cb340-9"><a href="intro-to-statistical-inference.html#cb340-9" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Calories&quot;</span>,</span>
+<span id="cb340-10"><a href="intro-to-statistical-inference.html#cb340-10" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Weight&quot;</span>,</span>
+<span id="cb340-11"><a href="intro-to-statistical-inference.html#cb340-11" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Simulated Relationship Between Calories and Weight&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/int-sta-analysis-example-1.png" width="672" /></p>
 <p>In this simulated data:</p>
 <ul>

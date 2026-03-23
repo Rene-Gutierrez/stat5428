@@ -332,7 +332,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.9.1" data-path="probability.html"><a href="probability.html#definition-2"><i class="fa fa-check"></i><b>5.9.1</b> Definition</a></li>
 <li class="chapter" data-level="5.9.2" data-path="probability.html"><a href="probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>5.9.2</b> Discrete Random Variables</a></li>
-<li class="chapter" data-level="5.9.3" data-path="probability.html"><a href="probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>5.9.3</b> Continuous Random Variables</a></li>
+<li class="chapter" data-level="5.9.3" data-path="probability.html"><a href="probability.html#from-discrete-to-continuous"><i class="fa fa-check"></i><b>5.9.3</b> From Discrete to Continuous</a></li>
+<li class="chapter" data-level="5.9.4" data-path="probability.html"><a href="probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>5.9.4</b> Continuous Random Variables</a></li>
 </ul></li>
 <li class="chapter" data-level="5.10" data-path="probability.html"><a href="probability.html#distributions-of-random-variables"><i class="fa fa-check"></i><b>5.10</b> Distributions of Random Variables</a>
 <ul>
@@ -461,7 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6.6" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#one-tailed-blood-alcohol-test-numerical-illustration"><i class="fa fa-check"></i><b>8.6.6</b> One-Tailed Blood Alcohol Test (Numerical Illustration)</a></li>
 <li class="chapter" data-level="8.6.7" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#general-forms-of-rejection-regions"><i class="fa fa-check"></i><b>8.6.7</b> General Forms of Rejection Regions</a></li>
 <li class="chapter" data-level="8.6.8" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#significance-level-and-p-value"><i class="fa fa-check"></i><b>8.6.8</b> Significance Level and p-Value</a></li>
-<li class="chapter" data-level="8.6.9" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#conceptual-summary"><i class="fa fa-check"></i><b>8.6.9</b> Conceptual Summary</a></li>
+<li class="chapter" data-level="8.6.9" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#conceptual-summary-2"><i class="fa fa-check"></i><b>8.6.9</b> Conceptual Summary</a></li>
 <li class="chapter" data-level="8.6.10" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#choosing-the-sample-size-for-testing-the-population-mean"><i class="fa fa-check"></i><b>8.6.10</b> Choosing the Sample Size for Testing the Population Mean</a></li>
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#inference-about-the-mean-unknown-variance"><i class="fa fa-check"></i><b>8.7</b> Inference About the Mean Unknown Variance</a>
@@ -849,114 +850,90 @@ You type commands into the <strong>Console</strong>, and R evaluates them.</p>
 <h3><span class="header-section-number">2.6.4</span> Inspecting Objects<a href="introduction-to-r.html#inspecting-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="introduction-to-r.html#cb124-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">5</span>)</span>
 <span id="cb124-2"><a href="introduction-to-r.html#cb124-2" tabindex="-1"></a><span class="fu">str</span>(x)</span></code></pre></div>
-<pre><code>##  num [1:5] 0.0814 -0.9969 0.8349 -1.9402 -1.1163</code></pre>
+<pre><code>##  num [1:5] 0.446 0.725 1.786 0.95 0.251</code></pre>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="introduction-to-r.html#cb126-1" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="introduction-to-r.html#cb128-1" tabindex="-1"></a><span class="fu">typeof</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="introduction-to-r.html#cb130-1" tabindex="-1"></a><span class="fu">ls</span>()        <span class="co"># list objects in your environment</span></span></code></pre></div>
-<pre><code>##   [1] &quot;a&quot;                &quot;A&quot;                &quot;age&quot;              &quot;alpha&quot;           
-##   [5] &quot;altVar&quot;           &quot;appMea&quot;           &quot;appMeaLin&quot;        &quot;b&quot;               
-##   [9] &quot;B&quot;                &quot;bac&quot;              &quot;biaSam&quot;           &quot;boot_means&quot;      
-##  [13] &quot;breaks&quot;           &quot;c&quot;                &quot;calories&quot;         &quot;ci_bounds&quot;       
-##  [17] &quot;conInt&quot;           &quot;count&quot;            &quot;cov&quot;              &quot;cover&quot;           
-##  [21] &quot;d1&quot;               &quot;d2&quot;               &quot;data&quot;             &quot;deck&quot;            
-##  [25] &quot;densityChiSquare&quot; &quot;df&quot;               &quot;dieRol&quot;           &quot;dirVar&quot;          
-##  [29] &quot;disease&quot;          &quot;E&quot;                &quot;eduPar&quot;           &quot;eduPer&quot;          
-##  [33] &quot;errors&quot;           &quot;exam_score&quot;       &quot;exaMeaBin&quot;        &quot;exaMeaLin&quot;       
-##  [37] &quot;f&quot;                &quot;final_grade&quot;      &quot;flag&quot;             &quot;gra&quot;             
-##  [41] &quot;grades&quot;           &quot;graPer&quot;           &quot;griSta&quot;           &quot;hei&quot;             
-##  [45] &quot;heiDisBiaSam&quot;     &quot;heiDisPop&quot;        &quot;heiDisRanSam&quot;     &quot;heiDisSimRanSam&quot; 
-##  [49] &quot;heiRacMea&quot;        &quot;heiRacSd&quot;         &quot;i&quot;                &quot;incLev&quot;          
-##  [53] &quot;incPer&quot;           &quot;j&quot;                &quot;k&quot;                &quot;l&quot;               
-##  [57] &quot;lower&quot;            &quot;lowUpp&quot;           &quot;matSco&quot;           &quot;matScoBin&quot;       
-##  [61] &quot;maxScoMat&quot;        &quot;maxScoVer&quot;        &quot;mea1&quot;             &quot;mea2&quot;            
-##  [65] &quot;meaBiaSam&quot;        &quot;meaDisBiaSam&quot;     &quot;meaDisRanSam&quot;     &quot;meaDisSimRanSam&quot; 
-##  [69] &quot;means&quot;            &quot;meaPop&quot;           &quot;meaRanSam&quot;        &quot;meaSimRanSam&quot;    
-##  [73] &quot;meaX&quot;             &quot;meaX2&quot;            &quot;medians&quot;          &quot;minScoMat&quot;       
-##  [77] &quot;minScoVer&quot;        &quot;mu&quot;               &quot;mu_null&quot;          &quot;mu_pop&quot;          
-##  [81] &quot;mu0&quot;              &quot;n&quot;                &quot;n_required&quot;       &quot;name&quot;            
-##  [85] &quot;namEduPar&quot;        &quot;namIncLev&quot;        &quot;namSch&quot;           &quot;null_means&quot;      
-##  [89] &quot;num_rep&quot;          &quot;numDf&quot;            &quot;numGra&quot;           &quot;numPeoRac&quot;       
-##  [93] &quot;numRep&quot;           &quot;numSam&quot;           &quot;numSch&quot;           &quot;numSel&quot;          
-##  [97] &quot;numStu&quot;           &quot;numStuClu&quot;        &quot;numStuGra&quot;        &quot;obsAlc&quot;          
-## [101] &quot;obsErr&quot;           &quot;p&quot;                &quot;p_value&quot;          &quot;pA&quot;              
-## [105] &quot;pmf&quot;              &quot;pop&quot;              &quot;population&quot;       &quot;populationGrowth&quot;
-## [109] &quot;pro1&quot;             &quot;pro12&quot;            &quot;pro2&quot;             &quot;pro50&quot;           
-## [113] &quot;proCon&quot;           &quot;proInf&quot;           &quot;proInt&quot;           &quot;proMar&quot;          
-## [117] &quot;proTab&quot;           &quot;qua&quot;              &quot;quick_summary&quot;    &quot;R&quot;               
-## [121] &quot;rac&quot;              &quot;racNam&quot;           &quot;ranks&quot;            &quot;ranSam&quot;          
-## [125] &quot;reaAlc&quot;           &quot;reaBac&quot;           &quot;relFreHea&quot;        &quot;rep&quot;             
-## [129] &quot;repTwo&quot;           &quot;s&quot;                &quot;samCoi&quot;           &quot;sampA&quot;           
-## [133] &quot;sampB&quot;            &quot;sample_boot&quot;      &quot;sample_data&quot;      &quot;sample_means&quot;    
-## [137] &quot;sample1&quot;          &quot;sample2&quot;          &quot;samPop&quot;           &quot;samSiz&quot;          
-## [141] &quot;samVar&quot;           &quot;sch&quot;              &quot;schDat&quot;           &quot;schPer&quot;          
-## [145] &quot;sd&quot;               &quot;sd_pop&quot;           &quot;se&quot;               &quot;sel&quot;             
-## [149] &quot;sel1&quot;             &quot;sel2&quot;             &quot;selGra&quot;           &quot;selInc&quot;          
-## [153] &quot;selPar&quot;           &quot;selSch&quot;           &quot;sen&quot;              &quot;sigma&quot;           
-## [157] &quot;simRanSam&quot;        &quot;sims&quot;             &quot;spe&quot;              &quot;stdPop&quot;          
-## [161] &quot;suits&quot;            &quot;t&quot;                &quot;t_crit&quot;           &quot;t_stat&quot;          
-## [165] &quot;test&quot;             &quot;trimmed&quot;          &quot;true_mean&quot;        &quot;u&quot;               
-## [169] &quot;u1&quot;               &quot;u2&quot;               &quot;upper&quot;            &quot;v&quot;               
-## [173] &quot;var&quot;              &quot;varKno&quot;           &quot;varX&quot;             &quot;varY&quot;            
-## [177] &quot;verSco&quot;           &quot;weight&quot;           &quot;x&quot;                &quot;X&quot;               
-## [181] &quot;x_bar&quot;            &quot;x_future&quot;         &quot;x_sorted&quot;         &quot;x2&quot;              
-## [185] &quot;xbar&quot;             &quot;xm&quot;               &quot;xmax&quot;             &quot;xmin&quot;            
-## [189] &quot;y&quot;                &quot;Y&quot;                &quot;y_bar&quot;            &quot;y_centered&quot;      
-## [193] &quot;ymax&quot;             &quot;ymin&quot;             &quot;yval&quot;             &quot;z&quot;               
-## [197] &quot;zlow&quot;             &quot;zscore&quot;           &quot;zupp&quot;</code></pre>
+<pre><code>##   [1] &quot;a&quot;                &quot;A&quot;                &quot;age&quot;              &quot;alpha&quot;            &quot;altVar&quot;           &quot;appMea&quot;          
+##   [7] &quot;appMeaLin&quot;        &quot;b&quot;                &quot;B&quot;                &quot;bac&quot;              &quot;biaSam&quot;           &quot;booMea&quot;          
+##  [13] &quot;booPva&quot;           &quot;booSam&quot;           &quot;booSD&quot;            &quot;boot_means&quot;       &quot;booT025&quot;          &quot;booT975&quot;         
+##  [19] &quot;booTst&quot;           &quot;breaks&quot;           &quot;c&quot;                &quot;C&quot;                &quot;calories&quot;         &quot;cards&quot;           
+##  [25] &quot;ci_bounds&quot;        &quot;conInt&quot;           &quot;count&quot;            &quot;cov&quot;              &quot;cover&quot;            &quot;D&quot;               
+##  [31] &quot;d1&quot;               &quot;d2&quot;               &quot;data&quot;             &quot;deck&quot;             &quot;densityChiSquare&quot; &quot;df&quot;              
+##  [37] &quot;die1&quot;             &quot;die2&quot;             &quot;dieRol&quot;           &quot;dirVar&quot;           &quot;disease&quot;          &quot;E&quot;               
+##  [43] &quot;eduPar&quot;           &quot;eduPer&quot;           &quot;errors&quot;           &quot;exam_score&quot;       &quot;exaMeaBin&quot;        &quot;exaMeaLin&quot;       
+##  [49] &quot;f&quot;                &quot;final_grade&quot;      &quot;firstAce&quot;         &quot;flag&quot;             &quot;gra&quot;              &quot;grades&quot;          
+##  [55] &quot;graPer&quot;           &quot;griSta&quot;           &quot;hei&quot;              &quot;heiDisBiaSam&quot;     &quot;heiDisPop&quot;        &quot;heiDisRanSam&quot;    
+##  [61] &quot;heiDisSimRanSam&quot;  &quot;heiRacMea&quot;        &quot;heiRacSd&quot;         &quot;i&quot;                &quot;incLev&quot;           &quot;incPer&quot;          
+##  [67] &quot;j&quot;                &quot;k&quot;                &quot;l&quot;                &quot;lower&quot;            &quot;lowUpp&quot;           &quot;matSco&quot;          
+##  [73] &quot;matScoBin&quot;        &quot;maxScoMat&quot;        &quot;maxScoVer&quot;        &quot;mea1&quot;             &quot;mea2&quot;             &quot;meaBiaSam&quot;       
+##  [79] &quot;meaDisBiaSam&quot;     &quot;meaDisRanSam&quot;     &quot;meaDisSimRanSam&quot;  &quot;means&quot;            &quot;meaPop&quot;           &quot;meaRanSam&quot;       
+##  [85] &quot;meaSimRanSam&quot;     &quot;meaX&quot;             &quot;meaX2&quot;            &quot;medians&quot;          &quot;minScoMat&quot;        &quot;minScoVer&quot;       
+##  [91] &quot;mu&quot;               &quot;mu_null&quot;          &quot;mu_pop&quot;           &quot;mu0&quot;              &quot;n&quot;                &quot;n_required&quot;      
+##  [97] &quot;name&quot;             &quot;namEduPar&quot;        &quot;namIncLev&quot;        &quot;namSch&quot;           &quot;null_means&quot;       &quot;num_rep&quot;         
+## [103] &quot;numDf&quot;            &quot;numGra&quot;           &quot;numPeoRac&quot;        &quot;numRep&quot;           &quot;numSam&quot;           &quot;numSch&quot;          
+## [109] &quot;numSel&quot;           &quot;numStu&quot;           &quot;numStuClu&quot;        &quot;numStuGra&quot;        &quot;obsAlc&quot;           &quot;obsErr&quot;          
+## [115] &quot;p&quot;                &quot;p_value&quot;          &quot;pA&quot;               &quot;pA_exact&quot;         &quot;pAandB&quot;           &quot;pAandB_exact&quot;    
+## [121] &quot;pAc&quot;              &quot;pAorB&quot;            &quot;pB&quot;               &quot;pB_exact&quot;         &quot;pBgivenA&quot;         &quot;pC&quot;              
+## [127] &quot;pCorD&quot;            &quot;pD&quot;               &quot;pmf&quot;              &quot;pop&quot;              &quot;population&quot;       &quot;populationGrowth&quot;
+## [133] &quot;pro1&quot;             &quot;pro12&quot;            &quot;pro2&quot;             &quot;pro50&quot;            &quot;proCon&quot;           &quot;proInf&quot;          
+## [139] &quot;proInt&quot;           &quot;proMar&quot;           &quot;proTab&quot;           &quot;qua&quot;              &quot;quick_summary&quot;    &quot;R&quot;               
+## [145] &quot;rac&quot;              &quot;racNam&quot;           &quot;ranks&quot;            &quot;ranSam&quot;           &quot;reaAlc&quot;           &quot;reaBac&quot;          
+## [151] &quot;rejPer&quot;           &quot;relFreHea&quot;        &quot;rep&quot;              &quot;repTwo&quot;           &quot;s&quot;                &quot;samCoi&quot;          
+## [157] &quot;sampA&quot;            &quot;sampB&quot;            &quot;sample_boot&quot;      &quot;sample_data&quot;      &quot;sample_means&quot;     &quot;sample1&quot;         
+## [163] &quot;sample2&quot;          &quot;samPop&quot;           &quot;samSiz&quot;           &quot;samVar&quot;           &quot;sch&quot;              &quot;schDat&quot;          
+## [169] &quot;schPer&quot;           &quot;sd&quot;               &quot;sd_pop&quot;           &quot;sdx&quot;              &quot;se&quot;               &quot;secondAce&quot;       
+## [175] &quot;sel&quot;              &quot;sel1&quot;             &quot;sel2&quot;             &quot;selGra&quot;           &quot;selInc&quot;           &quot;selPar&quot;          
+## [181] &quot;selSch&quot;           &quot;sen&quot;              &quot;sigma&quot;            &quot;simRanSam&quot;        &quot;sims&quot;             &quot;spe&quot;             
+## [187] &quot;stdPop&quot;           &quot;suits&quot;            &quot;t&quot;                &quot;t_crit&quot;           &quot;t_stat&quot;           &quot;test&quot;            
+## [193] &quot;toss1&quot;            &quot;toss2&quot;            &quot;trimmed&quot;          &quot;true_mean&quot;        &quot;u&quot;                &quot;u1&quot;              
+## [199] &quot;u2&quot;               &quot;upper&quot;            &quot;v&quot;                &quot;var&quot;              &quot;varKno&quot;           &quot;varX&quot;            
+## [205] &quot;varY&quot;             &quot;verSco&quot;           &quot;weight&quot;           &quot;x&quot;                &quot;X&quot;                &quot;x_bar&quot;           
+## [211] &quot;x_future&quot;         &quot;x_sorted&quot;         &quot;x2&quot;               &quot;xbar&quot;             &quot;xm&quot;               &quot;xmax&quot;            
+## [217] &quot;xmin&quot;             &quot;y&quot;                &quot;Y&quot;                &quot;y_bar&quot;            &quot;y_centered&quot;       &quot;ymax&quot;            
+## [223] &quot;ymin&quot;             &quot;yval&quot;             &quot;z&quot;                &quot;zlow&quot;             &quot;zscore&quot;           &quot;zupp&quot;</code></pre>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="introduction-to-r.html#cb132-1" tabindex="-1"></a><span class="fu">rm</span>(x)       <span class="co"># remove x</span></span>
 <span id="cb132-2"><a href="introduction-to-r.html#cb132-2" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
-<pre><code>##   [1] &quot;a&quot;                &quot;A&quot;                &quot;age&quot;              &quot;alpha&quot;           
-##   [5] &quot;altVar&quot;           &quot;appMea&quot;           &quot;appMeaLin&quot;        &quot;b&quot;               
-##   [9] &quot;B&quot;                &quot;bac&quot;              &quot;biaSam&quot;           &quot;boot_means&quot;      
-##  [13] &quot;breaks&quot;           &quot;c&quot;                &quot;calories&quot;         &quot;ci_bounds&quot;       
-##  [17] &quot;conInt&quot;           &quot;count&quot;            &quot;cov&quot;              &quot;cover&quot;           
-##  [21] &quot;d1&quot;               &quot;d2&quot;               &quot;data&quot;             &quot;deck&quot;            
-##  [25] &quot;densityChiSquare&quot; &quot;df&quot;               &quot;dieRol&quot;           &quot;dirVar&quot;          
-##  [29] &quot;disease&quot;          &quot;E&quot;                &quot;eduPar&quot;           &quot;eduPer&quot;          
-##  [33] &quot;errors&quot;           &quot;exam_score&quot;       &quot;exaMeaBin&quot;        &quot;exaMeaLin&quot;       
-##  [37] &quot;f&quot;                &quot;final_grade&quot;      &quot;flag&quot;             &quot;gra&quot;             
-##  [41] &quot;grades&quot;           &quot;graPer&quot;           &quot;griSta&quot;           &quot;hei&quot;             
-##  [45] &quot;heiDisBiaSam&quot;     &quot;heiDisPop&quot;        &quot;heiDisRanSam&quot;     &quot;heiDisSimRanSam&quot; 
-##  [49] &quot;heiRacMea&quot;        &quot;heiRacSd&quot;         &quot;i&quot;                &quot;incLev&quot;          
-##  [53] &quot;incPer&quot;           &quot;j&quot;                &quot;k&quot;                &quot;l&quot;               
-##  [57] &quot;lower&quot;            &quot;lowUpp&quot;           &quot;matSco&quot;           &quot;matScoBin&quot;       
-##  [61] &quot;maxScoMat&quot;        &quot;maxScoVer&quot;        &quot;mea1&quot;             &quot;mea2&quot;            
-##  [65] &quot;meaBiaSam&quot;        &quot;meaDisBiaSam&quot;     &quot;meaDisRanSam&quot;     &quot;meaDisSimRanSam&quot; 
-##  [69] &quot;means&quot;            &quot;meaPop&quot;           &quot;meaRanSam&quot;        &quot;meaSimRanSam&quot;    
-##  [73] &quot;meaX&quot;             &quot;meaX2&quot;            &quot;medians&quot;          &quot;minScoMat&quot;       
-##  [77] &quot;minScoVer&quot;        &quot;mu&quot;               &quot;mu_null&quot;          &quot;mu_pop&quot;          
-##  [81] &quot;mu0&quot;              &quot;n&quot;                &quot;n_required&quot;       &quot;name&quot;            
-##  [85] &quot;namEduPar&quot;        &quot;namIncLev&quot;        &quot;namSch&quot;           &quot;null_means&quot;      
-##  [89] &quot;num_rep&quot;          &quot;numDf&quot;            &quot;numGra&quot;           &quot;numPeoRac&quot;       
-##  [93] &quot;numRep&quot;           &quot;numSam&quot;           &quot;numSch&quot;           &quot;numSel&quot;          
-##  [97] &quot;numStu&quot;           &quot;numStuClu&quot;        &quot;numStuGra&quot;        &quot;obsAlc&quot;          
-## [101] &quot;obsErr&quot;           &quot;p&quot;                &quot;p_value&quot;          &quot;pA&quot;              
-## [105] &quot;pmf&quot;              &quot;pop&quot;              &quot;population&quot;       &quot;populationGrowth&quot;
-## [109] &quot;pro1&quot;             &quot;pro12&quot;            &quot;pro2&quot;             &quot;pro50&quot;           
-## [113] &quot;proCon&quot;           &quot;proInf&quot;           &quot;proInt&quot;           &quot;proMar&quot;          
-## [117] &quot;proTab&quot;           &quot;qua&quot;              &quot;quick_summary&quot;    &quot;R&quot;               
-## [121] &quot;rac&quot;              &quot;racNam&quot;           &quot;ranks&quot;            &quot;ranSam&quot;          
-## [125] &quot;reaAlc&quot;           &quot;reaBac&quot;           &quot;relFreHea&quot;        &quot;rep&quot;             
-## [129] &quot;repTwo&quot;           &quot;s&quot;                &quot;samCoi&quot;           &quot;sampA&quot;           
-## [133] &quot;sampB&quot;            &quot;sample_boot&quot;      &quot;sample_data&quot;      &quot;sample_means&quot;    
-## [137] &quot;sample1&quot;          &quot;sample2&quot;          &quot;samPop&quot;           &quot;samSiz&quot;          
-## [141] &quot;samVar&quot;           &quot;sch&quot;              &quot;schDat&quot;           &quot;schPer&quot;          
-## [145] &quot;sd&quot;               &quot;sd_pop&quot;           &quot;se&quot;               &quot;sel&quot;             
-## [149] &quot;sel1&quot;             &quot;sel2&quot;             &quot;selGra&quot;           &quot;selInc&quot;          
-## [153] &quot;selPar&quot;           &quot;selSch&quot;           &quot;sen&quot;              &quot;sigma&quot;           
-## [157] &quot;simRanSam&quot;        &quot;sims&quot;             &quot;spe&quot;              &quot;stdPop&quot;          
-## [161] &quot;suits&quot;            &quot;t&quot;                &quot;t_crit&quot;           &quot;t_stat&quot;          
-## [165] &quot;test&quot;             &quot;trimmed&quot;          &quot;true_mean&quot;        &quot;u&quot;               
-## [169] &quot;u1&quot;               &quot;u2&quot;               &quot;upper&quot;            &quot;v&quot;               
-## [173] &quot;var&quot;              &quot;varKno&quot;           &quot;varX&quot;             &quot;varY&quot;            
-## [177] &quot;verSco&quot;           &quot;weight&quot;           &quot;X&quot;                &quot;x_bar&quot;           
-## [181] &quot;x_future&quot;         &quot;x_sorted&quot;         &quot;x2&quot;               &quot;xbar&quot;            
-## [185] &quot;xm&quot;               &quot;xmax&quot;             &quot;xmin&quot;             &quot;y&quot;               
-## [189] &quot;Y&quot;                &quot;y_bar&quot;            &quot;y_centered&quot;       &quot;ymax&quot;            
-## [193] &quot;ymin&quot;             &quot;yval&quot;             &quot;z&quot;                &quot;zlow&quot;            
-## [197] &quot;zscore&quot;           &quot;zupp&quot;</code></pre>
+<pre><code>##   [1] &quot;a&quot;                &quot;A&quot;                &quot;age&quot;              &quot;alpha&quot;            &quot;altVar&quot;           &quot;appMea&quot;          
+##   [7] &quot;appMeaLin&quot;        &quot;b&quot;                &quot;B&quot;                &quot;bac&quot;              &quot;biaSam&quot;           &quot;booMea&quot;          
+##  [13] &quot;booPva&quot;           &quot;booSam&quot;           &quot;booSD&quot;            &quot;boot_means&quot;       &quot;booT025&quot;          &quot;booT975&quot;         
+##  [19] &quot;booTst&quot;           &quot;breaks&quot;           &quot;c&quot;                &quot;C&quot;                &quot;calories&quot;         &quot;cards&quot;           
+##  [25] &quot;ci_bounds&quot;        &quot;conInt&quot;           &quot;count&quot;            &quot;cov&quot;              &quot;cover&quot;            &quot;D&quot;               
+##  [31] &quot;d1&quot;               &quot;d2&quot;               &quot;data&quot;             &quot;deck&quot;             &quot;densityChiSquare&quot; &quot;df&quot;              
+##  [37] &quot;die1&quot;             &quot;die2&quot;             &quot;dieRol&quot;           &quot;dirVar&quot;           &quot;disease&quot;          &quot;E&quot;               
+##  [43] &quot;eduPar&quot;           &quot;eduPer&quot;           &quot;errors&quot;           &quot;exam_score&quot;       &quot;exaMeaBin&quot;        &quot;exaMeaLin&quot;       
+##  [49] &quot;f&quot;                &quot;final_grade&quot;      &quot;firstAce&quot;         &quot;flag&quot;             &quot;gra&quot;              &quot;grades&quot;          
+##  [55] &quot;graPer&quot;           &quot;griSta&quot;           &quot;hei&quot;              &quot;heiDisBiaSam&quot;     &quot;heiDisPop&quot;        &quot;heiDisRanSam&quot;    
+##  [61] &quot;heiDisSimRanSam&quot;  &quot;heiRacMea&quot;        &quot;heiRacSd&quot;         &quot;i&quot;                &quot;incLev&quot;           &quot;incPer&quot;          
+##  [67] &quot;j&quot;                &quot;k&quot;                &quot;l&quot;                &quot;lower&quot;            &quot;lowUpp&quot;           &quot;matSco&quot;          
+##  [73] &quot;matScoBin&quot;        &quot;maxScoMat&quot;        &quot;maxScoVer&quot;        &quot;mea1&quot;             &quot;mea2&quot;             &quot;meaBiaSam&quot;       
+##  [79] &quot;meaDisBiaSam&quot;     &quot;meaDisRanSam&quot;     &quot;meaDisSimRanSam&quot;  &quot;means&quot;            &quot;meaPop&quot;           &quot;meaRanSam&quot;       
+##  [85] &quot;meaSimRanSam&quot;     &quot;meaX&quot;             &quot;meaX2&quot;            &quot;medians&quot;          &quot;minScoMat&quot;        &quot;minScoVer&quot;       
+##  [91] &quot;mu&quot;               &quot;mu_null&quot;          &quot;mu_pop&quot;           &quot;mu0&quot;              &quot;n&quot;                &quot;n_required&quot;      
+##  [97] &quot;name&quot;             &quot;namEduPar&quot;        &quot;namIncLev&quot;        &quot;namSch&quot;           &quot;null_means&quot;       &quot;num_rep&quot;         
+## [103] &quot;numDf&quot;            &quot;numGra&quot;           &quot;numPeoRac&quot;        &quot;numRep&quot;           &quot;numSam&quot;           &quot;numSch&quot;          
+## [109] &quot;numSel&quot;           &quot;numStu&quot;           &quot;numStuClu&quot;        &quot;numStuGra&quot;        &quot;obsAlc&quot;           &quot;obsErr&quot;          
+## [115] &quot;p&quot;                &quot;p_value&quot;          &quot;pA&quot;               &quot;pA_exact&quot;         &quot;pAandB&quot;           &quot;pAandB_exact&quot;    
+## [121] &quot;pAc&quot;              &quot;pAorB&quot;            &quot;pB&quot;               &quot;pB_exact&quot;         &quot;pBgivenA&quot;         &quot;pC&quot;              
+## [127] &quot;pCorD&quot;            &quot;pD&quot;               &quot;pmf&quot;              &quot;pop&quot;              &quot;population&quot;       &quot;populationGrowth&quot;
+## [133] &quot;pro1&quot;             &quot;pro12&quot;            &quot;pro2&quot;             &quot;pro50&quot;            &quot;proCon&quot;           &quot;proInf&quot;          
+## [139] &quot;proInt&quot;           &quot;proMar&quot;           &quot;proTab&quot;           &quot;qua&quot;              &quot;quick_summary&quot;    &quot;R&quot;               
+## [145] &quot;rac&quot;              &quot;racNam&quot;           &quot;ranks&quot;            &quot;ranSam&quot;           &quot;reaAlc&quot;           &quot;reaBac&quot;          
+## [151] &quot;rejPer&quot;           &quot;relFreHea&quot;        &quot;rep&quot;              &quot;repTwo&quot;           &quot;s&quot;                &quot;samCoi&quot;          
+## [157] &quot;sampA&quot;            &quot;sampB&quot;            &quot;sample_boot&quot;      &quot;sample_data&quot;      &quot;sample_means&quot;     &quot;sample1&quot;         
+## [163] &quot;sample2&quot;          &quot;samPop&quot;           &quot;samSiz&quot;           &quot;samVar&quot;           &quot;sch&quot;              &quot;schDat&quot;          
+## [169] &quot;schPer&quot;           &quot;sd&quot;               &quot;sd_pop&quot;           &quot;sdx&quot;              &quot;se&quot;               &quot;secondAce&quot;       
+## [175] &quot;sel&quot;              &quot;sel1&quot;             &quot;sel2&quot;             &quot;selGra&quot;           &quot;selInc&quot;           &quot;selPar&quot;          
+## [181] &quot;selSch&quot;           &quot;sen&quot;              &quot;sigma&quot;            &quot;simRanSam&quot;        &quot;sims&quot;             &quot;spe&quot;             
+## [187] &quot;stdPop&quot;           &quot;suits&quot;            &quot;t&quot;                &quot;t_crit&quot;           &quot;t_stat&quot;           &quot;test&quot;            
+## [193] &quot;toss1&quot;            &quot;toss2&quot;            &quot;trimmed&quot;          &quot;true_mean&quot;        &quot;u&quot;                &quot;u1&quot;              
+## [199] &quot;u2&quot;               &quot;upper&quot;            &quot;v&quot;                &quot;var&quot;              &quot;varKno&quot;           &quot;varX&quot;            
+## [205] &quot;varY&quot;             &quot;verSco&quot;           &quot;weight&quot;           &quot;X&quot;                &quot;x_bar&quot;            &quot;x_future&quot;        
+## [211] &quot;x_sorted&quot;         &quot;x2&quot;               &quot;xbar&quot;             &quot;xm&quot;               &quot;xmax&quot;             &quot;xmin&quot;            
+## [217] &quot;y&quot;                &quot;Y&quot;                &quot;y_bar&quot;            &quot;y_centered&quot;       &quot;ymax&quot;             &quot;ymin&quot;            
+## [223] &quot;yval&quot;             &quot;z&quot;                &quot;zlow&quot;             &quot;zscore&quot;           &quot;zupp&quot;</code></pre>
 </div>
 <div id="getting-package-help" class="section level3 hasAnchor" number="2.6.5">
 <h3><span class="header-section-number">2.6.5</span> Getting Package Help<a href="introduction-to-r.html#getting-package-help" class="anchor-section" aria-label="Anchor link to header"></a></h3>
