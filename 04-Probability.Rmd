@@ -1477,6 +1477,8 @@ The parameter $k$ is called the **degrees of freedom**. It determines the shape 
 
 This construction is fundamental in statistics because many important quantities—such as sample variances and sums of squared residuals—can be expressed as sums of squared normal variables.
 
+> Note: If $X_1 \sim \chi^2_{k_1}$ and $X_2 \sim \chi^2_{k_2}$ are independent, then $X_1 + X_2 \sim \chi^2_{k_1+k_2}$.
+
 ---
 
 ##### Simulation of a Chi-Squared Distribution

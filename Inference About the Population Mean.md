@@ -2181,7 +2181,6 @@ abline(h   = alp,
        lwd = 2,
        col = "red")
 ```
-
 ---
 
 ### Example Suboptimal Test
@@ -2214,7 +2213,7 @@ $$
 
 ---
 
-#### Rejection region
+## Rejection region
 
 If we insist on using a $t$ test with significance level $\alpha$, then under $H_0$ we have
 
@@ -2246,7 +2245,7 @@ So unlike the $z$ test, the cutoff is now random because it depends on $S$.
 
 ---
 
-#### Distribution of the test statistic under a true mean $\mu$
+## Distribution of the test statistic under a true mean $\mu$
 
 When the true mean is $\mu$, the statistic $T$ no longer has a central $t$ distribution. Instead it has a noncentral $t$ distribution with
 
@@ -2307,7 +2306,7 @@ This is the exact power function for the test that wastes the known variance.
 
 ---
 
-#### Compare with the $z$ test
+## Compare with the $z$ test
 
 If we use the known variance correctly, the $z$ test rejects when
 
@@ -2373,7 +2372,7 @@ In practice, it is typically strictly smaller for essentially all relevant alter
 
 ---
 
-#### Intuition for the power loss
+## Intuition for the power loss
 
 The $z$ test uses the exact standard error
 
@@ -2400,7 +2399,7 @@ So the test is spending part of its information estimating something that was al
 
 ---
 
-#### Another way to see it
+## Another way to see it
 
 The $z$ test rejects for large values of $\bar X$ alone:
 
