@@ -55,6 +55,9 @@ The consistency checker must verify:
 ### E) Quiz Elaboration
 - Creates a quiz for the topics provided.
 
+### F) Competitions Elaboration
+- Create Kaggle style competitions
+
 ## Agents
 
 ### A) Outline Creator
@@ -98,6 +101,17 @@ Additional rules:
 - Questions must only reference material from the provided sections.
 - Avoid notation requiring LaTeX.
 - Use plain text suitable for Kahoot.
+- Mix the multiple choice and true and false questions
+
+### F) Competition Master
+- The competition Master should create content for the following sections of a Kaggle competition (based on the information provided):
+	- Title
+	- Subtitle
+	- Overview
+	- Description
+	- Evaluation
+	- Data Set Description
+- No Data generation.
 
 ## File Workflow  
   

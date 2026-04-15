@@ -2150,7 +2150,7 @@ alp <- 0.05  # Significance (1-alp) Confidence Level
 # Null Hypothesis Z score that defines the Rejection Region
 za  <- qnorm(p = 1 - alp, mean = 0, sd = 1)
 # Standarized Difference between NUll and Reality (Noie to Signal Ratio)
-d   <- (mea1 - mea0) / (sd / sqrt(n))
+d   <- (muA - mu0) / (sd / sqrt(n))
 # Probability of Rejecting when ALternative is true
 pro <- 1 - pnorm(q = za - d, mean = 0, sd = 1) 
 pro <- pnorm(q = za - d, mean = 0, sd = 1, lower.tail = FALSE)
@@ -2505,7 +2505,7 @@ alp <- 0.05  # Significance (1-alp) Confidence Level
 # Null Hypothesis Z score that defines the Rejection Region
 za  <- qnorm(p = 1 - alp, mean = 0, sd = 1)
 # Standarized Difference between NUll and Reality (Noie to Signal Ratio)
-d   <- (mea1 - mea0) / (sd / sqrt(n))
+d   <- (muA - mu0) / (sd / sqrt(n))
 # Probability of Rejecting when ALternative is true
 pro <- 1 - pnorm(q = za - d, mean = 0, sd = 1) 
 pro <- pnorm(q = za - d, mean = 0, sd = 1, lower.tail = FALSE)
