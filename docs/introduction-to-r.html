@@ -960,24 +960,82 @@ You type commands into the <strong>Console</strong>, and R evaluates them.</p>
 <h3><span class="header-section-number">2.6.4</span> Inspecting Objects<a href="introduction-to-r.html#inspecting-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="introduction-to-r.html#cb124-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">5</span>)</span>
 <span id="cb124-2"><a href="introduction-to-r.html#cb124-2" tabindex="-1"></a><span class="fu">str</span>(x)</span></code></pre></div>
-<pre><code>##  num [1:5] 1.4983 0.3609 -0.96 1.4945 0.0677</code></pre>
+<pre><code>##  num [1:5] 0.854 -0.614 -1.289 -1.882 0.722</code></pre>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="introduction-to-r.html#cb126-1" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="introduction-to-r.html#cb128-1" tabindex="-1"></a><span class="fu">typeof</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="introduction-to-r.html#cb130-1" tabindex="-1"></a><span class="fu">ls</span>()        <span class="co"># list objects in your environment</span></span></code></pre></div>
-<pre><code>##  [1] &quot;a&quot;             &quot;actD&quot;          &quot;b&quot;             &quot;B&quot;             &quot;booD&quot;          &quot;exam_score&quot;    &quot;final_grade&quot;   &quot;flag&quot;         
-##  [9] &quot;grades&quot;        &quot;i&quot;             &quot;mu1&quot;           &quot;mu2&quot;           &quot;n1&quot;            &quot;n2&quot;            &quot;name&quot;          &quot;pVal&quot;         
-## [17] &quot;quick_summary&quot; &quot;rejBoo&quot;        &quot;rejPoo&quot;        &quot;S&quot;             &quot;s1&quot;            &quot;s2&quot;            &quot;sd1&quot;           &quot;sd2&quot;          
-## [25] &quot;se&quot;            &quot;sk1&quot;           &quot;sk2&quot;           &quot;sp&quot;            &quot;t&quot;             &quot;ta&quot;            &quot;v&quot;             &quot;x&quot;            
-## [33] &quot;x1&quot;            &quot;x2&quot;            &quot;xBar1&quot;         &quot;xBar2&quot;         &quot;xm&quot;            &quot;y&quot;             &quot;z&quot;             &quot;zscore&quot;</code></pre>
+<pre><code>##   [1] &quot;a&quot;                    &quot;A&quot;                    &quot;actD&quot;                 &quot;age&quot;                  &quot;alp&quot;                  &quot;alpha&quot;               
+##   [7] &quot;b&quot;                    &quot;B&quot;                    &quot;bac&quot;                  &quot;biaSam&quot;               &quot;booD&quot;                 &quot;booPva&quot;              
+##  [13] &quot;C&quot;                    &quot;calories&quot;             &quot;cards&quot;                &quot;ci_bounds&quot;            &quot;conInt&quot;               &quot;control&quot;             
+##  [19] &quot;cov&quot;                  &quot;d&quot;                    &quot;D&quot;                    &quot;deck&quot;                 &quot;densityChiSquare&quot;     &quot;df&quot;                  
+##  [25] &quot;die1&quot;                 &quot;die2&quot;                 &quot;dif&quot;                  &quot;differences&quot;          &quot;E&quot;                    &quot;eduPar&quot;              
+##  [31] &quot;eduPer&quot;               &quot;errors&quot;               &quot;exam_score&quot;           &quot;f&quot;                    &quot;final_grade&quot;          &quot;firstAce&quot;            
+##  [37] &quot;flag&quot;                 &quot;gra&quot;                  &quot;grades&quot;               &quot;graPer&quot;               &quot;hei&quot;                  &quot;heiDisBiaSam&quot;        
+##  [43] &quot;heiDisPop&quot;            &quot;heiDisRanSam&quot;         &quot;heiDisSimRanSam&quot;      &quot;heiRacMea&quot;            &quot;heiRacSd&quot;             &quot;i&quot;                   
+##  [49] &quot;incLev&quot;               &quot;incPer&quot;               &quot;j&quot;                    &quot;k&quot;                    &quot;knoVar&quot;               &quot;l&quot;                   
+##  [55] &quot;lower&quot;                &quot;M&quot;                    &quot;mat&quot;                  &quot;matSco&quot;               &quot;maxScoMat&quot;            &quot;maxScoVer&quot;           
+##  [61] &quot;meaBiaSam&quot;            &quot;meaDisBiaSam&quot;         &quot;meaDisRanSam&quot;         &quot;meaDisSimRanSam&quot;      &quot;means&quot;                &quot;meaPop&quot;              
+##  [67] &quot;meaPro&quot;               &quot;meaRanSam&quot;            &quot;meaSimRanSam&quot;         &quot;minScoMat&quot;            &quot;minScoVer&quot;            &quot;mu&quot;                  
+##  [73] &quot;mu_null&quot;              &quot;mu_pop&quot;               &quot;mu0&quot;                  &quot;mu1&quot;                  &quot;mu2&quot;                  &quot;muA&quot;                 
+##  [79] &quot;n&quot;                    &quot;n_required&quot;           &quot;n1&quot;                   &quot;n2&quot;                   &quot;name&quot;                 &quot;namEduPar&quot;           
+##  [85] &quot;namIncLev&quot;            &quot;namSch&quot;               &quot;null_means&quot;           &quot;num_rep&quot;              &quot;numGra&quot;               &quot;numPeoRac&quot;           
+##  [91] &quot;numRep&quot;               &quot;numSam&quot;               &quot;numSch&quot;               &quot;numSel&quot;               &quot;numStu&quot;               &quot;numStuClu&quot;           
+##  [97] &quot;numStuGra&quot;            &quot;p&quot;                    &quot;p_value&quot;              &quot;pA&quot;                   &quot;pA_exact&quot;             &quot;pAandB&quot;              
+## [103] &quot;pAandB_exact&quot;         &quot;pAc&quot;                  &quot;pAorB&quot;                &quot;pB&quot;                   &quot;pB_exact&quot;             &quot;pBgivenA&quot;            
+## [109] &quot;pC&quot;                   &quot;pCorD&quot;                &quot;pD&quot;                   &quot;pop&quot;                  &quot;population&quot;           &quot;powTte&quot;              
+## [115] &quot;powZte&quot;               &quot;pro&quot;                  &quot;pro50&quot;                &quot;proInt&quot;               &quot;proRej&quot;               &quot;pVal&quot;                
+## [121] &quot;qua&quot;                  &quot;quick_summary&quot;        &quot;R&quot;                    &quot;rac&quot;                  &quot;racNam&quot;               &quot;ranSam&quot;              
+## [127] &quot;reaAlc&quot;               &quot;reaBac&quot;               &quot;rej&quot;                  &quot;rejBoo&quot;               &quot;rejMat&quot;               &quot;rejPer&quot;              
+## [133] &quot;rejPoo&quot;               &quot;rep&quot;                  &quot;s&quot;                    &quot;S&quot;                    &quot;s1&quot;                   &quot;s2&quot;                  
+## [139] &quot;sample_data&quot;          &quot;sample_means&quot;         &quot;sample1&quot;              &quot;sample2&quot;              &quot;samSiz&quot;               &quot;samVar&quot;              
+## [145] &quot;sch&quot;                  &quot;schDat&quot;               &quot;schPer&quot;               &quot;sd&quot;                   &quot;sd_pop&quot;               &quot;sd1&quot;                 
+## [151] &quot;sd2&quot;                  &quot;sdPro&quot;                &quot;se&quot;                   &quot;secondAce&quot;            &quot;sel&quot;                  &quot;selGra&quot;              
+## [157] &quot;selInc&quot;               &quot;selPar&quot;               &quot;selSch&quot;               &quot;shape1&quot;               &quot;shape2&quot;               &quot;sigma&quot;               
+## [163] &quot;simRanSam&quot;            &quot;sk1&quot;                  &quot;sk2&quot;                  &quot;sp&quot;                   &quot;stdPop&quot;               &quot;t&quot;                   
+## [169] &quot;t_crit&quot;               &quot;t_stat&quot;               &quot;ta&quot;                   &quot;toss1&quot;                &quot;toss2&quot;                &quot;treatment&quot;           
+## [175] &quot;true_mean&quot;            &quot;u&quot;                    &quot;u1&quot;                   &quot;u2&quot;                   &quot;upper&quot;                &quot;v&quot;                   
+## [181] &quot;varKno&quot;               &quot;vecPro&quot;               &quot;verSco&quot;               &quot;weight&quot;               &quot;winklerIntervalScore&quot; &quot;x&quot;                   
+## [187] &quot;x_future&quot;             &quot;x_sorted&quot;             &quot;x1&quot;                   &quot;x2&quot;                   &quot;xbar&quot;                 &quot;xBar1&quot;               
+## [193] &quot;xBar2&quot;                &quot;xm&quot;                   &quot;xmax&quot;                 &quot;xmin&quot;                 &quot;y&quot;                    &quot;y_bar&quot;               
+## [199] &quot;ymax&quot;                 &quot;ymin&quot;                 &quot;z&quot;                    &quot;za&quot;                   &quot;zscore&quot;</code></pre>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="introduction-to-r.html#cb132-1" tabindex="-1"></a><span class="fu">rm</span>(x)       <span class="co"># remove x</span></span>
 <span id="cb132-2"><a href="introduction-to-r.html#cb132-2" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
-<pre><code>##  [1] &quot;a&quot;             &quot;actD&quot;          &quot;b&quot;             &quot;B&quot;             &quot;booD&quot;          &quot;exam_score&quot;    &quot;final_grade&quot;   &quot;flag&quot;         
-##  [9] &quot;grades&quot;        &quot;i&quot;             &quot;mu1&quot;           &quot;mu2&quot;           &quot;n1&quot;            &quot;n2&quot;            &quot;name&quot;          &quot;pVal&quot;         
-## [17] &quot;quick_summary&quot; &quot;rejBoo&quot;        &quot;rejPoo&quot;        &quot;S&quot;             &quot;s1&quot;            &quot;s2&quot;            &quot;sd1&quot;           &quot;sd2&quot;          
-## [25] &quot;se&quot;            &quot;sk1&quot;           &quot;sk2&quot;           &quot;sp&quot;            &quot;t&quot;             &quot;ta&quot;            &quot;v&quot;             &quot;x1&quot;           
-## [33] &quot;x2&quot;            &quot;xBar1&quot;         &quot;xBar2&quot;         &quot;xm&quot;            &quot;y&quot;             &quot;z&quot;             &quot;zscore&quot;</code></pre>
+<pre><code>##   [1] &quot;a&quot;                    &quot;A&quot;                    &quot;actD&quot;                 &quot;age&quot;                  &quot;alp&quot;                  &quot;alpha&quot;               
+##   [7] &quot;b&quot;                    &quot;B&quot;                    &quot;bac&quot;                  &quot;biaSam&quot;               &quot;booD&quot;                 &quot;booPva&quot;              
+##  [13] &quot;C&quot;                    &quot;calories&quot;             &quot;cards&quot;                &quot;ci_bounds&quot;            &quot;conInt&quot;               &quot;control&quot;             
+##  [19] &quot;cov&quot;                  &quot;d&quot;                    &quot;D&quot;                    &quot;deck&quot;                 &quot;densityChiSquare&quot;     &quot;df&quot;                  
+##  [25] &quot;die1&quot;                 &quot;die2&quot;                 &quot;dif&quot;                  &quot;differences&quot;          &quot;E&quot;                    &quot;eduPar&quot;              
+##  [31] &quot;eduPer&quot;               &quot;errors&quot;               &quot;exam_score&quot;           &quot;f&quot;                    &quot;final_grade&quot;          &quot;firstAce&quot;            
+##  [37] &quot;flag&quot;                 &quot;gra&quot;                  &quot;grades&quot;               &quot;graPer&quot;               &quot;hei&quot;                  &quot;heiDisBiaSam&quot;        
+##  [43] &quot;heiDisPop&quot;            &quot;heiDisRanSam&quot;         &quot;heiDisSimRanSam&quot;      &quot;heiRacMea&quot;            &quot;heiRacSd&quot;             &quot;i&quot;                   
+##  [49] &quot;incLev&quot;               &quot;incPer&quot;               &quot;j&quot;                    &quot;k&quot;                    &quot;knoVar&quot;               &quot;l&quot;                   
+##  [55] &quot;lower&quot;                &quot;M&quot;                    &quot;mat&quot;                  &quot;matSco&quot;               &quot;maxScoMat&quot;            &quot;maxScoVer&quot;           
+##  [61] &quot;meaBiaSam&quot;            &quot;meaDisBiaSam&quot;         &quot;meaDisRanSam&quot;         &quot;meaDisSimRanSam&quot;      &quot;means&quot;                &quot;meaPop&quot;              
+##  [67] &quot;meaPro&quot;               &quot;meaRanSam&quot;            &quot;meaSimRanSam&quot;         &quot;minScoMat&quot;            &quot;minScoVer&quot;            &quot;mu&quot;                  
+##  [73] &quot;mu_null&quot;              &quot;mu_pop&quot;               &quot;mu0&quot;                  &quot;mu1&quot;                  &quot;mu2&quot;                  &quot;muA&quot;                 
+##  [79] &quot;n&quot;                    &quot;n_required&quot;           &quot;n1&quot;                   &quot;n2&quot;                   &quot;name&quot;                 &quot;namEduPar&quot;           
+##  [85] &quot;namIncLev&quot;            &quot;namSch&quot;               &quot;null_means&quot;           &quot;num_rep&quot;              &quot;numGra&quot;               &quot;numPeoRac&quot;           
+##  [91] &quot;numRep&quot;               &quot;numSam&quot;               &quot;numSch&quot;               &quot;numSel&quot;               &quot;numStu&quot;               &quot;numStuClu&quot;           
+##  [97] &quot;numStuGra&quot;            &quot;p&quot;                    &quot;p_value&quot;              &quot;pA&quot;                   &quot;pA_exact&quot;             &quot;pAandB&quot;              
+## [103] &quot;pAandB_exact&quot;         &quot;pAc&quot;                  &quot;pAorB&quot;                &quot;pB&quot;                   &quot;pB_exact&quot;             &quot;pBgivenA&quot;            
+## [109] &quot;pC&quot;                   &quot;pCorD&quot;                &quot;pD&quot;                   &quot;pop&quot;                  &quot;population&quot;           &quot;powTte&quot;              
+## [115] &quot;powZte&quot;               &quot;pro&quot;                  &quot;pro50&quot;                &quot;proInt&quot;               &quot;proRej&quot;               &quot;pVal&quot;                
+## [121] &quot;qua&quot;                  &quot;quick_summary&quot;        &quot;R&quot;                    &quot;rac&quot;                  &quot;racNam&quot;               &quot;ranSam&quot;              
+## [127] &quot;reaAlc&quot;               &quot;reaBac&quot;               &quot;rej&quot;                  &quot;rejBoo&quot;               &quot;rejMat&quot;               &quot;rejPer&quot;              
+## [133] &quot;rejPoo&quot;               &quot;rep&quot;                  &quot;s&quot;                    &quot;S&quot;                    &quot;s1&quot;                   &quot;s2&quot;                  
+## [139] &quot;sample_data&quot;          &quot;sample_means&quot;         &quot;sample1&quot;              &quot;sample2&quot;              &quot;samSiz&quot;               &quot;samVar&quot;              
+## [145] &quot;sch&quot;                  &quot;schDat&quot;               &quot;schPer&quot;               &quot;sd&quot;                   &quot;sd_pop&quot;               &quot;sd1&quot;                 
+## [151] &quot;sd2&quot;                  &quot;sdPro&quot;                &quot;se&quot;                   &quot;secondAce&quot;            &quot;sel&quot;                  &quot;selGra&quot;              
+## [157] &quot;selInc&quot;               &quot;selPar&quot;               &quot;selSch&quot;               &quot;shape1&quot;               &quot;shape2&quot;               &quot;sigma&quot;               
+## [163] &quot;simRanSam&quot;            &quot;sk1&quot;                  &quot;sk2&quot;                  &quot;sp&quot;                   &quot;stdPop&quot;               &quot;t&quot;                   
+## [169] &quot;t_crit&quot;               &quot;t_stat&quot;               &quot;ta&quot;                   &quot;toss1&quot;                &quot;toss2&quot;                &quot;treatment&quot;           
+## [175] &quot;true_mean&quot;            &quot;u&quot;                    &quot;u1&quot;                   &quot;u2&quot;                   &quot;upper&quot;                &quot;v&quot;                   
+## [181] &quot;varKno&quot;               &quot;vecPro&quot;               &quot;verSco&quot;               &quot;weight&quot;               &quot;winklerIntervalScore&quot; &quot;x_future&quot;            
+## [187] &quot;x_sorted&quot;             &quot;x1&quot;                   &quot;x2&quot;                   &quot;xbar&quot;                 &quot;xBar1&quot;                &quot;xBar2&quot;               
+## [193] &quot;xm&quot;                   &quot;xmax&quot;                 &quot;xmin&quot;                 &quot;y&quot;                    &quot;y_bar&quot;                &quot;ymax&quot;                
+## [199] &quot;ymin&quot;                 &quot;z&quot;                    &quot;za&quot;                   &quot;zscore&quot;</code></pre>
 </div>
 <div id="getting-package-help" class="section level3 hasAnchor" number="2.6.5">
 <h3><span class="header-section-number">2.6.5</span> Getting Package Help<a href="introduction-to-r.html#getting-package-help" class="anchor-section" aria-label="Anchor link to header"></a></h3>
