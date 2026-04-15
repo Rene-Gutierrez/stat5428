@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 Inference About the Variance | STAT 5428/6428 Spring 2026</title>
+  <meta name="description" content="10 Inference About the Variance | STAT 5428/6428 Spring 2026" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 Inference About the Variance | STAT 5428/6428 Spring 2026" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 Inference About the Variance | STAT 5428/6428 Spring 2026" />
+  
+  
+  
+
+<meta name="author" content="Rene Gutierrez University of Texas at El Paso" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="inference-comparing-two-population-means.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Stat 5428/6428 Spring 2026</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#weekly-course-outline"><i class="fa fa-check"></i><b>1.1</b> Weekly Course Outline</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#topical-learning-outcomes-aligned-with-blooms-taxonomy"><i class="fa fa-check"></i><b>1.2</b> Topical Learning Outcomes (Aligned with Bloom’s Taxonomy)</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#course-overview"><i class="fa fa-check"></i><b>1.3</b> Course Overview</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#section-i-data-description-and-intrinsic-properties"><i class="fa fa-check"></i><b>1.3.1</b> Section I: Data — Description and Intrinsic Properties</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#section-ii-data-modeling-probability-as-a-generative-mechanism"><i class="fa fa-check"></i><b>1.3.2</b> Section II: Data Modeling — Probability as a Generative Mechanism</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#section-iii-statistical-inference-learning-from-data-under-a-model"><i class="fa fa-check"></i><b>1.3.3</b> Section III: Statistical Inference — Learning from Data Under a Model</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#section-iv-data-remodeling-model-assessment-revision-and-alternatives"><i class="fa fa-check"></i><b>1.3.4</b> Section IV: Data Remodeling — Model Assessment, Revision, and Alternatives</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-perspective"><i class="fa fa-check"></i><b>1.4</b> Course Perspective</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#basic-r-operations-and-concepts"><i class="fa fa-check"></i><b>2.1</b> Basic R Operations and Concepts</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-console-and-scripts"><i class="fa fa-check"></i><b>2.1.1</b> The Console and Scripts</a></li>
+<li class="chapter" data-level="2.1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#comments"><i class="fa fa-check"></i><b>2.1.2</b> Comments</a></li>
+<li class="chapter" data-level="2.1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#printing-and-output"><i class="fa fa-check"></i><b>2.1.3</b> Printing and Output</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#arithmetic"><i class="fa fa-check"></i><b>2.2</b> Arithmetic</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#order-of-operations"><i class="fa fa-check"></i><b>2.2.1</b> Order of Operations</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#logical-comparisons"><i class="fa fa-check"></i><b>2.2.2</b> Logical Comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assignment-object-names-and-data-types"><i class="fa fa-check"></i><b>2.3</b> Assignment, Object Names, and Data Types</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assignment"><i class="fa fa-check"></i><b>2.3.1</b> Assignment</a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#object-names"><i class="fa fa-check"></i><b>2.3.2</b> Object Names</a></li>
+<li class="chapter" data-level="2.3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#common-data-types"><i class="fa fa-check"></i><b>2.3.3</b> Common Data Types</a></li>
+<li class="chapter" data-level="2.3.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#missing-values"><i class="fa fa-check"></i><b>2.3.4</b> Missing Values</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#vectors"><i class="fa fa-check"></i><b>2.4</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#creating-vectors-with-c"><i class="fa fa-check"></i><b>2.4.1</b> Creating Vectors with <code>c()</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#vector-length"><i class="fa fa-check"></i><b>2.4.2</b> Vector Length</a></li>
+<li class="chapter" data-level="2.4.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#vector-arithmetic-vectorized-operations"><i class="fa fa-check"></i><b>2.4.3</b> Vector Arithmetic (Vectorized Operations)</a></li>
+<li class="chapter" data-level="2.4.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#sequences-with-and-seq"><i class="fa fa-check"></i><b>2.4.4</b> Sequences with <code>:</code> and <code>seq()</code></a></li>
+<li class="chapter" data-level="2.4.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#repetition-with-rep"><i class="fa fa-check"></i><b>2.4.5</b> Repetition with <code>rep()</code></a></li>
+<li class="chapter" data-level="2.4.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#indexing-vectors"><i class="fa fa-check"></i><b>2.4.6</b> Indexing Vectors</a></li>
+<li class="chapter" data-level="2.4.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#named-vectors"><i class="fa fa-check"></i><b>2.4.7</b> Named Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions-and-expressions"><i class="fa fa-check"></i><b>2.5</b> Functions and Expressions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#function-arguments"><i class="fa fa-check"></i><b>2.5.1</b> Function arguments</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#expressions-and-nesting"><i class="fa fa-check"></i><b>2.5.2</b> Expressions and Nesting</a></li>
+<li class="chapter" data-level="2.5.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#creating-your-own-function"><i class="fa fa-check"></i><b>2.5.3</b> Creating Your Own Function</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-help"><i class="fa fa-check"></i><b>2.6</b> Getting Help</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#help-pages"><i class="fa fa-check"></i><b>2.6.1</b> Help Pages</a></li>
+<li class="chapter" data-level="2.6.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#examples-in-help-files"><i class="fa fa-check"></i><b>2.6.2</b> Examples in Help Files</a></li>
+<li class="chapter" data-level="2.6.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#searching-for-a-function"><i class="fa fa-check"></i><b>2.6.3</b> Searching for a Function</a></li>
+<li class="chapter" data-level="2.6.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#inspecting-objects"><i class="fa fa-check"></i><b>2.6.4</b> Inspecting Objects</a></li>
+<li class="chapter" data-level="2.6.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#getting-package-help"><i class="fa fa-check"></i><b>2.6.5</b> Getting Package Help</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#why-r-for-statistics"><i class="fa fa-check"></i><b>2.7</b> Why R for Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html"><i class="fa fa-check"></i><b>3</b> Studies and Data Collection</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#statistical-studies"><i class="fa fa-check"></i><b>3.1</b> Statistical Studies</a></li>
+<li class="chapter" data-level="3.2" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#population-and-sample"><i class="fa fa-check"></i><b>3.2</b> Population and Sample</a></li>
+<li class="chapter" data-level="3.3" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#variables"><i class="fa fa-check"></i><b>3.3</b> Variables</a></li>
+<li class="chapter" data-level="3.4" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#types-of-studies"><i class="fa fa-check"></i><b>3.4</b> Types of Studies</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#observational-studies"><i class="fa fa-check"></i><b>3.4.1</b> Observational Studies</a></li>
+<li class="chapter" data-level="3.4.2" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#experimental-studies"><i class="fa fa-check"></i><b>3.4.2</b> Experimental Studies</a></li>
+<li class="chapter" data-level="3.4.3" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#association-vs-causation"><i class="fa fa-check"></i><b>3.4.3</b> Association vs Causation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#explanatory-and-response-variables"><i class="fa fa-check"></i><b>3.5</b> Explanatory and Response Variables</a></li>
+<li class="chapter" data-level="3.6" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#types-of-observational-studies"><i class="fa fa-check"></i><b>3.6</b> Types of Observational Studies</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#sample-surveys"><i class="fa fa-check"></i><b>3.6.1</b> Sample Surveys</a></li>
+<li class="chapter" data-level="3.6.2" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#prospective-studies"><i class="fa fa-check"></i><b>3.6.2</b> Prospective Studies</a></li>
+<li class="chapter" data-level="3.6.3" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#retrospective-studies"><i class="fa fa-check"></i><b>3.6.3</b> Retrospective Studies</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#units-in-a-study"><i class="fa fa-check"></i><b>3.7</b> Units in a Study</a></li>
+<li class="chapter" data-level="3.8" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#sampling-methods"><i class="fa fa-check"></i><b>3.8</b> Sampling Methods</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#simple-random-sampling"><i class="fa fa-check"></i><b>3.8.1</b> Simple Random Sampling</a></li>
+<li class="chapter" data-level="3.8.2" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#stratified-sampling"><i class="fa fa-check"></i><b>3.8.2</b> Stratified Sampling</a></li>
+<li class="chapter" data-level="3.8.3" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#cluster-sampling"><i class="fa fa-check"></i><b>3.8.3</b> Cluster Sampling</a></li>
+<li class="chapter" data-level="3.8.4" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#systematic-sampling"><i class="fa fa-check"></i><b>3.8.4</b> Systematic Sampling</a></li>
+<li class="chapter" data-level="3.8.5" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#convenience-sampling"><i class="fa fa-check"></i><b>3.8.5</b> Convenience Sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#summary-of-sampling-methods"><i class="fa fa-check"></i><b>3.9</b> Summary of Sampling Methods</a></li>
+<li class="chapter" data-level="3.10" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#bias-in-studies"><i class="fa fa-check"></i><b>3.10</b> Bias in Studies</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#common-types-of-bias"><i class="fa fa-check"></i><b>3.10.1</b> Common Types of Bias</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#summary"><i class="fa fa-check"></i><b>3.11</b> Summary</a></li>
+<li class="chapter" data-level="3.12" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#example-observational-study"><i class="fa fa-check"></i><b>3.12</b> Example: Observational Study</a>
+<ul>
+<li class="chapter" data-level="3.12.1" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#description-of-the-study"><i class="fa fa-check"></i><b>3.12.1</b> Description of the Study</a></li>
+<li class="chapter" data-level="3.12.2" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#identifying-the-components"><i class="fa fa-check"></i><b>3.12.2</b> Identifying the Components</a></li>
+<li class="chapter" data-level="3.12.3" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#potential-confounding-variables"><i class="fa fa-check"></i><b>3.12.3</b> Potential Confounding Variables</a></li>
+<li class="chapter" data-level="3.12.4" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#bias-considerations"><i class="fa fa-check"></i><b>3.12.4</b> Bias Considerations</a></li>
+<li class="chapter" data-level="3.12.5" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#why-causality-cannot-be-established"><i class="fa fa-check"></i><b>3.12.5</b> Why Causality Cannot Be Established</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#example-experimental-study"><i class="fa fa-check"></i><b>3.13</b> Example: Experimental Study</a>
+<ul>
+<li class="chapter" data-level="3.13.1" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#description-of-the-study-1"><i class="fa fa-check"></i><b>3.13.1</b> Description of the Study</a></li>
+<li class="chapter" data-level="3.13.2" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#identifying-the-components-1"><i class="fa fa-check"></i><b>3.13.2</b> Identifying the Components</a></li>
+<li class="chapter" data-level="3.13.3" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#random-assignment"><i class="fa fa-check"></i><b>3.13.3</b> Random Assignment</a></li>
+<li class="chapter" data-level="3.13.4" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#role-of-confounding-variables"><i class="fa fa-check"></i><b>3.13.4</b> Role of Confounding Variables</a></li>
+<li class="chapter" data-level="3.13.5" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#bias-considerations-1"><i class="fa fa-check"></i><b>3.13.5</b> Bias Considerations</a></li>
+<li class="chapter" data-level="3.13.6" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#why-causality-can-be-established"><i class="fa fa-check"></i><b>3.13.6</b> Why Causality Can Be Established</a></li>
+<li class="chapter" data-level="3.13.7" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#conclusion"><i class="fa fa-check"></i><b>3.13.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.14" data-path="studies-and-data-collection.html"><a href="studies-and-data-collection.html#from-studies-to-data"><i class="fa fa-check"></i><b>3.14</b> From Studies to Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-description.html"><a href="data-description.html"><i class="fa fa-check"></i><b>4</b> Data Description</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-description.html"><a href="data-description.html#descriptive-statistics"><i class="fa fa-check"></i><b>4.1</b> Descriptive Statistics</a></li>
+<li class="chapter" data-level="4.2" data-path="data-description.html"><a href="data-description.html#the-simulated-school-data"><i class="fa fa-check"></i><b>4.2</b> The Simulated School Data</a></li>
+<li class="chapter" data-level="4.3" data-path="data-description.html"><a href="data-description.html#types-of-variables"><i class="fa fa-check"></i><b>4.3</b> Types of Variables</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-description.html"><a href="data-description.html#categorical-variables"><i class="fa fa-check"></i><b>4.3.1</b> Categorical Variables</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data-description.html"><a href="data-description.html#numerical-variables"><i class="fa fa-check"></i><b>4.3.2</b> Numerical Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="data-description.html"><a href="data-description.html#graphical-summaries"><i class="fa fa-check"></i><b>4.4</b> Graphical Summaries</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data-description.html"><a href="data-description.html#graphical-summaries-for-categorical-variables"><i class="fa fa-check"></i><b>4.4.1</b> Graphical Summaries for Categorical Variables</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-description.html"><a href="data-description.html#graphical-summaries-for-numerical-variables"><i class="fa fa-check"></i><b>4.4.2</b> Graphical Summaries for Numerical Variables</a></li>
+<li class="chapter" data-level="4.4.3" data-path="data-description.html"><a href="data-description.html#comparing-numerical-variables-across-groups"><i class="fa fa-check"></i><b>4.4.3</b> Comparing Numerical Variables Across Groups</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-description.html"><a href="data-description.html#distribution-of-a-numerical-variable"><i class="fa fa-check"></i><b>4.5</b> Distribution of a Numerical Variable</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="data-description.html"><a href="data-description.html#center"><i class="fa fa-check"></i><b>4.5.1</b> Center</a></li>
+<li class="chapter" data-level="4.5.2" data-path="data-description.html"><a href="data-description.html#spread"><i class="fa fa-check"></i><b>4.5.2</b> Spread</a></li>
+<li class="chapter" data-level="4.5.3" data-path="data-description.html"><a href="data-description.html#shape"><i class="fa fa-check"></i><b>4.5.3</b> Shape</a></li>
+<li class="chapter" data-level="4.5.4" data-path="data-description.html"><a href="data-description.html#outliers"><i class="fa fa-check"></i><b>4.5.4</b> Outliers</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="data-description.html"><a href="data-description.html#numerical-summaries"><i class="fa fa-check"></i><b>4.6</b> Numerical Summaries</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="data-description.html"><a href="data-description.html#measures-of-center"><i class="fa fa-check"></i><b>4.6.1</b> Measures of Center</a></li>
+<li class="chapter" data-level="4.6.2" data-path="data-description.html"><a href="data-description.html#measures-of-spread"><i class="fa fa-check"></i><b>4.6.2</b> Measures of Spread</a></li>
+<li class="chapter" data-level="4.6.3" data-path="data-description.html"><a href="data-description.html#five-number-summary"><i class="fa fa-check"></i><b>4.6.3</b> Five-Number Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="data-description.html"><a href="data-description.html#outliers-and-the-boxplot-rule"><i class="fa fa-check"></i><b>4.7</b> Outliers and the Boxplot Rule</a></li>
+<li class="chapter" data-level="4.8" data-path="data-description.html"><a href="data-description.html#describing-more-than-one-variable"><i class="fa fa-check"></i><b>4.8</b> Describing More Than One Variable</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="data-description.html"><a href="data-description.html#scatterplots"><i class="fa fa-check"></i><b>4.8.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="4.8.2" data-path="data-description.html"><a href="data-description.html#correlation"><i class="fa fa-check"></i><b>4.8.2</b> Correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="data-description.html"><a href="data-description.html#summary-1"><i class="fa fa-check"></i><b>4.9</b> Summary</a></li>
+<li class="chapter" data-level="4.10" data-path="data-description.html"><a href="data-description.html#from-description-to-probability"><i class="fa fa-check"></i><b>4.10</b> From Description to Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>5</b> Probability</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="probability.html"><a href="probability.html#from-data-description-to-probability"><i class="fa fa-check"></i><b>5.1</b> From Data Description to Probability</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="probability.html"><a href="probability.html#observed-data-vs-underlying-process"><i class="fa fa-check"></i><b>5.1.1</b> Observed Data vs Underlying Process</a></li>
+<li class="chapter" data-level="5.1.2" data-path="probability.html"><a href="probability.html#the-idea-of-a-theoretical-distribution"><i class="fa fa-check"></i><b>5.1.2</b> The Idea of a Theoretical Distribution</a></li>
+<li class="chapter" data-level="5.1.3" data-path="probability.html"><a href="probability.html#example-repeated-sampling-interpretation"><i class="fa fa-check"></i><b>5.1.3</b> Example: Repeated Sampling Interpretation</a></li>
+<li class="chapter" data-level="5.1.4" data-path="probability.html"><a href="probability.html#deterministic-vs-random-phenomena"><i class="fa fa-check"></i><b>5.1.4</b> Deterministic vs Random Phenomena</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="probability.html"><a href="probability.html#probability-as-a-model-for-uncertain-and-complex-phenomena"><i class="fa fa-check"></i><b>5.2</b> Probability as a Model for Uncertain and Complex Phenomena</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="probability.html"><a href="probability.html#why-we-need-a-model"><i class="fa fa-check"></i><b>5.2.1</b> Why We Need a Model</a></li>
+<li class="chapter" data-level="5.2.2" data-path="probability.html"><a href="probability.html#probability-as-a-distribution"><i class="fa fa-check"></i><b>5.2.2</b> Probability as a Distribution</a></li>
+<li class="chapter" data-level="5.2.3" data-path="probability.html"><a href="probability.html#connection-to-data"><i class="fa fa-check"></i><b>5.2.3</b> Connection to Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="probability.html"><a href="probability.html#random-experiments"><i class="fa fa-check"></i><b>5.3</b> Random Experiments</a></li>
+<li class="chapter" data-level="5.4" data-path="probability.html"><a href="probability.html#sample-space-and-events"><i class="fa fa-check"></i><b>5.4</b> Sample Space and Events</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="probability.html"><a href="probability.html#sample-space"><i class="fa fa-check"></i><b>5.4.1</b> Sample Space</a></li>
+<li class="chapter" data-level="5.4.2" data-path="probability.html"><a href="probability.html#events"><i class="fa fa-check"></i><b>5.4.2</b> Events</a></li>
+<li class="chapter" data-level="5.4.3" data-path="probability.html"><a href="probability.html#event-operations"><i class="fa fa-check"></i><b>5.4.3</b> Event Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="probability.html"><a href="probability.html#probability-1"><i class="fa fa-check"></i><b>5.5</b> Probability</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="probability.html"><a href="probability.html#definition-of-probability"><i class="fa fa-check"></i><b>5.5.1</b> Definition of Probability</a></li>
+<li class="chapter" data-level="5.5.2" data-path="probability.html"><a href="probability.html#basic-properties"><i class="fa fa-check"></i><b>5.5.2</b> Basic Properties</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="probability.html"><a href="probability.html#probability-rules"><i class="fa fa-check"></i><b>5.6</b> Probability Rules</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="probability.html"><a href="probability.html#complement-rule"><i class="fa fa-check"></i><b>5.6.1</b> Complement Rule</a></li>
+<li class="chapter" data-level="5.6.2" data-path="probability.html"><a href="probability.html#addition-rule-general"><i class="fa fa-check"></i><b>5.6.2</b> Addition Rule (General)</a></li>
+<li class="chapter" data-level="5.6.3" data-path="probability.html"><a href="probability.html#addition-rule-mutually-exclusive-events"><i class="fa fa-check"></i><b>5.6.3</b> Addition Rule (Mutually Exclusive Events)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="probability.html"><a href="probability.html#conditional-probability"><i class="fa fa-check"></i><b>5.7</b> Conditional Probability</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="probability.html"><a href="probability.html#definition"><i class="fa fa-check"></i><b>5.7.1</b> Definition</a></li>
+<li class="chapter" data-level="5.7.2" data-path="probability.html"><a href="probability.html#multiplication-rule"><i class="fa fa-check"></i><b>5.7.2</b> Multiplication Rule</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="probability.html"><a href="probability.html#independence"><i class="fa fa-check"></i><b>5.8</b> Independence</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="probability.html"><a href="probability.html#definition-1"><i class="fa fa-check"></i><b>5.8.1</b> Definition</a></li>
+<li class="chapter" data-level="5.8.2" data-path="probability.html"><a href="probability.html#interpretation"><i class="fa fa-check"></i><b>5.8.2</b> Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="probability.html"><a href="probability.html#random-variables"><i class="fa fa-check"></i><b>5.9</b> Random Variables</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="probability.html"><a href="probability.html#definition-2"><i class="fa fa-check"></i><b>5.9.1</b> Definition</a></li>
+<li class="chapter" data-level="5.9.2" data-path="probability.html"><a href="probability.html#discrete-random-variables"><i class="fa fa-check"></i><b>5.9.2</b> Discrete Random Variables</a></li>
+<li class="chapter" data-level="5.9.3" data-path="probability.html"><a href="probability.html#from-discrete-to-continuous"><i class="fa fa-check"></i><b>5.9.3</b> From Discrete to Continuous</a></li>
+<li class="chapter" data-level="5.9.4" data-path="probability.html"><a href="probability.html#continuous-random-variables"><i class="fa fa-check"></i><b>5.9.4</b> Continuous Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="probability.html"><a href="probability.html#distributions-of-random-variables"><i class="fa fa-check"></i><b>5.10</b> Distributions of Random Variables</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="probability.html"><a href="probability.html#distribution-induced-by-a-random-variable"><i class="fa fa-check"></i><b>5.10.1</b> Distribution Induced by a Random Variable</a></li>
+<li class="chapter" data-level="5.10.2" data-path="probability.html"><a href="probability.html#probability-mass-function"><i class="fa fa-check"></i><b>5.10.2</b> Probability Mass Function</a></li>
+<li class="chapter" data-level="5.10.3" data-path="probability.html"><a href="probability.html#probability-density-function"><i class="fa fa-check"></i><b>5.10.3</b> Probability Density Function</a></li>
+<li class="chapter" data-level="5.10.4" data-path="probability.html"><a href="probability.html#cumulative-distribution-function"><i class="fa fa-check"></i><b>5.10.4</b> Cumulative Distribution Function</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="probability.html"><a href="probability.html#expected-value-and-variance"><i class="fa fa-check"></i><b>5.11</b> Expected Value and Variance</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="probability.html"><a href="probability.html#expected-value"><i class="fa fa-check"></i><b>5.11.1</b> Expected Value</a></li>
+<li class="chapter" data-level="5.11.2" data-path="probability.html"><a href="probability.html#variance-1"><i class="fa fa-check"></i><b>5.11.2</b> Variance</a></li>
+<li class="chapter" data-level="5.11.3" data-path="probability.html"><a href="probability.html#properties-of-expectation"><i class="fa fa-check"></i><b>5.11.3</b> Properties of Expectation</a></li>
+<li class="chapter" data-level="5.11.4" data-path="probability.html"><a href="probability.html#properties-of-variance"><i class="fa fa-check"></i><b>5.11.4</b> Properties of Variance</a></li>
+<li class="chapter" data-level="5.11.5" data-path="probability.html"><a href="probability.html#law-of-total-expectation"><i class="fa fa-check"></i><b>5.11.5</b> Law of Total Expectation</a></li>
+<li class="chapter" data-level="5.11.6" data-path="probability.html"><a href="probability.html#linear-combinations"><i class="fa fa-check"></i><b>5.11.6</b> Linear Combinations</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="probability.html"><a href="probability.html#important-probability-distributions"><i class="fa fa-check"></i><b>5.12</b> Important Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="5.12.1" data-path="probability.html"><a href="probability.html#discrete-distributions"><i class="fa fa-check"></i><b>5.12.1</b> Discrete Distributions</a></li>
+<li class="chapter" data-level="5.12.2" data-path="probability.html"><a href="probability.html#continuous-distributions"><i class="fa fa-check"></i><b>5.12.2</b> Continuous Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.13" data-path="probability.html"><a href="probability.html#summary-2"><i class="fa fa-check"></i><b>5.13</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html"><i class="fa fa-check"></i><b>6</b> From Probability to Statistics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#population-as-a-distribution"><i class="fa fa-check"></i><b>6.1</b> Population as a Distribution</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#the-structural-framework"><i class="fa fa-check"></i><b>6.1.1</b> The Structural Framework</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#examples"><i class="fa fa-check"></i><b>6.2</b> Examples</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#example-1-a-normal-population"><i class="fa fa-check"></i><b>6.2.1</b> Example 1: A Normal Population</a></li>
+<li class="chapter" data-level="6.2.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#example-2-a-discrete-population"><i class="fa fa-check"></i><b>6.2.2</b> Example 2: A Discrete Population</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#what-does-bias-mean-under-this-framework"><i class="fa fa-check"></i><b>6.3</b> What Does Bias Mean Under This Framework?</a></li>
+<li class="chapter" data-level="6.4" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#role-of-independence"><i class="fa fa-check"></i><b>6.4</b> Role of Independence</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#independent-sampling-with-replacement"><i class="fa fa-check"></i><b>6.4.1</b> Independent Sampling (With Replacement)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#deterministic-sequence-no-randomness"><i class="fa fa-check"></i><b>6.4.2</b> Deterministic Sequence (No Randomness)</a></li>
+<li class="chapter" data-level="6.4.3" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#dependent-example-random-walk"><i class="fa fa-check"></i><b>6.4.3</b> Dependent Example: Random Walk</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#sampling-as-drawing-random-variables"><i class="fa fa-check"></i><b>6.5</b> Sampling as Drawing Random Variables</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#i.i.d.-assumption"><i class="fa fa-check"></i><b>6.5.1</b> i.i.d. Assumption</a></li>
+<li class="chapter" data-level="6.5.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#sampling-without-replacement"><i class="fa fa-check"></i><b>6.5.2</b> Sampling Without Replacement</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#parameters-and-statistics"><i class="fa fa-check"></i><b>6.6</b> Parameters and Statistics</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#simulation-illustration"><i class="fa fa-check"></i><b>6.6.1</b> Simulation Illustration</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#example-random-sample-as-simple-random-sampling"><i class="fa fa-check"></i><b>6.7</b> Example: Random Sample as Simple Random Sampling</a></li>
+<li class="chapter" data-level="6.8" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#sampling-distribution-of-a-mean"><i class="fa fa-check"></i><b>6.8</b> Sampling Distribution of a Mean</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#why-the-sample-mean-is-random"><i class="fa fa-check"></i><b>6.8.1</b> Why the Sample Mean is Random ?</a></li>
+<li class="chapter" data-level="6.8.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#fundamental-properties"><i class="fa fa-check"></i><b>6.8.2</b> Fundamental Properties</a></li>
+<li class="chapter" data-level="6.8.3" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#interpretation-averaging-reduces-variability"><i class="fa fa-check"></i><b>6.8.3</b> Interpretation: Averaging Reduces Variability</a></li>
+<li class="chapter" data-level="6.8.4" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#population-vs-sampling-distribution"><i class="fa fa-check"></i><b>6.8.4</b> Population vs Sampling Distribution</a></li>
+<li class="chapter" data-level="6.8.5" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#effect-of-bias"><i class="fa fa-check"></i><b>6.8.5</b> Effect of Bias</a></li>
+<li class="chapter" data-level="6.8.6" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#summary-3"><i class="fa fa-check"></i><b>6.8.6</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#shape-of-the-sampling-distribution-of-the-mean"><i class="fa fa-check"></i><b>6.9</b> Shape of the Sampling Distribution of the Mean</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#when-the-population-is-normal"><i class="fa fa-check"></i><b>6.9.1</b> When the Population is Normal</a></li>
+<li class="chapter" data-level="6.9.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#when-the-population-is-not-normal"><i class="fa fa-check"></i><b>6.9.2</b> When the Population is Not Normal</a></li>
+<li class="chapter" data-level="6.9.3" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#intuition-behind-the-central-limit-theorem"><i class="fa fa-check"></i><b>6.9.3</b> Intuition Behind the Central Limit Theorem</a></li>
+<li class="chapter" data-level="6.9.4" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#simulation-examples"><i class="fa fa-check"></i><b>6.9.4</b> Simulation Examples</a></li>
+<li class="chapter" data-level="6.9.5" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#practical-implications"><i class="fa fa-check"></i><b>6.9.5</b> Practical Implications</a></li>
+<li class="chapter" data-level="6.9.6" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#summary-4"><i class="fa fa-check"></i><b>6.9.6</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#sampling-distribution-of-a-variance"><i class="fa fa-check"></i><b>6.10</b> Sampling Distribution of a Variance</a>
+<ul>
+<li class="chapter" data-level="6.10.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#why-the-denominator-is-n-1"><i class="fa fa-check"></i><b>6.10.1</b> Why the Denominator is <span class="math inline">\(n-1\)</span></a></li>
+<li class="chapter" data-level="6.10.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#distribution-under-normality"><i class="fa fa-check"></i><b>6.10.2</b> Distribution Under Normality</a></li>
+<li class="chapter" data-level="6.10.3" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#the-chi-squared-distribution"><i class="fa fa-check"></i><b>6.10.3</b> The Chi-Squared Distribution</a></li>
+<li class="chapter" data-level="6.10.4" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#shape-of-the-sampling-distribution"><i class="fa fa-check"></i><b>6.10.4</b> Shape of the Sampling Distribution</a></li>
+<li class="chapter" data-level="6.10.5" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#contrast-with-the-sample-mean"><i class="fa fa-check"></i><b>6.10.5</b> Contrast with the Sample Mean</a></li>
+<li class="chapter" data-level="6.10.6" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#key-takeaways"><i class="fa fa-check"></i><b>6.10.6</b> Key Takeaways</a></li>
+</ul></li>
+<li class="chapter" data-level="6.11" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#assessing-normality-of-a-population-distribution"><i class="fa fa-check"></i><b>6.11</b> Assessing Normality of a Population Distribution</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#theoretical-foundation"><i class="fa fa-check"></i><b>6.11.1</b> Theoretical Foundation</a></li>
+<li class="chapter" data-level="6.11.2" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#practical-considerations"><i class="fa fa-check"></i><b>6.11.2</b> Practical Considerations</a></li>
+<li class="chapter" data-level="6.11.3" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#summary-5"><i class="fa fa-check"></i><b>6.11.3</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6.12" data-path="from-probability-to-statistics.html"><a href="from-probability-to-statistics.html#central-insight"><i class="fa fa-check"></i><b>6.12</b> Central Insight</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html"><i class="fa fa-check"></i><b>7</b> Intro to Statistical Inference</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#from-probability-to-statistics-a-simulation-perspective"><i class="fa fa-check"></i><b>7.1</b> From Probability to Statistics: A Simulation Perspective</a></li>
+<li class="chapter" data-level="7.2" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#objectives-of-statistical-inference"><i class="fa fa-check"></i><b>7.2</b> Objectives of Statistical Inference</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#estimation"><i class="fa fa-check"></i><b>7.2.1</b> Estimation</a></li>
+<li class="chapter" data-level="7.2.2" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#hypothesis-testing"><i class="fa fa-check"></i><b>7.2.2</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="7.2.3" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#relationship-between-variables"><i class="fa fa-check"></i><b>7.2.3</b> Relationship Between Variables</a></li>
+<li class="chapter" data-level="7.2.4" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#prediction-of-future-observations"><i class="fa fa-check"></i><b>7.2.4</b> Prediction of Future Observations</a></li>
+<li class="chapter" data-level="7.2.5" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#repeating-the-experiment"><i class="fa fa-check"></i><b>7.2.5</b> Repeating the Experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#example-of-statistical-inference"><i class="fa fa-check"></i><b>7.3</b> Example of Statistical Inference</a></li>
+<li class="chapter" data-level="7.4" data-path="intro-to-statistical-inference.html"><a href="intro-to-statistical-inference.html#concluding-perspective"><i class="fa fa-check"></i><b>7.4</b> Concluding Perspective</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html"><i class="fa fa-check"></i><b>8</b> Inference About the Mean</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#example-blood-alcohol-level"><i class="fa fa-check"></i><b>8.2</b> Example: Blood Alcohol Level</a></li>
+<li class="chapter" data-level="8.3" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#assumptions"><i class="fa fa-check"></i><b>8.3</b> Assumptions</a></li>
+<li class="chapter" data-level="8.4" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#point-estimation-1"><i class="fa fa-check"></i><b>8.4</b> Point Estimation</a></li>
+<li class="chapter" data-level="8.5" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#interval-estimation-1"><i class="fa fa-check"></i><b>8.5</b> Interval Estimation</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#step-1-standardize"><i class="fa fa-check"></i><b>8.5.1</b> Step 1: Standardize</a></li>
+<li class="chapter" data-level="8.5.2" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#step-2-pick-a-confidence-level-1---alpha"><i class="fa fa-check"></i><b>8.5.2</b> Step 2: Pick a Confidence Level 1 - <span class="math inline">\(\alpha\)</span></a></li>
+<li class="chapter" data-level="8.5.3" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#step-3-substitute-back-for-z"><i class="fa fa-check"></i><b>8.5.3</b> Step 3: Substitute Back for <span class="math inline">\(Z\)</span></a></li>
+<li class="chapter" data-level="8.5.4" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#step-4-solve-for-mu"><i class="fa fa-check"></i><b>8.5.4</b> Step 4: Solve for <span class="math inline">\(\mu\)</span></a></li>
+<li class="chapter" data-level="8.5.5" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#final-result"><i class="fa fa-check"></i><b>8.5.5</b> Final Result</a></li>
+<li class="chapter" data-level="8.5.6" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#interpretation-4"><i class="fa fa-check"></i><b>8.5.6</b> Interpretation</a></li>
+<li class="chapter" data-level="8.5.7" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#example-interval-estimation"><i class="fa fa-check"></i><b>8.5.7</b> Example Interval Estimation</a></li>
+<li class="chapter" data-level="8.5.8" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#choosing-the-sample-size-for-estimating-the-population-mean"><i class="fa fa-check"></i><b>8.5.8</b> Choosing the Sample Size for Estimating the Population Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#hypothesis-testing-1"><i class="fa fa-check"></i><b>8.6</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#logical-structure-of-a-test"><i class="fa fa-check"></i><b>8.6.1</b> Logical Structure of a Test</a></li>
+<li class="chapter" data-level="8.6.2" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#developing-the-rejection-region"><i class="fa fa-check"></i><b>8.6.2</b> Developing the Rejection Region</a></li>
+<li class="chapter" data-level="8.6.3" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#interpretation-of-the-rejection-region"><i class="fa fa-check"></i><b>8.6.3</b> Interpretation of the Rejection Region</a></li>
+<li class="chapter" data-level="8.6.4" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#components-of-a-test"><i class="fa fa-check"></i><b>8.6.4</b> Components of a Test</a></li>
+<li class="chapter" data-level="8.6.5" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>8.6.5</b> Type I and Type II Errors</a></li>
+<li class="chapter" data-level="8.6.6" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#one-tailed-blood-alcohol-test-numerical-illustration"><i class="fa fa-check"></i><b>8.6.6</b> One-Tailed Blood Alcohol Test (Numerical Illustration)</a></li>
+<li class="chapter" data-level="8.6.7" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#general-forms-of-rejection-regions"><i class="fa fa-check"></i><b>8.6.7</b> General Forms of Rejection Regions</a></li>
+<li class="chapter" data-level="8.6.8" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#significance-level-and-p-value"><i class="fa fa-check"></i><b>8.6.8</b> Significance Level and p-Value</a></li>
+<li class="chapter" data-level="8.6.9" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#conceptual-summary-2"><i class="fa fa-check"></i><b>8.6.9</b> Conceptual Summary</a></li>
+<li class="chapter" data-level="8.6.10" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#choosing-the-sample-size-for-testing-the-population-mean"><i class="fa fa-check"></i><b>8.6.10</b> Choosing the Sample Size for Testing the Population Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#inference-about-the-mean-unknown-variance"><i class="fa fa-check"></i><b>8.7</b> Inference About the Mean Unknown Variance</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#review-properties-of-the-student-t-distribution"><i class="fa fa-check"></i><b>8.7.1</b> Review Properties of the Student t Distribution</a></li>
+<li class="chapter" data-level="8.7.2" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#confidence-intervals-unknown-variance"><i class="fa fa-check"></i><b>8.7.2</b> Confidence Intervals Unknown Variance</a></li>
+<li class="chapter" data-level="8.7.3" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#hypothesis-testing-unknown-variance"><i class="fa fa-check"></i><b>8.7.3</b> Hypothesis Testing Unknown Variance</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#not-normally-distributed-population"><i class="fa fa-check"></i><b>8.8</b> Not Normally Distributed Population</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#big-sample-size"><i class="fa fa-check"></i><b>8.8.1</b> Big Sample Size</a></li>
+<li class="chapter" data-level="8.8.2" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#intermediate-sample-size"><i class="fa fa-check"></i><b>8.8.2</b> Intermediate Sample Size</a></li>
+<li class="chapter" data-level="8.8.3" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#small-sample-size"><i class="fa fa-check"></i><b>8.8.3</b> Small Sample Size</a></li>
+<li class="chapter" data-level="8.8.4" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#what-to-check-before-applying-inference-methods"><i class="fa fa-check"></i><b>8.8.4</b> What to Check Before Applying Inference Methods</a></li>
+<li class="chapter" data-level="8.8.5" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#summary-table-of-when-inference-procedures-are-reliable"><i class="fa fa-check"></i><b>8.8.5</b> Summary Table of When Inference Procedures Are Reliable</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#inferences-with-small-n-bootstrap-methods"><i class="fa fa-check"></i><b>8.9</b> Inferences with Small n (Bootstrap Methods)</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#when-to-apply"><i class="fa fa-check"></i><b>8.9.1</b> When to Apply</a></li>
+<li class="chapter" data-level="8.9.2" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#steps-for-bootstrap-methods-about-the-mean-confidence-intervals"><i class="fa fa-check"></i><b>8.9.2</b> Steps for Bootstrap Methods about the Mean Confidence Intervals</a></li>
+<li class="chapter" data-level="8.9.3" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#steps-for-bootstrap-methods-about-the-mean-hypothesis-testing"><i class="fa fa-check"></i><b>8.9.3</b> Steps for Bootstrap Methods about the Mean Hypothesis Testing</a></li>
+<li class="chapter" data-level="8.9.4" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#bootstrap-t-or-studentized-bootstrap"><i class="fa fa-check"></i><b>8.9.4</b> Bootstrap-<span class="math inline">\(t\)</span> or Studentized Bootstrap</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#power-and-sample-size"><i class="fa fa-check"></i><b>8.10</b> Power and Sample Size</a>
+<ul>
+<li class="chapter" data-level="8.10.1" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#motivation"><i class="fa fa-check"></i><b>8.10.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.10.2" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#type-ii-error-and-power"><i class="fa fa-check"></i><b>8.10.2</b> Type II Error and Power</a></li>
+<li class="chapter" data-level="8.10.3" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#interpreting-power"><i class="fa fa-check"></i><b>8.10.3</b> Interpreting Power</a></li>
+<li class="chapter" data-level="8.10.4" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#what-affects-power"><i class="fa fa-check"></i><b>8.10.4</b> What Affects Power?</a></li>
+<li class="chapter" data-level="8.10.5" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#example-of-power-function-for-a-normal-population-and-knwon-variance"><i class="fa fa-check"></i><b>8.10.5</b> Example of Power Function for a Normal Population and Knwon Variance</a></li>
+<li class="chapter" data-level="8.10.6" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#example-suboptimal-test"><i class="fa fa-check"></i><b>8.10.6</b> Example Suboptimal Test</a></li>
+<li class="chapter" data-level="8.10.7" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#why-power-matters"><i class="fa fa-check"></i><b>8.10.7</b> Why Power Matters</a></li>
+<li class="chapter" data-level="8.10.8" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#power-and-sample-size-1"><i class="fa fa-check"></i><b>8.10.8</b> Power and Sample Size</a></li>
+<li class="chapter" data-level="8.10.9" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#intuition-through-the-sampling-distribution"><i class="fa fa-check"></i><b>8.10.9</b> Intuition Through the Sampling Distribution</a></li>
+<li class="chapter" data-level="8.10.10" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#practical-interpretation"><i class="fa fa-check"></i><b>8.10.10</b> Practical Interpretation</a></li>
+<li class="chapter" data-level="8.10.11" data-path="inference-about-the-mean.html"><a href="inference-about-the-mean.html#summary-6"><i class="fa fa-check"></i><b>8.10.11</b> Summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html"><i class="fa fa-check"></i><b>9</b> Inference Comparing Two Population Means</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#introduction-1"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#why-comparing-two-means-is-different-from-one-mean"><i class="fa fa-check"></i><b>9.2</b> Why Comparing Two Means Is Different from One Mean</a></li>
+<li class="chapter" data-level="9.3" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#the-parameter-of-interest"><i class="fa fa-check"></i><b>9.3</b> The Parameter of Interest</a></li>
+<li class="chapter" data-level="9.4" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#the-role-of-study-design"><i class="fa fa-check"></i><b>9.4</b> The Role of Study Design</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#independent-samples"><i class="fa fa-check"></i><b>9.4.1</b> Independent Samples</a></li>
+<li class="chapter" data-level="9.4.2" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#paired-data"><i class="fa fa-check"></i><b>9.4.2</b> Paired Data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#motivating-example-appetite-inhibitor-drug"><i class="fa fa-check"></i><b>9.5</b> Motivating Example: Appetite Inhibitor Drug</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#independent-samples-1"><i class="fa fa-check"></i><b>9.5.1</b> Independent Samples</a></li>
+<li class="chapter" data-level="9.5.2" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#paired-data-1"><i class="fa fa-check"></i><b>9.5.2</b> Paired Data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#assumptions-1"><i class="fa fa-check"></i><b>9.6</b> Assumptions</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#independent-samples-2"><i class="fa fa-check"></i><b>9.6.1</b> Independent Samples</a></li>
+<li class="chapter" data-level="9.6.2" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#paired-data-2"><i class="fa fa-check"></i><b>9.6.2</b> Paired Data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#the-estimator"><i class="fa fa-check"></i><b>9.7</b> The Estimator</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#independent-samples-3"><i class="fa fa-check"></i><b>9.7.1</b> Independent Samples</a></li>
+<li class="chapter" data-level="9.7.2" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#paired-data-3"><i class="fa fa-check"></i><b>9.7.2</b> Paired Data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#sampling-distribution-of-the-difference"><i class="fa fa-check"></i><b>9.8</b> Sampling Distribution of the Difference</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#independent-samples-4"><i class="fa fa-check"></i><b>9.8.1</b> Independent Samples</a></li>
+<li class="chapter" data-level="9.8.2" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#paired-data-4"><i class="fa fa-check"></i><b>9.8.2</b> Paired Data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#pivotal-quantities"><i class="fa fa-check"></i><b>9.9</b> Pivotal Quantities</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#independent-samples-5"><i class="fa fa-check"></i><b>9.9.1</b> Independent Samples</a></li>
+<li class="chapter" data-level="9.9.2" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#paired-data-5"><i class="fa fa-check"></i><b>9.9.2</b> Paired Data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.10" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#confidence-intervals"><i class="fa fa-check"></i><b>9.10</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="9.10.1" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#independent-samples-6"><i class="fa fa-check"></i><b>9.10.1</b> Independent Samples</a></li>
+<li class="chapter" data-level="9.10.2" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#paired-data-6"><i class="fa fa-check"></i><b>9.10.2</b> Paired Data</a></li>
+<li class="chapter" data-level="9.10.3" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#test-statistic"><i class="fa fa-check"></i><b>9.10.3</b> Test Statistic</a></li>
+<li class="chapter" data-level="9.10.4" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#paired-data-7"><i class="fa fa-check"></i><b>9.10.4</b> Paired Data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.11" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#hypothesis-testing-2"><i class="fa fa-check"></i><b>9.11</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="9.11.1" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#formulating-the-hypotheses"><i class="fa fa-check"></i><b>9.11.1</b> Formulating the Hypotheses</a></li>
+<li class="chapter" data-level="9.11.2" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#logical-structure-of-the-test"><i class="fa fa-check"></i><b>9.11.2</b> Logical Structure of the Test</a></li>
+<li class="chapter" data-level="9.11.3" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#test-statistic-1"><i class="fa fa-check"></i><b>9.11.3</b> Test Statistic</a></li>
+<li class="chapter" data-level="9.11.4" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#paired-data-8"><i class="fa fa-check"></i><b>9.11.4</b> Paired Data</a></li>
+<li class="chapter" data-level="9.11.5" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#rejection-region-and-p-value"><i class="fa fa-check"></i><b>9.11.5</b> Rejection Region and p-Value</a></li>
+</ul></li>
+<li class="chapter" data-level="9.12" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#power"><i class="fa fa-check"></i><b>9.12</b> Power</a></li>
+<li class="chapter" data-level="9.13" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#interpreting-the-design"><i class="fa fa-check"></i><b>9.13</b> Interpreting the Design</a>
+<ul>
+<li class="chapter" data-level="9.13.1" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#when-are-samples-independent"><i class="fa fa-check"></i><b>9.13.1</b> When Are Samples Independent?</a></li>
+<li class="chapter" data-level="9.13.2" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#why-random-assignment-matters"><i class="fa fa-check"></i><b>9.13.2</b> Why Random Assignment Matters</a></li>
+<li class="chapter" data-level="9.13.3" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#common-mistake-treating-paired-data-as-independent"><i class="fa fa-check"></i><b>9.13.3</b> Common Mistake: Treating Paired Data as Independent</a></li>
+<li class="chapter" data-level="9.13.4" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#why-pairing-can-increase-precision"><i class="fa fa-check"></i><b>9.13.4</b> Why Pairing Can Increase Precision</a></li>
+</ul></li>
+<li class="chapter" data-level="9.14" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#independent-samples-vs-paired-data"><i class="fa fa-check"></i><b>9.14</b> Independent Samples vs Paired Data</a>
+<ul>
+<li class="chapter" data-level="9.14.1" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#how-to-decide-which-method-to-use"><i class="fa fa-check"></i><b>9.14.1</b> How to Decide Which Method to Use</a></li>
+<li class="chapter" data-level="9.14.2" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#why-the-choice-matters"><i class="fa fa-check"></i><b>9.14.2</b> Why the Choice Matters</a></li>
+<li class="chapter" data-level="9.14.3" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#compact-comparison-table"><i class="fa fa-check"></i><b>9.14.3</b> Compact Comparison Table</a></li>
+</ul></li>
+<li class="chapter" data-level="9.15" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#two-sample-inference-when-populations-are-not-normal"><i class="fa fa-check"></i><b>9.15</b> Two-Sample Inference When Populations Are Not Normal</a>
+<ul>
+<li class="chapter" data-level="9.15.1" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#why-normality-matters"><i class="fa fa-check"></i><b>9.15.1</b> Why Normality Matters</a></li>
+<li class="chapter" data-level="9.15.2" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#large-sample-size"><i class="fa fa-check"></i><b>9.15.2</b> Large Sample Size</a></li>
+<li class="chapter" data-level="9.15.3" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#intermediate-sample-size-1"><i class="fa fa-check"></i><b>9.15.3</b> Intermediate Sample Size</a></li>
+<li class="chapter" data-level="9.15.4" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#small-sample-size-1"><i class="fa fa-check"></i><b>9.15.4</b> Small Sample Size</a></li>
+<li class="chapter" data-level="9.15.5" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#what-to-check-before-applying-mean-based-methods"><i class="fa fa-check"></i><b>9.15.5</b> What to Check Before Applying Mean-Based Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="9.16" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#nonparametric-alternatives"><i class="fa fa-check"></i><b>9.16</b> Nonparametric Alternatives</a>
+<ul>
+<li class="chapter" data-level="9.16.1" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#why-nonparametric-methods-are-useful"><i class="fa fa-check"></i><b>9.16.1</b> Why Nonparametric Methods Are Useful</a></li>
+<li class="chapter" data-level="9.16.2" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>9.16.2</b> Wilcoxon Rank Sum Test</a></li>
+<li class="chapter" data-level="9.16.3" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>9.16.3</b> Wilcoxon Signed-Rank Test</a></li>
+<li class="chapter" data-level="9.16.4" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#randomization-test-for-2-sample-means"><i class="fa fa-check"></i><b>9.16.4</b> Randomization Test for 2 Sample Means</a></li>
+<li class="chapter" data-level="9.16.5" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#parametric-vs-nonparametric-thinking"><i class="fa fa-check"></i><b>9.16.5</b> Parametric vs Nonparametric Thinking</a></li>
+<li class="chapter" data-level="9.16.6" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#when-to-prefer-nonparametric-methods"><i class="fa fa-check"></i><b>9.16.6</b> When to Prefer Nonparametric Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="9.17" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#sample-size-determination"><i class="fa fa-check"></i><b>9.17</b> Sample Size Determination</a>
+<ul>
+<li class="chapter" data-level="9.17.1" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#why-sample-size-matters"><i class="fa fa-check"></i><b>9.17.1</b> Why Sample Size Matters</a></li>
+<li class="chapter" data-level="9.17.2" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#sample-size-for-estimating-mu_1-mu_2"><i class="fa fa-check"></i><b>9.17.2</b> Sample Size for Estimating <span class="math inline">\(\mu_1-\mu_2\)</span></a></li>
+<li class="chapter" data-level="9.17.3" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#sample-size-for-testing-mu_1-mu_2"><i class="fa fa-check"></i><b>9.17.3</b> Sample Size for Testing <span class="math inline">\(\mu_1-\mu_2\)</span></a></li>
+<li class="chapter" data-level="9.17.4" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#design-trade-offs"><i class="fa fa-check"></i><b>9.17.4</b> Design Trade-Offs</a></li>
+</ul></li>
+<li class="chapter" data-level="9.18" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#graphical-tools-for-comparing-two-groups"><i class="fa fa-check"></i><b>9.18</b> Graphical Tools for Comparing Two Groups</a>
+<ul>
+<li class="chapter" data-level="9.18.1" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#side-by-side-boxplots"><i class="fa fa-check"></i><b>9.18.1</b> Side-by-Side Boxplots</a></li>
+<li class="chapter" data-level="9.18.2" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#histograms-1"><i class="fa fa-check"></i><b>9.18.2</b> Histograms</a></li>
+<li class="chapter" data-level="9.18.3" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#plot-of-paired-differences"><i class="fa fa-check"></i><b>9.18.3</b> Plot of Paired Differences</a></li>
+<li class="chapter" data-level="9.18.4" data-path="inference-comparing-two-population-means.html"><a href="inference-comparing-two-population-means.html#why-graphs-should-come-before-formal-inference"><i class="fa fa-check"></i><b>9.18.4</b> Why Graphs Should Come Before Formal Inference</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html"><i class="fa fa-check"></i><b>10</b> Inference About the Variance</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#introduction-2"><i class="fa fa-check"></i><b>10.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#why-variability-matters"><i class="fa fa-check"></i><b>10.1.1</b> Why Variability Matters</a></li>
+<li class="chapter" data-level="10.1.2" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#variance-versus-mean-as-parameters-of-interest"><i class="fa fa-check"></i><b>10.1.2</b> Variance versus Mean as Parameters of Interest</a></li>
+<li class="chapter" data-level="10.1.3" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#motivating-example"><i class="fa fa-check"></i><b>10.1.3</b> Motivating Example</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#inference-about-one-population-variance"><i class="fa fa-check"></i><b>10.2</b> Inference About One Population Variance</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#assumptions-2"><i class="fa fa-check"></i><b>10.2.1</b> Assumptions</a></li>
+<li class="chapter" data-level="10.2.2" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#the-variance-estimator"><i class="fa fa-check"></i><b>10.2.2</b> The Variance Estimator</a></li>
+<li class="chapter" data-level="10.2.3" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#distribution-of-the-sample-variance-under-normality"><i class="fa fa-check"></i><b>10.2.3</b> Distribution of the Sample Variance Under Normality</a></li>
+<li class="chapter" data-level="10.2.4" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#pivot-quantity-for-inference-about-sigma2"><i class="fa fa-check"></i><b>10.2.4</b> Pivot Quantity for Inference About <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="10.2.5" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#does-knowing-the-population-mean-help"><i class="fa fa-check"></i><b>10.2.5</b> Does Knowing the Population Mean Help?</a></li>
+<li class="chapter" data-level="10.2.6" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#confidence-intervals-for-sigma2"><i class="fa fa-check"></i><b>10.2.6</b> Confidence Intervals for <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="10.2.7" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#hypothesis-testing-for-sigma2"><i class="fa fa-check"></i><b>10.2.7</b> Hypothesis Testing for <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="10.2.8" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#numerical-example"><i class="fa fa-check"></i><b>10.2.8</b> Numerical Example</a></li>
+<li class="chapter" data-level="10.2.9" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#simulation-study"><i class="fa fa-check"></i><b>10.2.9</b> Simulation Study</a></li>
+<li class="chapter" data-level="10.2.10" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#simulation-study-non-normality"><i class="fa fa-check"></i><b>10.2.10</b> Simulation Study Non-normality</a></li>
+<li class="chapter" data-level="10.2.11" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#confidence-interval-simulation"><i class="fa fa-check"></i><b>10.2.11</b> Confidence Interval Simulation</a></li>
+<li class="chapter" data-level="10.2.12" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#inference-about-the-variance-when-the-population-is-not-normal"><i class="fa fa-check"></i><b>10.2.12</b> Inference About the Variance When the Population Is Not Normal</a></li>
+<li class="chapter" data-level="10.2.13" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#example-simulating-scenarios-with-different-skewness-and-sample-size"><i class="fa fa-check"></i><b>10.2.13</b> Example: Simulating Scenarios with Different Skewness and Sample Size</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#comparing-two-population-variances"><i class="fa fa-check"></i><b>10.3</b> Comparing Two Population Variances</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#why-compare-variability-across-populations"><i class="fa fa-check"></i><b>10.3.1</b> Why Compare Variability Across Populations?</a></li>
+<li class="chapter" data-level="10.3.2" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#assumptions-3"><i class="fa fa-check"></i><b>10.3.2</b> Assumptions</a></li>
+<li class="chapter" data-level="10.3.3" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#distribution-of-the-ratio-of-sample-variances"><i class="fa fa-check"></i><b>10.3.3</b> Distribution of the Ratio of Sample Variances</a></li>
+<li class="chapter" data-level="10.3.4" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#review-of-the-f-distribution"><i class="fa fa-check"></i><b>10.3.4</b> Review of the <span class="math inline">\(F\)</span> Distribution</a></li>
+<li class="chapter" data-level="10.3.5" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#confidence-intervals-for-sigma_12sigma_22"><i class="fa fa-check"></i><b>10.3.5</b> Confidence Intervals for <span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span></a></li>
+<li class="chapter" data-level="10.3.6" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#hypothesis-testing-for-sigma_12sigma_22"><i class="fa fa-check"></i><b>10.3.6</b> Hypothesis Testing for <span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span></a></li>
+<li class="chapter" data-level="10.3.7" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#numerical-example-1"><i class="fa fa-check"></i><b>10.3.7</b> Numerical Example</a></li>
+<li class="chapter" data-level="10.3.8" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#simulation-study-1"><i class="fa fa-check"></i><b>10.3.8</b> Simulation Study</a></li>
+<li class="chapter" data-level="10.3.9" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#comparing-two-variances-when-the-populations-are-not-normal"><i class="fa fa-check"></i><b>10.3.9</b> Comparing Two Variances When the Populations Are Not Normal</a></li>
+<li class="chapter" data-level="10.3.10" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#example-simulating-scenarios-with-different-skewness-and-sample-size-1"><i class="fa fa-check"></i><b>10.3.10</b> Example: Simulating Scenarios with Different Skewness and Sample Size</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#comparing-more-than-two-variances"><i class="fa fa-check"></i><b>10.4</b> Comparing More Than Two Variances</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#motivation-1"><i class="fa fa-check"></i><b>10.4.1</b> Motivation</a></li>
+<li class="chapter" data-level="10.4.2" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#a-classical-test-for-equality-of-several-variances"><i class="fa fa-check"></i><b>10.4.2</b> A Classical Test for Equality of Several Variances</a></li>
+<li class="chapter" data-level="10.4.3" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#strong-dependence-on-normality"><i class="fa fa-check"></i><b>10.4.3</b> Strong Dependence on Normality</a></li>
+<li class="chapter" data-level="10.4.4" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#brief-practical-discussion"><i class="fa fa-check"></i><b>10.4.4</b> Brief Practical Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#summary-and-key-formulas"><i class="fa fa-check"></i><b>10.5</b> Summary and Key Formulas</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#one-variance"><i class="fa fa-check"></i><b>10.5.1</b> One Variance</a></li>
+<li class="chapter" data-level="10.5.2" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#two-variances"><i class="fa fa-check"></i><b>10.5.2</b> Two Variances</a></li>
+<li class="chapter" data-level="10.5.3" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#key-insights"><i class="fa fa-check"></i><b>10.5.3</b> Key Insights</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 5428/6428 Spring 2026</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="inference-about-the-variance" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">10</span> Inference About the Variance<a href="inference-about-the-variance.html#inference-about-the-variance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-2" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Introduction<a href="inference-about-the-variance.html#introduction-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="why-variability-matters" class="section level3 hasAnchor" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Why Variability Matters<a href="inference-about-the-variance.html#why-variability-matters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In many real-world problems, understanding <strong>variability</strong> is just as important as understanding the average.</p>
+<p>A mean tells us where the center of a distribution is, but it does not tell us how stable or predictable the observations are around that center. Two populations can have the same mean and yet behave very differently in practice:</p>
+<ul>
+<li>one may be very stable, with observations tightly concentrated around the mean</li>
+<li>another may be highly unpredictable, with observations spread widely around the mean</li>
+</ul>
+<p>This difference is often crucial in applications. In many settings, consistency matters just as much as average performance, and sometimes even more.</p>
+<p>Examples:</p>
+<ul>
+<li>Manufacturing: consistency of product quality</li>
+<li>Medicine: variability in treatment response</li>
+<li>Finance: volatility of returns</li>
+</ul>
+<p>In manufacturing, a process may have the correct average output but still be unacceptable if individual products vary too much. In medicine, a treatment may have the desired average effect, but if patient responses vary substantially, the treatment may still be difficult to trust. In finance, an investment may have an attractive average return, but very large variability means greater uncertainty and risk.</p>
+<p>In all these cases, the parameter of interest is:</p>
+<p><span class="math display">\[  
+\sigma^2  
+\]</span></p>
+<p>which measures how spread out the data are.</p>
+<p>So, just as the mean describes <strong>location</strong>, the variance describes <strong>spread</strong>. Both are population characteristics, and both may be the main focus of statistical inference depending on the scientific question.</p>
+<hr />
+</div>
+<div id="variance-versus-mean-as-parameters-of-interest" class="section level3 hasAnchor" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> Variance versus Mean as Parameters of Interest<a href="inference-about-the-variance.html#variance-versus-mean-as-parameters-of-interest" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Up to this point, inference has focused on the mean <span class="math inline">\(\mu\)</span>.</p>
+<p>Now we focus on the variance <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>This is a major shift in emphasis. Inference about the mean and inference about the variance are not just parallel versions of the same problem. They behave differently, both mathematically and practically.</p>
+<p>Key conceptual differences:</p>
+<ul>
+<li><span class="math inline">\(\bar{X}\)</span> behaves approximately normal by the Central Limit Theorem in many situations</li>
+<li><span class="math inline">\(S^2\)</span> does <strong>not</strong> have a normal sampling distribution</li>
+<li>Inference about <span class="math inline">\(\sigma^2\)</span> depends strongly on <strong>distributional assumptions</strong></li>
+</ul>
+<p>This makes variance inference:</p>
+<ul>
+<li>more fragile</li>
+<li>more sensitive to skewness and outliers</li>
+</ul>
+<p>The reason is intuitive. The sample mean averages the observations, so its behavior tends to stabilize as the sample size grows. By contrast, the sample variance is built from <strong>squared deviations</strong>, and squaring gives extra weight to extreme values. As a result, unusual observations have a much stronger effect on variance-based procedures than on mean-based procedures.</p>
+<p>This is one of the central ideas of this chapter:</p>
+<blockquote>
+<p>Inference about the mean is often fairly robust, but inference about the variance is much more sensitive to departures from the model assumptions.</p>
+</blockquote>
+<p>So throughout this topic, it is especially important to pay attention to the shape of the population distribution and to the presence of outliers.</p>
+<hr />
+</div>
+<div id="motivating-example" class="section level3 hasAnchor" number="10.1.3">
+<h3><span class="header-section-number">10.1.3</span> Motivating Example<a href="inference-about-the-variance.html#motivating-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Suppose a laboratory measures a chemical concentration multiple times.</p>
+<p>Even if the average measurement is correct, large variability means:</p>
+<ul>
+<li>the measurement process is unreliable</li>
+<li>conclusions based on the data may be questionable</li>
+</ul>
+<p>This is a common situation in scientific work. A laboratory instrument may be accurate on average but still imprecise if repeated measurements fluctuate too much. In that case, any conclusion based on a single reading or a small set of readings may be unstable.</p>
+<p>Thus, we are interested in:</p>
+<ul>
+<li>estimating <span class="math inline">\(\sigma^2\)</span></li>
+<li>quantifying uncertainty about <span class="math inline">\(\sigma^2\)</span></li>
+</ul>
+<p>This connects directly to the type of uncertainty quantification emphasized in applied settings, where both <strong>accuracy and precision</strong> matter.</p>
+<p>Accuracy refers to whether the average is centered at the correct value. Precision refers to how much variability there is around that average. A good measuring process should ideally have both: correct center and small spread.</p>
+<p>So in this chapter, the main inferential question is not just “what is the average value?” but rather:</p>
+<blockquote>
+<p>How much variability is present, and how uncertain are we about that variability?</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="inference-about-one-population-variance" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Inference About One Population Variance<a href="inference-about-the-variance.html#inference-about-one-population-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="assumptions-2" class="section level3 hasAnchor" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Assumptions<a href="inference-about-the-variance.html#assumptions-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To perform inference about <span class="math inline">\(\sigma^2\)</span>, we assume:</p>
+<ol style="list-style-type: decimal">
+<li>Observations are independent</li>
+<li>The population has variance <span class="math inline">\(\sigma^2\)</span></li>
+<li><strong>The population is normally distributed</strong></li>
+</ol>
+<p>This last assumption is critical.</p>
+<p>That is one of the most important differences between inference about variance and inference about the mean. For the mean, large-sample methods often remain useful even when the population is not normal. For the variance, the classical methods developed here rely directly on normality.</p>
+<p>So when we use chi-square methods for variance, we are not simply making a convenient assumption. We are using a result that is exact only under normality.</p>
+<p>This is why checking assumptions is especially important in this chapter.</p>
+<hr />
+</div>
+<div id="the-variance-estimator" class="section level3 hasAnchor" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> The Variance Estimator<a href="inference-about-the-variance.html#the-variance-estimator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When the population variance <span class="math inline">\(\sigma^2\)</span> is unknown, the natural estimator is the <strong>sample variance</strong>,</p>
+<p><span class="math display">\[
+S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2.
+\]</span></p>
+<div class="definition">
+<p><span id="def:variance-estimator" class="definition"><strong>Definition 10.1  (Variance Estimator) </strong></span>The sample variance <span class="math inline">\(S^2\)</span> is the standard estimator of the population variance <span class="math inline">\(\sigma^2\)</span>.</p>
+</div>
+<p>This estimator measures how far the observations tend to fall from the sample mean.</p>
+<p>The idea is intuitive:</p>
+<ul>
+<li>if the observations are tightly clustered around <span class="math inline">\(\bar{X}\)</span>, then <span class="math inline">\(S^2\)</span> will be small</li>
+<li>if the observations are widely spread out, then <span class="math inline">\(S^2\)</span> will be large</li>
+</ul>
+<p>So the sample variance provides a numerical summary of the variability in the sample and is used as the sample-based estimate of the population variance.</p>
+<hr />
+<div id="why-the-formula-uses-squared-deviations" class="section level4 hasAnchor" number="10.2.2.1">
+<h4><span class="header-section-number">10.2.2.1</span> Why the Formula Uses Squared Deviations<a href="inference-about-the-variance.html#why-the-formula-uses-squared-deviations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The estimator is based on the squared deviations</p>
+<p><span class="math display">\[
+(X_i-\bar{X})^2.
+\]</span></p>
+<p>These deviations measure how far each observation is from the sample mean. Squaring them serves two purposes:</p>
+<ul>
+<li>it prevents positive and negative deviations from canceling out</li>
+<li>it gives greater weight to larger deviations</li>
+</ul>
+<p>This second feature is important. Observations that lie far from the mean contribute much more to the variance than observations that lie close to the mean. That is why the variance is sensitive to outliers and to skewed populations.</p>
+<hr />
+</div>
+<div id="why-we-divide-by-n-1" class="section level4 hasAnchor" number="10.2.2.2">
+<h4><span class="header-section-number">10.2.2.2</span> Why We Divide by <span class="math inline">\(n-1\)</span><a href="inference-about-the-variance.html#why-we-divide-by-n-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A common question is why the denominator is <span class="math inline">\(n-1\)</span> instead of <span class="math inline">\(n\)</span>.</p>
+<p>The reason is that the sample mean <span class="math inline">\(\bar{X}\)</span> is itself estimated from the data. Once <span class="math inline">\(\bar{X}\)</span> has been computed, the deviations</p>
+<p><span class="math display">\[
+X_1-\bar{X},\dots,X_n-\bar{X}
+\]</span></p>
+<p>cannot vary freely. In fact, they must add up to 0. So only <span class="math inline">\(n-1\)</span> of them are free to vary.</p>
+<p>For this reason, the sample variance is based on <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
+<p>This choice is also important mathematically because it makes <span class="math inline">\(S^2\)</span> an <strong>unbiased estimator</strong> of <span class="math inline">\(\sigma^2\)</span>, meaning that</p>
+<p><span class="math display">\[
+E[S^2] = \sigma^2.
+\]</span></p>
+<p>So on average, the sample variance hits the correct population variance.</p>
+<hr />
+</div>
+<div id="interpretation-of-the-estimator" class="section level4 hasAnchor" number="10.2.2.3">
+<h4><span class="header-section-number">10.2.2.3</span> Interpretation of the Estimator<a href="inference-about-the-variance.html#interpretation-of-the-estimator" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The variance estimator <span class="math inline">\(S^2\)</span> is not itself the population variance. It is only an estimate based on one sample.</p>
+<p>If we repeatedly took samples of the same size from the same population, the value of <span class="math inline">\(S^2\)</span> would vary from sample to sample. Some samples would produce smaller values, some larger values.</p>
+<p>This is why we need statistical inference:</p>
+<ul>
+<li>the point estimate <span class="math inline">\(S^2\)</span> gives our best sample-based guess for <span class="math inline">\(\sigma^2\)</span></li>
+<li>but the estimate is subject to sampling variability</li>
+<li>so we also need confidence intervals and hypothesis tests to quantify uncertainty</li>
+</ul>
+<p>This is exactly parallel to what happened with inference about the mean. There, <span class="math inline">\(\bar{X}\)</span> estimated <span class="math inline">\(\mu\)</span>. Here, <span class="math inline">\(S^2\)</span> estimates <span class="math inline">\(\sigma^2\)</span>.</p>
+<hr />
+</div>
+<div id="relation-to-the-standard-deviation" class="section level4 hasAnchor" number="10.2.2.4">
+<h4><span class="header-section-number">10.2.2.4</span> Relation to the Standard Deviation<a href="inference-about-the-variance.html#relation-to-the-standard-deviation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Because the variance is expressed in squared units, it is sometimes harder to interpret directly.</p>
+<p>For that reason, we often also consider the sample standard deviation</p>
+<p><span class="math display">\[
+S = \sqrt{S^2}.
+\]</span></p>
+<p>The standard deviation is in the same units as the original data, so it is often easier to describe in words.</p>
+<p>Still, the variance estimator <span class="math inline">\(S^2\)</span> is the fundamental quantity in theory, because the exact sampling distribution under normality is derived for <span class="math inline">\(S^2\)</span>.</p>
+<hr />
+</div>
+<div id="why-the-variance-estimator-is-more-sensitive-than-the-mean-estimator" class="section level4 hasAnchor" number="10.2.2.5">
+<h4><span class="header-section-number">10.2.2.5</span> Why the Variance Estimator Is More Sensitive Than the Mean Estimator<a href="inference-about-the-variance.html#why-the-variance-estimator-is-more-sensitive-than-the-mean-estimator" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The sample mean is based on a simple average of the observations, while the sample variance is based on squared deviations.</p>
+<p>Because of the squaring:</p>
+<ul>
+<li>large observations far from the mean have a strong effect on <span class="math inline">\(S^2\)</span></li>
+<li>skewness affects the estimator more strongly</li>
+<li>outliers can greatly inflate the estimate</li>
+</ul>
+<p>This is one reason why inference about the variance is more fragile than inference about the mean.</p>
+<p>The estimator <span class="math inline">\(S^2\)</span> is still natural and important, but it should always be interpreted with awareness of how strongly it can react to unusual observations.</p>
+<hr />
+</div>
+<div id="a-small-numerical-illustration" class="section level4 hasAnchor" number="10.2.2.6">
+<h4><span class="header-section-number">10.2.2.6</span> A Small Numerical Illustration<a href="inference-about-the-variance.html#a-small-numerical-illustration" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Suppose we observe the sample</p>
+<p><span class="math display">\[
+4,\ 5,\ 6.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\bar{X} = \frac{4+5+6}{3} = 5.
+\]</span></p>
+<p>The squared deviations from the mean are</p>
+<p><span class="math display">\[
+(4-5)^2 = 1,\qquad (5-5)^2 = 0,\qquad (6-5)^2 = 1.
+\]</span></p>
+<p>So</p>
+<p><span class="math display">\[
+S^2 = \frac{1+0+1}{3-1} = \frac{2}{2} = 1.
+\]</span></p>
+<p>This tells us that the variability of the observations around the sample mean is estimated to be 1 in squared units.</p>
+<hr />
+</div>
+<div id="summary-7" class="section level4 hasAnchor" number="10.2.2.7">
+<h4><span class="header-section-number">10.2.2.7</span> Summary<a href="inference-about-the-variance.html#summary-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The sample variance</p>
+<p><span class="math display">\[
+S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2
+\]</span></p>
+<p>is the natural estimator of the population variance <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>It is based on squared deviations from the sample mean, uses <span class="math inline">\(n-1\)</span> degrees of freedom, and provides the foundation for inference about variability.</p>
+<p>It plays the same role for <span class="math inline">\(\sigma^2\)</span> that <span class="math inline">\(\bar{X}\)</span> plays for <span class="math inline">\(\mu\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\bar{X}\)</span> estimates the population mean</li>
+<li><span class="math inline">\(S^2\)</span> estimates the population variance</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="distribution-of-the-sample-variance-under-normality" class="section level3 hasAnchor" number="10.2.3">
+<h3><span class="header-section-number">10.2.3</span> Distribution of the Sample Variance Under Normality<a href="inference-about-the-variance.html#distribution-of-the-sample-variance-under-normality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If the data come from a normal distribution:</p>
+<p><span class="math display">\[  
+\frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{n-1}.  
+\]</span></p>
+<p>This is the fundamental result for inference about one population variance.</p>
+<p>It tells us that if we scale the sample variance by the true variance, the resulting statistic follows a chi-square distribution with <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
+<p>Important properties:</p>
+<ul>
+<li>The distribution is <strong>right-skewed</strong></li>
+<li>It depends on <span class="math inline">\(n\)</span></li>
+<li>It is <strong>not symmetric</strong>, unlike the normal distribution</li>
+</ul>
+<p>This explains why inference about variance behaves differently from inference about the mean.</p>
+<p>There are several ideas hidden in this result.</p>
+<p>First, the statistic involves <span class="math inline">\(n-1\)</span> rather than <span class="math inline">\(n\)</span> because one degree of freedom is used in estimating the sample mean <span class="math inline">\(\bar{X}\)</span>. Once the sample mean is computed, only <span class="math inline">\(n-1\)</span> independent pieces of variation remain for measuring spread.</p>
+<p>Second, the chi-square distribution is supported only on positive values. That makes sense because a variance can never be negative.</p>
+<p>Third, because the chi-square distribution is skewed, the corresponding confidence intervals and rejection regions for variance will also be asymmetric. This is one of the most visible differences between mean inference and variance inference.</p>
+<hr />
+</div>
+<div id="pivot-quantity-for-inference-about-sigma2" class="section level3 hasAnchor" number="10.2.4">
+<h3><span class="header-section-number">10.2.4</span> Pivot Quantity for Inference About <span class="math inline">\(\sigma^2\)</span><a href="inference-about-the-variance.html#pivot-quantity-for-inference-about-sigma2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>pivot quantity</strong> is a function of the sample data and the unknown parameter whose probability distribution does not depend on the value of the unknown parameter.</p>
+<p>Pivot quantities are useful because they allow us to construct confidence intervals and hypothesis tests directly from a known distribution.</p>
+<p>For inference about the population variance, the key pivot quantity is</p>
+<p><span class="math display">\[
+\frac{(n-1)S^2}{\sigma^2}.
+\]</span></p>
+<p>When the population is normally distributed, this quantity has a chi-square distribution with <span class="math inline">\(n-1\)</span> degrees of freedom:</p>
+<p><span class="math display">\[
+\frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{n-1}.
+\]</span></p>
+<p>This result is fundamental because it transforms the unknown variance <span class="math inline">\(\sigma^2\)</span> into a statistic whose distribution is known.</p>
+<p>The key point is that although the pivot contains the unknown parameter <span class="math inline">\(\sigma^2\)</span>, its distribution does <strong>not</strong> depend on the value of <span class="math inline">\(\sigma^2\)</span> itself, as long as the normality assumption holds.</p>
+<p>This is what makes it so useful.</p>
+<p>Once we have a pivot quantity, we can:</p>
+<ul>
+<li>place probability statements around it</li>
+<li>invert those statements to obtain a confidence interval for <span class="math inline">\(\sigma^2\)</span></li>
+<li>compare its observed value to chi-square critical values to perform hypothesis tests</li>
+</ul>
+<p>So the pivot quantity is the bridge between the sample variance <span class="math inline">\(S^2\)</span> and the inferential procedures developed in this chapter.</p>
+<p>In summary, the pivot quantity for one-sample variance inference is</p>
+<p><span class="math display">\[
+\frac{(n-1)S^2}{\sigma^2},
+\]</span></p>
+<p>and under normality it provides the foundation for both confidence intervals and tests about the population variance.</p>
+<hr />
+</div>
+<div id="does-knowing-the-population-mean-help" class="section level3 hasAnchor" number="10.2.5">
+<h3><span class="header-section-number">10.2.5</span> Does Knowing the Population Mean Help?<a href="inference-about-the-variance.html#does-knowing-the-population-mean-help" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In most practical settings, the population mean <span class="math inline">\(\mu\)</span> is unknown, so the sample variance is computed using deviations from the sample mean <span class="math inline">\(\bar{X}\)</span>.</p>
+<p>However, if the population mean <span class="math inline">\(\mu\)</span> were known, then we could base the variance estimator on the deviations from <span class="math inline">\(\mu\)</span> instead of from <span class="math inline">\(\bar{X}\)</span>.</p>
+<p>In that case, we would consider</p>
+<p><span class="math display">\[
+\frac{1}{n}\sum_{i=1}^n (X_i-\mu)^2.
+\]</span></p>
+<p>This quantity measures spread around the <strong>true center</strong> of the population rather than around the estimated center.</p>
+<p>The advantage is that no degree of freedom is lost in estimating the mean. As a result, under normality,</p>
+<p><span class="math display">\[
+\frac{\sum_{i=1}^n (X_i-\mu)^2}{\sigma^2} \sim \chi^2_n.
+\]</span></p>
+<p>Compare this with the usual result when <span class="math inline">\(\mu\)</span> is unknown:</p>
+<p><span class="math display">\[
+\frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{n-1}.
+\]</span></p>
+<p>So knowing <span class="math inline">\(\mu\)</span> changes the pivot quantity and gives a chi-square distribution with <span class="math inline">\(n\)</span> degrees of freedom rather than <span class="math inline">\(n-1\)</span>.</p>
+<p>This is slightly advantageous because:</p>
+<ul>
+<li>the expression is simpler</li>
+<li>no degree of freedom is used to estimate the center</li>
+<li>inference is slightly more precise</li>
+</ul>
+<p>Still, the overall message does not change. Even when <span class="math inline">\(\mu\)</span> is known, inference about <span class="math inline">\(\sigma^2\)</span> still relies strongly on the normality assumption.</p>
+<p>So knowing the population mean helps somewhat, but it does not remove the fundamental sensitivity of variance inference to the underlying distribution.</p>
+<hr />
+</div>
+<div id="confidence-intervals-for-sigma2" class="section level3 hasAnchor" number="10.2.6">
+<h3><span class="header-section-number">10.2.6</span> Confidence Intervals for <span class="math inline">\(\sigma^2\)</span><a href="inference-about-the-variance.html#confidence-intervals-for-sigma2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <span class="math inline">\((1-\alpha)\)</span> confidence interval is:</p>
+<p><span class="math display">\[  
+\frac{(n-1)S^2}{\chi^2_{1-\alpha/2}} \leq \sigma^2 \leq \frac{(n-1)S^2}{\chi^2_{\alpha/2}}.  
+\]</span></p>
+<p>This interval is obtained by starting with the chi-square distribution of</p>
+<p><span class="math display">\[
+\frac{(n-1)S^2}{\sigma^2}
+\]</span></p>
+<p>and then solving for <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>Interpretation:</p>
+<ul>
+<li>The interval is <strong>asymmetric</strong></li>
+<li>The asymmetry reflects the skewness of the chi-square distribution</li>
+</ul>
+<p>This asymmetry is not a technical detail. It reflects an important reality: uncertainty about a variance is not naturally balanced in the same way that uncertainty about a mean often is.</p>
+<p>For example, if the sample variance is moderately large, the range of plausible larger values of <span class="math inline">\(\sigma^2\)</span> may extend much farther than the range of plausible smaller values. The chi-square distribution captures that asymmetry.</p>
+<p>A confidence interval for variance should be interpreted as a range of plausible values for the population spread, assuming the model assumptions hold. If the interval is narrow, then the data provide a relatively precise assessment of variability. If the interval is wide, then there is substantial uncertainty about the true variance.</p>
+<p>In some applications, it may be more interpretable to report a confidence interval for the standard deviation <span class="math inline">\(\sigma\)</span> by taking square roots of the endpoints.</p>
+<hr />
+</div>
+<div id="hypothesis-testing-for-sigma2" class="section level3 hasAnchor" number="10.2.7">
+<h3><span class="header-section-number">10.2.7</span> Hypothesis Testing for <span class="math inline">\(\sigma^2\)</span><a href="inference-about-the-variance.html#hypothesis-testing-for-sigma2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We test:</p>
+<p><span class="math display">\[  
+H_0: \sigma^2 = \sigma_0^2  
+\]</span></p>
+<p>Test statistic:</p>
+<p><span class="math display">\[  
+\chi^2 = \frac{(n-1)S^2}{\sigma_0^2}.  
+\]</span></p>
+<p>This statistic compares the observed sample variance to the variance claimed in the null hypothesis.</p>
+<p>Interpretation:</p>
+<ul>
+<li>if <span class="math inline">\(S^2\)</span> is close to <span class="math inline">\(\sigma_0^2\)</span>, then the statistic should take a typical value under the chi-square distribution</li>
+<li>if <span class="math inline">\(S^2\)</span> is much larger than <span class="math inline">\(\sigma_0^2\)</span>, then the statistic will be unusually large</li>
+<li>if <span class="math inline">\(S^2\)</span> is much smaller than <span class="math inline">\(\sigma_0^2\)</span>, then the statistic will be unusually small</li>
+</ul>
+<p>Decision:</p>
+<ul>
+<li>Reject <span class="math inline">\(H_0\)</span> if the statistic is too large or too small</li>
+<li>Or compute a p-value</li>
+</ul>
+<p>The appropriate rejection region depends on the alternative hypothesis:</p>
+<ul>
+<li>right-tailed if we are testing whether the variance is larger than <span class="math inline">\(\sigma_0^2\)</span></li>
+<li>left-tailed if we are testing whether it is smaller</li>
+<li>two-tailed if we are testing whether it is simply different</li>
+</ul>
+<p>Because the chi-square distribution is not symmetric, the lower-tail and upper-tail cutoffs are not mirror images of each other, unlike what happens with normal-based tests.</p>
+<hr />
+</div>
+<div id="numerical-example" class="section level3 hasAnchor" number="10.2.8">
+<h3><span class="header-section-number">10.2.8</span> Numerical Example<a href="inference-about-the-variance.html#numerical-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Suppose:</p>
+<ul>
+<li><span class="math inline">\(n = 12\)</span></li>
+<li><span class="math inline">\(S^2 = 20\)</span></li>
+<li><span class="math inline">\(\sigma_0^2 = 15\)</span></li>
+</ul>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="inference-about-the-variance.html#cb455-1" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb455-2"><a href="inference-about-the-variance.html#cb455-2" tabindex="-1"></a>n      <span class="ot">&lt;-</span> <span class="dv">12</span></span>
+<span id="cb455-3"><a href="inference-about-the-variance.html#cb455-3" tabindex="-1"></a>s2     <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb455-4"><a href="inference-about-the-variance.html#cb455-4" tabindex="-1"></a>sigma0 <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb455-5"><a href="inference-about-the-variance.html#cb455-5" tabindex="-1"></a></span>
+<span id="cb455-6"><a href="inference-about-the-variance.html#cb455-6" tabindex="-1"></a><span class="co"># Statistic Computation</span></span>
+<span id="cb455-7"><a href="inference-about-the-variance.html#cb455-7" tabindex="-1"></a>chi_stat <span class="ot">&lt;-</span> (n<span class="dv">-1</span>)<span class="sc">*</span>s2<span class="sc">/</span>sigma0</span>
+<span id="cb455-8"><a href="inference-about-the-variance.html#cb455-8" tabindex="-1"></a></span>
+<span id="cb455-9"><a href="inference-about-the-variance.html#cb455-9" tabindex="-1"></a><span class="co"># Comparison to the Distribution under the Null Hypothesis</span></span>
+<span id="cb455-10"><a href="inference-about-the-variance.html#cb455-10" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> n<span class="dv">-1</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">30</span>, <span class="at">ylab =</span> <span class="st">&quot;Density&quot;</span>)</span>
+<span id="cb455-11"><a href="inference-about-the-variance.html#cb455-11" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> chi_stat, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/inf-var-simple-example-1.png" width="672" /></p>
+<p>The value computed here is the observed chi-square test statistic.</p>
+<p>Interpretation:</p>
+<ul>
+<li>Larger values → evidence of larger variance</li>
+<li>Smaller values → evidence of smaller variance</li>
+</ul>
+<p>But the value itself is not enough. We must compare it to the chi-square distribution with <span class="math inline">\(n-1=11\)</span> degrees of freedom.</p>
+<p>If we are doing a right-tailed test, large values provide evidence that the population variance exceeds 15. If we are doing a two-sided test, both unusually small and unusually large values count as evidence against the null.</p>
+<p>So the practical interpretation always depends on the direction of the alternative hypothesis.</p>
+<hr />
+</div>
+<div id="simulation-study" class="section level3 hasAnchor" number="10.2.9">
+<h3><span class="header-section-number">10.2.9</span> Simulation Study<a href="inference-about-the-variance.html#simulation-study" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We verify the theoretical distribution using simulation.</p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="inference-about-the-variance.html#cb456-1" tabindex="-1"></a><span class="co"># Simulation Settings</span></span>
+<span id="cb456-2"><a href="inference-about-the-variance.html#cb456-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5428</span>)</span>
+<span id="cb456-3"><a href="inference-about-the-variance.html#cb456-3" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb456-4"><a href="inference-about-the-variance.html#cb456-4" tabindex="-1"></a></span>
+<span id="cb456-5"><a href="inference-about-the-variance.html#cb456-5" tabindex="-1"></a><span class="co"># Distribution Settings</span></span>
+<span id="cb456-6"><a href="inference-about-the-variance.html#cb456-6" tabindex="-1"></a>n  <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb456-7"><a href="inference-about-the-variance.html#cb456-7" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb456-8"><a href="inference-about-the-variance.html#cb456-8" tabindex="-1"></a></span>
+<span id="cb456-9"><a href="inference-about-the-variance.html#cb456-9" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
+<span id="cb456-10"><a href="inference-about-the-variance.html#cb456-10" tabindex="-1"></a>  <span class="co"># Samples</span></span>
+<span id="cb456-11"><a href="inference-about-the-variance.html#cb456-11" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="fu">sqrt</span>(s2))</span>
+<span id="cb456-12"><a href="inference-about-the-variance.html#cb456-12" tabindex="-1"></a>  <span class="co"># Computes the Pivot Quantity</span></span>
+<span id="cb456-13"><a href="inference-about-the-variance.html#cb456-13" tabindex="-1"></a>  (n<span class="dv">-1</span>)<span class="sc">*</span><span class="fu">var</span>(x)<span class="sc">/</span>s2</span>
+<span id="cb456-14"><a href="inference-about-the-variance.html#cb456-14" tabindex="-1"></a>})</span>
+<span id="cb456-15"><a href="inference-about-the-variance.html#cb456-15" tabindex="-1"></a></span>
+<span id="cb456-16"><a href="inference-about-the-variance.html#cb456-16" tabindex="-1"></a><span class="fu">hist</span>(sim, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">40</span>)</span>
+<span id="cb456-17"><a href="inference-about-the-variance.html#cb456-17" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> n<span class="dv">-1</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/inf-var-sampling-distribution-1.png" width="672" /></p>
+<p>This simulation is very useful conceptually.</p>
+<p>Each repetition does the following:</p>
+<ol style="list-style-type: decimal">
+<li>generates a new random sample from a normal population</li>
+<li>computes the sample variance</li>
+<li>standardizes it using the true variance</li>
+<li>stores the resulting value</li>
+</ol>
+<p>After many repetitions, the histogram shows the <strong>sampling distribution</strong> of the statistic</p>
+<p><span class="math display">\[  
+\frac{(n-1)S^2}{\sigma^2}.  
+\]</span></p>
+<p>Interpretation:</p>
+<ul>
+<li>The histogram aligns with the chi-square curve</li>
+<li>Confirms the theoretical result</li>
+</ul>
+<p>This helps connect the theory to repeated sampling. The chi-square distribution is not just a formula we memorize. It describes how the statistic behaves across many repeated samples when the assumptions are true.</p>
+<hr />
+</div>
+<div id="simulation-study-non-normality" class="section level3 hasAnchor" number="10.2.10">
+<h3><span class="header-section-number">10.2.10</span> Simulation Study Non-normality<a href="inference-about-the-variance.html#simulation-study-non-normality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The chi-square result for the variance pivot quantity,</p>
+<p><span class="math display">\[
+\frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{n-1},
+\]</span></p>
+<p>is exact only when the population is normal.</p>
+<p>This simulation shows what happens when that assumption is violated.</p>
+<p>Instead of sampling from a normal population, the code generates observations from a <strong>skewed distribution</strong>. In particular, it starts from a chi-square distribution with <code>df = sk</code>, recenters it to have mean 0, rescales it to have variance 1, and then multiplies by <span class="math inline">\(\sqrt{\sigma^2}\)</span> so that the population variance is still equal to the target value <span class="math inline">\(s^2 = 25\)</span>.</p>
+<p>This is important because it isolates the effect of <strong>non-normality</strong>. The population variance is still the same as in the normal case, so any discrepancy we observe is due to the lack of normality rather than a change in the true variance.</p>
+<p>The simulation then computes the usual pivot quantity</p>
+<p><span class="math display">\[
+\frac{(n-1)S^2}{\sigma^2}
+\]</span></p>
+<p>for each of the <span class="math inline">\(B=5000\)</span> samples and compares its empirical distribution to the chi-square density with <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="inference-about-the-variance.html#cb457-1" tabindex="-1"></a><span class="co"># Simulation Settings</span></span>
+<span id="cb457-2"><a href="inference-about-the-variance.html#cb457-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5428</span>)</span>
+<span id="cb457-3"><a href="inference-about-the-variance.html#cb457-3" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb457-4"><a href="inference-about-the-variance.html#cb457-4" tabindex="-1"></a></span>
+<span id="cb457-5"><a href="inference-about-the-variance.html#cb457-5" tabindex="-1"></a><span class="co"># Distribution Settings</span></span>
+<span id="cb457-6"><a href="inference-about-the-variance.html#cb457-6" tabindex="-1"></a>n  <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb457-7"><a href="inference-about-the-variance.html#cb457-7" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb457-8"><a href="inference-about-the-variance.html#cb457-8" tabindex="-1"></a>sk <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb457-9"><a href="inference-about-the-variance.html#cb457-9" tabindex="-1"></a></span>
+<span id="cb457-10"><a href="inference-about-the-variance.html#cb457-10" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
+<span id="cb457-11"><a href="inference-about-the-variance.html#cb457-11" tabindex="-1"></a>  <span class="co"># Samples</span></span>
+<span id="cb457-12"><a href="inference-about-the-variance.html#cb457-12" tabindex="-1"></a>  x <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n, <span class="at">df =</span> sk) <span class="sc">-</span> sk) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk)) <span class="sc">*</span> <span class="fu">sqrt</span>(s2)</span>
+<span id="cb457-13"><a href="inference-about-the-variance.html#cb457-13" tabindex="-1"></a>  <span class="co"># Computes the Pivot Quantity</span></span>
+<span id="cb457-14"><a href="inference-about-the-variance.html#cb457-14" tabindex="-1"></a>  (n<span class="dv">-1</span>)<span class="sc">*</span><span class="fu">var</span>(x)<span class="sc">/</span>s2</span>
+<span id="cb457-15"><a href="inference-about-the-variance.html#cb457-15" tabindex="-1"></a>})</span>
+<span id="cb457-16"><a href="inference-about-the-variance.html#cb457-16" tabindex="-1"></a></span>
+<span id="cb457-17"><a href="inference-about-the-variance.html#cb457-17" tabindex="-1"></a><span class="fu">hist</span>(sim, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">40</span>)</span>
+<span id="cb457-18"><a href="inference-about-the-variance.html#cb457-18" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> n<span class="dv">-1</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/inf-var-sampling-distribution-non-normal-1.png" width="672" /></p>
+<p>The histogram represents the empirical sampling distribution of the pivot quantity under a skewed population, while the red curve is the chi-square density that would be correct under normality.</p>
+<p>If the normality assumption were not important, then the histogram and the chi-square curve would still align closely. But in general they do not.</p>
+<p>The purpose of this plot is to show that when the population is skewed, the classical chi-square approximation may fail. The empirical distribution of the pivot quantity may have:</p>
+<ul>
+<li>a different center</li>
+<li>a different spread</li>
+<li>a different degree of skewness</li>
+</ul>
+<p>As a result, procedures based on the chi-square distribution may no longer have their advertised properties.</p>
+<p>In particular:</p>
+<ul>
+<li>confidence intervals for <span class="math inline">\(\sigma^2\)</span> may not have the correct coverage probability</li>
+<li>hypothesis tests for <span class="math inline">\(\sigma^2\)</span> may not have the correct Type I error rate</li>
+</ul>
+<p>This is one of the most important conceptual differences between inference about the mean and inference about the variance. For means, large-sample approximations are often quite robust. For variances, the exact procedure depends much more strongly on normality.</p>
+<p>The simulation also illustrates why skewness matters so much. Since the sample variance is based on <strong>squared deviations</strong>, unusually large observations have a strong effect on the result. In a skewed population, large observations occur more often on one side of the distribution, and this changes the behavior of the variance estimator and of the pivot quantity built from it.</p>
+<p>So the main lesson of this simulation is:</p>
+<blockquote>
+<p>Even if the population variance is correctly specified, the usual chi-square pivot quantity may not behave like a chi-square random variable when the population is not normal.</p>
+</blockquote>
+<p>This is why inference about variance should be applied with caution when the data show strong skewness or other substantial departures from normality.</p>
+<hr />
+</div>
+<div id="confidence-interval-simulation" class="section level3 hasAnchor" number="10.2.11">
+<h3><span class="header-section-number">10.2.11</span> Confidence Interval Simulation<a href="inference-about-the-variance.html#confidence-interval-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The classical confidence interval for the population variance is derived from the pivot quantity</p>
+<p><span class="math display">\[
+\frac{(n-1)S^2}{\sigma^2},
+\]</span></p>
+<p>which has a chi-square distribution with <span class="math inline">\(n-1\)</span> degrees of freedom when the population is normal.</p>
+<p>That result leads to the confidence interval</p>
+<p><span class="math display">\[
+\frac{(n-1)S^2}{\chi^2_{1-\alpha/2,n-1}}
+\leq
+\sigma^2
+\leq
+\frac{(n-1)S^2}{\chi^2_{\alpha/2,n-1}}.
+\]</span></p>
+<p>The purpose of this simulation is to check how this interval behaves in repeated sampling.</p>
+<p>In particular, we want to study two important characteristics of the interval:</p>
+<ul>
+<li><strong>coverage</strong>, meaning how often the interval actually contains the true variance</li>
+<li><strong>average interval length</strong>, meaning how wide the interval tends to be on average</li>
+</ul>
+<p>A good confidence interval should have coverage close to the nominal confidence level, while also being reasonably short. If the interval is too narrow, it may miss the true value too often. If it is too wide, it may contain the true value often but provide little useful precision.</p>
+<p>In this simulation, the true population variance is set to</p>
+<p><span class="math display">\[
+\sigma^2 = 25,
+\]</span></p>
+<p>and samples of size</p>
+<p><span class="math display">\[
+n = 10
+\]</span></p>
+<p>are repeatedly generated.</p>
+<p>The code uses a chi-square distribution with <code>df = sk = 100</code>, recenters and rescales it, and then multiplies by <span class="math inline">\(\sqrt{s^2}\)</span>. Because the degrees of freedom are large, this distribution is much closer to normal than the skewed example from the previous section. So this simulation is intended to examine the performance of the classical interval in a situation where the population is not exactly normal, but is reasonably close.</p>
+<p>For each of the <span class="math inline">\(B = 5000\)</span> simulated samples, the code does the following:</p>
+<ol style="list-style-type: decimal">
+<li>generates a sample of size <span class="math inline">\(n=10\)</span></li>
+<li>computes the sample variance</li>
+<li>constructs the usual chi-square confidence interval for <span class="math inline">\(\sigma^2\)</span></li>
+<li>checks whether the interval contains the true variance</li>
+<li>records the width of the interval</li>
+</ol>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="inference-about-the-variance.html#cb458-1" tabindex="-1"></a><span class="co"># Simulation Settings</span></span>
+<span id="cb458-2"><a href="inference-about-the-variance.html#cb458-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5428</span>)</span>
+<span id="cb458-3"><a href="inference-about-the-variance.html#cb458-3" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb458-4"><a href="inference-about-the-variance.html#cb458-4" tabindex="-1"></a></span>
+<span id="cb458-5"><a href="inference-about-the-variance.html#cb458-5" tabindex="-1"></a><span class="co"># Distribution Settings</span></span>
+<span id="cb458-6"><a href="inference-about-the-variance.html#cb458-6" tabindex="-1"></a>n  <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb458-7"><a href="inference-about-the-variance.html#cb458-7" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb458-8"><a href="inference-about-the-variance.html#cb458-8" tabindex="-1"></a>sk <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb458-9"><a href="inference-about-the-variance.html#cb458-9" tabindex="-1"></a></span>
+<span id="cb458-10"><a href="inference-about-the-variance.html#cb458-10" tabindex="-1"></a><span class="co"># Confidence Interval Settings</span></span>
+<span id="cb458-11"><a href="inference-about-the-variance.html#cb458-11" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb458-12"><a href="inference-about-the-variance.html#cb458-12" tabindex="-1"></a></span>
+<span id="cb458-13"><a href="inference-about-the-variance.html#cb458-13" tabindex="-1"></a>conInt <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
+<span id="cb458-14"><a href="inference-about-the-variance.html#cb458-14" tabindex="-1"></a>  <span class="co"># Samples</span></span>
+<span id="cb458-15"><a href="inference-about-the-variance.html#cb458-15" tabindex="-1"></a>  x <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n, <span class="at">df =</span> sk) <span class="sc">-</span> sk) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk)) <span class="sc">*</span> <span class="fu">sqrt</span>(s2)</span>
+<span id="cb458-16"><a href="inference-about-the-variance.html#cb458-16" tabindex="-1"></a>  <span class="co"># Computes the Quantile</span></span>
+<span id="cb458-17"><a href="inference-about-the-variance.html#cb458-17" tabindex="-1"></a>  xlow <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="at">p =</span> <span class="dv">1</span> <span class="sc">-</span> a<span class="sc">/</span><span class="dv">2</span>,    <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb458-18"><a href="inference-about-the-variance.html#cb458-18" tabindex="-1"></a>  xupp <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="at">p =</span> a<span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb458-19"><a href="inference-about-the-variance.html#cb458-19" tabindex="-1"></a>  <span class="co"># Computes the Bounds</span></span>
+<span id="cb458-20"><a href="inference-about-the-variance.html#cb458-20" tabindex="-1"></a>  low <span class="ot">&lt;-</span> (n<span class="dv">-1</span>) <span class="sc">*</span> <span class="fu">var</span>(x) <span class="sc">/</span> xlow</span>
+<span id="cb458-21"><a href="inference-about-the-variance.html#cb458-21" tabindex="-1"></a>  upp <span class="ot">&lt;-</span> (n<span class="dv">-1</span>) <span class="sc">*</span> <span class="fu">var</span>(x) <span class="sc">/</span> xupp</span>
+<span id="cb458-22"><a href="inference-about-the-variance.html#cb458-22" tabindex="-1"></a>  <span class="co"># Confidence Interval</span></span>
+<span id="cb458-23"><a href="inference-about-the-variance.html#cb458-23" tabindex="-1"></a>  <span class="fu">c</span>(low, upp)</span>
+<span id="cb458-24"><a href="inference-about-the-variance.html#cb458-24" tabindex="-1"></a>})</span>
+<span id="cb458-25"><a href="inference-about-the-variance.html#cb458-25" tabindex="-1"></a>conInt <span class="ot">&lt;-</span> <span class="fu">t</span>(conInt)</span>
+<span id="cb458-26"><a href="inference-about-the-variance.html#cb458-26" tabindex="-1"></a></span>
+<span id="cb458-27"><a href="inference-about-the-variance.html#cb458-27" tabindex="-1"></a><span class="co"># Checks if the Interval Contains true Variance</span></span>
+<span id="cb458-28"><a href="inference-about-the-variance.html#cb458-28" tabindex="-1"></a>cov <span class="ot">&lt;-</span> (conInt[, <span class="dv">1</span>] <span class="sc">&lt;=</span> s2) <span class="sc">&amp;</span> (conInt[, <span class="dv">2</span>] <span class="sc">&gt;=</span> s2)</span>
+<span id="cb458-29"><a href="inference-about-the-variance.html#cb458-29" tabindex="-1"></a></span>
+<span id="cb458-30"><a href="inference-about-the-variance.html#cb458-30" tabindex="-1"></a><span class="co"># Reports</span></span>
+<span id="cb458-31"><a href="inference-about-the-variance.html#cb458-31" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;Coverage: &quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(cov) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;Coverage: 94.8%&quot;</code></pre>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="inference-about-the-variance.html#cb460-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;Average Interval Length: &quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(conInt[, <span class="dv">2</span>] <span class="sc">-</span> conInt[, <span class="dv">1</span>]), <span class="dv">2</span>)))</span></code></pre></div>
+<pre><code>## [1] &quot;Average Interval Length: 71.12&quot;</code></pre>
+<p>The quantity <code>Coverage</code> reports the proportion of simulated intervals that contain the true variance <span class="math inline">\(s^2 = 25\)</span>.</p>
+<p>If the classical confidence interval is working well, this proportion should be close to 95%, since we are constructing 95% confidence intervals.</p>
+<p>The quantity <code>Average Interval Length</code> reports the average width of the interval across the 5000 repetitions. This gives a sense of the precision of the method. Shorter intervals are more informative, but only if they still maintain the desired coverage.</p>
+<p>The main idea behind this simulation is that confidence intervals should not be judged only by their formula. They should also be judged by their repeated-sampling behavior.</p>
+<p>In particular:</p>
+<ul>
+<li>if the coverage is close to 95%, then the procedure is performing as intended</li>
+<li>if the coverage is much lower than 95%, then the interval is too optimistic and misses the truth too often</li>
+<li>if the coverage is much higher than 95%, then the interval may be unnecessarily wide</li>
+</ul>
+<p>Because the underlying distribution here is close to normal, we would expect the coverage to be reasonably close to the nominal level. That would indicate that the classical chi-square interval is fairly reliable in this setting.</p>
+<p>This simulation also helps clarify an important idea about confidence intervals:</p>
+<blockquote>
+<p>A 95% confidence interval does not mean there is a 95% probability that the specific interval from one sample contains the true variance.</p>
+</blockquote>
+<p>Instead, it means that if we repeatedly collect samples and construct intervals in the same way, then about 95% of those intervals should contain the true variance.</p>
+<p>That is exactly what this simulation is checking.</p>
+<p>So the main lesson of this section is:</p>
+<blockquote>
+<p>The quality of a confidence interval can be evaluated through repeated sampling by studying both its coverage and its average length.</p>
+</blockquote>
+<p>When the normality assumption is approximately satisfied, the classical chi-square interval for <span class="math inline">\(\sigma^2\)</span> should show coverage close to the nominal level. When the normality assumption fails badly, that coverage can deteriorate, which is why simulation studies like this are useful for understanding how robust the procedure really is.</p>
+</div>
+<div id="inference-about-the-variance-when-the-population-is-not-normal" class="section level3 hasAnchor" number="10.2.12">
+<h3><span class="header-section-number">10.2.12</span> Inference About the Variance When the Population Is Not Normal<a href="inference-about-the-variance.html#inference-about-the-variance-when-the-population-is-not-normal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="effect-of-skewness" class="section level4 hasAnchor" number="10.2.12.1">
+<h4><span class="header-section-number">10.2.12.1</span> Effect of Skewness<a href="inference-about-the-variance.html#effect-of-skewness" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If the population is skewed:</p>
+<ul>
+<li>the chi-square approximation may fail</li>
+<li>confidence intervals may not have correct coverage</li>
+</ul>
+<p>This is a very important warning. Unlike mean inference, variance inference is not protected by a simple large-sample argument in the same way.</p>
+<p>The reason is that variance is built from squared deviations, and squared deviations are especially sensitive to asymmetry and extreme observations. A skewed distribution tends to produce sampling behavior for <span class="math inline">\(S^2\)</span> that does not match the chi-square model.</p>
+<p>As a result, a nominal 95% confidence interval may not actually cover the true variance 95% of the time.</p>
+<hr />
+</div>
+<div id="effect-of-sample-size-1" class="section level4 hasAnchor" number="10.2.12.2">
+<h4><span class="header-section-number">10.2.12.2</span> Effect of Sample Size<a href="inference-about-the-variance.html#effect-of-sample-size-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>Small <span class="math inline">\(n\)</span>: strong distortion</li>
+<li>Large <span class="math inline">\(n\)</span>: behavior improves, but still not perfect</li>
+</ul>
+<p>Small samples are especially problematic because there is little opportunity for the irregularities of the population shape to average out.</p>
+<p>With larger samples, the sample variance becomes more stable, but the classical chi-square-based procedures can still be misleading when the population is strongly skewed or heavy-tailed. This is exactly the kind of sensitivity highlighted in the textbook discussion of inference about population variances.</p>
+<p>So the correct summary is:</p>
+<blockquote>
+<p>larger samples help, but they do not make variance inference nearly as robust as mean inference.</p>
+</blockquote>
+<hr />
+</div>
+<div id="practical-guidance" class="section level4 hasAnchor" number="10.2.12.3">
+<h4><span class="header-section-number">10.2.12.3</span> Practical Guidance<a href="inference-about-the-variance.html#practical-guidance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Before applying variance inference:</p>
+<ul>
+<li>check for skewness</li>
+<li>examine outliers</li>
+<li>consider simulation or bootstrap methods</li>
+</ul>
+<p>These checks are not optional details. They are central to the reliability of the method.</p>
+<p>A boxplot, histogram, or normal probability plot can reveal whether the data are approximately consistent with the normal model. If the sample shows strong asymmetry or extreme outliers, the classical variance procedures should be treated with caution.</p>
+<p>In settings where normality is doubtful, simulation-based or bootstrap approaches may provide a more realistic assessment of uncertainty.</p>
+<hr />
+</div>
+</div>
+<div id="example-simulating-scenarios-with-different-skewness-and-sample-size" class="section level3 hasAnchor" number="10.2.13">
+<h3><span class="header-section-number">10.2.13</span> Example: Simulating Scenarios with Different Skewness and Sample Size<a href="inference-about-the-variance.html#example-simulating-scenarios-with-different-skewness-and-sample-size" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="inference-about-the-variance.html#cb462-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5428</span>)</span>
+<span id="cb462-2"><a href="inference-about-the-variance.html#cb462-2" tabindex="-1"></a></span>
+<span id="cb462-3"><a href="inference-about-the-variance.html#cb462-3" tabindex="-1"></a>simulate_var <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
+<span id="cb462-4"><a href="inference-about-the-variance.html#cb462-4" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rexp</span>(n)  <span class="co"># skewed data</span></span>
+<span id="cb462-5"><a href="inference-about-the-variance.html#cb462-5" tabindex="-1"></a>  <span class="fu">var</span>(x)</span>
+<span id="cb462-6"><a href="inference-about-the-variance.html#cb462-6" tabindex="-1"></a>}</span>
+<span id="cb462-7"><a href="inference-about-the-variance.html#cb462-7" tabindex="-1"></a></span>
+<span id="cb462-8"><a href="inference-about-the-variance.html#cb462-8" tabindex="-1"></a>small <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">simulate_var</span>(<span class="dv">10</span>))</span>
+<span id="cb462-9"><a href="inference-about-the-variance.html#cb462-9" tabindex="-1"></a>large <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">simulate_var</span>(<span class="dv">50</span>))</span>
+<span id="cb462-10"><a href="inference-about-the-variance.html#cb462-10" tabindex="-1"></a></span>
+<span id="cb462-11"><a href="inference-about-the-variance.html#cb462-11" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb462-12"><a href="inference-about-the-variance.html#cb462-12" tabindex="-1"></a><span class="fu">hist</span>(small, <span class="at">main=</span><span class="st">&quot;n=10&quot;</span>)</span>
+<span id="cb462-13"><a href="inference-about-the-variance.html#cb462-13" tabindex="-1"></a><span class="fu">hist</span>(large, <span class="at">main=</span><span class="st">&quot;n=50&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Here the population is not normal. Instead, it is exponential, which is positively skewed.</p>
+<p>So this simulation is not checking the chi-square result. It is deliberately showing what happens when the assumptions fail.</p>
+<p>Interpretation:</p>
+<ul>
+<li><p>Small samples → highly variable estimates</p></li>
+<li><p>Larger samples → more stable behavior</p></li>
+</ul>
+<p>More specifically, the sample variance from the skewed population can fluctuate substantially, especially when <span class="math inline">\(n\)</span> is small. The sampling distribution is often asymmetric and unstable.</p>
+<p>This reinforces the main lesson:</p>
+<blockquote>
+<p>the classical procedures for variance are much more sensitive to population shape than the corresponding procedures for means.</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="comparing-two-population-variances" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Comparing Two Population Variances<a href="inference-about-the-variance.html#comparing-two-population-variances" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="why-compare-variability-across-populations" class="section level3 hasAnchor" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> Why Compare Variability Across Populations?<a href="inference-about-the-variance.html#why-compare-variability-across-populations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We often want to compare variability between groups:</p>
+<ul>
+<li>Is one treatment more consistent?</li>
+<li>Is one process more stable?</li>
+</ul>
+<p>This type of question arises naturally when we are not just interested in average behavior but in reliability or uniformity.</p>
+<p>For example:</p>
+<ul>
+<li>a treatment with smaller variability may produce more predictable patient outcomes</li>
+<li>a manufacturing process with smaller variability may produce more consistent products</li>
+<li>a measurement device with smaller variability may be more precise</li>
+</ul>
+<p>So in this setting, the parameter of interest is not a single variance, but rather the <strong>relative size</strong> of two variances.</p>
+<hr />
+</div>
+<div id="assumptions-3" class="section level3 hasAnchor" number="10.3.2">
+<h3><span class="header-section-number">10.3.2</span> Assumptions<a href="inference-about-the-variance.html#assumptions-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Independent samples</li>
+<li>Both populations are normal</li>
+</ol>
+<p>Once again, normality is central.</p>
+<p>The classical procedure for comparing two variances is built from the ratio of two sample variances, and its exact distributional result depends on both populations being normal.</p>
+<hr />
+</div>
+<div id="distribution-of-the-ratio-of-sample-variances" class="section level3 hasAnchor" number="10.3.3">
+<h3><span class="header-section-number">10.3.3</span> Distribution of the Ratio of Sample Variances<a href="inference-about-the-variance.html#distribution-of-the-ratio-of-sample-variances" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If assumptions hold:</p>
+<p><span class="math display">\[  
+\frac{S_1^2}{S_2^2} \sim F_{n_1-1, n_2-1}.  
+\]</span></p>
+<p>More precisely, under the null hypothesis that <span class="math inline">\(\sigma_1^2=\sigma_2^2\)</span>, the ratio of the two sample variances follows an <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(n_1-1\)</span> and <span class="math inline">\(n_2-1\)</span> degrees of freedom.</p>
+<p>This result comes from the fact that each sample variance, after proper scaling, follows a chi-square distribution. The ratio of two independent scaled chi-square variables produces the <span class="math inline">\(F\)</span> distribution.</p>
+<p>So the <span class="math inline">\(F\)</span> distribution plays, for two variances, the role that the chi-square distribution plays for one variance.</p>
+<hr />
+</div>
+<div id="review-of-the-f-distribution" class="section level3 hasAnchor" number="10.3.4">
+<h3><span class="header-section-number">10.3.4</span> Review of the <span class="math inline">\(F\)</span> Distribution<a href="inference-about-the-variance.html#review-of-the-f-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Ratio of two scaled chi-square variables</li>
+<li>Right-skewed</li>
+<li>Depends on two degrees of freedom</li>
+</ul>
+<p>The fact that it is right-skewed is very important.</p>
+<p>If the two population variances are equal, then the ratio <span class="math inline">\(S_1^2/S_2^2\)</span> should typically be near 1, but it will not be symmetrically distributed around 1. Large ratios are possible, and the distribution stretches further to the right than to the left.</p>
+<p>This again means that inference about variances behaves differently from the more symmetric setting of inference about means.</p>
+<hr />
+</div>
+<div id="confidence-intervals-for-sigma_12sigma_22" class="section level3 hasAnchor" number="10.3.5">
+<h3><span class="header-section-number">10.3.5</span> Confidence Intervals for <span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span><a href="inference-about-the-variance.html#confidence-intervals-for-sigma_12sigma_22" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[  
+\left(  
+\frac{S_1^2}{S_2^2} \cdot \frac{1}{F_{1-\alpha/2}},  
+\quad  
+\frac{S_1^2}{S_2^2} \cdot \frac{1}{F_{\alpha/2}}  
+\right)  
+\]</span></p>
+<p>This interval gives a range of plausible values for the ratio</p>
+<p><span class="math display">\[  
+\frac{\sigma_1^2}{\sigma_2^2}.  
+\]</span></p>
+<p>Interpretation is especially simple when we focus on whether 1 is contained in the interval:</p>
+<ul>
+<li>if 1 is in the interval, equal variances remain plausible</li>
+<li>if the interval is entirely above 1, population 1 appears more variable</li>
+<li>if the interval is entirely below 1, population 2 appears more variable</li>
+</ul>
+<p>Because this is a ratio, the interpretation is multiplicative. For example, a ratio near 2 suggests that one population may have about twice the variance of the other.</p>
+<hr />
+</div>
+<div id="hypothesis-testing-for-sigma_12sigma_22" class="section level3 hasAnchor" number="10.3.6">
+<h3><span class="header-section-number">10.3.6</span> Hypothesis Testing for <span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span><a href="inference-about-the-variance.html#hypothesis-testing-for-sigma_12sigma_22" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Test:</p>
+<p><span class="math display">\[  
+H_0: \sigma_1^2 = \sigma_2^2  
+\]</span></p>
+<p>Statistic:</p>
+<p><span class="math display">\[  
+F = \frac{S_1^2}{S_2^2}.  
+\]</span></p>
+<p>Under the null hypothesis, if the populations are normal and the samples are independent, this statistic follows an <span class="math inline">\(F\)</span> distribution.</p>
+<p>The logic is intuitive:</p>
+<ul>
+<li>if the population variances are equal, the sample variances should usually be of similar size</li>
+<li>if the ratio is unusually large or unusually small, then equality of variances becomes doubtful</li>
+</ul>
+<p>Because the <span class="math inline">\(F\)</span> distribution is asymmetric, two-sided testing requires some care. It is not enough to think in terms of symmetric tails around 1.</p>
+<hr />
+</div>
+<div id="numerical-example-1" class="section level3 hasAnchor" number="10.3.7">
+<h3><span class="header-section-number">10.3.7</span> Numerical Example<a href="inference-about-the-variance.html#numerical-example-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="inference-about-the-variance.html#cb463-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5428</span>)</span>
+<span id="cb463-2"><a href="inference-about-the-variance.html#cb463-2" tabindex="-1"></a></span>
+<span id="cb463-3"><a href="inference-about-the-variance.html#cb463-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">sd=</span><span class="dv">4</span>)</span>
+<span id="cb463-4"><a href="inference-about-the-variance.html#cb463-4" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">sd=</span><span class="dv">6</span>)</span>
+<span id="cb463-5"><a href="inference-about-the-variance.html#cb463-5" tabindex="-1"></a></span>
+<span id="cb463-6"><a href="inference-about-the-variance.html#cb463-6" tabindex="-1"></a><span class="fu">var</span>(x)<span class="sc">/</span><span class="fu">var</span>(y)</span></code></pre></div>
+<pre><code>## [1] 0.2087293</code></pre>
+<p>This code computes the observed ratio of sample variances.</p>
+<p>If the ratio is close to 1, the samples do not suggest a large difference in variability. If it is far from 1, the data suggest unequal variability.</p>
+<p>However, the raw ratio should be interpreted through the <span class="math inline">\(F\)</span> distribution, not by intuition alone. Sampling variation can produce ratios somewhat above or below 1 even when the population variances are equal.</p>
+<p>So, as always, the inferential question is not simply “is the ratio equal to 1?” but rather:</p>
+<blockquote>
+<p>is the observed ratio unusually far from 1, relative to what the <span class="math inline">\(F\)</span> distribution predicts under equal population variances?</p>
+</blockquote>
+<hr />
+</div>
+<div id="simulation-study-1" class="section level3 hasAnchor" number="10.3.8">
+<h3><span class="header-section-number">10.3.8</span> Simulation Study<a href="inference-about-the-variance.html#simulation-study-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="inference-about-the-variance.html#cb465-1" tabindex="-1"></a>simF <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, {</span>
+<span id="cb465-2"><a href="inference-about-the-variance.html#cb465-2" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
+<span id="cb465-3"><a href="inference-about-the-variance.html#cb465-3" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
+<span id="cb465-4"><a href="inference-about-the-variance.html#cb465-4" tabindex="-1"></a>  <span class="fu">var</span>(x)<span class="sc">/</span><span class="fu">var</span>(y)</span>
+<span id="cb465-5"><a href="inference-about-the-variance.html#cb465-5" tabindex="-1"></a>})</span>
+<span id="cb465-6"><a href="inference-about-the-variance.html#cb465-6" tabindex="-1"></a></span>
+<span id="cb465-7"><a href="inference-about-the-variance.html#cb465-7" tabindex="-1"></a><span class="fu">hist</span>(simF, <span class="at">probability=</span><span class="cn">TRUE</span>)</span>
+<span id="cb465-8"><a href="inference-about-the-variance.html#cb465-8" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">df</span>(x, <span class="dv">9</span>, <span class="dv">9</span>), <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>This simulation shows the repeated-sampling distribution of the ratio of sample variances under normality.</p>
+<p>Interpretation:</p>
+<ul>
+<li>the histogram represents the empirical distribution of the variance ratio</li>
+<li>the overlaid curve is the theoretical <span class="math inline">\(F\)</span> distribution</li>
+<li>good agreement supports the theoretical result under the model assumptions</li>
+</ul>
+<p>This is the two-sample analogue of the earlier chi-square simulation for one variance.</p>
+<hr />
+</div>
+<div id="comparing-two-variances-when-the-populations-are-not-normal" class="section level3 hasAnchor" number="10.3.9">
+<h3><span class="header-section-number">10.3.9</span> Comparing Two Variances When the Populations Are Not Normal<a href="inference-about-the-variance.html#comparing-two-variances-when-the-populations-are-not-normal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="effect-of-skewness-1" class="section level4 hasAnchor" number="10.3.9.1">
+<h4><span class="header-section-number">10.3.9.1</span> Effect of Skewness<a href="inference-about-the-variance.html#effect-of-skewness-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>F-test becomes unreliable</li>
+<li>Type I error may be incorrect</li>
+</ul>
+<p>This is one of the main practical limitations of the classical <span class="math inline">\(F\)</span> test.</p>
+<p>If the populations are skewed or heavy-tailed, the ratio of sample variances may no longer behave like an <span class="math inline">\(F\)</span> random variable. This means that the nominal significance level of the test may not be what we think it is.</p>
+<p>For example, a test designed to have Type I error 0.05 may reject too often or too rarely.</p>
+<hr />
+</div>
+<div id="effect-of-sample-size-2" class="section level4 hasAnchor" number="10.3.9.2">
+<h4><span class="header-section-number">10.3.9.2</span> Effect of Sample Size<a href="inference-about-the-variance.html#effect-of-sample-size-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>Larger samples help</li>
+<li>But sensitivity remains</li>
+</ul>
+<p>As with one-sample variance inference, increasing the sample size improves stability, but it does not fully solve the robustness problem.</p>
+<p>The <span class="math inline">\(F\)</span> test remains substantially more sensitive to non-normality than many classical procedures for means.</p>
+<hr />
+</div>
+<div id="practical-guidance-1" class="section level4 hasAnchor" number="10.3.9.3">
+<h4><span class="header-section-number">10.3.9.3</span> Practical Guidance<a href="inference-about-the-variance.html#practical-guidance-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>Avoid F-test with skewed data</li>
+<li>Use alternative or simulation-based methods</li>
+</ul>
+<p>If the data are clearly non-normal, then graphical diagnostics should come first. In some settings, a transformation, bootstrap procedure, or another alternative may be more appropriate than the classical <span class="math inline">\(F\)</span> test.</p>
+<p>The important lesson is not that the <span class="math inline">\(F\)</span> test is useless, but that it should be used only when its assumptions are at least reasonably plausible.</p>
+<hr />
+</div>
+</div>
+<div id="example-simulating-scenarios-with-different-skewness-and-sample-size-1" class="section level3 hasAnchor" number="10.3.10">
+<h3><span class="header-section-number">10.3.10</span> Example: Simulating Scenarios with Different Skewness and Sample Size<a href="inference-about-the-variance.html#example-simulating-scenarios-with-different-skewness-and-sample-size-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="inference-about-the-variance.html#cb466-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5428</span>)</span>
+<span id="cb466-2"><a href="inference-about-the-variance.html#cb466-2" tabindex="-1"></a></span>
+<span id="cb466-3"><a href="inference-about-the-variance.html#cb466-3" tabindex="-1"></a>sim_skew <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, {</span>
+<span id="cb466-4"><a href="inference-about-the-variance.html#cb466-4" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">20</span>)</span>
+<span id="cb466-5"><a href="inference-about-the-variance.html#cb466-5" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">20</span>)</span>
+<span id="cb466-6"><a href="inference-about-the-variance.html#cb466-6" tabindex="-1"></a>  <span class="fu">var</span>(x)<span class="sc">/</span><span class="fu">var</span>(y)</span>
+<span id="cb466-7"><a href="inference-about-the-variance.html#cb466-7" tabindex="-1"></a>})</span>
+<span id="cb466-8"><a href="inference-about-the-variance.html#cb466-8" tabindex="-1"></a></span>
+<span id="cb466-9"><a href="inference-about-the-variance.html#cb466-9" tabindex="-1"></a><span class="fu">hist</span>(sim_skew)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>This example replaces normal samples with exponential samples, which are skewed.</p>
+<p>So here the ratio of sample variances is being studied under a violation of the normality assumption.</p>
+<p>Interpretation:</p>
+<ul>
+<li>the resulting distribution may look quite different from the theoretical <span class="math inline">\(F\)</span> distribution</li>
+<li>this demonstrates how strongly the classical method depends on normality</li>
+</ul>
+<p>This is an important warning for practice: even if the formulas are easy to apply, they may be unreliable if the data do not support the assumptions.</p>
+<hr />
+</div>
+</div>
+<div id="comparing-more-than-two-variances" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Comparing More Than Two Variances<a href="inference-about-the-variance.html#comparing-more-than-two-variances" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="motivation-1" class="section level3 hasAnchor" number="10.4.1">
+<h3><span class="header-section-number">10.4.1</span> Motivation<a href="inference-about-the-variance.html#motivation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We may want to compare variability across multiple groups.</p>
+<p>For example:</p>
+<ul>
+<li>Are several production processes equally stable?</li>
+<li>Do multiple treatments have the same variability?</li>
+<li>Are several laboratories equally precise?</li>
+</ul>
+<p>This is the natural extension of comparing two variances.</p>
+<hr />
+</div>
+<div id="a-classical-test-for-equality-of-several-variances" class="section level3 hasAnchor" number="10.4.2">
+<h3><span class="header-section-number">10.4.2</span> A Classical Test for Equality of Several Variances<a href="inference-about-the-variance.html#a-classical-test-for-equality-of-several-variances" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Bartlett’s test is commonly used.</p>
+<p>Bartlett’s test is a classical method for assessing whether several populations have the same variance.</p>
+<p>The test is based on the sample variances from all groups and combines them into a single test statistic.</p>
+<hr />
+</div>
+<div id="strong-dependence-on-normality" class="section level3 hasAnchor" number="10.4.3">
+<h3><span class="header-section-number">10.4.3</span> Strong Dependence on Normality<a href="inference-about-the-variance.html#strong-dependence-on-normality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Very sensitive to non-normality</li>
+<li>Can give misleading results</li>
+</ul>
+<p>This point is especially important for Bartlett’s test.</p>
+<p>Because it is designed under a normality model, departures from normality can strongly affect its behavior. In practice, this means the test may appear to detect differences in variances when the real issue is simply skewness or heavy tails.</p>
+<p>So Bartlett’s test should be used cautiously unless the assumption of normality is fairly believable.</p>
+<hr />
+</div>
+<div id="brief-practical-discussion" class="section level3 hasAnchor" number="10.4.4">
+<h3><span class="header-section-number">10.4.4</span> Brief Practical Discussion<a href="inference-about-the-variance.html#brief-practical-discussion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In practice:</p>
+<ul>
+<li>graphical diagnostics are important</li>
+<li>robust alternatives are often preferred</li>
+</ul>
+<p>A side-by-side boxplot or histogram of the groups can often provide valuable initial information about differences in spread and about possible non-normality.</p>
+<p>At an introductory level, the main takeaway is that multi-group variance comparisons exist, but they inherit the same fragility that appears throughout variance inference.</p>
+<hr />
+</div>
+</div>
+<div id="summary-and-key-formulas" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Summary and Key Formulas<a href="inference-about-the-variance.html#summary-and-key-formulas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="one-variance" class="section level3 hasAnchor" number="10.5.1">
+<h3><span class="header-section-number">10.5.1</span> One Variance<a href="inference-about-the-variance.html#one-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[  
+\frac{(n-1)S^2}{\sigma^2} \sim \chi^2  
+\]</span></p>
+<p>This is the key result for exact inference about one population variance under normality. It leads to:</p>
+<ul>
+<li>confidence intervals for <span class="math inline">\(\sigma^2\)</span></li>
+<li>hypothesis tests for <span class="math inline">\(\sigma^2\)</span></li>
+</ul>
+<hr />
+</div>
+<div id="two-variances" class="section level3 hasAnchor" number="10.5.2">
+<h3><span class="header-section-number">10.5.2</span> Two Variances<a href="inference-about-the-variance.html#two-variances" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[  
+\frac{S_1^2}{S_2^2} \sim F  
+\]</span></p>
+<p>under the appropriate normality and independence assumptions when the population variances are equal.</p>
+<p>This is the key result for comparing two variances. It leads to:</p>
+<ul>
+<li>confidence intervals for <span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span></li>
+<li>tests for equality of variances</li>
+</ul>
+<hr />
+</div>
+<div id="key-insights" class="section level3 hasAnchor" number="10.5.3">
+<h3><span class="header-section-number">10.5.3</span> Key Insights<a href="inference-about-the-variance.html#key-insights" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Variance inference is <strong>less robust</strong> than mean inference</li>
+<li>Strong dependence on normality</li>
+<li>Always check assumptions before applying formulas</li>
+</ul>
+<p>More specifically:</p>
+<ul>
+<li>the sample variance is highly sensitive to skewness and outliers</li>
+<li>chi-square procedures for one variance are exact only under normality</li>
+<li><span class="math inline">\(F\)</span> procedures for comparing two variances are also highly sensitive to non-normality</li>
+<li>larger samples help, but they do not make variance inference nearly as robust as mean inference</li>
+</ul>
+<p>So the central message of this chapter is:</p>
+<blockquote>
+<p>Classical inference about variance is mathematically elegant and exact under normality, but it must be used with care in practice.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="inference-comparing-two-population-means.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
