@@ -22,7 +22,7 @@ In hypothesis testing, we evaluate a claim about the value of the population mea
 
 Throughout this chapter, we emphasize a computational perspective. Rather than relying only on formulas, we simulate sampling distributions to understand the logic of inference.
 
----
+***
 
 ## Example: Blood Alcohol Level
 
@@ -103,7 +103,7 @@ $$
 
 when the population is normal, and is approximately normal for large samples.
 
----
+***
 
 ## Point Estimation
 
@@ -143,7 +143,7 @@ abline(v=mu, col="blue", lwd=2)
 
 The histogram approximates a normal distribution centered at the true mean.
 
----
+***
 
 ## Interval Estimation
 
@@ -157,7 +157,7 @@ $$\bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right)$$
 
 This is the key starting point. The mean of $\bar{X}$ is $\mu$, and its standard deviation (the standard error) is $\sigma/\sqrt{n}$.
 
----
+***
 
 ### Step 1: Standardize
 
@@ -173,7 +173,7 @@ $$
 Z \sim N(0,1).
 $$
 
----
+***
 
 ### Step 2: Pick a Confidence Level 1 - $\alpha$
 
@@ -193,7 +193,7 @@ $$
 
 This statement says that the probability a standard normal variable falls between $-z_{\alpha/2}$ and $z_{\alpha/2}$ is $1-\alpha$.
 
----
+***
 
 ### Step 3: Substitute Back for $Z$
 
@@ -209,7 +209,7 @@ P\left( z_{\alpha/2} \le
   1 - \alpha.
 $$
 
----
+***
 
 ### Step 4: Solve for $\mu$
 
@@ -240,7 +240,7 @@ P\left(
 1 - \alpha.
 $$
 
----
+***
 
 ### Final Result
 
@@ -250,7 +250,7 @@ $$
 \bar{X} \pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}
 $$
 
----
+***
 
 ### Interpretation
 
@@ -260,7 +260,7 @@ Before observing the data, the interval is random. In repeated sampling, interva
 
 After the data are observed, the interval is fixed, and we interpret it using this long-run frequency property.
 
----
+***
 
 This derivation shows that confidence intervals are not ad hoc formulas. They arise directly from:
 
@@ -319,11 +319,11 @@ This visualizes the long-run interpretation:
 
 > A 95% confidence procedure captures the true mean approximately 95% of the time.
 
----
+***
 
 Understood. Below is the revised section with all display equations written using `$$ ... $$` for proper R Markdown rendering.
 
----
+***
 
 ### Choosing the Sample Size for Estimating the Population Mean
 
@@ -345,7 +345,7 @@ This formula shows that the margin of error depends on:
 2. The population standard deviation $\sigma$,
 3. The sample size $n$.
 
----
+***
 
 #### Solving for the Required Sample Size
 
@@ -378,7 +378,7 @@ $$
 
 This formula gives the **minimum required sample size** to guarantee the desired precision.
 
----
+***
 
 #### Interpretation of the Formula
 
@@ -390,7 +390,7 @@ The structure of the formula immediately reveals:
 
 Notice that $n$ depends on the square of these quantities.
 
----
+***
 
 #### Interpreting “Width 0.02”
 
@@ -427,7 +427,7 @@ ceiling(n_required)
 
 We always **round up** to ensure the margin of error does not exceed the target value.
 
----
+***
 
 #### The Square-Root Relationship
 
@@ -449,7 +449,7 @@ This square-root relationship has an important implication:
 
 Thus, gains in precision become increasingly expensive as we demand tighter intervals.
 
----
+***
 
 #### If the Sample Size Is Fixed
 
@@ -464,7 +464,7 @@ E
 
 This tells us how precise our estimate can realistically be.
 
----
+***
 
 #### Design Trade-Off
 
@@ -482,7 +482,7 @@ Larger $n$ leads to:
 
 Understanding this trade-off is essential in statistical study design and will reappear later in hypothesis testing and power analysis.
 
----
+***
 
 ## Hypothesis Testing
 
@@ -499,7 +499,7 @@ We formalize the problem as:
 
 The null hypothesis represents the legal benchmark. The alternative reflects the claim that the limit has been exceeded.
 
----
+***
 
 ### Logical Structure of a Test
 
@@ -531,7 +531,7 @@ $$
 
 This distribution determines the rejection region.
 
----
+***
 
 ### Developing the Rejection Region
 
@@ -569,7 +569,7 @@ $$
 
 This is an important step: the rejection region can be expressed either in standardized units (z-scores) or directly in terms of the sample mean.
 
----
+***
 
 ### Interpretation of the Rejection Region
 
@@ -585,7 +585,7 @@ Note carefully:
 Failing to reject $H_0$ does **not** mean $H_0$ is true.
 It means the data are not sufficiently inconsistent with it.
 
----
+***
 
 ### Components of a Test
 
@@ -612,7 +612,7 @@ A complete hypothesis test requires:
 7. **Decision rule and conclusion**
    A formal statement in context.
 
----
+***
 
 ### Type I and Type II Errors
 
@@ -628,7 +628,7 @@ $$
 
 In this context: concluding BAC exceeds 0.08 when in fact it does not.
 
----
+***
 
 #### Type II Error
 
@@ -640,7 +640,7 @@ $$
 
 In this context: failing to detect that BAC exceeds 0.08 when it truly does.
 
----
+***
 
 #### Trade-Off
 
@@ -652,7 +652,7 @@ For fixed $n$:
 
 This trade-off is fundamental in test design.
 
----
+***
 
 ### One-Tailed Blood Alcohol Test (Numerical Illustration)
 
@@ -685,7 +685,7 @@ If $z \ge z_\alpha$, we reject $H_0$.
 
 Otherwise, we fail to reject $H_0$.
 
----
+***
 
 ### General Forms of Rejection Regions
 
@@ -701,7 +701,7 @@ $$
 Z \ge z_\alpha.
 $$
 
----
+***
 
 #### Case 2: Left-Tailed Test
 
@@ -715,7 +715,7 @@ $$
 Z \le -z_\alpha.
 $$
 
----
+***
 
 #### Case 3: Two-Tailed Test
 
@@ -735,7 +735,7 @@ $$
 |Z| \ge z_{\alpha/2}.
 $$
 
----
+***
 
 ### Significance Level and p-Value
 
@@ -756,7 +756,7 @@ p_value <- 1 - pnorm(z)
 p_value
 ```
 
----
+***
 
 #### Decision Rule Using the p-Value
 
@@ -766,7 +766,7 @@ p_value
 Both approaches—critical value and p-value—are mathematically equivalent.
 They differ only in presentation.
 
----
+***
 
 ### Conceptual Summary
 
@@ -793,7 +793,7 @@ Larger samples:
 
 A detailed study of power and Type II error will follow in later sections.
 
----
+***
 
 ## Inference About the Mean Unknown Variance
 
@@ -803,7 +803,7 @@ When the population variance is unknown, we replace $ \sigma $ with the **sample
 
 The Student $ t $ distribution allows us to correctly account for the additional variability introduced by estimating $ \sigma $.
 
----
+***
 
 ### Review Properties of the Student t Distribution
 
@@ -898,7 +898,7 @@ $$
 
 These critical values are commonly tabulated and are used to construct confidence intervals and perform hypothesis tests.
 
----
+***
 
 ### Confidence Intervals Unknown Variance
 
@@ -924,7 +924,7 @@ Compared to the normal confidence interval, the only difference is that we use t
 
 Because the (t) distribution has heavier tails, the resulting confidence interval is typically **wider**, reflecting the additional uncertainty.
 
----
+***
 
 #### Example BAC continued unknown variance
 
@@ -1003,7 +1003,7 @@ t.test(bac, conf.level = 0.95)
 
 The output confirms the same confidence interval calculated manually.
 
----
+***
 
 ### Hypothesis Testing Unknown Variance
 
@@ -1033,7 +1033,7 @@ The steps for the hypothesis test are:
 4. Make a decision
 5. Interpret the result in context
 
----
+***
 
 #### Example BAC continued Hypothesis testing unknown variance
 
@@ -1120,7 +1120,7 @@ t.test(bac, mu = 0.08, alternative = "greater")
 
 This function performs the same hypothesis test and returns the test statistic, degrees of freedom, p-value, and confidence interval.
 
----
+***
 
 ## Not Normally Distributed Population
 
@@ -1149,7 +1149,7 @@ We analyze three scenarios:
 * Intermediate sample size
 * Small sample size
 
----
+***
 
 ### Big Sample Size
 
@@ -1165,7 +1165,7 @@ although the required sample size may depend on how strongly the population devi
 
 The key reason these methods remain valid is the **Central Limit Theorem**, which describes the behavior of the sample mean for large samples.
 
----
+***
 
 #### Distribution of the Sample Mean
 
@@ -1213,7 +1213,7 @@ is approximately normal as well.
 
 As a result, the **Student $t$ procedures for the mean also work well for large samples**, even when the population distribution is not normal.
 
----
+***
 
 #### Distribution of the Sample Variance
 
@@ -1231,7 +1231,7 @@ Therefore:
 * When the variance is **known**, inference about the mean remains reliable.
 * When the variance is **unknown**, the $t$-based procedures also remain reliable for large $n$.
 
----
+***
 
 #### Example Big Sample Size
 
@@ -1290,7 +1290,7 @@ $$
 
 In this range, the Central Limit Theorem begins to take effect, but the sampling distributions may still be influenced by the shape of the population.
 
----
+***
 
 #### Distribution of the Sample Mean
 
@@ -1321,7 +1321,7 @@ In this situation:
 * The inference procedures may still work reasonably well when the population is close to symmetric.
 * If the population is highly skewed, the procedures may become unreliable.
 
----
+***
 
 #### Distribution of the Sample Variance
 
@@ -1337,7 +1337,7 @@ Consequently:
 * When the variance is **known**, inference about the mean depends mainly on the behavior of the sample mean.
 * When the variance is **unknown**, the additional uncertainty from estimating $s$ can further reduce the reliability of the inference procedures.
 
----
+***
 
 ### Small Sample Size
 
@@ -1351,7 +1351,7 @@ $$
 
 In this situation, the theoretical results that justify the inference procedures developed earlier rely strongly on the assumption that the population distribution is normal.
 
----
+***
 
 #### Distribution of the Sample Mean
 
@@ -1387,7 +1387,7 @@ may not follow the Student $t$ distribution.
 
 As a result, the confidence intervals and hypothesis tests based on the $t$ distribution may perform poorly.
 
----
+***
 
 #### Distribution of the Sample Variance
 
@@ -1400,7 +1400,7 @@ In small samples:
 
 These issues further reduce the reliability of the inference procedures when the variance is **unknown**.
 
----
+***
 
 When both conditions occur:
 
@@ -1411,7 +1411,7 @@ standard inference procedures for the mean may not be reliable.
 
 In such situations, alternative approaches can be used that rely less heavily on distributional assumptions. One important approach is **resampling methods**, which we introduce in the next section.
 
----
+***
 
 ### What to Check Before Applying Inference Methods
 
@@ -1423,7 +1423,7 @@ When the population distribution is not known to be normal, the reliability of i
 
 Before applying the inference procedures introduced earlier, it is useful to evaluate the situation using the following guidelines.
 
----
+***
 
 #### Large Sample Size ($n \ge 30$)
 
@@ -1442,7 +1442,7 @@ If these conditions are satisfied:
 * If the variance $\sigma^2$ is **known**, the **normal-based procedures** for inference about $\mu$ can be used.
 * If the variance $\sigma^2$ is **unknown**, the **Student $t$ procedures** introduced earlier can be used.
 
----
+***
 
 #### Intermediate Sample Size ($10 \le n < 30$)
 
@@ -1464,7 +1464,7 @@ If the data show strong skewness or outliers:
 
 The effect of non-normality is particularly important when the **variance is unknown**, since the standard error must be estimated using the sample variance.
 
----
+***
 
 #### Small Sample Size ($n < 10$)
 
@@ -1485,7 +1485,7 @@ If the population distribution is not approximately normal:
 
 In these situations, alternative methods that rely less on distributional assumptions can be used. One such approach is **bootstrap methods**, which will be discussed in the next section.
 
----
+***
 
 ### Summary Table of When Inference Procedures Are Reliable
 
@@ -1503,7 +1503,7 @@ This table provides a practical guideline for deciding whether the inference pro
 
 When the conditions for these procedures are not satisfied, alternative approaches that rely less on distributional assumptions may be needed. One such approach is **bootstrap methods**, which are introduced in the next section.
 
----
+***
 
 ## Inferences with Small n (Bootstrap Methods)
 
@@ -1515,7 +1515,7 @@ Bootstrap methods use **resampling** to approximate the sampling distribution of
 
 Instead of relying on theoretical distributions, we repeatedly sample from the observed data and compute the statistic of interest.
 
----
+***
 
 ### When to Apply
 
@@ -1529,7 +1529,7 @@ They are particularly useful when theoretical sampling distributions are difficu
 
 However, bootstrap methods still require that the sample be **representative of the population**.
 
----
+***
 
 ### Steps for Bootstrap Methods about the Mean Confidence Intervals
 
@@ -1593,7 +1593,7 @@ print(paste0("Number of Samples: ", n))
 print(paste0("Percentage of Confidence Intervals that contain the True Parameter: ", mean(conInt)))
 ```
 
----
+***
 
 ### Steps for Bootstrap Methods about the Mean Hypothesis Testing
 
@@ -1657,7 +1657,7 @@ print(paste0("Error rate: ", rejPer))
 
 Bootstrap hypothesis tests are especially useful when the theoretical distribution of the test statistic is unknown or unreliable.
 
----
+***
 
 ### Bootstrap-$t$ or Studentized Bootstrap
 
@@ -1846,7 +1846,7 @@ A good hypothesis test should not only avoid false positives. It should also be 
 
 This idea leads to the concept of **power**.
 
----
+***
 
 ### Motivation
 
@@ -1872,7 +1872,7 @@ So even under a false null hypothesis, a test can fail to detect the difference.
 
 This is why we need a way to measure the **sensitivity** of a test.
 
----
+***
 
 ### Type II Error and Power
 
@@ -1902,7 +1902,7 @@ While $\alpha$ measures how often we make a false positive error, power measures
 
 A powerful test is one that is good at finding meaningful departures from the null hypothesis.
 
----
+***
 
 ### Interpreting Power
 
@@ -1926,7 +1926,7 @@ So power depends on **how far the true parameter is from the null value**.
 
 This is why power is not a single universal number unless we specify the alternative more precisely.
 
----
+***
 
 ### What Affects Power?
 
@@ -1997,7 +1997,7 @@ If the true effect is in that direction, the one-sided test usually has more pow
 
 However, this only makes sense when a one-sided alternative is justified by the scientific question before seeing the data.
 
----
+***
 
 ### Example of Power Function for a Normal Population and Knwon Variance
 
@@ -2182,7 +2182,7 @@ abline(h   = alp,
        col = "red")
 ```
 
----
+***
 
 ### Example Suboptimal Test
 
@@ -2212,7 +2212,7 @@ $$
 S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar X)^2.
 $$
 
----
+***
 
 #### Rejection region
 
@@ -2244,7 +2244,7 @@ $$
 
 So unlike the $z$ test, the cutoff is now random because it depends on $S$.
 
----
+***
 
 #### Distribution of the test statistic under a true mean $\mu$
 
@@ -2265,7 +2265,7 @@ $$
 
 where $t_{n-1}(\delta)$ denotes the noncentral $t$ distribution.
 
----
+***
 
 #### Power function computation
 
@@ -2305,7 +2305,7 @@ $$
 
 This is the exact power function for the test that wastes the known variance.
 
----
+***
 
 #### Compare with the $z$ test
 
@@ -2333,7 +2333,7 @@ $$
 \text{Power}_z(\mu).
 $$
 
----
+***
 
 #### Why the $t$-based test has less power
 
@@ -2371,7 +2371,7 @@ $$
 
 In practice, it is typically strictly smaller for essentially all relevant alternatives.
 
----
+***
 
 #### Intuition for the power loss
 
@@ -2398,7 +2398,7 @@ There are two consequences:
 
 So the test is spending part of its information estimating something that was already known. That extra randomness lowers the ability to distinguish $\mu>\mu_0$ from $\mu=\mu_0$.
 
----
+***
 
 #### Another way to see it
 
@@ -2420,7 +2420,7 @@ So now the decision depends not only on $\bar X$, but also on $S$.
 
 That means two samples with the same $\bar X$ can lead to different conclusions just because their sample standard deviations differ, even though $\sigma$ was already known and $S$ is not needed. That extra dependence cannot improve power when $\sigma$ is known.
 
----
+***
 
 #### Large-sample behavior
 
@@ -2441,7 +2441,7 @@ $$
 
 So the loss of power is mainly a small-sample issue.
 
----
+***
 
 #### Final statement
 
@@ -2493,7 +2493,7 @@ because the $z$ test is the uniformly most powerful level-$\alpha$ test in the k
 
 #### Monte Carlo Simulation of the Power of a T test
 
-```{r inf-mea-mc-simulation-t-test}
+```{r inf-mea-mc-simulation-t-test, cache = TRUE}
 # Parameters
 mu0 <- 0.08  # Null Mean (Legal limit for BAC)
 muA <- 0.085 # True Mean 
@@ -2577,7 +2577,7 @@ legend("topleft",
        fill   = c('black',  'blue'))
 ```
 
----
+***
 
 ### Why Power Matters
 
@@ -2599,7 +2599,7 @@ It may simply mean that the study had low power.
 
 So power helps us interpret non-significant results more carefully.
 
----
+***
 
 ### Power and Sample Size
 
@@ -2627,7 +2627,7 @@ So before collecting data, researchers often ask:
 
 This is the motivation for **sample size determination**.
 
----
+***
 
 ### Intuition Through the Sampling Distribution
 
@@ -2653,7 +2653,7 @@ If the sample size is large:
 
 So increasing the sample size improves power because it reduces uncertainty in the estimator.
 
----
+***
 
 ### Practical Interpretation
 
@@ -2668,7 +2668,7 @@ This is why power is not just a mathematical detail. It is a planning tool.
 
 It helps answer whether the traffic stop using the alcoholimeter is capable of detecting a meaningful increase above the legal threshold, rather than missing it simply because the sample size is too small.
 
----
+***
 
 ### Summary
 

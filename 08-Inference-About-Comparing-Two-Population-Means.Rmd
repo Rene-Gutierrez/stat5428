@@ -40,7 +40,7 @@ A useful way to think about this chapter is the following:
 
 That difference may be positive, negative, or zero, and each possibility has a direct scientific interpretation.
 
----
+***
 
 ## Why Comparing Two Means Is Different from One Mean
 
@@ -82,7 +82,7 @@ In the drug example, if population 1 is the drug group and population 2 is the p
 
 So the **sign** of the difference matters, not just whether it is zero.
 
----
+***
 
 ## The Role of Study Design
 
@@ -101,7 +101,7 @@ The study design determines:
 
 Two studies may address exactly the same scientific question and yet require different methods simply because the observations were collected differently.
 
----
+***
 
 ### Independent Samples
 
@@ -122,7 +122,7 @@ Because the data come from different subjects, the variability in the comparison
 - variation within the treatment group
 - variation within the control group
 
----
+***
 
 ### Paired Data
 
@@ -140,7 +140,7 @@ Here, the analysis focuses on **within-pair differences** rather than on raw gro
 
 This often reduces noise because the pairing controls for some of the natural subject-to-subject variation.
 
----
+***
 
 ## Motivating Example: Appetite Inhibitor Drug
 
@@ -160,7 +160,7 @@ The scientific question is:
 
 At first glance, this may appear to be a single question with a single answer. But statistically, the correct method depends crucially on **how the data were collected**.
 
----
+***
 
 ### Independent Samples
 
@@ -192,7 +192,7 @@ $$
 \mu_1 - \mu_2 < 0.
 $$
 
----
+***
 
 ### Paired Data
 
@@ -223,7 +223,7 @@ Instead of comparing two unrelated group means directly, we compare the two obse
 - the assumptions
 - the correct inferential procedure
 
----
+***
 
 The key lesson is:
 
@@ -232,7 +232,7 @@ The key lesson is:
 That is why the first task in any comparative inference problem is not writing a formula.  
 It is identifying the structure of the data.
 
----
+***
 
 These designs answer the same scientific question but require **different methods**.
 
@@ -245,7 +245,7 @@ So before doing any calculations, always ask:
 
 That question determines everything that follows.
 
----
+***
 
 ## Assumptions
 
@@ -292,7 +292,7 @@ A useful interpretation is:
 
 The exact interpretation depends on how population 1 and population 2 are defined.
 
----
+***
 
 ### Paired Data
 
@@ -333,7 +333,7 @@ The assumptions are therefore:
 
 The key point is that for paired data, the inferential object is not the raw group means separately. It is the **mean difference within pairs**.
 
----
+***
 
 ## The Estimator
 
@@ -351,7 +351,7 @@ This is intuitive: if the two populations differ in mean, then the two sample me
 
 This estimator is the two-sample analogue of the sample mean in one-sample inference.
 
----
+***
 
 ### Paired Data
 
@@ -373,7 +373,7 @@ This is intuitive: if there is a systematic difference between the two condition
 
 This estimator is the matched-pairs analogue of the sample mean in one-sample inference, because once the differences are formed, the problem becomes a one-sample inference problem for the population mean difference $\mu_D$.
 
----
+***
 
 ## Sampling Distribution of the Difference
 
@@ -410,7 +410,7 @@ So the variance of the difference is the sum of the variances of the two sample 
 
 This is the reason the standard error for two-sample inference has two pieces.
 
----
+***
 
 ### Paired Data
 
@@ -468,7 +468,7 @@ $$
 
 The key point is that, in matched pairs, the analysis is based on the differences within pairs, not on the two original samples separately.
 
----
+***
 
 ## Pivotal Quantities
 
@@ -539,7 +539,7 @@ $$
 $$
 is known. Notice however that $\sigma^2_D = \sigma^2_1 + \sigma^2_2 - 2\sigma_{1, 2}$, what would happen if we know $\sigma^2_1$ and $\sigma^2_2$ but not $\sigma_D^2$? If we estimate $\sigma^2_D$ as we did in the one sample procedures, we will be wasting information. 
 
----
+***
 
 
 ## Confidence Intervals
@@ -552,7 +552,7 @@ That is usually more informative than the point estimate alone.
 
 We will use the distributions of the pivotal quantities to find the confidence intervals.
 
----
+***
 
 ### Independent Samples
 #### Known Variances
@@ -626,7 +626,7 @@ cov <- (conInt[, 1] < dif) & (conInt[, 2] > dif)
 print(paste0("The Mean Coverage is: ", round(mean(cov), 2)))
 ```
 
----
+***
 
 #### Unknown and Equal Variances
 
@@ -710,7 +710,7 @@ print(paste0("The average coverage is (Incorrect): ", round(mean(cov), 2)))
 print(paste0("The average interval lenght is (Incorrect): ", mean(conInt[, 4] - conInt[, 3])))
 ```
 
----
+***
 
 #### Unknown and Unequal Variances
 
@@ -801,14 +801,14 @@ print(paste0("The average coverage is (Incorrect): ", round(mean(cov), 2)))
 print(paste0("The average interval lenght is (Incorrect): ", mean(conInt[, 4] - conInt[, 3])))
 ```
 
----
+***
 
 
 ### Paired Data
 
 As we said before, when we have paired data, the confidence intervals are built following the techniques for one sample. However, let's see if what happens when we use the paired data one sample approach when the data is really paired and when not.
 
----
+***
 
 #### Example Difference Between Independent and Paired Data
 
@@ -897,7 +897,7 @@ print(paste0("The average coverage using the method for Paired Data is: ", round
 print(paste0("The average interval lenght using the method for Paired Data is: ", mean(conInt[, 4] - conInt[, 3])))
 ```
 
----
+***
 
 ### Test Statistic
 
@@ -981,7 +981,7 @@ rej <- replicate(n = B, {
 print(paste0("Rejection % (Pooled Variance): ", mean(rej * 100)))
 ```
 
----
+***
 
 ###### Unequal Variance
 
@@ -1065,13 +1065,13 @@ print(paste0("Rejection % (Welch Test): ", mean(rej[, 2] * 100)))
 ```
 
 
----
+***
 
 ### Paired Data
 
 For paired data, the same test statistics used in the case of one population are used.
 
----
+***
 
 ## Hypothesis Testing
 
@@ -1102,7 +1102,7 @@ In other problems, the alternative may be:
 
 The choice of alternative should be determined by the scientific question before looking at the data.
 
----
+***
 
 ### Logical Structure of the Test
 
@@ -1122,7 +1122,7 @@ So the question becomes:
 
 That is exactly what the test statistic measures.
 
----
+***
 
 ### Test Statistic
 
@@ -1190,7 +1190,7 @@ $$
 For paired data, the same test statistics used in the case of one population are used.
 
 
----
+***
 
 ### Rejection Region and p-Value
 
@@ -1313,13 +1313,13 @@ $$
 {\frac{\left(\frac{s_1^2}{n_1}\right)^2}{n_1-1}+\frac{\left(\frac{s_2^2}{n_2}\right)^2}{n_2-1}}.
 $$
 
----
+***
 
 #### Paired Data
 
 We use the same methodologies as with one sample.
 
----
+***
 
 ## Power
 
@@ -1426,7 +1426,7 @@ legend("topright",
        fill   = c('black',  'blue'))
 ```
 
----
+***
 
 ## Interpreting the Design
 
@@ -1442,7 +1442,7 @@ Typical examples:
 
 This is the default two-sample setting.
 
----
+***
 
 ### Why Random Assignment Matters
 
@@ -1458,7 +1458,7 @@ So random assignment strengthens the interpretation of the causal claim.
 
 Without random assignment, differences between groups may reflect confounding rather than treatment effect.
 
----
+***
 
 ### Common Mistake: Treating Paired Data as Independent
 
@@ -1480,7 +1480,7 @@ This usually leads to:
 
 So pairing should not be viewed as a nuisance detail. It is a design feature that can substantially improve inference.
 
----
+***
 
 ### Why Pairing Can Increase Precision
 
@@ -1501,7 +1501,7 @@ So pairing is especially useful when the matched units are genuinely similar.
 
 If the pairing is weak or artificial, the gain may be small. But when the pairing is strong, it can substantially improve inference.
 
----
+***
 
 ## Independent Samples vs Paired Data
 
@@ -1517,7 +1517,7 @@ What matters is whether the observations in one column are naturally linked to t
 
 That is the structural question that determines the method.
 
----
+***
 
 ### Why the Choice Matters
 
@@ -1533,7 +1533,7 @@ Using the wrong method usually means using the wrong standard error, which then 
 
 So the design decision is not just conceptual. It directly affects the numerical inference.
 
----
+***
 
 ### Compact Comparison Table
 
@@ -1547,7 +1547,7 @@ This table is useful because it summarizes the main distinction:
 * independent design compares two separate sample means
 * paired design reduces the problem to one sample of differences
 
----
+***
 
 
 ## Two-Sample Inference When Populations Are Not Normal
@@ -1568,7 +1568,7 @@ That can affect:
 
 So before using mean-based methods, we should think not only about formulas, but also about whether the underlying assumptions are reasonable.
 
----
+***
 
 ### Large Sample Size
 
@@ -1580,7 +1580,7 @@ So for large samples, mean-based methods are often fairly robust.
 
 That does not mean assumptions are irrelevant. Extreme outliers and very heavy skewness can still cause problems. But large samples generally make the methods much more reliable.
 
----
+***
 
 ### Intermediate Sample Size
 
@@ -1596,7 +1596,7 @@ If the data are roughly symmetric and do not contain severe outliers, the $t$ me
 
 If the data are clearly skewed or contain strong outliers, the approximation may be poor.
 
----
+***
 
 ### Small Sample Size
 
@@ -1613,7 +1613,7 @@ So in small samples:
 * graphical inspection matters
 * alternative methods may be preferable
 
----
+***
 
 ### What to Check Before Applying Mean-Based Methods
 
@@ -1628,7 +1628,7 @@ These are the most basic diagnostic questions.
 
 This is another reason graphs should come before formal inference.
 
----
+***
 
 ## Nonparametric Alternatives
 
@@ -1654,7 +1654,7 @@ Others use **resampling ideas**, such as randomization or bootstrap methods.
 So, nonparametric inference is not a single method.  
 It is a family of approaches designed to make comparisons with fewer modeling assumptions.
 
----
+***
 
 ### Wilcoxon Rank Sum Test
 
@@ -1747,7 +1747,7 @@ print(paste0("Rejection % (Rank Sum Test): ", mean(rej[, 1] * 100)))
 print(paste0("Rejection % (Welch Test): ", mean(rej[, 2] * 100)))
 ```
 
----
+***
 
 ### Wilcoxon Signed-Rank Test
 
@@ -1766,7 +1766,7 @@ This makes it a useful alternative to the paired $t$ test when the distribution 
 
 As with the rank sum test, it is best thought of as a procedure for comparing location in a way that is less sensitive to nonnormality and extreme observations.
 
----
+***
 
 ### Randomization Test for 2 Sample Means
 
@@ -1782,7 +1782,7 @@ So unlike the Wilcoxon rank sum test, which is based on ranks, the randomization
 
 That is an important advantage when the mean is still the parameter of interest, but the usual normal-theory assumptions are doubtful.
 
----
+***
 
 #### Basic Idea
 
@@ -1809,7 +1809,7 @@ How unusual is the observed difference in sample means compared with all differe
 
 This creates a reference distribution for the statistic under the null hypothesis without requiring a normal population model.
 
----
+***
 
 #### Exact Randomization Test
 
@@ -1858,7 +1858,7 @@ This is called an exact randomization test because it uses the full null distrib
 The advantage is that no large-sample approximation is needed.  
 The limitation is computational: when the sample sizes get larger, the number of possible reallocations becomes enormous.
 
----
+***
 
 #### Why This Is Nonparametric
 
@@ -1868,7 +1868,7 @@ Instead, it builds the null distribution from the observed data themselves by us
 
 So the logic is based more on the design of the comparison than on a specific probability model.
 
----
+***
 
 #### Bootstrap Approximation to the Randomization Test
 
@@ -1966,7 +1966,7 @@ print(paste0("Reject (Bootstrap Randomization): ", round(mean(rejBoo) * 100, 2),
 print(paste0("Reject (Pooled): ", round(mean(rejPoo) * 100, 2), "%"))
 ```
 
----
+***
 
 #### Bootstrap Confidence Interval for the Difference in Means
 
@@ -1993,7 +1993,7 @@ For example, a simple percentile bootstrap interval uses the 2.5th and 97.5th pe
 
 This approach is useful when the sampling distribution of $\bar{X} - \bar{Y}$ is difficult to approximate well with standard theory, especially in small or moderately sized samples with noticeable skewness.
 
----
+***
 
 #### Randomization Test Versus Wilcoxon Rank Sum Test
 
@@ -2015,7 +2015,7 @@ So if the scientific question is specifically about **means**, the randomization
 
 If the data are highly skewed or contain strong outliers and a rank-based comparison is more appropriate, the Wilcoxon procedure may be preferable.
 
----
+***
 
 ### Parametric vs Nonparametric Thinking
 
@@ -2040,7 +2040,7 @@ For example:
 So the choice is not simply “good” versus “bad.”  
 It is about matching the method to the structure of the data and to the parameter we want to study.
 
----
+***
 
 ### When to Prefer Nonparametric Methods
 
@@ -2060,7 +2060,7 @@ In particular:
 
 They are not automatically better than parametric methods, but they are often more stable and more trustworthy when the standard assumptions do not fit the data well.
 
----
+***
 
 ## Sample Size Determination
 
@@ -2075,7 +2075,7 @@ Larger samples reduce the standard error, which makes estimates more precise and
 
 This is true in both one-sample and two-sample inference.
 
----
+***
 
 ### Sample Size for Estimating $\mu_1-\mu_2$
 
@@ -2093,7 +2093,7 @@ More variability requires larger samples.
 
 Greater desired precision also requires larger samples.
 
----
+***
 
 ### Sample Size for Testing $\mu_1-\mu_2$
 
@@ -2110,7 +2110,7 @@ A smaller effect requires a larger sample to detect reliably.
 
 High variability also requires a larger sample.
 
----
+***
 
 ### Design Trade-Offs
 
@@ -2126,7 +2126,7 @@ So paired designs can be more efficient.
 
 That said, they are only appropriate when a genuine matching structure exists.
 
----
+***
 
 ## Graphical Tools for Comparing Two Groups
 
@@ -2149,7 +2149,7 @@ They help us compare:
 
 They also help us visually assess whether the groups look similar in spread and whether extreme observations might affect the analysis.
 
----
+***
 
 ### Histograms
 
@@ -2164,7 +2164,7 @@ They are useful for checking:
 
 For small or moderate samples, this can help decide whether $t$ methods seem reasonable or whether a nonparametric alternative should be considered.
 
----
+***
 
 ### Plot of Paired Differences
 
@@ -2184,7 +2184,7 @@ A histogram of the differences helps us assess:
 * whether extreme differences exist
 * whether the normality assumption for paired $t$ methods seems plausible
 
----
+***
 
 ### Why Graphs Should Come Before Formal Inference
 
