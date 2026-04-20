@@ -778,43 +778,6 @@ In settings where normality is doubtful, simulation-based or bootstrap approache
 
 ***
 
-### Example: Simulating Scenarios with Different Skewness and Sample Size
-
-```{r}
-set.seed(5428)
-
-simulate_var <- function(n) {
-  x <- rexp(n)  # skewed data
-  var(x)
-}
-
-small <- replicate(5000, simulate_var(10))
-large <- replicate(5000, simulate_var(50))
-
-par(mfrow=c(1,2))
-hist(small, main="n=10")
-hist(large, main="n=50")
-```
-
-Here the population is not normal. Instead, it is exponential, which is positively skewed.
-
-So this simulation is not checking the chi-square result. It is deliberately showing what happens when the assumptions fail.
-
-Interpretation:
-
-- Small samples → highly variable estimates
-    
-- Larger samples → more stable behavior
-    
-
-More specifically, the sample variance from the skewed population can fluctuate substantially, especially when $n$ is small. The sampling distribution is often asymmetric and unstable.
-
-This reinforces the main lesson:
-
-> the classical procedures for variance are much more sensitive to population shape than the corresponding procedures for means.
-
-***
-
 ## Comparing Two Population Variances
 
 ### Why Compare Variability Across Populations?
@@ -847,19 +810,154 @@ The classical procedure for comparing two variances is built from the ratio of t
 
 ***
 
-### Distribution of the Ratio of Sample Variances
+### Estimator of $\sigma_1^2/\sigma_2^2$
 
-If assumptions hold:
+When comparing the variability of two populations, the parameter of interest is
 
-$$  
-\frac{S_1^2}{S_2^2} \sim F_{n_1-1, n_2-1}.  
+$$
+\frac{\sigma_1^2}{\sigma_2^2}.
 $$
 
-More precisely, under the null hypothesis that $\sigma_1^2=\sigma_2^2$, the ratio of the two sample variances follows an $F$ distribution with $n_1-1$ and $n_2-1$ degrees of freedom.
+The natural estimator of this ratio is
 
-This result comes from the fact that each sample variance, after proper scaling, follows a chi-square distribution. The ratio of two independent scaled chi-square variables produces the $F$ distribution.
+$$
+\frac{S_1^2}{S_2^2},
+$$
 
-So the $F$ distribution plays, for two variances, the role that the chi-square distribution plays for one variance.
+where $S_1^2$ and $S_2^2$ are the sample variances from the two populations.
+
+```{definition, ratio-variance-estimator, name="Estimator of the Ratio of Two Variances"}
+The standard estimator of the ratio of two population variances $\sigma_1^2/\sigma_2^2$ is the ratio of the sample variances,
+$$
+\frac{S_1^2}{S_2^2}.
+$$
+```
+
+This estimator is intuitive. If population 1 is more variable than population 2, then we would expect the sample variance from population 1 to be larger than the sample variance from population 2, so the ratio $S_1^2/S_2^2$ should tend to be greater than 1.
+
+Similarly:
+
+* if $S_1^2/S_2^2 \approx 1$, the two populations appear to have similar variability
+* if $S_1^2/S_2^2 > 1$, population 1 appears more variable
+* if $S_1^2/S_2^2 < 1$, population 2 appears more variable
+
+So this estimator provides a direct sample-based comparison of the spreads of the two populations.
+
+As with all estimators, the value of
+
+$$
+\frac{S_1^2}{S_2^2}
+$$
+
+will vary from sample to sample. This is why we need its sampling distribution in order to construct confidence intervals and perform hypothesis tests.
+
+***
+
+### Pivot for $\sigma_1^2/\sigma_2^2$
+
+To perform inference about the ratio of two population variances,
+
+$$
+\frac{\sigma_1^2}{\sigma_2^2},
+$$
+
+we need a quantity whose distribution is known and does not depend on the unknown parameter of interest.
+
+The key pivot quantity is
+
+$$
+\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}.
+$$
+
+```{definition, pivot-ratio-variances, name="Pivot for the Ratio of Two Variances"}
+The pivot quantity for inference about the ratio of two population variances is
+$$
+\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}.
+$$
+```
+
+If the two samples are independent and both populations are normal, then this quantity has an $F$ distribution:
+
+$$
+\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2} \sim F_{n_1-1,n_2-1}.
+$$
+
+This result is fundamental because the distribution of the pivot does not depend on the unknown variances themselves. That is exactly what makes it useful for inference.
+
+The pivot can also be written as
+
+$$
+\frac{S_1^2}{S_2^2} \cdot \frac{\sigma_2^2}{\sigma_1^2}.
+$$
+
+This shows that the observable quantity
+
+$$
+\frac{S_1^2}{S_2^2}
+$$
+
+is connected directly to the unknown parameter
+
+$$
+\frac{\sigma_1^2}{\sigma_2^2}
+$$
+
+through a known $F$ distribution.
+
+This pivot is the basis for:
+
+* confidence intervals for $\sigma_1^2/\sigma_2^2$
+* hypothesis tests comparing two population variances
+
+So, just as the chi-square pivot is central for inference about one variance, the $F$ pivot is central for inference about the ratio of two population variances.
+
+***
+
+#### Simulation: Distribution of the Pivot Quantity for $\sigma_1^2/\sigma_2^2$
+
+```{r inf-var-sim-dis-piv-qua-ratio-two-variances, cache = TRUE}
+# Simulation of the Distribution of the Pivot Quantity
+
+# Simulation Settings
+# set.seed(5428)
+B <- 5000
+
+# Distribution Settings
+n1  <- 40
+n2  <- 40
+va1 <- 25
+va2 <- 25
+sk1 <- 100
+sk2 <- 100
+
+# Confidence Interval Settings
+a <- 0.05
+
+Fs <- replicate(B, {
+  # Samples
+  x1 <- (rchisq(n = n1, df = sk1) - sk1) / (sqrt(2 * sk1)) * sqrt(va1)
+  x2 <- (rchisq(n = n2, df = sk2) - sk2) / (sqrt(2 * sk2)) * sqrt(va2)
+  # Estimators
+  s21 <- var(x1)
+  s22 <- var(x2)
+  # Computes the Pivot Quantity (and saves)
+  (s21 / va1) / (s22 / va2)
+})
+
+# Histogram and Theoretical Distribution
+xmax <- max(Fs)
+hist(Fs,
+     breaks = 25,
+     xlab   = "Pivot Quantity F",
+     freq   = FALSE,
+     main   = "Distribution of the Pivot Quantity (F)")
+curve(df(x, df1 = n1-1, df2 = n2-1),
+      add  = TRUE,
+      from = 0,
+      to   = xmax,
+      col  = rgb(1, 0, 0, 0.5),
+      lwd  = 3)
+```
 
 ***
 
@@ -903,6 +1001,84 @@ Because this is a ratio, the interpretation is multiplicative. For example, a ra
 
 ***
 
+#### Simulation Confidence Intervals for $\sigma_1^2/\sigma_2^2$
+
+
+```{r inf-var-ratio-of-two-variances-confidence-intervals}
+# Simulation of the Distribution of the Confidence Intervals
+
+# Simulation Settings
+# set.seed(5428)
+B <- 5000
+
+# Distribution Settings
+n1  <- 20
+n2  <- 20
+va1 <- 25
+va2 <- 25
+sk1 <- 100
+sk2 <- 100
+
+# Confidence Interval Settings
+a <- 0.05
+p <- 0.5
+
+conInt <- replicate(B, {
+  # Samples
+  x1 <- (rchisq(n = n1, df = sk1) - sk1) / (sqrt(2 * sk1)) * sqrt(va1)
+  x2 <- (rchisq(n = n2, df = sk2) - sk2) / (sqrt(2 * sk2)) * sqrt(va2)
+  # Statistics
+  s21 <- var(x1)
+  s22 <- var(x2)
+  # Estimator
+  Fs <- s21 / s22
+  # Quantiles
+  Flow <- qf(p = 1 - a * p, df1 = n1 - 1, df2 = n2 - 1)
+  Fupp <- qf(p =     a * (1 - p), df1 = n1 - 1, df2 = n2 - 1)
+  # Confidence Interval Limits
+  low <- Fs / Flow
+  upp <- Fs / Fupp
+  # Saves the Interval
+  c(low, upp)
+})
+
+conInt <- t(conInt)
+# Distribution of the Confidence Interval
+# Plot Settings
+xmax   <- max(conInt)
+xmin   <- min(conInt)
+denLow <- density(conInt[, 1])
+denUpp <- density(conInt[, 2])
+ymax   <- max(denLow$y, denUpp$y)
+
+# Plots Distribution of the Lower and Upper Bound
+plot(NA,
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax), 
+     xlab   = "Lower and Upper Limits",
+     ylab   = "Density",
+     main   = "Distribution of the Confidence Intervals")
+polygon(denLow, 
+        col = rgb(0, 0, 1, 0.5),
+        border = NA)
+polygon(denUpp,
+        col = rgb(1, 0, 0, 0.5),
+        border = NA)
+abline(v = va1/va2, col = rgb(0.1, 0.5, 0.1), lwd = 3)
+
+# Coverage Check
+cov <- mean((conInt[, 1] < va1/va2) & (conInt[, 2] > va1/va2)) 
+print(paste0("The Coverage is: ", round(cov * 100, 2), "%"))
+
+# Interval Lenght
+len <- mean(conInt[, 2] - conInt[, 1])
+print(paste0("The average length is: ", round(len, 2)))
+```
+
+
+
+***
+
 ### Hypothesis Testing for $\sigma_1^2/\sigma_2^2$
 
 Test:
@@ -926,53 +1102,105 @@ The logic is intuitive:
 
 Because the $F$ distribution is asymmetric, two-sided testing requires some care. It is not enough to think in terms of symmetric tails around 1.
 
-***
+#### Simulation: Hypothesis Testing for $\sigma_1^2/\sigma_2^2$
 
-### Numerical Example
+```{r inf-var-hypothesis-testing-ration-of-two-variances}
+# Simulation of the Distribution of the Hypothesis Testing
 
-```{r}
-set.seed(5428)
+# Simulation Settings
+# set.seed(5428)
+B <- 5000
 
-x <- rnorm(15, sd=4)
-y <- rnorm(15, sd=6)
+# Distribution Settings
+n1  <- 20
+n2  <- 20
+va1 <- 25
+va2 <- 25
+sk1 <- 100
+sk2 <- 100
 
-var(x)/var(y)
-```
+# Hypothesis Settings
+a   <- 0.05
+alt <- "Not Equal"
 
-This code computes the observed ratio of sample variances.
-
-If the ratio is close to 1, the samples do not suggest a large difference in variability. If it is far from 1, the data suggest unequal variability.
-
-However, the raw ratio should be interpreted through the $F$ distribution, not by intuition alone. Sampling variation can produce ratios somewhat above or below 1 even when the population variances are equal.
-
-So, as always, the inferential question is not simply “is the ratio equal to 1?” but rather:
-
-> is the observed ratio unusually far from 1, relative to what the $F$ distribution predicts under equal population variances?
-
-***
-
-### Simulation Study
-
-```{r}
-simF <- replicate(5000, {
-  x <- rnorm(10)
-  y <- rnorm(10)
-  var(x)/var(y)
+Fs <- replicate(B, {
+  # Samples
+  x1 <- (rchisq(n = n1, df = sk1) - sk1) / (sqrt(2 * sk1)) * sqrt(va1)
+  x2 <- (rchisq(n = n2, df = sk2) - sk2) / (sqrt(2 * sk2)) * sqrt(va2)
+  # Statistics
+  s21 <- var(x1)
+  s22 <- var(x2)
+  # F Statistic
+  s21 / s22
 })
 
-hist(simF, probability=TRUE)
-curve(df(x, 9, 9), add=TRUE, col=2)
+# Distribution of the Test Statistic
+# Plot Settings
+xmax   <- max(Fs)
+xmin   <- min(Fs)
+den    <- density(Fs)
+ymax   <- max(den$y)
+
+# F Quantile
+if(alt == "Not Equal"){
+  Fr <- qf(p = 1 - a/2, df1 = n1 - 1, df2 = n2 - 1)
+  Fl <- qf(p =     a/2, df1 = n1 - 1, df2 = n2 - 1)
+} else {
+  Fr <- qf(p = 1 - a, df1 = n1 - 1, df2 = n2 - 1)
+  Fl <- qf(p =     a, df1 = n1 - 1, df2 = n2 - 1)
+}
+
+
+# Plots Distribution of the Lower and Upper Bound
+plot(NA,
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax), 
+     xlab   = "F Test Statistic",
+     ylab   = "Density",
+     main   = "Distribution of the F Test Statistic")
+polygon(den, 
+        col = rgb(0, 0, 1, 0.5),
+        border = NA)
+# Rejection Region
+if(alt == "Right"){
+  rect(xleft   = Fr,
+       xright  = xmax,
+       ybottom = 0,
+       ytop    = ymax,
+       col     = rgb(1, 0, 0, 0.25),
+       border  = NA)
+} else if(alt == "Left"){
+  rect(xleft   = 0,
+       xright  = Fl,
+       ybottom = 0,
+       ytop    = ymax,
+       col     = rgb(1, 0, 0, 0.25),
+       border  = NA)
+} else {
+  rect(xleft   = Fr,
+       xright  = xmax,
+       ybottom = 0,
+       ytop    = ymax,
+       col     = rgb(1, 0, 0, 0.25),
+       border  = NA)
+  rect(xleft   = 0,
+       xright  = Fl,
+       ybottom = 0,
+       ytop    = ymax,
+       col     = rgb(1, 0, 0, 0.25),
+       border  = NA)
+}
+
+# Estimates the Type I error
+if(alt == "Right"){
+  erI <- mean(Fs > Fr)
+} else if(alt == "Left"){
+  erI <- mean(Fs < Fl)
+} else {
+  erI <- mean((Fs < Fl) | (Fs > Fr))
+}
+print(paste0("The Type I Error is: ", round(erI * 100, 2), "%"))
 ```
-
-This simulation shows the repeated-sampling distribution of the ratio of sample variances under normality.
-
-Interpretation:
-
-- the histogram represents the empirical distribution of the variance ratio
-- the overlaid curve is the theoretical $F$ distribution
-- good agreement supports the theoretical result under the model assumptions
-
-This is the two-sample analogue of the earlier chi-square simulation for one variance.
 
 ***
 
@@ -1013,82 +1241,106 @@ The important lesson is not that the $F$ test is useless, but that it should be 
 
 ***
 
-### Example: Simulating Scenarios with Different Skewness and Sample Size
+### Simulation: Scenarios with Different Skewness and Sample Size
 
-```{r}
-set.seed(5428)
+```{r inf-var-hypothesis-testing-non-normality-different-sample-size}
+# Simulation of the Distribution of the Hypothesis Testing
 
-sim_skew <- replicate(5000, {
-  x <- rexp(20)
-  y <- rexp(20)
-  var(x)/var(y)
+# Simulation Settings
+# set.seed(5428)
+B <- 5000
+
+# Distribution Settings
+n1  <- 5
+n2  <- 10
+va1 <- 25
+va2 <- 25
+sk1 <- 5
+sk2 <- 5
+
+# Hypothesis Settings
+a   <- 0.05
+alt <- "Right"
+
+Fs <- replicate(B, {
+  # Samples
+  x1 <- (rchisq(n = n1, df = sk1) - sk1) / (sqrt(2 * sk1)) * sqrt(va1)
+  x2 <- (rchisq(n = n2, df = sk2) - sk2) / (sqrt(2 * sk2)) * sqrt(va2)
+  # Statistics
+  s21 <- var(x1)
+  s22 <- var(x2)
+  # F Statistic
+  s21 / s22
 })
 
-hist(sim_skew)
+# Distribution of the Test Statistic
+# Plot Settings
+xmax   <- max(Fs)
+xmin   <- min(Fs)
+den    <- density(Fs)
+ymax   <- max(den$y)
+
+# F Quantile
+if(alt == "Not Equal"){
+  Fr <- qf(p = 1 - a/2, df1 = n1 - 1, df2 = n2 - 1)
+  Fl <- qf(p =     a/2, df1 = n1 - 1, df2 = n2 - 1)
+} else {
+  Fr <- qf(p = 1 - a, df1 = n1 - 1, df2 = n2 - 1)
+  Fl <- qf(p =     a, df1 = n1 - 1, df2 = n2 - 1)
+}
+
+
+# Plots Distribution of the Lower and Upper Bound
+plot(NA,
+     xlim   = c(xmin, xmax),
+     ylim   = c(0, ymax), 
+     xlab   = "F Test Statistic",
+     ylab   = "Density",
+     main   = "Distribution of the F Test Statistic")
+polygon(den, 
+        col = rgb(0, 0, 1, 0.5),
+        border = NA)
+# Rejection Region
+if(alt == "Right"){
+  rect(xleft   = Fr,
+       xright  = xmax,
+       ybottom = 0,
+       ytop    = ymax,
+       col     = rgb(1, 0, 0, 0.25),
+       border  = NA)
+} else if(alt == "Left"){
+  rect(xleft   = 0,
+       xright  = Fl,
+       ybottom = 0,
+       ytop    = ymax,
+       col     = rgb(1, 0, 0, 0.25),
+       border  = NA)
+} else {
+  rect(xleft   = Fr,
+       xright  = xmax,
+       ybottom = 0,
+       ytop    = ymax,
+       col     = rgb(1, 0, 0, 0.25),
+       border  = NA)
+  rect(xleft   = 0,
+       xright  = Fl,
+       ybottom = 0,
+       ytop    = ymax,
+       col     = rgb(1, 0, 0, 0.25),
+       border  = NA)
+}
+
+# Estimates the Type I error
+if(alt == "Right"){
+  erI <- mean(Fs > Fr)
+} else if(alt == "Left"){
+  erI <- mean(Fs < Fl)
+} else {
+  erI <- mean((Fs < Fl) | (Fs > Fr))
+}
+print(paste0("The Type I Error is: ", round(erI * 100, 2), "%"))
 ```
 
-This example replaces normal samples with exponential samples, which are skewed.
-
-So here the ratio of sample variances is being studied under a violation of the normality assumption.
-
-Interpretation:
-
-- the resulting distribution may look quite different from the theoretical $F$ distribution
-- this demonstrates how strongly the classical method depends on normality
-
-This is an important warning for practice: even if the formulas are easy to apply, they may be unreliable if the data do not support the assumptions.
-
-***
-
-## Comparing More Than Two Variances
-
-### Motivation
-
-We may want to compare variability across multiple groups.
-
-For example:
-
-- Are several production processes equally stable?
-- Do multiple treatments have the same variability?
-- Are several laboratories equally precise?
-
-This is the natural extension of comparing two variances.
-
-***
-
-### A Classical Test for Equality of Several Variances
-
-Bartlett’s test is commonly used.
-
-Bartlett’s test is a classical method for assessing whether several populations have the same variance.
-
-The test is based on the sample variances from all groups and combines them into a single test statistic.
-
-***
-
-### Strong Dependence on Normality
-
-- Very sensitive to non-normality
-- Can give misleading results
-
-This point is especially important for Bartlett’s test.
-
-Because it is designed under a normality model, departures from normality can strongly affect its behavior. In practice, this means the test may appear to detect differences in variances when the real issue is simply skewness or heavy tails.
-
-So Bartlett’s test should be used cautiously unless the assumption of normality is fairly believable.
-
-***
-
-### Brief Practical Discussion
-
-In practice:
-
-- graphical diagnostics are important
-- robust alternatives are often preferred
-
-A side-by-side boxplot or histogram of the groups can often provide valuable initial information about differences in spread and about possible non-normality.
-
-At an introductory level, the main takeaway is that multi-group variance comparisons exist, but they inherit the same fragility that appears throughout variance inference.
 
 ***
 
