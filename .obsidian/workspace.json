@@ -36,6 +36,48 @@
             }
           },
           {
+            "id": "dd9dd40590edf3c4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Outline - Categorical Data.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Outline - Categorical Data"
+            }
+          },
+          {
+            "id": "e058103cbd1fada0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Expanded Outline Categorical Data.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Expanded Outline Categorical Data"
+            }
+          },
+          {
+            "id": "e1930e09dad6a01f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Inference About Categorical Data.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Inference About Categorical Data"
+            }
+          },
+          {
             "id": "6565b9fc5ecc86cc",
             "type": "leaf",
             "state": {
@@ -60,7 +102,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -195,13 +237,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Inference About the Variance.md",
+                "file": "Inference About Categorical Data.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Inference About the Variance"
+              "title": "Outline of Inference About Categorical Data"
             }
           }
         ],
@@ -222,7 +264,7 @@
       "bases:Create new base": false
     }
   },
-  "active": "ca3617fada71d5ce",
+  "active": "e1930e09dad6a01f",
   "lastOpenFiles": [
     "404.html",
     "inference-about-the-variance.html",
@@ -235,8 +277,13 @@
     "studies-and-data-collection.html",
     "introduction-to-r.html",
     "index.html",
-    "docs/_main_files/figure-html/inf-var-hypothesis-testing-non-normality-different-sample-size-1.png",
     "_main.knit.md",
+    "Expanded Outline Categorical Data.md",
+    "Inference About Categorical Data.md",
+    "Outline - Categorical Data.md",
+    "Outline Categorical Data.md",
+    "Inference About the Variance.md",
+    "docs/_main_files/figure-html/inf-var-hypothesis-testing-non-normality-different-sample-size-1.png",
     "_main_files/figure-html/inf-var-hypothesis-testing-non-normality-different-sample-size-1.png",
     "docs/_main_files/figure-html/inf-var-hypothesis-testing-ration-of-two-variances-1.png",
     "_main_files/figure-html/inf-var-hypothesis-testing-ration-of-two-variances-1.png",
@@ -247,7 +294,6 @@
     "_main_files/figure-html/unnamed-chunk-74-1.png",
     "_main_files/figure-html/unnamed-chunk-73-1.png",
     "Trees.md",
-    "Inference About the Variance.md",
     "Expanded Outline - Inference About the Variance.md",
     "Outline Inference about the Variance.md",
     "Inference About Two Population Means.md",
@@ -257,7 +303,6 @@
     "Outline Inference about Two Populations Means.md",
     "Inference About the Population Mean.md",
     "Project 2.md",
-    "Outline Categorical Data.md",
     "old-From Probability to Statistics.md",
     "old-Inference about the mean.md",
     "old-Intro to Probability.md",

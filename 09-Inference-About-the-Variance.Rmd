@@ -497,14 +497,16 @@ set.seed(5428)
 B <- 5000
 
 # Distribution Settings
-n  <- 10
-s2 <- 25
+n      <- 10000
+sigma2 <- 25
 
 sim <- replicate(B, {
   # Samples
-  x <- rnorm(n, sd = sqrt(s2))
+  x <- rnorm(n, sd = sqrt(sigma2))
+  # Computes the Estimator
+  S2 <- var(x)
   # Computes the Pivot Quantity
-  (n-1)*var(x)/s2
+  (n-1)*S2/sigma2
 })
 
 hist(sim, probability = TRUE, breaks = 40)
@@ -567,15 +569,17 @@ set.seed(5428)
 B <- 5000
 
 # Distribution Settings
-n  <- 10
-s2 <- 25
-sk <- 3
+n      <- 10
+sigma2 <- 25
+sk     <- 100
 
 sim <- replicate(B, {
   # Samples
-  x <- (rchisq(n = n, df = sk) - sk) / (sqrt(2 * sk)) * sqrt(s2)
+  x <- (rchisq(n = n, df = sk) - sk) / (sqrt(2 * sk)) * sqrt(sigma2)
+  # Estimator
+  S2 <- var(x)
   # Computes the Pivot Quantity
-  (n-1)*var(x)/s2
+  (n-1)*S2/sigma2
 })
 
 hist(sim, probability = TRUE, breaks = 40)
@@ -670,32 +674,34 @@ set.seed(5428)
 B <- 5000
 
 # Distribution Settings
-n  <- 10
-s2 <- 25
-sk <- 100
+n      <- 10
+sigma2 <- 25
+sk     <- 1000
 
 # Confidence Interval Settings
 a <- 0.05
 
 conInt <- replicate(B, {
   # Samples
-  x <- (rchisq(n = n, df = sk) - sk) / (sqrt(2 * sk)) * sqrt(s2)
+  x <- (rchisq(n = n, df = sk) - sk) / (sqrt(2 * sk)) * sqrt(sigma2)
+  # Estimator
+  S2 <- var(x)
   # Computes the Quantile
-  xlow <- qchisq(p = 1 - a/2,    df = n - 1)
-  xupp <- qchisq(p = a/2, df = n - 1)
+  xlow <- qchisq(p =     3*  a/4, df = n - 1)
+  xupp <- qchisq(p = 1 - 1 * a/4, df = n - 1)
   # Computes the Bounds
-  low <- (n-1) * var(x) / xlow
-  upp <- (n-1) * var(x) / xupp
+  low <- (n-1) * S2 / xupp
+  upp <- (n-1) * S2 / xlow
   # Confidence Interval
   c(low, upp)
 })
 conInt <- t(conInt)
 
 # Checks if the Interval Contains true Variance
-cov <- (conInt[, 1] <= s2) & (conInt[, 2] >= s2)
+cov <- mean((conInt[, 1] <= sigma2) & (conInt[, 2] >= sigma2))
 
 # Reports
-print(paste0("Coverage: ", round(mean(cov) * 100, 2), "%"))
+print(paste0("Coverage: ", round(cov * 100, 2), "%"))
 print(paste0("Average Interval Length: ", round(mean(conInt[, 2] - conInt[, 1]), 2)))
 ```
 
@@ -728,6 +734,40 @@ So the main lesson of this section is:
 > The quality of a confidence interval can be evaluated through repeated sampling by studying both its coverage and its average length.
 
 When the normality assumption is approximately satisfied, the classical chi-square interval for $\sigma^2$ should show coverage close to the nominal level. When the normality assumption fails badly, that coverage can deteriorate, which is why simulation studies like this are useful for understanding how robust the procedure really is.
+
+
+### Confidence Interval Simulation
+
+
+```{r inf-var-hypothesis-testing}
+# Simulation Settings
+set.seed(5428)
+B <- 5000
+
+# Distribution Settings
+n       <- 10
+sigma2  <- 25
+sigma02 <- sigma2
+sk      <- 1
+
+# Confidence Interval Settings
+a <- 0.05
+
+testStat <- replicate(B, {
+  # Samples
+  x <- (rchisq(n = n, df = sk) - sk) / (sqrt(2 * sk)) * sqrt(sigma2)
+  # Estimator
+  S2 <- var(x)
+  # Test Statistic
+  (n - 1) * S2 / sigma2
+})
+
+# Rejection Treshold
+rejTre <- qchisq(p = a, df = n - 1)
+
+# Prints Results
+print(paste0("Rejection rate: ", round(mean(testStat < rejTre) * 100, 2), "%"))
+```
 
 ### Inference About the Variance When the Population Is Not Normal
 

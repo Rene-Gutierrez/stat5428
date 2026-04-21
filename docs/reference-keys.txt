@@ -580,6 +580,7 @@ numerical-example
 simulation-study
 simulation-study-non-normality
 confidence-interval-simulation
+confidence-interval-simulation-1
 inference-about-the-variance-when-the-population-is-not-normal
 effect-of-skewness
 effect-of-sample-size-1

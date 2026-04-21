@@ -618,7 +618,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.9" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#simulation-study"><i class="fa fa-check"></i><b>10.2.9</b> Simulation Study</a></li>
 <li class="chapter" data-level="10.2.10" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#simulation-study-non-normality"><i class="fa fa-check"></i><b>10.2.10</b> Simulation Study Non-normality</a></li>
 <li class="chapter" data-level="10.2.11" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#confidence-interval-simulation"><i class="fa fa-check"></i><b>10.2.11</b> Confidence Interval Simulation</a></li>
-<li class="chapter" data-level="10.2.12" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#inference-about-the-variance-when-the-population-is-not-normal"><i class="fa fa-check"></i><b>10.2.12</b> Inference About the Variance When the Population Is Not Normal</a></li>
+<li class="chapter" data-level="10.2.12" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#confidence-interval-simulation-1"><i class="fa fa-check"></i><b>10.2.12</b> Confidence Interval Simulation</a></li>
+<li class="chapter" data-level="10.2.13" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#inference-about-the-variance-when-the-population-is-not-normal"><i class="fa fa-check"></i><b>10.2.13</b> Inference About the Variance When the Population Is Not Normal</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="inference-about-the-variance.html"><a href="inference-about-the-variance.html#comparing-two-population-variances"><i class="fa fa-check"></i><b>10.3</b> Comparing Two Population Variances</a>
 <ul>
@@ -1038,18 +1039,20 @@ H_0: \sigma^2 = \sigma_0^2
 <span id="cb456-3"><a href="inference-about-the-variance.html#cb456-3" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
 <span id="cb456-4"><a href="inference-about-the-variance.html#cb456-4" tabindex="-1"></a></span>
 <span id="cb456-5"><a href="inference-about-the-variance.html#cb456-5" tabindex="-1"></a><span class="co"># Distribution Settings</span></span>
-<span id="cb456-6"><a href="inference-about-the-variance.html#cb456-6" tabindex="-1"></a>n  <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb456-7"><a href="inference-about-the-variance.html#cb456-7" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb456-6"><a href="inference-about-the-variance.html#cb456-6" tabindex="-1"></a>n      <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb456-7"><a href="inference-about-the-variance.html#cb456-7" tabindex="-1"></a>sigma2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
 <span id="cb456-8"><a href="inference-about-the-variance.html#cb456-8" tabindex="-1"></a></span>
 <span id="cb456-9"><a href="inference-about-the-variance.html#cb456-9" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
 <span id="cb456-10"><a href="inference-about-the-variance.html#cb456-10" tabindex="-1"></a>  <span class="co"># Samples</span></span>
-<span id="cb456-11"><a href="inference-about-the-variance.html#cb456-11" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="fu">sqrt</span>(s2))</span>
-<span id="cb456-12"><a href="inference-about-the-variance.html#cb456-12" tabindex="-1"></a>  <span class="co"># Computes the Pivot Quantity</span></span>
-<span id="cb456-13"><a href="inference-about-the-variance.html#cb456-13" tabindex="-1"></a>  (n<span class="dv">-1</span>)<span class="sc">*</span><span class="fu">var</span>(x)<span class="sc">/</span>s2</span>
-<span id="cb456-14"><a href="inference-about-the-variance.html#cb456-14" tabindex="-1"></a>})</span>
-<span id="cb456-15"><a href="inference-about-the-variance.html#cb456-15" tabindex="-1"></a></span>
-<span id="cb456-16"><a href="inference-about-the-variance.html#cb456-16" tabindex="-1"></a><span class="fu">hist</span>(sim, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">40</span>)</span>
-<span id="cb456-17"><a href="inference-about-the-variance.html#cb456-17" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> n<span class="dv">-1</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<span id="cb456-11"><a href="inference-about-the-variance.html#cb456-11" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="fu">sqrt</span>(sigma2))</span>
+<span id="cb456-12"><a href="inference-about-the-variance.html#cb456-12" tabindex="-1"></a>  <span class="co"># Computes the Estimator</span></span>
+<span id="cb456-13"><a href="inference-about-the-variance.html#cb456-13" tabindex="-1"></a>  S2 <span class="ot">&lt;-</span> <span class="fu">var</span>(x)</span>
+<span id="cb456-14"><a href="inference-about-the-variance.html#cb456-14" tabindex="-1"></a>  <span class="co"># Computes the Pivot Quantity</span></span>
+<span id="cb456-15"><a href="inference-about-the-variance.html#cb456-15" tabindex="-1"></a>  (n<span class="dv">-1</span>)<span class="sc">*</span>S2<span class="sc">/</span>sigma2</span>
+<span id="cb456-16"><a href="inference-about-the-variance.html#cb456-16" tabindex="-1"></a>})</span>
+<span id="cb456-17"><a href="inference-about-the-variance.html#cb456-17" tabindex="-1"></a></span>
+<span id="cb456-18"><a href="inference-about-the-variance.html#cb456-18" tabindex="-1"></a><span class="fu">hist</span>(sim, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">40</span>)</span>
+<span id="cb456-19"><a href="inference-about-the-variance.html#cb456-19" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> n<span class="dv">-1</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/inf-var-sampling-distribution-1.png" width="672" /></p>
 <p>This simulation is very useful conceptually.</p>
 <p>Each repetition does the following:</p>
@@ -1091,19 +1094,21 @@ H_0: \sigma^2 = \sigma_0^2
 <span id="cb457-3"><a href="inference-about-the-variance.html#cb457-3" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
 <span id="cb457-4"><a href="inference-about-the-variance.html#cb457-4" tabindex="-1"></a></span>
 <span id="cb457-5"><a href="inference-about-the-variance.html#cb457-5" tabindex="-1"></a><span class="co"># Distribution Settings</span></span>
-<span id="cb457-6"><a href="inference-about-the-variance.html#cb457-6" tabindex="-1"></a>n  <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb457-7"><a href="inference-about-the-variance.html#cb457-7" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
-<span id="cb457-8"><a href="inference-about-the-variance.html#cb457-8" tabindex="-1"></a>sk <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb457-6"><a href="inference-about-the-variance.html#cb457-6" tabindex="-1"></a>n      <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb457-7"><a href="inference-about-the-variance.html#cb457-7" tabindex="-1"></a>sigma2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb457-8"><a href="inference-about-the-variance.html#cb457-8" tabindex="-1"></a>sk     <span class="ot">&lt;-</span> <span class="dv">100</span></span>
 <span id="cb457-9"><a href="inference-about-the-variance.html#cb457-9" tabindex="-1"></a></span>
 <span id="cb457-10"><a href="inference-about-the-variance.html#cb457-10" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
 <span id="cb457-11"><a href="inference-about-the-variance.html#cb457-11" tabindex="-1"></a>  <span class="co"># Samples</span></span>
-<span id="cb457-12"><a href="inference-about-the-variance.html#cb457-12" tabindex="-1"></a>  x <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n, <span class="at">df =</span> sk) <span class="sc">-</span> sk) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk)) <span class="sc">*</span> <span class="fu">sqrt</span>(s2)</span>
-<span id="cb457-13"><a href="inference-about-the-variance.html#cb457-13" tabindex="-1"></a>  <span class="co"># Computes the Pivot Quantity</span></span>
-<span id="cb457-14"><a href="inference-about-the-variance.html#cb457-14" tabindex="-1"></a>  (n<span class="dv">-1</span>)<span class="sc">*</span><span class="fu">var</span>(x)<span class="sc">/</span>s2</span>
-<span id="cb457-15"><a href="inference-about-the-variance.html#cb457-15" tabindex="-1"></a>})</span>
-<span id="cb457-16"><a href="inference-about-the-variance.html#cb457-16" tabindex="-1"></a></span>
-<span id="cb457-17"><a href="inference-about-the-variance.html#cb457-17" tabindex="-1"></a><span class="fu">hist</span>(sim, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">40</span>)</span>
-<span id="cb457-18"><a href="inference-about-the-variance.html#cb457-18" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> n<span class="dv">-1</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<span id="cb457-12"><a href="inference-about-the-variance.html#cb457-12" tabindex="-1"></a>  x <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n, <span class="at">df =</span> sk) <span class="sc">-</span> sk) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk)) <span class="sc">*</span> <span class="fu">sqrt</span>(sigma2)</span>
+<span id="cb457-13"><a href="inference-about-the-variance.html#cb457-13" tabindex="-1"></a>  <span class="co"># Estimator</span></span>
+<span id="cb457-14"><a href="inference-about-the-variance.html#cb457-14" tabindex="-1"></a>  S2 <span class="ot">&lt;-</span> <span class="fu">var</span>(x)</span>
+<span id="cb457-15"><a href="inference-about-the-variance.html#cb457-15" tabindex="-1"></a>  <span class="co"># Computes the Pivot Quantity</span></span>
+<span id="cb457-16"><a href="inference-about-the-variance.html#cb457-16" tabindex="-1"></a>  (n<span class="dv">-1</span>)<span class="sc">*</span>S2<span class="sc">/</span>sigma2</span>
+<span id="cb457-17"><a href="inference-about-the-variance.html#cb457-17" tabindex="-1"></a>})</span>
+<span id="cb457-18"><a href="inference-about-the-variance.html#cb457-18" tabindex="-1"></a></span>
+<span id="cb457-19"><a href="inference-about-the-variance.html#cb457-19" tabindex="-1"></a><span class="fu">hist</span>(sim, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">40</span>)</span>
+<span id="cb457-20"><a href="inference-about-the-variance.html#cb457-20" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> n<span class="dv">-1</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/inf-var-sampling-distribution-non-normal-1.png" width="672" /></p>
 <p>The histogram represents the empirical sampling distribution of the pivot quantity under a skewed population, while the red curve is the chi-square density that would be correct under normality.</p>
 <p>If the normality assumption were not important, then the histogram and the chi-square curve would still align closely. But in general they do not.</p>
@@ -1173,35 +1178,37 @@ n = 10
 <span id="cb458-3"><a href="inference-about-the-variance.html#cb458-3" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
 <span id="cb458-4"><a href="inference-about-the-variance.html#cb458-4" tabindex="-1"></a></span>
 <span id="cb458-5"><a href="inference-about-the-variance.html#cb458-5" tabindex="-1"></a><span class="co"># Distribution Settings</span></span>
-<span id="cb458-6"><a href="inference-about-the-variance.html#cb458-6" tabindex="-1"></a>n  <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb458-7"><a href="inference-about-the-variance.html#cb458-7" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
-<span id="cb458-8"><a href="inference-about-the-variance.html#cb458-8" tabindex="-1"></a>sk <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb458-6"><a href="inference-about-the-variance.html#cb458-6" tabindex="-1"></a>n      <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb458-7"><a href="inference-about-the-variance.html#cb458-7" tabindex="-1"></a>sigma2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb458-8"><a href="inference-about-the-variance.html#cb458-8" tabindex="-1"></a>sk     <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
 <span id="cb458-9"><a href="inference-about-the-variance.html#cb458-9" tabindex="-1"></a></span>
 <span id="cb458-10"><a href="inference-about-the-variance.html#cb458-10" tabindex="-1"></a><span class="co"># Confidence Interval Settings</span></span>
 <span id="cb458-11"><a href="inference-about-the-variance.html#cb458-11" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
 <span id="cb458-12"><a href="inference-about-the-variance.html#cb458-12" tabindex="-1"></a></span>
 <span id="cb458-13"><a href="inference-about-the-variance.html#cb458-13" tabindex="-1"></a>conInt <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
 <span id="cb458-14"><a href="inference-about-the-variance.html#cb458-14" tabindex="-1"></a>  <span class="co"># Samples</span></span>
-<span id="cb458-15"><a href="inference-about-the-variance.html#cb458-15" tabindex="-1"></a>  x <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n, <span class="at">df =</span> sk) <span class="sc">-</span> sk) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk)) <span class="sc">*</span> <span class="fu">sqrt</span>(s2)</span>
-<span id="cb458-16"><a href="inference-about-the-variance.html#cb458-16" tabindex="-1"></a>  <span class="co"># Computes the Quantile</span></span>
-<span id="cb458-17"><a href="inference-about-the-variance.html#cb458-17" tabindex="-1"></a>  xlow <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="at">p =</span> <span class="dv">1</span> <span class="sc">-</span> a<span class="sc">/</span><span class="dv">2</span>,    <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb458-18"><a href="inference-about-the-variance.html#cb458-18" tabindex="-1"></a>  xupp <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="at">p =</span> a<span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb458-19"><a href="inference-about-the-variance.html#cb458-19" tabindex="-1"></a>  <span class="co"># Computes the Bounds</span></span>
-<span id="cb458-20"><a href="inference-about-the-variance.html#cb458-20" tabindex="-1"></a>  low <span class="ot">&lt;-</span> (n<span class="dv">-1</span>) <span class="sc">*</span> <span class="fu">var</span>(x) <span class="sc">/</span> xlow</span>
-<span id="cb458-21"><a href="inference-about-the-variance.html#cb458-21" tabindex="-1"></a>  upp <span class="ot">&lt;-</span> (n<span class="dv">-1</span>) <span class="sc">*</span> <span class="fu">var</span>(x) <span class="sc">/</span> xupp</span>
-<span id="cb458-22"><a href="inference-about-the-variance.html#cb458-22" tabindex="-1"></a>  <span class="co"># Confidence Interval</span></span>
-<span id="cb458-23"><a href="inference-about-the-variance.html#cb458-23" tabindex="-1"></a>  <span class="fu">c</span>(low, upp)</span>
-<span id="cb458-24"><a href="inference-about-the-variance.html#cb458-24" tabindex="-1"></a>})</span>
-<span id="cb458-25"><a href="inference-about-the-variance.html#cb458-25" tabindex="-1"></a>conInt <span class="ot">&lt;-</span> <span class="fu">t</span>(conInt)</span>
-<span id="cb458-26"><a href="inference-about-the-variance.html#cb458-26" tabindex="-1"></a></span>
-<span id="cb458-27"><a href="inference-about-the-variance.html#cb458-27" tabindex="-1"></a><span class="co"># Checks if the Interval Contains true Variance</span></span>
-<span id="cb458-28"><a href="inference-about-the-variance.html#cb458-28" tabindex="-1"></a>cov <span class="ot">&lt;-</span> (conInt[, <span class="dv">1</span>] <span class="sc">&lt;=</span> s2) <span class="sc">&amp;</span> (conInt[, <span class="dv">2</span>] <span class="sc">&gt;=</span> s2)</span>
-<span id="cb458-29"><a href="inference-about-the-variance.html#cb458-29" tabindex="-1"></a></span>
-<span id="cb458-30"><a href="inference-about-the-variance.html#cb458-30" tabindex="-1"></a><span class="co"># Reports</span></span>
-<span id="cb458-31"><a href="inference-about-the-variance.html#cb458-31" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;Coverage: &quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(cov) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>))</span></code></pre></div>
-<pre><code>## [1] &quot;Coverage: 94.8%&quot;</code></pre>
+<span id="cb458-15"><a href="inference-about-the-variance.html#cb458-15" tabindex="-1"></a>  x <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n, <span class="at">df =</span> sk) <span class="sc">-</span> sk) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk)) <span class="sc">*</span> <span class="fu">sqrt</span>(sigma2)</span>
+<span id="cb458-16"><a href="inference-about-the-variance.html#cb458-16" tabindex="-1"></a>  <span class="co"># Estimator</span></span>
+<span id="cb458-17"><a href="inference-about-the-variance.html#cb458-17" tabindex="-1"></a>  S2 <span class="ot">&lt;-</span> <span class="fu">var</span>(x)</span>
+<span id="cb458-18"><a href="inference-about-the-variance.html#cb458-18" tabindex="-1"></a>  <span class="co"># Computes the Quantile</span></span>
+<span id="cb458-19"><a href="inference-about-the-variance.html#cb458-19" tabindex="-1"></a>  xlow <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="at">p =</span>     <span class="dv">3</span><span class="sc">*</span>  a<span class="sc">/</span><span class="dv">4</span>, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb458-20"><a href="inference-about-the-variance.html#cb458-20" tabindex="-1"></a>  xupp <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="at">p =</span> <span class="dv">1</span> <span class="sc">-</span> <span class="dv">1</span> <span class="sc">*</span> a<span class="sc">/</span><span class="dv">4</span>, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb458-21"><a href="inference-about-the-variance.html#cb458-21" tabindex="-1"></a>  <span class="co"># Computes the Bounds</span></span>
+<span id="cb458-22"><a href="inference-about-the-variance.html#cb458-22" tabindex="-1"></a>  low <span class="ot">&lt;-</span> (n<span class="dv">-1</span>) <span class="sc">*</span> S2 <span class="sc">/</span> xupp</span>
+<span id="cb458-23"><a href="inference-about-the-variance.html#cb458-23" tabindex="-1"></a>  upp <span class="ot">&lt;-</span> (n<span class="dv">-1</span>) <span class="sc">*</span> S2 <span class="sc">/</span> xlow</span>
+<span id="cb458-24"><a href="inference-about-the-variance.html#cb458-24" tabindex="-1"></a>  <span class="co"># Confidence Interval</span></span>
+<span id="cb458-25"><a href="inference-about-the-variance.html#cb458-25" tabindex="-1"></a>  <span class="fu">c</span>(low, upp)</span>
+<span id="cb458-26"><a href="inference-about-the-variance.html#cb458-26" tabindex="-1"></a>})</span>
+<span id="cb458-27"><a href="inference-about-the-variance.html#cb458-27" tabindex="-1"></a>conInt <span class="ot">&lt;-</span> <span class="fu">t</span>(conInt)</span>
+<span id="cb458-28"><a href="inference-about-the-variance.html#cb458-28" tabindex="-1"></a></span>
+<span id="cb458-29"><a href="inference-about-the-variance.html#cb458-29" tabindex="-1"></a><span class="co"># Checks if the Interval Contains true Variance</span></span>
+<span id="cb458-30"><a href="inference-about-the-variance.html#cb458-30" tabindex="-1"></a>cov <span class="ot">&lt;-</span> <span class="fu">mean</span>((conInt[, <span class="dv">1</span>] <span class="sc">&lt;=</span> sigma2) <span class="sc">&amp;</span> (conInt[, <span class="dv">2</span>] <span class="sc">&gt;=</span> sigma2))</span>
+<span id="cb458-31"><a href="inference-about-the-variance.html#cb458-31" tabindex="-1"></a></span>
+<span id="cb458-32"><a href="inference-about-the-variance.html#cb458-32" tabindex="-1"></a><span class="co"># Reports</span></span>
+<span id="cb458-33"><a href="inference-about-the-variance.html#cb458-33" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;Coverage: &quot;</span>, <span class="fu">round</span>(cov <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;Coverage: 94.54%&quot;</code></pre>
 <div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="inference-about-the-variance.html#cb460-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;Average Interval Length: &quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(conInt[, <span class="dv">2</span>] <span class="sc">-</span> conInt[, <span class="dv">1</span>]), <span class="dv">2</span>)))</span></code></pre></div>
-<pre><code>## [1] &quot;Average Interval Length: 71.12&quot;</code></pre>
+<pre><code>## [1] &quot;Average Interval Length: 62.96&quot;</code></pre>
 <p>The quantity <code>Coverage</code> reports the proportion of simulated intervals that contain the true variance <span class="math inline">\(s^2 = 25\)</span>.</p>
 <p>If the classical confidence interval is working well, this proportion should be close to 95%, since we are constructing 95% confidence intervals.</p>
 <p>The quantity <code>Average Interval Length</code> reports the average width of the interval across the 5000 repetitions. This gives a sense of the precision of the method. Shorter intervals are more informative, but only if they still maintain the desired coverage.</p>
@@ -1225,10 +1232,41 @@ n = 10
 </blockquote>
 <p>When the normality assumption is approximately satisfied, the classical chi-square interval for <span class="math inline">\(\sigma^2\)</span> should show coverage close to the nominal level. When the normality assumption fails badly, that coverage can deteriorate, which is why simulation studies like this are useful for understanding how robust the procedure really is.</p>
 </div>
-<div id="inference-about-the-variance-when-the-population-is-not-normal" class="section level3 hasAnchor" number="10.2.12">
-<h3><span class="header-section-number">10.2.12</span> Inference About the Variance When the Population Is Not Normal<a href="inference-about-the-variance.html#inference-about-the-variance-when-the-population-is-not-normal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="effect-of-skewness" class="section level4 hasAnchor" number="10.2.12.1">
-<h4><span class="header-section-number">10.2.12.1</span> Effect of Skewness<a href="inference-about-the-variance.html#effect-of-skewness" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="confidence-interval-simulation-1" class="section level3 hasAnchor" number="10.2.12">
+<h3><span class="header-section-number">10.2.12</span> Confidence Interval Simulation<a href="inference-about-the-variance.html#confidence-interval-simulation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="inference-about-the-variance.html#cb462-1" tabindex="-1"></a><span class="co"># Simulation Settings</span></span>
+<span id="cb462-2"><a href="inference-about-the-variance.html#cb462-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5428</span>)</span>
+<span id="cb462-3"><a href="inference-about-the-variance.html#cb462-3" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb462-4"><a href="inference-about-the-variance.html#cb462-4" tabindex="-1"></a></span>
+<span id="cb462-5"><a href="inference-about-the-variance.html#cb462-5" tabindex="-1"></a><span class="co"># Distribution Settings</span></span>
+<span id="cb462-6"><a href="inference-about-the-variance.html#cb462-6" tabindex="-1"></a>n       <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb462-7"><a href="inference-about-the-variance.html#cb462-7" tabindex="-1"></a>sigma2  <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb462-8"><a href="inference-about-the-variance.html#cb462-8" tabindex="-1"></a>sigma02 <span class="ot">&lt;-</span> sigma2</span>
+<span id="cb462-9"><a href="inference-about-the-variance.html#cb462-9" tabindex="-1"></a>sk      <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb462-10"><a href="inference-about-the-variance.html#cb462-10" tabindex="-1"></a></span>
+<span id="cb462-11"><a href="inference-about-the-variance.html#cb462-11" tabindex="-1"></a><span class="co"># Confidence Interval Settings</span></span>
+<span id="cb462-12"><a href="inference-about-the-variance.html#cb462-12" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb462-13"><a href="inference-about-the-variance.html#cb462-13" tabindex="-1"></a></span>
+<span id="cb462-14"><a href="inference-about-the-variance.html#cb462-14" tabindex="-1"></a>testStat <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
+<span id="cb462-15"><a href="inference-about-the-variance.html#cb462-15" tabindex="-1"></a>  <span class="co"># Samples</span></span>
+<span id="cb462-16"><a href="inference-about-the-variance.html#cb462-16" tabindex="-1"></a>  x <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n, <span class="at">df =</span> sk) <span class="sc">-</span> sk) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk)) <span class="sc">*</span> <span class="fu">sqrt</span>(sigma2)</span>
+<span id="cb462-17"><a href="inference-about-the-variance.html#cb462-17" tabindex="-1"></a>  <span class="co"># Estimator</span></span>
+<span id="cb462-18"><a href="inference-about-the-variance.html#cb462-18" tabindex="-1"></a>  S2 <span class="ot">&lt;-</span> <span class="fu">var</span>(x)</span>
+<span id="cb462-19"><a href="inference-about-the-variance.html#cb462-19" tabindex="-1"></a>  <span class="co"># Test Statistic</span></span>
+<span id="cb462-20"><a href="inference-about-the-variance.html#cb462-20" tabindex="-1"></a>  (n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> S2 <span class="sc">/</span> sigma2</span>
+<span id="cb462-21"><a href="inference-about-the-variance.html#cb462-21" tabindex="-1"></a>})</span>
+<span id="cb462-22"><a href="inference-about-the-variance.html#cb462-22" tabindex="-1"></a></span>
+<span id="cb462-23"><a href="inference-about-the-variance.html#cb462-23" tabindex="-1"></a><span class="co"># Rejection Treshold</span></span>
+<span id="cb462-24"><a href="inference-about-the-variance.html#cb462-24" tabindex="-1"></a>rejTre <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="at">p =</span> a, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb462-25"><a href="inference-about-the-variance.html#cb462-25" tabindex="-1"></a></span>
+<span id="cb462-26"><a href="inference-about-the-variance.html#cb462-26" tabindex="-1"></a><span class="co"># Prints Results</span></span>
+<span id="cb462-27"><a href="inference-about-the-variance.html#cb462-27" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;Rejection rate: &quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(testStat <span class="sc">&lt;</span> rejTre) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;Rejection rate: 30.42%&quot;</code></pre>
+</div>
+<div id="inference-about-the-variance-when-the-population-is-not-normal" class="section level3 hasAnchor" number="10.2.13">
+<h3><span class="header-section-number">10.2.13</span> Inference About the Variance When the Population Is Not Normal<a href="inference-about-the-variance.html#inference-about-the-variance-when-the-population-is-not-normal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="effect-of-skewness" class="section level4 hasAnchor" number="10.2.13.1">
+<h4><span class="header-section-number">10.2.13.1</span> Effect of Skewness<a href="inference-about-the-variance.html#effect-of-skewness" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>If the population is skewed:</p>
 <ul>
 <li>the chi-square approximation may fail</li>
@@ -1239,8 +1277,8 @@ n = 10
 <p>As a result, a nominal 95% confidence interval may not actually cover the true variance 95% of the time.</p>
 <hr />
 </div>
-<div id="effect-of-sample-size-1" class="section level4 hasAnchor" number="10.2.12.2">
-<h4><span class="header-section-number">10.2.12.2</span> Effect of Sample Size<a href="inference-about-the-variance.html#effect-of-sample-size-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="effect-of-sample-size-1" class="section level4 hasAnchor" number="10.2.13.2">
+<h4><span class="header-section-number">10.2.13.2</span> Effect of Sample Size<a href="inference-about-the-variance.html#effect-of-sample-size-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>Small <span class="math inline">\(n\)</span>: strong distortion</li>
 <li>Large <span class="math inline">\(n\)</span>: behavior improves, but still not perfect</li>
@@ -1253,8 +1291,8 @@ n = 10
 </blockquote>
 <hr />
 </div>
-<div id="practical-guidance" class="section level4 hasAnchor" number="10.2.12.3">
-<h4><span class="header-section-number">10.2.12.3</span> Practical Guidance<a href="inference-about-the-variance.html#practical-guidance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="practical-guidance" class="section level4 hasAnchor" number="10.2.13.3">
+<h4><span class="header-section-number">10.2.13.3</span> Practical Guidance<a href="inference-about-the-variance.html#practical-guidance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Before applying variance inference:</p>
 <ul>
 <li>check for skewness</li>
@@ -1373,47 +1411,47 @@ n = 10
 <hr />
 <div id="simulation-distribution-of-the-pivot-quantity-for-sigma_12sigma_22" class="section level4 hasAnchor" number="10.3.4.1">
 <h4><span class="header-section-number">10.3.4.1</span> Simulation: Distribution of the Pivot Quantity for <span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span><a href="inference-about-the-variance.html#simulation-distribution-of-the-pivot-quantity-for-sigma_12sigma_22" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="inference-about-the-variance.html#cb462-1" tabindex="-1"></a><span class="co"># Simulation of the Distribution of the Pivot Quantity</span></span>
-<span id="cb462-2"><a href="inference-about-the-variance.html#cb462-2" tabindex="-1"></a></span>
-<span id="cb462-3"><a href="inference-about-the-variance.html#cb462-3" tabindex="-1"></a><span class="co"># Simulation Settings</span></span>
-<span id="cb462-4"><a href="inference-about-the-variance.html#cb462-4" tabindex="-1"></a><span class="co"># set.seed(5428)</span></span>
-<span id="cb462-5"><a href="inference-about-the-variance.html#cb462-5" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
-<span id="cb462-6"><a href="inference-about-the-variance.html#cb462-6" tabindex="-1"></a></span>
-<span id="cb462-7"><a href="inference-about-the-variance.html#cb462-7" tabindex="-1"></a><span class="co"># Distribution Settings</span></span>
-<span id="cb462-8"><a href="inference-about-the-variance.html#cb462-8" tabindex="-1"></a>n1  <span class="ot">&lt;-</span> <span class="dv">40</span></span>
-<span id="cb462-9"><a href="inference-about-the-variance.html#cb462-9" tabindex="-1"></a>n2  <span class="ot">&lt;-</span> <span class="dv">40</span></span>
-<span id="cb462-10"><a href="inference-about-the-variance.html#cb462-10" tabindex="-1"></a>va1 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
-<span id="cb462-11"><a href="inference-about-the-variance.html#cb462-11" tabindex="-1"></a>va2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
-<span id="cb462-12"><a href="inference-about-the-variance.html#cb462-12" tabindex="-1"></a>sk1 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb462-13"><a href="inference-about-the-variance.html#cb462-13" tabindex="-1"></a>sk2 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb462-14"><a href="inference-about-the-variance.html#cb462-14" tabindex="-1"></a></span>
-<span id="cb462-15"><a href="inference-about-the-variance.html#cb462-15" tabindex="-1"></a><span class="co"># Confidence Interval Settings</span></span>
-<span id="cb462-16"><a href="inference-about-the-variance.html#cb462-16" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb462-17"><a href="inference-about-the-variance.html#cb462-17" tabindex="-1"></a></span>
-<span id="cb462-18"><a href="inference-about-the-variance.html#cb462-18" tabindex="-1"></a>Fs <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
-<span id="cb462-19"><a href="inference-about-the-variance.html#cb462-19" tabindex="-1"></a>  <span class="co"># Samples</span></span>
-<span id="cb462-20"><a href="inference-about-the-variance.html#cb462-20" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n1, <span class="at">df =</span> sk1) <span class="sc">-</span> sk1) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk1)) <span class="sc">*</span> <span class="fu">sqrt</span>(va1)</span>
-<span id="cb462-21"><a href="inference-about-the-variance.html#cb462-21" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n2, <span class="at">df =</span> sk2) <span class="sc">-</span> sk2) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk2)) <span class="sc">*</span> <span class="fu">sqrt</span>(va2)</span>
-<span id="cb462-22"><a href="inference-about-the-variance.html#cb462-22" tabindex="-1"></a>  <span class="co"># Estimators</span></span>
-<span id="cb462-23"><a href="inference-about-the-variance.html#cb462-23" tabindex="-1"></a>  s21 <span class="ot">&lt;-</span> <span class="fu">var</span>(x1)</span>
-<span id="cb462-24"><a href="inference-about-the-variance.html#cb462-24" tabindex="-1"></a>  s22 <span class="ot">&lt;-</span> <span class="fu">var</span>(x2)</span>
-<span id="cb462-25"><a href="inference-about-the-variance.html#cb462-25" tabindex="-1"></a>  <span class="co"># Computes the Pivot Quantity (and saves)</span></span>
-<span id="cb462-26"><a href="inference-about-the-variance.html#cb462-26" tabindex="-1"></a>  (s21 <span class="sc">/</span> va1) <span class="sc">/</span> (s22 <span class="sc">/</span> va2)</span>
-<span id="cb462-27"><a href="inference-about-the-variance.html#cb462-27" tabindex="-1"></a>})</span>
-<span id="cb462-28"><a href="inference-about-the-variance.html#cb462-28" tabindex="-1"></a></span>
-<span id="cb462-29"><a href="inference-about-the-variance.html#cb462-29" tabindex="-1"></a><span class="co"># Histogram and Theoretical Distribution</span></span>
-<span id="cb462-30"><a href="inference-about-the-variance.html#cb462-30" tabindex="-1"></a>xmax <span class="ot">&lt;-</span> <span class="fu">max</span>(Fs)</span>
-<span id="cb462-31"><a href="inference-about-the-variance.html#cb462-31" tabindex="-1"></a><span class="fu">hist</span>(Fs,</span>
-<span id="cb462-32"><a href="inference-about-the-variance.html#cb462-32" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">25</span>,</span>
-<span id="cb462-33"><a href="inference-about-the-variance.html#cb462-33" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;Pivot Quantity F&quot;</span>,</span>
-<span id="cb462-34"><a href="inference-about-the-variance.html#cb462-34" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb462-35"><a href="inference-about-the-variance.html#cb462-35" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distribution of the Pivot Quantity (F)&quot;</span>)</span>
-<span id="cb462-36"><a href="inference-about-the-variance.html#cb462-36" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">df</span>(x, <span class="at">df1 =</span> n1<span class="dv">-1</span>, <span class="at">df2 =</span> n2<span class="dv">-1</span>),</span>
-<span id="cb462-37"><a href="inference-about-the-variance.html#cb462-37" tabindex="-1"></a>      <span class="at">add  =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb462-38"><a href="inference-about-the-variance.html#cb462-38" tabindex="-1"></a>      <span class="at">from =</span> <span class="dv">0</span>,</span>
-<span id="cb462-39"><a href="inference-about-the-variance.html#cb462-39" tabindex="-1"></a>      <span class="at">to   =</span> xmax,</span>
-<span id="cb462-40"><a href="inference-about-the-variance.html#cb462-40" tabindex="-1"></a>      <span class="at">col  =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>),</span>
-<span id="cb462-41"><a href="inference-about-the-variance.html#cb462-41" tabindex="-1"></a>      <span class="at">lwd  =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="inference-about-the-variance.html#cb464-1" tabindex="-1"></a><span class="co"># Simulation of the Distribution of the Pivot Quantity</span></span>
+<span id="cb464-2"><a href="inference-about-the-variance.html#cb464-2" tabindex="-1"></a></span>
+<span id="cb464-3"><a href="inference-about-the-variance.html#cb464-3" tabindex="-1"></a><span class="co"># Simulation Settings</span></span>
+<span id="cb464-4"><a href="inference-about-the-variance.html#cb464-4" tabindex="-1"></a><span class="co"># set.seed(5428)</span></span>
+<span id="cb464-5"><a href="inference-about-the-variance.html#cb464-5" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb464-6"><a href="inference-about-the-variance.html#cb464-6" tabindex="-1"></a></span>
+<span id="cb464-7"><a href="inference-about-the-variance.html#cb464-7" tabindex="-1"></a><span class="co"># Distribution Settings</span></span>
+<span id="cb464-8"><a href="inference-about-the-variance.html#cb464-8" tabindex="-1"></a>n1  <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb464-9"><a href="inference-about-the-variance.html#cb464-9" tabindex="-1"></a>n2  <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb464-10"><a href="inference-about-the-variance.html#cb464-10" tabindex="-1"></a>va1 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb464-11"><a href="inference-about-the-variance.html#cb464-11" tabindex="-1"></a>va2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb464-12"><a href="inference-about-the-variance.html#cb464-12" tabindex="-1"></a>sk1 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb464-13"><a href="inference-about-the-variance.html#cb464-13" tabindex="-1"></a>sk2 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb464-14"><a href="inference-about-the-variance.html#cb464-14" tabindex="-1"></a></span>
+<span id="cb464-15"><a href="inference-about-the-variance.html#cb464-15" tabindex="-1"></a><span class="co"># Confidence Interval Settings</span></span>
+<span id="cb464-16"><a href="inference-about-the-variance.html#cb464-16" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb464-17"><a href="inference-about-the-variance.html#cb464-17" tabindex="-1"></a></span>
+<span id="cb464-18"><a href="inference-about-the-variance.html#cb464-18" tabindex="-1"></a>Fs <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
+<span id="cb464-19"><a href="inference-about-the-variance.html#cb464-19" tabindex="-1"></a>  <span class="co"># Samples</span></span>
+<span id="cb464-20"><a href="inference-about-the-variance.html#cb464-20" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n1, <span class="at">df =</span> sk1) <span class="sc">-</span> sk1) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk1)) <span class="sc">*</span> <span class="fu">sqrt</span>(va1)</span>
+<span id="cb464-21"><a href="inference-about-the-variance.html#cb464-21" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n2, <span class="at">df =</span> sk2) <span class="sc">-</span> sk2) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk2)) <span class="sc">*</span> <span class="fu">sqrt</span>(va2)</span>
+<span id="cb464-22"><a href="inference-about-the-variance.html#cb464-22" tabindex="-1"></a>  <span class="co"># Estimators</span></span>
+<span id="cb464-23"><a href="inference-about-the-variance.html#cb464-23" tabindex="-1"></a>  s21 <span class="ot">&lt;-</span> <span class="fu">var</span>(x1)</span>
+<span id="cb464-24"><a href="inference-about-the-variance.html#cb464-24" tabindex="-1"></a>  s22 <span class="ot">&lt;-</span> <span class="fu">var</span>(x2)</span>
+<span id="cb464-25"><a href="inference-about-the-variance.html#cb464-25" tabindex="-1"></a>  <span class="co"># Computes the Pivot Quantity (and saves)</span></span>
+<span id="cb464-26"><a href="inference-about-the-variance.html#cb464-26" tabindex="-1"></a>  (s21 <span class="sc">/</span> va1) <span class="sc">/</span> (s22 <span class="sc">/</span> va2)</span>
+<span id="cb464-27"><a href="inference-about-the-variance.html#cb464-27" tabindex="-1"></a>})</span>
+<span id="cb464-28"><a href="inference-about-the-variance.html#cb464-28" tabindex="-1"></a></span>
+<span id="cb464-29"><a href="inference-about-the-variance.html#cb464-29" tabindex="-1"></a><span class="co"># Histogram and Theoretical Distribution</span></span>
+<span id="cb464-30"><a href="inference-about-the-variance.html#cb464-30" tabindex="-1"></a>xmax <span class="ot">&lt;-</span> <span class="fu">max</span>(Fs)</span>
+<span id="cb464-31"><a href="inference-about-the-variance.html#cb464-31" tabindex="-1"></a><span class="fu">hist</span>(Fs,</span>
+<span id="cb464-32"><a href="inference-about-the-variance.html#cb464-32" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb464-33"><a href="inference-about-the-variance.html#cb464-33" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;Pivot Quantity F&quot;</span>,</span>
+<span id="cb464-34"><a href="inference-about-the-variance.html#cb464-34" tabindex="-1"></a>     <span class="at">freq   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb464-35"><a href="inference-about-the-variance.html#cb464-35" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distribution of the Pivot Quantity (F)&quot;</span>)</span>
+<span id="cb464-36"><a href="inference-about-the-variance.html#cb464-36" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">df</span>(x, <span class="at">df1 =</span> n1<span class="dv">-1</span>, <span class="at">df2 =</span> n2<span class="dv">-1</span>),</span>
+<span id="cb464-37"><a href="inference-about-the-variance.html#cb464-37" tabindex="-1"></a>      <span class="at">add  =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb464-38"><a href="inference-about-the-variance.html#cb464-38" tabindex="-1"></a>      <span class="at">from =</span> <span class="dv">0</span>,</span>
+<span id="cb464-39"><a href="inference-about-the-variance.html#cb464-39" tabindex="-1"></a>      <span class="at">to   =</span> xmax,</span>
+<span id="cb464-40"><a href="inference-about-the-variance.html#cb464-40" tabindex="-1"></a>      <span class="at">col  =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>),</span>
+<span id="cb464-41"><a href="inference-about-the-variance.html#cb464-41" tabindex="-1"></a>      <span class="at">lwd  =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/inf-var-sim-dis-piv-qua-ratio-two-variances-1.png" width="672" /></p>
 <hr />
 </div>
@@ -1453,74 +1491,74 @@ n = 10
 <hr />
 <div id="simulation-confidence-intervals-for-sigma_12sigma_22" class="section level4 hasAnchor" number="10.3.6.1">
 <h4><span class="header-section-number">10.3.6.1</span> Simulation Confidence Intervals for <span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span><a href="inference-about-the-variance.html#simulation-confidence-intervals-for-sigma_12sigma_22" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="inference-about-the-variance.html#cb463-1" tabindex="-1"></a><span class="co"># Simulation of the Distribution of the Confidence Intervals</span></span>
-<span id="cb463-2"><a href="inference-about-the-variance.html#cb463-2" tabindex="-1"></a></span>
-<span id="cb463-3"><a href="inference-about-the-variance.html#cb463-3" tabindex="-1"></a><span class="co"># Simulation Settings</span></span>
-<span id="cb463-4"><a href="inference-about-the-variance.html#cb463-4" tabindex="-1"></a><span class="co"># set.seed(5428)</span></span>
-<span id="cb463-5"><a href="inference-about-the-variance.html#cb463-5" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
-<span id="cb463-6"><a href="inference-about-the-variance.html#cb463-6" tabindex="-1"></a></span>
-<span id="cb463-7"><a href="inference-about-the-variance.html#cb463-7" tabindex="-1"></a><span class="co"># Distribution Settings</span></span>
-<span id="cb463-8"><a href="inference-about-the-variance.html#cb463-8" tabindex="-1"></a>n1  <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb463-9"><a href="inference-about-the-variance.html#cb463-9" tabindex="-1"></a>n2  <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb463-10"><a href="inference-about-the-variance.html#cb463-10" tabindex="-1"></a>va1 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
-<span id="cb463-11"><a href="inference-about-the-variance.html#cb463-11" tabindex="-1"></a>va2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
-<span id="cb463-12"><a href="inference-about-the-variance.html#cb463-12" tabindex="-1"></a>sk1 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb463-13"><a href="inference-about-the-variance.html#cb463-13" tabindex="-1"></a>sk2 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb463-14"><a href="inference-about-the-variance.html#cb463-14" tabindex="-1"></a></span>
-<span id="cb463-15"><a href="inference-about-the-variance.html#cb463-15" tabindex="-1"></a><span class="co"># Confidence Interval Settings</span></span>
-<span id="cb463-16"><a href="inference-about-the-variance.html#cb463-16" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb463-17"><a href="inference-about-the-variance.html#cb463-17" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb463-18"><a href="inference-about-the-variance.html#cb463-18" tabindex="-1"></a></span>
-<span id="cb463-19"><a href="inference-about-the-variance.html#cb463-19" tabindex="-1"></a>conInt <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
-<span id="cb463-20"><a href="inference-about-the-variance.html#cb463-20" tabindex="-1"></a>  <span class="co"># Samples</span></span>
-<span id="cb463-21"><a href="inference-about-the-variance.html#cb463-21" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n1, <span class="at">df =</span> sk1) <span class="sc">-</span> sk1) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk1)) <span class="sc">*</span> <span class="fu">sqrt</span>(va1)</span>
-<span id="cb463-22"><a href="inference-about-the-variance.html#cb463-22" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n2, <span class="at">df =</span> sk2) <span class="sc">-</span> sk2) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk2)) <span class="sc">*</span> <span class="fu">sqrt</span>(va2)</span>
-<span id="cb463-23"><a href="inference-about-the-variance.html#cb463-23" tabindex="-1"></a>  <span class="co"># Statistics</span></span>
-<span id="cb463-24"><a href="inference-about-the-variance.html#cb463-24" tabindex="-1"></a>  s21 <span class="ot">&lt;-</span> <span class="fu">var</span>(x1)</span>
-<span id="cb463-25"><a href="inference-about-the-variance.html#cb463-25" tabindex="-1"></a>  s22 <span class="ot">&lt;-</span> <span class="fu">var</span>(x2)</span>
-<span id="cb463-26"><a href="inference-about-the-variance.html#cb463-26" tabindex="-1"></a>  <span class="co"># Estimator</span></span>
-<span id="cb463-27"><a href="inference-about-the-variance.html#cb463-27" tabindex="-1"></a>  Fs <span class="ot">&lt;-</span> s21 <span class="sc">/</span> s22</span>
-<span id="cb463-28"><a href="inference-about-the-variance.html#cb463-28" tabindex="-1"></a>  <span class="co"># Quantiles</span></span>
-<span id="cb463-29"><a href="inference-about-the-variance.html#cb463-29" tabindex="-1"></a>  Flow <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span> <span class="dv">1</span> <span class="sc">-</span> a <span class="sc">*</span> p, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb463-30"><a href="inference-about-the-variance.html#cb463-30" tabindex="-1"></a>  Fupp <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span>     a <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p), <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb463-31"><a href="inference-about-the-variance.html#cb463-31" tabindex="-1"></a>  <span class="co"># Confidence Interval Limits</span></span>
-<span id="cb463-32"><a href="inference-about-the-variance.html#cb463-32" tabindex="-1"></a>  low <span class="ot">&lt;-</span> Fs <span class="sc">/</span> Flow</span>
-<span id="cb463-33"><a href="inference-about-the-variance.html#cb463-33" tabindex="-1"></a>  upp <span class="ot">&lt;-</span> Fs <span class="sc">/</span> Fupp</span>
-<span id="cb463-34"><a href="inference-about-the-variance.html#cb463-34" tabindex="-1"></a>  <span class="co"># Saves the Interval</span></span>
-<span id="cb463-35"><a href="inference-about-the-variance.html#cb463-35" tabindex="-1"></a>  <span class="fu">c</span>(low, upp)</span>
-<span id="cb463-36"><a href="inference-about-the-variance.html#cb463-36" tabindex="-1"></a>})</span>
-<span id="cb463-37"><a href="inference-about-the-variance.html#cb463-37" tabindex="-1"></a></span>
-<span id="cb463-38"><a href="inference-about-the-variance.html#cb463-38" tabindex="-1"></a>conInt <span class="ot">&lt;-</span> <span class="fu">t</span>(conInt)</span>
-<span id="cb463-39"><a href="inference-about-the-variance.html#cb463-39" tabindex="-1"></a><span class="co"># Distribution of the Confidence Interval</span></span>
-<span id="cb463-40"><a href="inference-about-the-variance.html#cb463-40" tabindex="-1"></a><span class="co"># Plot Settings</span></span>
-<span id="cb463-41"><a href="inference-about-the-variance.html#cb463-41" tabindex="-1"></a>xmax   <span class="ot">&lt;-</span> <span class="fu">max</span>(conInt)</span>
-<span id="cb463-42"><a href="inference-about-the-variance.html#cb463-42" tabindex="-1"></a>xmin   <span class="ot">&lt;-</span> <span class="fu">min</span>(conInt)</span>
-<span id="cb463-43"><a href="inference-about-the-variance.html#cb463-43" tabindex="-1"></a>denLow <span class="ot">&lt;-</span> <span class="fu">density</span>(conInt[, <span class="dv">1</span>])</span>
-<span id="cb463-44"><a href="inference-about-the-variance.html#cb463-44" tabindex="-1"></a>denUpp <span class="ot">&lt;-</span> <span class="fu">density</span>(conInt[, <span class="dv">2</span>])</span>
-<span id="cb463-45"><a href="inference-about-the-variance.html#cb463-45" tabindex="-1"></a>ymax   <span class="ot">&lt;-</span> <span class="fu">max</span>(denLow<span class="sc">$</span>y, denUpp<span class="sc">$</span>y)</span>
-<span id="cb463-46"><a href="inference-about-the-variance.html#cb463-46" tabindex="-1"></a></span>
-<span id="cb463-47"><a href="inference-about-the-variance.html#cb463-47" tabindex="-1"></a><span class="co"># Plots Distribution of the Lower and Upper Bound</span></span>
-<span id="cb463-48"><a href="inference-about-the-variance.html#cb463-48" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NA</span>,</span>
-<span id="cb463-49"><a href="inference-about-the-variance.html#cb463-49" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
-<span id="cb463-50"><a href="inference-about-the-variance.html#cb463-50" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax), </span>
-<span id="cb463-51"><a href="inference-about-the-variance.html#cb463-51" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;Lower and Upper Limits&quot;</span>,</span>
-<span id="cb463-52"><a href="inference-about-the-variance.html#cb463-52" tabindex="-1"></a>     <span class="at">ylab   =</span> <span class="st">&quot;Density&quot;</span>,</span>
-<span id="cb463-53"><a href="inference-about-the-variance.html#cb463-53" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distribution of the Confidence Intervals&quot;</span>)</span>
-<span id="cb463-54"><a href="inference-about-the-variance.html#cb463-54" tabindex="-1"></a><span class="fu">polygon</span>(denLow, </span>
-<span id="cb463-55"><a href="inference-about-the-variance.html#cb463-55" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
-<span id="cb463-56"><a href="inference-about-the-variance.html#cb463-56" tabindex="-1"></a>        <span class="at">border =</span> <span class="cn">NA</span>)</span>
-<span id="cb463-57"><a href="inference-about-the-variance.html#cb463-57" tabindex="-1"></a><span class="fu">polygon</span>(denUpp,</span>
-<span id="cb463-58"><a href="inference-about-the-variance.html#cb463-58" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>),</span>
-<span id="cb463-59"><a href="inference-about-the-variance.html#cb463-59" tabindex="-1"></a>        <span class="at">border =</span> <span class="cn">NA</span>)</span>
-<span id="cb463-60"><a href="inference-about-the-variance.html#cb463-60" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> va1<span class="sc">/</span>va2, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span>), <span class="at">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="inference-about-the-variance.html#cb465-1" tabindex="-1"></a><span class="co"># Simulation of the Distribution of the Confidence Intervals</span></span>
+<span id="cb465-2"><a href="inference-about-the-variance.html#cb465-2" tabindex="-1"></a></span>
+<span id="cb465-3"><a href="inference-about-the-variance.html#cb465-3" tabindex="-1"></a><span class="co"># Simulation Settings</span></span>
+<span id="cb465-4"><a href="inference-about-the-variance.html#cb465-4" tabindex="-1"></a><span class="co"># set.seed(5428)</span></span>
+<span id="cb465-5"><a href="inference-about-the-variance.html#cb465-5" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb465-6"><a href="inference-about-the-variance.html#cb465-6" tabindex="-1"></a></span>
+<span id="cb465-7"><a href="inference-about-the-variance.html#cb465-7" tabindex="-1"></a><span class="co"># Distribution Settings</span></span>
+<span id="cb465-8"><a href="inference-about-the-variance.html#cb465-8" tabindex="-1"></a>n1  <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb465-9"><a href="inference-about-the-variance.html#cb465-9" tabindex="-1"></a>n2  <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb465-10"><a href="inference-about-the-variance.html#cb465-10" tabindex="-1"></a>va1 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb465-11"><a href="inference-about-the-variance.html#cb465-11" tabindex="-1"></a>va2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb465-12"><a href="inference-about-the-variance.html#cb465-12" tabindex="-1"></a>sk1 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb465-13"><a href="inference-about-the-variance.html#cb465-13" tabindex="-1"></a>sk2 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb465-14"><a href="inference-about-the-variance.html#cb465-14" tabindex="-1"></a></span>
+<span id="cb465-15"><a href="inference-about-the-variance.html#cb465-15" tabindex="-1"></a><span class="co"># Confidence Interval Settings</span></span>
+<span id="cb465-16"><a href="inference-about-the-variance.html#cb465-16" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb465-17"><a href="inference-about-the-variance.html#cb465-17" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb465-18"><a href="inference-about-the-variance.html#cb465-18" tabindex="-1"></a></span>
+<span id="cb465-19"><a href="inference-about-the-variance.html#cb465-19" tabindex="-1"></a>conInt <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
+<span id="cb465-20"><a href="inference-about-the-variance.html#cb465-20" tabindex="-1"></a>  <span class="co"># Samples</span></span>
+<span id="cb465-21"><a href="inference-about-the-variance.html#cb465-21" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n1, <span class="at">df =</span> sk1) <span class="sc">-</span> sk1) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk1)) <span class="sc">*</span> <span class="fu">sqrt</span>(va1)</span>
+<span id="cb465-22"><a href="inference-about-the-variance.html#cb465-22" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n2, <span class="at">df =</span> sk2) <span class="sc">-</span> sk2) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk2)) <span class="sc">*</span> <span class="fu">sqrt</span>(va2)</span>
+<span id="cb465-23"><a href="inference-about-the-variance.html#cb465-23" tabindex="-1"></a>  <span class="co"># Statistics</span></span>
+<span id="cb465-24"><a href="inference-about-the-variance.html#cb465-24" tabindex="-1"></a>  s21 <span class="ot">&lt;-</span> <span class="fu">var</span>(x1)</span>
+<span id="cb465-25"><a href="inference-about-the-variance.html#cb465-25" tabindex="-1"></a>  s22 <span class="ot">&lt;-</span> <span class="fu">var</span>(x2)</span>
+<span id="cb465-26"><a href="inference-about-the-variance.html#cb465-26" tabindex="-1"></a>  <span class="co"># Estimator</span></span>
+<span id="cb465-27"><a href="inference-about-the-variance.html#cb465-27" tabindex="-1"></a>  Fs <span class="ot">&lt;-</span> s21 <span class="sc">/</span> s22</span>
+<span id="cb465-28"><a href="inference-about-the-variance.html#cb465-28" tabindex="-1"></a>  <span class="co"># Quantiles</span></span>
+<span id="cb465-29"><a href="inference-about-the-variance.html#cb465-29" tabindex="-1"></a>  Flow <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span> <span class="dv">1</span> <span class="sc">-</span> a <span class="sc">*</span> p, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb465-30"><a href="inference-about-the-variance.html#cb465-30" tabindex="-1"></a>  Fupp <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span>     a <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p), <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb465-31"><a href="inference-about-the-variance.html#cb465-31" tabindex="-1"></a>  <span class="co"># Confidence Interval Limits</span></span>
+<span id="cb465-32"><a href="inference-about-the-variance.html#cb465-32" tabindex="-1"></a>  low <span class="ot">&lt;-</span> Fs <span class="sc">/</span> Flow</span>
+<span id="cb465-33"><a href="inference-about-the-variance.html#cb465-33" tabindex="-1"></a>  upp <span class="ot">&lt;-</span> Fs <span class="sc">/</span> Fupp</span>
+<span id="cb465-34"><a href="inference-about-the-variance.html#cb465-34" tabindex="-1"></a>  <span class="co"># Saves the Interval</span></span>
+<span id="cb465-35"><a href="inference-about-the-variance.html#cb465-35" tabindex="-1"></a>  <span class="fu">c</span>(low, upp)</span>
+<span id="cb465-36"><a href="inference-about-the-variance.html#cb465-36" tabindex="-1"></a>})</span>
+<span id="cb465-37"><a href="inference-about-the-variance.html#cb465-37" tabindex="-1"></a></span>
+<span id="cb465-38"><a href="inference-about-the-variance.html#cb465-38" tabindex="-1"></a>conInt <span class="ot">&lt;-</span> <span class="fu">t</span>(conInt)</span>
+<span id="cb465-39"><a href="inference-about-the-variance.html#cb465-39" tabindex="-1"></a><span class="co"># Distribution of the Confidence Interval</span></span>
+<span id="cb465-40"><a href="inference-about-the-variance.html#cb465-40" tabindex="-1"></a><span class="co"># Plot Settings</span></span>
+<span id="cb465-41"><a href="inference-about-the-variance.html#cb465-41" tabindex="-1"></a>xmax   <span class="ot">&lt;-</span> <span class="fu">max</span>(conInt)</span>
+<span id="cb465-42"><a href="inference-about-the-variance.html#cb465-42" tabindex="-1"></a>xmin   <span class="ot">&lt;-</span> <span class="fu">min</span>(conInt)</span>
+<span id="cb465-43"><a href="inference-about-the-variance.html#cb465-43" tabindex="-1"></a>denLow <span class="ot">&lt;-</span> <span class="fu">density</span>(conInt[, <span class="dv">1</span>])</span>
+<span id="cb465-44"><a href="inference-about-the-variance.html#cb465-44" tabindex="-1"></a>denUpp <span class="ot">&lt;-</span> <span class="fu">density</span>(conInt[, <span class="dv">2</span>])</span>
+<span id="cb465-45"><a href="inference-about-the-variance.html#cb465-45" tabindex="-1"></a>ymax   <span class="ot">&lt;-</span> <span class="fu">max</span>(denLow<span class="sc">$</span>y, denUpp<span class="sc">$</span>y)</span>
+<span id="cb465-46"><a href="inference-about-the-variance.html#cb465-46" tabindex="-1"></a></span>
+<span id="cb465-47"><a href="inference-about-the-variance.html#cb465-47" tabindex="-1"></a><span class="co"># Plots Distribution of the Lower and Upper Bound</span></span>
+<span id="cb465-48"><a href="inference-about-the-variance.html#cb465-48" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NA</span>,</span>
+<span id="cb465-49"><a href="inference-about-the-variance.html#cb465-49" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb465-50"><a href="inference-about-the-variance.html#cb465-50" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax), </span>
+<span id="cb465-51"><a href="inference-about-the-variance.html#cb465-51" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;Lower and Upper Limits&quot;</span>,</span>
+<span id="cb465-52"><a href="inference-about-the-variance.html#cb465-52" tabindex="-1"></a>     <span class="at">ylab   =</span> <span class="st">&quot;Density&quot;</span>,</span>
+<span id="cb465-53"><a href="inference-about-the-variance.html#cb465-53" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distribution of the Confidence Intervals&quot;</span>)</span>
+<span id="cb465-54"><a href="inference-about-the-variance.html#cb465-54" tabindex="-1"></a><span class="fu">polygon</span>(denLow, </span>
+<span id="cb465-55"><a href="inference-about-the-variance.html#cb465-55" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
+<span id="cb465-56"><a href="inference-about-the-variance.html#cb465-56" tabindex="-1"></a>        <span class="at">border =</span> <span class="cn">NA</span>)</span>
+<span id="cb465-57"><a href="inference-about-the-variance.html#cb465-57" tabindex="-1"></a><span class="fu">polygon</span>(denUpp,</span>
+<span id="cb465-58"><a href="inference-about-the-variance.html#cb465-58" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>),</span>
+<span id="cb465-59"><a href="inference-about-the-variance.html#cb465-59" tabindex="-1"></a>        <span class="at">border =</span> <span class="cn">NA</span>)</span>
+<span id="cb465-60"><a href="inference-about-the-variance.html#cb465-60" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> va1<span class="sc">/</span>va2, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span>), <span class="at">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/inf-var-ratio-of-two-variances-confidence-intervals-1.png" width="672" /></p>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="inference-about-the-variance.html#cb464-1" tabindex="-1"></a><span class="co"># Coverage Check</span></span>
-<span id="cb464-2"><a href="inference-about-the-variance.html#cb464-2" tabindex="-1"></a>cov <span class="ot">&lt;-</span> <span class="fu">mean</span>((conInt[, <span class="dv">1</span>] <span class="sc">&lt;</span> va1<span class="sc">/</span>va2) <span class="sc">&amp;</span> (conInt[, <span class="dv">2</span>] <span class="sc">&gt;</span> va1<span class="sc">/</span>va2)) </span>
-<span id="cb464-3"><a href="inference-about-the-variance.html#cb464-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;The Coverage is: &quot;</span>, <span class="fu">round</span>(cov <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="inference-about-the-variance.html#cb466-1" tabindex="-1"></a><span class="co"># Coverage Check</span></span>
+<span id="cb466-2"><a href="inference-about-the-variance.html#cb466-2" tabindex="-1"></a>cov <span class="ot">&lt;-</span> <span class="fu">mean</span>((conInt[, <span class="dv">1</span>] <span class="sc">&lt;</span> va1<span class="sc">/</span>va2) <span class="sc">&amp;</span> (conInt[, <span class="dv">2</span>] <span class="sc">&gt;</span> va1<span class="sc">/</span>va2)) </span>
+<span id="cb466-3"><a href="inference-about-the-variance.html#cb466-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;The Coverage is: &quot;</span>, <span class="fu">round</span>(cov <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;The Coverage is: 93.6%&quot;</code></pre>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="inference-about-the-variance.html#cb466-1" tabindex="-1"></a><span class="co"># Interval Lenght</span></span>
-<span id="cb466-2"><a href="inference-about-the-variance.html#cb466-2" tabindex="-1"></a>len <span class="ot">&lt;-</span> <span class="fu">mean</span>(conInt[, <span class="dv">2</span>] <span class="sc">-</span> conInt[, <span class="dv">1</span>])</span>
-<span id="cb466-3"><a href="inference-about-the-variance.html#cb466-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;The average length is: &quot;</span>, <span class="fu">round</span>(len, <span class="dv">2</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="inference-about-the-variance.html#cb468-1" tabindex="-1"></a><span class="co"># Interval Lenght</span></span>
+<span id="cb468-2"><a href="inference-about-the-variance.html#cb468-2" tabindex="-1"></a>len <span class="ot">&lt;-</span> <span class="fu">mean</span>(conInt[, <span class="dv">2</span>] <span class="sc">-</span> conInt[, <span class="dv">1</span>])</span>
+<span id="cb468-3"><a href="inference-about-the-variance.html#cb468-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;The average length is: &quot;</span>, <span class="fu">round</span>(len, <span class="dv">2</span>)))</span></code></pre></div>
 <pre><code>## [1] &quot;The average length is: 2.38&quot;</code></pre>
 <hr />
 </div>
@@ -1544,101 +1582,101 @@ F = \frac{S_1^2}{S_2^2}.
 <p>Because the <span class="math inline">\(F\)</span> distribution is asymmetric, two-sided testing requires some care. It is not enough to think in terms of symmetric tails around 1.</p>
 <div id="simulation-hypothesis-testing-for-sigma_12sigma_22" class="section level4 hasAnchor" number="10.3.7.1">
 <h4><span class="header-section-number">10.3.7.1</span> Simulation: Hypothesis Testing for <span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span><a href="inference-about-the-variance.html#simulation-hypothesis-testing-for-sigma_12sigma_22" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="inference-about-the-variance.html#cb468-1" tabindex="-1"></a><span class="co"># Simulation of the Distribution of the Hypothesis Testing</span></span>
-<span id="cb468-2"><a href="inference-about-the-variance.html#cb468-2" tabindex="-1"></a></span>
-<span id="cb468-3"><a href="inference-about-the-variance.html#cb468-3" tabindex="-1"></a><span class="co"># Simulation Settings</span></span>
-<span id="cb468-4"><a href="inference-about-the-variance.html#cb468-4" tabindex="-1"></a><span class="co"># set.seed(5428)</span></span>
-<span id="cb468-5"><a href="inference-about-the-variance.html#cb468-5" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
-<span id="cb468-6"><a href="inference-about-the-variance.html#cb468-6" tabindex="-1"></a></span>
-<span id="cb468-7"><a href="inference-about-the-variance.html#cb468-7" tabindex="-1"></a><span class="co"># Distribution Settings</span></span>
-<span id="cb468-8"><a href="inference-about-the-variance.html#cb468-8" tabindex="-1"></a>n1  <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb468-9"><a href="inference-about-the-variance.html#cb468-9" tabindex="-1"></a>n2  <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb468-10"><a href="inference-about-the-variance.html#cb468-10" tabindex="-1"></a>va1 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
-<span id="cb468-11"><a href="inference-about-the-variance.html#cb468-11" tabindex="-1"></a>va2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
-<span id="cb468-12"><a href="inference-about-the-variance.html#cb468-12" tabindex="-1"></a>sk1 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb468-13"><a href="inference-about-the-variance.html#cb468-13" tabindex="-1"></a>sk2 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb468-14"><a href="inference-about-the-variance.html#cb468-14" tabindex="-1"></a></span>
-<span id="cb468-15"><a href="inference-about-the-variance.html#cb468-15" tabindex="-1"></a><span class="co"># Hypothesis Settings</span></span>
-<span id="cb468-16"><a href="inference-about-the-variance.html#cb468-16" tabindex="-1"></a>a   <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb468-17"><a href="inference-about-the-variance.html#cb468-17" tabindex="-1"></a>alt <span class="ot">&lt;-</span> <span class="st">&quot;Not Equal&quot;</span></span>
-<span id="cb468-18"><a href="inference-about-the-variance.html#cb468-18" tabindex="-1"></a></span>
-<span id="cb468-19"><a href="inference-about-the-variance.html#cb468-19" tabindex="-1"></a>Fs <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
-<span id="cb468-20"><a href="inference-about-the-variance.html#cb468-20" tabindex="-1"></a>  <span class="co"># Samples</span></span>
-<span id="cb468-21"><a href="inference-about-the-variance.html#cb468-21" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n1, <span class="at">df =</span> sk1) <span class="sc">-</span> sk1) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk1)) <span class="sc">*</span> <span class="fu">sqrt</span>(va1)</span>
-<span id="cb468-22"><a href="inference-about-the-variance.html#cb468-22" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n2, <span class="at">df =</span> sk2) <span class="sc">-</span> sk2) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk2)) <span class="sc">*</span> <span class="fu">sqrt</span>(va2)</span>
-<span id="cb468-23"><a href="inference-about-the-variance.html#cb468-23" tabindex="-1"></a>  <span class="co"># Statistics</span></span>
-<span id="cb468-24"><a href="inference-about-the-variance.html#cb468-24" tabindex="-1"></a>  s21 <span class="ot">&lt;-</span> <span class="fu">var</span>(x1)</span>
-<span id="cb468-25"><a href="inference-about-the-variance.html#cb468-25" tabindex="-1"></a>  s22 <span class="ot">&lt;-</span> <span class="fu">var</span>(x2)</span>
-<span id="cb468-26"><a href="inference-about-the-variance.html#cb468-26" tabindex="-1"></a>  <span class="co"># F Statistic</span></span>
-<span id="cb468-27"><a href="inference-about-the-variance.html#cb468-27" tabindex="-1"></a>  s21 <span class="sc">/</span> s22</span>
-<span id="cb468-28"><a href="inference-about-the-variance.html#cb468-28" tabindex="-1"></a>})</span>
-<span id="cb468-29"><a href="inference-about-the-variance.html#cb468-29" tabindex="-1"></a></span>
-<span id="cb468-30"><a href="inference-about-the-variance.html#cb468-30" tabindex="-1"></a><span class="co"># Distribution of the Test Statistic</span></span>
-<span id="cb468-31"><a href="inference-about-the-variance.html#cb468-31" tabindex="-1"></a><span class="co"># Plot Settings</span></span>
-<span id="cb468-32"><a href="inference-about-the-variance.html#cb468-32" tabindex="-1"></a>xmax   <span class="ot">&lt;-</span> <span class="fu">max</span>(Fs)</span>
-<span id="cb468-33"><a href="inference-about-the-variance.html#cb468-33" tabindex="-1"></a>xmin   <span class="ot">&lt;-</span> <span class="fu">min</span>(Fs)</span>
-<span id="cb468-34"><a href="inference-about-the-variance.html#cb468-34" tabindex="-1"></a>den    <span class="ot">&lt;-</span> <span class="fu">density</span>(Fs)</span>
-<span id="cb468-35"><a href="inference-about-the-variance.html#cb468-35" tabindex="-1"></a>ymax   <span class="ot">&lt;-</span> <span class="fu">max</span>(den<span class="sc">$</span>y)</span>
-<span id="cb468-36"><a href="inference-about-the-variance.html#cb468-36" tabindex="-1"></a></span>
-<span id="cb468-37"><a href="inference-about-the-variance.html#cb468-37" tabindex="-1"></a><span class="co"># F Quantile</span></span>
-<span id="cb468-38"><a href="inference-about-the-variance.html#cb468-38" tabindex="-1"></a><span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Not Equal&quot;</span>){</span>
-<span id="cb468-39"><a href="inference-about-the-variance.html#cb468-39" tabindex="-1"></a>  Fr <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span> <span class="dv">1</span> <span class="sc">-</span> a<span class="sc">/</span><span class="dv">2</span>, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb468-40"><a href="inference-about-the-variance.html#cb468-40" tabindex="-1"></a>  Fl <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span>     a<span class="sc">/</span><span class="dv">2</span>, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb468-41"><a href="inference-about-the-variance.html#cb468-41" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb468-42"><a href="inference-about-the-variance.html#cb468-42" tabindex="-1"></a>  Fr <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span> <span class="dv">1</span> <span class="sc">-</span> a, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb468-43"><a href="inference-about-the-variance.html#cb468-43" tabindex="-1"></a>  Fl <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span>     a, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb468-44"><a href="inference-about-the-variance.html#cb468-44" tabindex="-1"></a>}</span>
-<span id="cb468-45"><a href="inference-about-the-variance.html#cb468-45" tabindex="-1"></a></span>
-<span id="cb468-46"><a href="inference-about-the-variance.html#cb468-46" tabindex="-1"></a></span>
-<span id="cb468-47"><a href="inference-about-the-variance.html#cb468-47" tabindex="-1"></a><span class="co"># Plots Distribution of the Lower and Upper Bound</span></span>
-<span id="cb468-48"><a href="inference-about-the-variance.html#cb468-48" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NA</span>,</span>
-<span id="cb468-49"><a href="inference-about-the-variance.html#cb468-49" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
-<span id="cb468-50"><a href="inference-about-the-variance.html#cb468-50" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax), </span>
-<span id="cb468-51"><a href="inference-about-the-variance.html#cb468-51" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;F Test Statistic&quot;</span>,</span>
-<span id="cb468-52"><a href="inference-about-the-variance.html#cb468-52" tabindex="-1"></a>     <span class="at">ylab   =</span> <span class="st">&quot;Density&quot;</span>,</span>
-<span id="cb468-53"><a href="inference-about-the-variance.html#cb468-53" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distribution of the F Test Statistic&quot;</span>)</span>
-<span id="cb468-54"><a href="inference-about-the-variance.html#cb468-54" tabindex="-1"></a><span class="fu">polygon</span>(den, </span>
-<span id="cb468-55"><a href="inference-about-the-variance.html#cb468-55" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
-<span id="cb468-56"><a href="inference-about-the-variance.html#cb468-56" tabindex="-1"></a>        <span class="at">border =</span> <span class="cn">NA</span>)</span>
-<span id="cb468-57"><a href="inference-about-the-variance.html#cb468-57" tabindex="-1"></a><span class="co"># Rejection Region</span></span>
-<span id="cb468-58"><a href="inference-about-the-variance.html#cb468-58" tabindex="-1"></a><span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Right&quot;</span>){</span>
-<span id="cb468-59"><a href="inference-about-the-variance.html#cb468-59" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> Fr,</span>
-<span id="cb468-60"><a href="inference-about-the-variance.html#cb468-60" tabindex="-1"></a>       <span class="at">xright  =</span> xmax,</span>
-<span id="cb468-61"><a href="inference-about-the-variance.html#cb468-61" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
-<span id="cb468-62"><a href="inference-about-the-variance.html#cb468-62" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
-<span id="cb468-63"><a href="inference-about-the-variance.html#cb468-63" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
-<span id="cb468-64"><a href="inference-about-the-variance.html#cb468-64" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
-<span id="cb468-65"><a href="inference-about-the-variance.html#cb468-65" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Left&quot;</span>){</span>
-<span id="cb468-66"><a href="inference-about-the-variance.html#cb468-66" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> <span class="dv">0</span>,</span>
-<span id="cb468-67"><a href="inference-about-the-variance.html#cb468-67" tabindex="-1"></a>       <span class="at">xright  =</span> Fl,</span>
-<span id="cb468-68"><a href="inference-about-the-variance.html#cb468-68" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
-<span id="cb468-69"><a href="inference-about-the-variance.html#cb468-69" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
-<span id="cb468-70"><a href="inference-about-the-variance.html#cb468-70" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
-<span id="cb468-71"><a href="inference-about-the-variance.html#cb468-71" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
-<span id="cb468-72"><a href="inference-about-the-variance.html#cb468-72" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb468-73"><a href="inference-about-the-variance.html#cb468-73" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> Fr,</span>
-<span id="cb468-74"><a href="inference-about-the-variance.html#cb468-74" tabindex="-1"></a>       <span class="at">xright  =</span> xmax,</span>
-<span id="cb468-75"><a href="inference-about-the-variance.html#cb468-75" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
-<span id="cb468-76"><a href="inference-about-the-variance.html#cb468-76" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
-<span id="cb468-77"><a href="inference-about-the-variance.html#cb468-77" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
-<span id="cb468-78"><a href="inference-about-the-variance.html#cb468-78" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
-<span id="cb468-79"><a href="inference-about-the-variance.html#cb468-79" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> <span class="dv">0</span>,</span>
-<span id="cb468-80"><a href="inference-about-the-variance.html#cb468-80" tabindex="-1"></a>       <span class="at">xright  =</span> Fl,</span>
-<span id="cb468-81"><a href="inference-about-the-variance.html#cb468-81" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
-<span id="cb468-82"><a href="inference-about-the-variance.html#cb468-82" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
-<span id="cb468-83"><a href="inference-about-the-variance.html#cb468-83" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
-<span id="cb468-84"><a href="inference-about-the-variance.html#cb468-84" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
-<span id="cb468-85"><a href="inference-about-the-variance.html#cb468-85" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="inference-about-the-variance.html#cb470-1" tabindex="-1"></a><span class="co"># Simulation of the Distribution of the Hypothesis Testing</span></span>
+<span id="cb470-2"><a href="inference-about-the-variance.html#cb470-2" tabindex="-1"></a></span>
+<span id="cb470-3"><a href="inference-about-the-variance.html#cb470-3" tabindex="-1"></a><span class="co"># Simulation Settings</span></span>
+<span id="cb470-4"><a href="inference-about-the-variance.html#cb470-4" tabindex="-1"></a><span class="co"># set.seed(5428)</span></span>
+<span id="cb470-5"><a href="inference-about-the-variance.html#cb470-5" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb470-6"><a href="inference-about-the-variance.html#cb470-6" tabindex="-1"></a></span>
+<span id="cb470-7"><a href="inference-about-the-variance.html#cb470-7" tabindex="-1"></a><span class="co"># Distribution Settings</span></span>
+<span id="cb470-8"><a href="inference-about-the-variance.html#cb470-8" tabindex="-1"></a>n1  <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb470-9"><a href="inference-about-the-variance.html#cb470-9" tabindex="-1"></a>n2  <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb470-10"><a href="inference-about-the-variance.html#cb470-10" tabindex="-1"></a>va1 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb470-11"><a href="inference-about-the-variance.html#cb470-11" tabindex="-1"></a>va2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb470-12"><a href="inference-about-the-variance.html#cb470-12" tabindex="-1"></a>sk1 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb470-13"><a href="inference-about-the-variance.html#cb470-13" tabindex="-1"></a>sk2 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb470-14"><a href="inference-about-the-variance.html#cb470-14" tabindex="-1"></a></span>
+<span id="cb470-15"><a href="inference-about-the-variance.html#cb470-15" tabindex="-1"></a><span class="co"># Hypothesis Settings</span></span>
+<span id="cb470-16"><a href="inference-about-the-variance.html#cb470-16" tabindex="-1"></a>a   <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb470-17"><a href="inference-about-the-variance.html#cb470-17" tabindex="-1"></a>alt <span class="ot">&lt;-</span> <span class="st">&quot;Not Equal&quot;</span></span>
+<span id="cb470-18"><a href="inference-about-the-variance.html#cb470-18" tabindex="-1"></a></span>
+<span id="cb470-19"><a href="inference-about-the-variance.html#cb470-19" tabindex="-1"></a>Fs <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
+<span id="cb470-20"><a href="inference-about-the-variance.html#cb470-20" tabindex="-1"></a>  <span class="co"># Samples</span></span>
+<span id="cb470-21"><a href="inference-about-the-variance.html#cb470-21" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n1, <span class="at">df =</span> sk1) <span class="sc">-</span> sk1) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk1)) <span class="sc">*</span> <span class="fu">sqrt</span>(va1)</span>
+<span id="cb470-22"><a href="inference-about-the-variance.html#cb470-22" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n2, <span class="at">df =</span> sk2) <span class="sc">-</span> sk2) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk2)) <span class="sc">*</span> <span class="fu">sqrt</span>(va2)</span>
+<span id="cb470-23"><a href="inference-about-the-variance.html#cb470-23" tabindex="-1"></a>  <span class="co"># Statistics</span></span>
+<span id="cb470-24"><a href="inference-about-the-variance.html#cb470-24" tabindex="-1"></a>  s21 <span class="ot">&lt;-</span> <span class="fu">var</span>(x1)</span>
+<span id="cb470-25"><a href="inference-about-the-variance.html#cb470-25" tabindex="-1"></a>  s22 <span class="ot">&lt;-</span> <span class="fu">var</span>(x2)</span>
+<span id="cb470-26"><a href="inference-about-the-variance.html#cb470-26" tabindex="-1"></a>  <span class="co"># F Statistic</span></span>
+<span id="cb470-27"><a href="inference-about-the-variance.html#cb470-27" tabindex="-1"></a>  s21 <span class="sc">/</span> s22</span>
+<span id="cb470-28"><a href="inference-about-the-variance.html#cb470-28" tabindex="-1"></a>})</span>
+<span id="cb470-29"><a href="inference-about-the-variance.html#cb470-29" tabindex="-1"></a></span>
+<span id="cb470-30"><a href="inference-about-the-variance.html#cb470-30" tabindex="-1"></a><span class="co"># Distribution of the Test Statistic</span></span>
+<span id="cb470-31"><a href="inference-about-the-variance.html#cb470-31" tabindex="-1"></a><span class="co"># Plot Settings</span></span>
+<span id="cb470-32"><a href="inference-about-the-variance.html#cb470-32" tabindex="-1"></a>xmax   <span class="ot">&lt;-</span> <span class="fu">max</span>(Fs)</span>
+<span id="cb470-33"><a href="inference-about-the-variance.html#cb470-33" tabindex="-1"></a>xmin   <span class="ot">&lt;-</span> <span class="fu">min</span>(Fs)</span>
+<span id="cb470-34"><a href="inference-about-the-variance.html#cb470-34" tabindex="-1"></a>den    <span class="ot">&lt;-</span> <span class="fu">density</span>(Fs)</span>
+<span id="cb470-35"><a href="inference-about-the-variance.html#cb470-35" tabindex="-1"></a>ymax   <span class="ot">&lt;-</span> <span class="fu">max</span>(den<span class="sc">$</span>y)</span>
+<span id="cb470-36"><a href="inference-about-the-variance.html#cb470-36" tabindex="-1"></a></span>
+<span id="cb470-37"><a href="inference-about-the-variance.html#cb470-37" tabindex="-1"></a><span class="co"># F Quantile</span></span>
+<span id="cb470-38"><a href="inference-about-the-variance.html#cb470-38" tabindex="-1"></a><span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Not Equal&quot;</span>){</span>
+<span id="cb470-39"><a href="inference-about-the-variance.html#cb470-39" tabindex="-1"></a>  Fr <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span> <span class="dv">1</span> <span class="sc">-</span> a<span class="sc">/</span><span class="dv">2</span>, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb470-40"><a href="inference-about-the-variance.html#cb470-40" tabindex="-1"></a>  Fl <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span>     a<span class="sc">/</span><span class="dv">2</span>, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb470-41"><a href="inference-about-the-variance.html#cb470-41" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb470-42"><a href="inference-about-the-variance.html#cb470-42" tabindex="-1"></a>  Fr <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span> <span class="dv">1</span> <span class="sc">-</span> a, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb470-43"><a href="inference-about-the-variance.html#cb470-43" tabindex="-1"></a>  Fl <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span>     a, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb470-44"><a href="inference-about-the-variance.html#cb470-44" tabindex="-1"></a>}</span>
+<span id="cb470-45"><a href="inference-about-the-variance.html#cb470-45" tabindex="-1"></a></span>
+<span id="cb470-46"><a href="inference-about-the-variance.html#cb470-46" tabindex="-1"></a></span>
+<span id="cb470-47"><a href="inference-about-the-variance.html#cb470-47" tabindex="-1"></a><span class="co"># Plots Distribution of the Lower and Upper Bound</span></span>
+<span id="cb470-48"><a href="inference-about-the-variance.html#cb470-48" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NA</span>,</span>
+<span id="cb470-49"><a href="inference-about-the-variance.html#cb470-49" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb470-50"><a href="inference-about-the-variance.html#cb470-50" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax), </span>
+<span id="cb470-51"><a href="inference-about-the-variance.html#cb470-51" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;F Test Statistic&quot;</span>,</span>
+<span id="cb470-52"><a href="inference-about-the-variance.html#cb470-52" tabindex="-1"></a>     <span class="at">ylab   =</span> <span class="st">&quot;Density&quot;</span>,</span>
+<span id="cb470-53"><a href="inference-about-the-variance.html#cb470-53" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distribution of the F Test Statistic&quot;</span>)</span>
+<span id="cb470-54"><a href="inference-about-the-variance.html#cb470-54" tabindex="-1"></a><span class="fu">polygon</span>(den, </span>
+<span id="cb470-55"><a href="inference-about-the-variance.html#cb470-55" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
+<span id="cb470-56"><a href="inference-about-the-variance.html#cb470-56" tabindex="-1"></a>        <span class="at">border =</span> <span class="cn">NA</span>)</span>
+<span id="cb470-57"><a href="inference-about-the-variance.html#cb470-57" tabindex="-1"></a><span class="co"># Rejection Region</span></span>
+<span id="cb470-58"><a href="inference-about-the-variance.html#cb470-58" tabindex="-1"></a><span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Right&quot;</span>){</span>
+<span id="cb470-59"><a href="inference-about-the-variance.html#cb470-59" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> Fr,</span>
+<span id="cb470-60"><a href="inference-about-the-variance.html#cb470-60" tabindex="-1"></a>       <span class="at">xright  =</span> xmax,</span>
+<span id="cb470-61"><a href="inference-about-the-variance.html#cb470-61" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
+<span id="cb470-62"><a href="inference-about-the-variance.html#cb470-62" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
+<span id="cb470-63"><a href="inference-about-the-variance.html#cb470-63" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb470-64"><a href="inference-about-the-variance.html#cb470-64" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
+<span id="cb470-65"><a href="inference-about-the-variance.html#cb470-65" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Left&quot;</span>){</span>
+<span id="cb470-66"><a href="inference-about-the-variance.html#cb470-66" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> <span class="dv">0</span>,</span>
+<span id="cb470-67"><a href="inference-about-the-variance.html#cb470-67" tabindex="-1"></a>       <span class="at">xright  =</span> Fl,</span>
+<span id="cb470-68"><a href="inference-about-the-variance.html#cb470-68" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
+<span id="cb470-69"><a href="inference-about-the-variance.html#cb470-69" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
+<span id="cb470-70"><a href="inference-about-the-variance.html#cb470-70" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb470-71"><a href="inference-about-the-variance.html#cb470-71" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
+<span id="cb470-72"><a href="inference-about-the-variance.html#cb470-72" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb470-73"><a href="inference-about-the-variance.html#cb470-73" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> Fr,</span>
+<span id="cb470-74"><a href="inference-about-the-variance.html#cb470-74" tabindex="-1"></a>       <span class="at">xright  =</span> xmax,</span>
+<span id="cb470-75"><a href="inference-about-the-variance.html#cb470-75" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
+<span id="cb470-76"><a href="inference-about-the-variance.html#cb470-76" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
+<span id="cb470-77"><a href="inference-about-the-variance.html#cb470-77" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb470-78"><a href="inference-about-the-variance.html#cb470-78" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
+<span id="cb470-79"><a href="inference-about-the-variance.html#cb470-79" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> <span class="dv">0</span>,</span>
+<span id="cb470-80"><a href="inference-about-the-variance.html#cb470-80" tabindex="-1"></a>       <span class="at">xright  =</span> Fl,</span>
+<span id="cb470-81"><a href="inference-about-the-variance.html#cb470-81" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
+<span id="cb470-82"><a href="inference-about-the-variance.html#cb470-82" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
+<span id="cb470-83"><a href="inference-about-the-variance.html#cb470-83" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb470-84"><a href="inference-about-the-variance.html#cb470-84" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
+<span id="cb470-85"><a href="inference-about-the-variance.html#cb470-85" tabindex="-1"></a>}</span></code></pre></div>
 <p><img src="_main_files/figure-html/inf-var-hypothesis-testing-ration-of-two-variances-1.png" width="672" /></p>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="inference-about-the-variance.html#cb469-1" tabindex="-1"></a><span class="co"># Estimates the Type I error</span></span>
-<span id="cb469-2"><a href="inference-about-the-variance.html#cb469-2" tabindex="-1"></a><span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Right&quot;</span>){</span>
-<span id="cb469-3"><a href="inference-about-the-variance.html#cb469-3" tabindex="-1"></a>  erI <span class="ot">&lt;-</span> <span class="fu">mean</span>(Fs <span class="sc">&gt;</span> Fr)</span>
-<span id="cb469-4"><a href="inference-about-the-variance.html#cb469-4" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Left&quot;</span>){</span>
-<span id="cb469-5"><a href="inference-about-the-variance.html#cb469-5" tabindex="-1"></a>  erI <span class="ot">&lt;-</span> <span class="fu">mean</span>(Fs <span class="sc">&lt;</span> Fl)</span>
-<span id="cb469-6"><a href="inference-about-the-variance.html#cb469-6" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb469-7"><a href="inference-about-the-variance.html#cb469-7" tabindex="-1"></a>  erI <span class="ot">&lt;-</span> <span class="fu">mean</span>((Fs <span class="sc">&lt;</span> Fl) <span class="sc">|</span> (Fs <span class="sc">&gt;</span> Fr))</span>
-<span id="cb469-8"><a href="inference-about-the-variance.html#cb469-8" tabindex="-1"></a>}</span>
-<span id="cb469-9"><a href="inference-about-the-variance.html#cb469-9" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;The Type I Error is: &quot;</span>, <span class="fu">round</span>(erI <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="inference-about-the-variance.html#cb471-1" tabindex="-1"></a><span class="co"># Estimates the Type I error</span></span>
+<span id="cb471-2"><a href="inference-about-the-variance.html#cb471-2" tabindex="-1"></a><span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Right&quot;</span>){</span>
+<span id="cb471-3"><a href="inference-about-the-variance.html#cb471-3" tabindex="-1"></a>  erI <span class="ot">&lt;-</span> <span class="fu">mean</span>(Fs <span class="sc">&gt;</span> Fr)</span>
+<span id="cb471-4"><a href="inference-about-the-variance.html#cb471-4" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Left&quot;</span>){</span>
+<span id="cb471-5"><a href="inference-about-the-variance.html#cb471-5" tabindex="-1"></a>  erI <span class="ot">&lt;-</span> <span class="fu">mean</span>(Fs <span class="sc">&lt;</span> Fl)</span>
+<span id="cb471-6"><a href="inference-about-the-variance.html#cb471-6" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb471-7"><a href="inference-about-the-variance.html#cb471-7" tabindex="-1"></a>  erI <span class="ot">&lt;-</span> <span class="fu">mean</span>((Fs <span class="sc">&lt;</span> Fl) <span class="sc">|</span> (Fs <span class="sc">&gt;</span> Fr))</span>
+<span id="cb471-8"><a href="inference-about-the-variance.html#cb471-8" tabindex="-1"></a>}</span>
+<span id="cb471-9"><a href="inference-about-the-variance.html#cb471-9" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;The Type I Error is: &quot;</span>, <span class="fu">round</span>(erI <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;The Type I Error is: 5.2%&quot;</code></pre>
 <hr />
 </div>
@@ -1679,101 +1717,101 @@ F = \frac{S_1^2}{S_2^2}.
 </div>
 <div id="simulation-scenarios-with-different-skewness-and-sample-size" class="section level3 hasAnchor" number="10.3.9">
 <h3><span class="header-section-number">10.3.9</span> Simulation: Scenarios with Different Skewness and Sample Size<a href="inference-about-the-variance.html#simulation-scenarios-with-different-skewness-and-sample-size" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="inference-about-the-variance.html#cb471-1" tabindex="-1"></a><span class="co"># Simulation of the Distribution of the Hypothesis Testing</span></span>
-<span id="cb471-2"><a href="inference-about-the-variance.html#cb471-2" tabindex="-1"></a></span>
-<span id="cb471-3"><a href="inference-about-the-variance.html#cb471-3" tabindex="-1"></a><span class="co"># Simulation Settings</span></span>
-<span id="cb471-4"><a href="inference-about-the-variance.html#cb471-4" tabindex="-1"></a><span class="co"># set.seed(5428)</span></span>
-<span id="cb471-5"><a href="inference-about-the-variance.html#cb471-5" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
-<span id="cb471-6"><a href="inference-about-the-variance.html#cb471-6" tabindex="-1"></a></span>
-<span id="cb471-7"><a href="inference-about-the-variance.html#cb471-7" tabindex="-1"></a><span class="co"># Distribution Settings</span></span>
-<span id="cb471-8"><a href="inference-about-the-variance.html#cb471-8" tabindex="-1"></a>n1  <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb471-9"><a href="inference-about-the-variance.html#cb471-9" tabindex="-1"></a>n2  <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb471-10"><a href="inference-about-the-variance.html#cb471-10" tabindex="-1"></a>va1 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
-<span id="cb471-11"><a href="inference-about-the-variance.html#cb471-11" tabindex="-1"></a>va2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
-<span id="cb471-12"><a href="inference-about-the-variance.html#cb471-12" tabindex="-1"></a>sk1 <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb471-13"><a href="inference-about-the-variance.html#cb471-13" tabindex="-1"></a>sk2 <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb471-14"><a href="inference-about-the-variance.html#cb471-14" tabindex="-1"></a></span>
-<span id="cb471-15"><a href="inference-about-the-variance.html#cb471-15" tabindex="-1"></a><span class="co"># Hypothesis Settings</span></span>
-<span id="cb471-16"><a href="inference-about-the-variance.html#cb471-16" tabindex="-1"></a>a   <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb471-17"><a href="inference-about-the-variance.html#cb471-17" tabindex="-1"></a>alt <span class="ot">&lt;-</span> <span class="st">&quot;Right&quot;</span></span>
-<span id="cb471-18"><a href="inference-about-the-variance.html#cb471-18" tabindex="-1"></a></span>
-<span id="cb471-19"><a href="inference-about-the-variance.html#cb471-19" tabindex="-1"></a>Fs <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
-<span id="cb471-20"><a href="inference-about-the-variance.html#cb471-20" tabindex="-1"></a>  <span class="co"># Samples</span></span>
-<span id="cb471-21"><a href="inference-about-the-variance.html#cb471-21" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n1, <span class="at">df =</span> sk1) <span class="sc">-</span> sk1) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk1)) <span class="sc">*</span> <span class="fu">sqrt</span>(va1)</span>
-<span id="cb471-22"><a href="inference-about-the-variance.html#cb471-22" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n2, <span class="at">df =</span> sk2) <span class="sc">-</span> sk2) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk2)) <span class="sc">*</span> <span class="fu">sqrt</span>(va2)</span>
-<span id="cb471-23"><a href="inference-about-the-variance.html#cb471-23" tabindex="-1"></a>  <span class="co"># Statistics</span></span>
-<span id="cb471-24"><a href="inference-about-the-variance.html#cb471-24" tabindex="-1"></a>  s21 <span class="ot">&lt;-</span> <span class="fu">var</span>(x1)</span>
-<span id="cb471-25"><a href="inference-about-the-variance.html#cb471-25" tabindex="-1"></a>  s22 <span class="ot">&lt;-</span> <span class="fu">var</span>(x2)</span>
-<span id="cb471-26"><a href="inference-about-the-variance.html#cb471-26" tabindex="-1"></a>  <span class="co"># F Statistic</span></span>
-<span id="cb471-27"><a href="inference-about-the-variance.html#cb471-27" tabindex="-1"></a>  s21 <span class="sc">/</span> s22</span>
-<span id="cb471-28"><a href="inference-about-the-variance.html#cb471-28" tabindex="-1"></a>})</span>
-<span id="cb471-29"><a href="inference-about-the-variance.html#cb471-29" tabindex="-1"></a></span>
-<span id="cb471-30"><a href="inference-about-the-variance.html#cb471-30" tabindex="-1"></a><span class="co"># Distribution of the Test Statistic</span></span>
-<span id="cb471-31"><a href="inference-about-the-variance.html#cb471-31" tabindex="-1"></a><span class="co"># Plot Settings</span></span>
-<span id="cb471-32"><a href="inference-about-the-variance.html#cb471-32" tabindex="-1"></a>xmax   <span class="ot">&lt;-</span> <span class="fu">max</span>(Fs)</span>
-<span id="cb471-33"><a href="inference-about-the-variance.html#cb471-33" tabindex="-1"></a>xmin   <span class="ot">&lt;-</span> <span class="fu">min</span>(Fs)</span>
-<span id="cb471-34"><a href="inference-about-the-variance.html#cb471-34" tabindex="-1"></a>den    <span class="ot">&lt;-</span> <span class="fu">density</span>(Fs)</span>
-<span id="cb471-35"><a href="inference-about-the-variance.html#cb471-35" tabindex="-1"></a>ymax   <span class="ot">&lt;-</span> <span class="fu">max</span>(den<span class="sc">$</span>y)</span>
-<span id="cb471-36"><a href="inference-about-the-variance.html#cb471-36" tabindex="-1"></a></span>
-<span id="cb471-37"><a href="inference-about-the-variance.html#cb471-37" tabindex="-1"></a><span class="co"># F Quantile</span></span>
-<span id="cb471-38"><a href="inference-about-the-variance.html#cb471-38" tabindex="-1"></a><span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Not Equal&quot;</span>){</span>
-<span id="cb471-39"><a href="inference-about-the-variance.html#cb471-39" tabindex="-1"></a>  Fr <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span> <span class="dv">1</span> <span class="sc">-</span> a<span class="sc">/</span><span class="dv">2</span>, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb471-40"><a href="inference-about-the-variance.html#cb471-40" tabindex="-1"></a>  Fl <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span>     a<span class="sc">/</span><span class="dv">2</span>, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb471-41"><a href="inference-about-the-variance.html#cb471-41" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb471-42"><a href="inference-about-the-variance.html#cb471-42" tabindex="-1"></a>  Fr <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span> <span class="dv">1</span> <span class="sc">-</span> a, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb471-43"><a href="inference-about-the-variance.html#cb471-43" tabindex="-1"></a>  Fl <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span>     a, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb471-44"><a href="inference-about-the-variance.html#cb471-44" tabindex="-1"></a>}</span>
-<span id="cb471-45"><a href="inference-about-the-variance.html#cb471-45" tabindex="-1"></a></span>
-<span id="cb471-46"><a href="inference-about-the-variance.html#cb471-46" tabindex="-1"></a></span>
-<span id="cb471-47"><a href="inference-about-the-variance.html#cb471-47" tabindex="-1"></a><span class="co"># Plots Distribution of the Lower and Upper Bound</span></span>
-<span id="cb471-48"><a href="inference-about-the-variance.html#cb471-48" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NA</span>,</span>
-<span id="cb471-49"><a href="inference-about-the-variance.html#cb471-49" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
-<span id="cb471-50"><a href="inference-about-the-variance.html#cb471-50" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax), </span>
-<span id="cb471-51"><a href="inference-about-the-variance.html#cb471-51" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;F Test Statistic&quot;</span>,</span>
-<span id="cb471-52"><a href="inference-about-the-variance.html#cb471-52" tabindex="-1"></a>     <span class="at">ylab   =</span> <span class="st">&quot;Density&quot;</span>,</span>
-<span id="cb471-53"><a href="inference-about-the-variance.html#cb471-53" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distribution of the F Test Statistic&quot;</span>)</span>
-<span id="cb471-54"><a href="inference-about-the-variance.html#cb471-54" tabindex="-1"></a><span class="fu">polygon</span>(den, </span>
-<span id="cb471-55"><a href="inference-about-the-variance.html#cb471-55" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
-<span id="cb471-56"><a href="inference-about-the-variance.html#cb471-56" tabindex="-1"></a>        <span class="at">border =</span> <span class="cn">NA</span>)</span>
-<span id="cb471-57"><a href="inference-about-the-variance.html#cb471-57" tabindex="-1"></a><span class="co"># Rejection Region</span></span>
-<span id="cb471-58"><a href="inference-about-the-variance.html#cb471-58" tabindex="-1"></a><span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Right&quot;</span>){</span>
-<span id="cb471-59"><a href="inference-about-the-variance.html#cb471-59" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> Fr,</span>
-<span id="cb471-60"><a href="inference-about-the-variance.html#cb471-60" tabindex="-1"></a>       <span class="at">xright  =</span> xmax,</span>
-<span id="cb471-61"><a href="inference-about-the-variance.html#cb471-61" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
-<span id="cb471-62"><a href="inference-about-the-variance.html#cb471-62" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
-<span id="cb471-63"><a href="inference-about-the-variance.html#cb471-63" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
-<span id="cb471-64"><a href="inference-about-the-variance.html#cb471-64" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
-<span id="cb471-65"><a href="inference-about-the-variance.html#cb471-65" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Left&quot;</span>){</span>
-<span id="cb471-66"><a href="inference-about-the-variance.html#cb471-66" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> <span class="dv">0</span>,</span>
-<span id="cb471-67"><a href="inference-about-the-variance.html#cb471-67" tabindex="-1"></a>       <span class="at">xright  =</span> Fl,</span>
-<span id="cb471-68"><a href="inference-about-the-variance.html#cb471-68" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
-<span id="cb471-69"><a href="inference-about-the-variance.html#cb471-69" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
-<span id="cb471-70"><a href="inference-about-the-variance.html#cb471-70" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
-<span id="cb471-71"><a href="inference-about-the-variance.html#cb471-71" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
-<span id="cb471-72"><a href="inference-about-the-variance.html#cb471-72" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb471-73"><a href="inference-about-the-variance.html#cb471-73" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> Fr,</span>
-<span id="cb471-74"><a href="inference-about-the-variance.html#cb471-74" tabindex="-1"></a>       <span class="at">xright  =</span> xmax,</span>
-<span id="cb471-75"><a href="inference-about-the-variance.html#cb471-75" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
-<span id="cb471-76"><a href="inference-about-the-variance.html#cb471-76" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
-<span id="cb471-77"><a href="inference-about-the-variance.html#cb471-77" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
-<span id="cb471-78"><a href="inference-about-the-variance.html#cb471-78" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
-<span id="cb471-79"><a href="inference-about-the-variance.html#cb471-79" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> <span class="dv">0</span>,</span>
-<span id="cb471-80"><a href="inference-about-the-variance.html#cb471-80" tabindex="-1"></a>       <span class="at">xright  =</span> Fl,</span>
-<span id="cb471-81"><a href="inference-about-the-variance.html#cb471-81" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
-<span id="cb471-82"><a href="inference-about-the-variance.html#cb471-82" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
-<span id="cb471-83"><a href="inference-about-the-variance.html#cb471-83" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
-<span id="cb471-84"><a href="inference-about-the-variance.html#cb471-84" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
-<span id="cb471-85"><a href="inference-about-the-variance.html#cb471-85" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="inference-about-the-variance.html#cb473-1" tabindex="-1"></a><span class="co"># Simulation of the Distribution of the Hypothesis Testing</span></span>
+<span id="cb473-2"><a href="inference-about-the-variance.html#cb473-2" tabindex="-1"></a></span>
+<span id="cb473-3"><a href="inference-about-the-variance.html#cb473-3" tabindex="-1"></a><span class="co"># Simulation Settings</span></span>
+<span id="cb473-4"><a href="inference-about-the-variance.html#cb473-4" tabindex="-1"></a><span class="co"># set.seed(5428)</span></span>
+<span id="cb473-5"><a href="inference-about-the-variance.html#cb473-5" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb473-6"><a href="inference-about-the-variance.html#cb473-6" tabindex="-1"></a></span>
+<span id="cb473-7"><a href="inference-about-the-variance.html#cb473-7" tabindex="-1"></a><span class="co"># Distribution Settings</span></span>
+<span id="cb473-8"><a href="inference-about-the-variance.html#cb473-8" tabindex="-1"></a>n1  <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb473-9"><a href="inference-about-the-variance.html#cb473-9" tabindex="-1"></a>n2  <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb473-10"><a href="inference-about-the-variance.html#cb473-10" tabindex="-1"></a>va1 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb473-11"><a href="inference-about-the-variance.html#cb473-11" tabindex="-1"></a>va2 <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb473-12"><a href="inference-about-the-variance.html#cb473-12" tabindex="-1"></a>sk1 <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb473-13"><a href="inference-about-the-variance.html#cb473-13" tabindex="-1"></a>sk2 <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb473-14"><a href="inference-about-the-variance.html#cb473-14" tabindex="-1"></a></span>
+<span id="cb473-15"><a href="inference-about-the-variance.html#cb473-15" tabindex="-1"></a><span class="co"># Hypothesis Settings</span></span>
+<span id="cb473-16"><a href="inference-about-the-variance.html#cb473-16" tabindex="-1"></a>a   <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb473-17"><a href="inference-about-the-variance.html#cb473-17" tabindex="-1"></a>alt <span class="ot">&lt;-</span> <span class="st">&quot;Right&quot;</span></span>
+<span id="cb473-18"><a href="inference-about-the-variance.html#cb473-18" tabindex="-1"></a></span>
+<span id="cb473-19"><a href="inference-about-the-variance.html#cb473-19" tabindex="-1"></a>Fs <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
+<span id="cb473-20"><a href="inference-about-the-variance.html#cb473-20" tabindex="-1"></a>  <span class="co"># Samples</span></span>
+<span id="cb473-21"><a href="inference-about-the-variance.html#cb473-21" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n1, <span class="at">df =</span> sk1) <span class="sc">-</span> sk1) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk1)) <span class="sc">*</span> <span class="fu">sqrt</span>(va1)</span>
+<span id="cb473-22"><a href="inference-about-the-variance.html#cb473-22" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> (<span class="fu">rchisq</span>(<span class="at">n =</span> n2, <span class="at">df =</span> sk2) <span class="sc">-</span> sk2) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> sk2)) <span class="sc">*</span> <span class="fu">sqrt</span>(va2)</span>
+<span id="cb473-23"><a href="inference-about-the-variance.html#cb473-23" tabindex="-1"></a>  <span class="co"># Statistics</span></span>
+<span id="cb473-24"><a href="inference-about-the-variance.html#cb473-24" tabindex="-1"></a>  s21 <span class="ot">&lt;-</span> <span class="fu">var</span>(x1)</span>
+<span id="cb473-25"><a href="inference-about-the-variance.html#cb473-25" tabindex="-1"></a>  s22 <span class="ot">&lt;-</span> <span class="fu">var</span>(x2)</span>
+<span id="cb473-26"><a href="inference-about-the-variance.html#cb473-26" tabindex="-1"></a>  <span class="co"># F Statistic</span></span>
+<span id="cb473-27"><a href="inference-about-the-variance.html#cb473-27" tabindex="-1"></a>  s21 <span class="sc">/</span> s22</span>
+<span id="cb473-28"><a href="inference-about-the-variance.html#cb473-28" tabindex="-1"></a>})</span>
+<span id="cb473-29"><a href="inference-about-the-variance.html#cb473-29" tabindex="-1"></a></span>
+<span id="cb473-30"><a href="inference-about-the-variance.html#cb473-30" tabindex="-1"></a><span class="co"># Distribution of the Test Statistic</span></span>
+<span id="cb473-31"><a href="inference-about-the-variance.html#cb473-31" tabindex="-1"></a><span class="co"># Plot Settings</span></span>
+<span id="cb473-32"><a href="inference-about-the-variance.html#cb473-32" tabindex="-1"></a>xmax   <span class="ot">&lt;-</span> <span class="fu">max</span>(Fs)</span>
+<span id="cb473-33"><a href="inference-about-the-variance.html#cb473-33" tabindex="-1"></a>xmin   <span class="ot">&lt;-</span> <span class="fu">min</span>(Fs)</span>
+<span id="cb473-34"><a href="inference-about-the-variance.html#cb473-34" tabindex="-1"></a>den    <span class="ot">&lt;-</span> <span class="fu">density</span>(Fs)</span>
+<span id="cb473-35"><a href="inference-about-the-variance.html#cb473-35" tabindex="-1"></a>ymax   <span class="ot">&lt;-</span> <span class="fu">max</span>(den<span class="sc">$</span>y)</span>
+<span id="cb473-36"><a href="inference-about-the-variance.html#cb473-36" tabindex="-1"></a></span>
+<span id="cb473-37"><a href="inference-about-the-variance.html#cb473-37" tabindex="-1"></a><span class="co"># F Quantile</span></span>
+<span id="cb473-38"><a href="inference-about-the-variance.html#cb473-38" tabindex="-1"></a><span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Not Equal&quot;</span>){</span>
+<span id="cb473-39"><a href="inference-about-the-variance.html#cb473-39" tabindex="-1"></a>  Fr <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span> <span class="dv">1</span> <span class="sc">-</span> a<span class="sc">/</span><span class="dv">2</span>, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb473-40"><a href="inference-about-the-variance.html#cb473-40" tabindex="-1"></a>  Fl <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span>     a<span class="sc">/</span><span class="dv">2</span>, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb473-41"><a href="inference-about-the-variance.html#cb473-41" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb473-42"><a href="inference-about-the-variance.html#cb473-42" tabindex="-1"></a>  Fr <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span> <span class="dv">1</span> <span class="sc">-</span> a, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb473-43"><a href="inference-about-the-variance.html#cb473-43" tabindex="-1"></a>  Fl <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span>     a, <span class="at">df1 =</span> n1 <span class="sc">-</span> <span class="dv">1</span>, <span class="at">df2 =</span> n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb473-44"><a href="inference-about-the-variance.html#cb473-44" tabindex="-1"></a>}</span>
+<span id="cb473-45"><a href="inference-about-the-variance.html#cb473-45" tabindex="-1"></a></span>
+<span id="cb473-46"><a href="inference-about-the-variance.html#cb473-46" tabindex="-1"></a></span>
+<span id="cb473-47"><a href="inference-about-the-variance.html#cb473-47" tabindex="-1"></a><span class="co"># Plots Distribution of the Lower and Upper Bound</span></span>
+<span id="cb473-48"><a href="inference-about-the-variance.html#cb473-48" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NA</span>,</span>
+<span id="cb473-49"><a href="inference-about-the-variance.html#cb473-49" tabindex="-1"></a>     <span class="at">xlim   =</span> <span class="fu">c</span>(xmin, xmax),</span>
+<span id="cb473-50"><a href="inference-about-the-variance.html#cb473-50" tabindex="-1"></a>     <span class="at">ylim   =</span> <span class="fu">c</span>(<span class="dv">0</span>, ymax), </span>
+<span id="cb473-51"><a href="inference-about-the-variance.html#cb473-51" tabindex="-1"></a>     <span class="at">xlab   =</span> <span class="st">&quot;F Test Statistic&quot;</span>,</span>
+<span id="cb473-52"><a href="inference-about-the-variance.html#cb473-52" tabindex="-1"></a>     <span class="at">ylab   =</span> <span class="st">&quot;Density&quot;</span>,</span>
+<span id="cb473-53"><a href="inference-about-the-variance.html#cb473-53" tabindex="-1"></a>     <span class="at">main   =</span> <span class="st">&quot;Distribution of the F Test Statistic&quot;</span>)</span>
+<span id="cb473-54"><a href="inference-about-the-variance.html#cb473-54" tabindex="-1"></a><span class="fu">polygon</span>(den, </span>
+<span id="cb473-55"><a href="inference-about-the-variance.html#cb473-55" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
+<span id="cb473-56"><a href="inference-about-the-variance.html#cb473-56" tabindex="-1"></a>        <span class="at">border =</span> <span class="cn">NA</span>)</span>
+<span id="cb473-57"><a href="inference-about-the-variance.html#cb473-57" tabindex="-1"></a><span class="co"># Rejection Region</span></span>
+<span id="cb473-58"><a href="inference-about-the-variance.html#cb473-58" tabindex="-1"></a><span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Right&quot;</span>){</span>
+<span id="cb473-59"><a href="inference-about-the-variance.html#cb473-59" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> Fr,</span>
+<span id="cb473-60"><a href="inference-about-the-variance.html#cb473-60" tabindex="-1"></a>       <span class="at">xright  =</span> xmax,</span>
+<span id="cb473-61"><a href="inference-about-the-variance.html#cb473-61" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
+<span id="cb473-62"><a href="inference-about-the-variance.html#cb473-62" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
+<span id="cb473-63"><a href="inference-about-the-variance.html#cb473-63" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb473-64"><a href="inference-about-the-variance.html#cb473-64" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
+<span id="cb473-65"><a href="inference-about-the-variance.html#cb473-65" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Left&quot;</span>){</span>
+<span id="cb473-66"><a href="inference-about-the-variance.html#cb473-66" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> <span class="dv">0</span>,</span>
+<span id="cb473-67"><a href="inference-about-the-variance.html#cb473-67" tabindex="-1"></a>       <span class="at">xright  =</span> Fl,</span>
+<span id="cb473-68"><a href="inference-about-the-variance.html#cb473-68" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
+<span id="cb473-69"><a href="inference-about-the-variance.html#cb473-69" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
+<span id="cb473-70"><a href="inference-about-the-variance.html#cb473-70" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb473-71"><a href="inference-about-the-variance.html#cb473-71" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
+<span id="cb473-72"><a href="inference-about-the-variance.html#cb473-72" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb473-73"><a href="inference-about-the-variance.html#cb473-73" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> Fr,</span>
+<span id="cb473-74"><a href="inference-about-the-variance.html#cb473-74" tabindex="-1"></a>       <span class="at">xright  =</span> xmax,</span>
+<span id="cb473-75"><a href="inference-about-the-variance.html#cb473-75" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
+<span id="cb473-76"><a href="inference-about-the-variance.html#cb473-76" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
+<span id="cb473-77"><a href="inference-about-the-variance.html#cb473-77" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb473-78"><a href="inference-about-the-variance.html#cb473-78" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
+<span id="cb473-79"><a href="inference-about-the-variance.html#cb473-79" tabindex="-1"></a>  <span class="fu">rect</span>(<span class="at">xleft   =</span> <span class="dv">0</span>,</span>
+<span id="cb473-80"><a href="inference-about-the-variance.html#cb473-80" tabindex="-1"></a>       <span class="at">xright  =</span> Fl,</span>
+<span id="cb473-81"><a href="inference-about-the-variance.html#cb473-81" tabindex="-1"></a>       <span class="at">ybottom =</span> <span class="dv">0</span>,</span>
+<span id="cb473-82"><a href="inference-about-the-variance.html#cb473-82" tabindex="-1"></a>       <span class="at">ytop    =</span> ymax,</span>
+<span id="cb473-83"><a href="inference-about-the-variance.html#cb473-83" tabindex="-1"></a>       <span class="at">col     =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb473-84"><a href="inference-about-the-variance.html#cb473-84" tabindex="-1"></a>       <span class="at">border  =</span> <span class="cn">NA</span>)</span>
+<span id="cb473-85"><a href="inference-about-the-variance.html#cb473-85" tabindex="-1"></a>}</span></code></pre></div>
 <p><img src="_main_files/figure-html/inf-var-hypothesis-testing-non-normality-different-sample-size-1.png" width="672" /></p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="inference-about-the-variance.html#cb472-1" tabindex="-1"></a><span class="co"># Estimates the Type I error</span></span>
-<span id="cb472-2"><a href="inference-about-the-variance.html#cb472-2" tabindex="-1"></a><span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Right&quot;</span>){</span>
-<span id="cb472-3"><a href="inference-about-the-variance.html#cb472-3" tabindex="-1"></a>  erI <span class="ot">&lt;-</span> <span class="fu">mean</span>(Fs <span class="sc">&gt;</span> Fr)</span>
-<span id="cb472-4"><a href="inference-about-the-variance.html#cb472-4" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Left&quot;</span>){</span>
-<span id="cb472-5"><a href="inference-about-the-variance.html#cb472-5" tabindex="-1"></a>  erI <span class="ot">&lt;-</span> <span class="fu">mean</span>(Fs <span class="sc">&lt;</span> Fl)</span>
-<span id="cb472-6"><a href="inference-about-the-variance.html#cb472-6" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb472-7"><a href="inference-about-the-variance.html#cb472-7" tabindex="-1"></a>  erI <span class="ot">&lt;-</span> <span class="fu">mean</span>((Fs <span class="sc">&lt;</span> Fl) <span class="sc">|</span> (Fs <span class="sc">&gt;</span> Fr))</span>
-<span id="cb472-8"><a href="inference-about-the-variance.html#cb472-8" tabindex="-1"></a>}</span>
-<span id="cb472-9"><a href="inference-about-the-variance.html#cb472-9" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;The Type I Error is: &quot;</span>, <span class="fu">round</span>(erI <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="inference-about-the-variance.html#cb474-1" tabindex="-1"></a><span class="co"># Estimates the Type I error</span></span>
+<span id="cb474-2"><a href="inference-about-the-variance.html#cb474-2" tabindex="-1"></a><span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Right&quot;</span>){</span>
+<span id="cb474-3"><a href="inference-about-the-variance.html#cb474-3" tabindex="-1"></a>  erI <span class="ot">&lt;-</span> <span class="fu">mean</span>(Fs <span class="sc">&gt;</span> Fr)</span>
+<span id="cb474-4"><a href="inference-about-the-variance.html#cb474-4" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(alt <span class="sc">==</span> <span class="st">&quot;Left&quot;</span>){</span>
+<span id="cb474-5"><a href="inference-about-the-variance.html#cb474-5" tabindex="-1"></a>  erI <span class="ot">&lt;-</span> <span class="fu">mean</span>(Fs <span class="sc">&lt;</span> Fl)</span>
+<span id="cb474-6"><a href="inference-about-the-variance.html#cb474-6" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb474-7"><a href="inference-about-the-variance.html#cb474-7" tabindex="-1"></a>  erI <span class="ot">&lt;-</span> <span class="fu">mean</span>((Fs <span class="sc">&lt;</span> Fl) <span class="sc">|</span> (Fs <span class="sc">&gt;</span> Fr))</span>
+<span id="cb474-8"><a href="inference-about-the-variance.html#cb474-8" tabindex="-1"></a>}</span>
+<span id="cb474-9"><a href="inference-about-the-variance.html#cb474-9" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;The Type I Error is: &quot;</span>, <span class="fu">round</span>(erI <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;The Type I Error is: 9.14%&quot;</code></pre>
 <hr />
 </div>
