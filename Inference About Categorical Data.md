@@ -71,7 +71,7 @@ Many methods in this chapter begin with the:
 
 - Binomial distribution
 - Multinomial distribution
-- Chi-square distribution
+- Poisson Distribution
 
 These replace the normal and $t$ distributions as central tools.
 
@@ -116,7 +116,7 @@ For example, $\mu$ might represent the average BAC of a population of drivers, w
 Inference is still based on the same general structure:
 
 $$
-\text{estimator} + \text{standard error} + \text{sampling distribution}.
+\text{estimator} \rightarrow \text{sampling distribution} \rightarrow \text{pivot quantity} \rightarrow \text{Confidence Intervals \& Hypothesis Testing}.
 $$
 
 This continuity is important. The ideas are familiar, even though the formulas differ.
@@ -180,10 +180,10 @@ If the observed proportion differs substantially from 0.50, then we ask whether 
 
 Another way to examine the same issue is to compare admission rates across groups.
 
-For example, compare admission rates for:
+For example, compare admission rates for two programs:
 
-- women applicants
-- men applicants
+- Social Sciences
+- Engineering
 
 Parameters:
 
@@ -193,8 +193,8 @@ $$
 
 where:
 
-- $p_1$ is the population admission proportion for women applicants
-- $p_2$ is the population admission proportion for men applicants
+- $p_1$ is the population admission proportion for women applicants in Social Sciences.
+- $p_2$ is the population admission proportion for women applicants in Engineering.
 
 The parameter of interest is
 
@@ -209,8 +209,8 @@ This version is often more directly connected to the question of bias because it
 Interpretation:
 
 - if $p_1-p_2=0$, the two groups have the same admission rate
-- if $p_1-p_2>0$, women have a higher admission rate
-- if $p_1-p_2<0$, men have a higher admission rate
+- if $p_1-p_2>0$, Social Science have a higher admission rate for women
+- if $p_1-p_2<0$, Engineering have a higher admission rate for women
 
 The sign and size of the difference are both important.
 
@@ -220,10 +220,10 @@ The sign and size of the difference are both important.
 
 The same data may also be organized as a two-way table:
 
-| |Admitted|Not Admitted|
-|---|---|---|
-|Women|||
-|Men|||
+|       | Admitted | Not Admitted |
+| ----- | -------- | ------------ |
+| Women |          |              |
+| Men   |          |              |
 
 This table cross-classifies applicants by two categorical variables:
 
@@ -312,7 +312,7 @@ For example, if 72 out of 120 applicants are admitted, then:
 
 Relative frequencies are often easier to compare across samples because they account for different sample sizes.
 
-For instance, 72 admitted students out of 120 applicants is different from 72 admitted students out of 300 applicants. Counts alone do not tell the full story. Proportions do.
+For instance, 72 admitted students out of 120 applicants is different from 72 admitted students out of 300 applicants. Counts alone do not tell the full story. Proportions are better for some comparisons.
 
 ---
 
@@ -349,54 +349,115 @@ The inferential goal is to use $\hat p$ to learn about $p$.
 
 ### Connection to the Binomial Distribution
 
-If each observation is success/failure, then the number of successes can often be modeled as
+A binary categorical response can be represented using a **Bernoulli random variable**.
+
+A Bernoulli random variable records whether a single trial is a success or failure. We usually code it as
 
 $$
-X \sim \text{Binomial}(n,p).
+Y =
+\begin{cases}
+1, & \text{if the outcome is a success},\\
+0, & \text{if the outcome is a failure}.
+\end{cases}
 $$
 
-The sample proportion is then
+If the probability of success is $p$, then
 
 $$
-\hat p=\frac{X}{n}.
+Y \sim \text{Bernoulli}(p).
 $$
 
-This probability model drives inference.
-
-The binomial model is appropriate when:
-
-* there are $n$ trials
-* each trial has two possible outcomes
-* the probability of success is the same for every trial
-* the trials are independent
-
-This connection is important because the binomial distribution gives us the mean and variance of $X$, which then gives us the mean and variance of $\hat p$.
-
-If
+For example, in an admissions setting, we could define
 
 $$
-X \sim \text{Binomial}(n,p),
+Y_i =
+\begin{cases}
+1, & \text{if applicant } i \text{ is admitted},\\
+0, & \text{if applicant } i \text{ is not admitted}.
+\end{cases}
 $$
 
-then
+Then $Y_i$ records the admission outcome for applicant $i$.
+
+If we observe $n$ applicants, then we have $n$ Bernoulli random variables:
 
 $$
-E(X)=np
+Y_1,Y_2,\dots,Y_n.
+$$
+
+Each $Y_i$ represents one binary outcome. The total number of successes in the sample is obtained by adding these Bernoulli variables:
+
+$$
+X = Y_1 + Y_2 + \cdots + Y_n.
+$$
+
+Here, $X$ counts how many successes occurred among the $n$ observations.
+
+If the Bernoulli variables are independent and all have the same probability of success $p$, then their sum follows a binomial distribution:
+
+$$
+X = \sum_{i=1}^n Y_i \sim \text{Binomial}(n,p).
+$$
+
+This is the key connection:
+
+> A binomial random variable is the sum of independent Bernoulli random variables with the same success probability.
+
+This interpretation is useful because it connects individual binary outcomes to the total count of successes.
+
+For example, if each applicant is either admitted or not admitted, then each admission decision can be viewed as a Bernoulli random variable. The total number admitted is the sum of those Bernoulli variables. If the admission outcomes are independent and each applicant has the same probability $p$ of being admitted, then the total number admitted follows a binomial distribution.
+
+Once we define
+
+$$
+X = \text{number of successes},
+$$
+
+the sample proportion is
+
+$$
+\hat p = \frac{X}{n}.
+$$
+
+So the sample proportion is simply the average of the Bernoulli variables:
+
+$$
+\hat p
+=
+\frac{1}{n}\sum_{i=1}^n Y_i.
+$$
+
+This gives a very intuitive interpretation of $\hat p$:
+
+> The sample proportion is the sample mean of binary success/failure observations.
+
+This also explains why inference for proportions has the same general logic as inference for means. We are still studying an average, but now the observations are coded as 0s and 1s.
+
+Because
+
+$$
+Y_i \sim \text{Bernoulli}(p),
+$$
+
+we have
+
+$$
+E(Y_i)=p
 $$
 
 and
 
 $$
-\mathbb{V}(X)=np(1-p).
+\mathbb{V}(Y_i)=p(1-p).
 $$
 
-Since
+Therefore, since
 
 $$
-\hat p = \frac{X}{n},
+\hat p = \frac{1}{n}\sum_{i=1}^n Y_i,
 $$
 
-we obtain
+we get
 
 $$
 E(\hat p)=p
@@ -408,7 +469,15 @@ $$
 \mathbb{V}(\hat p)=\frac{p(1-p)}{n}.
 $$
 
-These formulas are the foundation for inference about one population proportion.
+These results form the foundation for inference about one population proportion.
+
+In summary:
+
+- each binary observation can be modeled as a Bernoulli random variable
+- the total number of successes is the sum of independent Bernoulli variables
+- that sum follows a binomial distribution
+- the sample proportion is the average of the Bernoulli variables
+- this leads directly to the mean and variance formulas used for inference about $p$
 
 ---
 
