@@ -181,6 +181,9 @@ For display math use double `$$` signs instead of `\[` and `\]`. For example, th
 $$ E=MC^2 $$
 in display math.
 
+### Sections separators
+
+Use `***` instead of `---` to separate sections.
 ## Notation
 
 The textbook "An Introduction to Statistical Methods and Data Analysis"

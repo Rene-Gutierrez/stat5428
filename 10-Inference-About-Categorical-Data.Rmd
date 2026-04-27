@@ -565,37 +565,587 @@ Several intuitive facts follow from this formula:
 
 The maximum of $p(1-p)$ occurs at $p=0.5$. This fact becomes important when choosing sample sizes.
 
----
+***
 
-### Confidence Interval for $p$
+### Pivot Quantity
 
-A large-sample confidence interval for $p$ is
+For inference about a population proportion, we need a quantity whose distribution is known, at least approximately, and that connects the sample proportion to the unknown parameter $p$.
+
+For large samples, the key pivot quantity is
 
 $$
-\hat p \pm z_{\alpha/2}
+\frac{\hat p - p}{\sqrt{p(1-p)/n}}.
+$$
+
+```{definition, pivot-one-proportion, name="Pivot Quantity for One Proportion"}
+A pivot quantity for inference about a population proportion is
+$$
+\frac{\hat p - p}{\sqrt{p(1-p)/n}},
+$$
+which is approximately standard normal when the sample size is large.
+```
+
+This quantity measures how far the sample proportion $\hat p$ is from the true population proportion $p$, expressed in units of its standard deviation.
+
+Under the large-sample approximation,
+
+$$
+\frac{\hat p - p}{\sqrt{p(1-p)/n}} \approx N(0,1).
+$$
+
+This result is fundamental because the distribution of the pivot is approximately known and does not depend on any unknown parameter other than the $p$ already appearing in the expression.
+
+The pivot quantity is useful because it provides the basis for both:
+
+* confidence intervals for $p$
+* hypothesis tests about $p$
+
+For confidence intervals, we begin with a probability statement about this pivot and then solve for $p$.
+
+For hypothesis testing, under
+
+$$
+H_0:p=p_0,
+$$
+
+the pivot becomes
+
+$$
+\frac{\hat p - p_0}{\sqrt{p_0(1-p_0)/n}},
+$$
+
+which is the usual $z$ test statistic for one population proportion.
+
+So the pivot quantity is the bridge between the sample proportion $\hat p$ and the inferential procedures developed for categorical data.
+
+***
+
+### Confidence Interval
+
+#### The Wald Interval
+
+A common large-sample confidence interval for a population proportion $p$ is the **Wald interval**:
+
+$$
+\hat p \pm z_{\alpha/2}\sqrt{\frac{\hat p(1-\hat p)}{n}}.
+$$
+
+This interval is obtained by starting with the approximate normality of the sample proportion and then replacing the unknown standard error
+
+$$
+\sqrt{\frac{p(1-p)}{n}}
+$$
+
+with the estimated standard error
+
+$$
 \sqrt{\frac{\hat p(1-\hat p)}{n}}.
 $$
 
-This interval follows the familiar structure:
+This gives an interval with the familiar form
 
 $$
-\text{estimate} \pm \text{critical value} \times \text{standard error}.
+\text{estimate} \pm \text{critical value} \times \text{estimated standard error}.
 $$
 
-Here:
-
-* the estimate is $\hat p$
-* the critical value is $z_{\alpha/2}$
-* the standard error is $\sqrt{\hat p(1-\hat p)/n}$
-
-The confidence interval gives a range of plausible values for the population proportion.
-
-For example, if a 95% confidence interval for an admission proportion is $(0.52,0.68)$, then the data suggest that the population admission rate is plausibly between 52% and 68%.
-
-The interpretation should always be tied to the context.
+The Wald interval is appealing because it is simple, easy to compute, and closely resembles the intervals developed earlier for means.
 
 ---
 
+##### Why the Wald Interval Is Natural
+
+The Wald interval is often introduced first because it follows the same general pattern used throughout classical inference.
+
+We begin with the approximate pivot quantity
+
+$$
+\frac{\hat p-p}{\sqrt{p(1-p)/n}} \approx N(0,1),
+$$
+
+and then replace the unknown standard error by an estimate based on the sample. This leads directly to the interval
+
+$$
+\hat p \pm z_{\alpha/2}\sqrt{\frac{\hat p(1-\hat p)}{n}}.
+$$
+
+So the Wald interval is natural from the point of view of basic large-sample inference.
+
+It also has a straightforward interpretation:
+
+- the center is the sample proportion $\hat p$
+- the width depends on the estimated variability of $\hat p$
+- larger samples produce narrower intervals
+
+---
+
+##### Disadvantages of the Wald Interval
+
+Although the Wald interval is simple, it has important weaknesses.
+
+In practice, it can perform poorly when:
+
+- the sample size is small
+- the true proportion is close to 0 or 1
+- the sample produces very few successes or failures
+
+The main issue is that the interval treats the estimated standard error as though it were fully reliable even when the sample proportion is near the boundary of 0 or 1. This can make the interval too narrow or poorly centered.
+
+As a result, the Wald interval often has **poor coverage**. That means that a nominal 95% Wald interval may contain the true proportion less than 95% of the time.
+
+It can also produce intervals with undesirable features, such as:
+
+- lower bounds below 0
+- upper bounds above 1
+
+even though a population proportion must lie between 0 and 1.
+
+So while the Wald interval is easy to derive and compute, it is often not the best large-sample confidence interval for a proportion.
+
+---
+
+#### The Score Interval
+
+A better approach is to begin with the same approximate pivot quantity
+
+$$
+\frac{\hat p-p}{\sqrt{p(1-p)/n}} \approx N(0,1),
+$$
+
+but **not** replace $p$ in the denominator immediately.
+
+Instead, we keep the standard error in terms of the unknown $p$ and write
+
+$$
+\left|
+\frac{\hat p-p}{\sqrt{p(1-p)/n}}
+\right|
+\le z_{\alpha/2}.
+$$
+
+Squaring both sides gives
+
+$$
+\frac{(\hat p-p)^2}{p(1-p)/n} \le z_{\alpha/2}^2.
+$$
+
+Now we solve this inequality for $p$.
+
+Because $p$ appears in the denominator, this leads to a quadratic inequality rather than the simple Wald form. The resulting interval is called the **score interval**, also known as the **Wilson interval**.
+
+Its formula is
+
+$$
+\frac{
+\hat p + \frac{z_{\alpha/2}^2}{2n}
+\pm
+z_{\alpha/2}
+\sqrt{
+\frac{\hat p(1-\hat p)}{n}
++
+\frac{z_{\alpha/2}^2}{4n^2}
+}
+}
+{
+1+\frac{z_{\alpha/2}^2}{n}
+}.
+$$
+
+
+---
+
+##### Why the Score Interval Is Better
+
+The score interval has better large-sample behavior than the Wald interval.
+
+In particular, it typically has:
+
+- more accurate coverage probabilities
+- better performance for small and moderate sample sizes
+- better behavior when $p$ is near 0 or 1
+- endpoints that stay in a more reasonable range
+
+Conceptually, the improvement comes from the fact that the score interval respects the role of $p$ in the standard error more carefully. Instead of plugging in $\hat p$ immediately, it solves for all values of $p$ that are consistent with the score statistic not being too extreme.
+
+This gives an interval that is usually more stable and more reliable.
+
+---
+
+#### Interpretation of the Difference
+
+Both intervals are based on the same large-sample normal approximation. The difference is in how that approximation is used.
+
+- The **Wald interval** plugs in $\hat p$ for the standard error first, then builds the interval.
+- The **score interval** keeps $p$ inside the standard error and solves the resulting inequality for $p$.
+
+So the score interval uses the same basic ingredients, but it handles the uncertainty more carefully.
+
+---
+
+#### Advantages and Disadvantages of the Two Intervals
+
+##### Wald Interval
+
+**Advantages**
+
+- simple formula
+- easy to compute and explain
+- follows the familiar estimate $\pm$ margin of error structure
+- useful as an introductory interval
+
+**Disadvantages**
+
+- can have poor coverage
+- often performs badly for small samples
+- behaves poorly when $p$ is near 0 or 1
+- may produce bounds outside $[0,1]$
+
+##### Score Interval
+
+**Advantages**
+
+- better coverage than the Wald interval
+- more reliable for small and moderate sample sizes
+- better behavior near 0 and 1
+- generally preferred in practice
+
+**Disadvantages**
+
+- more complicated algebra
+- less intuitive at first glance
+- formula is more difficult to memorize or derive quickly
+
+---
+
+#### Practical Summary
+
+The Wald interval is often introduced first because it is simple and closely matches the general logic of earlier confidence intervals.
+
+However, the score interval is usually preferable in practice because it has better inferential performance.
+
+So the conceptual development is:
+
+1. Start with the Wald interval because it is simple and natural.
+2. Recognize that it can perform poorly.
+3. Improve the method by keeping $p$ in the standard error and solving the score inequality.
+4. This leads to the score, or Wilson, interval.
+
+In summary:
+
+- the Wald interval is easier
+- the score interval is better
+
+For practical statistical work, the score interval is often the better choice when constructing confidence intervals for a population proportion.
+
+***
+
+#### Why the Interval Gets Narrower for Large Samples
+
+The width of the confidence interval depends strongly on the sample size.
+
+The standard error is
+
+$$
+\sqrt{\frac{p(1-p)}{n}},
+$$
+
+so as $n$ increases, the denominator becomes larger and the standard error becomes smaller.
+
+This means that larger samples produce narrower intervals.
+
+That matches intuition: with more data, we estimate the population proportion more precisely.
+
+The width of the interval also depends on the confidence level. A 99% confidence interval is wider than a 95% confidence interval because a larger critical value is used.
+
+***
+#### Simulation: Comparing Wald and Score Intervals
+
+```{r inf-cat-dat-wald-vs-score-interval}
+# Confidence Intervals for a Proportion
+
+# Distribution Settings
+n <- 10
+p <- seq(0.01, 0.99, by = 0.001)
+nP <- length(p)
+
+# Confidence Level Settings
+a <- 0.05
+
+# Simulation Settings
+B <- 1000
+
+cov <- matrix(data = NA, nrow = nP, ncol = 2)
+len <- matrix(data = NA, nrow = nP, ncol = 2)
+int <- array(data = NA, dim = c(nP, B, 4))
+for(i in 1:nP){
+  conInt <- replicate(B, {
+    # Sample
+    x <- rbinom(n = n, size = 1, prob = p[i])
+    
+    # Estimator
+    pHat <- mean(x)
+    
+    # Quantile
+    za <- qnorm(p = a/2)
+    
+    # Quadratic Equation Terms
+    a <- (1 + za^2/n)
+    b <- -(2 * pHat + za^2 / n)
+    c <- pHat^2
+    
+    # Confidence Interval Bunds
+    lowAp1 <- (-b - sqrt(b^2 - 4 * a * c)) / (2 * a)
+    uppAp1 <- (-b + sqrt(b^2 - 4 * a * c)) / (2 * a)
+    
+    # Estimated Standard Devition
+    se <- sqrt(pHat * (1 - pHat) / n)
+    
+    # Compute the Interval Limits
+    lowAp2 <- pHat + za * se
+    uppAp2 <- pHat - za * se
+    
+    # Save
+    c(lowAp1, uppAp1, lowAp2, uppAp2)
+  })
+  
+  conInt <- t(conInt)
+  
+  int[i,,]  <- conInt
+  cov[i, 1] <- mean((conInt[, 1] + noi  < p[i]) & (conInt[, 2] + noi > p[i]))
+  cov[i, 2] <- mean((conInt[, 3] + noi  < p[i]) & (conInt[, 4] + noi > p[i]))
+  len[i, 1] <- mean(conInt[, 2] - conInt[, 1])
+  len[i, 2] <- mean(conInt[, 4] - conInt[, 3])
+}
+
+int[nP,,4]
+
+plot(x    = p,
+     y    = cov[, 1],
+     ylim = c(0, 1),
+     type = 'l',
+     xlab = "Population Probability",
+     ylab = "Simulated Coverage",
+     lwd  = 2,
+     col = rgb(1, 0, 0, 0.5))
+par(new=TRUE)
+plot(x    = p,
+     y    = cov[, 2],
+     ylim = c(0, 1),
+     type = 'l',
+     xlab = "",
+     ylab = "",
+     lwd  = 2,
+     col = rgb(0, 0, 1, 0.5))
+abline(h = 1 - a, col = rgb(0, 0, 0, 0.7), lwd = 2)
+
+plot(x    = p,
+     y    = len[, 1],
+     ylim = c(0, 1),
+     type = 'l',
+     xlab = "Population Probability",
+     ylab = "Simulated Interval Lenght",
+     lwd  = 2,
+     col = rgb(1, 0, 0, 0.5))
+par(new=TRUE)
+plot(x    = p,
+     y    = len[, 2],
+     ylim = c(0, 1),
+     type = 'l',
+     xlab = "",
+     ylab = "",
+     lwd  = 2,
+     col = rgb(0, 0, 1, 0.5))
+```
+
+---
+
+### Hypothesis Testing for $p$
+
+To test a claim about a population proportion, we begin with a null hypothesis of the form
+
+$$
+H_0:p=p_0.
+$$
+
+Here, $p_0$ is the proportion claimed under the null hypothesis.
+
+For example, if a vocational program wants to assess whether the admission rate is 50%, then the null hypothesis is
+
+$$
+H_0:p=0.50.
+$$
+
+The alternative hypothesis depends on the research question. Common choices are:
+
+$$
+H_a:p\ne p_0,
+$$
+
+$$
+H_a:p>p_0,
+$$
+
+or
+
+$$
+H_a:p<p_0.
+$$
+
+These correspond, respectively, to a two-sided test, a right-tailed test, or a left-tailed test.
+
+---
+
+#### Test Statistic
+
+For large samples, the standard test statistic is
+
+$$
+z=
+\frac{\hat p-p_0}
+{\sqrt{p_0(1-p_0)/n}}.
+$$
+
+This statistic compares the observed sample proportion $\hat p$ to the value $p_0$ claimed under the null hypothesis, measured in units of the standard deviation that would be expected if the null hypothesis were true.
+
+So the test statistic answers the question:
+
+> How far is the observed sample proportion from the null value, relative to the variability expected under $H_0$?
+
+If the value of $z$ is close to 0, then the observed sample proportion is close to what we would expect under the null hypothesis. If the value of $z$ is very large in magnitude, then the observed proportion is far from what we would expect under $H_0$.
+
+---
+
+#### Why the Standard Error Uses $p_0$
+
+This is an important point.
+
+In confidence intervals, the standard error involves the unknown parameter $p$, so we usually replace it by $\hat p$, leading to the estimated standard error
+
+$$
+\sqrt{\frac{\hat p(1-\hat p)}{n}}.
+$$
+
+In hypothesis testing, the situation is different.
+
+Under the null hypothesis, the value of the parameter is fully specified:
+
+$$
+p=p_0.
+$$
+
+So there is no ambiguity about which standard error to use. We compute the standard error under the null hypothesis itself:
+
+$$
+\sqrt{\frac{p_0(1-p_0)}{n}}.
+$$
+
+This means that, unlike confidence intervals, there are **not two competing cases** here such as a Wald-type versus a score-type standard error choice for the basic one-proportion test. Once the null hypothesis is stated, the null value $p_0$ determines the standard error used in the test statistic.
+
+That is one reason hypothesis testing for one proportion is more direct than confidence interval construction.
+
+---
+
+#### Large-Sample Approximation
+
+When the sample size is large enough, the test statistic is approximately standard normal under the null hypothesis:
+
+$$
+z \approx N(0,1).
+$$
+
+This approximation is justified by the large-sample behavior of the sample proportion.
+
+A common condition is that the expected numbers of successes and failures under the null hypothesis are both sufficiently large, for example:
+
+$$
+np_0 \ge 5
+\qquad \text{and} \qquad
+n(1-p_0)\ge 5.
+$$
+
+Some instructors or books use 10 instead of 5 as a more conservative guideline.
+
+These conditions matter because if the expected counts are too small, the normal approximation may be poor, and an exact binomial test may be more appropriate.
+
+---
+
+#### Decision Rule and p-Value
+
+Once the test statistic is computed, there are two equivalent ways to proceed:
+
+- compare the value of $z$ to the appropriate critical value
+- compute the p-value
+
+For a two-sided test,
+
+$$
+H_a:p\ne p_0,
+$$
+
+the p-value is the probability, assuming $H_0$ is true, of observing a value of the test statistic at least as far from 0 as the one obtained.
+
+For a right-tailed test,
+
+$$
+H_a:p>p_0,
+$$
+
+the p-value is the upper-tail probability.
+
+For a left-tailed test,
+
+$$
+H_a:p<p_0,
+$$
+
+the p-value is the lower-tail probability.
+
+A small p-value indicates that the observed sample proportion would be unusual if the null hypothesis were true, and therefore provides evidence against $H_0$.
+
+***
+
+#### Simulation: Hypothesis Testing
+
+
+
+---
+
+#### Interpretation
+
+The conclusion of the test should always be stated in the context of the problem.
+
+For example, if we reject
+
+$$
+H_0:p=0.50,
+$$
+
+we should not stop at saying “reject $H_0$.” Instead, we should say something like:
+
+> The data provide evidence that the population proportion differs from 50%.
+
+Or, if the alternative is one-sided,
+
+> The data provide evidence that the population proportion is greater than 50%.
+
+This is the same principle used throughout inference: the statistical conclusion must be translated back into the scientific or practical question.
+
+---
+
+#### Summary
+
+To test a claim about a population proportion, we use
+
+$$
+z=
+\frac{\hat p-p_0}
+{\sqrt{p_0(1-p_0)/n}}.
+$$
+
+The standard error is computed using $p_0$ because under the null hypothesis the parameter value is specified.
+
+So, unlike confidence intervals, there is no separate “plug-in versus not plug-in” issue here in the basic one-proportion test. The null hypothesis itself determines the standard error used in the test statistic.
+
+***
 ### Hypothesis Testing for $p$
 
 To test a claim about a population proportion, we often begin with
