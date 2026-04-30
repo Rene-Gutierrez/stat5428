@@ -863,8 +863,8 @@ The width of the interval also depends on the confidence level. A 99% confidence
 # Confidence Intervals for a Proportion
 
 # Distribution Settings
-n <- 10
-p <- seq(0.01, 0.99, by = 0.001)
+n  <- 10
+p  <- seq(0.01, 0.99, by = 0.001)
 nP <- length(p)
 
 # Confidence Level Settings
@@ -910,13 +910,11 @@ for(i in 1:nP){
   conInt <- t(conInt)
   
   int[i,,]  <- conInt
-  cov[i, 1] <- mean((conInt[, 1] + noi  < p[i]) & (conInt[, 2] + noi > p[i]))
-  cov[i, 2] <- mean((conInt[, 3] + noi  < p[i]) & (conInt[, 4] + noi > p[i]))
+  cov[i, 1] <- mean((conInt[, 1] < p[i]) & (conInt[, 2] > p[i]))
+  cov[i, 2] <- mean((conInt[, 3] < p[i]) & (conInt[, 4] > p[i]))
   len[i, 1] <- mean(conInt[, 2] - conInt[, 1])
   len[i, 2] <- mean(conInt[, 4] - conInt[, 3])
 }
-
-int[nP,,4]
 
 plot(x    = p,
      y    = cov[, 1],
@@ -936,24 +934,6 @@ plot(x    = p,
      lwd  = 2,
      col = rgb(0, 0, 1, 0.5))
 abline(h = 1 - a, col = rgb(0, 0, 0, 0.7), lwd = 2)
-
-plot(x    = p,
-     y    = len[, 1],
-     ylim = c(0, 1),
-     type = 'l',
-     xlab = "Population Probability",
-     ylab = "Simulated Interval Lenght",
-     lwd  = 2,
-     col = rgb(1, 0, 0, 0.5))
-par(new=TRUE)
-plot(x    = p,
-     y    = len[, 2],
-     ylim = c(0, 1),
-     type = 'l',
-     xlab = "",
-     ylab = "",
-     lwd  = 2,
-     col = rgb(0, 0, 1, 0.5))
 ```
 
 ---
@@ -1042,92 +1022,59 @@ This means that, unlike confidence intervals, there are **not two competing case
 
 That is one reason hypothesis testing for one proportion is more direct than confidence interval construction.
 
----
-
-#### Large-Sample Approximation
-
-When the sample size is large enough, the test statistic is approximately standard normal under the null hypothesis:
-
-$$
-z \approx N(0,1).
-$$
-
-This approximation is justified by the large-sample behavior of the sample proportion.
-
-A common condition is that the expected numbers of successes and failures under the null hypothesis are both sufficiently large, for example:
-
-$$
-np_0 \ge 5
-\qquad \text{and} \qquad
-n(1-p_0)\ge 5.
-$$
-
-Some instructors or books use 10 instead of 5 as a more conservative guideline.
-
-These conditions matter because if the expected counts are too small, the normal approximation may be poor, and an exact binomial test may be more appropriate.
-
----
-
-#### Decision Rule and p-Value
-
-Once the test statistic is computed, there are two equivalent ways to proceed:
-
-- compare the value of $z$ to the appropriate critical value
-- compute the p-value
-
-For a two-sided test,
-
-$$
-H_a:p\ne p_0,
-$$
-
-the p-value is the probability, assuming $H_0$ is true, of observing a value of the test statistic at least as far from 0 as the one obtained.
-
-For a right-tailed test,
-
-$$
-H_a:p>p_0,
-$$
-
-the p-value is the upper-tail probability.
-
-For a left-tailed test,
-
-$$
-H_a:p<p_0,
-$$
-
-the p-value is the lower-tail probability.
-
-A small p-value indicates that the observed sample proportion would be unusual if the null hypothesis were true, and therefore provides evidence against $H_0$.
-
 ***
 
-#### Simulation: Hypothesis Testing
+#### Simulation: Approximate Hypothesis Testing
 
 
+```{r inf-cat-dat-approximate-test-for-a-proportion}
+#Hypothesis Testing for a Proportion (Approximate Test)
 
----
+# Distribution Settings
+n  <- 10
+p  <- seq(0.01, 0.99, by = 0.001)
+nP <- length(p)
 
-#### Interpretation
+# Confidence Level Settings
+a <- 0.05
 
-The conclusion of the test should always be stated in the context of the problem.
+# Simulation Settings
+B <- 1000
 
-For example, if we reject
+rejPer <- rep(NA, nP)
+for(i in 1:nP){
+  rej <- replicate(B, {
+    # Sample
+    x <- rbinom(n = n, size = 1, prob = p[i])
+    
+    # Estimator
+    pHat <- mean(x)
+    
+    # Standard Error of the Estimator
+    se <- sqrt(p[i] * (1 - p[i]) / n)
+    
+    # Quantile for Rejection Region
+    za <- qnorm(p = 1 - a)
+    
+    # Test Statistic
+    z <- (pHat - p[i])/ se
+    
+    # Rejection Decision
+    z > za
+  })
+  
+  # Rejection Percentage
+  rejPer[i] <- mean(rej)
+}
 
-$$
-H_0:p=0.50,
-$$
+plot(x = p,
+     y = rejPer,
+     xlab = "True Probability",
+     ylab = "Simulated Type I Error",
+     main = "Approximate Test")
+abline(h = a, col = rgb(1, 0, 0, 0.5), lwd = 2)
+```
 
-we should not stop at saying “reject $H_0$.” Instead, we should say something like:
-
-> The data provide evidence that the population proportion differs from 50%.
-
-Or, if the alternative is one-sided,
-
-> The data provide evidence that the population proportion is greater than 50%.
-
-This is the same principle used throughout inference: the statistical conclusion must be translated back into the scientific or practical question.
 
 ---
 
@@ -1144,33 +1091,6 @@ $$
 The standard error is computed using $p_0$ because under the null hypothesis the parameter value is specified.
 
 So, unlike confidence intervals, there is no separate “plug-in versus not plug-in” issue here in the basic one-proportion test. The null hypothesis itself determines the standard error used in the test statistic.
-
-***
-### Hypothesis Testing for $p$
-
-To test a claim about a population proportion, we often begin with
-
-$$
-H_0:p=p_0.
-$$
-
-The test statistic is
-
-$$
-z=
-\frac{\hat p-p_0}
-{\sqrt{p_0(1-p_0)/n}}.
-$$
-
-Notice that the standard error in the denominator uses $p_0$, not $\hat p$.
-
-This is because the test statistic is constructed under the assumption that the null hypothesis is true. If $H_0$ is true, then the sampling variability of $\hat p$ is determined by $p_0$.
-
-The test statistic answers the question:
-
-> How many standard errors is the observed sample proportion from the null value?
-
-A large positive or negative value of $z$ indicates that the observed proportion is far from what would be expected under the null hypothesis.
 
 ---
 
@@ -1241,73 +1161,54 @@ The key practical lesson is:
 
 > Use large-sample $z$ methods only when the expected counts are large enough. Otherwise, consider exact binomial methods.
 
----
+***
 
-### Numerical Example
+#### Simulation: Exact Hypothesis Testing
 
-Suppose:
+```{r  inf-cat-dat-exact-test-for-a-proportion}
+#Hypothesis Testing for a Proportion (Approximate Test)
 
-* 120 applicants
-* 72 admitted
+# Distribution Settings
+n  <- 10
+p  <- seq(0.01, 0.99, by = 0.001)
+nP <- length(p)
 
-Then:
+# Confidence Level Settings
+a <- 0.05
 
-$$
-\hat p=72/120=.60.
-$$
+# Simulation Settings
+B <- 1000
 
-```{r one-proportion-example}
-x <- 72
-n <-120
-phat <- x/n
-phat
+rejPer <- rep(NA, nP)
+for(i in 1:nP){
+  pval <- replicate(B, {
+    # Sample
+    x <- rbinom(n = n, size = 1, prob = p[i])
+    
+    # Test Statistic
+    y <- sum(x)
+    
+    # P-value
+    pbinom(q = y - 1, size = n, prob = p[i], lower.tail = FALSE)
+  })
+  
+  # Rejection Percentage
+  rejPer[i] <- mean(pval < 0.05)
+}
+
+plot(x = p,
+     y = rejPer,
+     xlab = "True Probability",
+     ylab = "Simulated Type I Error",
+     main = "Exact Test")
+abline(h = a, col = rgb(1, 0, 0, 0.5), lwd = 2)
 ```
 
-The output gives the sample proportion of admitted applicants.
+***
 
-In this case, 60% of the sampled applicants were admitted. This is the point estimate of the true population admission proportion.
+### Choosing the Sample Size for Estimating a Proportion
 
-The value $\hat p=0.60$ does not mean the population proportion is exactly 0.60. It means that 0.60 is our sample-based estimate of the unknown population proportion.
-
-To quantify uncertainty, we would construct a confidence interval.
-
-```{r one-proportion-confidence-interval}
-se <- sqrt(phat * (1 - phat) / n)
-zcrit <- qnorm(0.975)
-phat + c(-1, 1) * zcrit * se
-```
-
-This interval gives a range of plausible values for the true admission proportion.
-
-If the interval is narrow, the estimate is relatively precise. If the interval is wide, the sample does not provide as much precision.
-
----
-
-### Simulation Example
-
-```{r one-proportion-simulation}
-set.seed(5428)
-sim <- replicate(5000, mean(rbinom(100,1,.60)))
-hist(sim)
-```
-
-This simulation illustrates sampling variability.
-
-Each simulated sample contains 100 binary observations with success probability 0.60. For each sample, the code computes the sample proportion.
-
-The histogram shows how $\hat p$ varies from sample to sample.
-
-The center of the histogram should be close to 0.60, showing that $\hat p$ is centered around the true value. The spread of the histogram reflects sampling variability.
-
-This simulation reinforces a key idea:
-
-> A sample proportion is not fixed. It changes from sample to sample, even when the true population proportion stays the same.
-
----
-
-## Choosing the Sample Size for Estimating a Proportion
-
-### Margin of Error
+#### Margin of Error
 
 For a confidence interval for $p$, the margin of error is approximately
 
@@ -1324,7 +1225,7 @@ From the formula, the margin of error decreases when $n$ increases. This matches
 
 ---
 
-### Planning Sample Size
+#### Planning Sample Size
 
 To plan a study, we often want to choose $n$ so that the margin of error is no larger than a desired value $E$.
 
@@ -1352,7 +1253,7 @@ The required sample size increases when:
 
 ---
 
-### What to Do When $p$ Is Unknown
+#### What to Do When $p$ Is Unknown
 
 The difficulty in sample size planning is that the formula uses $p$, but $p$ is exactly what we are trying to estimate.
 
@@ -1376,7 +1277,7 @@ But when no reliable prior estimate is available, $p=0.5$ is a safe default.
 
 ---
 
-### Practical Interpretation
+#### Practical Interpretation
 
 Larger precision requires larger sample size.
 
@@ -1480,6 +1381,55 @@ If the interval does not contain 0, then the data provide evidence of a differen
 
 The sign of the interval tells us the direction of the difference.
 
+***
+
+#### Simulation: Confidence Interval Difference of Two Proportions
+
+```{r inf-cat-dat-confidence-interval-difference-of-two-proportions}
+# Confidence Intervals for the Difference Between Two Intervals
+
+# Distribution Settings
+n1 <- 100
+n2 <- 50
+p1 <- 0.5
+p2 <- 0.1
+
+# Confidence Level Settings
+a <- 0.05
+
+# Simulation Settings
+B <- 1000
+
+conInt <- replicate(B, {
+  # Sample
+  x1 <- rbinom(n = n1, size = 1, prob = p1)
+  x2 <- rbinom(n = n2, size = 1, prob = p2)
+  
+  # Estimator
+  p1Hat <- mean(x1)
+  p2Hat <- mean(x2)
+  
+  # Estimated Standard Error
+  ese <- sqrt(p1Hat * (1 - p1Hat) / n1 + p2Hat * (1 - p2Hat) / n2)
+  
+  # Quantile
+  za <- qnorm(p = 1 - a / 2)
+  
+  # Confidence Interval Bounds
+  low <- (p1Hat - p2Hat) - za * ese
+  upp <- (p1Hat - p2Hat) + za * ese
+  
+  # Save
+  c(low, upp)
+})
+
+conInt <- t(conInt)
+
+cov <- mean((conInt[, 1] < (p1 - p2)) & (conInt[, 2] > (p1 - p2)))
+
+print(paste0("Coverage of the Confidence Intervals: ", round(cov *100, 2), "%"))
+```
+
 ---
 
 ### Hypothesis Testing for $p_1-p_2$
@@ -1550,6 +1500,62 @@ $$
 
 This statistic measures how far the observed difference in sample proportions is from 0, in standard error units, assuming the null hypothesis is true.
 
+***
+
+### Simulation: Hypothesis Testing for Difference between Two Proportions
+
+
+```{r inf-cat-hypothesi-testing-difference-two-proportions}
+# Confidence Intervals for a Proportion
+
+# Distribution Settings
+# Distribution Settings
+n1 <- 10
+n2 <- 10
+p1 <- seq(0.01, 0.99, by = 0.001)
+nP <- length(p1)
+
+# Confidence Level Settings
+a <- 0.05
+
+# Simulation Settings
+B <- 1000
+
+rejPer <- rep(NA, nP)
+for(i in 1:nP){
+  rej <- replicate(B, {
+    # Sample
+    x1 <- rbinom(n = n1, size = 1, prob = p1[i])
+    x2 <- rbinom(n = n2, size = 1, prob = p1[i])
+    
+    # Quantity of Interest
+    p1Hat <- mean(x1)
+    p2Hat <- mean(x2)
+    
+    # Estimated Standard Error
+    se <- sqrt(p1[i] * (1 - p1[i]) * (1 / n1 + 1 / n2))
+    
+    # Quantile
+    za <- qnorm(p = 1 - a)
+    
+    # Test Statistic
+    z <- (p1Hat - p2Hat) / se
+    
+    # Save
+    z > za
+  })
+  
+  # Rejection Percentage
+  rejPer[i] <- mean(rej)
+}
+
+plot(x = p1,
+     y = rejPer,
+     xlab = "True Probability",
+     ylab = "Simulated Type I Error")
+abline(h = a, col = rgb(1, 0, 0, 0.5), lwd = 3)
+```
+
 ---
 
 ### Conditions for the Large-Sample Test
@@ -1563,65 +1569,6 @@ For hypothesis tests, use the pooled proportion under the null hypothesis.
 A common requirement is that all expected counts be at least 5 or 10.
 
 The reason is the same as in one-proportion inference: the normal approximation works better when the binomial distributions are not too skewed.
-
----
-
-### Numerical Example
-
-```{r two-proportion-example}
-x1<-48
-n1<-80
-x2<-36
-n2<-90
-p1<-x1/n1
-p2<-x2/n2
-p1-p2
-```
-
-This code computes the observed difference in sample proportions.
-
-Here, group 1 has sample proportion $\hat p_1=48/80=0.60$, while group 2 has sample proportion $\hat p_2=36/90=0.40$.
-
-The observed difference is
-
-$$
-0.60-0.40=0.20.
-$$
-
-This suggests that group 1 has a sample proportion 20 percentage points higher than group 2.
-
-To determine whether this difference is statistically meaningful, we need a confidence interval or hypothesis test.
-
----
-
-### Simulation Example
-
-```{r two-proportion-simulation}
-set.seed(5428)
-d <- replicate(5000,{
-mean(rbinom(80,1,.6))-
-mean(rbinom(90,1,.4))
-})
-hist(d)
-```
-
-This simulation shows the sampling distribution of the difference in sample proportions.
-
-Each repetition generates:
-
-* one sample of size 80 from a population with proportion 0.60
-* one sample of size 90 from a population with proportion 0.40
-* the difference in sample proportions
-
-The histogram shows how $\hat p_1-\hat p_2$ varies from sample to sample.
-
-The center should be near
-
-$$
-0.60-0.40=0.20.
-$$
-
-This illustrates that even when the population proportions are fixed, the observed difference varies due to sampling.
 
 ---
 
@@ -1643,109 +1590,251 @@ This requires a multivariate count framework.
 
 The chi-square goodness-of-fit test is designed for exactly this situation.
 
----
-
-### Observed Counts and Expected Counts
-
-The observed counts are denoted by
-
-$$
-O_i.
-$$
-
-These are the counts actually observed in category $i$.
-
-The expected counts are denoted by
-
-$$
-E_i.
-$$
-
-These are the counts we would expect under the null hypothesis.
-
-The basic idea is simple:
-
-> Compare what we observed to what the null hypothesis says we should have observed.
-
-If the observed and expected counts are close, the data are consistent with the null hypothesis. If they are very different, the data provide evidence against the null hypothesis.
-
----
-
-### Chi-Square Goodness-of-Fit Test
-
-The chi-square goodness-of-fit test compares:
-
-* observed counts
-* hypothesized counts
-
-It is used when we have one categorical variable with several possible categories and want to test whether the population follows a specified distribution.
-
-Examples:
-
-* Are applicants equally likely to prefer three vocational programs?
-* Do survey responses follow a hypothesized distribution?
-* Are defects equally likely across several defect types?
-* Does a die appear to be fair?
-
-The test statistic measures the overall discrepancy between observed and expected counts.
-
----
+***
 
 ### Hypotheses for a Goodness-of-Fit Test
+
+A goodness-of-fit test is used when we want to compare an observed distribution of counts with a theoretical or hypothesized distribution. In other words, we want to determine whether the data are consistent with a proposed model for how observations should be distributed across categories.
+
+The null hypothesis describes the distribution that we expect to see if the proposed model is correct. The alternative hypothesis says that the true distribution is different from the proposed one.
+
+Suppose a categorical variable has $k$ possible categories. Let
+
+$$
+p_1, p_2, \ldots, p_k
+$$
+
+represent the true population proportions in the $k$ categories. A goodness-of-fit test is usually written as
+
+$$
+H_0: p_1 = p_{10}, \ p_2 = p_{20}, \ldots, p_k = p_{k0}
+$$
+
+where
+
+$$
+p_{10}, p_{20}, \ldots, p_{k0}
+$$
+
+are the proportions specified by the hypothesized model.
+
+The alternative hypothesis is
+
+$$
+H_a: \text{at least one of the population proportions is different from the value specified by } H_0.
+$$
+
+This means that we do not usually specify exactly which category is different. The test is designed to detect whether the overall pattern of observed counts is inconsistent with the hypothesized pattern.
+
+```{definition, goodness-of-fit-hypotheses, name="Hypotheses for a Goodness-of-Fit Test"}
+For a categorical variable with $k$ categories, a goodness-of-fit test compares the true population proportions $p_1, p_2, \ldots, p_k$ with hypothesized values $p_{10}, p_{20}, \ldots, p_{k0}$.
 
 The null hypothesis is
 
 $$
-H_0: \text{specified proportions hold}.
+H_0: p_1 = p_{10}, \ p_2 = p_{20}, \ldots, p_k = p_{k0}.
 $$
 
-For example, if there are three categories and the hypothesized proportions are equal, then
+The alternative hypothesis is
 
 $$
-H_0:p_1=p_2=p_3=\frac{1}{3}.
+H_a: \text{at least one } p_i \text{ is different from its hypothesized value } p_{i0}.
+$$
+```
+
+The hypothesized probabilities must add to one:
+
+$$
+p_{10}+p_{20}+\cdots+p_{k0}=1.
 $$
 
-The alternative is that at least one population proportion differs from its hypothesized value.
+This is required because the categories describe all possible outcomes. For example, if a categorical variable has four possible categories, the probabilities assigned to the four categories must account for the entire population.
 
-It is important to note that the alternative does not usually say which category differs. It only says that the overall pattern does not match the hypothesized distribution.
+Once the hypothesized probabilities are specified, the expected count in category $i$ is
+
+$$
+E_i = n p_{i0},
+$$
+
+where $n$ is the total sample size.
+
+The observed counts are denoted by
+
+$$
+O_1, O_2, \ldots, O_k.
+$$
+
+The purpose of the test is to compare the observed counts $O_i$ with the expected counts $E_i$. If the null hypothesis is correct, the observed counts should be reasonably close to the expected counts. They will not usually be exactly equal because of sampling variability, but they should not be too far apart.
+
+The chi-square goodness-of-fit statistic is
+
+$$
+X^2 = \sum_{i=1}^k \frac{(O_i - E_i)^2}{E_i}.
+$$
+
+Large values of $X^2$ provide evidence against the null hypothesis because they indicate that the observed distribution is far from the hypothesized distribution.
 
 ---
 
-### The Chi-Square Test Statistic
+#### Example: Equal Proportions Across Categories
 
-The test statistic is
+Suppose a researcher wants to determine whether students choose four study methods equally often. The four categories are:
+
+1. reading the textbook,
+2. watching videos,
+3. working practice problems,
+4. studying with classmates.
+
+If the researcher believes all four methods are equally likely, then the null hypothesis is
 
 $$
-\chi^2=
-\sum
-\frac{(O_i-E_i)^2}{E_i}.
+H_0: p_1 = 0.25, \ p_2 = 0.25, \ p_3 = 0.25, \ p_4 = 0.25.
 $$
 
-Each term measures the squared difference between observed and expected counts, divided by the expected count.
+The alternative hypothesis is
 
-The statistic becomes large when observed counts are far from expected counts.
+$$
+H_a: \text{at least one of the four proportions is different from } 0.25.
+$$
 
-The division by $E_i$ standardizes the differences so that deviations are measured relative to the size of the expected count.
+Notice that the alternative hypothesis does not say which study method is more or less common. It only says that the distribution is not exactly the equal-proportions distribution.
 
-A large chi-square statistic provides evidence against the null hypothesis.
+If the sample size is $n=200$, then the expected count in each category is
+
+$$
+E_i = 200(0.25)=50.
+$$
+
+So under the null hypothesis, we would expect about 50 students in each category.
 
 ---
 
-### Degrees of Freedom
+#### Example: Unequal Hypothesized Proportions
 
-For a goodness-of-fit test with $k$ categories, the degrees of freedom are typically
+A goodness-of-fit test does not require the hypothesized proportions to be equal. Suppose a university claims that the distribution of students across four colleges is:
 
 $$
-k-1.
+p_1 = 0.40, \quad p_2 = 0.30, \quad p_3 = 0.20, \quad p_4 = 0.10.
 $$
 
-The reason is that once the total sample size is fixed, only $k-1$ category counts can vary freely. The final count is determined by the total.
+The hypotheses are
 
-If parameters are estimated from the data, the degrees of freedom may be reduced further. But in the simplest case with fully specified hypothesized probabilities, the degrees of freedom are $k-1$.
+$$
+H_0: p_1=0.40, \ p_2=0.30, \ p_3=0.20, \ p_4=0.10
+$$
+
+and
+
+$$
+H_a: \text{at least one of these proportions is incorrect.}
+$$
+
+If a sample of $n=500$ students is selected, the expected counts are
+
+$$
+E_1 = 500(0.40)=200,
+$$
+
+$$
+E_2 = 500(0.30)=150,
+$$
+
+$$
+E_3 = 500(0.20)=100,
+$$
+
+and
+
+$$
+E_4 = 500(0.10)=50.
+$$
+
+The goodness-of-fit test then compares the observed counts from the sample with these expected counts.
 
 ---
 
-### Conditions for the Chi-Square Approximation
+#### Interpretation of the Alternative Hypothesis
+
+The alternative hypothesis in a goodness-of-fit test is broad. It does not usually identify the exact way in which the null model fails.
+
+For example, if there are five categories, the alternative hypothesis is not
+
+$$
+p_1 > p_{10}
+$$
+
+or
+
+$$
+p_3 < p_{30}.
+$$
+
+Instead, it is simply
+
+$$
+H_a: \text{the true distribution is not the hypothesized distribution.}
+$$
+
+This means that a significant goodness-of-fit test tells us that the observed data are not consistent with the hypothesized model. However, the test does not automatically tell us which categories are responsible for the difference.
+
+To understand where the difference comes from, we should compare the observed and expected counts category by category. Categories with large values of
+
+$$
+\frac{(O_i - E_i)^2}{E_i}
+$$
+
+contribute more to the test statistic and may help identify where the disagreement is strongest.
+
+---
+
+#### Decision Rule
+
+The goodness-of-fit test is a right-tailed test because only large values of $X^2$ provide evidence against the null hypothesis.
+
+The reason is that $X^2$ measures distance between the observed and expected counts. A value close to zero means that the observed counts are close to the expected counts. A large value means that the observed counts are far from what the null hypothesis predicts.
+
+Therefore, the decision rule is:
+
+* Reject $H_0$ if the p-value is less than or equal to the significance level $\alpha$.
+* Fail to reject $H_0$ if the p-value is greater than $\alpha$.
+
+Equivalently, using a critical value, we reject $H_0$ when
+
+$$
+X^2 > \chi^2_{\alpha, df},
+$$
+
+where $df$ is the number of degrees of freedom.
+
+When the hypothesized probabilities are fully specified in advance, the degrees of freedom are
+
+$$
+df = k - 1.
+$$
+
+The subtraction of 1 occurs because the observed counts must add to the sample size $n$. Once $k-1$ counts are known, the last count is determined.
+
+If parameters are estimated from the data before computing expected counts, then additional degrees of freedom are lost. If $m$ parameters are estimated, then
+
+$$
+df = k - 1 - m.
+$$
+
+---
+
+#### Practical Meaning of the Hypotheses
+
+In practice, the null hypothesis represents a proposed explanation for how the population is distributed across categories. The goodness-of-fit test asks whether the sample data are compatible with that explanation.
+
+Failing to reject $H_0$ does not prove that the hypothesized distribution is exactly true. It only means that the sample does not provide strong evidence against it.
+
+Rejecting $H_0$ means that the observed distribution is too far from the expected distribution to be explained by ordinary sampling variability alone, assuming the null hypothesis is true.
+
+Thus, the goodness-of-fit test is not just checking whether observed and expected counts are different. They will almost always be different. The test checks whether the differences are large relative to what would be expected by chance.
+
+---
+
+#### Conditions for the Chi-Square Approximation
 
 Expected counts should not be too small.
 
@@ -1755,31 +1844,62 @@ This condition matters because the chi-square distribution is an approximation t
 
 If expected counts are very small, categories may need to be combined, or exact methods may be considered.
 
----
+***
 
-### Numerical Example
+#### Simulation: Goodness of Fit Test
 
-```{r goodness-of-fit-example}
-obs<-c(32,28,40)
-exp<-c(100/3,100/3,100/3)
-sum((obs-exp)^2/exp)
+```{r inf-cat-goodness-of-fit-test}
+# Confidence Intervals for a Proportion
+
+# Simulation Settings
+N <- c(1:10, 20, 30, 50, 100)
+B <- 1000
+S <- 100
+
+# Distribution Settings
+p <- c(1/3, 1/3, 1/3)
+
+# Confidence Level Settings
+a <- 0.05
+
+
+rejPer <- matrix(data = NA, nrow = S, length(N))
+for(i in 1:length(N)){
+  n <- N[i]
+  rej <- replicate(S, {
+    replicate(B, {
+      # Sample
+      x <- rmultinom(n = n, size = 1, prob = p)
+      
+      # Observed Counts
+      O <- rowSums(x)
+      
+      # Expected Counts
+      E <- n * p
+      
+      # Test Statistic
+      x2  <- sum((O - E)^2 / E)
+      
+      # Quantile
+      x2a <- qchisq(p = 1- a, df = k - 1)
+      
+      # Save Test Desicion
+      x2 > x2a
+    })
+  })
+  
+  # Rejection Percentage
+  rejPer[, i] <- colMeans(rej)
+}
+
+boxplot(rejPer,
+        xlab = "Number of Observations",
+        ylab = "Simulated Type I Error",
+        main = "Simulated Hypothesis Test for Goodness of Fit",
+        xaxt = 'n')
+axis(side = 1, at = 1:length(N), labels = N)
+abline(h = a, col = rgb(1, 0, 0, 0.5), lwd = 4)
 ```
-
-In this example, there are three observed counts:
-
-$$
-32,\ 28,\ 40.
-$$
-
-The expected counts are equal because the null hypothesis assumes equal proportions:
-
-$$
-100/3,\ 100/3,\ 100/3.
-$$
-
-The computed statistic measures how far the observed counts are from equal distribution across the three categories.
-
-A small value suggests that the observed counts are close to expected. A large value suggests that the observed distribution differs from the hypothesized distribution.
 
 ---
 
@@ -1787,18 +1907,27 @@ A small value suggests that the observed counts are close to expected. A large v
 
 ### Two-Way Tables
 
-A contingency table organizes the joint outcomes of two categorical variables.
+A **contingency table** is a table of counts that summarizes the joint distribution of two categorical variables.
 
-For example, in the vocational admission example, the two categorical variables might be:
+Each cell of the table contains the number of observations that fall into a particular combination of categories, one category from the first variable and one category from the second.
+
+For example, in the vocational admission study, the two categorical variables might be:
 
 * gender
 * admission decision
 
-A two-way table displays the counts for each combination of categories.
+A two-way table could then be organized as follows:
 
-This allows us to study whether the distribution of one variable changes across the levels of another variable.
+| | Admitted | Not Admitted |
+|---|---:|---:|
+| Women |  |  |
+| Men |  |  |
 
-For example, we may ask:
+This table records how many applicants fall into each combination of the two variables.
+
+The usefulness of a contingency table is that it allows us to study the relationship between the two variables at the same time. Instead of looking only at the overall number admitted or only at the number of women applicants, we can examine whether the admission pattern changes across gender groups.
+
+This leads naturally to questions such as:
 
 > Is the admission distribution the same for women and men?
 
@@ -1806,264 +1935,1134 @@ or
 
 > Does gender appear to be associated with admission decision?
 
----
+These are not exactly the same question in wording, but they are closely related statistically. Both ask whether the distribution of one categorical variable changes across the levels of another variable.
+
+If the admission pattern is essentially the same for women and men, then the two variables do not appear to be related. If the admission pattern differs across gender groups, then there is evidence of an association.
+
+***
 
 ### Row Percentages and Column Percentages
 
-Row percentages and column percentages are useful summaries, but the correct choice depends on the question being asked.
+Once a contingency table has been constructed, the raw counts are often only the starting point.
 
-Row percentages condition on the row category.
+Counts show how many observations fall into each cell, but counts alone can sometimes be misleading, especially when the row totals or column totals are very different. For that reason, contingency tables are often supplemented by **row percentages** or **column percentages**.
 
-Column percentages condition on the column category.
+The correct choice depends on the question being asked.
 
-For example, if rows are gender and columns are admission status, row percentages answer:
+**Row percentages** condition on the row category.  
+That means that within each row, we convert the counts into proportions or percentages that add up to 100%.
 
-> Among women, what proportion were admitted?
+**Column percentages** condition on the column category.  
+That means that within each column, we convert the counts into proportions or percentages that add up to 100%.
+
+For example, suppose the rows are gender and the columns are admission status.
+
+Then row percentages answer questions such as:
+
+> Among women, what proportion were admitted?  
 > Among men, what proportion were admitted?
 
-Column percentages answer:
+These are often the most relevant percentages when the goal is to compare admission rates across gender groups.
 
-> Among admitted applicants, what proportion were women?
+By contrast, column percentages answer questions such as:
+
+> Among admitted applicants, what proportion were women?  
 > Among not admitted applicants, what proportion were women?
 
-Both are valid summaries, but they answer different questions.
+These percentages answer a different question. They describe the composition of the admitted and not admitted groups, rather than the admission rates within gender groups.
 
-A common mistake is to interpret row percentages as if they were column percentages, or the reverse.
+Both summaries are valid, but they are not interchangeable.
 
----
+A common mistake is to compute one type of percentage and interpret it as though it were the other. This can lead to incorrect conclusions.
+
+So the key principle is:
+
+> The conditioning direction determines the interpretation.
+
+Before reporting percentages from a contingency table, it is important to decide whether the scientific question is about row comparisons or column comparisons.
+
+***
 
 ### Marginal and Conditional Distributions
 
-A marginal distribution describes the distribution of one categorical variable by itself.
+A contingency table allows us to describe two kinds of distributions: **marginal distributions** and **conditional distributions**.
 
-For example, the marginal distribution of admission status gives the overall proportion admitted and not admitted, ignoring gender.
+A **marginal distribution** describes the distribution of one categorical variable by itself, ignoring the second variable.
 
-A conditional distribution describes the distribution of one variable given a category of another variable.
+For example, the marginal distribution of admission status gives the overall proportions:
 
-For example, the conditional distribution of admission status given gender gives the admission proportions separately for women and men.
+* admitted
+* not admitted
 
-This distinction is essential.
+without separating applicants by gender.
 
-Many questions about association are really questions about whether conditional distributions differ across groups.
+Similarly, the marginal distribution of gender gives the overall proportions:
 
-If the conditional admission distributions are the same for women and men, then admission status and gender are not associated. If they differ, then there is an association.
+* women
+* men
 
----
+without separating them by admission status.
+
+Marginal distributions are useful for describing the overall composition of the sample, but they do not tell us whether the two variables are related.
+
+A **conditional distribution**, by contrast, describes the distribution of one variable **within a specific category** of the other variable.
+
+For example, the conditional distribution of admission status given gender tells us:
+
+* among women, what proportion were admitted and not admitted
+* among men, what proportion were admitted and not admitted
+
+This is often the most important summary when we are studying whether admission status differs across gender groups.
+
+This distinction is essential because many questions about association are really questions about whether the conditional distributions differ across groups.
+
+If the conditional distribution of admission status is the same for women and men, then gender and admission status do not appear to be associated.
+
+If the conditional distributions differ, then the two variables are associated.
+
+So, conceptually:
+
+* marginal distributions describe variables separately
+* conditional distributions describe how one variable behaves within levels of another
+
+In contingency-table analysis, association is usually studied by comparing conditional distributions.
+
+***
 
 ### Graphical Displays for Categorical Data
 
-Possible displays include:
+Graphs are often very helpful in the analysis of categorical data because they allow patterns in the table to be seen quickly before any formal statistical test is performed.
+
+Common graphical displays include:
 
 * bar charts
 * segmented bar charts
 * mosaic plots
 
-A bar chart is useful for displaying counts or proportions in categories.
+A **bar chart** is useful for displaying counts or proportions for a single categorical variable. For example, we might use a bar chart to display the overall numbers admitted and not admitted.
 
-A segmented bar chart is useful for comparing conditional distributions across groups.
+A **segmented bar chart** is especially useful for displaying conditional distributions. For example, we might create one bar for women and one bar for men, and then divide each bar into admitted and not admitted segments. This makes it easy to compare admission proportions across gender groups.
 
-A mosaic plot is useful for displaying the structure of a contingency table, especially when there are multiple categorical variables.
+A **mosaic plot** provides a graphical representation of the full contingency table. The widths and heights of the rectangles reflect the structure of the counts or proportions in the table, making it possible to see both marginal sizes and conditional differences at the same time.
 
-Graphs are important because they often reveal patterns before formal tests are applied.
+These graphs are useful because they often reveal patterns before formal methods are applied.
 
-For example, a segmented bar chart can quickly show whether the admission proportions differ by gender.
+For example, a segmented bar chart may quickly show that the admission proportions for women and men are very similar, suggesting little or no association. On the other hand, it may show a clear difference between the groups, suggesting that a formal test of independence or homogeneity may be appropriate.
+
+So, in practice, graphical displays are not just decorative. They are part of the statistical analysis because they help us:
+
+* understand the structure of the table
+* compare conditional distributions
+* detect possible associations
+* communicate results clearly
+
+***
+
+#### Example: Numerical and Graphical Displays for the Admissions and Gender Example
+
+Below is a fully base R version that simulates an admissions dataset and builds three common displays for contingency tables:
+
+* bar chart
+* segmented bar chart
+* mosaic plot
+
+The code is ready to paste into your notes.
+
+***
+
+#### Simulated Data
+
+We first create a small dataset with two categorical variables:
+
+* `Gender`
+* `Admission`
+
+```{r inf-cat-dat-categorical-gender-admission-numerical}
+set.seed(5428)
+
+n <- 400
+
+Gender <- sample(c("Women", "Men"),
+                 size = n,
+                 replace = TRUE,
+                 prob = c(0.70, 0.30))
+
+Admission <- ifelse(Gender == "Women",
+                    sample(c("Admitted", "Not Admitted"),
+                           size = n,
+                           replace = TRUE,
+                           prob = c(0.62, 0.38)),
+                    sample(c("Admitted", "Not Admitted"),
+                           size = n,
+                           replace = TRUE,
+                           prob = c(0.50, 0.50)))
+
+dat <- data.frame(Gender = Gender,
+                  Admission = Admission)
+
+# Contingency Table Counts
+tab <- table(dat$Gender, dat$Admission)
+tab
+
+# Row Percentages
+tabRow <- round(tab / rowSums(tab) * 100, 2)
+tabRow
+
+# Column Percentages
+tabCol <- round(t(t(tab) / colSums(tab)) * 100, 2)
+tabCol
+
+# Marginal Distributions
+tabMar <- cbind(tab, rowSums(tab))
+tabMar <- rbind(tabMar, colSums(tabMar))
+tabMar
+```
+
+This code simulates application outcomes for a group of applicants.
+The final object `tab` is the contingency table that summarizes the joint counts for gender and admission decision.
+
+The counts in the table are the starting point for all of the graphical displays below.
 
 ---
 
+#### Bar Chart of Counts
+
+```{r inf-cat-dat-bar-chart-counts}
+barplot(tab,
+        beside = TRUE,
+        col = c("gray70", "gray40"),
+        legend.text = rownames(tab),
+        args.legend = list(x = "topright"),
+        main = "Admission Counts by Gender",
+        xlab = "Admission Decision",
+        ylab = "Count")
+```
+
+This plot displays the **raw counts** in each category.
+
+Because the bars are side by side, it is easy to compare the number of women and men within each admission category.
+
+This graph is useful when the question is about the **number of applicants** in each group.
+However, counts alone can sometimes be misleading if the total number of women and men differs.
+
+---
+
+#### Segmented Bar Chart
+
+```{r inf-cat-dat-segmented-bar-char-1}
+barplot(prop.table(tab, margin = 1),
+        beside = FALSE,
+        col = c("gray70", "gray40"),
+        legend.text = colnames(prop.table(tab, margin = 1)),
+        args.legend = list(x = "topright"),
+        main = "Conditional Distribution of Admission by Gender",
+        xlab = "Gender",
+        ylab = "Proportion")
+```
+
+This graph uses **row proportions**, so each bar adds up to 1.
+
+That means the graph compares the conditional distribution of admission status **within each gender**.
+
+This is often the most informative display when the question is:
+
+> Do admission outcomes differ between women and men?
+
+If the segments look similar across the two bars, the admission distributions are similar.
+If the segments differ noticeably, that suggests an association between gender and admission status.
+
+---
+
+#### Mosaic Plot
+
+```{r inf-cat-dat-mosaic-plot-1}
+mosaicplot(tab,
+           col = c("gray85", "gray50"),
+           main = "Mosaic Plot for Gender and Admission",
+           xlab = "Gender",
+           ylab = "Admission")
+```
+
+A mosaic plot displays the full structure of the contingency table.
+
+The width of each column reflects the relative size of each gender group, while the heights of the subdivisions reflect the proportions admitted and not admitted within each group.
+
+This plot is useful because it simultaneously shows:
+
+* the marginal distribution of gender
+* the conditional distribution of admission given gender
+
+So it provides a compact visual summary of both sample composition and possible association.
+
+---
+
+#### Interpretation
+
+These three displays emphasize different aspects of the same contingency table:
+
+* The **bar chart** emphasizes counts.
+* The **segmented bar chart** emphasizes conditional proportions.
+* The **mosaic plot** emphasizes both marginal size and conditional structure.
+
+For studying whether admission decision is associated with gender, the segmented bar chart and mosaic plot are usually more informative than the raw count bar chart, because they focus attention on the **relative admission rates** rather than only the total number of applicants in each group.
+
+***
 ## Chi-Square Test of Independence
 
 ### Purpose of the Test
 
-The chi-square test of independence is used to assess whether two categorical variables are associated.
+The **chi-square test of independence** is used to assess whether two categorical variables are related in a population.
 
-For example:
+Its purpose is not to compare means or variances, but to determine whether the distribution of one categorical variable changes across the levels of another categorical variable.
+
+For example, we may ask:
 
 * Is gender associated with admission decision?
 * Is treatment group associated with recovery status?
 * Is smoking status associated with disease status?
 * Is program preference associated with education level?
 
-The test compares observed counts in a contingency table to the counts expected if the two variables were independent.
+In each of these examples, the data can be organized into a **contingency table**, where each cell contains the number of observations falling into a particular combination of categories.
 
----
+The test then asks whether the observed pattern of counts is consistent with **independence**, or whether the counts differ enough from that pattern to suggest an association.
+
+So the main idea is:
+
+> If two categorical variables are independent, then knowing the category of one variable should not help predict the category of the other.
+
+For example, in the admissions setting, if gender and admission status are independent, then the proportion admitted should be the same for women and men. If those proportions differ noticeably, then the two variables may be associated.
+
+***
 
 ### Hypotheses
 
-The null hypothesis is
+The hypotheses for the chi-square test of independence are
 
 $$
-H_0: \text{the two categorical variables are independent}.
+H_0: \text{the two categorical variables are independent},
 $$
 
-The alternative hypothesis is
+and
 
 $$
 H_a: \text{the two categorical variables are associated}.
 $$
 
-Independence means that the distribution of one variable does not change across levels of the other variable.
+The null hypothesis says that there is **no relationship** between the two variables in the population.
 
-In the admission example, independence would mean that admission status does not depend on gender.
+The alternative hypothesis says that there **is** a relationship.
 
----
+It is helpful to think about this in terms of conditional distributions.
+
+If two variables are independent, then the distribution of one variable is the same across all levels of the other variable.
+
+In the admissions example, independence means that the distribution of admission outcomes is the same for women and men. In other words, the probability of being admitted does not change with gender.
+
+If the conditional distributions differ, then the variables are associated.
+
+Thus, the chi-square test of independence is really testing whether the differences seen in the sample table are small enough to be explained by random sampling variation, or large enough to suggest a real association in the population.
+
+***
 
 ### Expected Counts Under Independence
 
-Under independence, the expected count in row $i$ and column $j$ is
+The chi-square test does not compare the observed counts to equal counts unless the problem specifically implies equal proportions.
+
+Instead, it compares the observed counts to the counts we would **expect under independence**.
+
+If the variables are independent, then the expected count in row $i$ and column $j$ is
 
 $$
 E_{ij}=
 \frac{(\text{row total})(\text{column total})}{\text{grand total}}.
 $$
 
-This formula uses the marginal totals to compute what the table should look like if the variables were independent.
+This formula is important because it shows how independence determines the shape of the table.
 
-Expected counts are not observed data. They are model-based counts under the null hypothesis.
+The row total tells us how many observations belong to row $i$.  
+The column total tells us how many observations belong to column $j$.  
+If the variables are independent, then these margins alone determine what the interior cell counts should approximately look like.
 
-The chi-square statistic then compares the observed table to this expected table.
+So the expected counts are not arbitrary. They are the counts that would naturally arise if the row variable and the column variable had no relationship.
 
----
+For example, if 60% of all applicants are admitted and a particular row contains 100 applicants, then under independence we would expect about 60 of those 100 to be admitted.
+
+This is the key logic of the test:
+
+* the **observed counts** describe what actually happened in the sample
+* the **expected counts** describe what would be expected if the variables were independent
+
+The test measures how far apart those two tables are.
+
+***
 
 ### Test Statistic
 
-The chi-square test statistic has the same general structure:
+The chi-square test statistic is
 
 $$
 \chi^2=
 \sum
-\frac{(O-E)^2}{E}.
+\frac{(O-E)^2}{E},
 $$
 
-For contingency tables, the sum is taken over all cells in the table.
+where:
 
-Large values occur when the observed counts are far from the counts expected under independence.
+* $O$ represents an observed count
+* $E$ represents the corresponding expected count under independence
 
-The degrees of freedom for an $r \times c$ table are
+The sum is taken over all cells of the contingency table.
+
+Each term in the sum measures how far an observed count is from its expected count, relative to the size of the expected count.
+
+This structure is very intuitive:
+
+* if an observed count is close to its expected count, that cell contributes little to the test statistic
+* if an observed count is far from its expected count, that cell contributes more
+* when many cells show sizable discrepancies, the overall test statistic becomes large
+
+So the chi-square statistic is a measure of the **overall discrepancy** between the observed table and the table predicted by independence.
+
+Large values of the statistic suggest that the sample data do not look like what independence would produce.
+
+Small values suggest that the observed table is reasonably close to the independence model.
+
+For an $r \times c$ table, the degrees of freedom are
 
 $$
 (r-1)(c-1).
 $$
 
----
+This formula reflects the number of cell counts that are free to vary once the row and column totals are fixed.
+
+The chi-square distribution with these degrees of freedom provides the reference distribution for the test statistic under the null hypothesis.
+
+***
 
 ### Conditions
 
-Expected counts should be sufficiently large.
+The chi-square test of independence is based on an approximation, so certain conditions are needed for that approximation to work well.
 
-A common guideline is that expected counts should generally be at least 5.
+A key condition is that the **expected counts** should not be too small.
 
-The observations should also be independent. This means each observational unit should contribute to only one cell of the table.
+A common rule of thumb is that expected counts should generally be at least 5.
 
-If the same individual appears in multiple cells, or if observations are naturally paired, then the usual chi-square test of independence may not be appropriate.
+This condition matters because the chi-square distribution is only an approximate sampling distribution for the test statistic. When expected counts are too small, the approximation may be poor, and the resulting p-value may not be reliable.
 
----
+Another important condition is that the observations should be **independent**.
+
+This means that each observational unit should contribute to one and only one cell of the contingency table.
+
+For example:
+
+* each applicant should appear once in an admissions table
+* each patient should appear once in a treatment-outcome table
+* each student should contribute one program preference
+
+If the same person appears multiple times, or if the observations are naturally paired or repeated, then the usual chi-square test of independence is not appropriate.
+
+So, before applying the test, it is important to ask:
+
+* Are the expected counts large enough?
+* Are the observations independent?
+* Does each unit belong to exactly one cell?
+
+These checks are essential because the quality of the inference depends on them.
+
+***
 
 ### Interpretation
 
-A significant result means that the two categorical variables are associated.
+A significant chi-square test means that the data provide evidence that the two categorical variables are associated.
 
-However:
+Equivalently, it means that the observed table differs more from the independence model than would be expected from ordinary sampling variation alone.
 
-> Significant does not necessarily mean strong association.
+However, the conclusion should be stated carefully.
 
-A very large sample can produce a small p-value even when the practical difference between groups is small.
+A significant result does **not** tell us:
 
-Therefore, after a chi-square test, it is important to examine:
+* how strong the association is
+* which categories are mainly responsible for the association
+* whether the association is practically important
+* whether the relationship is causal
 
-* the actual proportions
-* the size of the differences
-* the context of the study
-* an effect-size measure such as difference in proportions, relative risk, odds ratio, or Cramer's V
+This is one of the most important points in interpreting categorical analyses.
 
-Statistical significance should not be the end of the analysis.
+> Statistical significance does not necessarily imply a strong or important relationship.
 
----
+With a very large sample, even a small difference in proportions can produce a very small p-value.
 
-### Numerical Example
+For that reason, the chi-square test should usually be followed by a closer examination of the table itself.
 
-```{r chi-square-independence-example}
-M <- matrix(c(35,15,25,25),2,2)
-chisq.test(M)
+In particular, it is often important to examine:
+
+* row or column percentages
+* the actual size of the differences
+* which cells differ most from expectation
+* effect-size measures such as difference in proportions, relative risk, odds ratio, or Cramer's V
+* the practical context of the study
+
+For example, in the admissions setting, a significant result should lead us to ask:
+
+* How different are the admission rates for women and men?
+* Are the differences practically meaningful?
+* Could some third variable explain the association?
+* Does the study design support causal interpretation?
+
+So the chi-square test is an important first step, but it is not the end of the analysis.
+
+It tells us whether there is evidence of association, but the meaning of that association must be understood through careful examination of the proportions, the effect size, and the context.
+
+***
+
+### Simulation: Test for Independence
+
+```{r inf-cat-dat-hypothesis-test-independence}
+# Confidence Intervals for a Proportion
+
+# Simulation Settings
+N <- 4^(0:5)
+B <- 100
+S <- 100
+
+# Distribution Settings
+n  <- 1000
+p1 <- c(1/4, 1/4, 1/2)
+p2 <- c(1/2, 1/2)
+c  <- length(p1)
+r  <- length(p2)
+
+# Confidence Level Settings
+a <- 0.05
+
+rejPer <- matrix(data = NA, nrow = S, length(N))
+for(i in 1:length(N)){
+  n <- N[i]
+  rej <- replicate(S, {
+    replicate(B, {
+      # Sample
+      x <- rmultinom(n = n, size = 1, prob = p1)
+      y <- rmultinom(n = n, size = 1, prob = p2)
+      
+      # Observed Counts
+      O <- y %*% t(x)
+      
+      # Estimated Marginal Probabilities
+      estP1 <- colSums(O) / n
+      estP2 <- rowSums(O) / n
+      
+      # Estimated Probabilities
+      estP <-  estP2 %*% t(estP1)
+      
+      # Expected Counts
+      E <- estP * n
+      
+      # Test Statistic
+      x2  <- sum((O - E)^2 / E)
+      
+      # Quantile
+      x2a <- qchisq(p = 1- a, df = (r - 1) * (c - 1))
+      
+      # Save Test Desicion
+      x2 > x2a
+    })
+  })
+  
+  # Rejection Percentage
+  rejPer[, i] <- colMeans(rej)
+}
+
+boxplot(rejPer,
+        xlab = "Number of Observations",
+        ylab = "Simulated Type I Error",
+        main = "Simulated Hypothesis Test for Independence",
+        xaxt = 'n')
+axis(side = 1, at = 1:length(N), labels = N)
+abline(h = a, col = rgb(1, 0, 0, 0.5), lwd = 4)
 ```
 
-This code performs a chi-square test on a $2\times2$ table.
+Related to this test is a goodness of fit test given by independence and knowing the proportions for each category. For example, it is easy to know the proportion of men and women from census data or directly form the data. And the admissions might be restricted to accept an exact percentage. In this case, we can build a probability model using the known probabilities in case of independence.
 
-The output includes the test statistic, degrees of freedom, and p-value.
+```{r inf-cat-dat-hypothesis-test-goodness-of-fit-independence}
+# Confidence Intervals for a Proportion
 
-The p-value tells us whether the observed table is unusual under the assumption of independence.
+# Simulation Settings
+N <- 4^(0:5)
+B <- 100
+S <- 100
 
-If the p-value is small, we reject the null hypothesis and conclude that the two categorical variables are associated.
+# Distribution Settings
+n  <- 1000
+p1 <- c(1/4, 1/4, 1/2)
+p2 <- c(1/2, 1/2)
+c  <- length(p1)
+r  <- length(p2)
 
----
+# Confidence Level Settings
+a <- 0.05
+
+rejPer <- matrix(data = NA, nrow = S, length(N))
+for(i in 1:length(N)){
+  n <- N[i]
+  rej <- replicate(S, {
+    replicate(B, {
+      # Sample
+      x <- rmultinom(n = n, size = 1, prob = p1)
+      y <- rmultinom(n = n, size = 1, prob = p2)
+      
+      # Observed Counts
+      O <- y %*% t(x)
+      
+      # Probability Model
+      p <-  p2 %*% t(p1)
+      
+      # Expected Counts
+      E <- p * n
+      
+      # Test Statistic
+      x2  <- sum((O - E)^2 / E)
+      
+      # Quantile
+      x2a <- qchisq(p = 1- a, df = (r) * (c) - 1)
+      
+      # Save Test Desicion
+      x2 > x2a
+    })
+  })
+  
+  # Rejection Percentage
+  rejPer[, i] <- colMeans(rej)
+}
+
+boxplot(rejPer,
+        xlab = "Number of Observations",
+        ylab = "Simulated Type I Error",
+        main = "Simulated Hypothesis Test for Independence",
+        xaxt = 'n')
+axis(side = 1, at = 1:length(N), labels = N)
+abline(h = a, col = rgb(1, 0, 0, 0.5), lwd = 4)
+```
+
+
+***
+
+### Summary
+
+The chi-square test of independence is used to assess whether two categorical variables are related.
+
+It works by comparing:
+
+* the observed counts in the contingency table
+* the expected counts that would arise if the variables were independent
+
+The test statistic is
+
+$$
+\chi^2=
+\sum
+\frac{(O-E)^2}{E},
+$$
+
+with degrees of freedom
+
+$$
+(r-1)(c-1).
+$$
+
+A large chi-square value provides evidence against independence.
+
+But after the test is performed, the analysis should continue by examining the actual proportions and the practical importance of the association, not just the p-value.
+
+
+***
 
 ## Chi-Square Test of Homogeneity
 
 ### Purpose of the Test
 
-The chi-square test of homogeneity compares categorical distributions across different populations or groups.
+The **chi-square test of homogeneity** is used to compare the distribution of a categorical response across two or more populations or groups.
 
-For example:
+The main question is whether the groups have the **same population distribution** for the categorical outcome, or whether at least one group differs.
+
+For example, we may ask:
 
 * Do different programs have the same distribution of applicant outcomes?
 * Do admission outcomes differ across gender groups?
 * Do treatment groups have the same recovery distribution?
 * Do regions have the same preference distribution?
 
-The test asks whether the distribution of a categorical response is the same across groups.
+In each of these settings, we have several groups, and within each group we observe counts in a set of categories.
 
----
+So the focus is not on means or variances, but on whether the **pattern of proportions** is the same across the groups.
+
+For example, if applicants come from several vocational programs, the test can be used to assess whether the proportions admitted and not admitted are the same for all programs. If the proportions are the same across all programs, then the outcome distribution is homogeneous across programs. If the proportions differ, then the distributions are not homogeneous.
+
+This is the central idea:
+
+> The chi-square test of homogeneity asks whether several populations share the same categorical distribution.
+
+***
 
 ### Difference Between Independence and Homogeneity
 
-The chi-square test of independence and the chi-square test of homogeneity are mathematically similar.
+The chi-square test of homogeneity and the chi-square test of independence are mathematically very similar.
 
-They use the same form of test statistic and the same degrees-of-freedom formula.
+They use:
 
-The difference is in the study design.
+* the same general chi-square statistic
+* the same expected-count logic
+* the same degrees-of-freedom formula
 
-For independence, we usually have one sample and measure two categorical variables on each unit.
+However, the two tests arise from **different study designs** and answer slightly different questions.
 
-For homogeneity, we usually have separate samples from different populations and compare the distribution of one categorical response across those populations.
-
-So the distinction is conceptual and design-based rather than computational.
-
----
-
-### Hypotheses
-
-The null hypothesis is that the population distributions are equal.
+For a **test of independence**, we usually begin with **one sample** and measure **two categorical variables** on each observational unit.
 
 For example:
 
+* for each applicant, we record gender and admission decision
+* for each patient, we record smoking status and disease status
+
+Then we ask whether the two variables are associated.
+
+For a **test of homogeneity**, we usually begin with **separate samples from different groups or populations**, and for each unit we record **one categorical response variable**.
+
+For example:
+
+* one sample of applicants from Program A
+* one sample of applicants from Program B
+* one sample of applicants from Program C
+
+Then we ask whether the distribution of admission outcomes is the same across those programs.
+
+So the distinction is mainly conceptual:
+
+* **independence** asks whether two variables are related in one population
+* **homogeneity** asks whether one variable has the same distribution across several populations
+
+This is an important distinction in study design, even though the actual computation is essentially the same.
+
+In practice, the same contingency table can often be analyzed using either language, depending on how the data were collected.
+
+***
+
+### Table Structure and Expected Counts
+
+The data for a homogeneity test are usually organized into a contingency table.
+
+The rows often represent the different populations or groups, and the columns represent the categories of the response variable.
+
+For example, suppose rows correspond to three treatment groups and columns correspond to recovery status:
+
+| |Recovered|Not Recovered|
+|---|---:|---:|
+|Treatment 1| | |
+|Treatment 2| | |
+|Treatment 3| | |
+
+The observed counts tell us how many individuals in each group fall into each response category.
+
+Under the null hypothesis of homogeneity, the response distribution is the same in all groups. That means each group should have approximately the same proportions in the response categories, allowing for ordinary sampling variation.
+
+The expected count in row $i$ and column $j$ is computed by
+
 $$
-H_0: \text{the admission outcome distribution is the same for all groups}.
+E_{ij}=
+\frac{(\text{row total})(\text{column total})}{\text{grand total}}.
 $$
 
-The alternative is that at least one group has a different distribution.
+This formula gives the counts we would expect if all groups shared the same response distribution.
 
-The test does not automatically identify which group differs. It only determines whether the overall pattern of counts is inconsistent with equal distributions.
+So, just as in the independence test, the chi-square method compares:
 
----
+* the **observed counts**, which come from the sample
+* the **expected counts**, which come from the null hypothesis
+
+If the two are close, the null hypothesis remains plausible. If they differ substantially, the data provide evidence against homogeneity.
+
+***
+
+### Hypotheses
+
+The null hypothesis states that the population distributions are the same across groups.
+
+For example, if the response is admission outcome and the groups are different programs, we may write
+
+$$
+H_0: \text{the admission outcome distribution is the same for all programs}.
+$$
+
+More generally, if there are $r$ groups and $c$ response categories, the null hypothesis says that each group has the same set of category probabilities.
+
+The alternative hypothesis is that the distributions are **not all the same**.
+
+That is,
+
+$$
+H_a: \text{at least one group has a different response distribution}.
+$$
+
+This point is important:
+
+> The alternative does not say exactly which group differs or in which category the difference occurs.
+
+It only says that the overall pattern of counts is inconsistent with equal population distributions.
+
+So the chi-square test of homogeneity is an **overall test**. If it is significant, we then examine the table more carefully to determine where the differences are located.
+
+***
+
+### Test Statistic
+
+The chi-square test statistic for homogeneity has the same form as in other chi-square procedures:
+
+$$
+\chi^2=
+\sum
+\frac{(O-E)^2}{E},
+$$
+
+where:
+
+* $O$ is an observed count
+* $E$ is the corresponding expected count under the null hypothesis
+
+The sum is taken over all cells in the table.
+
+Each cell contributes an amount that reflects how far the observed count is from what would be expected if the distributions were the same across groups.
+
+If the observed and expected counts are close in every cell, the chi-square statistic will be small.
+
+If several cells show large discrepancies, the statistic will be large.
+
+So the chi-square statistic measures the **overall disagreement** between the observed group distributions and the common distribution predicted by the null hypothesis.
+
+For an $r \times c$ table, the degrees of freedom are
+
+$$
+(r-1)(c-1).
+$$
+
+This gives the reference chi-square distribution used to assess whether the observed test statistic is unusually large.
+
+***
+
+### Conditions
+
+The same general conditions used for other chi-square procedures apply here.
+
+First, the expected counts should not be too small.
+
+A common guideline is that expected counts should generally be at least 5.
+
+This is important because the chi-square distribution is an approximation. When expected counts are too small, the approximation may be poor, and the resulting p-value may not be reliable.
+
+Second, the observations within and across the groups should be independent.
+
+This means:
+
+* the individuals within each group should be independently sampled
+* one observational unit should contribute to only one cell of the table
+* the groups themselves should not overlap in a way that creates dependence
+
+For example, if the same person appears in more than one group, then the usual chi-square test of homogeneity is not appropriate.
+
+So before applying the test, we should check:
+
+* Are the expected counts large enough?
+* Are the observations independent?
+* Are the groups clearly defined and non-overlapping?
+
+These conditions help ensure that the inferential conclusions are trustworthy.
+
+***
 
 ### Interpretation
 
-The focus is whether populations differ.
+The chi-square test of homogeneity focuses on whether the populations differ in their categorical distributions.
 
-If the test is significant, we should examine the table to determine where the differences occur.
+If the test is significant, we conclude that the data provide evidence that the distributions are **not all the same** across the groups.
 
-This often involves comparing row percentages or column percentages, depending on the structure of the table.
+In other words, at least one group appears to have a different response distribution.
 
-Again, practical interpretation is essential. A statistically significant result may correspond to a small practical difference if the sample size is very large.
+However, a significant result does not by itself tell us:
 
----
+* which group differs
+* which categories are driving the difference
+* how large the difference is in practical terms
 
-### Numerical Example
+So the chi-square test should be viewed as a first step in the analysis, not the final step.
 
-Use code structure analogous to the independence test.
+After a significant result, we should examine the table more closely.
 
-```{r homogeneity-example}
-# placeholder for homogeneity example
+This often involves comparing:
+
+* row percentages
+* column percentages
+* observed and expected counts
+* the size of the discrepancies in specific cells
+
+For example, if the groups are treatment groups and the response is recovery status, a significant result would suggest that recovery distributions differ across treatments. The next question would be:
+
+> Which treatment groups appear to have higher or lower recovery rates?
+
+Similarly, if the groups are geographic regions and the response is preference category, the next step would be to determine which regions differ and how those differences look.
+
+As always, practical interpretation is essential.
+
+A statistically significant result may correspond to a very small practical difference when the sample size is large. So it is not enough to report only the p-value. We should also look at the actual proportions and discuss whether the differences are meaningful in context.
+
+***
+
+### Relationship to Proportions
+
+It is useful to think of the test of homogeneity as a test about **multiple proportions at the same time**.
+
+For a response with two categories, the test is essentially asking whether the success proportions are the same across groups.
+
+For a response with more than two categories, it asks whether the full set of category proportions is the same across groups.
+
+So, conceptually, the test of homogeneity generalizes the idea of comparing proportions from one simple setting to a broader multi-category setting.
+
+This makes it a very natural tool for categorical data analysis.
+
+***
+### Why the Degrees of Freedom for the Chi-Square Test of Homogeneity Match Those for Independence
+
+At first glance, it may seem surprising that the chi-square test of homogeneity and the chi-square test of independence use the same degrees of freedom,
+
+$$
+(r-1)(c-1),
+$$
+
+because the two tests are motivated in different ways.
+
+For the test of homogeneity, we compare the distribution of a categorical response across $r$ populations or groups.  
+For the test of independence, we study whether two categorical variables are associated in a single population.
+
+Even though the interpretations are different, the mathematical structure of the null hypothesis leads to the same number of degrees of freedom.
+
+***
+
+#### Why This Can Feel Counterintuitive
+
+For the test of homogeneity, the null hypothesis says that all groups share the same category probabilities.
+
+If there are $c$ response categories, then under the null hypothesis each population has probabilities
+
+$$
+p_1, p_2, \dots, p_c,
+$$
+
+with
+
+$$
+p_1 + p_2 + \cdots + p_c = 1.
+$$
+
+So the null hypothesis is not that the probabilities are fully known in advance.
+
+Instead, the null hypothesis says only that the same probabilities apply to every group.
+
+That means the common probabilities are still **unknown** and must be estimated from the pooled sample data.
+
+This is the key reason the degrees of freedom are not as large as one might first expect.
+
+***
+
+#### Counting Degrees of Freedom for Homogeneity
+
+Suppose we have an $r \times c$ table.
+
+If the row totals are treated as fixed, then within each row only $c-1$ cell counts are free, because once the first $c-1$ counts are known, the last one is determined by the row total.
+
+So before imposing the null hypothesis, the total number of free pieces of information is
+
+$$
+r(c-1).
+$$
+
+Now impose the null hypothesis of homogeneity.
+
+Under $H_0$, all rows must share the same category probabilities. But those common probabilities are unknown and must be estimated.
+
+Since there are $c$ probabilities that sum to 1, estimating them uses up
+
+$$
+c-1
+$$
+
+degrees of freedom.
+
+So the remaining degrees of freedom are
+
+$$
+r(c-1) - (c-1) = (r-1)(c-1).
+$$
+
+That is the usual degrees-of-freedom formula for the chi-square test of homogeneity.
+
+***
+
+#### Why Independence Gives the Same Formula
+
+For the chi-square test of independence, we also work with an $r \times c$ contingency table.
+
+In that setting, the null hypothesis says that the row variable and column variable are independent.
+
+Under independence, the expected counts are determined by the row and column marginal structure. Once those margins are fixed, the number of independent deviations from the null model is also
+
+$$
+(r-1)(c-1).
+$$
+
+So the two tests arrive at the same degrees of freedom through different conceptual routes:
+
+* **homogeneity:** common but unknown category probabilities across groups
+* **independence:** no association between two variables in one population
+
+The interpretation differs, but the mathematical constraint count ends up the same.
+
+***
+
+#### When the Degrees of Freedom Would Be Larger
+
+When the null hypothesis fully specifies the category probabilities numerically.
+
+For example, suppose that for each row the null hypothesis states that the response probabilities are exactly
+
+$$
+(p_1, p_2, p_3) = (0.2, 0.5, 0.3).
+$$
+
+Now nothing needs to be estimated from the data.
+
+If the row totals are fixed, then each row contributes
+
+$$
+c-1
+$$
+
+degrees of freedom, so across $r$ rows the total would be
+
+$$
+r(c-1).
+$$
+
+That is larger than
+
+$$
+(r-1)(c-1)
+$$
+
+because in this case we are not spending any degrees of freedom estimating the common response probabilities.
+
+So the important distinction is:
+
+* **usual homogeneity test:** common proportions are unknown and estimated
+* **fully specified multinomial model:** proportions are known in advance
+
+Only in the second case do we get the larger degrees of freedom.
+
+***
+#### Summary
+
+For the standard chi-square test of homogeneity, the null hypothesis says that all groups have the same response distribution, but that common distribution is not numerically known ahead of time.
+
+Because those common probabilities must be estimated from the pooled data, we lose
+
+$$
+c-1
+$$
+
+degrees of freedom.
+
+That is why the degrees of freedom are
+
+$$
+(r-1)(c-1),
+$$
+
+the same as for the chi-square test of independence.
+
+So the equality of the formulas is not an accident. It comes from the fact that in both tests the null model imposes the same effective number of constraints on the contingency table.
+
+***
+### Simulation: Test for Homogeneity
+
+```{r inf-cat-dat-test-for-homogeneity}
+# Confidence Intervals for a Proportion
+
+# Siulation Settings
+B <- 100
+S <- 100
+
+# Distribution Settings
+n1 <- 30
+n2 <- 50
+p  <- c(1/4, 1/4, 1/2)
+k  <- length(p)
+
+# Test Setings
+a <- 0.05
+
+rej <- replicate(S, {
+  replicate(B, {
+    # Sample
+    x1 <- rmultinom(n = n1, size = 1, prob = p)
+    x2 <- rmultinom(n = n2, size = 1, prob = p)
+    
+    # Observed Counts
+    O <- rbind(rowSums(x1),
+               rowSums(x2))
+    
+    # Estimated Probability
+    estP <- colSums(O) / sum(n1 + n2)
+    
+    # expected Counts
+    E <- c(n1, n2) %*% t(estP)
+    
+    # Test Statistic
+    x2  <- sum((O - E)^2 / E)
+    
+    # Quantile
+    x2a <- qchisq(p = 1- a, df = (2 - 1) * (k - 1))
+    
+    # Save Test Desicion
+    x2 > x2a
+  })
+})
+
+
+boxplot(colMeans(rej),
+        ylab = "Percentage Type I Error",
+        main = "Test of Homogeneity")
+abline(h = a, col = rgb(1, 0, 0, 0.5), lwd = 4)
 ```
+
+
+***
+### Summary
+
+The chi-square test of homogeneity is used to compare the categorical distributions of a response variable across several groups or populations.
+
+It asks whether the groups all share the same population distribution, or whether at least one group differs.
+
+The test:
+
+* organizes the data into a contingency table
+* computes expected counts under the assumption of equal distributions
+* compares observed counts to expected counts using
+$$
+\chi^2=\sum \frac{(O-E)^2}{E}
+$$
+* uses degrees of freedom
+$$
+(r-1)(c-1)
+$$
+
+A significant result provides evidence that the distributions are not all the same.
+
+But the test does not identify the specific source of the difference, so the table and the group proportions must be examined carefully after the test is performed.
 
 ---
 
@@ -2071,282 +3070,175 @@ Use code structure analogous to the independence test.
 
 ### Statistical Significance versus Strength of Association
 
-A small p-value does not measure practical importance.
+When analyzing categorical data, it is important to separate two ideas that are related but not identical:
 
-This is especially important for categorical data.
+* **statistical significance**
+* **strength of association**
+
+A small p-value tells us that the observed table is unlikely under the null hypothesis.  
+It does **not** tell us how important, large, or meaningful the relationship is.
+
+This distinction is especially important for categorical data because chi-square tests are often applied to large tables or large data sets, where even modest departures from the null hypothesis can produce highly significant results.
 
 A chi-square test may tell us that two variables are associated, but it does not tell us how strong that association is.
 
 For example, with a very large sample, even a small difference in proportions can lead to a statistically significant result. But that difference may not be practically meaningful.
 
-Therefore, after testing, we should often report a measure of effect size.
+Suppose that in a very large admissions study the admission rate is 50.5% for one group and 49.5% for another group. With enough observations, this difference may produce a very small p-value. Statistically, we might conclude that the two variables are associated. But from a practical point of view, a difference of only 1 percentage point may not be very important.
 
----
+So the p-value answers one question:
 
-### Difference in Proportions
+> Is there evidence that an association exists?
 
-The difference in proportions is a direct effect-size measure.
+But it does not answer another important question:
 
-For two groups, it is
+> How large is the association?
 
-$$
-p_1-p_2.
-$$
+That second question requires an **effect-size measure**.
 
-In sample data, we estimate it by
+***
 
-$$
-\hat p_1-\hat p_2.
-$$
+#### Why the Chi-Square Test Alone Is Not Enough
 
-This measure is easy to interpret because it is expressed in percentage-point units.
+The chi-square test is an **overall test of departure from a null model**.
 
-For example, if the admission rate is 60% for one group and 40% for another, the difference is 20 percentage points.
+It tells us whether the observed counts differ from the expected counts enough to suggest that the null hypothesis is false.
 
-This is often the clearest measure for communication.
+But it does not directly describe:
 
----
+* the direction of the relationship
+* the size of the differences
+* the practical meaning of the association
+* which cells of the table contribute most to the result
 
-### Relative Risk
+This limitation is important because in applied work, we usually care not only about whether a difference exists, but also about whether that difference matters.
 
-The relative risk is
+For example:
 
-$$
-RR=\frac{p_1}{p_2}.
-$$
+* In a medical study, a tiny difference in recovery proportions may not justify switching treatments.
+* In an educational study, a slight difference in program preference may not affect policy decisions.
+* In an admissions study, a statistically significant association may still correspond to a very small difference in actual admission rates.
 
-It compares two probabilities by ratio.
+So the chi-square test should be viewed as a starting point, not the complete analysis.
 
-Interpretation:
+***
 
-* $RR=1$ means the risks are equal
-* $RR>1$ means group 1 has higher risk
-* $RR<1$ means group 1 has lower risk
+#### Why Large Samples Can Be Misleading
 
-For example, if the recovery probability is 0.80 in the treatment group and 0.40 in the control group, then
+One reason this issue arises is that statistical significance depends heavily on sample size.
 
-$$
-RR=\frac{0.80}{0.40}=2.
-$$
+As the sample size becomes very large, the standard errors become small, and even slight discrepancies between the observed table and the null model can produce a large chi-square statistic.
 
-This means the recovery probability is twice as high in the treatment group.
+That means:
 
-Relative risk is common in medical and public health contexts.
+* with a large sample, weak associations may still be statistically significant
+* with a small sample, moderately important associations may fail to reach significance
 
----
+So statistical significance depends on both:
 
-### Cramer's V
+* the size of the association
+* the amount of information in the sample
 
-Cramer's V is a standardized measure of association based on the chi-square statistic.
+This is why it is dangerous to interpret a small p-value as though it automatically meant a strong relationship.
 
-It is useful for contingency tables larger than $2\times2$.
+A p-value tells us about evidence against the null hypothesis.  
+It does not tell us how much the variables are related in a practical sense.
 
-Unlike the chi-square statistic itself, Cramer's V is scaled so that it is easier to interpret as a strength-of-association measure.
+***
 
-The general idea is:
+#### Why Effect Size Matters
 
-* values near 0 indicate weak association
-* larger values indicate stronger association
+An effect-size measure helps answer the practical question:
 
-Cramer's V is helpful because the chi-square statistic grows with sample size. A large chi-square value may reflect either strong association or simply a very large sample. Cramer's V helps separate strength from sample size.
+> If the variables are associated, how much are they associated?
 
----
+This is often the real scientific or policy question.
 
-## Odds and Odds Ratios
+In categorical data, effect size may be described in different ways depending on the problem.
 
-### Odds
+For example, we might report:
 
-The odds of an event are
+* the difference between two proportions
+* a relative risk
+* an odds ratio
+* the actual row or column percentages
 
-$$
-\text{odds}=\frac p{1-p}.
-$$
+These measures provide information about the **magnitude** of the association, not just its existence.
 
-The odds compare the probability that an event occurs to the probability that it does not occur.
+That is why, after a significant chi-square test, we should often report a measure of effect size.
 
-For example, if $p=0.75$, then
+The choice of effect-size measure depends on the structure of the data and the kind of interpretation we want.
 
-$$
-\text{odds}=\frac{0.75}{0.25}=3.
-$$
+***
 
-This means the event is three times as likely to occur as not occur.
+#### A Practical Way to Think About It
 
-Odds are not the same as probability. This distinction is important.
+A useful way to think about the analysis is as a two-step process.
 
-Probability is bounded between 0 and 1. Odds can take any nonnegative value.
+**Step 1:** Use a hypothesis test to assess whether there is evidence of an association.
 
----
+**Step 2:** Use summaries and effect-size measures to assess whether the association is important and to understand its form.
 
-### Odds Ratio
+So a good report of categorical data should usually include more than:
 
-For a $2\times2$ table:
+* the chi-square statistic
+* the degrees of freedom
+* the p-value
 
-|         | Outcome Yes | Outcome No |
-| ------- | ----------- | ---------- |
-| Group 1 | $a$         | $b$        |
-| Group 2 | $c$         | $d$        |
+It should also include information such as:
 
-The odds ratio is
+* the observed proportions
+* how much those proportions differ
+* an interpretable measure of association
+* the practical meaning of the result in context
 
-$$
-OR=\frac{ad}{bc}.
-$$
+***
 
-The odds ratio compares the odds of the event in one group to the odds of the event in another group.
+#### Example of the Distinction
 
-It is commonly used in case-control studies, logistic regression, and medical research.
+Suppose two groups have the following admission rates:
 
----
+* Group 1: 62%
+* Group 2: 58%
 
-### Interpreting Odds Ratios
+The difference is 4 percentage points.
 
-Interpretation:
+With a very large sample, this difference may be statistically significant.  
+With a small sample, it may not be.
 
-* $OR =1$ means no association
-* $OR >1$ means higher odds in group 1
-* $OR <1$ means lower odds in group 1
+But the practical difference remains 4 percentage points in either case.
 
-For example, $OR=2$ means the odds are twice as large in group 1 as in group 2.
+This illustrates the key idea:
 
-However, odds ratios can be less intuitive than differences in proportions or relative risks, especially when the event is common. For that reason, interpretation should be careful and tied to the context.
+> Statistical significance can change with sample size, but effect size describes the actual magnitude of the relationship.
 
----
+That is why both kinds of information are needed.
 
-### Confidence Interval for an Odds Ratio
+***
 
-Confidence intervals for odds ratios are often built using a log transformation.
+#### Summary
 
-This is because the odds ratio is positive and often skewed. Taking the logarithm makes the sampling distribution more symmetric.
+A small p-value does not measure practical importance.
 
-The usual strategy is:
+A chi-square test can tell us whether there is evidence of an association between two categorical variables, but it does not tell us how strong that association is.
 
-1. Compute $\log(OR)$
-2. Construct a confidence interval on the log scale
-3. Exponentiate the endpoints to return to the odds ratio scale
+Because of this, statistical significance should not be confused with practical significance.
 
-If the confidence interval for the odds ratio contains 1, then no association remains plausible.
+Especially in large samples, small differences can produce strong statistical evidence even when the actual relationship is weak.
 
-If it does not contain 1, then the data provide evidence of an association.
+Therefore, after testing, we should often report:
 
----
+* a measure of effect size
+* the actual proportions or percentages
+* an interpretation of the practical importance of the relationship
 
-### Odds Ratios and Study Design
+In categorical-data analysis, good interpretation requires both:
 
-Odds ratios are especially common in case-control studies.
+* evidence that an association exists
+* a clear description of how strong that association is
 
-In a case-control study, researchers often sample individuals based on outcome status:
 
-* cases have the outcome
-* controls do not have the outcome
-
-Then they look backward to compare exposure histories.
-
-In this design, relative risk may not be directly estimable because the proportion of cases and controls is fixed by design. However, the odds ratio can still be estimated and interpreted as a measure of association.
-
----
-
-## Small Counts and Exact Methods
-
-### Why Small Counts Are a Problem
-
-Large-sample approximations may fail when counts are small.
-
-This includes:
-
-* one-proportion $z$ procedures
-* two-proportion $z$ procedures
-* chi-square tests
-
-When expected counts are small, the normal or chi-square approximation may not accurately describe the true sampling distribution.
-
-This can lead to incorrect p-values and confidence intervals.
-
----
-
-### Fisher's Exact Test
-
-Fisher's exact test is an exact method for small $2\times2$ tables.
-
-It computes the probability of observing a table as extreme as the one observed, conditional on the marginal totals.
-
-Because it does not rely on a large-sample chi-square approximation, it is useful when expected counts are very small.
-
-Fisher's exact test is especially common in medical studies, small experiments, and rare-event analyses.
-
----
-
-### Practical Guidance
-
-Use exact methods when expected counts are very small.
-
-A practical approach is:
-
-* use large-sample methods when expected counts are sufficiently large
-* use Fisher's exact test or exact binomial methods when counts are small
-* always interpret results in context
-
-The goal is not merely to apply a formula, but to choose a method appropriate for the data structure.
-
----
-
-## Combining Several $2 \times 2$ Tables
-
-### Motivation
-
-Sometimes data are organized into several $2 \times 2$ tables because there is a third variable that defines strata.
-
-For example, in the vocational education example, we may have separate gender-by-admission tables for each specialty:
-
-* welding
-* health technology
-* electronics
-
-This is important because a third variable may hide or distort the relationship between two categorical variables.
-
----
-
-### Why Stratification Matters
-
-Pooling can be misleading.
-
-If the relationship between gender and admission differs across specialties, or if applicants are distributed differently across specialties, then the overall table may not tell the full story.
-
-This issue is related to confounding.
-
-A variable is a confounder when it is related to both the explanatory variable and the response variable and can distort the apparent association between them.
-
-Stratification helps us examine the association within more comparable groups.
-
----
-
-### Cochran-Mantel-Haenszel Idea
-
-The Cochran-Mantel-Haenszel approach combines evidence across strata.
-
-It is designed for settings where we have several $2\times2$ tables and want to assess the association between two variables while accounting for the stratifying variable.
-
-The main idea is to adjust for stratification rather than simply collapsing all tables into one.
-
-This is especially important when the stratifying variable is a potential confounder.
-
----
-
-### Practical Interpretation
-
-Stratified analysis adjusts for stratification.
-
-In the vocational program example, it allows us to ask:
-
-> Is there evidence of gender bias after accounting for specialty?
-
-This is a more careful question than simply asking whether gender and admission are associated overall.
-
-The main lesson is:
-
-> In categorical data analysis, the way categories are grouped and stratified can change the interpretation of the results.
-
----
+***
 
 ## Categorical Data and Study Design
 
@@ -2421,7 +3313,6 @@ Identify the response structure:
 * binary response
 * multinomial response
 * contingency table
-* stratified contingency table
 
 Different structures require different methods.
 
@@ -2507,49 +3398,6 @@ A strong categorical analysis should connect the statistical result back to the 
 
 ---
 
-## Research Study
-
-### Does Gender Bias Exist in the Selection of Students for Vocational Education?
-
-This section can integrate:
-
-* one proportion methods
-* two proportion methods
-* contingency tables
-* stratified analysis
-
-The central question is whether gender is related to admission into a vocational education program.
-
-A complete analysis should not rely on only one summary.
-
-A careful analysis may proceed as follows:
-
-1. Estimate the overall proportion of admitted applicants who are women.
-2. Compare admission rates for women and men.
-3. Organize gender and admission status in a contingency table.
-4. Test whether gender and admission decision are associated.
-5. Examine whether the association changes after stratifying by specialty.
-6. Report both statistical significance and practical importance.
-
-```{r categorical-research-study-placeholder}
-# placeholder for integrated research study analysis
-```
-
-This can serve as a unifying case study for the entire chapter.
-
-The most important lesson from this case study is that categorical data analysis depends heavily on how the question is framed.
-
-The same data can support several related but distinct analyses:
-
-* one proportion
-* two proportions
-* chi-square test
-* stratified contingency table analysis
-
-Each answers a slightly different question.
-
----
-
 ## Summary
 
 Major tools introduced:
@@ -2619,24 +3467,6 @@ Pooled proportion for testing $p_1=p_2$:
 $$
 \hat p=
 \frac{x_1+x_2}{n_1+n_2}
-$$
-
-Relative Risk:
-
-$$
-RR=\frac{p_1}{p_2}
-$$
-
-Odds:
-
-$$
-\text{odds}=\frac{p}{1-p}
-$$
-
-Odds Ratio:
-
-$$
-OR=\frac{ad}{bc}
 $$
 
 Chi-square statistic:
