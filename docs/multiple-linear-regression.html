@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | STAT 5428/6428 Spring 2026</title>
-  <meta name="description" content="Page not found | STAT 5428/6428 Spring 2026" />
+  <title>13 Multiple Linear Regression | STAT 5428/6428 Spring 2026</title>
+  <meta name="description" content="13 Multiple Linear Regression | STAT 5428/6428 Spring 2026" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | STAT 5428/6428 Spring 2026" />
+  <meta property="og:title" content="13 Multiple Linear Regression | STAT 5428/6428 Spring 2026" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | STAT 5428/6428 Spring 2026" />
+  <meta name="twitter:title" content="13 Multiple Linear Regression | STAT 5428/6428 Spring 2026" />
   
   
   
@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
+<link rel="prev" href="simple-linear-regression.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -993,18 +993,765 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="multiple-linear-regression" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">13</span> Multiple Linear Regression<a href="multiple-linear-regression.html#multiple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-4" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Introduction<a href="multiple-linear-regression.html#introduction-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In simple linear regression, we studied how one explanatory variable can be used to describe or predict a quantitative response. That framework is extremely useful, but it is often too limited for real data.</p>
+<p>In many practical studies, a response is influenced by several variables at the same time. If we try to explain the response using only one of them, we may miss important structure, obtain incomplete predictions, or misinterpret the role of the variable that we included.</p>
+<p>For example, many outcomes in science, education, medicine, and economics are not driven by a single factor. Instead, they are affected by several factors acting together.</p>
+<p>Examples include:</p>
+<ul>
+<li>exam score predicted by study time, class attendance, and prior GPA</li>
+<li>blood pressure predicted by age, weight, and exercise level</li>
+<li>crop yield predicted by fertilizer amount, rainfall, and soil quality</li>
+<li>housing price predicted by size, age, and neighborhood characteristics</li>
+</ul>
+<p>In each of these examples, no single explanatory variable is likely to tell the full story.</p>
+<p>This chapter extends simple linear regression to situations where more than one explanatory variable is used to explain or predict a quantitative response. The main ideas of regression remain the same:</p>
+<ul>
+<li>we model the mean response</li>
+<li>we estimate unknown coefficients from the data</li>
+<li>we assess uncertainty through confidence intervals and hypothesis tests</li>
+<li>we check whether the model fits the data adequately</li>
+</ul>
+<p>What changes is that the model now includes several explanatory variables at once.</p>
+<p>This extension is important because it allows us to study how each explanatory variable is related to the response <strong>after accounting for the others</strong>. That is one of the main conceptual strengths of multiple regression, and one of the main reasons it is so widely used.</p>
+<hr />
+</div>
+<div id="motivating-example-predicting-exam-performance" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Motivating Example: Predicting Exam Performance<a href="multiple-linear-regression.html#motivating-example-predicting-exam-performance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose an instructor wants to predict final exam score using several explanatory variables.</p>
+<p>Let</p>
+<ul>
+<li><span class="math inline">\(x_1\)</span>: hours studied</li>
+<li><span class="math inline">\(x_2\)</span>: class attendance rate</li>
+<li><span class="math inline">\(x_3\)</span>: prior GPA</li>
+</ul>
+<p>and let</p>
+<ul>
+<li><span class="math inline">\(y\)</span>: final exam score</li>
+</ul>
+<p>This example is useful because it illustrates immediately why multiple regression is needed.</p>
+<p>If we regress exam score only on study time, we may find a positive relationship. But that relationship may not reflect study time alone. Students who study more may also attend class more often, and they may already have stronger academic backgrounds. So the simple regression slope for study time may partly reflect the influence of attendance and prior GPA.</p>
+<p>Multiple regression helps separate these effects.</p>
+<p>It allows us to ask questions such as:</p>
+<ul>
+<li>How does exam score change with study time, after accounting for attendance and prior GPA?</li>
+<li>Does attendance still matter after adjusting for study time and prior GPA?</li>
+<li>Does prior GPA contribute useful predictive information once the other variables are already in the model?</li>
+<li>How much of the variability in exam scores can these explanatory variables explain together?</li>
+</ul>
+<p>These are exactly the kinds of questions that motivate multiple linear regression.</p>
+<hr />
+</div>
+<div id="why-simple-linear-regression-is-sometimes-not-enough" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> Why Simple Linear Regression Is Sometimes Not Enough<a href="multiple-linear-regression.html#why-simple-linear-regression-is-sometimes-not-enough" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Simple linear regression describes the relationship between a response and one explanatory variable. That is often a useful starting point, but it may be inadequate when several explanatory variables are relevant.</p>
+<p>A model with only one explanatory variable may be too simple because it ignores other factors that influence the response.</p>
+<p>When important variables are omitted, the relationship estimated from a simple regression can be misleading. The model may attribute to one explanatory variable an effect that is actually shared with or partly driven by another variable.</p>
+<div id="omitted-variable-concern" class="section level3 hasAnchor" number="13.3.1">
+<h3><span class="header-section-number">13.3.1</span> Omitted Variable Concern<a href="multiple-linear-regression.html#omitted-variable-concern" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is one of the main reasons multiple regression is needed.</p>
+<p>Suppose students with higher prior GPA also tend to study more. Then a simple regression of exam score on study time alone may partly reflect the effect of prior GPA. The fitted slope for study time may therefore exaggerate or distort the relationship we would observe if prior GPA were taken into account.</p>
+<p>So the problem is not just that the simple model is incomplete. The problem is that the interpretation of the slope can change when an important omitted variable is added.</p>
+<p>This is the omitted-variable concern.</p>
+</div>
+<div id="need-for-simultaneous-adjustment" class="section level3 hasAnchor" number="13.3.2">
+<h3><span class="header-section-number">13.3.2</span> Need for Simultaneous Adjustment<a href="multiple-linear-regression.html#need-for-simultaneous-adjustment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Multiple regression addresses this issue by allowing several explanatory variables to enter the model at once.</p>
+<p>This makes it possible to study the relationship between one explanatory variable and the response <strong>while holding the others fixed</strong>.</p>
+<p>That phrase is central to the interpretation of multiple regression.</p>
+<p>For example, in the exam setting:</p>
+<ul>
+<li>the effect of study time is interpreted after adjusting for attendance and prior GPA</li>
+<li>the effect of attendance is interpreted after adjusting for study time and prior GPA</li>
+<li>the effect of prior GPA is interpreted after adjusting for study time and attendance</li>
+</ul>
+<p>This kind of simultaneous adjustment is one of the main conceptual motivations for the entire chapter.</p>
+<hr />
+</div>
+</div>
+<div id="from-simple-regression-to-multiple-regression" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> From Simple Regression to Multiple Regression<a href="multiple-linear-regression.html#from-simple-regression-to-multiple-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Multiple regression builds directly on simple linear regression.</p>
+<div id="review-of-simple-linear-regression" class="section level3 hasAnchor" number="13.4.1">
+<h3><span class="header-section-number">13.4.1</span> Review of Simple Linear Regression<a href="multiple-linear-regression.html#review-of-simple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In simple linear regression, we modeled the mean response as</p>
+<p><span class="math display">\[
+  E(y \mid x) = \beta_0 + \beta_1 x.
+\]</span></p>
+<p>This says that the mean of the response changes linearly with one explanatory variable.</p>
+</div>
+<div id="multiple-regression-version" class="section level3 hasAnchor" number="13.4.2">
+<h3><span class="header-section-number">13.4.2</span> Multiple Regression Version<a href="multiple-linear-regression.html#multiple-regression-version" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>With several explanatory variables, the model becomes</p>
+<p><span class="math display">\[
+  E(y \mid x_1, x_2, \dots, x_p) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p.
+\]</span></p>
+<p>This is the natural extension of the simple regression model.</p>
+<p>The form is familiar:</p>
+<ul>
+<li>there is still an intercept</li>
+<li>there are still slope coefficients</li>
+<li>the model is still linear in the coefficients</li>
+</ul>
+<p>The difference is that now the conditional mean of the response depends on several explanatory variables instead of just one.</p>
+</div>
+<div id="interpretation-of-the-extension" class="section level3 hasAnchor" number="13.4.3">
+<h3><span class="header-section-number">13.4.3</span> Interpretation of the Extension<a href="multiple-linear-regression.html#interpretation-of-the-extension" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The most important new idea is that each regression coefficient describes the relationship between its explanatory variable and the mean response, <strong>after accounting for the other explanatory variables in the model</strong>.</p>
+<p>This is the main conceptual jump from simple to multiple regression.</p>
+<p>In simple regression, the slope describes the overall linear relationship between <span class="math inline">\(x\)</span> and the mean response.</p>
+<p>In multiple regression, the slope for <span class="math inline">\(x_j\)</span> describes the relationship between <span class="math inline">\(x_j\)</span> and the mean response after adjusting for the other explanatory variables.</p>
+<p>This interpretation is more subtle, but also more powerful.</p>
+<hr />
+<p>## The Multiple Linear Regression Model</p>
+<p>### Model Statement</p>
+<p>The multiple linear regression model can be written as</p>
+<p><span class="math display">\[
+  y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip} + e_i
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(y_i\)</span> is the response for observation <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(x_{ij}\)</span> is the value of explanatory variable <span class="math inline">\(j\)</span> for observation <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(\beta_0, \beta_1, \dots, \beta_p\)</span> are the regression parameters</li>
+<li><span class="math inline">\(e_i\)</span> is the random error term</li>
+</ul>
+<p>As in simple regression, each observation is described as the sum of:</p>
+<ul>
+<li>a systematic part, given by the regression function</li>
+<li>a random part, given by the error term</li>
+</ul>
+<p>The systematic part describes how the mean response changes with the explanatory variables.<br />
+The error term represents the remaining variation not explained by the model.</p>
+</div>
+<div id="interpretation-of-the-intercept-1" class="section level3 hasAnchor" number="13.4.4">
+<h3><span class="header-section-number">13.4.4</span> Interpretation of the Intercept<a href="multiple-linear-regression.html#interpretation-of-the-intercept-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The intercept <span class="math inline">\(\beta_0\)</span> is the mean response when all explanatory variables are equal to 0.</p>
+<p>This interpretation is mathematically correct, but whether it is meaningful depends on the context.</p>
+<p>In some applications, all explanatory variables equal to 0 may correspond to a realistic and interesting case. In others, it may not.</p>
+<p>For example, if the explanatory variables are hours studied, attendance rate, and prior GPA, then the case where all are 0 may not be realistic. So the intercept may have limited practical meaning, even though it is still part of the model.</p>
+</div>
+<div id="interpretation-of-a-slope-coefficient" class="section level3 hasAnchor" number="13.4.5">
+<h3><span class="header-section-number">13.4.5</span> Interpretation of a Slope Coefficient<a href="multiple-linear-regression.html#interpretation-of-a-slope-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The coefficient <span class="math inline">\(\beta_j\)</span> represents the change in the mean response associated with a one-unit increase in <span class="math inline">\(x_j\)</span>, while holding all the other explanatory variables fixed.</p>
+<p>This is the key interpretation of a slope coefficient in multiple regression.</p>
+<p>Using the exam example:</p>
+<ul>
+<li><span class="math inline">\(\beta_1\)</span> measures the effect of study time after adjusting for attendance and prior GPA</li>
+<li><span class="math inline">\(\beta_2\)</span> measures the effect of attendance after adjusting for study time and prior GPA</li>
+<li><span class="math inline">\(\beta_3\)</span> measures the effect of prior GPA after adjusting for study time and attendance</li>
+</ul>
+<p>This interpretation should be emphasized repeatedly, since it is one of the hardest conceptual jumps for students.</p>
+</div>
+<div id="assumptions-5" class="section level3 hasAnchor" number="13.4.6">
+<h3><span class="header-section-number">13.4.6</span> Assumptions<a href="multiple-linear-regression.html#assumptions-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The usual assumptions are:</p>
+<ol style="list-style-type: decimal">
+<li>the mean response is a linear function of the explanatory variables</li>
+<li>the errors have mean 0</li>
+<li>the errors have common variance <span class="math inline">\(\sigma^2\)</span></li>
+<li>the errors are independent</li>
+<li>for inference, the errors are often assumed to be approximately normal</li>
+</ol>
+<p>These assumptions play the same role they played in simple regression.</p>
+<p>The linearity assumption concerns the mean response, not every individual response.</p>
+<p>The common-variance assumption says that the spread of the response around the fitted regression surface is roughly constant.</p>
+<p>The independence assumption says that the errors do not systematically move together across observations.</p>
+<p>The approximate normality assumption is mainly needed for the usual <span class="math inline">\(t\)</span> and <span class="math inline">\(F\)</span> inference procedures.</p>
+<p>These assumptions should be treated as modeling assumptions to be checked and judged, not automatic truths.</p>
+<hr />
+</div>
+</div>
+<div id="the-general-linear-model-idea" class="section level2 hasAnchor" number="13.5">
+<h2><span class="header-section-number">13.5</span> The General Linear Model Idea<a href="multiple-linear-regression.html#the-general-linear-model-idea" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="what-makes-the-model-linear" class="section level3 hasAnchor" number="13.5.1">
+<h3><span class="header-section-number">13.5.1</span> What Makes the Model “Linear”<a href="multiple-linear-regression.html#what-makes-the-model-linear" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The model is called linear because it is linear in the parameters <span class="math inline">\(\beta_0, \beta_1, \dots, \beta_p\)</span>.</p>
+<p>This is an important point.</p>
+<p>A regression model can still be linear even if the explanatory variables themselves are transformed.</p>
+<p>For example, the model</p>
+<p><span class="math display">\[
+  y = \beta_0 + \beta_1 x + \beta_2 x^2 + e
+\]</span></p>
+<p>is still a linear regression model because it is linear in the coefficients <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, and <span class="math inline">\(\beta_2\)</span>.</p>
+<p>The variable <span class="math inline">\(x^2\)</span> is treated as another explanatory variable.</p>
+</div>
+<div id="why-this-matters" class="section level3 hasAnchor" number="13.5.2">
+<h3><span class="header-section-number">13.5.2</span> Why This Matters<a href="multiple-linear-regression.html#why-this-matters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This viewpoint helps students see that the word “linear” refers to the parameters, not necessarily to the shape in the original explanatory variable.</p>
+<p>That is useful because it broadens the idea of regression while still keeping the mathematical structure manageable.</p>
+<p>At this stage, the goal is only to introduce this idea lightly, so students begin to see that multiple regression is part of a larger family of linear models.</p>
+<hr />
+</div>
+</div>
+<div id="estimating-the-regression-coefficients" class="section level2 hasAnchor" number="13.6">
+<h2><span class="header-section-number">13.6</span> Estimating the Regression Coefficients<a href="multiple-linear-regression.html#estimating-the-regression-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="least-squares-estimation" class="section level3 hasAnchor" number="13.6.1">
+<h3><span class="header-section-number">13.6.1</span> Least Squares Estimation<a href="multiple-linear-regression.html#least-squares-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As in simple regression, the regression coefficients are estimated by choosing the values that make the sum of squared residuals as small as possible.</p>
+<p>This is the least squares principle.</p>
+<p>The idea is still to choose the model that fits the observed data best in the sense of minimizing squared vertical discrepancies between observed and fitted values.</p>
+</div>
+<div id="fitted-model" class="section level3 hasAnchor" number="13.6.2">
+<h3><span class="header-section-number">13.6.2</span> Fitted Model<a href="multiple-linear-regression.html#fitted-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The fitted model is</p>
+<p><span class="math display">\[
+  \hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \cdots + b_p x_p.
+\]</span></p>
+<p>Here, the coefficients <span class="math inline">\(b_0, b_1, \dots, b_p\)</span> are the sample-based estimates of the unknown population parameters <span class="math inline">\(\beta_0, \beta_1, \dots, \beta_p\)</span>.</p>
+<p>This equation gives the predicted mean response for a given set of explanatory-variable values.</p>
+</div>
+<div id="interpretation-of-the-fitted-coefficients" class="section level3 hasAnchor" number="13.6.3">
+<h3><span class="header-section-number">13.6.3</span> Interpretation of the Fitted Coefficients<a href="multiple-linear-regression.html#interpretation-of-the-fitted-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The fitted coefficients are estimates, so they are subject to sampling variability.</p>
+<p>They should be interpreted in context, just like the population coefficients, and always with the “holding other variables fixed” condition in mind.</p>
+<p>For example, <span class="math inline">\(b_1\)</span> is interpreted as the estimated change in the mean response for a one-unit increase in <span class="math inline">\(x_1\)</span>, holding the other explanatory variables fixed.</p>
+</div>
+<div id="residuals-1" class="section level3 hasAnchor" number="13.6.4">
+<h3><span class="header-section-number">13.6.4</span> Residuals<a href="multiple-linear-regression.html#residuals-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The residual for observation <span class="math inline">\(i\)</span> is</p>
+<p><span class="math display">\[
+  e_i = y_i - \hat{y}_i.
+\]</span></p>
+<p>It represents the part of the observed response not explained by the fitted model.</p>
+<p>Residuals are important because they summarize the discrepancies between the observed data and the fitted regression surface.</p>
+</div>
+<div id="residual-standard-deviation-1" class="section level3 hasAnchor" number="13.6.5">
+<h3><span class="header-section-number">13.6.5</span> Residual Standard Deviation<a href="multiple-linear-regression.html#residual-standard-deviation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The residual standard deviation summarizes the typical size of the residuals.</p>
+<p>It measures how much observed responses tend to vary around the fitted regression surface.</p>
+<p>As in simple regression, its size should be interpreted relative to the overall variability in the response. A small residual standard deviation means the model explains much of the variability. A large one means substantial unexplained variation remains.</p>
+<hr />
+</div>
+</div>
+<div id="interpretation-of-coefficients-in-multiple-regression" class="section level2 hasAnchor" number="13.7">
+<h2><span class="header-section-number">13.7</span> Interpretation of Coefficients in Multiple Regression<a href="multiple-linear-regression.html#interpretation-of-coefficients-in-multiple-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This deserves special emphasis because it is usually where students struggle most.</p>
+<div id="holding-other-variables-fixed" class="section level3 hasAnchor" number="13.7.1">
+<h3><span class="header-section-number">13.7.1</span> Holding Other Variables Fixed<a href="multiple-linear-regression.html#holding-other-variables-fixed" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Each slope coefficient must be interpreted conditionally on the other explanatory variables remaining fixed.</p>
+<p>That is what makes multiple regression different from simple regression.</p>
+</div>
+<div id="why-this-differs-from-simple-regression" class="section level3 hasAnchor" number="13.7.2">
+<h3><span class="header-section-number">13.7.2</span> Why This Differs from Simple Regression<a href="multiple-linear-regression.html#why-this-differs-from-simple-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In simple regression, the slope reflects the overall relationship between one explanatory variable and the response.</p>
+<p>In multiple regression, the slope reflects the relationship between <span class="math inline">\(x_j\)</span> and the response <strong>after adjusting for the other explanatory variables</strong>.</p>
+<p>So the coefficient no longer describes an overall marginal relationship. It describes a conditional, adjusted relationship.</p>
+</div>
+<div id="example-interpretations" class="section level3 hasAnchor" number="13.7.3">
+<h3><span class="header-section-number">13.7.3</span> Example Interpretations<a href="multiple-linear-regression.html#example-interpretations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the motivating example:</p>
+<ul>
+<li><span class="math inline">\(b_1\)</span>: estimated change in mean exam score for one extra hour studied, holding attendance and prior GPA fixed</li>
+<li><span class="math inline">\(b_2\)</span>: estimated change in mean exam score for a one-unit increase in attendance, holding study time and prior GPA fixed</li>
+<li><span class="math inline">\(b_3\)</span>: estimated change in mean exam score for a one-unit increase in prior GPA, holding study time and attendance fixed</li>
+</ul>
+<p>These interpretations illustrate the main advantage of multiple regression: it separates relationships that may be mixed together in a simple regression.</p>
+</div>
+<div id="caution-about-interpretation" class="section level3 hasAnchor" number="13.7.4">
+<h3><span class="header-section-number">13.7.4</span> Caution About Interpretation<a href="multiple-linear-regression.html#caution-about-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If explanatory variables are highly related to each other, coefficient interpretation can become unstable and difficult.</p>
+<p>In such cases, the model may still fit or predict reasonably well, but the estimated slopes may become hard to interpret individually. This prepares naturally for the later discussion of multicollinearity.</p>
+<hr />
+</div>
+</div>
+<div id="inference-for-individual-regression-coefficients" class="section level2 hasAnchor" number="13.8">
+<h2><span class="header-section-number">13.8</span> Inference for Individual Regression Coefficients<a href="multiple-linear-regression.html#inference-for-individual-regression-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="confidence-intervals-for-a-coefficient" class="section level3 hasAnchor" number="13.8.1">
+<h3><span class="header-section-number">13.8.1</span> Confidence Intervals for a Coefficient<a href="multiple-linear-regression.html#confidence-intervals-for-a-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A confidence interval for <span class="math inline">\(\beta_j\)</span> gives a range of plausible values for the adjusted effect of explanatory variable <span class="math inline">\(x_j\)</span>.</p>
+<p>So the interval describes uncertainty about the conditional relationship between <span class="math inline">\(x_j\)</span> and the mean response, after accounting for the other explanatory variables in the model.</p>
+</div>
+<div id="hypothesis-test-for-one-coefficient" class="section level3 hasAnchor" number="13.8.2">
+<h3><span class="header-section-number">13.8.2</span> Hypothesis Test for One Coefficient<a href="multiple-linear-regression.html#hypothesis-test-for-one-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A common test is</p>
+<p><span class="math display">\[
+  H_0:\beta_j = 0
+\]</span></p>
+<p>versus</p>
+<p><span class="math display">\[
+  H_a:\beta_j \ne 0.
+\]</span></p>
+<p>This asks whether explanatory variable <span class="math inline">\(x_j\)</span> contributes to explaining the response after accounting for the other variables in the model.</p>
+<p>This is an important point: the test is not asking whether <span class="math inline">\(x_j\)</span> is associated with the response in isolation. It is asking whether <span class="math inline">\(x_j\)</span> adds information once the other explanatory variables have already been taken into account.</p>
+</div>
+<div id="test-statistic-5" class="section level3 hasAnchor" number="13.8.3">
+<h3><span class="header-section-number">13.8.3</span> Test Statistic<a href="multiple-linear-regression.html#test-statistic-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The usual <span class="math inline">\(t\)</span> statistic is</p>
+<p><span class="math display">\[
+  t = \frac{b_j - 0}{SE(b_j)}.
+\]</span></p>
+<p>As in earlier inference chapters, the statistic measures how many standard errors the observed estimate lies from the null value.</p>
+</div>
+<div id="interpretation-in-context" class="section level3 hasAnchor" number="13.8.4">
+<h3><span class="header-section-number">13.8.4</span> Interpretation in Context<a href="multiple-linear-regression.html#interpretation-in-context" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The conclusion should always be phrased in terms of the explanatory variable’s adjusted relationship with the response.</p>
+<p>For example, if the coefficient for study time is significant, the conclusion should be stated as evidence that study time is linearly related to the mean exam score after adjusting for attendance and prior GPA.</p>
+<hr />
+</div>
+</div>
+<div id="overall-model-significance" class="section level2 hasAnchor" number="13.9">
+<h2><span class="header-section-number">13.9</span> Overall Model Significance<a href="multiple-linear-regression.html#overall-model-significance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="why-individual-tests-are-not-enough" class="section level3 hasAnchor" number="13.9.1">
+<h3><span class="header-section-number">13.9.1</span> Why Individual Tests Are Not Enough<a href="multiple-linear-regression.html#why-individual-tests-are-not-enough" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Even if individual coefficients are not strongly significant, the model as a whole may still explain an important portion of the variation in the response.</p>
+<p>This can happen when several explanatory variables work together, or when relationships are shared across variables.</p>
+<p>So it is not enough to look only at the individual <span class="math inline">\(t\)</span> tests.</p>
+</div>
+<div id="overall-hypotheses" class="section level3 hasAnchor" number="13.9.2">
+<h3><span class="header-section-number">13.9.2</span> Overall Hypotheses<a href="multiple-linear-regression.html#overall-hypotheses" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The overall null hypothesis is</p>
+<p><span class="math display">\[
+  H_0:\beta_1 = \beta_2 = \cdots = \beta_p = 0
+\]</span></p>
+<p>versus the alternative that at least one slope coefficient is not zero.</p>
+<p>This asks whether the explanatory variables, taken together, provide useful linear information about the response.</p>
+</div>
+<div id="the-f-test" class="section level3 hasAnchor" number="13.9.3">
+<h3><span class="header-section-number">13.9.3</span> The F Test<a href="multiple-linear-regression.html#the-f-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The overall <span class="math inline">\(F\)</span> test is used for this purpose.</p>
+<p>It compares the amount of variation explained by the model to the amount left unexplained.</p>
+<p>A large value of the <span class="math inline">\(F\)</span> statistic provides evidence that the explanatory variables collectively contribute to explaining the response.</p>
+</div>
+<div id="interpretation-14" class="section level3 hasAnchor" number="13.9.4">
+<h3><span class="header-section-number">13.9.4</span> Interpretation<a href="multiple-linear-regression.html#interpretation-14" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Rejecting the null hypothesis gives evidence that at least one explanatory variable is linearly related to the response after accounting for the others.</p>
+<p>But it does not identify which one. That requires looking at the individual coefficients or additional tests.</p>
+<hr />
+<p>## Coefficient of Determination in Multiple Regression</p>
+<p>### Definition of <span class="math inline">\(R^2\)</span></p>
+<p>The coefficient of determination <span class="math inline">\(R^2\)</span> measures the proportion of variability in the response explained by the multiple regression model.</p>
+<p>So it compares:</p>
+<ul>
+<li>total variation in the response</li>
+<li>variation remaining after the model has been fitted</li>
+</ul>
+</div>
+<div id="interpretation-15" class="section level3 hasAnchor" number="13.9.5">
+<h3><span class="header-section-number">13.9.5</span> Interpretation<a href="multiple-linear-regression.html#interpretation-15" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For example, if <span class="math inline">\(R^2 = 0.72\)</span>, then about 72% of the variability in exam scores is explained by the explanatory variables included in the model.</p>
+<p>This makes <span class="math inline">\(R^2\)</span> a useful descriptive summary of model fit.</p>
+</div>
+<div id="why-r2-alone-is-not-enough" class="section level3 hasAnchor" number="13.9.6">
+<h3><span class="header-section-number">13.9.6</span> Why <span class="math inline">\(R^2\)</span> Alone Is Not Enough<a href="multiple-linear-regression.html#why-r2-alone-is-not-enough" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A large <span class="math inline">\(R^2\)</span> does not guarantee that:</p>
+<ul>
+<li>the model is appropriate</li>
+<li>every coefficient is important</li>
+<li>the relationship is causal</li>
+</ul>
+<p>A small <span class="math inline">\(R^2\)</span> does not necessarily mean the model is useless.</p>
+<p>So <span class="math inline">\(R^2\)</span> is helpful, but it should not be the only criterion used to evaluate a model.</p>
+</div>
+<div id="adjusted-r2" class="section level3 hasAnchor" number="13.9.7">
+<h3><span class="header-section-number">13.9.7</span> Adjusted <span class="math inline">\(R^2\)</span><a href="multiple-linear-regression.html#adjusted-r2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Adjusted <span class="math inline">\(R^2\)</span> modifies <span class="math inline">\(R^2\)</span> to account for the number of explanatory variables in the model.</p>
+<p>This is useful because ordinary <span class="math inline">\(R^2\)</span> never decreases when variables are added, even if those variables add little real value.</p>
+<p>Adjusted <span class="math inline">\(R^2\)</span> helps when comparing models with different numbers of predictors.</p>
+<hr />
+</div>
+</div>
+<div id="testing-a-subset-of-regression-coefficients" class="section level2 hasAnchor" number="13.10">
+<h2><span class="header-section-number">13.10</span> Testing a Subset of Regression Coefficients<a href="multiple-linear-regression.html#testing-a-subset-of-regression-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="motivation-1" class="section level3 hasAnchor" number="13.10.1">
+<h3><span class="header-section-number">13.10.1</span> Motivation<a href="multiple-linear-regression.html#motivation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes the question is not whether the full model is useful, but whether a specific group of explanatory variables adds important information.</p>
+<p>This is one of the key strengths of multiple regression.</p>
+</div>
+<div id="example-1" class="section level3 hasAnchor" number="13.10.2">
+<h3><span class="header-section-number">13.10.2</span> Example<a href="multiple-linear-regression.html#example-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the exam example, suppose the instructor wants to know whether attendance and prior GPA add useful information once study time is already in the model.</p>
+<p>That is not a question about one coefficient alone, and it is not the same as the overall model test.</p>
+</div>
+<div id="hypotheses-2" class="section level3 hasAnchor" number="13.10.3">
+<h3><span class="header-section-number">13.10.3</span> Hypotheses<a href="multiple-linear-regression.html#hypotheses-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>These tests have the form</p>
+<p><span class="math display">\[
+  H_0:\beta_j = \beta_k = \cdots = 0
+\]</span></p>
+<p>for a subset of coefficients.</p>
+<p>The alternative is that at least one of those coefficients is not zero.</p>
+</div>
+<div id="interpretation-16" class="section level3 hasAnchor" number="13.10.4">
+<h3><span class="header-section-number">13.10.4</span> Interpretation<a href="multiple-linear-regression.html#interpretation-16" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This type of test asks whether the selected group of explanatory variables contributes to explaining the response, after accounting for the remaining variables.</p>
+<p>That makes subset tests especially useful for comparing nested models and assessing whether certain variables add enough information to justify their inclusion.</p>
+<hr />
+</div>
+</div>
+<div id="prediction-and-forecasting" class="section level2 hasAnchor" number="13.11">
+<h2><span class="header-section-number">13.11</span> Prediction and Forecasting<a href="multiple-linear-regression.html#prediction-and-forecasting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="predicting-the-mean-response" class="section level3 hasAnchor" number="13.11.1">
+<h3><span class="header-section-number">13.11.1</span> Predicting the Mean Response<a href="multiple-linear-regression.html#predicting-the-mean-response" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For a selected combination of explanatory-variable values, the fitted model provides an estimate of the mean response.</p>
+<p>This is the estimated conditional mean at that point in the explanatory-variable space.</p>
+</div>
+<div id="predicting-a-new-observation" class="section level3 hasAnchor" number="13.11.2">
+<h3><span class="header-section-number">13.11.2</span> Predicting a New Observation<a href="multiple-linear-regression.html#predicting-a-new-observation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We may also want to predict a new individual response for an observation with those same explanatory-variable values.</p>
+<p>That is a different inferential goal.</p>
+</div>
+<div id="mean-response-versus-new-observation-1" class="section level3 hasAnchor" number="13.11.3">
+<h3><span class="header-section-number">13.11.3</span> Mean Response Versus New Observation<a href="multiple-linear-regression.html#mean-response-versus-new-observation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As in simple regression:</p>
+<ul>
+<li>a confidence interval for the mean response is narrower</li>
+<li>a prediction interval for a new observation is wider</li>
+</ul>
+<p>The prediction interval is wider because it must include both:</p>
+<ul>
+<li>uncertainty in the estimated regression surface</li>
+<li>natural observation-to-observation variability around that surface</li>
+</ul>
+<p>This distinction remains very important in the multiple-regression setting.</p>
+</div>
+<div id="example-2" class="section level3 hasAnchor" number="13.11.4">
+<h3><span class="header-section-number">13.11.4</span> Example<a href="multiple-linear-regression.html#example-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the motivating example, we may estimate:</p>
+<ul>
+<li>the mean exam score for students with a given study time, attendance, and GPA</li>
+<li>the score of one new student with those same values</li>
+</ul>
+<p>These are related but distinct questions.</p>
+</div>
+<div id="caution-about-extrapolation-1" class="section level3 hasAnchor" number="13.11.5">
+<h3><span class="header-section-number">13.11.5</span> Caution About Extrapolation<a href="multiple-linear-regression.html#caution-about-extrapolation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Prediction should be restricted to combinations of explanatory-variable values similar to those observed in the data.</p>
+<p>Predicting far outside the observed region is risky because the fitted model may no longer be a good description there.</p>
+<p>With several explanatory variables, this caution becomes even more important, because unusual combinations of predictor values may occur even when each variable individually is within its observed range.</p>
+<hr />
+</div>
+</div>
+<div id="comparing-slopes-and-interactions" class="section level2 hasAnchor" number="13.12">
+<h2><span class="header-section-number">13.12</span> Comparing Slopes and Interactions<a href="multiple-linear-regression.html#comparing-slopes-and-interactions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="why-slopes-may-differ-across-groups" class="section level3 hasAnchor" number="13.12.1">
+<h3><span class="header-section-number">13.12.1</span> Why Slopes May Differ Across Groups<a href="multiple-linear-regression.html#why-slopes-may-differ-across-groups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The relationship between an explanatory variable and the response may differ depending on another variable.</p>
+<p>For example, study time may affect exam performance differently for undergraduate and graduate students.</p>
+<p>If so, one common slope may not be adequate.</p>
+</div>
+<div id="interaction-terms" class="section level3 hasAnchor" number="13.12.2">
+<h3><span class="header-section-number">13.12.2</span> Interaction Terms<a href="multiple-linear-regression.html#interaction-terms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An interaction term allows the slope for one explanatory variable to depend on another variable.</p>
+<p>This extends the model so that the effect of one variable is no longer assumed constant across levels of the other.</p>
+</div>
+<div id="interpretation-17" class="section level3 hasAnchor" number="13.12.3">
+<h3><span class="header-section-number">13.12.3</span> Interpretation<a href="multiple-linear-regression.html#interpretation-17" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An interaction means that the effect of one explanatory variable is not the same in all situations.</p>
+<p>This idea is important because it shows that even in a multiple regression model, the meaning of a coefficient can depend on what else is included in the model.</p>
+<p>At this level, an introductory treatment is enough. The main goal is to show students that constant slopes are themselves a modeling assumption.</p>
+<hr />
+</div>
+</div>
+<div id="checking-model-assumptions" class="section level2 hasAnchor" number="13.13">
+<h2><span class="header-section-number">13.13</span> Checking Model Assumptions<a href="multiple-linear-regression.html#checking-model-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="residual-plots" class="section level3 hasAnchor" number="13.13.1">
+<h3><span class="header-section-number">13.13.1</span> Residual Plots<a href="multiple-linear-regression.html#residual-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Residual plots remain one of the most important tools for checking the model.</p>
+<p>They help us assess whether the fitted model is an adequate description of the data.</p>
+</div>
+<div id="what-to-look-for-1" class="section level3 hasAnchor" number="13.13.2">
+<h3><span class="header-section-number">13.13.2</span> What to Look For<a href="multiple-linear-regression.html#what-to-look-for-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Students should check for:</p>
+<ul>
+<li>curvature</li>
+<li>unequal spread</li>
+<li>unusual observations</li>
+<li>separate clusters</li>
+<li>nonnormal residual behavior</li>
+</ul>
+<p>These are the same kinds of issues that arose in simple regression, but now they are evaluated in the multiple-regression setting.</p>
+</div>
+<div id="residuals-versus-fitted-values" class="section level3 hasAnchor" number="13.13.3">
+<h3><span class="header-section-number">13.13.3</span> Residuals Versus Fitted Values<a href="multiple-linear-regression.html#residuals-versus-fitted-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This plot helps assess:</p>
+<ul>
+<li>whether the linear form is reasonable</li>
+<li>whether the spread is roughly constant</li>
+</ul>
+<p>If the plot shows structure instead of random scatter around 0, the model may be missing important features.</p>
+</div>
+<div id="normal-probability-plot-of-residuals" class="section level3 hasAnchor" number="13.13.4">
+<h3><span class="header-section-number">13.13.4</span> Normal Probability Plot of Residuals<a href="multiple-linear-regression.html#normal-probability-plot-of-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This helps assess whether the residuals are approximately normal for inference purposes.</p>
+<p>As before, normality is mainly important for the usual inferential procedures, not for the idea of least squares itself.</p>
+</div>
+<div id="why-these-checks-matter" class="section level3 hasAnchor" number="13.13.5">
+<h3><span class="header-section-number">13.13.5</span> Why These Checks Matter<a href="multiple-linear-regression.html#why-these-checks-matter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A model may produce a fitted equation and many numerical summaries, but those summaries are only as trustworthy as the model assumptions behind them.</p>
+<p>So diagnostic checking is part of the analysis, not an optional afterthought.</p>
+<hr />
+</div>
+</div>
+<div id="multicollinearity" class="section level2 hasAnchor" number="13.14">
+<h2><span class="header-section-number">13.14</span> Multicollinearity<a href="multiple-linear-regression.html#multicollinearity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="what-it-means" class="section level3 hasAnchor" number="13.14.1">
+<h3><span class="header-section-number">13.14.1</span> What It Means<a href="multiple-linear-regression.html#what-it-means" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Multicollinearity occurs when explanatory variables are strongly related to each other.</p>
+<p>This means that the model includes predictors that overlap substantially in the information they provide.</p>
+</div>
+<div id="why-it-matters" class="section level3 hasAnchor" number="13.14.2">
+<h3><span class="header-section-number">13.14.2</span> Why It Matters<a href="multiple-linear-regression.html#why-it-matters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When explanatory variables overlap heavily, it can become difficult to separate their individual effects.</p>
+<p>This can lead to:</p>
+<ul>
+<li>unstable coefficient estimates</li>
+<li>large standard errors</li>
+<li>confusing coefficient signs</li>
+<li>difficulty interpreting coefficients</li>
+</ul>
+<p>So multicollinearity is mainly an interpretational problem, though it can also affect inference.</p>
+</div>
+<div id="practical-interpretation-2" class="section level3 hasAnchor" number="13.14.3">
+<h3><span class="header-section-number">13.14.3</span> Practical Interpretation<a href="multiple-linear-regression.html#practical-interpretation-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A model with multicollinearity may still predict well, but the individual coefficient estimates may become unreliable or hard to interpret.</p>
+<p>This is a very important distinction.</p>
+<p>Prediction and explanation are not always the same goal. A model can perform reasonably for prediction while still making it difficult to interpret the separate effect of each explanatory variable.</p>
+<hr />
+<p>## Variable Selection and Model Building</p>
+<p>### Why Not Include Every Possible Variable?</p>
+<p>Including too many variables may:</p>
+<ul>
+<li>complicate interpretation</li>
+<li>add noise rather than useful information</li>
+<li>create multicollinearity problems</li>
+</ul>
+<p>So more variables do not automatically mean a better model.</p>
+</div>
+<div id="scientific-guidance" class="section level3 hasAnchor" number="13.14.4">
+<h3><span class="header-section-number">13.14.4</span> Scientific Guidance<a href="multiple-linear-regression.html#scientific-guidance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Variable selection should be guided by:</p>
+<ul>
+<li>the scientific question</li>
+<li>subject-matter knowledge</li>
+<li>data quality</li>
+<li>interpretability</li>
+</ul>
+<p>not just by automatic procedures.</p>
+<p>This is an important practical lesson. Regression is not only a computational tool. It is also a modeling framework, and good modeling requires judgment.</p>
+</div>
+<div id="parsimony" class="section level3 hasAnchor" number="13.14.5">
+<h3><span class="header-section-number">13.14.5</span> Parsimony<a href="multiple-linear-regression.html#parsimony" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A simpler model that answers the research question clearly is often preferable to a more complicated model with difficult interpretation.</p>
+<p>This is the principle of parsimony: use a model that is rich enough to address the question, but not more complicated than needed.</p>
+<hr />
+</div>
+</div>
+<div id="regression-and-causation" class="section level2 hasAnchor" number="13.15">
+<h2><span class="header-section-number">13.15</span> Regression and Causation<a href="multiple-linear-regression.html#regression-and-causation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="association-is-not-automatically-causal" class="section level3 hasAnchor" number="13.15.1">
+<h3><span class="header-section-number">13.15.1</span> Association Is Not Automatically Causal<a href="multiple-linear-regression.html#association-is-not-automatically-causal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Even in multiple regression, adjusting for several variables does not automatically prove causation.</p>
+<p>Multiple regression can control for some variables, but it does not guarantee that all relevant confounding has been addressed.</p>
+</div>
+<div id="why-caution-is-still-needed" class="section level3 hasAnchor" number="13.15.2">
+<h3><span class="header-section-number">13.15.2</span> Why Caution Is Still Needed<a href="multiple-linear-regression.html#why-caution-is-still-needed" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Possible issues include:</p>
+<ul>
+<li>omitted variables</li>
+<li>measurement error</li>
+<li>confounding</li>
+<li>observational study design</li>
+</ul>
+<p>So even a carefully fitted multiple regression model usually describes association unless the design strongly supports causal interpretation.</p>
+</div>
+<div id="connection-to-earlier-study-design-ideas-1" class="section level3 hasAnchor" number="13.15.3">
+<h3><span class="header-section-number">13.15.3</span> Connection to Earlier Study Design Ideas<a href="multiple-linear-regression.html#connection-to-earlier-study-design-ideas-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Stronger causal conclusions require stronger design support, especially randomization or careful control of confounding.</p>
+<p>This connects multiple regression back to earlier material on observational studies and experiments.</p>
+<hr />
+<p>## What to Check Before Using Multiple Regression</p>
+<p>### Study Design</p>
+<p>Ask:</p>
+<ul>
+<li>Are the observational units independent?</li>
+<li>Is the response quantitative?</li>
+<li>Are the explanatory variables measured appropriately?</li>
+</ul>
+<p>These questions concern whether the model is appropriate for the type of data collected.</p>
+</div>
+<div id="model-form" class="section level3 hasAnchor" number="13.15.4">
+<h3><span class="header-section-number">13.15.4</span> Model Form<a href="multiple-linear-regression.html#model-form" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ask:</p>
+<ul>
+<li>Is a linear relationship in the mean response plausible?</li>
+<li>Are interaction terms needed?</li>
+<li>Are important variables missing?</li>
+</ul>
+<p>These questions concern whether the model structure makes sense scientifically and statistically.</p>
+</div>
+<div id="residual-behavior-1" class="section level3 hasAnchor" number="13.15.5">
+<h3><span class="header-section-number">13.15.5</span> Residual Behavior<a href="multiple-linear-regression.html#residual-behavior-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ask:</p>
+<ul>
+<li>Is there curvature?</li>
+<li>Is the spread roughly constant?</li>
+<li>Are there outliers or influential points?</li>
+</ul>
+<p>These are essential model diagnostics.</p>
+</div>
+<div id="explanatory-variables" class="section level3 hasAnchor" number="13.15.6">
+<h3><span class="header-section-number">13.15.6</span> Explanatory Variables<a href="multiple-linear-regression.html#explanatory-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ask:</p>
+<ul>
+<li>Are some explanatory variables strongly related to each other?</li>
+<li>Are all included variables meaningful?</li>
+</ul>
+<p>These questions help guard against multicollinearity and overcomplication.</p>
+</div>
+<div id="interpretation-18" class="section level3 hasAnchor" number="13.15.7">
+<h3><span class="header-section-number">13.15.7</span> Interpretation<a href="multiple-linear-regression.html#interpretation-18" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ask:</p>
+<ul>
+<li>Are conclusions being stated conditionally on the other variables?</li>
+<li>Is anyone making a causal claim not supported by the study design?</li>
+</ul>
+<p>This final step reminds students that regression results must be interpreted carefully, not just computed.</p>
+<hr />
+</div>
+</div>
+<div id="reporting-results-for-multiple-regression" class="section level2 hasAnchor" number="13.16">
+<h2><span class="header-section-number">13.16</span> Reporting Results for Multiple Regression<a href="multiple-linear-regression.html#reporting-results-for-multiple-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="what-to-report-2" class="section level3 hasAnchor" number="13.16.1">
+<h3><span class="header-section-number">13.16.1</span> What to Report<a href="multiple-linear-regression.html#what-to-report-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A complete report should include:</p>
+<ul>
+<li>the research question</li>
+<li>the response variable</li>
+<li>the explanatory variables</li>
+<li>the fitted regression equation</li>
+<li>interpretations of important coefficients</li>
+<li>measures of overall fit such as <span class="math inline">\(R^2\)</span>
+<ul>
+<li>relevant confidence intervals and hypothesis tests</li>
+</ul></li>
+<li>residual-based comments on model adequacy</li>
+<li>prediction results when relevant</li>
+<li>conclusions in context</li>
+</ul>
+<p>This reporting structure helps ensure that the analysis includes not only computation, but also interpretation and model checking.</p>
+</div>
+<div id="avoiding-common-mistakes-2" class="section level3 hasAnchor" number="13.16.2">
+<h3><span class="header-section-number">13.16.2</span> Avoiding Common Mistakes<a href="multiple-linear-regression.html#avoiding-common-mistakes-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Common mistakes include:</p>
+<ul>
+<li>interpreting a coefficient without mentioning that the other variables are held fixed</li>
+<li>reporting only p-values</li>
+<li>focusing only on <span class="math inline">\(R^2\)</span>
+<ul>
+<li>treating association as causation</li>
+</ul></li>
+<li>ignoring multicollinearity</li>
+<li>making predictions outside the observed range</li>
+</ul>
+<p>These errors are common because multiple regression produces many numerical outputs. Students should learn that the analysis is not complete until those outputs are interpreted carefully.</p>
+<hr />
+</div>
+</div>
+<div id="research-study-1" class="section level2 hasAnchor" number="13.17">
+<h2><span class="header-section-number">13.17</span> Research Study<a href="multiple-linear-regression.html#research-study-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="research-study-predicting-exam-performance-using-study-time-attendance-and-prior-gpa" class="section level3 hasAnchor" number="13.17.1">
+<h3><span class="header-section-number">13.17.1</span> Research Study: Predicting Exam Performance Using Study Time, Attendance, and Prior GPA<a href="multiple-linear-regression.html#research-study-predicting-exam-performance-using-study-time-attendance-and-prior-gpa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This section can integrate the full chapter by including:</p>
+<ul>
+<li>fitting the multiple regression model</li>
+<li>interpreting coefficients</li>
+<li>testing individual coefficients</li>
+<li>testing the overall model</li>
+<li>discussing <span class="math inline">\(R^2\)</span>
+<ul>
+<li>checking residual plots</li>
+</ul></li>
+<li>predicting performance for a new student</li>
+<li>explaining the limits of causal interpretation</li>
+</ul>
+<p>The purpose of this kind of study section is to show how the chapter’s ideas work together in a coherent applied analysis.</p>
+<p>A medical or agricultural setting could also be used, but the exam example is especially accessible for introductory notes.</p>
+<hr />
+</div>
+</div>
+<div id="summary-16" class="section level2 hasAnchor" number="13.18">
+<h2><span class="header-section-number">13.18</span> Summary<a href="multiple-linear-regression.html#summary-16" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Multiple regression extends simple regression to several explanatory variables.</p>
+<p>The main ideas are:</p>
+<ul>
+<li>multiple regression allows several explanatory variables to be used at once</li>
+<li>each slope coefficient describes an adjusted relationship with the response</li>
+<li>least squares is used to estimate the regression coefficients</li>
+<li>inference can be done for individual coefficients and for the model as a whole</li>
+<li>subset tests are useful for assessing groups of explanatory variables</li>
+<li>prediction and estimation remain important goals</li>
+<li>residual analysis is essential for checking model adequacy</li>
+<li>multicollinearity can make coefficient interpretation unstable</li>
+<li>multiple regression describes association, but does not by itself establish causation</li>
+</ul>
+<p>So the chapter builds directly on simple regression while adding one of the most important ideas in applied statistics: understanding the relationship between a response and several explanatory variables simultaneously.</p>
+<hr />
+</div>
+<div id="key-formulas-2" class="section level2 hasAnchor" number="13.19">
+<h2><span class="header-section-number">13.19</span> Key Formulas<a href="multiple-linear-regression.html#key-formulas-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The main formulas for this chapter include:</p>
+<ul>
+<li>multiple regression model</li>
+</ul>
+<p><span class="math display">\[
+  y_i = \beta_0 + \beta_1 x_{i1} + \cdots + \beta_p x_{ip} + e_i
+\]</span></p>
+<ul>
+<li>fitted model</li>
+</ul>
+<p><span class="math display">\[
+  \hat{y} = b_0 + b_1 x_1 + \cdots + b_p x_p
+\]</span></p>
+<ul>
+<li>residual</li>
+</ul>
+<p><span class="math display">\[
+  e_i = y_i - \hat{y}_i
+\]</span></p>
+<ul>
+<li>test statistic for one coefficient</li>
+</ul>
+<p><span class="math display">\[
+  t = \frac{b_j}{SE(b_j)}
+\]</span></p>
+<ul>
+<li>overall null hypothesis</li>
+</ul>
+<p><span class="math display">\[
+  H_0:\beta_1 = \beta_2 = \cdots = \beta_p = 0
+\]</span></p>
+<ul>
+<li>coefficient of determination</li>
+</ul>
+<p><span class="math display">\[
+  R^2 = \frac{\text{variation explained by the model}}{\text{total variation}}
+\]</span></p>
+<ul>
+<li>adjusted <span class="math inline">\(R^2\)</span></li>
+</ul>
+<p>These formulas should not be treated as isolated algebra. Each one has a specific role:</p>
+<ul>
+<li>the model equation describes the assumed relationship</li>
+<li>the fitted model provides estimated mean responses</li>
+<li>residuals help diagnose fit</li>
+<li>the <span class="math inline">\(t\)</span> statistic supports inference about individual coefficients</li>
+<li>the overall null hypothesis supports the global <span class="math inline">\(F\)</span> test</li>
+<li><span class="math inline">\(R^2\)</span> and adjusted <span class="math inline">\(R^2\)</span> summarize fit</li>
+</ul>
+<p>At this level, the formulas should always be accompanied by interpretation.</p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
+<a href="simple-linear-regression.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
