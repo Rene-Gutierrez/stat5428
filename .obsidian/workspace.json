@@ -76,9 +76,79 @@
               "icon": "lucide-file",
               "title": "Inference About Categorical Data"
             }
+          },
+          {
+            "id": "a8785c3b22751750",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Simple Linear Regression.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Simple Linear Regression"
+            }
+          },
+          {
+            "id": "bb696cf6165f80b2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Simple Linear Regression.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Simple Linear Regression"
+            }
+          },
+          {
+            "id": "ad952b443ace39dc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Linear Regression.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Linear Regression"
+            }
+          },
+          {
+            "id": "eb8c6cfd2e34116f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Outline Multiple Linear Regression.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Outline Multiple Linear Regression"
+            }
+          },
+          {
+            "id": "35840257a9676a3b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Expanded Outline - Multiple Linear Regression.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Expanded Outline - Multiple Linear Regression"
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -135,7 +205,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 245.5
+    "width": 200
   },
   "right": {
     "id": "3ca941279b5f665c",
@@ -213,13 +283,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Inference About Categorical Data.md",
+                "file": "Expanded Outline - Multiple Linear Regression.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Inference About Categorical Data"
+              "title": "Outline of Expanded Outline - Multiple Linear Regression"
             }
           }
         ],
@@ -240,20 +310,27 @@
       "bases:Create new base": false
     }
   },
-  "active": "e1930e09dad6a01f",
+  "active": "35840257a9676a3b",
   "lastOpenFiles": [
-    "docs/404.html",
-    "docs/inference-about-categorical-data.html",
-    "docs/inference-about-the-variance.html",
-    "docs/inference-comparing-two-population-means.html",
-    "docs/inference-about-the-mean.html",
-    "docs/intro-to-statistical-inference.html",
-    "docs/from-probability-to-statistics.html",
-    "docs/probability.html",
-    "docs/data-description.html",
-    "docs/studies-and-data-collection.html",
-    "docs/introduction-to-r.html",
+    "Outline Multiple Linear Regression.md",
+    "Expanded Outline - Multiple Linear Regression.md",
+    "docs/section.html",
+    "docs/logarithmic-relationship.html",
+    "docs/square-root-relationship-1.html",
+    "docs/quadratic-relationship-1.html",
+    "docs/plots-the-relationships.html",
+    "docs/logarithm-relationship.html",
+    "docs/square-root-relationship.html",
+    "docs/quadratic-relationship.html",
+    "docs/linear-relationship.html",
+    "docs/simulates-the-explanatory-variable.html",
+    "docs/_main_files/figure-html/sim-lin-reg-scatterplots-relationships-1.png",
     "_main.knit.md",
+    "_main_files/figure-html/sim-lin-reg-scatterplots-relationships-1.png",
+    "Linear Regression.md",
+    "Test.md",
+    "Simple Linear Regression.md",
+    "Inference About Categorical Data.md",
     "_main_files/figure-html/two-proportion-simulation-1.png",
     "_main_files/figure-html/t-distribution-plot-1.png",
     "_main_files/figure-html/segmented-bar-chart-baseR-1.png",
@@ -262,11 +339,8 @@
     "_main_files/figure-html/pro-to-sta-sampling-distribution-mean-7.png",
     "_main_files/figure-html/pro-to-sta-sampling-distribution-mean-6.png",
     "_main_files/figure-html/pro-to-sta-sampling-distribution-mean-5.png",
-    "_main_files/figure-html/pro-to-sta-sampling-distribution-mean-4.png",
-    "_main_files/figure-html/pro-to-sta-sampling-distribution-mean-3.png",
     "test.knit.md",
     "project_charter_stat_5428.md",
-    "Inference About Categorical Data.md",
     "Expanded Outline Categorical Data.md",
     "Outline - Categorical Data.md",
     "Outline Categorical Data.md",

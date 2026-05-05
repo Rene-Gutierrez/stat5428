@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Data Description | STAT 5428/6428 Spring 2026</title>
-  <meta name="description" content="4 Data Description | STAT 5428/6428 Spring 2026" />
+  <title>22 $$ | STAT 5428/6428 Spring 2026</title>
+  <meta name="description" content="22 $$ | STAT 5428/6428 Spring 2026" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Data Description | STAT 5428/6428 Spring 2026" />
+  <meta property="og:title" content="22 $$ | STAT 5428/6428 Spring 2026" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Data Description | STAT 5428/6428 Spring 2026" />
+  <meta name="twitter:title" content="22 $$ | STAT 5428/6428 Spring 2026" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="studies-and-data-collection.html"/>
-<link rel="next" href="probability.html"/>
+<link rel="prev" href="logarithmic-relationship.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -874,550 +874,508 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-description" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">4</span> Data Description<a href="data-description.html#data-description" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In this section, we focus on how to organize, summarize, and describe data.</p>
-<p>The goal of data description is to understand the main features of a data set before developing probability models or performing statistical inference.</p>
-<p>We will use the simulated school data throughout this section.</p>
-<p>Describing data is an essential first step in statistical analysis. Before building models or making formal inferences, we want to understand what the observed data look like, where the values tend to be concentrated, how much variability is present, and whether there are any unusual patterns that deserve attention.</p>
-<hr />
-<div id="descriptive-statistics" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Descriptive Statistics<a href="data-description.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="definition">
-<p><span id="def:descriptive-statistics" class="definition"><strong>Definition 4.1  (Descriptive Statistics) </strong></span>Descriptive statistics are methods used to organize, summarize, and describe the main features of a data set.</p>
-</div>
-<p>Descriptive statistics help us answer questions such as:</p>
+<div id="section" class="section level1 hasAnchor" number="22">
+<h1><span class="header-section-number">22</span> $$<a href="section.html#section" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>h_{ii}</p>
 <ul>
-<li>What values are typical?</li>
-<li>How much variability is present?</li>
-<li>Are there unusual observations?</li>
-<li>How are values distributed?</li>
+<li>.<br />
+$$</li>
 </ul>
-<p>At this stage, the goal is to describe the observed data, not to make conclusions beyond the data set.</p>
-<p>Descriptive statistics include both graphical summaries, such as bar plots and histograms, and numerical summaries, such as the mean, median, and standard deviation. Each summary highlights a different aspect of the data, so in practice we often use several summaries together.</p>
+<p>High leverage means that a point has greater potential to affect the fitted regression line, especially the slope.</p>
+<p>But leverage alone does not imply that a point is problematic. It becomes especially important when combined with a large residual, since then the point may have strong influence on the fit.</p>
+<p>So leverage is one of the main diagnostic ideas used to understand how individual observations affect a regression model.</p>
 <hr />
-</div>
-<div id="the-simulated-school-data" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> The Simulated School Data<a href="data-description.html#the-simulated-school-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For this section we will simulate a data set for student performance in math and verbal tests accross 10 schools. For each student we will include the following variables:</p>
-<p>Variables:</p>
-<ul>
-<li>Student ID</li>
-<li>Student School</li>
-<li>Student Grade</li>
-<li>Student Age</li>
-<li>Income Level</li>
-<li>Education Level Parents</li>
-<li>Math Score</li>
-<li>Verbal Score</li>
-</ul>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="data-description.html#cb135-1" tabindex="-1"></a><span class="co"># Data Simulation</span></span>
-<span id="cb135-2"><a href="data-description.html#cb135-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
-<span id="cb135-3"><a href="data-description.html#cb135-3" tabindex="-1"></a></span>
-<span id="cb135-4"><a href="data-description.html#cb135-4" tabindex="-1"></a><span class="co"># Simulation Parameters</span></span>
-<span id="cb135-5"><a href="data-description.html#cb135-5" tabindex="-1"></a>numSch    <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb135-6"><a href="data-description.html#cb135-6" tabindex="-1"></a>namSch    <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;School &quot;</span>, <span class="dv">1</span><span class="sc">:</span>numSch)</span>
-<span id="cb135-7"><a href="data-description.html#cb135-7" tabindex="-1"></a>numGra    <span class="ot">&lt;-</span> <span class="dv">9</span></span>
-<span id="cb135-8"><a href="data-description.html#cb135-8" tabindex="-1"></a>numStuGra <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb135-9"><a href="data-description.html#cb135-9" tabindex="-1"></a>numStu    <span class="ot">&lt;-</span> numSch <span class="sc">*</span> numGra <span class="sc">*</span> numStuGra</span>
-<span id="cb135-10"><a href="data-description.html#cb135-10" tabindex="-1"></a>minScoMat <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb135-11"><a href="data-description.html#cb135-11" tabindex="-1"></a>maxScoMat <span class="ot">&lt;-</span> <span class="dv">800</span></span>
-<span id="cb135-12"><a href="data-description.html#cb135-12" tabindex="-1"></a>minScoVer <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb135-13"><a href="data-description.html#cb135-13" tabindex="-1"></a>maxScoVer <span class="ot">&lt;-</span> <span class="dv">800</span></span>
-<span id="cb135-14"><a href="data-description.html#cb135-14" tabindex="-1"></a>namIncLev <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Middle&quot;</span>, <span class="st">&quot;High&quot;</span>)</span>
-<span id="cb135-15"><a href="data-description.html#cb135-15" tabindex="-1"></a>namEduPar <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;No Highschool&quot;</span>, <span class="st">&quot;Highschool&quot;</span>, <span class="st">&quot;College&quot;</span>, <span class="st">&quot;Graduate School&quot;</span>)</span>
-<span id="cb135-16"><a href="data-description.html#cb135-16" tabindex="-1"></a></span>
-<span id="cb135-17"><a href="data-description.html#cb135-17" tabindex="-1"></a><span class="co"># Student School</span></span>
-<span id="cb135-18"><a href="data-description.html#cb135-18" tabindex="-1"></a>sch    <span class="ot">&lt;-</span> <span class="fu">sample</span>(namSch, <span class="at">size =</span> numStu, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb135-19"><a href="data-description.html#cb135-19" tabindex="-1"></a>gra    <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>numGra, <span class="at">size =</span> numStu, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb135-20"><a href="data-description.html#cb135-20" tabindex="-1"></a>age    <span class="ot">&lt;-</span> <span class="fu">round</span>(gra <span class="sc">+</span> <span class="dv">5</span> <span class="sc">+</span> <span class="fu">runif</span>(<span class="at">n =</span>numStu, <span class="at">min =</span> <span class="sc">-</span><span class="fl">0.6</span>, <span class="at">max =</span> <span class="fl">0.6</span>))</span>
-<span id="cb135-21"><a href="data-description.html#cb135-21" tabindex="-1"></a>incLev <span class="ot">&lt;-</span> <span class="fu">sample</span>(namIncLev, <span class="at">size =</span> numStu, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="fl">0.1</span>))</span>
-<span id="cb135-22"><a href="data-description.html#cb135-22" tabindex="-1"></a>eduPar <span class="ot">&lt;-</span> <span class="fu">sample</span>(namEduPar, <span class="at">size =</span> numStu, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb135-23"><a href="data-description.html#cb135-23" tabindex="-1"></a></span>
-<span id="cb135-24"><a href="data-description.html#cb135-24" tabindex="-1"></a><span class="co"># Simulate Scores</span></span>
-<span id="cb135-25"><a href="data-description.html#cb135-25" tabindex="-1"></a>matSco <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="at">length =</span> numStu)</span>
-<span id="cb135-26"><a href="data-description.html#cb135-26" tabindex="-1"></a>verSco <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="at">length =</span> numStu)</span>
-<span id="cb135-27"><a href="data-description.html#cb135-27" tabindex="-1"></a>numSel <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb135-28"><a href="data-description.html#cb135-28" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>numSch){</span>
-<span id="cb135-29"><a href="data-description.html#cb135-29" tabindex="-1"></a>  <span class="co"># School Performance Level</span></span>
-<span id="cb135-30"><a href="data-description.html#cb135-30" tabindex="-1"></a>  schPer <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb135-31"><a href="data-description.html#cb135-31" tabindex="-1"></a>  <span class="co"># Selects School</span></span>
-<span id="cb135-32"><a href="data-description.html#cb135-32" tabindex="-1"></a>  selSch <span class="ot">&lt;-</span> namSch[i] <span class="sc">==</span> sch</span>
-<span id="cb135-33"><a href="data-description.html#cb135-33" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(namIncLev)){</span>
-<span id="cb135-34"><a href="data-description.html#cb135-34" tabindex="-1"></a>    <span class="co"># Income Performance</span></span>
-<span id="cb135-35"><a href="data-description.html#cb135-35" tabindex="-1"></a>    incPer <span class="ot">&lt;-</span> j <span class="sc">/</span> <span class="fu">length</span>(namIncLev)</span>
-<span id="cb135-36"><a href="data-description.html#cb135-36" tabindex="-1"></a>    <span class="co"># Selects Income</span></span>
-<span id="cb135-37"><a href="data-description.html#cb135-37" tabindex="-1"></a>    selInc <span class="ot">&lt;-</span> namIncLev[j] <span class="sc">==</span> incLev</span>
-<span id="cb135-38"><a href="data-description.html#cb135-38" tabindex="-1"></a>    <span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(namEduPar)){</span>
-<span id="cb135-39"><a href="data-description.html#cb135-39" tabindex="-1"></a>      <span class="co"># Parent Education Performance</span></span>
-<span id="cb135-40"><a href="data-description.html#cb135-40" tabindex="-1"></a>      eduPer <span class="ot">&lt;-</span> k <span class="sc">/</span> <span class="fu">length</span>(namEduPar)</span>
-<span id="cb135-41"><a href="data-description.html#cb135-41" tabindex="-1"></a>      <span class="co"># Selects Parent Education Level</span></span>
-<span id="cb135-42"><a href="data-description.html#cb135-42" tabindex="-1"></a>      selPar <span class="ot">&lt;-</span> namEduPar[k] <span class="sc">==</span> eduPar</span>
-<span id="cb135-43"><a href="data-description.html#cb135-43" tabindex="-1"></a>      <span class="cf">for</span>(l <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>numGra){</span>
-<span id="cb135-44"><a href="data-description.html#cb135-44" tabindex="-1"></a>        <span class="co"># Grade Level Performance</span></span>
-<span id="cb135-45"><a href="data-description.html#cb135-45" tabindex="-1"></a>        graPer <span class="ot">&lt;-</span> l <span class="sc">/</span> <span class="fu">length</span>(numGra)</span>
-<span id="cb135-46"><a href="data-description.html#cb135-46" tabindex="-1"></a>        <span class="co"># Selects Grade Level</span></span>
-<span id="cb135-47"><a href="data-description.html#cb135-47" tabindex="-1"></a>        selGra <span class="ot">&lt;-</span> l <span class="sc">==</span> gra</span>
-<span id="cb135-48"><a href="data-description.html#cb135-48" tabindex="-1"></a>        <span class="co"># Selected Students</span></span>
-<span id="cb135-49"><a href="data-description.html#cb135-49" tabindex="-1"></a>        sel         <span class="ot">&lt;-</span> selSch <span class="sc">&amp;</span> selInc <span class="sc">&amp;</span> selPar <span class="sc">&amp;</span> selGra</span>
-<span id="cb135-50"><a href="data-description.html#cb135-50" tabindex="-1"></a>        numSel      <span class="ot">&lt;-</span> <span class="fu">c</span>(numSel, <span class="fu">sum</span>(sel))</span>
-<span id="cb135-51"><a href="data-description.html#cb135-51" tabindex="-1"></a>        numStuClu   <span class="ot">&lt;-</span> <span class="fu">sum</span>(sel)</span>
-<span id="cb135-52"><a href="data-description.html#cb135-52" tabindex="-1"></a>        matSco[sel] <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="sc">*</span> schPer <span class="sc">+</span> <span class="fl">0.1</span> <span class="sc">*</span> incPer <span class="sc">+</span> <span class="fl">0.1</span> <span class="sc">*</span> eduPer <span class="sc">+</span> <span class="fl">0.6</span> <span class="sc">*</span> graPer</span>
-<span id="cb135-53"><a href="data-description.html#cb135-53" tabindex="-1"></a>        matSco[sel] <span class="ot">&lt;-</span> matSco[sel] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> numStuClu, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.2</span>)</span>
-<span id="cb135-54"><a href="data-description.html#cb135-54" tabindex="-1"></a>        verSco[sel] <span class="ot">&lt;-</span> <span class="fl">0.1</span> <span class="sc">*</span> schPer <span class="sc">+</span> <span class="fl">0.1</span> <span class="sc">*</span> incPer <span class="sc">+</span> <span class="fl">0.1</span> <span class="sc">*</span> eduPer <span class="sc">+</span> <span class="fl">0.7</span> <span class="sc">*</span> graPer</span>
-<span id="cb135-55"><a href="data-description.html#cb135-55" tabindex="-1"></a>        verSco[sel] <span class="ot">&lt;-</span> matSco[sel] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> numStuClu, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.1</span>) </span>
-<span id="cb135-56"><a href="data-description.html#cb135-56" tabindex="-1"></a>      }</span>
-<span id="cb135-57"><a href="data-description.html#cb135-57" tabindex="-1"></a>    }</span>
-<span id="cb135-58"><a href="data-description.html#cb135-58" tabindex="-1"></a>  }</span>
-<span id="cb135-59"><a href="data-description.html#cb135-59" tabindex="-1"></a>}</span>
-<span id="cb135-60"><a href="data-description.html#cb135-60" tabindex="-1"></a></span>
-<span id="cb135-61"><a href="data-description.html#cb135-61" tabindex="-1"></a><span class="co"># Transforms Scores to 0-800 Scale</span></span>
-<span id="cb135-62"><a href="data-description.html#cb135-62" tabindex="-1"></a>matSco <span class="ot">&lt;-</span> (matSco <span class="sc">-</span> <span class="fu">min</span>(matSco)) <span class="sc">/</span> (<span class="fu">max</span>(matSco) <span class="sc">-</span> <span class="fu">min</span>(matSco)) <span class="sc">*</span> <span class="dv">850</span></span>
-<span id="cb135-63"><a href="data-description.html#cb135-63" tabindex="-1"></a>verSco <span class="ot">&lt;-</span> (verSco <span class="sc">-</span> <span class="fu">min</span>(verSco)) <span class="sc">/</span> (<span class="fu">max</span>(verSco) <span class="sc">-</span> <span class="fu">min</span>(verSco)) <span class="sc">*</span> <span class="dv">850</span></span>
-<span id="cb135-64"><a href="data-description.html#cb135-64" tabindex="-1"></a>matSco[matSco <span class="sc">&gt;</span> <span class="dv">800</span>] <span class="ot">&lt;-</span> <span class="dv">800</span></span>
-<span id="cb135-65"><a href="data-description.html#cb135-65" tabindex="-1"></a>verSco[verSco <span class="sc">&gt;</span> <span class="dv">800</span>] <span class="ot">&lt;-</span> <span class="dv">800</span></span>
-<span id="cb135-66"><a href="data-description.html#cb135-66" tabindex="-1"></a>matSco <span class="ot">&lt;-</span> <span class="fu">round</span>(matSco)</span>
-<span id="cb135-67"><a href="data-description.html#cb135-67" tabindex="-1"></a>verSco <span class="ot">&lt;-</span> <span class="fu">round</span>(verSco)</span>
-<span id="cb135-68"><a href="data-description.html#cb135-68" tabindex="-1"></a></span>
-<span id="cb135-69"><a href="data-description.html#cb135-69" tabindex="-1"></a><span class="co"># Creates a data frame</span></span>
-<span id="cb135-70"><a href="data-description.html#cb135-70" tabindex="-1"></a>schDat <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="dv">1</span><span class="sc">:</span>numStu)</span>
-<span id="cb135-71"><a href="data-description.html#cb135-71" tabindex="-1"></a>schDat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(schDat, sch, gra, age, incLev, eduPar, matSco, verSco)</span>
-<span id="cb135-72"><a href="data-description.html#cb135-72" tabindex="-1"></a><span class="fu">colnames</span>(schDat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Student_ID&quot;</span>, <span class="st">&quot;School&quot;</span>, <span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Income_Level&quot;</span>, <span class="st">&quot;Parent_Education&quot;</span>, <span class="st">&quot;Math_Score&quot;</span>, <span class="st">&quot;Verbal_Score&quot;</span>)</span>
-<span id="cb135-73"><a href="data-description.html#cb135-73" tabindex="-1"></a></span>
-<span id="cb135-74"><a href="data-description.html#cb135-74" tabindex="-1"></a><span class="co"># Displays the First Rows of the Data Set</span></span>
-<span id="cb135-75"><a href="data-description.html#cb135-75" tabindex="-1"></a><span class="fu">head</span>(schDat)</span></code></pre></div>
-<pre><code>##   Student_ID    School Grade Age Income_Level Parent_Education Math_Score Verbal_Score
-## 1          1  School 9     9  14          Low          College        754          735
-## 2          2  School 1     3   8       Middle          College        251          263
-## 3          3  School 6     3   8       Middle  Graduate School        277          273
-## 4          4  School 4     4   9       Middle       Highschool        285          298
-## 5          5  School 5     9  14          Low       Highschool        776          762
-## 6          6 School 10     1   6          Low    No Highschool         57           52</code></pre>
-<p>The code above simulates a student-level data set and stores it in the object <code>schDat</code>. It creates demographic variables such as school, grade, age, income level, and parent education, and then generates math and verbal scores that depend on school performance, income level, parent education, and grade level.</p>
-<p>The command <code>head(schDat)</code> displays the first few rows of the data set. This is useful as an initial check that the variables were created correctly, that the data have the expected structure, and that each row corresponds to one student.</p>
-<p>Each row of the data set represents one student, and each column represents a variable measured on that student.</p>
-<hr />
-</div>
-<div id="types-of-variables" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Types of Variables<a href="data-description.html#types-of-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Before choosing a graph or a numerical summary, we need to determine the type of variable we are describing.</p>
-<p>The type of variable matters because different kinds of variables require different summaries. For example, a bar plot is appropriate for a categorical variable, while a histogram is appropriate for a numerical variable.</p>
-<div id="categorical-variables" class="section level3 hasAnchor" number="4.3.1">
-<h3><span class="header-section-number">4.3.1</span> Categorical Variables<a href="data-description.html#categorical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="definition">
-<p><span id="def:categorical-variable" class="definition"><strong>Definition 4.2  (Categorical Variable) </strong></span>A categorical variable is a variable whose values represent categories or groups.</p>
-</div>
-<p>Examples from the simulated school data may include:</p>
-<ul>
-<li>school</li>
-<li>grade level</li>
-<li>income level</li>
-<li>parents education level</li>
-</ul>
-<p>These variables classify students into groups rather than measuring a numerical amount.</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="data-description.html#cb137-1" tabindex="-1"></a><span class="fu">head</span>(schDat[, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">6</span>)])</span></code></pre></div>
-<pre><code>##      School Grade Income_Level Parent_Education
-## 1  School 9     9          Low          College
-## 2  School 1     3       Middle          College
-## 3  School 6     3       Middle  Graduate School
-## 4  School 4     4       Middle       Highschool
-## 5  School 5     9          Low       Highschool
-## 6 School 10     1          Low    No Highschool</code></pre>
-<p>This code displays the first few observations for the categorical variables in the data set.</p>
-<p>From this output, we can verify that these variables are recorded as labels or group memberships. For example, a student belongs to a particular school, income category, and parent education category.</p>
-<hr />
-</div>
-<div id="numerical-variables" class="section level3 hasAnchor" number="4.3.2">
-<h3><span class="header-section-number">4.3.2</span> Numerical Variables<a href="data-description.html#numerical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="definition">
-<p><span id="def:numerical-variable" class="definition"><strong>Definition 4.3  (Numerical Variable) </strong></span>A numerical variable is a variable whose values are numerical measurements or counts.</p>
-</div>
-<p>Examples from the simulated school data may include:</p>
-<ul>
-<li>age</li>
-<li>math score</li>
-<li>verbal score</li>
-</ul>
-<p>These variables measure a quantity for each student and can be meaningfully averaged or compared numerically.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="data-description.html#cb139-1" tabindex="-1"></a><span class="fu">head</span>(schDat[, <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>)])</span></code></pre></div>
-<pre><code>##   Age Math_Score Verbal_Score
-## 1  14        754          735
-## 2   8        251          263
-## 3   8        277          273
-## 4   9        285          298
-## 5  14        776          762
-## 6   6         57           52</code></pre>
-<p>This code displays the first few observations for the numerical variables.</p>
-<p>From this output, we see that these variables take numerical values, so they can be summarized using quantities such as the mean, median, variance, and standard deviation.</p>
-<hr />
-<div id="discrete-variables" class="section level4 hasAnchor" number="4.3.2.1">
-<h4><span class="header-section-number">4.3.2.1</span> Discrete Variables<a href="data-description.html#discrete-variables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="definition">
-<p><span id="def:discrete-variable" class="definition"><strong>Definition 4.4  (Discrete Variable) </strong></span>A discrete variable is a numerical variable that takes countable values.</p>
-</div>
-<p>Examples may include:</p>
-<ul>
-<li>Age</li>
-<li>math score</li>
-<li>verbal score</li>
-</ul>
-<p>In this data set, these variables are recorded as integers, so they behave as discrete variables.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="data-description.html#cb141-1" tabindex="-1"></a><span class="fu">head</span>(schDat[, <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>)])</span></code></pre></div>
-<pre><code>##   Age Math_Score Verbal_Score
-## 1  14        754          735
-## 2   8        251          263
-## 3   8        277          273
-## 4   9        285          298
-## 5  14        776          762
-## 6   6         57           52</code></pre>
-<p>This code again shows examples of values for variables recorded in whole-number form.</p>
-<p>The output illustrates that these variables take separated, countable values rather than every possible value in an interval.</p>
-<hr />
-</div>
-<div id="continuous-variables" class="section level4 hasAnchor" number="4.3.2.2">
-<h4><span class="header-section-number">4.3.2.2</span> Continuous Variables<a href="data-description.html#continuous-variables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="definition">
-<p><span id="def:continuous-variable" class="definition"><strong>Definition 4.5  (Continuous Variable) </strong></span>A continuous variable is a numerical variable that can take any value in an interval.</p>
-</div>
-<p>Examples may include:</p>
-<ul>
-<li>height of students</li>
-<li>weight of students</li>
-</ul>
-<p>A continuous variable is measured on a scale where, at least conceptually, values between any two observed values are also possible. In this particular simulated data set, the main numerical variables were recorded as integers, but in many real data sets numerical variables such as height, weight, time, and distance are continuous.</p>
-<hr />
-</div>
-</div>
-</div>
-<div id="graphical-summaries" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> Graphical Summaries<a href="data-description.html#graphical-summaries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Graphs are useful because they allow us to quickly identify patterns in the data.</p>
-<p>A good graph often reveals structure that may not be obvious from a table of raw numbers. In particular, graphs help us see the distribution of a variable, compare groups, and detect unusual observations.</p>
-<hr />
-<div id="graphical-summaries-for-categorical-variables" class="section level3 hasAnchor" number="4.4.1">
-<h3><span class="header-section-number">4.4.1</span> Graphical Summaries for Categorical Variables<a href="data-description.html#graphical-summaries-for-categorical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="bar-plots" class="section level4 hasAnchor" number="4.4.1.1">
-<h4><span class="header-section-number">4.4.1.1</span> Bar Plots<a href="data-description.html#bar-plots" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>A bar plot is useful for displaying the frequencies of categories.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="data-description.html#cb143-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(schDat<span class="sc">$</span>Income_Level), <span class="at">col=</span><span class="st">&quot;steelblue&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/barplot-income-level-1.png" width="672" /></p>
-<p>This code first counts the number of students in each income level and then displays those counts in a bar plot.</p>
-<p>The height of each bar represents the frequency of a category. In this example, the graph shows how the students are distributed across the low, middle, and high income levels. We expect the middle-income category to appear most often because the data were simulated with a larger probability for that group.</p>
-<p>A bar plot helps us compare how often each category appears.</p>
-<hr />
-</div>
-<div id="pie-charts" class="section level4 hasAnchor" number="4.4.1.2">
-<h4><span class="header-section-number">4.4.1.2</span> Pie Charts<a href="data-description.html#pie-charts" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Pie charts may also be used for categorical variables, although bar plots are usually easier to interpret.</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="data-description.html#cb144-1" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(schDat<span class="sc">$</span>Income_Level))</span></code></pre></div>
-<p><img src="_main_files/figure-html/pichart-income-level-1.png" width="672" /></p>
-<p>This code shows the same income-level frequencies using a pie chart.</p>
-<p>The pie chart emphasizes proportions of the whole rather than direct comparisons of counts. It provides a visual impression of how much of the sample belongs to each income category, although the exact comparison between groups is often clearer in a bar plot.</p>
-<hr />
-</div>
-</div>
-<div id="graphical-summaries-for-numerical-variables" class="section level3 hasAnchor" number="4.4.2">
-<h3><span class="header-section-number">4.4.2</span> Graphical Summaries for Numerical Variables<a href="data-description.html#graphical-summaries-for-numerical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="histograms" class="section level4 hasAnchor" number="4.4.2.1">
-<h4><span class="header-section-number">4.4.2.1</span> Histograms<a href="data-description.html#histograms" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="definition">
-<p><span id="def:histogram" class="definition"><strong>Definition 4.6  (Histogram) </strong></span>A histogram is a graph that displays the distribution of a numerical variable by grouping values into intervals.</p>
-</div>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="data-description.html#cb145-1" tabindex="-1"></a><span class="fu">hist</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">1</span>], <span class="at">col=</span><span class="st">&quot;skyblue&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Histogram of Math Scores for First Grade&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Math Scores&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/histogram-math-score-1.png" width="672" /></p>
-<p>This code selects the math scores for first-grade students and groups them into intervals to produce a histogram.</p>
-<p>The histogram shows how first-grade math scores are distributed. It helps us see where scores are concentrated, how spread out they are, and whether the distribution is approximately symmetric or skewed. In this setting, the histogram also gives us a first idea of the range of performance among first-grade students.</p>
-<p>A histogram helps us see where values are concentrated and whether the data are symmetric, skewed, or have unusual observations.</p>
-<hr />
-</div>
-<div id="boxplots" class="section level4 hasAnchor" number="4.4.2.2">
-<h4><span class="header-section-number">4.4.2.2</span> Boxplots<a href="data-description.html#boxplots" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="definition">
-<p><span id="def:boxplot" class="definition"><strong>Definition 4.7  (Boxplot) </strong></span>A boxplot is a graphical summary based on the median, quartiles, and potential outliers.</p>
-</div>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="data-description.html#cb146-1" tabindex="-1"></a><span class="fu">boxplot</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">9</span>],</span>
-<span id="cb146-2"><a href="data-description.html#cb146-2" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Math Scores Grade 9&quot;</span>,</span>
-<span id="cb146-3"><a href="data-description.html#cb146-3" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Grade&quot;</span>,</span>
-<span id="cb146-4"><a href="data-description.html#cb146-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Math Score&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/boxplot-scores-grade-9-1.png" width="672" /></p>
-<p>This code produces a boxplot for the math scores of ninth-grade students.</p>
-<p>The boxplot summarizes the center and spread of the grade 9 math scores using the median and quartiles. It also highlights possible outliers. Compared with a histogram, the boxplot provides a more compact summary and is especially useful when we want to compare several groups side by side.</p>
-<p>A boxplot is especially useful for identifying outliers and comparing distributions across groups.</p>
-<hr />
-</div>
-</div>
-<div id="comparing-numerical-variables-across-groups" class="section level3 hasAnchor" number="4.4.3">
-<h3><span class="header-section-number">4.4.3</span> Comparing Numerical Variables Across Groups<a href="data-description.html#comparing-numerical-variables-across-groups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A common goal is to compare a numerical variable across levels of a categorical variable.</p>
-<p>For example, we may want to compare:</p>
-<ul>
-<li>scores by income level</li>
-<li>scores by school</li>
-<li>scores by grade level</li>
-</ul>
-<p>Grouped comparisons help us determine whether the distribution of a numerical variable changes from one category to another.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="data-description.html#cb147-1" tabindex="-1"></a><span class="fu">boxplot</span>(Math_Score <span class="sc">~</span> schDat<span class="sc">$</span>Grade,</span>
-<span id="cb147-2"><a href="data-description.html#cb147-2" tabindex="-1"></a>        <span class="at">data =</span> schDat,</span>
-<span id="cb147-3"><a href="data-description.html#cb147-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Math Scores Grade 9&quot;</span>,</span>
-<span id="cb147-4"><a href="data-description.html#cb147-4" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Grade&quot;</span>,</span>
-<span id="cb147-5"><a href="data-description.html#cb147-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Math Score&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/boxplot-scores-by-grade-1.png" width="672" /></p>
-<p>This code creates a separate boxplot of math scores for each grade.</p>
-<p>The resulting display allows us to compare medians, spread, and possible outliers across grade levels. Since the simulated scores were constructed to increase with grade, we expect the typical math score to rise as grade increases. This kind of plot is very helpful for identifying systematic differences between groups.</p>
-<p>These comparisons help us describe how the distribution changes from one group to another.</p>
-<hr />
-</div>
-</div>
-<div id="distribution-of-a-numerical-variable" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> Distribution of a Numerical Variable<a href="data-description.html#distribution-of-a-numerical-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="definition">
-<p><span id="def:distribution" class="definition"><strong>Definition 4.8  (Distribution) </strong></span>The distribution of a variable describes how the values of the variable are spread across possible values.</p>
-</div>
-<p>When describing the distribution of a numerical variable, we focus on four main features:</p>
-<ul>
-<li>center</li>
-<li>spread</li>
-<li>shape</li>
-<li>outliers</li>
-</ul>
-<p>A complete description of a numerical variable usually includes all four features. Looking at only one of them can give an incomplete picture of the data.</p>
-<hr />
-<div id="center" class="section level3 hasAnchor" number="4.5.1">
-<h3><span class="header-section-number">4.5.1</span> Center<a href="data-description.html#center" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The center of a distribution describes a typical value.</p>
-<p>Two common measures of center are the mean and the median.</p>
-<p>The center tells us where the bulk of the observations are located. When the distribution is roughly symmetric, the mean and median are often close. When the distribution is skewed or contains outliers, they may differ noticeably.</p>
-<hr />
-</div>
-<div id="spread" class="section level3 hasAnchor" number="4.5.2">
-<h3><span class="header-section-number">4.5.2</span> Spread<a href="data-description.html#spread" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The spread of a distribution describes how much the values vary.</p>
-<p>Variables with larger spread show greater variability.</p>
-<p>Two data sets can have similar centers but very different spreads. A small spread means the observations are clustered closely together, while a large spread means they are more dispersed.</p>
-<hr />
-</div>
-<div id="shape" class="section level3 hasAnchor" number="4.5.3">
-<h3><span class="header-section-number">4.5.3</span> Shape<a href="data-description.html#shape" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The shape of a distribution describes the overall pattern of values.</p>
-<p>A distribution may be:</p>
-<ul>
-<li>approximately symmetric</li>
-<li>skewed to the right</li>
-<li>skewed to the left</li>
-</ul>
-<p>The shape helps us understand whether observations are balanced around the center or whether one tail of the distribution extends farther than the other. Histograms and boxplots are especially useful for assessing shape.</p>
-<p>Use your existing histogram examples to illustrate these ideas.</p>
-<hr />
-</div>
-<div id="outliers" class="section level3 hasAnchor" number="4.5.4">
-<h3><span class="header-section-number">4.5.4</span> Outliers<a href="data-description.html#outliers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Outliers are observations that are much smaller or much larger than the rest of the data.</p>
-<p>They should be examined carefully because they may represent:</p>
-<ul>
-<li>unusual but valid observations</li>
-<li>data entry errors</li>
-<li>special cases that deserve further attention</li>
-</ul>
-<p>An outlier can have a strong effect on some summaries, especially the mean and the standard deviation. For that reason, outliers should be identified and interpreted rather than ignored.</p>
-<hr />
-</div>
-</div>
-<div id="numerical-summaries" class="section level2 hasAnchor" number="4.6">
-<h2><span class="header-section-number">4.6</span> Numerical Summaries<a href="data-description.html#numerical-summaries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Graphs are useful, but we often also want numerical summaries.</p>
-<p>Numerical summaries provide a compact description of a data set. They are especially useful when we need to report key features of the data in a table or compare several groups using a few numbers.</p>
-<hr />
-<div id="measures-of-center" class="section level3 hasAnchor" number="4.6.1">
-<h3><span class="header-section-number">4.6.1</span> Measures of Center<a href="data-description.html#measures-of-center" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="mean" class="section level4 hasAnchor" number="4.6.1.1">
-<h4><span class="header-section-number">4.6.1.1</span> Mean<a href="data-description.html#mean" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="definition">
-<p><span id="def:mean" class="definition"><strong>Definition 4.9  (Mean) </strong></span>The mean is the average of a set of numerical values.</p>
-</div>
-<p>If the observed values are <span class="math inline">\(y_1, y_2, \ldots, y_n\)</span>, the mean is</p>
-<p><span class="math display">\[
-\bar{y} = \frac{1}{n}\sum_{i=1}^n y_i.
+<div id="inference-about-the-regression-parameters" class="section level2 hasAnchor" number="22.1">
+<h2><span class="header-section-number">22.1</span> Inference About the Regression Parameters<a href="section.html#inference-about-the-regression-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The inferential part of the chapter extends the same general logic used earlier in the course: estimate an unknown population parameter, quantify uncertainty, and test hypotheses. What changes here is that the parameters now describe a relationship rather than a single population characteristic. The reference textbook organizes this part of the chapter around the regression parameters, especially the slope, which is usually the main object of scientific interest.</p>
+<div id="inference-about-the-slope" class="section level3 hasAnchor" number="22.1.1">
+<h3><span class="header-section-number">22.1.1</span> Inference About the Slope<a href="section.html#inference-about-the-slope" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The slope is usually the most important parameter.</p>
+<p>A common question is whether the explanatory variable is useful in predicting the response.</p>
+<p>This leads to the hypotheses</p>
+<p><span class="math display">\[  
+H_0:\beta_1 = 0  
 \]</span></p>
-<p>Use your existing code to compute the mean for a numerical variable from the simulated school data.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="data-description.html#cb148-1" tabindex="-1"></a><span class="co"># Mean math score for first Graders</span></span>
-<span id="cb148-2"><a href="data-description.html#cb148-2" tabindex="-1"></a><span class="fu">mean</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">1</span>])</span></code></pre></div>
-<pre><code>## [1] 81.79429</code></pre>
-<p>This code computes the average math score for first-grade students.</p>
-<p>The result gives the arithmetic mean of the first-grade math scores and serves as a measure of the center of that distribution. Because the mean uses all observations, it summarizes the full data set but can be pulled upward or downward by extreme values.</p>
-<p>The mean uses all observations, so it can be affected by extreme values.</p>
-<hr />
-</div>
-<div id="median" class="section level4 hasAnchor" number="4.6.1.2">
-<h4><span class="header-section-number">4.6.1.2</span> Median<a href="data-description.html#median" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="definition">
-<p><span id="def:median" class="definition"><strong>Definition 4.10  (Median) </strong></span>The median is the middle value when the observations are arranged in order.</p>
-</div>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data-description.html#cb150-1" tabindex="-1"></a><span class="co"># Median math score for first Graders</span></span>
-<span id="cb150-2"><a href="data-description.html#cb150-2" tabindex="-1"></a><span class="fu">median</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">1</span>])</span></code></pre></div>
-<pre><code>## [1] 82</code></pre>
-<p>This code computes the median math score for first-grade students.</p>
-<p>The median gives the middle score after ordering the observations. About half of the students have scores below the median and about half have scores above it. Comparing the mean and median can also provide information about skewness.</p>
-<p>The median is less sensitive to extreme values than the mean.</p>
-<hr />
-</div>
-</div>
-<div id="measures-of-spread" class="section level3 hasAnchor" number="4.6.2">
-<h3><span class="header-section-number">4.6.2</span> Measures of Spread<a href="data-description.html#measures-of-spread" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="range" class="section level4 hasAnchor" number="4.6.2.1">
-<h4><span class="header-section-number">4.6.2.1</span> Range<a href="data-description.html#range" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="definition">
-<p><span id="def:range" class="definition"><strong>Definition 4.11  (Range) </strong></span>The range is the difference between the largest and smallest observations.</p>
-</div>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-description.html#cb152-1" tabindex="-1"></a><span class="co"># Range of math score for first Graders</span></span>
-<span id="cb152-2"><a href="data-description.html#cb152-2" tabindex="-1"></a><span class="fu">range</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">1</span>])</span></code></pre></div>
-<pre><code>## [1]   0 165</code></pre>
-<p>This code returns the minimum and maximum math scores for first-grade students.</p>
-<p>From these two values, we can see the overall span of the observed scores. The range gives a quick idea of spread, but since it depends only on the most extreme observations, it can be strongly affected by outliers.</p>
-<p>The range is simple to compute, but it depends only on the two most extreme observations.</p>
-<hr />
-</div>
-<div id="variance" class="section level4 hasAnchor" number="4.6.2.2">
-<h4><span class="header-section-number">4.6.2.2</span> Variance<a href="data-description.html#variance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="definition">
-<p><span id="def:sample-variance" class="definition"><strong>Definition 4.12  (Sample Variance) </strong></span>The sample variance measures the average squared distance of the observations from their sample mean.</p>
-<p>Given observations <span class="math inline">\(y_1, y_2, \ldots, y_n\)</span>, the sample variance is defined as</p>
-<p><span class="math display">\[
-s^2 = \frac{1}{n - 1} \sum_{i=1}^n (y_i - \bar{y})^2,
+<p>versus</p>
+<p><span class="math display">\[  
+H_a:\beta_1 \ne 0  
 \]</span></p>
-<p>where <span class="math inline">\(\bar{y}\)</span> is the sample mean.</p>
+<p>or, in one-sided form,</p>
+<p><span class="math display">\[  
+H_a:\beta_1 &gt; 0  
+\quad \text{or} \quad  
+H_a:\beta_1 &lt; 0.  
+\]</span></p>
+<p>The null hypothesis <span class="math inline">\(\beta_1=0\)</span> says that the mean response does not change linearly with <span class="math inline">\(x\)</span>. In that case, the regression line is flat, and the explanatory variable provides no linear predictive information about the mean response.</p>
+<p>The alternative says that the mean response does change with <span class="math inline">\(x\)</span>.</p>
+<p>This is one of the most important regression tests because it addresses the basic question of whether the explanatory variable contributes to explaining the response.</p>
 </div>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-description.html#cb154-1" tabindex="-1"></a><span class="co"># Range of math score for first Graders</span></span>
-<span id="cb154-2"><a href="data-description.html#cb154-2" tabindex="-1"></a><span class="fu">var</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">1</span>])</span></code></pre></div>
-<pre><code>## [1] 860.9301</code></pre>
-<p>This code computes the variance of first-grade math scores.</p>
-<p>A larger variance indicates that the scores tend to lie farther from their mean, while a smaller variance indicates that the scores are more concentrated around the mean. Because variance is expressed in squared units, it is usually interpreted together with the standard deviation.</p>
-<p>Variance is measured in squared units, so it is often harder to interpret directly.</p>
+<div id="interpretation-of-the-hypotheses" class="section level3 hasAnchor" number="22.1.2">
+<h3><span class="header-section-number">22.1.2</span> Interpretation of the Hypotheses<a href="section.html#interpretation-of-the-hypotheses" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If <span class="math inline">\(\beta_1 = 0\)</span>, the mean response does not change linearly with <span class="math inline">\(x\)</span>.</p>
+<p>If <span class="math inline">\(\beta_1 \ne 0\)</span>, there is evidence of a linear relationship between the explanatory and response variables.</p>
+<p>Notice that this is a statement about the <strong>mean response</strong>, not about every individual response. Even if the slope is significantly different from 0, there may still be substantial variability around the line.</p>
+<p>So a significant slope means that there is evidence of a non-flat average relationship, not that prediction is perfect.</p>
+</div>
+<div id="test-statistic-for-the-slope" class="section level3 hasAnchor" number="22.1.3">
+<h3><span class="header-section-number">22.1.3</span> Test Statistic for the Slope<a href="section.html#test-statistic-for-the-slope" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The test statistic has the familiar form</p>
+<p><span class="math display">\[  
+t = \frac{b_1 - 0}{SE(b_1)}  
+\]</span></p>
+<p>with appropriate degrees of freedom.</p>
+<p>More generally, to test</p>
+<p><span class="math display">\[  
+H_0:\beta_1=\beta_{1,0},  
+\]</span></p>
+<p>the statistic is</p>
+<p><span class="math display">\[  
+t=\frac{b_1-\beta_{1,0}}{SE(b_1)}.  
+\]</span></p>
+<p>This parallels the one-sample and two-sample tests introduced earlier in the course. The new feature is that the parameter is now a slope rather than a mean or proportion.</p>
+<p>The statistic measures how many estimated standard errors the observed slope lies from the null value. If that number is large in magnitude, the data provide evidence against the null hypothesis.</p>
+</div>
+<div id="confidence-interval-for-the-slope" class="section level3 hasAnchor" number="22.1.4">
+<h3><span class="header-section-number">22.1.4</span> Confidence Interval for the Slope<a href="section.html#confidence-interval-for-the-slope" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A confidence interval for <span class="math inline">\(\beta_1\)</span> gives a range of plausible values for the true rate of change in the mean response.</p>
+<p>This interval is often more informative than the hypothesis test because it provides both direction and magnitude.</p>
+<p>If the confidence interval contains 0, then the null hypothesis of no linear relationship remains plausible.</p>
+<p>If the interval does not contain 0, then the data provide evidence of a linear relationship.</p>
+<p>But the interval also tells us more than that: it tells us how strong the slope may plausibly be in the original units of the problem.</p>
+</div>
+<div id="interpreting-the-slope-in-context" class="section level3 hasAnchor" number="22.1.5">
+<h3><span class="header-section-number">22.1.5</span> Interpreting the Slope in Context<a href="section.html#interpreting-the-slope-in-context" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Students should always state the slope in words.</p>
+<p>For example:</p>
+<p>“For each additional hour studied, the mean exam score is estimated to increase by about ___ points.”</p>
+<p>This translation into context is essential. A slope estimate is not just a number. It describes a rate of change, and that rate should always be interpreted using the units of both variables.</p>
+</div>
+<div id="inference-about-the-intercept" class="section level3 hasAnchor" number="22.1.6">
+<h3><span class="header-section-number">22.1.6</span> Inference About the Intercept<a href="section.html#inference-about-the-intercept" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The intercept can also be tested or estimated with a confidence interval.</p>
+<p>However, in many applications it is less scientifically important than the slope, especially when <span class="math inline">\(x=0\)</span> is outside the range of observed values.</p>
+<p>So the chapter should include the intercept, but not give it the same emphasis as the slope.</p>
+<p>This is a practical point. In many studies, the main scientific question is whether the response changes with the explanatory variable, not what the model predicts at <span class="math inline">\(x=0\)</span>.</p>
 <hr />
 </div>
-<div id="standard-deviation" class="section level4 hasAnchor" number="4.6.2.3">
-<h4><span class="header-section-number">4.6.2.3</span> Standard Deviation<a href="data-description.html#standard-deviation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="definition">
-<p><span id="def:standard-deviation" class="definition"><strong>Definition 4.13  (Standard Deviation) </strong></span>The standard deviation is the square root of the variance.</p>
 </div>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data-description.html#cb156-1" tabindex="-1"></a><span class="co"># Range of math score for first Graders</span></span>
-<span id="cb156-2"><a href="data-description.html#cb156-2" tabindex="-1"></a><span class="fu">sd</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">1</span>])</span></code></pre></div>
-<pre><code>## [1] 29.34161</code></pre>
-<p>This code computes the standard deviation of first-grade math scores.</p>
-<p>The standard deviation describes the typical distance of the scores from the mean, measured in the original units of the variable. This makes it easier to interpret than the variance. A larger standard deviation means more variability in student performance.</p>
-<p>The standard deviation is easier to interpret than the variance because it is in the same units as the original data.</p>
-<hr />
+<div id="prediction-and-estimation-using-regression" class="section level2 hasAnchor" number="22.2">
+<h2><span class="header-section-number">22.2</span> Prediction and Estimation Using Regression<a href="section.html#prediction-and-estimation-using-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The reference textbook treats prediction separately, and that is a good pedagogical choice because students need to see that not all regression-based intervals answer the same question.</p>
+<div id="estimating-the-mean-response-at-a-given-x" class="section level3 hasAnchor" number="22.2.1">
+<h3><span class="header-section-number">22.2.1</span> Estimating the Mean Response at a Given <span class="math inline">\(x\)</span><a href="section.html#estimating-the-mean-response-at-a-given-x" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For a selected value of <span class="math inline">\(x\)</span>, the fitted line gives</p>
+<p><span class="math display">\[  
+\hat{y} = b_0 + b_1 x  
+\]</span></p>
+<p>as an estimate of the mean response.</p>
+<p>For example, we may estimate the mean exam score among students who study 4 hours.</p>
+<p>This is a statement about an <strong>average</strong> over all students at that study-time level. It is not a prediction for one particular student.</p>
+<p>So the fitted line naturally provides a point estimate for the conditional mean response.</p>
 </div>
-<div id="quartiles-and-interquartile-range" class="section level4 hasAnchor" number="4.6.2.4">
-<h4><span class="header-section-number">4.6.2.4</span> Quartiles and Interquartile Range<a href="data-description.html#quartiles-and-interquartile-range" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="definition">
-<p><span id="def:quartiles" class="definition"><strong>Definition 4.14  (Quartiles) </strong></span>Quartiles divide the ordered data into four parts.</p>
-</div>
-<div class="definition">
-<p><span id="def:iqr" class="definition"><strong>Definition 4.15  (Interquartile Range) </strong></span>The interquartile range is the difference between the third quartile and the first quartile.</p>
-</div>
-<p>Use your existing code to compute quartiles and the interquartile range.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="data-description.html#cb158-1" tabindex="-1"></a><span class="co"># Interquartile Range of math score for first Graders</span></span>
-<span id="cb158-2"><a href="data-description.html#cb158-2" tabindex="-1"></a>qua <span class="ot">&lt;-</span> <span class="fu">quantile</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">1</span>], <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))</span>
-<span id="cb158-3"><a href="data-description.html#cb158-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;The interquartile range of Math scores for first graders is: &quot;</span>,qua[<span class="dv">2</span>] <span class="sc">-</span> qua[<span class="dv">1</span>]))</span></code></pre></div>
-<pre><code>## [1] &quot;The interquartile range of Math scores for first graders is: 40&quot;</code></pre>
-<p>This code computes the first and third quartiles and then subtracts them to obtain the interquartile range.</p>
-<p>The interquartile range measures the spread of the middle 50% of the data. Because it ignores the most extreme observations, it is less sensitive to outliers than the full range and often provides a more stable summary of variability.</p>
-<p>The interquartile range describes the spread of the middle 50% of the data.</p>
-<hr />
-</div>
-</div>
-<div id="five-number-summary" class="section level3 hasAnchor" number="4.6.3">
-<h3><span class="header-section-number">4.6.3</span> Five-Number Summary<a href="data-description.html#five-number-summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="definition">
-<p><span id="def:def-five-number-summary" class="definition"><strong>Definition 4.16  (Five-Number Summary) </strong></span>The five-number summary consists of the minimum, first quartile, median, third quartile, and maximum.</p>
-</div>
-<p>Use your existing code to obtain the five-number summary.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-description.html#cb160-1" tabindex="-1"></a><span class="co"># Range of math score for first Graders</span></span>
-<span id="cb160-2"><a href="data-description.html#cb160-2" tabindex="-1"></a><span class="fu">summary</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">1</span>])</span></code></pre></div>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    0.00   62.00   82.00   81.79  102.00  165.00</code></pre>
-<p>This code returns a compact summary of the first-grade math scores.</p>
-<p>The output reports the minimum, first quartile, median, mean, third quartile, and maximum. The five-number summary is especially useful because it provides information about both center and spread and forms the basis for constructing a boxplot.</p>
-<p>The five-number summary gives a compact description of the distribution and is the basis for the boxplot.</p>
-<hr />
-</div>
-</div>
-<div id="outliers-and-the-boxplot-rule" class="section level2 hasAnchor" number="4.7">
-<h2><span class="header-section-number">4.7</span> Outliers and the Boxplot Rule<a href="data-description.html#outliers-and-the-boxplot-rule" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="definition">
-<p><span id="def:outlier" class="definition"><strong>Definition 4.17  (Outlier) </strong></span>An outlier is an observation that lies far from the rest of the data.</p>
-</div>
-<p>A common rule labels an observation as an outlier if it is:</p>
+<div id="predicting-a-new-individual-response" class="section level3 hasAnchor" number="22.2.2">
+<h3><span class="header-section-number">22.2.2</span> Predicting a New Individual Response<a href="section.html#predicting-a-new-individual-response" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We may also want to predict the score of a particular new student who studies 4 hours.</p>
+<p>This is different from estimating the mean response.</p>
+<p>A new individual observation includes both:</p>
 <ul>
-<li>below <span class="math inline">\(Q_1 - 1.5 \times IQR\)</span>, or</li>
-<li>above <span class="math inline">\(Q_3 + 1.5 \times IQR\)</span></li>
+<li><p>uncertainty in where the true regression line lies</p></li>
+<li><p>natural individual-to-individual variability around the line</p></li>
 </ul>
-<p>This rule is commonly used in boxplots to flag observations that are unusually far from the middle 50% of the data.</p>
-<p>Use your existing code if you already compute or identify outliers.</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="data-description.html#cb162-1" tabindex="-1"></a><span class="fu">boxplot</span>(Math_Score <span class="sc">~</span> Grade,</span>
-<span id="cb162-2"><a href="data-description.html#cb162-2" tabindex="-1"></a>        <span class="at">data =</span> schDat,</span>
-<span id="cb162-3"><a href="data-description.html#cb162-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Math Scores by Grade&quot;</span>,</span>
-<span id="cb162-4"><a href="data-description.html#cb162-4" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Grade&quot;</span>,</span>
-<span id="cb162-5"><a href="data-description.html#cb162-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Math Score&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/boxplot-scores-by-grade-2-1.png" width="672" /></p>
-<p>This grouped boxplot applies the boxplot rule separately to each grade.</p>
-<p>The display allows us to compare distributions across grades while also identifying possible outliers in each group. If any points appear beyond the whiskers, those observations are flagged as unusual relative to the rest of the scores for that grade.</p>
-<p>Outliers should not be removed automatically. They should first be investigated.</p>
-<hr />
+<p>That second source of variability makes individual prediction inherently less precise than estimation of a mean response.</p>
 </div>
-<div id="describing-more-than-one-variable" class="section level2 hasAnchor" number="4.8">
-<h2><span class="header-section-number">4.8</span> Describing More Than One Variable<a href="data-description.html#describing-more-than-one-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>So far, we have described one variable at a time.</p>
-<p>In many studies, we are interested in relationships between variables.</p>
-<p>For example, in the simulated school data, we may want to study the relationship between:</p>
+<div id="mean-response-versus-new-observation" class="section level3 hasAnchor" number="22.2.3">
+<h3><span class="header-section-number">22.2.3</span> Mean Response Versus New Observation<a href="section.html#mean-response-versus-new-observation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A confidence interval for the mean response is narrower because it targets an average.</p>
+<p>A prediction interval for a new observation is wider because it must account for:</p>
 <ul>
-<li>grade and exam score</li>
-<li>age and exam score</li>
+<li><p>uncertainty in the estimated line</p></li>
+<li><p>natural individual-to-individual variability around the line</p></li>
 </ul>
-<p>When two or more variables are considered together, the goal is no longer only to describe each variable separately, but also to understand how they move together.</p>
-<hr />
-<div id="scatterplots" class="section level3 hasAnchor" number="4.8.1">
-<h3><span class="header-section-number">4.8.1</span> Scatterplots<a href="data-description.html#scatterplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A scatterplot is useful for displaying the relationship between two numerical variables.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="data-description.html#cb163-1" tabindex="-1"></a><span class="fu">plot</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">8</span>], schDat<span class="sc">$</span>Verbal_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">8</span>], <span class="at">xlab =</span> <span class="st">&quot;Math Score&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Verbal Score&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/scatterplot-math-verbal-scores-1.png" width="672" /></p>
-<p>This code plots math score against verbal score for eighth-grade students.</p>
-<p>Each point represents one student. If the points tend to rise from left to right, that suggests a positive relationship: students with higher math scores also tend to have higher verbal scores. If no pattern is visible, the association is weak or absent.</p>
-<p>A scatterplot helps us see whether two variables tend to increase together, decrease together, or show no clear relationship.</p>
-<hr />
+<p>This distinction is very important and should be emphasized clearly.</p>
+<p>Students often confuse these two intervals because both are centered at the fitted value. But they answer different questions.</p>
+<p>A confidence interval answers:</p>
+<blockquote>
+<p>What are plausible values for the mean response at this value of <span class="math inline">\(x\)</span>?</p>
+</blockquote>
+<p>A prediction interval answers:</p>
+<blockquote>
+<p>What are plausible values for a single new response at this value of <span class="math inline">\(x\)</span>?</p>
+</blockquote>
+<p>The second question is more demanding, so its interval is wider.</p>
 </div>
-<div id="correlation" class="section level3 hasAnchor" number="4.8.2">
-<h3><span class="header-section-number">4.8.2</span> Correlation<a href="data-description.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="definition">
-<p><span id="def:correlation" class="definition"><strong>Definition 4.18  (Correlation) </strong></span>Correlation is a numerical measure of the strength and direction of a linear relationship between two numerical variables.</p>
-</div>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="data-description.html#cb164-1" tabindex="-1"></a><span class="fu">cor</span>(schDat<span class="sc">$</span>Math_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">8</span>], schDat<span class="sc">$</span>Verbal_Score[schDat<span class="sc">$</span>Grade <span class="sc">==</span> <span class="dv">8</span>])</span></code></pre></div>
-<pre><code>## [1] 0.899065</code></pre>
-<p>This code computes the correlation between math and verbal scores for eighth-grade students.</p>
-<p>A positive correlation indicates that higher values of one variable tend to be associated with higher values of the other. A value close to 1 indicates a strong positive linear relationship, a value close to -1 indicates a strong negative linear relationship, and a value near 0 indicates little or no linear relationship.</p>
-<p>Correlation describes association, but it does not imply causation.</p>
+<div id="caution-about-extrapolation" class="section level3 hasAnchor" number="22.2.4">
+<h3><span class="header-section-number">22.2.4</span> Caution About Extrapolation<a href="section.html#caution-about-extrapolation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Regression predictions are most reliable within the range of observed <span class="math inline">\(x\)</span>-values.</p>
+<p>Using the line far outside the observed range is called extrapolation.</p>
+<p>Extrapolation is dangerous because the true relationship may change outside the observed region.</p>
+<p>This should be one of the major cautionary messages of the chapter.</p>
+<p>A fitted line may describe the data well within the observed range but fail badly beyond it. So even if the model fits well, predictions outside the observed range should be treated with caution.</p>
 <hr />
 </div>
 </div>
-<div id="summary-1" class="section level2 hasAnchor" number="4.9">
-<h2><span class="header-section-number">4.9</span> Summary<a href="data-description.html#summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Descriptive statistics allow us to summarize and understand a data set.</p>
-<p>In this section, we introduced:</p>
+<div id="examining-lack-of-fit" class="section level2 hasAnchor" number="22.3">
+<h2><span class="header-section-number">22.3</span> Examining Lack of Fit<a href="section.html#examining-lack-of-fit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The textbook places lack of fit before correlation, which is sensible because model adequacy should be checked before the relationship is summarized numerically. That same logic is useful here.</p>
+<div id="what-lack-of-fit-means" class="section level3 hasAnchor" number="22.3.1">
+<h3><span class="header-section-number">22.3.1</span> What Lack of Fit Means<a href="section.html#what-lack-of-fit-means" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A regression model has lack of fit when a straight line does not adequately describe the mean relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<p>In other words, the model is missing structure that is present in the data.</p>
+<p>This does not necessarily mean that there is no relationship. It may mean instead that the relationship is real but not linear.</p>
+</div>
+<div id="how-to-detect-lack-of-fit" class="section level3 hasAnchor" number="22.3.2">
+<h3><span class="header-section-number">22.3.2</span> How to Detect Lack of Fit<a href="section.html#how-to-detect-lack-of-fit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Lack of fit is usually examined graphically.</p>
+<p>Important plots include:</p>
 <ul>
-<li>types of variables</li>
-<li>graphical summaries</li>
-<li>numerical summaries</li>
-<li>ways to describe the distribution of a variable</li>
-<li>basic methods for describing relationships between variables</li>
+<li><p>scatterplot of <span class="math inline">\(y\)</span> versus <span class="math inline">\(x\)</span></p></li>
+<li><p>residuals versus <span class="math inline">\(x\)</span></p></li>
+<li><p>normal probability plot of residuals</p></li>
 </ul>
-<p>The main purpose of these tools is to help us understand the data before moving to probability models or inferential procedures. In practice, a good description of the data combines both graphs and numerical summaries, since each contributes different information.</p>
-<p>Each graph or numerical summary should add useful information and should not simply repeat what has already been shown.</p>
+<p>These plots each reveal different aspects of the model.</p>
+<p>The scatterplot helps assess whether a line is reasonable in the first place.</p>
+<p>The residual plot helps reveal whether important systematic patterns remain after fitting the line.</p>
+<p>The normal probability plot helps assess whether the residual distribution is consistent with the assumptions used for inference.</p>
+</div>
+<div id="common-patterns" class="section level3 hasAnchor" number="22.3.3">
+<h3><span class="header-section-number">22.3.3</span> Common Patterns<a href="section.html#common-patterns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A good linear model tends to produce residuals with no clear pattern.</p>
+<p>Signs of trouble include:</p>
+<ul>
+<li><p>curved patterns</p></li>
+<li><p>funnel-shaped spread</p></li>
+<li><p>clusters</p></li>
+<li><p>extreme outliers</p></li>
+</ul>
+<p>A curved residual pattern suggests that the mean relationship is not linear.</p>
+<p>A funnel shape suggests that the variability changes with <span class="math inline">\(x\)</span>, which conflicts with the constant-variance assumption.</p>
+<p>Clusters may suggest subgroups that should not be combined into one simple model.</p>
+<p>Extreme outliers may indicate unusual observations, data errors, or influential cases.</p>
+</div>
+<div id="interpreting-residual-plots" class="section level3 hasAnchor" number="22.3.4">
+<h3><span class="header-section-number">22.3.4</span> Interpreting Residual Plots<a href="section.html#interpreting-residual-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If residuals show a curved pattern, the linear model may be missing curvature.</p>
+<p>If the spread increases with <span class="math inline">\(x\)</span>, the constant-variance assumption may be questionable.</p>
+<p>If one or two points dominate the pattern, those points should be examined carefully.</p>
+<p>The central idea is that the residual plot should look patternless. Once the line has captured the systematic mean trend, what remains should look like random noise around 0.</p>
+</div>
+<div id="what-to-do-when-linear-regression-does-not-fit-well" class="section level3 hasAnchor" number="22.3.5">
+<h3><span class="header-section-number">22.3.5</span> What to Do When Linear Regression Does Not Fit Well<a href="section.html#what-to-do-when-linear-regression-does-not-fit-well" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>At this level, the chapter should focus on recognizing problems rather than developing advanced remedies.</p>
+<p>Possible responses include:</p>
+<ul>
+<li><p>re-examining the data for errors</p></li>
+<li><p>restricting attention to a region where linearity is more reasonable</p></li>
+<li><p>transforming variables</p></li>
+<li><p>noting that a more complex model may be needed later</p></li>
+</ul>
+<p>This naturally prepares students for later regression topics.</p>
+<p>So the goal here is not to solve every regression problem, but to learn how to recognize when the simple linear model is and is not appropriate.</p>
 <hr />
 </div>
-<div id="from-description-to-probability" class="section level2 hasAnchor" number="4.10">
-<h2><span class="header-section-number">4.10</span> From Description to Probability<a href="data-description.html#from-description-to-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>So far, we have focused on describing observed data.</p>
-<p>In the next section, we introduce probability as a way to model randomness and variability.</p>
+</div>
+<div id="correlation-1" class="section level2 hasAnchor" number="22.4">
+<h2><span class="header-section-number">22.4</span> Correlation<a href="section.html#correlation-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The book closes the main content with correlation, but in these notes it is useful to present correlation both as a return to Chapter 3 and as a contrast with regression. The reference textbook also treats correlation as closely connected to regression while still conceptually distinct.</p>
+<div id="the-correlation-coefficient" class="section level3 hasAnchor" number="22.4.1">
+<h3><span class="header-section-number">22.4.1</span> The Correlation Coefficient<a href="section.html#the-correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The sample correlation coefficient, denoted by <span class="math inline">\(r\)</span>, measures the strength and direction of a linear relationship between two quantitative variables.</p>
+<p>It is a numerical summary of how strongly the points in a scatterplot follow an upward or downward linear pattern.</p>
+<p>A positive value indicates an upward tendency.<br />
+A negative value indicates a downward tendency.</p>
+<p>The closer the value is to either 1 or -1, the stronger the linear relationship.</p>
+</div>
+<div id="range-of-correlation" class="section level3 hasAnchor" number="22.4.2">
+<h3><span class="header-section-number">22.4.2</span> Range of Correlation<a href="section.html#range-of-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The value of <span class="math inline">\(r\)</span> always lies between <span class="math inline">\(-1\)</span> and <span class="math inline">\(1\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(r\)</span> near <span class="math inline">\(1\)</span> indicates a strong positive linear relationship</p></li>
+<li><p><span class="math inline">\(r\)</span> near <span class="math inline">\(-1\)</span> indicates a strong negative linear relationship</p></li>
+<li><p><span class="math inline">\(r\)</span> near <span class="math inline">\(0\)</span> indicates weak or no linear relationship</p></li>
+</ul>
+<p>These interpretations should always be tied to the word <strong>linear</strong>. A value near 0 does not mean there is no relationship at all. It means there is little linear relationship.</p>
+</div>
+<div id="interpretation-10" class="section level3 hasAnchor" number="22.4.3">
+<h3><span class="header-section-number">22.4.3</span> Interpretation<a href="section.html#interpretation-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Correlation describes linear association, not causation.</p>
+<p>A strong correlation does not prove that changes in one variable cause changes in the other.</p>
+<p>This is one of the most important cautions in the chapter. Correlation is descriptive. It summarizes association. It does not by itself justify a causal conclusion.</p>
+</div>
+<div id="correlation-and-the-scatterplot" class="section level3 hasAnchor" number="22.4.4">
+<h3><span class="header-section-number">22.4.4</span> Correlation and the Scatterplot<a href="section.html#correlation-and-the-scatterplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The numerical value of <span class="math inline">\(r\)</span> should always be interpreted together with the scatterplot.</p>
+<p>A scatterplot can reveal situations where:</p>
+<ul>
+<li><p>the relationship is nonlinear</p></li>
+<li><p>one outlier strongly affects the correlation</p></li>
+<li><p>separate groups are mixed together</p></li>
+</ul>
+<p>This is crucial because the same correlation value can arise from very different scatterplot shapes.</p>
+<p>So correlation is useful, but only when interpreted in the light of the graph.</p>
+</div>
+<div id="correlation-versus-regression" class="section level3 hasAnchor" number="22.4.5">
+<h3><span class="header-section-number">22.4.5</span> Correlation Versus Regression<a href="section.html#correlation-versus-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This distinction should be explicit.</p>
+<p>Correlation:</p>
+<ul>
+<li><p>is symmetric in <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span></p></li>
+<li><p>measures strength and direction of linear association</p></li>
+<li><p>does not distinguish explanatory and response roles</p></li>
+</ul>
+<p>Regression:</p>
+<ul>
+<li><p>is not symmetric</p></li>
+<li><p>uses an explanatory variable to model or predict a response</p></li>
+<li><p>focuses on a line and its parameters</p></li>
+</ul>
+<p>This contrast is important because students often treat the two ideas as interchangeable. They are related, but they serve different purposes.</p>
+</div>
+<div id="testing-for-correlation" class="section level3 hasAnchor" number="22.4.6">
+<h3><span class="header-section-number">22.4.6</span> Testing for Correlation<a href="section.html#testing-for-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A test can be conducted for whether the population correlation is zero.</p>
+<p>This parallels the test for zero slope in simple linear regression.</p>
+<p>At this level, it is useful to note that in simple linear regression, testing whether the slope is zero is equivalent to testing whether the population correlation is zero.</p>
+<p>That equivalence helps connect the descriptive idea of correlation to the inferential idea of regression slope.</p>
+<hr />
+</div>
+</div>
+<div id="coefficient-of-determination" class="section level2 hasAnchor" number="22.5">
+<h2><span class="header-section-number">22.5</span> Coefficient of Determination<a href="section.html#coefficient-of-determination" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A natural companion to correlation is the coefficient of determination. The textbook presents it as a descriptive summary of fit, which is exactly the role it should play here.</p>
+<div id="definition-5" class="section level3 hasAnchor" number="22.5.1">
+<h3><span class="header-section-number">22.5.1</span> Definition<a href="section.html#definition-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The coefficient of determination is</p>
+<p><span class="math display">\[  
+R^2 = r^2  
+\]</span></p>
+<p>in simple linear regression.</p>
+<p>So in the simple linear case, once the correlation is known, the coefficient of determination follows immediately by squaring it.</p>
+</div>
+<div id="interpretation-11" class="section level3 hasAnchor" number="22.5.2">
+<h3><span class="header-section-number">22.5.2</span> Interpretation<a href="section.html#interpretation-11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math inline">\(R^2\)</span> is the proportion of variability in the response variable that is explained by the linear relationship with the explanatory variable.</p>
+<p>This is one of the most common summaries of regression fit.</p>
+<p>If <span class="math inline">\(R^2\)</span> is close to 1, the line explains much of the variation in the response.</p>
+<p>If <span class="math inline">\(R^2\)</span> is close to 0, the line explains little of the variation.</p>
+</div>
+<div id="why-it-is-useful" class="section level3 hasAnchor" number="22.5.3">
+<h3><span class="header-section-number">22.5.3</span> Why It Is Useful<a href="section.html#why-it-is-useful" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It gives a descriptive summary of how well the line fits the data.</p>
+<p>For example, if <span class="math inline">\(R^2 = 0.64\)</span>, then about 64% of the variability in exam scores is explained by the linear relationship with study time.</p>
+<p>This is often easier to communicate than the residual sum of squares or other technical summaries.</p>
+</div>
+<div id="caution" class="section level3 hasAnchor" number="22.5.4">
+<h3><span class="header-section-number">22.5.4</span> Caution<a href="section.html#caution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A large <span class="math inline">\(R^2\)</span> does not prove causation or guarantee that the model is appropriate.</p>
+<p>A small <span class="math inline">\(R^2\)</span> does not mean the explanatory variable is useless, especially in settings where outcomes are naturally very variable.</p>
+<p>So <span class="math inline">\(R^2\)</span> should be interpreted as a descriptive measure of how much variation the fitted line explains, not as a universal measure of scientific importance.</p>
+<hr />
+</div>
+</div>
+<div id="regression-correlation-and-causation" class="section level2 hasAnchor" number="22.6">
+<h2><span class="header-section-number">22.6</span> Regression, Correlation, and Causation<a href="section.html#regression-correlation-and-causation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This section is especially important because the course earlier emphasized the difference between association and causation in study design. That same caution must appear here.</p>
+<div id="association-does-not-imply-causation" class="section level3 hasAnchor" number="22.6.1">
+<h3><span class="header-section-number">22.6.1</span> Association Does Not Imply Causation<a href="section.html#association-does-not-imply-causation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A regression line or a strong correlation does not, by itself, show that <span class="math inline">\(x\)</span> causes <span class="math inline">\(y\)</span>.</p>
+<p>Both regression and correlation describe association. Neither, by itself, proves a causal mechanism.</p>
+</div>
+<div id="why-not" class="section level3 hasAnchor" number="22.6.2">
+<h3><span class="header-section-number">22.6.2</span> Why Not<a href="section.html#why-not" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Possible reasons include:</p>
+<ul>
+<li><p>lurking variables</p></li>
+<li><p>confounding</p></li>
+<li><p>reverse direction of influence</p></li>
+<li><p>observational rather than experimental study design</p></li>
+</ul>
+<p>Each of these can create association without direct causation.</p>
+<p>So even a very strong linear relationship must be interpreted through the lens of the study design and scientific context.</p>
+</div>
+<div id="example" class="section level3 hasAnchor" number="22.6.3">
+<h3><span class="header-section-number">22.6.3</span> Example<a href="section.html#example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Students who study more may score higher, but the relationship could also reflect prior preparation, motivation, or access to resources.</p>
+<p>So the observed association may be real without being purely causal.</p>
+</div>
+<div id="connection-to-earlier-study-design-ideas" class="section level3 hasAnchor" number="22.6.4">
+<h3><span class="header-section-number">22.6.4</span> Connection to Earlier Study Design Ideas<a href="section.html#connection-to-earlier-study-design-ideas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A regression relationship is easier to interpret causally when the explanatory variable arises from a well-designed experiment. In observational studies, causal claims require much greater caution.</p>
+<p>This is exactly where regression connects back to the earlier chapters on study design.</p>
+<hr />
+</div>
+</div>
+<div id="what-to-check-before-using-simple-linear-regression" class="section level2 hasAnchor" number="22.7">
+<h2><span class="header-section-number">22.7</span> What to Check Before Using Simple Linear Regression<a href="section.html#what-to-check-before-using-simple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This section gives students a practical checklist.</p>
+<div id="study-design-1" class="section level3 hasAnchor" number="22.7.1">
+<h3><span class="header-section-number">22.7.1</span> Study Design<a href="section.html#study-design-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ask:</p>
+<ul>
+<li><p>Are the observational units independent?</p></li>
+<li><p>Is one variable being used to explain or predict the other?</p></li>
+<li><p>Is the study observational or experimental?</p></li>
+</ul>
+<p>These questions determine how far the interpretation can go, especially regarding causation.</p>
+</div>
+<div id="graphical-pattern" class="section level3 hasAnchor" number="22.7.2">
+<h3><span class="header-section-number">22.7.2</span> Graphical Pattern<a href="section.html#graphical-pattern" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ask:</p>
+<ul>
+<li><p>Does the scatterplot suggest a roughly linear trend?</p></li>
+<li><p>Are there outliers?</p></li>
+<li><p>Are there separate groups?</p></li>
+</ul>
+<p>These questions determine whether a simple linear model is even plausible.</p>
+</div>
+<div id="residual-behavior" class="section level3 hasAnchor" number="22.7.3">
+<h3><span class="header-section-number">22.7.3</span> Residual Behavior<a href="section.html#residual-behavior" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ask:</p>
+<ul>
+<li><p>Do the residuals show obvious curvature?</p></li>
+<li><p>Is the spread roughly constant?</p></li>
+<li><p>Are there unusually large residuals?</p></li>
+</ul>
+<p>These questions help assess whether the fitted line is adequate.</p>
+</div>
+<div id="interpretation-12" class="section level3 hasAnchor" number="22.7.4">
+<h3><span class="header-section-number">22.7.4</span> Interpretation<a href="section.html#interpretation-12" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ask:</p>
+<ul>
+<li><p>Is the slope practically meaningful?</p></li>
+<li><p>Is prediction being made within the observed range?</p></li>
+<li><p>Is anyone making an unjustified causal claim?</p></li>
+</ul>
+<p>This final step reminds students that statistical work is not complete until the numerical results are interpreted in context.</p>
+<hr />
+</div>
+</div>
+<div id="reporting-results-for-regression" class="section level2 hasAnchor" number="22.8">
+<h2><span class="header-section-number">22.8</span> Reporting Results for Regression<a href="section.html#reporting-results-for-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="what-to-report-1" class="section level3 hasAnchor" number="22.8.1">
+<h3><span class="header-section-number">22.8.1</span> What to Report<a href="section.html#what-to-report-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A complete report should include:</p>
+<ul>
+<li><p>the research question</p></li>
+<li><p>the explanatory and response variables</p></li>
+<li><p>the fitted regression equation</p></li>
+<li><p>a scatterplot</p></li>
+<li><p>an interpretation of the slope</p></li>
+<li><p>residual-based comments on model adequacy</p></li>
+<li><p>confidence intervals or tests for the slope when relevant</p></li>
+<li><p>prediction results when relevant</p></li>
+<li><p>a conclusion in context</p></li>
+</ul>
+<p>This is a useful reporting structure because it combines the model, the numerical results, the graphical checks, and the contextual interpretation.</p>
+</div>
+<div id="avoiding-common-mistakes-1" class="section level3 hasAnchor" number="22.8.2">
+<h3><span class="header-section-number">22.8.2</span> Avoiding Common Mistakes<a href="section.html#avoiding-common-mistakes-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Common mistakes include:</p>
+<ul>
+<li><p>reporting only the equation without interpretation</p></li>
+<li><p>treating correlation as causation</p></li>
+<li><p>predicting far outside the observed range</p></li>
+<li><p>ignoring outliers or curvature</p></li>
+<li><p>reporting statistical significance without discussing effect size</p></li>
+</ul>
+<p>These mistakes are common because students often focus on the algebra of regression and forget that regression is a modeling tool whose conclusions depend on interpretation and model adequacy.</p>
+<hr />
+</div>
+</div>
+<div id="research-study" class="section level2 hasAnchor" number="22.9">
+<h2><span class="header-section-number">22.9</span> Research Study<a href="section.html#research-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The textbook uses a research study involving two methods for detecting <em>E. coli</em>, consistent with its applied Chapter 11 development.</p>
+<p>For your course notes, you may want a more accessible example, but the structure should remain similar.</p>
+<p>A possible applied section is:</p>
+<div id="research-study-can-study-time-be-used-to-predict-exam-performance" class="section level3 hasAnchor" number="22.9.1">
+<h3><span class="header-section-number">22.9.1</span> Research Study: Can Study Time Be Used to Predict Exam Performance?<a href="section.html#research-study-can-study-time-be-used-to-predict-exam-performance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This section can bring together the chapter by including:</p>
+<ul>
+<li><p>a scatterplot</p></li>
+<li><p>a fitted line</p></li>
+<li><p>interpretation of slope and intercept</p></li>
+<li><p>a test for slope</p></li>
+<li><p>a confidence interval for slope</p></li>
+<li><p>a prediction at a selected study time</p></li>
+<li><p>a residual plot</p></li>
+<li><p>a discussion of whether the linear model is adequate</p></li>
+<li><p>a reminder that the relationship is associative unless supported by design</p></li>
+</ul>
+<p>If you prefer a more scientific context, a laboratory calibration example would also work well.</p>
+<p>The purpose of such a section is not only to apply formulas, but to show how a full regression analysis is carried out from start to finish.</p>
+<hr />
+</div>
+</div>
+<div id="summary-15" class="section level2 hasAnchor" number="22.10">
+<h2><span class="header-section-number">22.10</span> Summary<a href="section.html#summary-15" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This chapter introduced statistical tools for studying the relationship between two quantitative variables.</p>
+<p>The main ideas are:</p>
+<ul>
+<li><p>a scatterplot is the starting point for studying a relationship</p></li>
+<li><p>simple linear regression models the mean response as a straight-line function of an explanatory variable</p></li>
+<li><p>the slope describes the estimated rate of change in the mean response</p></li>
+<li><p>least squares chooses the fitted line by minimizing the sum of squared residuals</p></li>
+<li><p>inference in regression focuses mainly on the slope and on prediction</p></li>
+<li><p>confidence intervals for mean response and prediction intervals for new observations answer different questions</p></li>
+<li><p>residual plots help assess whether a linear model is appropriate</p></li>
+<li><p>correlation measures the strength and direction of a linear relationship</p></li>
+<li><p>correlation and regression describe association, but by themselves do not establish causation</p></li>
+</ul>
+<p>The chapter therefore ties together description, modeling, inference, prediction, and diagnostic checking.</p>
+<hr />
+</div>
+<div id="key-formulas-1" class="section level2 hasAnchor" number="22.11">
+<h2><span class="header-section-number">22.11</span> Key Formulas<a href="section.html#key-formulas-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>At the level of these notes, the formulas should be accompanied by interpretation, not just listed.</p>
+<p>Suggested formulas:</p>
+<ul>
+<li><p>regression model<br />
+<span class="math display">\[  
+  y_i = \beta_0 + \beta_1 x_i + e_i  
+  \]</span></p></li>
+<li><p>fitted line<br />
+<span class="math display">\[  
+  \hat{y} = b_0 + b_1 x  
+  \]</span></p></li>
+<li><p>residual<br />
+<span class="math display">\[  
+  e_i = y_i - \hat{y}_i  
+  \]</span></p></li>
+<li><p>slope estimate<br />
+<span class="math display">\[  
+  b_1 = \frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{\sum (x_i-\bar{x})^2}  
+  \]</span></p></li>
+<li><p>intercept estimate<br />
+<span class="math display">\[  
+  b_0 = \bar{y} - b_1\bar{x}  
+  \]</span></p></li>
+<li><p>test statistic for slope<br />
+<span class="math display">\[  
+  t = \frac{b_1}{SE(b_1)}  
+  \]</span></p></li>
+<li><p>correlation coefficient<br />
+<span class="math display">\[  
+  r = \frac{\sum (x_i-\bar{x})(y_i-\bar{y})}  
+  {\sqrt{\sum (x_i-\bar{x})^2 \sum (y_i-\bar{y})^2}}  
+  \]</span></p></li>
+<li><p>coefficient of determination<br />
+<span class="math display">\[  
+  R^2 = r^2  
+  \]</span></p></li>
+<li><p>test statistic for correlation<br />
+<span class="math display">\[  
+  t = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}}  
+  \]</span></p></li>
+</ul>
+<p>Each formula should be tied to its role in the chapter:</p>
+<ul>
+<li><p>the model equation describes the assumed structure</p></li>
+<li><p>the fitted line gives the estimated mean relationship</p></li>
+<li><p>residuals diagnose fit</p></li>
+<li><p>the slope estimate and its test statistic support inference</p></li>
+<li><p>the correlation summarizes association</p></li>
+<li><p><span class="math inline">\(R^2\)</span> summarizes explained variation</p></li>
+</ul>
+<p>So the formulas should serve understanding, not memorization alone.</p>
 
 </div>
 </div>
@@ -1426,8 +1384,8 @@ s^2 = \frac{1}{n - 1} \sum_{i=1}^n (y_i - \bar{y})^2,
           </div>
         </div>
       </div>
-<a href="studies-and-data-collection.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="logarithmic-relationship.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
