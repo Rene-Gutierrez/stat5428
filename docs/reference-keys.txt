@@ -734,6 +734,7 @@ what-to-report
 avoiding-common-mistakes
 summary-13
 key-formulas
+simple-linear-regression
 scatterplots-and-first-impressions
 scatterplot
 what-to-look-for

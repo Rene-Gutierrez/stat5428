@@ -1,0 +1,874 @@
+
+# Multiple Linear Regression
+
+## Introduction
+
+In simple linear regression, we studied how one explanatory variable can be used to describe or predict a quantitative response. That framework is extremely useful, but it is often too limited for real data.
+
+In many practical studies, a response is influenced by several variables at the same time. If we try to explain the response using only one of them, we may miss important structure, obtain incomplete predictions, or misinterpret the role of the variable that we included.
+
+For example, many outcomes in science, education, medicine, and economics are not driven by a single factor. Instead, they are affected by several factors acting together.
+
+Examples include:
+
+- exam score predicted by study time, class attendance, and prior GPA
+- blood pressure predicted by age, weight, and exercise level
+- crop yield predicted by fertilizer amount, rainfall, and soil quality
+- housing price predicted by size, age, and neighborhood characteristics
+
+In each of these examples, no single explanatory variable is likely to tell the full story.
+
+This chapter extends simple linear regression to situations where more than one explanatory variable is used to explain or predict a quantitative response. The main ideas of regression remain the same:
+
+- we model the mean response
+- we estimate unknown coefficients from the data
+- we assess uncertainty through confidence intervals and hypothesis tests
+- we check whether the model fits the data adequately
+
+What changes is that the model now includes several explanatory variables at once.
+
+This extension is important because it allows us to study how each explanatory variable is related to the response **after accounting for the others**. That is one of the main conceptual strengths of multiple regression, and one of the main reasons it is so widely used.
+
+***
+
+## Motivating Example: Predicting Exam Performance
+
+Suppose an instructor wants to predict final exam score using several explanatory variables.
+
+Let
+
+- $x_1$: hours studied
+- $x_2$: class attendance rate
+- $x_3$: prior GPA
+
+and let
+
+- $y$: final exam score
+
+This example is useful because it illustrates immediately why multiple regression is needed.
+
+If we regress exam score only on study time, we may find a positive relationship. But that relationship may not reflect study time alone. Students who study more may also attend class more often, and they may already have stronger academic backgrounds. So the simple regression slope for study time may partly reflect the influence of attendance and prior GPA.
+
+Multiple regression helps separate these effects.
+
+It allows us to ask questions such as:
+
+- How does exam score change with study time, after accounting for attendance and prior GPA?
+- Does attendance still matter after adjusting for study time and prior GPA?
+- Does prior GPA contribute useful predictive information once the other variables are already in the model?
+- How much of the variability in exam scores can these explanatory variables explain together?
+
+These are exactly the kinds of questions that motivate multiple linear regression.
+
+***
+
+## Why Simple Linear Regression Is Sometimes Not Enough
+
+Simple linear regression describes the relationship between a response and one explanatory variable. That is often a useful starting point, but it may be inadequate when several explanatory variables are relevant.
+
+A model with only one explanatory variable may be too simple because it ignores other factors that influence the response.
+
+When important variables are omitted, the relationship estimated from a simple regression can be misleading. The model may attribute to one explanatory variable an effect that is actually shared with or partly driven by another variable.
+
+### Omitted Variable Concern
+
+This is one of the main reasons multiple regression is needed.
+
+Suppose students with higher prior GPA also tend to study more. Then a simple regression of exam score on study time alone may partly reflect the effect of prior GPA. The fitted slope for study time may therefore exaggerate or distort the relationship we would observe if prior GPA were taken into account.
+
+So the problem is not just that the simple model is incomplete. The problem is that the interpretation of the slope can change when an important omitted variable is added.
+
+This is the omitted-variable concern.
+
+### Need for Simultaneous Adjustment
+
+Multiple regression addresses this issue by allowing several explanatory variables to enter the model at once.
+
+This makes it possible to study the relationship between one explanatory variable and the response **while holding the others fixed**.
+
+That phrase is central to the interpretation of multiple regression.
+
+For example, in the exam setting:
+
+- the effect of study time is interpreted after adjusting for attendance and prior GPA
+- the effect of attendance is interpreted after adjusting for study time and prior GPA
+- the effect of prior GPA is interpreted after adjusting for study time and attendance
+
+This kind of simultaneous adjustment is one of the main conceptual motivations for the entire chapter.
+
+***
+
+## From Simple Regression to Multiple Regression
+
+Multiple regression builds directly on simple linear regression.
+
+### Review of Simple Linear Regression
+
+In simple linear regression, we modeled the mean response as
+
+$$
+E(y \mid x) = \beta_0 + \beta_1 x.
+$$
+
+This says that the mean of the response changes linearly with one explanatory variable.
+
+### Multiple Regression Version
+
+With several explanatory variables, the model becomes
+
+$$
+E(y \mid x_1, x_2, \dots, x_p) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p.
+$$
+
+This is the natural extension of the simple regression model.
+
+The form is familiar:
+
+- there is still an intercept
+- there are still slope coefficients
+- the model is still linear in the coefficients
+
+The difference is that now the conditional mean of the response depends on several explanatory variables instead of just one.
+
+### Interpretation of the Extension
+
+The most important new idea is that each regression coefficient describes the relationship between its explanatory variable and the mean response, **after accounting for the other explanatory variables in the model**.
+
+This is the main conceptual jump from simple to multiple regression.
+
+In simple regression, the slope describes the overall linear relationship between $x$ and the mean response.
+
+In multiple regression, the slope for $x_j$ describes the relationship between $x_j$ and the mean response after adjusting for the other explanatory variables.
+
+This interpretation is more subtle, but also more powerful.
+
+***
+
+## The Multiple Linear Regression Model
+
+### Model Statement
+
+The multiple linear regression model can be written as
+
+$$
+y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip} + e_i
+$$
+
+where:
+
+- $y_i$ is the response for observation $i$
+- $x_{ij}$ is the value of explanatory variable $j$ for observation $i$
+- $\beta_0, \beta_1, \dots, \beta_p$ are the regression parameters
+- $e_i$ is the random error term
+
+As in simple regression, each observation is described as the sum of:
+
+- a systematic part, given by the regression function
+- a random part, given by the error term
+
+The systematic part describes how the mean response changes with the explanatory variables.  
+The error term represents the remaining variation not explained by the model.
+
+### Interpretation of the Intercept
+
+The intercept $\beta_0$ is the mean response when all explanatory variables are equal to 0.
+
+This interpretation is mathematically correct, but whether it is meaningful depends on the context.
+
+In some applications, all explanatory variables equal to 0 may correspond to a realistic and interesting case. In others, it may not.
+
+For example, if the explanatory variables are hours studied, attendance rate, and prior GPA, then the case where all are 0 may not be realistic. So the intercept may have limited practical meaning, even though it is still part of the model.
+
+### Interpretation of a Slope Coefficient
+
+The coefficient $\beta_j$ represents the change in the mean response associated with a one-unit increase in $x_j$, while holding all the other explanatory variables fixed.
+
+This is the key interpretation of a slope coefficient in multiple regression.
+
+Using the exam example:
+
+- $\beta_1$ measures the effect of study time after adjusting for attendance and prior GPA
+- $\beta_2$ measures the effect of attendance after adjusting for study time and prior GPA
+- $\beta_3$ measures the effect of prior GPA after adjusting for study time and attendance
+
+This interpretation should be emphasized repeatedly, since it is one of the hardest conceptual jumps for students.
+
+### Assumptions
+
+The usual assumptions are:
+
+1. the mean response is a linear function of the explanatory variables
+2. the errors have mean 0
+3. the errors have common variance $\sigma^2$
+4. the errors are independent
+5. for inference, the errors are often assumed to be approximately normal
+
+These assumptions play the same role they played in simple regression.
+
+The linearity assumption concerns the mean response, not every individual response.
+
+The common-variance assumption says that the spread of the response around the fitted regression surface is roughly constant.
+
+The independence assumption says that the errors do not systematically move together across observations.
+
+The approximate normality assumption is mainly needed for the usual $t$ and $F$ inference procedures.
+
+These assumptions should be treated as modeling assumptions to be checked and judged, not automatic truths.
+
+***
+
+## The General Linear Model Idea
+
+### What Makes the Model “Linear”
+
+The model is called linear because it is linear in the parameters $\beta_0, \beta_1, \dots, \beta_p$.
+
+This is an important point.
+
+A regression model can still be linear even if the explanatory variables themselves are transformed.
+
+For example, the model
+
+$$
+y = \beta_0 + \beta_1 x + \beta_2 x^2 + e
+$$
+
+is still a linear regression model because it is linear in the coefficients $\beta_0$, $\beta_1$, and $\beta_2$.
+
+The variable $x^2$ is treated as another explanatory variable.
+
+### Why This Matters
+
+This viewpoint helps students see that the word “linear” refers to the parameters, not necessarily to the shape in the original explanatory variable.
+
+That is useful because it broadens the idea of regression while still keeping the mathematical structure manageable.
+
+At this stage, the goal is only to introduce this idea lightly, so students begin to see that multiple regression is part of a larger family of linear models.
+
+***
+
+## Estimating the Regression Coefficients
+
+### Least Squares Estimation
+
+As in simple regression, the regression coefficients are estimated by choosing the values that make the sum of squared residuals as small as possible.
+
+This is the least squares principle.
+
+The idea is still to choose the model that fits the observed data best in the sense of minimizing squared vertical discrepancies between observed and fitted values.
+
+### Fitted Model
+
+The fitted model is
+
+$$
+\hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \cdots + b_p x_p.
+$$
+
+Here, the coefficients $b_0, b_1, \dots, b_p$ are the sample-based estimates of the unknown population parameters $\beta_0, \beta_1, \dots, \beta_p$.
+
+This equation gives the predicted mean response for a given set of explanatory-variable values.
+
+### Interpretation of the Fitted Coefficients
+
+The fitted coefficients are estimates, so they are subject to sampling variability.
+
+They should be interpreted in context, just like the population coefficients, and always with the “holding other variables fixed” condition in mind.
+
+For example, $b_1$ is interpreted as the estimated change in the mean response for a one-unit increase in $x_1$, holding the other explanatory variables fixed.
+
+### Residuals
+
+The residual for observation $i$ is
+
+$$
+e_i = y_i - \hat{y}_i.
+$$
+
+It represents the part of the observed response not explained by the fitted model.
+
+Residuals are important because they summarize the discrepancies between the observed data and the fitted regression surface.
+
+### Residual Standard Deviation
+
+The residual standard deviation summarizes the typical size of the residuals.
+
+It measures how much observed responses tend to vary around the fitted regression surface.
+
+As in simple regression, its size should be interpreted relative to the overall variability in the response. A small residual standard deviation means the model explains much of the variability. A large one means substantial unexplained variation remains.
+
+***
+
+## Interpretation of Coefficients in Multiple Regression
+
+This deserves special emphasis because it is usually where students struggle most.
+
+### Holding Other Variables Fixed
+
+Each slope coefficient must be interpreted conditionally on the other explanatory variables remaining fixed.
+
+That is what makes multiple regression different from simple regression.
+
+### Why This Differs from Simple Regression
+
+In simple regression, the slope reflects the overall relationship between one explanatory variable and the response.
+
+In multiple regression, the slope reflects the relationship between $x_j$ and the response **after adjusting for the other explanatory variables**.
+
+So the coefficient no longer describes an overall marginal relationship. It describes a conditional, adjusted relationship.
+
+### Example Interpretations
+
+In the motivating example:
+
+- $b_1$: estimated change in mean exam score for one extra hour studied, holding attendance and prior GPA fixed
+- $b_2$: estimated change in mean exam score for a one-unit increase in attendance, holding study time and prior GPA fixed
+- $b_3$: estimated change in mean exam score for a one-unit increase in prior GPA, holding study time and attendance fixed
+
+These interpretations illustrate the main advantage of multiple regression: it separates relationships that may be mixed together in a simple regression.
+
+### Caution About Interpretation
+
+If explanatory variables are highly related to each other, coefficient interpretation can become unstable and difficult.
+
+In such cases, the model may still fit or predict reasonably well, but the estimated slopes may become hard to interpret individually. This prepares naturally for the later discussion of multicollinearity.
+
+***
+
+## Inference for Individual Regression Coefficients
+
+### Confidence Intervals for a Coefficient
+
+A confidence interval for $\beta_j$ gives a range of plausible values for the adjusted effect of explanatory variable $x_j$.
+
+So the interval describes uncertainty about the conditional relationship between $x_j$ and the mean response, after accounting for the other explanatory variables in the model.
+
+### Hypothesis Test for One Coefficient
+
+A common test is
+
+$$
+H_0:\beta_j = 0
+$$
+
+versus
+
+$$
+H_a:\beta_j \ne 0.
+$$
+
+This asks whether explanatory variable $x_j$ contributes to explaining the response after accounting for the other variables in the model.
+
+This is an important point: the test is not asking whether $x_j$ is associated with the response in isolation. It is asking whether $x_j$ adds information once the other explanatory variables have already been taken into account.
+
+### Test Statistic
+
+The usual $t$ statistic is
+
+$$
+t = \frac{b_j - 0}{SE(b_j)}.
+$$
+
+As in earlier inference chapters, the statistic measures how many standard errors the observed estimate lies from the null value.
+
+### Interpretation in Context
+
+The conclusion should always be phrased in terms of the explanatory variable’s adjusted relationship with the response.
+
+For example, if the coefficient for study time is significant, the conclusion should be stated as evidence that study time is linearly related to the mean exam score after adjusting for attendance and prior GPA.
+
+***
+
+## Overall Model Significance
+
+### Why Individual Tests Are Not Enough
+
+Even if individual coefficients are not strongly significant, the model as a whole may still explain an important portion of the variation in the response.
+
+This can happen when several explanatory variables work together, or when relationships are shared across variables.
+
+So it is not enough to look only at the individual $t$ tests.
+
+### Overall Hypotheses
+
+The overall null hypothesis is
+
+$$
+H_0:\beta_1 = \beta_2 = \cdots = \beta_p = 0
+$$
+
+versus the alternative that at least one slope coefficient is not zero.
+
+This asks whether the explanatory variables, taken together, provide useful linear information about the response.
+
+### The F Test
+
+The overall $F$ test is used for this purpose.
+
+It compares the amount of variation explained by the model to the amount left unexplained.
+
+A large value of the $F$ statistic provides evidence that the explanatory variables collectively contribute to explaining the response.
+
+### Interpretation
+
+Rejecting the null hypothesis gives evidence that at least one explanatory variable is linearly related to the response after accounting for the others.
+
+But it does not identify which one. That requires looking at the individual coefficients or additional tests.
+
+***
+
+## Coefficient of Determination in Multiple Regression
+
+### Definition of $R^2$
+
+The coefficient of determination $R^2$ measures the proportion of variability in the response explained by the multiple regression model.
+
+So it compares:
+
+- total variation in the response
+- variation remaining after the model has been fitted
+
+### Interpretation
+
+For example, if $R^2 = 0.72$, then about 72% of the variability in exam scores is explained by the explanatory variables included in the model.
+
+This makes $R^2$ a useful descriptive summary of model fit.
+
+### Why $R^2$ Alone Is Not Enough
+
+A large $R^2$ does not guarantee that:
+
+- the model is appropriate
+- every coefficient is important
+- the relationship is causal
+
+A small $R^2$ does not necessarily mean the model is useless.
+
+So $R^2$ is helpful, but it should not be the only criterion used to evaluate a model.
+
+### Adjusted $R^2$
+
+Adjusted $R^2$ modifies $R^2$ to account for the number of explanatory variables in the model.
+
+This is useful because ordinary $R^2$ never decreases when variables are added, even if those variables add little real value.
+
+Adjusted $R^2$ helps when comparing models with different numbers of predictors.
+
+***
+
+## Testing a Subset of Regression Coefficients
+
+### Motivation
+
+Sometimes the question is not whether the full model is useful, but whether a specific group of explanatory variables adds important information.
+
+This is one of the key strengths of multiple regression.
+
+### Example
+
+In the exam example, suppose the instructor wants to know whether attendance and prior GPA add useful information once study time is already in the model.
+
+That is not a question about one coefficient alone, and it is not the same as the overall model test.
+
+### Hypotheses
+
+These tests have the form
+
+$$
+H_0:\beta_j = \beta_k = \cdots = 0
+$$
+
+for a subset of coefficients.
+
+The alternative is that at least one of those coefficients is not zero.
+
+### Interpretation
+
+This type of test asks whether the selected group of explanatory variables contributes to explaining the response, after accounting for the remaining variables.
+
+That makes subset tests especially useful for comparing nested models and assessing whether certain variables add enough information to justify their inclusion.
+
+***
+
+## Prediction and Forecasting
+
+### Predicting the Mean Response
+
+For a selected combination of explanatory-variable values, the fitted model provides an estimate of the mean response.
+
+This is the estimated conditional mean at that point in the explanatory-variable space.
+
+### Predicting a New Observation
+
+We may also want to predict a new individual response for an observation with those same explanatory-variable values.
+
+That is a different inferential goal.
+
+### Mean Response Versus New Observation
+
+As in simple regression:
+
+- a confidence interval for the mean response is narrower
+- a prediction interval for a new observation is wider
+
+The prediction interval is wider because it must include both:
+
+- uncertainty in the estimated regression surface
+- natural observation-to-observation variability around that surface
+
+This distinction remains very important in the multiple-regression setting.
+
+### Example
+
+In the motivating example, we may estimate:
+
+- the mean exam score for students with a given study time, attendance, and GPA
+- the score of one new student with those same values
+
+These are related but distinct questions.
+
+### Caution About Extrapolation
+
+Prediction should be restricted to combinations of explanatory-variable values similar to those observed in the data.
+
+Predicting far outside the observed region is risky because the fitted model may no longer be a good description there.
+
+With several explanatory variables, this caution becomes even more important, because unusual combinations of predictor values may occur even when each variable individually is within its observed range.
+
+***
+
+## Comparing Slopes and Interactions
+
+### Why Slopes May Differ Across Groups
+
+The relationship between an explanatory variable and the response may differ depending on another variable.
+
+For example, study time may affect exam performance differently for undergraduate and graduate students.
+
+If so, one common slope may not be adequate.
+
+### Interaction Terms
+
+An interaction term allows the slope for one explanatory variable to depend on another variable.
+
+This extends the model so that the effect of one variable is no longer assumed constant across levels of the other.
+
+### Interpretation
+
+An interaction means that the effect of one explanatory variable is not the same in all situations.
+
+This idea is important because it shows that even in a multiple regression model, the meaning of a coefficient can depend on what else is included in the model.
+
+At this level, an introductory treatment is enough. The main goal is to show students that constant slopes are themselves a modeling assumption.
+
+***
+
+## Checking Model Assumptions
+
+### Residual Plots
+
+Residual plots remain one of the most important tools for checking the model.
+
+They help us assess whether the fitted model is an adequate description of the data.
+
+### What to Look For
+
+Students should check for:
+
+- curvature
+- unequal spread
+- unusual observations
+- separate clusters
+- nonnormal residual behavior
+
+These are the same kinds of issues that arose in simple regression, but now they are evaluated in the multiple-regression setting.
+
+### Residuals Versus Fitted Values
+
+This plot helps assess:
+
+- whether the linear form is reasonable
+- whether the spread is roughly constant
+
+If the plot shows structure instead of random scatter around 0, the model may be missing important features.
+
+### Normal Probability Plot of Residuals
+
+This helps assess whether the residuals are approximately normal for inference purposes.
+
+As before, normality is mainly important for the usual inferential procedures, not for the idea of least squares itself.
+
+### Why These Checks Matter
+
+A model may produce a fitted equation and many numerical summaries, but those summaries are only as trustworthy as the model assumptions behind them.
+
+So diagnostic checking is part of the analysis, not an optional afterthought.
+
+***
+
+## Multicollinearity
+
+### What It Means
+
+Multicollinearity occurs when explanatory variables are strongly related to each other.
+
+This means that the model includes predictors that overlap substantially in the information they provide.
+
+### Why It Matters
+
+When explanatory variables overlap heavily, it can become difficult to separate their individual effects.
+
+This can lead to:
+
+- unstable coefficient estimates
+- large standard errors
+- confusing coefficient signs
+- difficulty interpreting coefficients
+
+So multicollinearity is mainly an interpretational problem, though it can also affect inference.
+
+### Practical Interpretation
+
+A model with multicollinearity may still predict well, but the individual coefficient estimates may become unreliable or hard to interpret.
+
+This is a very important distinction.
+
+Prediction and explanation are not always the same goal. A model can perform reasonably for prediction while still making it difficult to interpret the separate effect of each explanatory variable.
+
+***
+
+## Variable Selection and Model Building
+
+### Why Not Include Every Possible Variable?
+
+Including too many variables may:
+
+- complicate interpretation
+- add noise rather than useful information
+- create multicollinearity problems
+
+So more variables do not automatically mean a better model.
+
+### Scientific Guidance
+
+Variable selection should be guided by:
+
+- the scientific question
+- subject-matter knowledge
+- data quality
+- interpretability
+
+not just by automatic procedures.
+
+This is an important practical lesson. Regression is not only a computational tool. It is also a modeling framework, and good modeling requires judgment.
+
+### Parsimony
+
+A simpler model that answers the research question clearly is often preferable to a more complicated model with difficult interpretation.
+
+This is the principle of parsimony: use a model that is rich enough to address the question, but not more complicated than needed.
+
+***
+
+## Regression and Causation
+
+### Association Is Not Automatically Causal
+
+Even in multiple regression, adjusting for several variables does not automatically prove causation.
+
+Multiple regression can control for some variables, but it does not guarantee that all relevant confounding has been addressed.
+
+### Why Caution Is Still Needed
+
+Possible issues include:
+
+- omitted variables
+- measurement error
+- confounding
+- observational study design
+
+So even a carefully fitted multiple regression model usually describes association unless the design strongly supports causal interpretation.
+
+### Connection to Earlier Study Design Ideas
+
+Stronger causal conclusions require stronger design support, especially randomization or careful control of confounding.
+
+This connects multiple regression back to earlier material on observational studies and experiments.
+
+***
+
+## What to Check Before Using Multiple Regression
+
+### Study Design
+
+Ask:
+
+- Are the observational units independent?
+- Is the response quantitative?
+- Are the explanatory variables measured appropriately?
+
+These questions concern whether the model is appropriate for the type of data collected.
+
+### Model Form
+
+Ask:
+
+- Is a linear relationship in the mean response plausible?
+- Are interaction terms needed?
+- Are important variables missing?
+
+These questions concern whether the model structure makes sense scientifically and statistically.
+
+### Residual Behavior
+
+Ask:
+
+- Is there curvature?
+- Is the spread roughly constant?
+- Are there outliers or influential points?
+
+These are essential model diagnostics.
+
+### Explanatory Variables
+
+Ask:
+
+- Are some explanatory variables strongly related to each other?
+- Are all included variables meaningful?
+
+These questions help guard against multicollinearity and overcomplication.
+
+### Interpretation
+
+Ask:
+
+- Are conclusions being stated conditionally on the other variables?
+- Is anyone making a causal claim not supported by the study design?
+
+This final step reminds students that regression results must be interpreted carefully, not just computed.
+
+***
+
+## Reporting Results for Multiple Regression
+
+### What to Report
+
+A complete report should include:
+
+- the research question
+- the response variable
+- the explanatory variables
+- the fitted regression equation
+- interpretations of important coefficients
+- measures of overall fit such as $R^2$
+- relevant confidence intervals and hypothesis tests
+- residual-based comments on model adequacy
+- prediction results when relevant
+- conclusions in context
+
+This reporting structure helps ensure that the analysis includes not only computation, but also interpretation and model checking.
+
+### Avoiding Common Mistakes
+
+Common mistakes include:
+
+- interpreting a coefficient without mentioning that the other variables are held fixed
+- reporting only p-values
+- focusing only on $R^2$
+- treating association as causation
+- ignoring multicollinearity
+- making predictions outside the observed range
+
+These errors are common because multiple regression produces many numerical outputs. Students should learn that the analysis is not complete until those outputs are interpreted carefully.
+
+***
+
+## Research Study
+
+### Research Study: Predicting Exam Performance Using Study Time, Attendance, and Prior GPA
+
+This section can integrate the full chapter by including:
+
+- fitting the multiple regression model
+- interpreting coefficients
+- testing individual coefficients
+- testing the overall model
+- discussing $R^2$
+- checking residual plots
+- predicting performance for a new student
+- explaining the limits of causal interpretation
+
+The purpose of this kind of study section is to show how the chapter’s ideas work together in a coherent applied analysis.
+
+A medical or agricultural setting could also be used, but the exam example is especially accessible for introductory notes.
+
+***
+
+## Summary
+
+Multiple regression extends simple regression to several explanatory variables.
+
+The main ideas are:
+
+- multiple regression allows several explanatory variables to be used at once
+- each slope coefficient describes an adjusted relationship with the response
+- least squares is used to estimate the regression coefficients
+- inference can be done for individual coefficients and for the model as a whole
+- subset tests are useful for assessing groups of explanatory variables
+- prediction and estimation remain important goals
+- residual analysis is essential for checking model adequacy
+- multicollinearity can make coefficient interpretation unstable
+- multiple regression describes association, but does not by itself establish causation
+
+So the chapter builds directly on simple regression while adding one of the most important ideas in applied statistics: understanding the relationship between a response and several explanatory variables simultaneously.
+
+***
+
+## Key Formulas
+
+The main formulas for this chapter include:
+
+- multiple regression model
+$$
+y_i = \beta_0 + \beta_1 x_{i1} + \cdots + \beta_p x_{ip} + e_i
+$$
+
+- fitted model
+$$
+\hat{y} = b_0 + b_1 x_1 + \cdots + b_p x_p
+$$
+
+- residual
+$$
+e_i = y_i - \hat{y}_i
+$$
+
+- test statistic for one coefficient
+$$
+t = \frac{b_j}{SE(b_j)}
+$$
+
+- overall null hypothesis
+$$
+H_0:\beta_1 = \beta_2 = \cdots = \beta_p = 0
+$$
+
+- coefficient of determination
+$$
+R^2 = \frac{\text{variation explained by the model}}{\text{total variation}}
+$$
+
+- adjusted $R^2$
+
+These formulas should not be treated as isolated algebra. Each one has a specific role:
+
+- the model equation describes the assumed relationship
+- the fitted model provides estimated mean responses
+- residuals help diagnose fit
+- the $t$ statistic supports inference about individual coefficients
+- the overall null hypothesis supports the global $F$ test
+- $R^2$ and adjusted $R^2$ summarize fit
+
+At this level, the formulas should always be accompanied by interpretation.
+
+***

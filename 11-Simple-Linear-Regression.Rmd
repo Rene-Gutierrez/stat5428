@@ -1,3 +1,4 @@
+# Simple Linear Regression
 
 ## Scatterplots and First Impressions
 
