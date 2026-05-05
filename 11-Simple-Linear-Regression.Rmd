@@ -417,7 +417,7 @@ Residuals are not just leftover noise. They are one of the main tools for checki
 
 In a good regression fit, the residuals should behave like unsystematic random variation around 0. If the residuals display structure, such as a curve or a fan shape, then the fitted line may be missing something important.
 
-```{r
+```{r lin-reg-residual-plots}
 # Residual Plots Patterns
 
 # Simulation Parameters
@@ -654,7 +654,7 @@ $$
 
 Its formula is
 
-# $$  
+$$  
 h_{ii}
 
 \frac{1}{n}  
@@ -755,8 +755,8 @@ Influence is about whether they actually do matter.
 
 A useful way to picture leverage is through a scatterplot.
 
-```{r
-# Residual Plots Patterns
+```{r lin-reg-leverage}
+# Leverage Plots
 
 # Simulation Parameters
 n  <- 25
@@ -910,7 +910,7 @@ It is a horizontal concept:
 
 In simple linear regression, leverage is given by
 
-# $$  
+$$  
 h_{ii}
 
 \frac{1}{n}  
